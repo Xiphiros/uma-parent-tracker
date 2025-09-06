@@ -67,9 +67,7 @@
                             </div>
                             <div id="wishlist-container" class="wishlist space-y-2 max-h-48 overflow-y-auto pr-2"></div>
                             <div class="flex space-x-2 mt-2">
-                                <div id="wishlist-autocomplete-container" class="autocomplete-container w-full">
-                                    <input type="text" id="wishlist-name" placeholder="Skill Name" class="form__input">
-                                </div>
+                                <div id="wishlist-skill-select" class="searchable-select w-full"></div>
                                 <select id="wishlist-tier" class="form__input w-32">
                                     <option value="S">Rank S</option>
                                     <option value="A">Rank A</option>
@@ -179,9 +177,7 @@
                        <div id="modal-white-sparks-container" class="form__obtained-sparks-container"></div>
                        
                        <div class="form__input-group">
-                           <div id="modal-skill-autocomplete-container" class="autocomplete-container w-full">
-                               <input type="text" id="modal-skill-name" class="form__input" placeholder="Search for any skill...">
-                           </div>
+                           <div id="modal-skill-select" class="searchable-select w-full"></div>
                            <select id="modal-white-stars" class="form__input w-24" aria-label="Select Stars">
                                <option>1</option><option>2</option><option>3</option>
                            </select>
@@ -206,9 +202,7 @@
                 <div class="space-y-4">
                     <div>
                         <label for="new-skill-name" class="form__label">Skill Name</label>
-                        <div id="new-skill-autocomplete-container" class="autocomplete-container">
-                            <input type="text" id="new-skill-name" class="form__input" required>
-                        </div>
+                        <div id="new-skill-select" class="searchable-select"></div>
                     </div>
                     <div>
                         <label for="new-skill-tier" class="form__label">Rank</label>
