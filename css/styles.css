@@ -59,16 +59,15 @@ body.page {
     font-size: 0.875rem; /* text-sm */
     font-weight: 500; /* font-medium */
     color: #374151; /* text-gray-700 */
+    margin-bottom: 0.25rem;
 }
 .form__label--xs {
     font-size: 0.75rem; /* text-xs */
     color: #6b7280; /* text-gray-500 */
-    margin-bottom: 0.25rem; /* mb-1 */
 }
 .form__input {
     display: block;
     width: 100%;
-    margin-top: 0.25rem; /* mt-1 */
     padding: 0.5rem 0.75rem; /* px-3 py-2 */
     background-color: white;
     border: 1px solid #d1d5db; /* border-gray-300 */
@@ -93,31 +92,54 @@ body.page {
     color: #4b5563;
 }
 .form__footer {
-    padding: 0.75rem 1rem; /* px-4 py-3 */
+    padding-top: 0.75rem;
     border-top: 1px solid #e5e7eb; /* border-t */
     margin-top: 1rem; /* mt-4 */
 }
-.form .form__input {
-    margin-top: 0;
+.form__section {
+    border-top: 1px solid #e5e7eb;
+    padding-top: 1rem;
 }
-.form .flex .form__input {
-    margin-top: 0;
-}
-.form__obtained-sparks-container .obtained-spark {
+.form__section-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #f3f4f6;
-    padding: 0.5rem;
-    border-radius: 0.25rem;
-    font-size: 0.875rem;
+    margin-bottom: 0.5rem;
 }
-.form__obtained-sparks-container .obtained-spark__remove-btn {
-    color: #ef4444; /* text-red-500 */
+.form__section-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #1f2937;
 }
-.form__obtained-sparks-container .obtained-spark__remove-btn:hover {
-    color: #b91c1c; /* text-red-700 */
+.form__input-group {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
 }
+.form__obtained-sparks-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 0.5rem 0;
+    min-height: 2.5rem;
+}
+.obtained-spark {
+    position: relative;
+    padding-right: 1.75rem; /* Make space for remove button */
+}
+.obtained-spark__remove-btn {
+    position: absolute;
+    top: 50%;
+    right: 0.5rem;
+    transform: translateY(-50%);
+    font-weight: bold;
+    color: #4b5563;
+    opacity: 0.5;
+}
+.obtained-spark__remove-btn:hover {
+    opacity: 1;
+}
+
 
 /* Button Component */
 .button {
@@ -147,6 +169,10 @@ body.page {
 .button--neutral:hover {
     background-color: #4b5563; /* hover:bg-gray-600 */
 }
+.button--small {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+}
 
 /* Modal Block */
 .modal {
@@ -162,7 +188,7 @@ body.page {
 .modal__content {
     position: relative;
     top: 5rem;
-    margin: 0 auto;
+    margin: 1rem auto;
     padding: 1.25rem;
     border: 1px solid #e5e7eb;
     width: 100%;
