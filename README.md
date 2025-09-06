@@ -16,7 +16,7 @@ Before starting, you must establish what a "perfect" parent looks like for your 
 
 2.  **Primary Pink Sparks**: Identify the most important aptitudes (e.g., "Turf" and "Mile" for a Mile specialist). These will also receive the highest weight in their category.
 
-3.  **Unique Spark Wishlist**: Select the specific inheritable unique skills you want to prioritize (e.g., `Victory Shot! (Inherited)`).
+3.  **Unique Spark Wishlist**: Create a ranked list of the inheritable unique skills you want to prioritize. This is for skills like `Victory Shot! (Inherited)`.
 
 4.  **White Spark Wishlist**: Create a ranked list of the skill-based white sparks you want to accumulate.
 
@@ -38,8 +38,11 @@ The scoring is as follows:
 | | **Other (Guts/Wit)** | 1 pt | 2 pts | 3 pts |
 | **Pink Sparks** | **Primary (Turf/Mile)** | 3 pts | 6 pts | **10 pts** |
 | | **Other** | 1 pt | 2 pts | 3 pts |
-| **Unique Sparks**| **Wishlisted** | 3 pts | 6 pts | **10 pts** |
-| | **Other** | 1 pt | 2 pts | 3 pts |
+| **Unique Sparks**| **Rank S** | 5 pts | 10 pts | **15 pts** |
+| | **Rank A**| 3 pts | 6 pts | 10 pts |
+| | **Rank B** | 2 pts | 4 pts | 6 pts |
+| | **Rank C** | 1 pt | 2 pts | 3 pts |
+| | **Other (Not on list)** | 1 pt | 2 pts | 3 pts |
 | **White Sparks** | **Rank S (Essential)** | 5 pts | 10 pts | **15 pts** |
 | | **Rank A (High-Value)**| 2 pts | 5 pts | 8 pts |
 | | **Rank B (Beneficial)** | 1 pt | 3 pts | 5 pts |
@@ -91,7 +94,9 @@ The exported data is stored in a JSON file with the following structure:
   "goal": {
     "primaryBlue": [ "Stamina", "Power" ],
     "primaryPink": [ "Mile", "Turf" ],
-    "uniqueWishlist": [ "Victory Shot! (Inherited)" ],
+    "uniqueWishlist": [
+      { "name": "Victory Shot! (Inherited)", "tier": "S" }
+    ],
     "wishlist": [
       { "name": "Groundwork", "tier": "S" },
       { "name": "Mile Corners", "tier": "A" }
@@ -110,7 +115,7 @@ The exported data is stored in a JSON file with the following structure:
       "whiteSparks": [
         { "name": "Groundwork", "stars": 2 }
       ],
-      "score": 30
+      "score": 40
     }
   ]
 }
