@@ -82,6 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
     class DialogService {
         constructor() {
             this._resolve = null;
+            this._hideTimer = null;
             dialogFooter.addEventListener('click', (e) => this._handleButtonClick(e));
         }
 
@@ -101,6 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         _show(title, message, buttons, input) {
             return new Promise(resolve => {
+                clearTimeout(this._hideTimer);
                 this._resolve = resolve;
                 dialogTitle.textContent = title;
                 dialogMessage.textContent = message;
@@ -122,7 +124,10 @@ document.addEventListener('DOMContentLoaded', () => {
         _hide() {
             this._resolve = null;
             dialogModal.classList.add('opacity-0');
-            setTimeout(() => dialogModal.classList.add('hidden'), 250);
+            this._hideTimer = setTimeout(() => {
+                dialogModal.classList.add('hidden');
+                this._hideTimer = null;
+            }, 250);
         }
 
         alert(message, title = 'Alert') {
