@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
             { name: "Mile Corners", tier: 'A' }
         ]
     };
-    let stable = [];
+    let roster = [];
 
     // --- DOM ELEMENTS ---
     const wishlistNameInput = document.getElementById('wishlist-name');
@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const addWishlistBtn = document.getElementById('add-wishlist-btn');
     const wishlistContainer = document.getElementById('wishlist-container');
     
-    const stableContainer = document.getElementById('stable-container');
+    const rosterContainer = document.getElementById('roster-container');
     const topParentsContainer = document.getElementById('top-parents-container');
 
     // Modal elements
@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- LOCAL STORAGE ---
     function loadState() {
         const savedGoal = localStorage.getItem('umaTrackerGoal');
-        const savedStable = localStorage.getItem('umaTrackerStable');
+        const savedRoster = localStorage.getItem('umaTrackerRoster');
         if (savedGoal) {
             const parsedGoal = JSON.parse(savedGoal);
             goal.primaryBlue = Array.isArray(parsedGoal.primaryBlue) ? parsedGoal.primaryBlue : [];
@@ -65,13 +65,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (item.tier === 3) item.tier = 'B';
             });
         }
-        if (savedStable) stable = JSON.parse(savedStable);
+        if (savedRoster) roster = JSON.parse(savedRoster);
         renderAll();
     }
 
     function saveState() {
         localStorage.setItem('umaTrackerGoal', JSON.stringify(goal));
-        localStorage.setItem('umaTrackerStable', JSON.stringify(stable));
+        localStorage.setItem('umaTrackerRoster', JSON.stringify(roster));
     }
 
     // --- SCORING LOGIC ---
@@ -115,13 +115,13 @@ document.addEventListener('DOMContentLoaded', () => {
         renderMultiSelects();
         renderWishlist();
         recalculateAllScores();
-        renderStable();
+        renderRoster();
         renderTopParents();
         updateModalWishlist();
     }
 
     function recalculateAllScores() {
-        stable.forEach(parent => {
+        roster.forEach(parent => {
             parent.score = calculateScore(parent);
         });
     }
@@ -201,25 +201,25 @@ document.addEventListener('DOMContentLoaded', () => {
         container.appendChild(card);
     }
 
-    function renderStable() {
-        stableContainer.innerHTML = '';
-        if (stable.length === 0) {
-            stableContainer.innerHTML = `<p class="card__placeholder-text text-center py-8">Your stable is empty. Add a parent to get started!</p>`;
+    function renderRoster() {
+        rosterContainer.innerHTML = '';
+        if (roster.length === 0) {
+            rosterContainer.innerHTML = `<p class="card__placeholder-text text-center py-8">Your roster is empty. Add a parent to get started!</p>`;
             return;
         }
-        stable.sort((a, b) => b.score - a.score);
-        stable.forEach(parent => renderParentCard(parent, stableContainer));
+        roster.sort((a, b) => b.score - a.score);
+        roster.forEach(parent => renderParentCard(parent, rosterContainer));
     }
     
     function renderTopParents() {
         topParentsContainer.innerHTML = '';
-        if (stable.length === 0) {
-            topParentsContainer.innerHTML = `<p class="card__placeholder-text">Add parents to your stable to see the top pair here.</p>`;
+        if (roster.length === 0) {
+            topParentsContainer.innerHTML = `<p class="card__placeholder-text">Add parents to your roster to see the top pair here.</p>`;
             return;
         }
-        const topTwo = stable.slice(0, 2);
+        const topTwo = roster.slice(0, 2);
         topTwo.forEach(parent => renderParentCard(parent, topParentsContainer, true));
-        if (stable.length === 1) {
+        if (roster.length === 1) {
             topParentsContainer.innerHTML += `<p class="card__placeholder-text text-sm mt-2">Add one more parent to complete the pair.</p>`;
         }
     }
@@ -348,10 +348,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    stableContainer.addEventListener('click', e => {
+    rosterContainer.addEventListener('click', e => {
         if(e.target.classList.contains('parent-card__delete-btn')) {
             const id = e.target.dataset.id;
-            stable = stable.filter(p => p.id != id);
+            roster = roster.filter(p => p.id != id);
             saveState();
             renderAll();
         }
@@ -427,7 +427,7 @@ document.addEventListener('DOMContentLoaded', () => {
             score: 0
         };
         newParent.score = calculateScore(newParent);
-        stable.push(newParent);
+        roster.push(newParent);
         saveState();
         renderAll();
         closeModal();
