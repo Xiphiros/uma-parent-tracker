@@ -16,10 +16,12 @@ Before starting, you must establish what a "perfect" parent looks like for your 
 
 2.  **Primary Pink Sparks**: Identify the most important aptitudes (e.g., "Turf" and "Mile" for a Mile specialist). These will also receive the highest weight in their category.
 
-3.  **White Spark Wishlist**: Create a ranked list of the skill-based white sparks you want to accumulate. This is crucial for targeted skill inheritance.
+3.  **Unique Spark Wishlist**: Select the specific inheritable unique skills you want to prioritize (e.g., `Victory Shot! (Inherited)`).
 
-    * **Rank S (Essential)**: Absolutely critical skills for the build to function. Often powerful, inheritable unique skills or foundational skills like `Groundwork`.
-    * **Rank A (High-Value)**: Important skills that define the build's effectiveness, such as distance or strategy-specific corner/straight skills.
+4.  **White Spark Wishlist**: Create a ranked list of the skill-based white sparks you want to accumulate.
+
+    * **Rank S (Essential)**: Absolutely critical skills for the build to function.
+    * **Rank A (High-Value)**: Important skills that define the build's effectiveness.
     * **Rank B (Beneficial)**: Good supplementary skills that provide a solid advantage.
     * **Rank C (Nice-to-have)**: Minor skills that are a welcome bonus but not a priority.
 
@@ -35,6 +37,8 @@ The scoring is as follows:
 | | **Secondary (Speed)** | 1 pt | 4 pts | 8 pts |
 | | **Other (Guts/Wit)** | 1 pt | 2 pts | 3 pts |
 | **Pink Sparks** | **Primary (Turf/Mile)** | 3 pts | 6 pts | **10 pts** |
+| | **Other** | 1 pt | 2 pts | 3 pts |
+| **Unique Sparks**| **Wishlisted** | 3 pts | 6 pts | **10 pts** |
 | | **Other** | 1 pt | 2 pts | 3 pts |
 | **White Sparks** | **Rank S (Essential)** | 5 pts | 10 pts | **15 pts** |
 | | **Rank A (High-Value)**| 2 pts | 5 pts | 8 pts |
@@ -87,6 +91,7 @@ The exported data is stored in a JSON file with the following structure:
   "goal": {
     "primaryBlue": [ "Stamina", "Power" ],
     "primaryPink": [ "Mile", "Turf" ],
+    "uniqueWishlist": [ "Victory Shot! (Inherited)" ],
     "wishlist": [
       { "name": "Groundwork", "tier": "S" },
       { "name": "Mile Corners", "tier": "A" }
@@ -99,10 +104,13 @@ The exported data is stored in a JSON file with the following structure:
       "gen": 1,
       "blueSpark": { "type": "Stamina", "stars": 3 },
       "pinkSpark": { "type": "Long", "stars": 3 },
+      "uniqueSparks": [
+        { "name": "Victory Shot! (Inherited)", "stars": 3 }
+      ],
       "whiteSparks": [
         { "name": "Groundwork", "stars": 2 }
       ],
-      "score": 20
+      "score": 30
     }
   ]
 }
