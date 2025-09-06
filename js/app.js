@@ -22,6 +22,9 @@ document.addEventListener('DOMContentLoaded', () => {
     let editingParentId = null;
 
     // --- DOM ELEMENTS ---
+    const exportBtn = document.getElementById('export-btn');
+    const importFile = document.getElementById('import-file');
+
     const wishlistNameInput = document.getElementById('wishlist-name');
     const wishlistTierSelect = document.getElementById('wishlist-tier');
     const addWishlistBtn = document.getElementById('add-wishlist-btn');
@@ -91,6 +94,55 @@ document.addEventListener('DOMContentLoaded', () => {
     function saveState() {
         localStorage.setItem('umaTrackerGoal', JSON.stringify(goal));
         localStorage.setItem('umaTrackerRoster', JSON.stringify(roster));
+    }
+
+    // --- IMPORT / EXPORT ---
+    function handleExport() {
+        const backupData = {
+            version: 1,
+            goal: goal,
+            roster: roster
+        };
+        const jsonString = JSON.stringify(backupData, null, 2);
+        const blob = new Blob([jsonString], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        const today = new Date().toISOString().split('T')[0];
+        a.href = url;
+        a.download = `umamusume_tracker_backup_${today}.json`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+    }
+
+    function handleImport(event) {
+        const file = event.target.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            try {
+                const data = JSON.parse(e.target.result);
+
+                if (!data.version || !data.goal || !data.roster) {
+                    throw new Error("Invalid backup file format.");
+                }
+
+                if (window.confirm("Are you sure you want to import this data? Your current goals and roster will be overwritten.")) {
+                    goal = data.goal;
+                    roster = data.roster;
+                    saveState();
+                    loadState(); // Use loadState to re-initialize everything correctly
+                }
+            } catch (error) {
+                alert(`Error importing file: ${error.message}`);
+            } finally {
+                // Reset file input to allow importing the same file again
+                event.target.value = null;
+            }
+        };
+        reader.readAsText(file);
     }
 
     // --- SCORING LOGIC ---
@@ -350,6 +402,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // --- EVENT LISTENERS ---
+    exportBtn.addEventListener('click', handleExport);
+    importFile.addEventListener('change', handleImport);
+
     addWishlistBtn.addEventListener('click', () => {
         const name = wishlistNameInput.value.trim();
         const tier = wishlistTierSelect.value;
