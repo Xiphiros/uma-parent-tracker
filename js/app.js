@@ -7,23 +7,22 @@ document.addEventListener('DOMContentLoaded', () => {
         strategy: ['Front Runner', 'Pace Chaser', 'Late Surger', 'End Closer'],
     };
     const WISH_RANK_ORDER = { S: 0, A: 1, B: 2, C: 3 };
+    const DB_KEY = 'umaTrackerData_v2';
 
     // --- STATE MANAGEMENT ---
-    let goal = {
-        primaryBlue: ['Stamina', 'Power'],
-        primaryPink: ['Mile', 'Turf'],
-        wishlist: [
-            { name: "Groundwork", tier: 'S' },
-            { name: "Mile Corners", tier: 'A' }
-        ]
+    let appData = {
+        version: 2,
+        activeProfileId: null,
+        profiles: []
     };
-    let roster = [];
-    let nextGenNumber = 1;
     let editingParentId = null;
 
     // --- DOM ELEMENTS ---
     const exportBtn = document.getElementById('export-btn');
     const importFile = document.getElementById('import-file');
+    
+    const tabsList = document.getElementById('tabs-list');
+    const addProfileBtn = document.getElementById('add-profile-btn');
 
     const wishlistNameInput = document.getElementById('wishlist-name');
     const wishlistTierSelect = document.getElementById('wishlist-tier');
@@ -70,47 +69,60 @@ document.addEventListener('DOMContentLoaded', () => {
     const doneWishlistModalBtn = document.getElementById('done-wishlist-modal-btn');
 
     let currentWhiteSparks = [];
+    
+    // --- HELPERS ---
+    const getActiveProfile = () => appData.profiles.find(p => p.id === appData.activeProfileId);
+    const getNextGenNumber = () => {
+        const roster = getActiveProfile()?.roster || [];
+        return roster.length > 0 ? Math.max(...roster.map(p => p.gen)) + 1 : 1;
+    }
 
-    // --- LOCAL STORAGE ---
-    function loadState() {
-        const savedGoal = localStorage.getItem('umaTrackerGoal');
-        const savedRoster = localStorage.getItem('umaTrackerRoster');
-        if (savedGoal) {
-            const parsedGoal = JSON.parse(savedGoal);
-            goal.primaryBlue = Array.isArray(parsedGoal.primaryBlue) ? parsedGoal.primaryBlue : [];
-            goal.primaryPink = Array.isArray(parsedGoal.primaryPink) ? parsedGoal.primaryPink : [];
-            goal.wishlist = parsedGoal.wishlist || [];
+    // --- DATA MIGRATION & STORAGE ---
+    function migrateV1Data() {
+        console.log("Checking for V1 data...");
+        const oldGoal = localStorage.getItem('umaTrackerGoal');
+        const oldRoster = localStorage.getItem('umaTrackerRoster');
+
+        if (oldGoal || oldRoster) {
+            console.log("V1 data found. Migrating...");
+            const newProfile = createNewProfile("Default Project");
+            if(oldGoal) newProfile.goal = JSON.parse(oldGoal);
+            if(oldRoster) newProfile.roster = JSON.parse(oldRoster);
             
-            goal.wishlist.forEach(item => {
-                if (item.tier === 1) item.tier = 'S';
-                if (item.tier === 2) item.tier = 'A';
-                if (item.tier === 3) item.tier = 'B';
-            });
+            appData.profiles.push(newProfile);
+            appData.activeProfileId = newProfile.id;
+            
+            saveState();
+            localStorage.removeItem('umaTrackerGoal');
+            localStorage.removeItem('umaTrackerRoster');
+            console.log("Migration complete.");
+            return true;
         }
-        if (savedRoster) roster = JSON.parse(savedRoster);
-        
-        if (roster.length > 0) {
-            nextGenNumber = Math.max(...roster.map(p => p.gen)) + 1;
+        return false;
+    }
+    
+    function loadState() {
+        const savedData = localStorage.getItem(DB_KEY);
+        if (savedData) {
+            appData = JSON.parse(savedData);
         } else {
-            nextGenNumber = 1;
+            if (!migrateV1Data()) {
+                // If no data exists at all, create a first profile
+                const firstProfile = createNewProfile("My First Project");
+                appData.profiles.push(firstProfile);
+                appData.activeProfileId = firstProfile.id;
+            }
         }
-
         renderAll();
     }
 
     function saveState() {
-        localStorage.setItem('umaTrackerGoal', JSON.stringify(goal));
-        localStorage.setItem('umaTrackerRoster', JSON.stringify(roster));
+        localStorage.setItem(DB_KEY, JSON.stringify(appData));
     }
 
     // --- IMPORT / EXPORT ---
     function handleExport() {
-        const backupData = {
-            version: 1,
-            goal: goal,
-            roster: roster
-        };
-        const jsonString = JSON.stringify(backupData, null, 2);
+        const jsonString = JSON.stringify(appData, null, 2);
         const blob = new Blob([jsonString], { type: 'application/json' });
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
@@ -131,21 +143,18 @@ document.addEventListener('DOMContentLoaded', () => {
         reader.onload = (e) => {
             try {
                 const data = JSON.parse(e.target.result);
-
-                if (!data.version || !data.goal || !data.roster) {
+                if (!data.version || !data.profiles || !data.activeProfileId) {
                     throw new Error("Invalid backup file format.");
                 }
 
-                if (window.confirm("Are you sure you want to import this data? Your current goals and roster will be overwritten.")) {
-                    goal = data.goal;
-                    roster = data.roster;
+                if (window.confirm("Are you sure? This will overwrite ALL your projects.")) {
+                    appData = data;
                     saveState();
-                    loadState(); // Use loadState to re-initialize everything correctly
+                    renderAll();
                 }
             } catch (error) {
                 alert(`Error importing file: ${error.message}`);
             } finally {
-                // Reset file input to allow importing the same file again
                 event.target.value = null;
             }
         };
@@ -159,6 +168,8 @@ document.addEventListener('DOMContentLoaded', () => {
             pink: { primary: [0, 3, 6, 10], other: [0, 1, 2, 3] },
             white: { 'S': [0, 5, 10, 15], 'A': [0, 2, 5, 8], 'B': [0, 1, 3, 5], 'C': [0, 1, 2, 3] }
         };
+
+        const goal = getActiveProfile().goal;
 
         if (category === 'blue') {
             const primaryBlueLower = goal.primaryBlue.map(s => s.toLowerCase());
@@ -177,6 +188,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function calculateScore(parent) {
         let totalScore = 0;
+        const goal = getActiveProfile().goal;
         totalScore += getScore('blue', parent.blueSpark.type, parent.blueSpark.stars);
         totalScore += getScore('pink', parent.pinkSpark.type, parent.pinkSpark.stars);
         parent.whiteSparks.forEach(spark => {
@@ -187,9 +199,13 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         return totalScore;
     }
-
+    
     // --- RENDER FUNCTIONS ---
     function renderAll() {
+        const profile = getActiveProfile();
+        if (!profile) return;
+        
+        renderTabs();
         renderMultiSelects();
         renderWishlist();
         recalculateAllScores();
@@ -197,14 +213,32 @@ document.addEventListener('DOMContentLoaded', () => {
         renderTopParents();
         updateModalWishlist();
     }
+    
+    function renderTabs() {
+        tabsList.innerHTML = '';
+        appData.profiles.forEach(profile => {
+            const li = document.createElement('li');
+            li.className = `tab ${profile.id === appData.activeProfileId ? 'tab--active' : ''}`;
+            li.innerHTML = `
+                <button class="tab__button" data-id="${profile.id}">${profile.name}</button>
+                <button class="tab__settings-btn" data-id="${profile.id}" title="Project Settings">
+                    <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                </button>
+            `;
+            tabsList.appendChild(li);
+        });
+    }
 
     function recalculateAllScores() {
-        roster.forEach(parent => {
+        const profile = getActiveProfile();
+        if (!profile) return;
+        profile.roster.forEach(parent => {
             parent.score = calculateScore(parent);
         });
     }
 
     function renderWishlist() {
+        const goal = getActiveProfile().goal;
         wishlistContainer.innerHTML = '';
         if (goal.wishlist.length === 0) {
             wishlistContainer.innerHTML = `<p class="card__placeholder-text">No wishlist items yet.</p>`;
@@ -246,6 +280,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function renderParentCard(parent, container, isTopParent = false) {
         const card = document.createElement('div');
         card.className = `parent-card ${isTopParent ? 'parent-card--top-pair' : ''}`;
+        const goal = getActiveProfile().goal;
 
         let blueSparkHTML = `<div class="spark-tag ${getSparkColor(parent.blueSpark.type)}">${parent.blueSpark.type} ${'★'.repeat(parent.blueSpark.stars)}</div>`;
         let pinkSparkHTML = `<div class="spark-tag ${getSparkColor(parent.pinkSpark.type)}">${parent.pinkSpark.type} ${'★'.repeat(parent.pinkSpark.stars)}</div>`;
@@ -287,6 +322,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function renderRoster() {
+        const roster = getActiveProfile().roster;
         rosterContainer.innerHTML = '';
         if (roster.length === 0) {
             rosterContainer.innerHTML = `<p class="card__placeholder-text text-center py-8">Your roster is empty. Add a parent to get started!</p>`;
@@ -297,6 +333,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     function renderTopParents() {
+        const roster = getActiveProfile().roster;
         topParentsContainer.innerHTML = '';
         if (roster.length === 0) {
             topParentsContainer.innerHTML = `<p class="card__placeholder-text">Add parents to your roster to see the top pair here.</p>`;
@@ -310,7 +347,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     function updateModalWishlist(skillToSelect = null) {
-        // Sort wishlist alphabetically for the dropdown
+        const goal = getActiveProfile().goal;
         const sortedWishlist = [...goal.wishlist].sort((a, b) => a.name.localeCompare(b.name));
         modalWishlistSelect.innerHTML = sortedWishlist.map(w => `<option>${w.name}</option>`).join('');
         if (skillToSelect) {
@@ -355,6 +392,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function renderMultiSelects() {
+        const goal = getActiveProfile().goal;
         createMultiSelect('primary-blue-select', BLUE_SPARK_OPTIONS, goal.primaryBlue, 'blue');
         createMultiSelect('primary-pink-terrain-select', PINK_SPARK_OPTIONS.terrain, goal.primaryPink.filter(p => PINK_SPARK_OPTIONS.terrain.includes(p)), 'pink');
         createMultiSelect('primary-pink-distance-select', PINK_SPARK_OPTIONS.distance, goal.primaryPink.filter(p => PINK_SPARK_OPTIONS.distance.includes(p)), 'pink');
@@ -381,6 +419,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.target.classList.contains('multi-select__chip-remove')) {
             const value = e.target.dataset.value;
             const category = e.target.closest('.multi-select__input').dataset.category;
+            const goal = getActiveProfile().goal;
             if (category === 'blue') {
                 goal.primaryBlue = goal.primaryBlue.filter(v => v !== value);
             } else {
@@ -395,7 +434,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.target.type === 'checkbox' && e.target.closest('.multi-select__dropdown')) {
             const value = e.target.value;
             const category = e.target.closest('.multi-select').querySelector('.multi-select__input').dataset.category;
-            
+            const goal = getActiveProfile().goal;
             if (category === 'blue') {
                 if (e.target.checked) goal.primaryBlue.push(value);
                 else goal.primaryBlue = goal.primaryBlue.filter(v => v !== value);
@@ -408,6 +447,73 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // --- TABS LOGIC ---
+    function createNewProfile(name) {
+        return {
+            id: Date.now(),
+            name,
+            goal: { primaryBlue: [], primaryPink: [], wishlist: [] },
+            roster: []
+        };
+    }
+    
+    addProfileBtn.addEventListener('click', () => {
+        const name = prompt("Enter a name for the new project:", "New Project");
+        if (name) {
+            const newProfile = createNewProfile(name);
+            appData.profiles.push(newProfile);
+            appData.activeProfileId = newProfile.id;
+            saveState();
+            renderAll();
+        }
+    });
+    
+    tabsList.addEventListener('click', e => {
+        const button = e.target.closest('button');
+        if (!button) return;
+
+        const profileId = parseInt(button.dataset.id);
+        
+        if(button.matches('.tab__button')) {
+            appData.activeProfileId = profileId;
+            saveState();
+            renderAll();
+        }
+        
+        if(button.matches('.tab__settings-btn')) {
+            const profile = appData.profiles.find(p => p.id === profileId);
+            const action = prompt(`Actions for "${profile.name}":\nType RENAME or DELETE`);
+            if (action) {
+                switch(action.toUpperCase()) {
+                    case 'RENAME':
+                        const newName = prompt("Enter new name:", profile.name);
+                        if (newName) {
+                            profile.name = newName;
+                            saveState();
+                            renderTabs();
+                        }
+                        break;
+                    case 'DELETE':
+                        if (appData.profiles.length <= 1) {
+                            alert("You cannot delete the last project.");
+                            return;
+                        }
+                        if (confirm(`Are you sure you want to delete "${profile.name}"? This cannot be undone.`)) {
+                            appData.profiles = appData.profiles.filter(p => p.id !== profileId);
+                            if (appData.activeProfileId === profileId) {
+                                appData.activeProfileId = appData.profiles[0].id;
+                            }
+                            saveState();
+                            renderAll();
+                        }
+                        break;
+                    default:
+                        alert("Invalid action.");
+                }
+            }
+        }
+    });
+
     // --- EVENT LISTENERS ---
     exportBtn.addEventListener('click', handleExport);
     importFile.addEventListener('change', handleImport);
@@ -415,7 +521,8 @@ document.addEventListener('DOMContentLoaded', () => {
     addWishlistBtn.addEventListener('click', () => {
         const name = wishlistNameInput.value.trim();
         const tier = wishlistTierSelect.value;
-        if (name) {
+        const goal = getActiveProfile().goal;
+        if (name && !goal.wishlist.some(w => w.name.toLowerCase() === name.toLowerCase())) {
             goal.wishlist.push({ name, tier });
             wishlistNameInput.value = '';
             saveState();
@@ -426,6 +533,7 @@ document.addEventListener('DOMContentLoaded', () => {
     wishlistContainer.addEventListener('click', (e) => {
         if (e.target.classList.contains('wishlist__remove-btn')) {
             const name = e.target.dataset.name;
+            const goal = getActiveProfile().goal;
             goal.wishlist = goal.wishlist.filter(item => item.name !== name);
             saveState();
             renderAll();
@@ -435,7 +543,8 @@ document.addEventListener('DOMContentLoaded', () => {
     rosterContainer.addEventListener('click', e => {
         if(e.target.classList.contains('parent-card__delete-btn')) {
             const id = parseInt(e.target.dataset.id);
-            roster = roster.filter(p => p.id !== id);
+            const roster = getActiveProfile().roster;
+            getActiveProfile().roster = roster.filter(p => p.id !== id);
             saveState();
             renderAll();
         }
@@ -467,6 +576,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     function openEditModal(parentId) {
+        const roster = getActiveProfile().roster;
         const parent = roster.find(p => p.id === parentId);
         if (!parent) return;
         editingParentId = parentId;
@@ -547,6 +657,7 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
         const name = newSkillNameInput.value.trim();
         const tier = newSkillTierSelect.value;
+        const goal = getActiveProfile().goal;
         if (name && !goal.wishlist.some(item => item.name.toLowerCase() === name.toLowerCase())) {
             goal.wishlist.push({ name, tier });
             saveState();
@@ -571,6 +682,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function renderWishlistManagementModal() {
+        const goal = getActiveProfile().goal;
         wishlistManagementList.innerHTML = '';
         if (goal.wishlist.length === 0) {
             wishlistManagementList.innerHTML = `<p class="card__placeholder-text text-center py-4">Wishlist is empty.</p>`;
@@ -607,6 +719,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!li && !target.closest('.wishlist-manage__edit-form')) return;
         
         const originalName = li ? li.dataset.name : target.closest('.wishlist-manage__edit-form').dataset.originalName;
+        const goal = getActiveProfile().goal;
 
         if (target.matches('.wishlist-manage__delete-btn')) {
             if (confirm(`Are you sure you want to delete "${originalName}"?`)) {
@@ -647,27 +760,25 @@ document.addEventListener('DOMContentLoaded', () => {
         const originalName = form.dataset.originalName;
         const newName = form.querySelector('input').value.trim();
         const newTier = form.querySelector('select').value;
+        const profile = getActiveProfile();
         
         if (!newName) {
             alert('Skill name cannot be empty.');
             return;
         }
 
-        // Check if the new name already exists (and it's not the original name)
-        const isDuplicate = goal.wishlist.some(item => item.name.toLowerCase() === newName.toLowerCase() && item.name !== originalName);
+        const isDuplicate = profile.goal.wishlist.some(item => item.name.toLowerCase() === newName.toLowerCase() && item.name !== originalName);
         if (isDuplicate) {
             alert('A skill with this name already exists.');
             return;
         }
         
-        // Update wishlist item
-        const skillToUpdate = goal.wishlist.find(item => item.name === originalName);
+        const skillToUpdate = profile.goal.wishlist.find(item => item.name === originalName);
         skillToUpdate.name = newName;
         skillToUpdate.tier = newTier;
 
-        // If name changed, update it across the entire roster
         if (originalName !== newName) {
-            roster.forEach(parent => {
+            profile.roster.forEach(parent => {
                 parent.whiteSparks.forEach(spark => {
                     if (spark.name === originalName) {
                         spark.name = newName;
@@ -681,10 +792,10 @@ document.addEventListener('DOMContentLoaded', () => {
         renderWishlistManagementModal();
     });
 
-
     // --- MAIN FORM SUBMISSION ---
     addParentForm.addEventListener('submit', (e) => {
         e.preventDefault();
+        const profile = getActiveProfile();
         const parentData = {
             name: umaNameInput.value,
             blueSpark: { type: blueSparkTypeSelect.value, stars: parseInt(blueSparkStarsSelect.value) },
@@ -693,16 +804,15 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         if (editingParentId) {
-            const parentToUpdate = roster.find(p => p.id === editingParentId);
+            const parentToUpdate = profile.roster.find(p => p.id === editingParentId);
             if(parentToUpdate) {
                 Object.assign(parentToUpdate, parentData);
                 parentToUpdate.score = calculateScore(parentToUpdate);
             }
         } else {
-            const newParent = { id: Date.now(), gen: nextGenNumber, ...parentData, score: 0 };
+            const newParent = { id: Date.now(), gen: getNextGenNumber(), ...parentData, score: 0 };
             newParent.score = calculateScore(newParent);
-            roster.push(newParent);
-            nextGenNumber++;
+            profile.roster.push(newParent);
         }
         
         saveState();
