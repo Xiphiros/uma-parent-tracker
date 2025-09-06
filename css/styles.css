@@ -395,6 +395,7 @@ body.page {
 .dialog-modal__message {
     color: #4b5563;
     margin-bottom: 1.5rem;
+    white-space: pre-wrap; /* Allow line breaks in message */
 }
 .dialog-modal__footer {
     display: flex;

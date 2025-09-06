@@ -93,10 +93,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (value === 'prompt') {
                 this._resolve(dialogInput.value);
-            } else if(value === 'true') {
-                this._resolve(true);
             } else {
-                this._resolve(false);
+                this._resolve(value);
             }
             this._hide();
         }
@@ -129,7 +127,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         alert(message, title = 'Alert') {
             const buttons = `<button class="button button--primary" data-value="true">OK</button>`;
-            return this._show(title, message, buttons);
+            return this._show(title, message, buttons).then(() => true);
         }
 
         confirm(message, title = 'Confirm') {
@@ -137,7 +135,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 <button class="button button--neutral" data-value="false">Cancel</button>
                 <button class="button button--primary" data-value="true">Confirm</button>
             `;
-            return this._show(title, message, buttons);
+            return this._show(title, message, buttons).then(val => val === 'true');
+        }
+        
+        actions(message, title, buttons) {
+            const buttonHTML = buttons.map(btn => 
+                `<button class="button ${btn.class || 'button--neutral'}" data-value="${btn.value}">${btn.label}</button>`
+            ).join('');
+            return this._show(title, message, buttonHTML);
         }
 
         prompt(message, title = 'Input Required', defaultValue = '') {
@@ -145,7 +150,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <button class="button button--neutral" data-value="false">Cancel</button>
                 <button class="button button--primary" data-value="prompt">OK</button>
             `;
-            return this._show(title, message, buttons, { defaultValue });
+            return this._show(title, message, buttons, { defaultValue }).then(val => val === 'false' ? null : val);
         }
     }
     const Dialog = new DialogService();
@@ -563,36 +568,40 @@ document.addEventListener('DOMContentLoaded', () => {
         
         if(button.matches('.tab__settings-btn')) {
             const profile = appData.profiles.find(p => p.id === profileId);
-            const action = await Dialog.prompt(`Actions for "${profile.name}":\nType RENAME or DELETE`, 'Project Settings');
+            const action = await Dialog.actions(`Manage settings for "${profile.name}"`, 'Project Settings', [
+                { label: 'Cancel', value: 'cancel', class: 'button--neutral' },
+                { label: 'Rename', value: 'rename', class: 'button--secondary' },
+                { label: 'Delete', value: 'delete', class: 'button--danger' }
+            ]);
             
-            if (action) {
-                switch(action.toUpperCase()) {
-                    case 'RENAME':
-                        const newName = await Dialog.prompt("Enter new name:", "Rename Project", profile.name);
-                        if (newName) {
-                            profile.name = newName;
-                            saveState();
-                            renderTabs();
+            switch(action) {
+                case 'rename':
+                    const newName = await Dialog.prompt("Enter new name:", "Rename Project", profile.name);
+                    if (newName) {
+                        profile.name = newName;
+                        saveState();
+                        renderTabs();
+                    }
+                    break;
+                case 'delete':
+                    if (appData.profiles.length <= 1) {
+                        await Dialog.alert("You cannot delete the last project.", "Action Prohibited");
+                        return;
+                    }
+                    const confirmed = await Dialog.confirm(`Delete "${profile.name}"? This cannot be undone.`, "Confirm Deletion");
+                    if (confirmed) {
+                        appData.profiles = appData.profiles.filter(p => p.id !== profileId);
+                        if (appData.activeProfileId === profileId) {
+                            appData.activeProfileId = appData.profiles[0].id;
                         }
-                        break;
-                    case 'DELETE':
-                        if (appData.profiles.length <= 1) {
-                            await Dialog.alert("You cannot delete the last project.", "Action Prohibited");
-                            return;
-                        }
-                        const confirmed = await Dialog.confirm(`Delete "${profile.name}"? This cannot be undone.`, "Confirm Deletion");
-                        if (confirmed) {
-                            appData.profiles = appData.profiles.filter(p => p.id !== profileId);
-                            if (appData.activeProfileId === profileId) {
-                                appData.activeProfileId = appData.profiles[0].id;
-                            }
-                            saveState();
-                            renderAll();
-                        }
-                        break;
-                    default:
-                        await Dialog.alert(`"${action}" is not a valid action.`, "Invalid Action");
-                }
+                        saveState();
+                        renderAll();
+                    }
+                    break;
+                case 'cancel':
+                default:
+                    // Do nothing
+                    break;
             }
         }
     });
