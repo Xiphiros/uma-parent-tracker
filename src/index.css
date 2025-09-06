@@ -1,6 +1,6 @@
+/* Import the existing custom styles */
+@import './css/styles.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-/* Import the existing custom styles */
-@import './css/styles.css';
