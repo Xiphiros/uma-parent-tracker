@@ -113,50 +113,58 @@
                         <input type="text" id="uma-name" class="form__input" required>
                     </div>
                     
-                    <div class="grid grid-cols-2 gap-4">
-                        <div>
-                             <label for="blue-spark-type" class="form__label">Blue Spark</label>
-                             <select id="blue-spark-type" class="form__input">
-                                 <option>Speed</option><option>Stamina</option><option>Power</option><option>Guts</option><option>Wit</option>
-                             </select>
-                        </div>
-                        <div>
-                             <label for="blue-spark-stars" class="form__label">Stars</label>
-                             <select id="blue-spark-stars" class="form__input">
-                                 <option>1</option><option>2</option><option>3</option>
-                             </select>
+                    <div class="form__section">
+                        <h4 class="form__section-title">Blue Spark</h4>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label for="blue-spark-type" class="form__label">Type</label>
+                                <select id="blue-spark-type" class="form__input">
+                                    <option>Speed</option><option>Stamina</option><option>Power</option><option>Guts</option><option>Wit</option>
+                                </select>
+                           </div>
+                           <div>
+                                <label for="blue-spark-stars" class="form__label">Stars</label>
+                                <select id="blue-spark-stars" class="form__input">
+                                    <option>1</option><option>2</option><option>3</option>
+                                </select>
+                           </div>
                         </div>
                     </div>
 
-                     <div class="grid grid-cols-2 gap-4">
-                        <div>
-                             <label for="pink-spark-type" class="form__label">Pink Spark</label>
-                             <select id="pink-spark-type" class="form__input">
-                                 <option>Turf</option><option>Dirt</option>
-                                 <option>Sprint</option><option>Mile</option><option>Medium</option><option>Long</option>
-                                 <option>Front Runner</option><option>Pace Chaser</option><option>Late Surger</option><option>End Closer</option>
-                             </select>
-                        </div>
-                        <div>
-                             <label for="pink-spark-stars" class="form__label">Stars</label>
-                             <select id="pink-spark-stars" class="form__input">
-                                 <option>1</option><option>2</option><option>3</option>
-                             </select>
+                    <div class="form__section">
+                        <h4 class="form__section-title">Pink Spark</h4>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                 <label for="pink-spark-type" class="form__label">Type</label>
+                                 <select id="pink-spark-type" class="form__input">
+                                     <option>Turf</option><option>Dirt</option>
+                                     <option>Sprint</option><option>Mile</option><option>Medium</option><option>Long</option>
+                                     <option>Front Runner</option><option>Pace Chaser</option><option>Late Surger</option><option>End Closer</option>
+                                 </select>
+                            </div>
+                            <div>
+                                 <label for="pink-spark-stars" class="form__label">Stars</label>
+                                 <select id="pink-spark-stars" class="form__input">
+                                     <option>1</option><option>2</option><option>3</option>
+                                 </select>
+                            </div>
                         </div>
                     </div>
                     
-                    <div class="border-t pt-4">
-                       <h4 class="form__label text-md font-medium mb-2">Obtained White Sparks</h4>
-                       <div id="modal-white-sparks-container" class="form__obtained-sparks-container space-y-2 max-h-32 overflow-y-auto pr-2 mb-2"></div>
-                       <div class="flex items-center space-x-2">
-                           <select id="modal-wishlist-select" class="form__input flex-grow"></select>
-                           <button type="button" id="show-add-skill-modal-btn" class="button button--neutral flex-shrink-0">New...</button>
-                       </div>
-                       <div class="flex space-x-2 mt-2">
-                           <select id="modal-white-stars" class="form__input">
+                    <div class="form__section">
+                        <div class="form__section-header">
+                            <h4 class="form__section-title">Obtained White Sparks</h4>
+                            <button type="button" id="show-add-skill-modal-btn" class="button button--neutral button--small">+ New Skill</button>
+                        </div>
+                       
+                       <div id="modal-white-sparks-container" class="form__obtained-sparks-container"></div>
+                       
+                       <div class="form__input-group">
+                           <select id="modal-wishlist-select" class="form__input" aria-label="Select Skill"></select>
+                           <select id="modal-white-stars" class="form__input" aria-label="Select Stars">
                                <option>1</option><option>2</option><option>3</option>
                            </select>
-                           <button type="button" id="add-modal-white-btn" class="button button--neutral">Add Spark</button>
+                           <button type="button" id="add-modal-white-btn" class="button button--secondary flex-shrink-0">Add</button>
                        </div>
                     </div>
 
