@@ -372,6 +372,44 @@ body.page {
     color: #b91c1c; /* text-red-700 */
 }
 
+/* Wishlist Management Modal */
+.wishlist-manage__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 0.5rem;
+    border-bottom: 1px solid #e5e7eb;
+}
+.wishlist-manage__item:last-child {
+    border-bottom: none;
+}
+.wishlist-manage__item-info {
+    font-size: 0.875rem;
+}
+.wishlist-manage__item-rank {
+    display: inline-block;
+    padding: 0.125rem 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: #374151;
+    background-color: #e5e7eb;
+    border-radius: 9999px;
+    margin-left: 0.5rem;
+}
+.wishlist-manage__item-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+.wishlist-manage__edit-form {
+    display: flex;
+    width: 100%;
+    gap: 0.5rem;
+    align-items: center;
+}
+.wishlist-manage__edit-form .form__input {
+    padding: 0.25rem 0.5rem;
+}
+
 /* Parent Card Block */
 .parent-card {
     padding: 1rem; /* p-4 */

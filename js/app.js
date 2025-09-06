@@ -62,6 +62,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const newSkillTierSelect = document.getElementById('new-skill-tier');
     const cancelAddSkillBtn = document.getElementById('cancel-add-skill-btn');
 
+    // Wishlist Management Modal elements
+    const manageWishlistBtn = document.getElementById('manage-wishlist-btn');
+    const wishlistManagementModal = document.getElementById('wishlist-management-modal');
+    const wishlistManagementList = document.getElementById('wishlist-management-list');
+    const closeWishlistModalBtn = document.getElementById('close-wishlist-modal-btn');
+    const doneWishlistModalBtn = document.getElementById('done-wishlist-modal-btn');
+
     let currentWhiteSparks = [];
 
     // --- LOCAL STORAGE ---
@@ -550,6 +557,130 @@ document.addEventListener('DOMContentLoaded', () => {
             alert("Skill name cannot be empty or already exist.");
         }
     });
+
+    // --- WISHLIST MANAGEMENT MODAL LOGIC ---
+    function openWishlistManagementModal() {
+        renderWishlistManagementModal();
+        wishlistManagementModal.classList.remove('hidden');
+        setTimeout(() => wishlistManagementModal.classList.remove('opacity-0'), 10);
+    }
+
+    function closeWishlistManagementModal() {
+        wishlistManagementModal.classList.add('opacity-0');
+        setTimeout(() => wishlistManagementModal.classList.add('hidden'), 250);
+    }
+
+    function renderWishlistManagementModal() {
+        wishlistManagementList.innerHTML = '';
+        if (goal.wishlist.length === 0) {
+            wishlistManagementList.innerHTML = `<p class="card__placeholder-text text-center py-4">Wishlist is empty.</p>`;
+            return;
+        }
+
+        const sortedWishlist = [...goal.wishlist].sort((a, b) => WISH_RANK_ORDER[a.tier] - WISH_RANK_ORDER[b.tier] || a.name.localeCompare(b.name));
+
+        sortedWishlist.forEach(item => {
+            const li = document.createElement('li');
+            li.className = 'wishlist-manage__item';
+            li.dataset.name = item.name;
+            li.innerHTML = `
+                <div class="wishlist-manage__item-info">
+                    <span>${item.name}</span>
+                    <span class="wishlist-manage__item-rank">Rank ${item.tier}</span>
+                </div>
+                <div class="wishlist-manage__item-actions">
+                    <button class="parent-card__edit-btn wishlist-manage__edit-btn">Edit</button>
+                    <button class="parent-card__delete-btn wishlist-manage__delete-btn">Delete</button>
+                </div>
+            `;
+            wishlistManagementList.appendChild(li);
+        });
+    }
+
+    manageWishlistBtn.addEventListener('click', openWishlistManagementModal);
+    closeWishlistModalBtn.addEventListener('click', closeWishlistManagementModal);
+    doneWishlistModalBtn.addEventListener('click', closeWishlistManagementModal);
+
+    wishlistManagementList.addEventListener('click', e => {
+        const target = e.target;
+        const li = target.closest('.wishlist-manage__item');
+        if (!li && !target.closest('.wishlist-manage__edit-form')) return;
+        
+        const originalName = li ? li.dataset.name : target.closest('.wishlist-manage__edit-form').dataset.originalName;
+
+        if (target.matches('.wishlist-manage__delete-btn')) {
+            if (confirm(`Are you sure you want to delete "${originalName}"?`)) {
+                goal.wishlist = goal.wishlist.filter(item => item.name !== originalName);
+                saveState();
+                renderAll();
+                renderWishlistManagementModal();
+            }
+        }
+
+        if (target.matches('.wishlist-manage__edit-btn')) {
+            const skill = goal.wishlist.find(s => s.name === originalName);
+            const rankOptions = ['S', 'A', 'B', 'C'].map(r => `<option ${skill.tier === r ? 'selected' : ''}>${r}</option>`).join('');
+            
+            li.innerHTML = `
+                <form class="wishlist-manage__edit-form" data-original-name="${originalName}">
+                    <input type="text" class="form__input" value="${skill.name}" required>
+                    <select class="form__input w-24">${rankOptions}</select>
+                    <div class="wishlist-manage__item-actions">
+                        <button type="submit" class="parent-card__edit-btn wishlist-manage__save-btn">Save</button>
+                        <button type="button" class="parent-card__delete-btn wishlist-manage__cancel-btn">Cancel</button>
+                    </div>
+                </form>
+            `;
+            li.querySelector('input').focus();
+        }
+
+        if (target.matches('.wishlist-manage__cancel-btn')) {
+            renderWishlistManagementModal();
+        }
+    });
+
+    wishlistManagementList.addEventListener('submit', e => {
+        e.preventDefault();
+        const form = e.target;
+        if (!form.matches('.wishlist-manage__edit-form')) return;
+        
+        const originalName = form.dataset.originalName;
+        const newName = form.querySelector('input').value.trim();
+        const newTier = form.querySelector('select').value;
+        
+        if (!newName) {
+            alert('Skill name cannot be empty.');
+            return;
+        }
+
+        // Check if the new name already exists (and it's not the original name)
+        const isDuplicate = goal.wishlist.some(item => item.name.toLowerCase() === newName.toLowerCase() && item.name !== originalName);
+        if (isDuplicate) {
+            alert('A skill with this name already exists.');
+            return;
+        }
+        
+        // Update wishlist item
+        const skillToUpdate = goal.wishlist.find(item => item.name === originalName);
+        skillToUpdate.name = newName;
+        skillToUpdate.tier = newTier;
+
+        // If name changed, update it across the entire roster
+        if (originalName !== newName) {
+            roster.forEach(parent => {
+                parent.whiteSparks.forEach(spark => {
+                    if (spark.name === originalName) {
+                        spark.name = newName;
+                    }
+                });
+            });
+        }
+        
+        saveState();
+        renderAll();
+        renderWishlistManagementModal();
+    });
+
 
     // --- MAIN FORM SUBMISSION ---
     addParentForm.addEventListener('submit', (e) => {

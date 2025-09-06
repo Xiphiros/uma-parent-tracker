@@ -52,7 +52,10 @@
                             </div>
                         </div>
                         <div class="border-t pt-4">
-                            <h3 class="form__label text-lg font-medium mb-2">White Spark Wishlist</h3>
+                            <div class="form__section-header mb-2">
+                                <h3 class="form__section-title">White Spark Wishlist</h3>
+                                <button id="manage-wishlist-btn" class="button button--neutral button--small">Manage</button>
+                            </div>
                             <div id="wishlist-container" class="wishlist space-y-2 max-h-48 overflow-y-auto pr-2"></div>
                             <div class="flex space-x-2 mt-2">
                                 <input type="text" id="wishlist-name" placeholder="Skill Name" class="form__input">
@@ -207,6 +210,25 @@
                     <button type="submit" class="button button--primary">Add Skill</button>
                 </div>
             </form>
+        </div>
+    </div>
+
+    <div id="wishlist-management-modal" class="modal hidden opacity-0">
+        <div class="modal__content">
+            <div class="modal__header">
+                <h3 class="modal__title">Manage Wishlist</h3>
+                <button id="close-wishlist-modal-btn" class="modal__close-btn">
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+                </button>
+            </div>
+            <div id="wishlist-management-list" class="space-y-2 max-h-[60vh] overflow-y-auto pr-2 my-4">
+                <!-- Wishlist items will be dynamically inserted here -->
+            </div>
+             <div class="form__footer">
+                <button id="done-wishlist-modal-btn" type="button" class="button button--primary w-full">
+                    Done
+                </button>
+            </div>
         </div>
     </div>
 
