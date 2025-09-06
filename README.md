@@ -66,4 +66,4 @@ This is an iterative process where you consistently breed from your highest-qual
     * If a new uma scores higher than one of your current top two, it replaces the lower-scoring parent in the breeding pair.
     * Continue to keep any high-scoring "reserve" parents and discard any results that do not improve upon your worst-kept parent.
 
-By following this cycle, you create a powerful feedback loop. A lucky, high-scoring parent from an early generation can be used for a long time, accelerating your progress until a definitively superior heir is produced. This ensures that the genetic potential of your breeding stable is always on an upward trajectory.
+By following this cycle, you create a powerful feedback loop. A lucky, high-scoring parent from an early generation can be used for a long time, accelerating your progress until a definitively superior heir is produced. This ensures that the genetic potential of your breeding roster is always on an upward trajectory.
