@@ -894,6 +894,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
 
     // --- SEARCHABLE SELECT LOGIC ---
+    let activeSelect = null;
     class SearchableSelect {
         constructor(container, placeholder) {
             this.container = container;
@@ -903,7 +904,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             this._addEventListeners();
         }
 
-        getValue() { return this.selected ? this.selected.name_jp : null; }
+        getValue() { return this.selected ? this.selected.name_en : null; }
         
         clear() {
             this.selected = null;
@@ -913,7 +914,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         _build() {
             this.container.innerHTML = `
-                <button type="button" class="searchable-select__button form__input">
+                <button type="button" class="searchable-select__button">
                     <span class="searchable-select__button-placeholder">${this.placeholder}</span>
                     <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 3a.75.75 0 01.53.22l3.5 3.5a.75.75 0 01-1.06 1.06L10 4.81 7.03 7.78a.75.75 0 01-1.06-1.06l3.5-3.5A.75.75 0 0110 3zm-3.72 9.28a.75.75 0 011.06 0L10 15.19l2.97-2.97a.75.75 0 111.06 1.06l-3.5 3.5a.75.75 0 01-1.06 0l-3.5-3.5a.75.75 0 010-1.06z" clip-rule="evenodd" /></svg>
                 </button>
@@ -923,12 +924,12 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
 
         _addEventListeners() {
-            this.button.addEventListener('click', () => this._toggleDropdown());
-
-            document.addEventListener('click', (e) => {
-                if (!this.container.contains(e.target)) {
-                    this._closeDropdown();
+            this.button.addEventListener('click', (e) => {
+                e.stopPropagation();
+                if (activeSelect && activeSelect !== this) {
+                    activeSelect._closeDropdown();
                 }
+                this._toggleDropdown()
             });
         }
 
@@ -941,6 +942,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
         
         _openDropdown() {
+            activeSelect = this;
             this.dropdown = document.createElement('div');
             this.dropdown.className = 'searchable-select__dropdown';
             this.dropdown.innerHTML = `
@@ -962,6 +964,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             if (this.dropdown) {
                 this.dropdown.remove();
                 this.dropdown = null;
+                activeSelect = null;
             }
         }
         
@@ -981,13 +984,13 @@ document.addEventListener('DOMContentLoaded', async () => {
             results.forEach(skill => {
                 const li = document.createElement('li');
                 li.className = 'searchable-select__item';
-                const name = `${skill.name_jp} (${skill.name_en})`;
+                const name = skill.name_en;
                 const regex = new RegExp(query.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&'), 'i');
                 li.innerHTML = name.replace(regex, (match) => `<strong>${match}</strong>`);
                 
                 li.addEventListener('click', () => {
                     this.selected = skill;
-                    this.buttonText.textContent = skill.name_jp;
+                    this.buttonText.textContent = skill.name_en;
                     this.buttonText.classList.remove('searchable-select__button-placeholder');
                     this._closeDropdown();
                 });
@@ -995,6 +998,11 @@ document.addEventListener('DOMContentLoaded', async () => {
             });
         }
     }
+    document.addEventListener('click', () => {
+        if (activeSelect) {
+            activeSelect._closeDropdown();
+        }
+    });
 
     // --- MAIN FORM SUBMISSION ---
     addParentForm.addEventListener('submit', (e) => {
