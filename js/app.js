@@ -449,9 +449,9 @@ document.addEventListener('DOMContentLoaded', () => {
         modalWhiteSparksContainer.innerHTML = '';
         currentWhiteSparks.forEach((spark, index) => {
             const div = document.createElement('div');
-            div.className = 'obtained-spark';
+            div.className = 'spark-tag bg-gray-200 text-gray-800 obtained-spark';
             div.innerHTML = `
-                <span>${spark.name} - ${'★'.repeat(spark.stars)}</span>
+                ${spark.name} ${'★'.repeat(spark.stars)}
                 <button type="button" data-index="${index}" class="obtained-spark__remove-btn">&times;</button>
             `;
             modalWhiteSparksContainer.appendChild(div);
