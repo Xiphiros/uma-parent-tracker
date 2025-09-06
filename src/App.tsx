@@ -1,4 +1,3 @@
-import './css/styles.css';
 import GoalDefinition from './components/GoalDefinition';
 import Header from './components/Header';
 import Roster from './components/Roster';
