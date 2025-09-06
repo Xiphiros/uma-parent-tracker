@@ -1,5407 +1,1610 @@
 [
   {
-    "id": "10071",
-    "name_jp": "波乱注意砲！",
-    "name_en": "Warning Shot!"
-  },
-  {
-    "id": "10081",
-    "name_jp": "アクセルX",
-    "name_en": "Accelerator X"
-  },
-  {
-    "id": "10091",
-    "name_jp": "レッドエース",
-    "name_en": "Red Ace"
-  },
-  {
-    "id": "10111",
-    "name_jp": "精神一到",
-    "name_en": "Desire to Win"
-  },
-  {
-    "id": "10141",
-    "name_jp": "熱血☆アミーゴ",
-    "name_en": "Hot Blooded ☆ Amigo"
-  },
-  {
-    "id": "10181",
-    "name_jp": "エンプレス・プライド",
-    "name_en": "Empress・Pride"
-  },
-  {
-    "id": "10241",
-    "name_jp": "勝利のキッス☆",
-    "name_en": "Victory Kiss ☆"
-  },
-  {
-    "id": "10271",
-    "name_jp": "燃えろ筋肉！",
-    "name_en": "Burning Muscles!"
-  },
-  {
-    "id": "10321",
-    "name_jp": "introduction：My body",
-    "name_en": "introduction：My body"
-  },
-  {
-    "id": "10351",
-    "name_jp": "全力Vサインッ！",
-    "name_en": "Full Power V Sign!"
-  },
-  {
-    "id": "10411",
-    "name_jp": "学級委員長+速さ＝バクシン",
-    "name_en": "Class President + Speed = Bakushin"
-  },
-  {
-    "id": "10451",
-    "name_jp": "クリアハート",
-    "name_en": "Clear Heart"
-  },
-  {
-    "id": "10521",
-    "name_jp": "ワクワクよーいドン",
-    "name_en": "Ready, Steady, Go!"
-  },
-  {
-    "id": "10541",
-    "name_jp": "ペガサスフルパワー！",
-    "name_en": "Pegasus Full Power!"
-  },
-  {
-    "id": "10561",
-    "name_jp": "来てください来てください！",
-    "name_en": "Come, Come!"
-  },
-  {
-    "id": "10601",
-    "name_jp": "アタシもたまには、ね？",
-    "name_en": "You Know, Sometimes Even I Can..."
-  },
-  {
-    "id": "10611",
-    "name_jp": "Call me KING",
-    "name_en": "Call me KING"
-  },
-  {
-    "id": "10621",
-    "name_jp": "レディー、どんっ！",
-    "name_en": "Ready, Bang!"
-  },
-  {
-    "id": "10631",
-    "name_jp": "打ち、鍛えて",
-    "name_en": "Strike and Strengthen"
-  },
-  {
-    "id": "10661",
-    "name_jp": "エンジン点火！",
-    "name_en": "Engine Ignition!"
-  },
-  {
-    "id": "10731",
-    "name_jp": "心、強し！",
-    "name_en": "Steel Your Heart, Tsuyoshi!"
-  },
-  {
-    "id": "100011",
-    "name_jp": "シューティングスター",
-    "name_en": "Shooting Star"
-  },
-  {
-    "id": "100021",
-    "name_jp": "先頭の景色は譲らない…！",
-    "name_en": "I'm Not Giving up the Lead!"
-  },
-  {
-    "id": "100031",
-    "name_jp": "究極テイオーステップ",
-    "name_en": "Ultimate Teio Step"
-  },
-  {
-    "id": "100041",
-    "name_jp": "紅焔ギア/LP1211-M",
-    "name_en": "Red Flame Gear/LP1211-M"
-  },
-  {
-    "id": "100051",
-    "name_jp": "煌星のヴォードヴィル",
-    "name_en": "Glittering Star Vaudeville"
-  },
-  {
-    "id": "100061",
-    "name_jp": "勝利の鼓動",
-    "name_en": "The Beat of Victory"
-  },
-  {
-    "id": "100071",
-    "name_jp": "不沈艦、抜錨ォッ！",
-    "name_en": "Unsinkable Ship, Anchored!"
-  },
-  {
-    "id": "100081",
-    "name_jp": "カッティング×DRIVE！",
-    "name_en": "Cutting × DRIVE!"
-  },
-  {
-    "id": "100091",
-    "name_jp": "ブリリアント・レッドエース",
-    "name_en": "Brilliant Red Ace"
-  },
-  {
-    "id": "100101",
-    "name_jp": "ヴィクトリーショット！",
-    "name_en": "Victory Shot!"
-  },
-  {
-    "id": "100111",
-    "name_jp": "精神一到何事か成らざらん",
-    "name_en": "Where There's a Will, There's a Way"
-  },
-  {
-    "id": "100121",
-    "name_jp": "タイマン！デッドヒート！",
-    "name_en": "One-On-One! Dead Heat!"
-  },
-  {
-    "id": "100131",
-    "name_jp": "貴顕の使命を果たすべく",
-    "name_en": "Fulfilling Your Noble Duty"
-  },
-  {
-    "id": "100141",
-    "name_jp": "プランチャ☆ガナドール",
-    "name_en": "Plancha ☆ Ganador"
-  },
-  {
-    "id": "100151",
-    "name_jp": "ヴィットーリアに捧ぐ舞踏",
-    "name_en": "Dance for Vittoria"
-  },
-  {
-    "id": "100161",
-    "name_jp": "Shadow Break",
-    "name_en": "Shadow Break"
-  },
-  {
-    "id": "100171",
-    "name_jp": "汝、皇帝の神威を見よ",
-    "name_en": "Thou, Witness the Heavenly Might of the Emperor"
-  },
-  {
-    "id": "100181",
-    "name_jp": "ブレイズ・オブ・プライド",
-    "name_en": "Blaze of Pride"
-  },
-  {
-    "id": "100191",
-    "name_jp": "尊み☆ﾗｽﾄｽﾊﾟ—(ﾟ∀ﾟ)—ﾄ!",
-    "name_en": "Kyuute☆Last SpuU(ﾟ∀ﾟ)Uurt!"
-  },
-  {
-    "id": "100201",
-    "name_jp": "アングリング×スキーミング",
-    "name_en": "Angling×Scheming"
-  },
-  {
-    "id": "100211",
-    "name_jp": "白い稲妻、見せたるで！",
-    "name_en": "Imma Show You White Lightning!"
-  },
-  {
-    "id": "100221",
-    "name_jp": "Fairy tale",
-    "name_en": "Fairy Tale"
-  },
-  {
-    "id": "100231",
-    "name_jp": "∴win Q.E.D.",
-    "name_en": "∴win Q.E.D."
-  },
-  {
-    "id": "100241",
-    "name_jp": "ひらめき☆ランディング",
-    "name_en": "Inspiration ☆ Landing"
-  },
-  {
-    "id": "100251",
-    "name_jp": "アナタヲ・オイカケテ",
-    "name_en": "Chasing After You"
-  },
-  {
-    "id": "100261",
-    "name_jp": "G00 1st.F∞;",
-    "name_en": "G00 1st.F∞;"
-  },
-  {
-    "id": "100271",
-    "name_jp": "レッツ・アナボリック！",
-    "name_en": "Let's Anabolic!"
-  },
-  {
-    "id": "100281",
-    "name_jp": "I'M☆FULL☆SPEED!!",
-    "name_en": "I'M☆FULL☆SPEED!!"
-  },
-  {
-    "id": "100291",
-    "name_jp": "ゆきあかり、おいかけて",
-    "name_en": "Chasing the Snowlight"
-  },
-  {
-    "id": "100301",
-    "name_jp": "ブルーローズチェイサー",
-    "name_en": "Blue Rose Chaser"
-  },
-  {
-    "id": "100311",
-    "name_jp": "チャージ完了！全速前進！",
-    "name_en": "Charge Complete! Full Speed Ahead!"
-  },
-  {
-    "id": "100321",
-    "name_jp": "U=ma2",
-    "name_en": "U=ma2"
-  },
-  {
-    "id": "100331",
-    "name_jp": "ディオスクロイの流星",
-    "name_en": "Meteor of Dioscuri"
-  },
-  {
-    "id": "100341",
-    "name_jp": "快走かな、快走かな！",
-    "name_en": "Fast Running, Fast Running!"
-  },
-  {
-    "id": "100351",
-    "name_jp": "勝利のチケットを、君にッ！",
-    "name_en": "The Ticket to Victory, for You!"
-  },
-  {
-    "id": "100361",
-    "name_jp": "trigger:BEAT",
-    "name_en": "trigger:BEAT"
-  },
-  {
-    "id": "100371",
-    "name_jp": "Schwarzes Schwert",
-    "name_en": "Schwarzes Schwert"
-  },
-  {
-    "id": "100381",
-    "name_jp": "#LookatCurren",
-    "name_en": "#LookatCurren"
-  },
-  {
-    "id": "100391",
-    "name_jp": "姫たるもの、勝利をこの手に",
-    "name_en": "Victory Befitting a Princess"
-  },
-  {
-    "id": "100401",
-    "name_jp": "KEEP IT REAL.",
-    "name_en": "KEEP IT REAL."
-  },
-  {
-    "id": "100411",
-    "name_jp": "優等生×バクシン＝大勝利ッ",
-    "name_en": "Honor Student x Bakushin = Big Victory"
-  },
-  {
-    "id": "100421",
-    "name_jp": "『I'm possible』",
-    "name_en": "『I'm Possible』"
-  },
-  {
-    "id": "100431",
-    "name_jp": "Ding Dong Boo",
-    "name_en": "Ding Dong Boo"
-  },
-  {
-    "id": "100441",
-    "name_jp": "いただき☆ストレリチア！",
-    "name_en": "You're Mine ☆ Strelitzia"
-  },
-  {
-    "id": "100451",
-    "name_jp": "ピュリティオブハート",
-    "name_en": "Purity of Heart"
-  },
-  {
-    "id": "100461",
-    "name_jp": "キラキラ☆STARDOM",
-    "name_en": "Sparkling☆STARDOM"
-  },
-  {
-    "id": "100471",
-    "name_jp": "掲げよ、己が魂の剣を！",
-    "name_en": "Raise Thy Soul's Sword!"
-  },
-  {
-    "id": "100481",
-    "name_jp": "YEAH☆VIVID TIME!",
-    "name_en": "YEAH☆VIVID TIME!"
-  },
-  {
-    "id": "100491",
-    "name_jp": "剣ヶ峰より、狂気に嗤え",
-    "name_en": "Laugh in the Face of Danger"
-  },
-  {
-    "id": "100501",
-    "name_jp": "Nemesis",
-    "name_en": "Nemesis"
-  },
-  {
-    "id": "100511",
-    "name_jp": "つぼみ、ほころぶ時",
-    "name_en": "When the Flower Bud Opens"
-  },
-  {
-    "id": "100521",
-    "name_jp": "ワクワククライマックス",
-    "name_en": "Exciting Climax"
-  },
-  {
-    "id": "100531",
-    "name_jp": "熱血！！風紀アタック",
-    "name_en": "Hot-Blooded Disciplinary Attack!"
-  },
-  {
-    "id": "100541",
-    "name_jp": "疾風爆走ペガサスダッシュ！",
-    "name_en": "Blasting Gale Pegasus Dash!"
-  },
-  {
-    "id": "100551",
-    "name_jp": "万彩☆マーベラス★世界",
-    "name_en": "Colorful☆Marvelous★World"
-  },
-  {
-    "id": "100561",
-    "name_jp": "来ます来てます来させます！",
-    "name_en": "Luck Is Coming"
-  },
-  {
-    "id": "100571",
-    "name_jp": "叙情、旅路の果てに",
-    "name_en": "Lyricism at Journey's End"
-  },
-  {
-    "id": "100581",
-    "name_jp": "I Never Goof Up!",
-    "name_en": "I Never Goof Up!"
-  },
-  {
-    "id": "100591",
-    "name_jp": "彼方、その先へ…",
-    "name_en": "Beyond the Other Side"
-  },
-  {
-    "id": "100601",
-    "name_jp": "きっとその先へ…！",
-    "name_en": "Surely, Beyond...!"
-  },
-  {
-    "id": "100611",
-    "name_jp": "Pride of KING",
-    "name_en": "Pride of KING"
-  },
-  {
-    "id": "100621",
-    "name_jp": "どんっ、パッ、むんっ",
-    "name_en": "Bang, Bam, Mun"
-  },
-  {
-    "id": "100631",
-    "name_jp": "百錬成鋼",
-    "name_en": "Forged From a Hundred Trials"
-  },
-  {
-    "id": "100641",
-    "name_jp": "ぶっちぎりロード",
-    "name_en": "The Breakaway Road"
-  },
-  {
-    "id": "100651",
-    "name_jp": "アゲてアゲてぷちょへんざ！",
-    "name_en": "Everybody Put Your Hands Up!"
-  },
-  {
-    "id": "100661",
-    "name_jp": "エンジン全開！大噴射！",
-    "name_en": "Engine, Full Throttle! Turbo Time!"
-  },
-  {
-    "id": "100671",
-    "name_jp": "晦冥を照らせ永遠の耀き",
-    "name_en": "Brilliance Illuminating the Darkness"
-  },
-  {
-    "id": "100681",
-    "name_jp": "勝ち鬨ワッショイ！",
-    "name_en": "Shout of Victory"
-  },
-  {
-    "id": "100691",
-    "name_jp": "憧れは桜を越える！",
-    "name_en": "Longing Beyond the Sakura"
-  },
-  {
-    "id": "100701",
-    "name_jp": "セイリオス（人気1～3番）",
-    "name_en": "Seirios (popularity 1-3)"
-  },
-  {
-    "id": "100711",
-    "name_jp": "一期の夢、刹那の飛翔",
-    "name_en": "A Lifetime's Dream, A Moment's Flight"
-  },
-  {
-    "id": "100721",
-    "name_jp": "烈火繚乱、無敵之舞",
-    "name_en": "Dazzling Fire, Invincible Dance"
-  },
-  {
-    "id": "100731",
-    "name_jp": "燃え盛るは絶対の意志",
-    "name_en": "Flames of Unyielding Resolve"
-  },
-  {
-    "id": "100741",
-    "name_jp": "麗しき花信風",
-    "name_en": "Lovely Spring Wind"
-  },
-  {
-    "id": "100761",
-    "name_jp": "花開き、世界",
-    "name_en": "Blossoming World"
-  },
-  {
-    "id": "100771",
-    "name_jp": "Road to Glory",
-    "name_en": "Road to Glory"
-  },
-  {
-    "id": "100781",
-    "name_jp": "風光る",
-    "name_en": "A Spring in My Step"
-  },
-  {
-    "id": "100791",
-    "name_jp": "『船橋最強！』",
-    "name_en": "Funabashi Above All!"
-  },
-  {
-    "id": "100801",
-    "name_jp": "Info: Acquired",
-    "name_en": "Info: Acquired"
-  },
-  {
-    "id": "100821",
-    "name_jp": "Shining Runway",
-    "name_en": "Shining Runway"
-  },
-  {
-    "id": "100831",
-    "name_jp": "Mission: Triumph",
-    "name_en": "Mission: Triumph"
-  },
-  {
-    "id": "100841",
-    "name_jp": "霹靂のアウフヘーベン",
-    "name_en": "Thunderstorm Sublation"
-  },
-  {
-    "id": "100851",
-    "name_jp": "至上であれ",
-    "name_en": "Reign Supreme"
-  },
-  {
-    "id": "100861",
-    "name_jp": "愛と熔けよただ熔けよ",
-    "name_en": "Melt in Love's Embrace"
-  },
-  {
-    "id": "100871",
-    "name_jp": "Silent letter",
-    "name_en": "Silent Letter"
-  },
-  {
-    "id": "100881",
-    "name_jp": "Reversal Illusion",
-    "name_en": "Reversal Illusion"
-  },
-  {
-    "id": "100891",
-    "name_jp": "Celeste Oath",
-    "name_en": "Celeste Oath"
-  },
-  {
-    "id": "100901",
-    "name_jp": "Queen's Rebirth",
-    "name_en": "Queen's Rebirth"
-  },
-  {
-    "id": "100911",
-    "name_jp": "デラックス☆ファウンテン",
-    "name_en": "Deluxe☆Fountain"
-  },
-  {
-    "id": "100931",
-    "name_jp": "幸せの青い光",
-    "name_en": "Blue Ray of Happiness"
-  },
-  {
-    "id": "100941",
-    "name_jp": "Faith in the Feral",
-    "name_en": "Faith in the Feral"
-  },
-  {
-    "id": "100961",
-    "name_jp": "知宵欺敵、百戦不殆",
-    "name_en": "Deceive Thy Foe and Be Certain of Victory"
-  },
-  {
-    "id": "100971",
-    "name_jp": "スカーレットリリィの高揚",
-    "name_en": "スカーレットリリィの高揚"
-  },
-  {
-    "id": "100981",
-    "name_jp": "理運開かりて翔る",
-    "name_en": "Luck Comes to the Prepared"
-  },
-  {
-    "id": "100991",
-    "name_jp": "かがやけ☆とまこまい",
-    "name_en": "Shine ☆ Tomakomai"
-  },
-  {
-    "id": "101001",
-    "name_jp": "Never Say Never",
-    "name_en": "Never Say Never"
-  },
-  {
-    "id": "101021",
-    "name_jp": "ヴィヴァーチェ・ヴォラーレ",
-    "name_en": "Vivace Volare"
-  },
-  {
-    "id": "101041",
-    "name_jp": "暁の御旗『葛城栄主』！",
-    "name_en": "Flag of Dawn: Katsuragi Ace"
-  },
-  {
-    "id": "101051",
-    "name_jp": "アド・アストラ",
-    "name_en": "Ad Astra"
-  },
-  {
-    "id": "101061",
-    "name_jp": "Bang☆ミラクるわせ！",
-    "name_en": "Bang☆Miracle Maker!"
-  },
-  {
-    "id": "101071",
-    "name_jp": "Billions of stars",
-    "name_en": "Billions of Stars"
-  },
-  {
-    "id": "101081",
-    "name_jp": "羅刹、赤翼にて天上へ至らん",
-    "name_en": "Scarlet Ascension of the Rakshasa"
-  },
-  {
-    "id": "101091",
-    "name_jp": "繋ぐ・繋がる×夢・未来",
-    "name_en": "Connecting Dreams With the Future"
-  },
-  {
-    "id": "101101",
-    "name_jp": "Guiding Sea",
-    "name_en": "Guiding Sea"
-  },
-  {
-    "id": "101111",
-    "name_jp": "辿る血脈、芽吹く未来",
-    "name_en": "Traced Bloodline, Budding Future"
-  },
-  {
-    "id": "101131",
-    "name_jp": "ホップステップ・ゲッチュ♡",
-    "name_en": "Hop Step Gotcha ♡"
-  },
-  {
-    "id": "101151",
-    "name_jp": "我が覇道、阻むものなし",
-    "name_en": "None Shall Object My Rule"
-  },
-  {
-    "id": "101161",
-    "name_jp": "烈華の洗礼",
-    "name_en": "Rose Conquest"
-  },
-  {
-    "id": "101171",
-    "name_jp": "鋭気のアレグロ",
-    "name_en": "Allegro of Valor"
-  },
-  {
-    "id": "101191",
-    "name_jp": "『それでは、よき旅を』",
-    "name_en": "«Bon Voyage»"
-  },
-  {
-    "id": "101201",
-    "name_jp": "無二無三なる一条の路",
-    "name_en": "Path of Singular Focus"
-  },
-  {
-    "id": "101211",
-    "name_jp": "Lame de vent",
-    "name_en": "Lame de Vent"
-  },
-  {
-    "id": "101241",
-    "name_jp": "ふくらむ夢、先駆の途",
-    "name_en": "Growing Dreams, Pioneer's Path"
-  },
-  {
-    "id": "101271",
-    "name_jp": "対象捕捉！正義遂行！",
-    "name_en": "Target Acquired! Serving Justice!"
-  },
-  {
-    "id": "101311",
-    "name_jp": "¡Qué alegría!",
-    "name_en": "¡Qué alegría!"
-  },
-  {
-    "id": "101321",
-    "name_jp": "Circulating Love♡",
-    "name_en": "Circulating Love♡"
-  },
-  {
-    "id": "101331",
-    "name_jp": "Weaving History",
-    "name_en": "Weaving History"
-  },
-  {
-    "id": "110011",
-    "name_jp": "わやかわ♪マリンダイヴ",
-    "name_en": "Wayakawa ♪ Marine Dive"
-  },
-  {
-    "id": "110021",
-    "name_jp": "水平線のその先へ",
-    "name_en": "Beyond the Ocean's Infinity"
-  },
-  {
-    "id": "110031",
-    "name_jp": "絶対は、ボクだ",
-    "name_en": "It's Going to Be Me"
-  },
-  {
-    "id": "110041",
-    "name_jp": "グッときて♪Chu",
-    "name_en": "Heartfelt ♪ Smooch"
-  },
-  {
-    "id": "110051",
-    "name_jp": "Ravissant",
-    "name_en": "Ravissante"
-  },
-  {
-    "id": "110061",
-    "name_jp": "聖夜のミラクルラン！",
-    "name_en": "Christmas Eve Miracle Run!"
-  },
-  {
-    "id": "110071",
-    "name_jp": "Adventure of 564",
-    "name_en": "Adventure of 564"
-  },
-  {
-    "id": "110081",
-    "name_jp": "Into High Gear!",
-    "name_en": "Into High Gear!"
-  },
-  {
-    "id": "110091",
-    "name_jp": "Queen's Lumination",
-    "name_en": "Queen's Lumination"
-  },
-  {
-    "id": "110101",
-    "name_jp": "Joyful Voyage!",
-    "name_en": "Joyful Voyage!"
-  },
-  {
-    "id": "110111",
-    "name_jp": "ゲインヒール・スペリアー",
-    "name_en": "Gain Superior Heal"
-  },
-  {
-    "id": "110121",
-    "name_jp": "大盛り！ファーストバイト！",
-    "name_en": "Extra Large First Bite!"
-  },
-  {
-    "id": "110131",
-    "name_jp": "最強の名を懸けて",
-    "name_en": "For the Strongest Name"
-  },
-  {
-    "id": "110141",
-    "name_jp": "コンドル猛撃波",
-    "name_en": "Condor Onslaught"
-  },
-  {
-    "id": "110151",
-    "name_jp": "恵福バルカローレ",
-    "name_en": "Blessed Barcarolle"
-  },
-  {
-    "id": "110161",
-    "name_jp": "灰色の臨界点",
-    "name_en": "Critical Point: Gray"
-  },
-  {
-    "id": "110171",
-    "name_jp": "翳り退く、さざめきの矢",
-    "name_en": "Howling Arrow Piercing the Darkness"
-  },
-  {
-    "id": "110181",
-    "name_jp": "薫風、永遠なる瞬間を",
-    "name_en": "Summer Breeze, the Eternal Moment"
-  },
-  {
-    "id": "110191",
-    "name_jp": "萌到讓我活過來了！",
-    "name_en": "Revived by Moe!"
-  },
-  {
-    "id": "110201",
-    "name_jp": "Do Ya Breakin!",
-    "name_en": "Do Ya Breakin!"
-  },
-  {
-    "id": "110211",
-    "name_jp": "火神鳴",
-    "name_en": "Thunderous Firestarter"
-  },
-  {
-    "id": "110221",
-    "name_jp": "Best day ever",
-    "name_en": "Best Day Ever"
-  },
-  {
-    "id": "110231",
-    "name_jp": "Presents from X",
-    "name_en": "Presents from X"
-  },
-  {
-    "id": "110241",
-    "name_jp": "フラワリー☆マニューバ",
-    "name_en": "Flowery ☆ Maneuver"
-  },
-  {
-    "id": "110251",
-    "name_jp": "心からのおもてにゃし",
-    "name_en": "Purrfect Hospitality"
-  },
-  {
-    "id": "110261",
-    "name_jp": "オペレーション・Cacao",
-    "name_en": "Operation Cacao"
-  },
-  {
-    "id": "110271",
-    "name_jp": "あなたに捧げるフリーポア",
-    "name_en": "Latte Art For You"
-  },
-  {
-    "id": "110291",
-    "name_jp": "いっぱいおあげんしぇ！",
-    "name_en": "Have Your Fill!"
-  },
-  {
-    "id": "110301",
-    "name_jp": "Drain for rose",
-    "name_en": "Drain for Rose"
-  },
-  {
-    "id": "110311",
-    "name_jp": "フレッシュ☆パーラー",
-    "name_en": "Fresh ☆ Parlor"
-  },
-  {
-    "id": "110321",
-    "name_jp": "夏空ハレーション",
-    "name_en": "Summer Halation"
-  },
-  {
-    "id": "110331",
-    "name_jp": "Crystal Mist",
-    "name_en": "Crystal Mist"
-  },
-  {
-    "id": "110341",
-    "name_jp": "灯穂",
-    "name_en": "Bristling Lights"
-  },
-  {
-    "id": "110351",
-    "name_jp": "夢の先へ、届け！",
-    "name_en": "Delivering Beyond the Dreams!"
-  },
-  {
-    "id": "110361",
-    "name_jp": "...found you.",
-    "name_en": "...found you."
-  },
-  {
-    "id": "110371",
-    "name_jp": "Guten Appetit♪",
-    "name_en": "Guten Appetit♪"
-  },
-  {
-    "id": "110381",
-    "name_jp": "One True Color",
-    "name_en": "One True Color"
-  },
-  {
-    "id": "110391",
-    "name_jp": "快なる剛力",
-    "name_en": "Invigorating Strength"
-  },
-  {
-    "id": "110401",
-    "name_jp": "GET DOWN",
-    "name_en": "GET DOWN"
-  },
-  {
-    "id": "110411",
-    "name_jp": "CHERRY☆スクランブル",
-    "name_en": "Cherry☆Scramble"
-  },
-  {
-    "id": "110421",
-    "name_jp": "Oh!bento-magic☆",
-    "name_en": "Oh!bento-magic☆"
-  },
-  {
-    "id": "110441",
-    "name_jp": "とっておきmaterialize",
-    "name_en": "Special Materialization"
-  },
-  {
-    "id": "110451",
-    "name_jp": "ぐるぐるマミートリック♡",
-    "name_en": "Round and Round, Mummy Trick♡"
-  },
-  {
-    "id": "110461",
-    "name_jp": "α-star*",
-    "name_en": "α-star*"
-  },
-  {
-    "id": "110471",
-    "name_jp": "未知との遭遇、即ち物語",
-    "name_en": "Close Encounters of the Literary Kind"
-  },
-  {
-    "id": "110481",
-    "name_jp": "GALmem.ふぉーえば♪",
-    "name_en": "GALmem. forever♪"
-  },
-  {
-    "id": "110501",
-    "name_jp": "Hephaistos",
-    "name_en": "Hephaistos"
-  },
-  {
-    "id": "110511",
-    "name_jp": "Flowering Dreams",
-    "name_en": "Flowering Dreams"
-  },
-  {
-    "id": "110521",
-    "name_jp": "113転び114起き",
-    "name_en": "Fall Down 113 Times, Get Up 114"
-  },
-  {
-    "id": "110531",
-    "name_jp": "奥義・常夏バーニング！！",
-    "name_en": "Secret Technique: Everlasting Summer!!"
-  },
-  {
-    "id": "110561",
-    "name_jp": "禾スナハチ登ル",
-    "name_en": "Grains Become Ripe"
-  },
-  {
-    "id": "110571",
-    "name_jp": "爛然闊歩",
-    "name_en": "Radiant Stride"
-  },
-  {
-    "id": "110581",
-    "name_jp": "Spooky-Scary-Happy",
-    "name_en": "Spooky-Scary-Happy"
-  },
-  {
-    "id": "110591",
-    "name_jp": "ときめきが呼ぶほうへ",
-    "name_en": "To Where the Heart Beckons"
-  },
-  {
-    "id": "110601",
-    "name_jp": "Go☆Go☆for it!",
-    "name_en": "Go☆Go☆For It!"
-  },
-  {
-    "id": "110611",
-    "name_jp": "轟！トレセン応援団！！",
-    "name_en": "Roaring Tracen Cheerleading Squad"
-  },
-  {
-    "id": "110621",
-    "name_jp": "ごろりん！？パワードライブ",
-    "name_en": "Rolling Power Drive!"
-  },
-  {
-    "id": "110641",
-    "name_jp": "jingle all the way",
-    "name_en": "Jingle All the Way"
-  },
-  {
-    "id": "110651",
-    "name_jp": "ノッてけ、マッシュアップ！",
-    "name_en": "It's Mashup Time!"
-  },
-  {
-    "id": "110671",
-    "name_jp": "玄雲散らす、黄金甲矢",
-    "name_en": "Arrow of Gold, Break up the Dark Clouds"
-  },
-  {
-    "id": "110681",
-    "name_jp": "あっぱれ大盤振る舞い！",
-    "name_en": "Lavish Feast"
-  },
-  {
-    "id": "110691",
-    "name_jp": "咲け咲け！私！",
-    "name_en": "Bloom! Blossom! Sakura!"
-  },
-  {
-    "id": "110701",
-    "name_jp": "駆るは光、狩るは星々",
-    "name_en": "Driven by Light, the Heavenly Wolf Hunts"
-  },
-  {
-    "id": "110711",
-    "name_jp": "Danser le présent",
-    "name_en": "Danser le Présent"
-  },
-  {
-    "id": "110721",
-    "name_jp": "剛勇果断、烈火之刀",
-    "name_en": "Decisive Blade of Blazing Fire"
-  },
-  {
-    "id": "110741",
-    "name_jp": "Illuminate you",
-    "name_en": "Illuminate You"
-  },
-  {
-    "id": "110771",
-    "name_jp": "Joy to the World",
-    "name_en": "Joy to the World"
-  },
-  {
-    "id": "110781",
-    "name_jp": "Breezy Treat",
-    "name_en": "Breezy Treat"
-  },
-  {
-    "id": "110831",
-    "name_jp": "Immortal Work",
-    "name_en": "Immortal Work"
-  },
-  {
-    "id": "110841",
-    "name_jp": "深淵のテルプシコラー",
-    "name_en": "Terpsichore of the Abyss"
-  },
-  {
-    "id": "110851",
-    "name_jp": "蒼炎",
-    "name_en": "Sapphire Flame"
-  },
-  {
-    "id": "110861",
-    "name_jp": "解けぬ結い目",
-    "name_en": "Everlasting Knot"
-  },
-  {
-    "id": "110871",
-    "name_jp": "ふわもこアワー",
-    "name_en": "Fluffy Fuzzy Hour"
-  },
-  {
-    "id": "110881",
-    "name_jp": "夏雷カスケード！",
-    "name_en": "Summer Thunder Cascade!"
-  },
-  {
-    "id": "110891",
-    "name_jp": "Tidebreaker",
-    "name_en": "Tidebreaker"
-  },
-  {
-    "id": "110911",
-    "name_jp": "ジュ・テーム☆バカンス！",
-    "name_en": "Je t'aime ☆ Vacances"
-  },
-  {
-    "id": "110981",
-    "name_jp": "五獣挙りて彩光奏づ",
-    "name_en": "Parade of the Five Heavenly Beasts"
-  },
-  {
-    "id": "110991",
-    "name_jp": "とびだせ☆ポッピングシェル",
-    "name_en": "Popping☆Clams"
-  },
-  {
-    "id": "111041",
-    "name_jp": "決意一筆",
-    "name_en": "Determined Stroke"
-  },
-  {
-    "id": "111051",
-    "name_jp": "Encounter with U",
-    "name_en": "Encounter With U"
-  },
-  {
-    "id": "111071",
-    "name_jp": "Romantic Horizon",
-    "name_en": "Romantic Horizon"
-  },
-  {
-    "id": "111091",
-    "name_jp": "ずっとずっと輝いて",
-    "name_en": "Shine on Forever"
-  },
-  {
-    "id": "111101",
-    "name_jp": "時かけるせせらぎ",
-    "name_en": "Perennial Babbles"
-  },
-  {
-    "id": "120011",
-    "name_jp": "威風堂々、夢錦！",
-    "name_en": "Dignified Dreamlike Brocade"
-  },
-  {
-    "id": "120031",
-    "name_jp": "歌舞歓楽や、ああをかし",
-    "name_en": "Merrymaking Song and Dance"
-  },
-  {
-    "id": "120041",
-    "name_jp": "霊験灼然チョベリグ神託",
-    "name_en": "Miraculously Tubular Oracle"
-  },
-  {
-    "id": "120071",
-    "name_jp": "Vive la GOLD",
-    "name_en": "Vive la GOLD"
-  },
-  {
-    "id": "120111",
-    "name_jp": "演舞・撫子大薙刀",
-    "name_en": "Naginata Maiden's Dance"
-  },
-  {
-    "id": "120131",
-    "name_jp": "きらめくは海、まばゆきは君",
-    "name_en": "The Sea Glitters, but You're Dazzling"
-  },
-  {
-    "id": "120231",
-    "name_jp": "勝利ヘ至ル累積",
-    "name_en": "Accumulative Victory"
-  },
-  {
-    "id": "120241",
-    "name_jp": "HOP STEP♪LOCK ON!",
-    "name_en": "HOP STEP♪LOCK ON!"
-  },
-  {
-    "id": "120301",
-    "name_jp": "あおぞらクッキング♪",
-    "name_en": "Clear Sky Cooking♪"
-  },
-  {
-    "id": "120311",
-    "name_jp": "全力全開！サイクロン",
-    "name_en": "Full-Throttle Cyclone!"
-  },
-  {
-    "id": "120321",
-    "name_jp": "超光速微粒子の可能性",
-    "name_en": "Tachyon Potential"
-  },
-  {
-    "id": "120351",
-    "name_jp": "GO! Full-send",
-    "name_en": "GO! Full-send"
-  },
-  {
-    "id": "120371",
-    "name_jp": "潮風のGeschenk",
-    "name_en": "Geschenk of the Salty Sea Breeze"
-  },
-  {
-    "id": "120401",
-    "name_jp": "Silent Sunset Gold",
-    "name_en": "Silent Sunset Gold"
-  },
-  {
-    "id": "120451",
-    "name_jp": "忍法・ほほえみ心結の印",
-    "name_en": "Ninja Art: Seal of the Smiling Heart"
-  },
-  {
-    "id": "120461",
-    "name_jp": "Forward March!",
-    "name_en": "Forward March!"
-  },
-  {
-    "id": "120501",
-    "name_jp": "Overdrive Speed",
-    "name_en": "Overdrive Speed"
-  },
-  {
-    "id": "120601",
-    "name_jp": "もちっと・ハレハレ",
-    "name_en": "Springy Festivities"
-  },
-  {
-    "id": "120611",
-    "name_jp": "理想へのwinding road",
-    "name_en": "The Winding Road to Ideals"
-  },
-  {
-    "id": "120671",
-    "name_jp": "ポンテ・デ・ディアマン",
-    "name_en": "Ponte de Diamant"
-  },
-  {
-    "id": "120681",
-    "name_jp": "ミンナノアタシへ！",
-    "name_en": "Becoming Everyone's Joy!"
-  },
-  {
     "id": "200331",
-    "name_jp": "弧線のプロフェッサー",
-    "name_en": "Archline Professor"
+    "name_jp": "Professor of Curvature",
+    "name_en": "Professor of Curvature",
+    "type": "normal"
   },
   {
     "id": "200332",
-    "name_jp": "コーナー巧者○",
-    "name_en": "Clever Cornerer ○"
+    "name_jp": "Corner Adept ○",
+    "name_en": "Corner Adept ○",
+    "type": "normal"
   },
   {
     "id": "200333",
-    "name_jp": "コーナー巧者×",
-    "name_en": "Clever Cornerer ×"
+    "name_jp": "Corner Adept ×",
+    "name_en": "Corner Adept ×",
+    "type": "normal"
   },
   {
     "id": "200341",
-    "name_jp": "曲線のソムリエ",
-    "name_en": "Curve Sommelier"
+    "name_jp": "Corner Connoisseur",
+    "name_en": "Corner Connoisseur",
+    "type": "normal"
   },
   {
     "id": "200342",
-    "name_jp": "コーナー加速○",
-    "name_en": "Corner Accel ○"
+    "name_jp": "Corner Acceleration ○",
+    "name_en": "Corner Acceleration ○",
+    "type": "normal"
   },
   {
     "id": "200343",
-    "name_jp": "コーナー加速×",
-    "name_en": "Corner Accel ×"
+    "name_jp": "Corner Acceleration ×",
+    "name_en": "Corner Acceleration ×",
+    "type": "normal"
   },
   {
     "id": "200351",
-    "name_jp": "円弧のマエストロ",
-    "name_en": "Arc Maestro"
+    "name_jp": "Swinging Maestro",
+    "name_en": "Swinging Maestro",
+    "type": "normal"
   },
   {
     "id": "200352",
-    "name_jp": "コーナー回復○",
-    "name_en": "Corner Recovery ○"
+    "name_jp": "Corner Recovery ○",
+    "name_en": "Corner Recovery ○",
+    "type": "normal"
   },
   {
     "id": "200353",
-    "name_jp": "コーナー回復×",
-    "name_en": "Corner Recovery ×"
+    "name_jp": "Corner Recovery ×",
+    "name_en": "Corner Recovery ×",
+    "type": "normal"
   },
   {
     "id": "200361",
-    "name_jp": "ハヤテ一文字",
-    "name_en": "Like The Wind"
+    "name_jp": "Beeline Burst",
+    "name_en": "Beeline Burst",
+    "type": "normal"
   },
   {
     "id": "200362",
-    "name_jp": "直線巧者",
-    "name_en": "Straight Skill"
+    "name_jp": "Straightaway Adept",
+    "name_en": "Straightaway Adept",
+    "type": "normal"
   },
   {
     "id": "200371",
-    "name_jp": "一陣の風",
-    "name_en": "Gust of Wind"
+    "name_jp": "Rushing Gale!",
+    "name_en": "Rushing Gale!",
+    "type": "normal"
   },
   {
     "id": "200372",
-    "name_jp": "直線加速",
-    "name_en": "Straight Accel"
+    "name_jp": "Straightaway Acceleration",
+    "name_en": "Straightaway Acceleration",
+    "type": "normal"
   },
   {
     "id": "200381",
-    "name_jp": "好転一息",
-    "name_en": "Breath of Fresh Air"
+    "name_jp": "Breath of Fresh Air",
+    "name_en": "Breath of Fresh Air",
+    "type": "normal"
   },
   {
     "id": "200382",
-    "name_jp": "直線回復",
-    "name_en": "Straight Recovery"
+    "name_jp": "Straightaway Recovery",
+    "name_en": "Straightaway Recovery",
+    "type": "normal"
   },
   {
     "id": "200391",
-    "name_jp": "坂苦手",
-    "name_en": "Hill Dislike"
+    "name_jp": "Ramp Revulsion",
+    "name_en": "Ramp Revulsion",
+    "type": "normal"
   },
   {
     "id": "200401",
-    "name_jp": "バ群嫌い",
-    "name_en": "Crowd Hater"
+    "name_jp": "Packphobia",
+    "name_en": "Packphobia",
+    "type": "normal"
   },
   {
     "id": "200411",
-    "name_jp": "あきらめ癖",
-    "name_en": "Resignation"
+    "name_jp": "Defeatist",
+    "name_en": "Defeatist",
+    "type": "normal"
   },
   {
     "id": "200421",
-    "name_jp": "手抜き癖",
-    "name_en": "Negligence"
+    "name_jp": "Reckless",
+    "name_en": "Reckless",
+    "type": "normal"
   },
   {
     "id": "200431",
-    "name_jp": "コンセントレーション",
-    "name_en": "Concentration"
+    "name_jp": "Concentration",
+    "name_en": "Concentration",
+    "type": "normal"
   },
   {
     "id": "200432",
-    "name_jp": "集中力",
-    "name_en": "Focus"
+    "name_jp": "Focus",
+    "name_en": "Focus",
+    "type": "normal"
   },
   {
     "id": "200433",
-    "name_jp": "ゲート難",
-    "name_en": "Gate Trouble"
+    "name_jp": "Gatekept",
+    "name_en": "Gatekept",
+    "type": "normal"
   },
   {
     "id": "200441",
-    "name_jp": "鋼の意志",
-    "name_en": "Will of Steel"
+    "name_jp": "Iron Will",
+    "name_en": "Iron Will",
+    "type": "normal"
   },
   {
     "id": "200442",
-    "name_jp": "隠れ蓑",
-    "name_en": "Undercover"
+    "name_jp": "Lay Low",
+    "name_en": "Lay Low",
+    "type": "normal"
   },
   {
     "id": "200451",
-    "name_jp": "注目の踊り子",
-    "name_en": "Star of the Show"
+    "name_jp": "Center Stage",
+    "name_en": "Center Stage",
+    "type": "normal"
   },
   {
     "id": "200452",
-    "name_jp": "ポジションセンス",
-    "name_en": "Position Sense"
+    "name_jp": "Prudent Positioning",
+    "name_en": "Prudent Positioning",
+    "type": "normal"
   },
   {
     "id": "200461",
-    "name_jp": "アガッてきた！",
-    "name_en": "Now I'm Pumped!"
+    "name_jp": "It's On!",
+    "name_en": "It's On!",
+    "type": "normal"
   },
   {
     "id": "200462",
-    "name_jp": "ペースアップ",
-    "name_en": "Up The Pace"
+    "name_jp": "Ramp Up",
+    "name_en": "Ramp Up",
+    "type": "normal"
   },
   {
     "id": "200471",
-    "name_jp": "不屈の心",
-    "name_en": "Indomitable Heart"
+    "name_jp": "Indomitable",
+    "name_en": "Indomitable",
+    "type": "normal"
   },
   {
     "id": "200472",
-    "name_jp": "ペースキープ",
-    "name_en": "Keep the Pace"
+    "name_jp": "Pace Strategy",
+    "name_en": "Pace Strategy",
+    "type": "normal"
   },
   {
     "id": "200481",
-    "name_jp": "どこ吹く風",
-    "name_en": "Where the Wind Blows"
+    "name_jp": "Unruffled",
+    "name_en": "Unruffled",
+    "type": "normal"
   },
   {
     "id": "200482",
-    "name_jp": "ウマ込み冷静",
-    "name_en": "Crowded Calm"
+    "name_jp": "Calm in a Crowd",
+    "name_en": "Calm in a Crowd",
+    "type": "normal"
   },
   {
     "id": "200491",
-    "name_jp": "ノンストップガール",
-    "name_en": "Non-stop Girl"
+    "name_jp": "No Stopping Me!",
+    "name_en": "No Stopping Me!",
+    "type": "normal"
   },
   {
     "id": "200492",
-    "name_jp": "垂れウマ回避",
-    "name_en": "Slight Detour"
+    "name_jp": "Nimble Navigator",
+    "name_en": "Nimble Navigator",
+    "type": "normal"
   },
   {
     "id": "200501",
-    "name_jp": "レーンの魔術師",
-    "name_en": "Magician of the Lane"
+    "name_jp": "Lane Legerdemain",
+    "name_en": "Lane Legerdemain",
+    "type": "normal"
   },
   {
     "id": "200502",
-    "name_jp": "臨機応変",
-    "name_en": "Improvise"
+    "name_jp": "Go with the Flow",
+    "name_en": "Go with the Flow",
+    "type": "normal"
   },
   {
     "id": "200511",
-    "name_jp": "全身全霊",
-    "name_en": "Heart and Soul"
+    "name_jp": "In Body and Mind",
+    "name_en": "In Body and Mind",
+    "type": "normal"
   },
   {
     "id": "200512",
-    "name_jp": "末脚",
-    "name_en": "Last Leg"
+    "name_jp": "Homestretch Haste",
+    "name_en": "Homestretch Haste",
+    "type": "normal"
   },
   {
     "id": "200521",
-    "name_jp": "空回り",
-    "name_en": "Running Idle"
+    "name_jp": "Running Idle",
+    "name_en": "Running Idle",
+    "type": "normal"
   },
   {
     "id": "200531",
-    "name_jp": "先手必勝",
-    "name_en": "Fortune Favors the Fast"
+    "name_jp": "Taking the Lead",
+    "name_en": "Taking the Lead",
+    "type": "normal"
   },
   {
     "id": "200532",
-    "name_jp": "先駆け",
-    "name_en": "Frontrunner"
+    "name_jp": "Early Lead",
+    "name_en": "Early Lead",
+    "type": "normal"
   },
   {
     "id": "200541",
-    "name_jp": "脱出術",
-    "name_en": "Escape Artist"
+    "name_jp": "Escape Artist",
+    "name_en": "Escape Artist",
+    "type": "normal"
   },
   {
     "id": "200542",
-    "name_jp": "急ぎ足",
-    "name_en": "Fast Paced"
+    "name_jp": "Fast-Paced",
+    "name_en": "Fast-Paced",
+    "type": "normal"
   },
   {
     "id": "200551",
-    "name_jp": "逃亡者",
-    "name_en": "Runaway"
+    "name_jp": "Unrestrained",
+    "name_en": "Unrestrained",
+    "type": "normal"
   },
   {
     "id": "200552",
-    "name_jp": "押し切り準備",
-    "name_en": "Press Forward, Ready!"
+    "name_jp": "Final Push",
+    "name_en": "Final Push",
+    "type": "normal"
   },
   {
     "id": "200561",
-    "name_jp": "余裕綽々",
-    "name_en": "Calm and Composed"
+    "name_jp": "Calm and Collected",
+    "name_en": "Calm and Collected",
+    "type": "normal"
   },
   {
     "id": "200562",
-    "name_jp": "スタミナキープ",
-    "name_en": "Stamina Keep"
+    "name_jp": "Stamina to Spare",
+    "name_en": "Stamina to Spare",
+    "type": "normal"
   },
   {
     "id": "200571",
-    "name_jp": "レースプランナー",
-    "name_en": "Race Planner"
+    "name_jp": "Race Planner",
+    "name_en": "Race Planner",
+    "type": "normal"
   },
   {
     "id": "200572",
-    "name_jp": "好位追走",
-    "name_en": "Favorite Place"
+    "name_jp": "Preferred Position",
+    "name_en": "Preferred Position",
+    "type": "normal"
   },
   {
     "id": "200581",
-    "name_jp": "スピードスター",
-    "name_en": "Speed Star"
+    "name_jp": "Speed Star",
+    "name_en": "Speed Star",
+    "type": "normal"
   },
   {
     "id": "200582",
-    "name_jp": "抜け出し準備",
-    "name_en": "Passing Preparations"
+    "name_jp": "Prepared to Pass",
+    "name_en": "Prepared to Pass",
+    "type": "normal"
   },
   {
     "id": "200591",
-    "name_jp": "迅速果断",
-    "name_en": "Quick and Decisive"
+    "name_jp": "Fast & Furious",
+    "name_en": "Fast & Furious",
+    "type": "normal"
   },
   {
     "id": "200592",
-    "name_jp": "位置取り押し上げ",
-    "name_en": "Position Swiper"
+    "name_jp": "Position Pilfer",
+    "name_en": "Position Pilfer",
+    "type": "normal"
   },
   {
     "id": "200601",
-    "name_jp": "乗り換え上手",
-    "name_en": "Switch-up Pro"
+    "name_jp": "On Your Left!",
+    "name_en": "On Your Left!",
+    "type": "normal"
   },
   {
     "id": "200602",
-    "name_jp": "差し切り体勢",
-    "name_en": "Between the Lines"
+    "name_jp": "Slick Surge",
+    "name_en": "Slick Surge",
+    "type": "normal"
   },
   {
     "id": "200611",
-    "name_jp": "昇り龍",
-    "name_en": "Rising Dragon"
+    "name_jp": "Rising Dragon",
+    "name_en": "Rising Dragon",
+    "type": "normal"
   },
   {
     "id": "200612",
-    "name_jp": "外差し準備",
-    "name_en": "Outside Pass, Ready!"
+    "name_jp": "Outer Swell",
+    "name_en": "Outer Swell",
+    "type": "normal"
   },
   {
     "id": "200621",
-    "name_jp": "眠れる獅子",
-    "name_en": "Sleeping Lion"
+    "name_jp": "Sleeping Lion",
+    "name_en": "Sleeping Lion",
+    "type": "normal"
   },
   {
     "id": "200622",
-    "name_jp": "後方待機",
-    "name_en": "On Standby"
+    "name_jp": "Standing By",
+    "name_en": "Standing By",
+    "type": "normal"
   },
   {
     "id": "200631",
-    "name_jp": "疾風怒濤",
-    "name_en": "Storm and Stress"
+    "name_jp": "Sturm und Drang",
+    "name_en": "Sturm und Drang",
+    "type": "normal"
   },
   {
     "id": "200632",
-    "name_jp": "仕掛け抜群",
-    "name_en": "Outstanding Stratagem"
+    "name_jp": "Masterful Gambit",
+    "name_en": "Masterful Gambit",
+    "type": "normal"
   },
   {
     "id": "200641",
-    "name_jp": "迫る影",
-    "name_en": "Imminent Shadow"
+    "name_jp": "Encroaching Shadow",
+    "name_en": "Encroaching Shadow",
+    "type": "normal"
   },
   {
     "id": "200642",
-    "name_jp": "直線一気",
-    "name_en": "Straight Shot"
+    "name_jp": "Straightaway Spurt",
+    "name_en": "Straightaway Spurt",
+    "type": "normal"
   },
   {
     "id": "200651",
-    "name_jp": "スプリントターボ",
-    "name_en": "Sprint Turbo"
+    "name_jp": "Turbo Sprint",
+    "name_en": "Turbo Sprint",
+    "type": "normal"
   },
   {
     "id": "200652",
-    "name_jp": "スプリントギア",
-    "name_en": "Sprinting Gear"
+    "name_jp": "Sprinting Gear",
+    "name_en": "Sprinting Gear",
+    "type": "normal"
   },
   {
     "id": "200662",
-    "name_jp": "様子見",
-    "name_en": "Wait and See"
+    "name_jp": "Wait-and-See",
+    "name_en": "Wait-and-See",
+    "type": "normal"
   },
   {
     "id": "200671",
-    "name_jp": "電撃の煌めき",
-    "name_en": "Jolt of Energy"
+    "name_jp": "Blinding Flash",
+    "name_en": "Blinding Flash",
+    "type": "normal"
   },
   {
     "id": "200672",
-    "name_jp": "詰め寄り",
-    "name_en": "Draw Forward"
+    "name_jp": "Gap Closer",
+    "name_en": "Gap Closer",
+    "type": "normal"
   },
   {
     "id": "200681",
-    "name_jp": "マイルの支配者",
-    "name_en": "Ruler of Mile"
+    "name_jp": "Mile Maven",
+    "name_en": "Mile Maven",
+    "type": "normal"
   },
   {
     "id": "200682",
-    "name_jp": "積極策",
-    "name_en": "Positive Planning"
+    "name_jp": "Productive Plan",
+    "name_en": "Productive Plan",
+    "type": "normal"
   },
   {
     "id": "200691",
-    "name_jp": "慧眼",
-    "name_en": "Keen Insight"
+    "name_jp": "Keen Eye",
+    "name_en": "Keen Eye",
+    "type": "normal"
   },
   {
     "id": "200692",
-    "name_jp": "展開窺い",
-    "name_en": "Progress Peek"
+    "name_jp": "Watchful Eye",
+    "name_en": "Watchful Eye",
+    "type": "normal"
   },
   {
     "id": "200701",
-    "name_jp": "豪脚",
-    "name_en": "Big Strides"
+    "name_jp": "Furious Feat",
+    "name_en": "Furious Feat",
+    "type": "normal"
   },
   {
     "id": "200702",
-    "name_jp": "上昇気流",
-    "name_en": "Updraft"
+    "name_jp": "Updrafters",
+    "name_en": "Updrafters",
+    "type": "normal"
   },
   {
     "id": "200711",
-    "name_jp": "切り開く者",
-    "name_en": "Trailblazer"
+    "name_jp": "Trackblazer",
+    "name_en": "Trackblazer",
+    "type": "normal"
   },
   {
     "id": "200712",
-    "name_jp": "前途洋々",
-    "name_en": "Bright Future"
+    "name_jp": "Rosy Outlook",
+    "name_en": "Rosy Outlook",
+    "type": "normal"
   },
   {
     "id": "200721",
-    "name_jp": "キラーチューン",
-    "name_en": "Killer Tune"
+    "name_jp": "Killer Tunes",
+    "name_en": "Killer Tunes",
+    "type": "normal"
   },
   {
     "id": "200722",
-    "name_jp": "テンポアップ",
-    "name_en": "Uptempo"
+    "name_jp": "Up-Tempo",
+    "name_en": "Up-Tempo",
+    "type": "normal"
   },
   {
     "id": "200731",
-    "name_jp": "勝利への執念",
-    "name_en": "To Victory!"
+    "name_jp": "Unyielding",
+    "name_en": "Unyielding",
+    "type": "normal"
   },
   {
     "id": "200732",
-    "name_jp": "食い下がり",
-    "name_en": "Stand Your Ground"
+    "name_jp": "Steadfast",
+    "name_en": "Steadfast",
+    "type": "normal"
   },
   {
     "id": "200741",
-    "name_jp": "クールダウン",
-    "name_en": "Cooldown"
+    "name_jp": "Cooldown",
+    "name_en": "Cooldown",
+    "type": "normal"
   },
   {
     "id": "200742",
-    "name_jp": "深呼吸",
-    "name_en": "Deep Breaths"
+    "name_jp": "Deep Breaths",
+    "name_en": "Deep Breaths",
+    "type": "normal"
   },
   {
     "id": "200751",
-    "name_jp": "内的体験",
-    "name_en": "Intrinsic Experience"
+    "name_jp": "Innate Experience",
+    "name_en": "Innate Experience",
+    "type": "normal"
   },
   {
     "id": "200752",
-    "name_jp": "内弁慶",
-    "name_en": "King of the Castle"
+    "name_jp": "Inside Scoop",
+    "name_en": "Inside Scoop",
+    "type": "normal"
   },
   {
     "id": "200761",
-    "name_jp": "火事場のバ鹿力",
-    "name_en": "Fight or Flight"
+    "name_jp": "Adrenaline Rush",
+    "name_en": "Adrenaline Rush",
+    "type": "normal"
   },
   {
     "id": "200762",
-    "name_jp": "別腹タンク",
-    "name_en": "Backup Belly"
+    "name_jp": "Extra Tank",
+    "name_en": "Extra Tank",
+    "type": "normal"
   },
   {
     "id": "200771",
-    "name_jp": "トリック（前）",
-    "name_en": "Trick (Front)"
-  },
-  {
-    "id": "200772",
-    "name_jp": "見惚れるトリック",
-    "name_en": "Captivating Trick"
+    "name_jp": "Trick (Front)",
+    "name_en": "Trick (Front)",
+    "type": "normal"
   },
   {
     "id": "200781",
-    "name_jp": "トリック（後）",
-    "name_en": "Trick (Back)"
+    "name_jp": "Trick (Rear)",
+    "name_en": "Trick (Rear)",
+    "type": "normal"
   },
   {
     "id": "200791",
-    "name_jp": "逃げ駆け引き",
-    "name_en": "Frantic Runners"
+    "name_jp": "Frenzied Front Runners",
+    "name_en": "Frenzied Front Runners",
+    "type": "normal"
   },
   {
     "id": "200801",
-    "name_jp": "先行駆け引き",
-    "name_en": "Frantic Leaders"
+    "name_jp": "Frenzied Pace Chasers",
+    "name_en": "Frenzied Pace Chasers",
+    "type": "normal"
   },
   {
     "id": "200811",
-    "name_jp": "差し駆け引き",
-    "name_en": "Frantic Betweeners"
+    "name_jp": "Frenzied Late Surgers",
+    "name_en": "Frenzied Late Surgers",
+    "type": "normal"
   },
   {
     "id": "200821",
-    "name_jp": "追込駆け引き",
-    "name_en": "Frantic Chasers"
+    "name_jp": "Frenzied End Closers",
+    "name_en": "Frenzied End Closers",
+    "type": "normal"
   },
   {
     "id": "200831",
-    "name_jp": "逃げけん制",
-    "name_en": "Restrained Runners"
+    "name_jp": "Subdued Front Runners",
+    "name_en": "Subdued Front Runners",
+    "type": "normal"
   },
   {
     "id": "200841",
-    "name_jp": "逃げ焦り",
-    "name_en": "Panicked Runners"
+    "name_jp": "Flustered Front Runners",
+    "name_en": "Flustered Front Runners",
+    "type": "normal"
   },
   {
     "id": "200851",
-    "name_jp": "逃げためらい",
-    "name_en": "Faltering Runners"
+    "name_jp": "Hesitant Front Runners",
+    "name_en": "Hesitant Front Runners",
+    "type": "normal"
   },
   {
     "id": "200861",
-    "name_jp": "先行けん制",
-    "name_en": "Restrained Leaders"
+    "name_jp": "Subdued Pace Chasers",
+    "name_en": "Subdued Pace Chasers",
+    "type": "normal"
   },
   {
     "id": "200871",
-    "name_jp": "先行焦り",
-    "name_en": "Panicked Leaders"
+    "name_jp": "Flustered Pace Chasers",
+    "name_en": "Flustered Pace Chasers",
+    "type": "normal"
   },
   {
     "id": "200881",
-    "name_jp": "先行ためらい",
-    "name_en": "Faltering Leaders"
+    "name_jp": "Hesitant Pace Chasers",
+    "name_en": "Hesitant Pace Chasers",
+    "type": "normal"
   },
   {
     "id": "200891",
-    "name_jp": "差しけん制",
-    "name_en": "Restrained Betweeners"
+    "name_jp": "Subdued Late Surgers",
+    "name_en": "Subdued Late Surgers",
+    "type": "normal"
   },
   {
     "id": "200901",
-    "name_jp": "差し焦り",
-    "name_en": "Panicked Betweeners"
+    "name_jp": "Flustered Late Surgers",
+    "name_en": "Flustered Late Surgers",
+    "type": "normal"
   },
   {
     "id": "200911",
-    "name_jp": "差しためらい",
-    "name_en": "Faltering Betweeners"
+    "name_jp": "Hesitant Late Surgers",
+    "name_en": "Hesitant Late Surgers",
+    "type": "normal"
   },
   {
     "id": "200921",
-    "name_jp": "追込けん制",
-    "name_en": "Restrained Chasers"
+    "name_jp": "Subdued End Closers",
+    "name_en": "Subdued End Closers",
+    "type": "normal"
   },
   {
     "id": "200931",
-    "name_jp": "追込焦り",
-    "name_en": "Panicked Chasers"
+    "name_jp": "Flustered End Closers",
+    "name_en": "Flustered End Closers",
+    "type": "normal"
   },
   {
     "id": "200941",
-    "name_jp": "追込ためらい",
-    "name_en": "Faltering Chasers"
+    "name_jp": "Hesitant End Closers",
+    "name_en": "Hesitant End Closers",
+    "type": "normal"
   },
   {
     "id": "200961",
-    "name_jp": "短距離直線◎",
-    "name_en": "Short Distance Straights ◎"
+    "name_jp": "Sprint Straightaways ◎",
+    "name_en": "Sprint Straightaways ◎",
+    "type": "normal"
   },
   {
     "id": "200962",
-    "name_jp": "短距離直線○",
-    "name_en": "Short Distance Straights ○"
-  },
-  {
-    "id": "200963",
-    "name_jp": "紫電一閃",
-    "name_en": "Lightning Flash"
+    "name_jp": "Sprint Straightaways ○",
+    "name_en": "Sprint Straightaways ○",
+    "type": "normal"
   },
   {
     "id": "200971",
-    "name_jp": "短距離コーナー◎",
-    "name_en": "Short Distance Corners ◎"
+    "name_jp": "Sprint Corners ◎",
+    "name_en": "Sprint Corners ◎",
+    "type": "normal"
   },
   {
     "id": "200972",
-    "name_jp": "短距離コーナー○",
-    "name_en": "Short Distance Corners ○"
-  },
-  {
-    "id": "200973",
-    "name_jp": "紫電円刃",
-    "name_en": "Lightning Slash"
+    "name_jp": "Sprint Corners ○",
+    "name_en": "Sprint Corners ○",
+    "type": "normal"
   },
   {
     "id": "200981",
-    "name_jp": "圧倒的リード",
-    "name_en": "Overwhelming Lead"
+    "name_jp": "Staggering Lead",
+    "name_en": "Staggering Lead",
+    "type": "normal"
   },
   {
     "id": "200982",
-    "name_jp": "大きなリード",
-    "name_en": "Big Lead"
+    "name_jp": "Huge Lead",
+    "name_en": "Huge Lead",
+    "type": "normal"
   },
   {
     "id": "200991",
-    "name_jp": "プランX",
-    "name_en": "Plan X"
+    "name_jp": "Plan X",
+    "name_en": "Plan X",
+    "type": "normal"
   },
   {
     "id": "200992",
-    "name_jp": "善後策",
-    "name_en": "Countermeasures"
+    "name_jp": "Countermeasure",
+    "name_en": "Countermeasure",
+    "type": "normal"
   },
   {
     "id": "201001",
-    "name_jp": "準備万全！",
-    "name_en": "Flawless Preparation!"
+    "name_jp": "Perfect Prep!",
+    "name_en": "Perfect Prep!",
+    "type": "normal"
   },
   {
     "id": "201002",
-    "name_jp": "仕掛け準備",
-    "name_en": "Calculated Preparations"
+    "name_jp": "Meticulous Measures",
+    "name_en": "Meticulous Measures",
+    "type": "normal"
   },
   {
     "id": "201011",
-    "name_jp": "悩殺術",
-    "name_en": "Bewitching"
+    "name_jp": "Adored by All",
+    "name_en": "Adored by All",
+    "type": "normal"
   },
   {
     "id": "201012",
-    "name_jp": "後方釘付",
-    "name_en": "Final Nail"
+    "name_jp": "Intimidate",
+    "name_en": "Intimidate",
+    "type": "normal"
   },
   {
     "id": "201021",
-    "name_jp": "逃亡禁止令",
-    "name_en": "Escape Prohibition"
+    "name_jp": "You've Got No Shot",
+    "name_en": "You've Got No Shot",
+    "type": "normal"
   },
   {
     "id": "201022",
-    "name_jp": "抜け駆け禁止",
-    "name_en": "No Running Allowed"
+    "name_jp": "Stop Right There!",
+    "name_en": "Stop Right There!",
+    "type": "normal"
   },
   {
     "id": "201031",
-    "name_jp": "マイル直線◎",
-    "name_en": "Mile Straights ◎"
+    "name_jp": "Mile Straightaways ◎",
+    "name_en": "Mile Straightaways ◎",
+    "type": "normal"
   },
   {
     "id": "201032",
-    "name_jp": "マイル直線○",
-    "name_en": "Mile Straights ○"
-  },
-  {
-    "id": "201033",
-    "name_jp": "豪風一閃",
-    "name_en": "Cyclone Flash"
+    "name_jp": "Mile Straightaways ○",
+    "name_en": "Mile Straightaways ○",
+    "type": "normal"
   },
   {
     "id": "201041",
-    "name_jp": "マイルコーナー◎",
-    "name_en": "Mile Corners ◎"
+    "name_jp": "Mile Corners ◎",
+    "name_en": "Mile Corners ◎",
+    "type": "normal"
   },
   {
     "id": "201042",
-    "name_jp": "マイルコーナー○",
-    "name_en": "Mile Corners ○"
-  },
-  {
-    "id": "201043",
-    "name_jp": "豪風円刃",
-    "name_en": "Cyclone Slash"
+    "name_jp": "Mile Corners ○",
+    "name_en": "Mile Corners ○",
+    "type": "normal"
   },
   {
     "id": "201051",
-    "name_jp": "ギアチェンジ",
-    "name_en": "Gear Change"
+    "name_jp": "Changing Gears",
+    "name_en": "Changing Gears",
+    "type": "normal"
   },
   {
     "id": "201052",
-    "name_jp": "ギアシフト",
-    "name_en": "Shift Gears"
+    "name_jp": "Shifting Gears",
+    "name_en": "Shifting Gears",
+    "type": "normal"
   },
   {
     "id": "201061",
-    "name_jp": "アクセル全開！",
-    "name_en": "Accel Full Throttle!"
+    "name_jp": "Step on the Gas!",
+    "name_en": "Step on the Gas!",
+    "type": "normal"
   },
   {
     "id": "201062",
-    "name_jp": "アクセラレーション",
-    "name_en": "Acceleration"
+    "name_jp": "Acceleration",
+    "name_en": "Acceleration",
+    "type": "normal"
   },
   {
     "id": "201071",
-    "name_jp": "姉御肌",
-    "name_en": "Big Sister Disposition"
+    "name_jp": "Big-Sisterly",
+    "name_en": "Big-Sisterly",
+    "type": "normal"
   },
   {
     "id": "201072",
-    "name_jp": "負けん気",
-    "name_en": "Rival Spirit"
+    "name_jp": "Unyielding Spirit",
+    "name_en": "Unyielding Spirit",
+    "type": "normal"
   },
   {
     "id": "201081",
-    "name_jp": "スピードグリード",
-    "name_en": "Speed Greed"
+    "name_jp": "Greed for Speed",
+    "name_en": "Greed for Speed",
+    "type": "normal"
   },
   {
     "id": "201082",
-    "name_jp": "スピードイーター",
-    "name_en": "Speed Eater"
+    "name_jp": "Speed Eater",
+    "name_en": "Speed Eater",
+    "type": "normal"
   },
   {
     "id": "201091",
-    "name_jp": "布陣",
-    "name_en": "Battle Formation"
+    "name_jp": "Battle Formation",
+    "name_en": "Battle Formation",
+    "type": "normal"
   },
   {
     "id": "201092",
-    "name_jp": "布石",
-    "name_en": "Opener"
+    "name_jp": "Opening Gambit",
+    "name_en": "Opening Gambit",
+    "type": "normal"
   },
   {
     "id": "201101",
-    "name_jp": "中距離直線◎",
-    "name_en": "Medium Distance Straights ◎"
+    "name_jp": "Medium Straightaways ◎",
+    "name_en": "Medium Straightaways ◎",
+    "type": "normal"
   },
   {
     "id": "201102",
-    "name_jp": "中距離直線○",
-    "name_en": "Medium Distance Straights ○"
-  },
-  {
-    "id": "201103",
-    "name_jp": "光芒一閃",
-    "name_en": "Photon Flash"
+    "name_jp": "Medium Straightaways ○",
+    "name_en": "Medium Straightaways ○",
+    "type": "normal"
   },
   {
     "id": "201111",
-    "name_jp": "中距離コーナー◎",
-    "name_en": "Medium Distance Corners ◎"
+    "name_jp": "Medium Corners ◎",
+    "name_en": "Medium Corners ◎",
+    "type": "normal"
   },
   {
     "id": "201112",
-    "name_jp": "中距離コーナー○",
-    "name_en": "Medium Distance Corners ○"
-  },
-  {
-    "id": "201113",
-    "name_jp": "光芒円刃",
-    "name_en": "Photon Slash"
+    "name_jp": "Medium Corners ○",
+    "name_en": "Medium Corners ○",
+    "type": "normal"
   },
   {
     "id": "201121",
-    "name_jp": "千里眼",
-    "name_en": "Clairvoyance"
+    "name_jp": "Clairvoyance",
+    "name_en": "Clairvoyance",
+    "type": "normal"
   },
   {
     "id": "201122",
-    "name_jp": "ホークアイ",
-    "name_en": "Hawkeye"
+    "name_jp": "Hawkeye",
+    "name_en": "Hawkeye",
+    "type": "normal"
   },
   {
     "id": "201131",
-    "name_jp": "ライトニングステップ",
-    "name_en": "Lightning Step"
+    "name_jp": "Lightning Step",
+    "name_en": "Lightning Step",
+    "type": "normal"
   },
   {
     "id": "201132",
-    "name_jp": "イナズマステップ",
-    "name_en": "Inazuma Step"
+    "name_jp": "Thunderbolt Step",
+    "name_en": "Thunderbolt Step",
+    "type": "normal"
   },
   {
     "id": "201141",
-    "name_jp": "神業ステップ",
-    "name_en": "Miracle Step"
+    "name_jp": "Miraculous Step",
+    "name_en": "Miraculous Step",
+    "type": "normal"
   },
   {
     "id": "201142",
-    "name_jp": "軽やかステップ",
-    "name_en": "Light Step"
+    "name_jp": "Soft Step",
+    "name_en": "Soft Step",
+    "type": "normal"
   },
   {
     "id": "201151",
-    "name_jp": "独占力",
-    "name_en": "Monopolizer"
+    "name_jp": "Dominator",
+    "name_en": "Dominator",
+    "type": "normal"
   },
   {
     "id": "201152",
-    "name_jp": "束縛",
-    "name_en": "Binding Chains"
+    "name_jp": "Tether",
+    "name_en": "Tether",
+    "type": "normal"
   },
   {
     "id": "201161",
-    "name_jp": "魅惑のささやき",
-    "name_en": "Charming Whisper"
+    "name_jp": "Mystifying Murmur",
+    "name_en": "Mystifying Murmur",
+    "type": "normal"
   },
   {
     "id": "201162",
-    "name_jp": "ささやき",
-    "name_en": "Gentle Whisper"
+    "name_jp": "Murmur",
+    "name_en": "Murmur",
+    "type": "normal"
   },
   {
     "id": "201171",
-    "name_jp": "長距離直線◎",
-    "name_en": "Long Distance Straights ◎"
+    "name_jp": "Long Straightaways ◎",
+    "name_en": "Long Straightaways ◎",
+    "type": "normal"
   },
   {
     "id": "201172",
-    "name_jp": "長距離直線○",
-    "name_en": "Long Distance Straights ○"
-  },
-  {
-    "id": "201173",
-    "name_jp": "烈風一閃",
-    "name_en": "Flash of Wind"
+    "name_jp": "Long Straightaways ○",
+    "name_en": "Long Straightaways ○",
+    "type": "normal"
   },
   {
     "id": "201181",
-    "name_jp": "長距離コーナー◎",
-    "name_en": "Long Distance Corners ◎"
+    "name_jp": "Long Corners ◎",
+    "name_en": "Long Corners ◎",
+    "type": "normal"
   },
   {
     "id": "201182",
-    "name_jp": "長距離コーナー○",
-    "name_en": "Long Distance Corners ○"
-  },
-  {
-    "id": "201183",
-    "name_jp": "烈風円刃",
-    "name_en": "Wind Slash"
+    "name_jp": "Long Corners ○",
+    "name_en": "Long Corners ○",
+    "type": "normal"
   },
   {
     "id": "201191",
-    "name_jp": "先陣の心得",
-    "name_en": "Vanguard's Wisdom"
+    "name_jp": "Vanguard Spirit",
+    "name_en": "Vanguard Spirit",
+    "type": "normal"
   },
   {
     "id": "201192",
-    "name_jp": "リードキープ",
-    "name_en": "Keep the Lead"
-  },
-  {
-    "id": "201201",
-    "name_jp": "VIP顔パス",
-    "name_en": "VIP Pass"
+    "name_jp": "Keeping the Lead",
+    "name_en": "Keeping the Lead",
+    "type": "normal"
   },
   {
     "id": "201202",
-    "name_jp": "パス上手",
-    "name_en": "Pass Expert"
+    "name_jp": "Passing Pro",
+    "name_en": "Passing Pro",
+    "type": "normal"
   },
   {
     "id": "201211",
-    "name_jp": "怒涛の追い上げ",
-    "name_en": "Tempestuous Pressure"
+    "name_jp": "Overwhelming Pressure",
+    "name_en": "Overwhelming Pressure",
+    "type": "normal"
   },
   {
     "id": "201212",
-    "name_jp": "追い上げ",
-    "name_en": "Press the Attack"
+    "name_jp": "Pressure",
+    "name_en": "Pressure",
+    "type": "normal"
   },
   {
     "id": "201221",
-    "name_jp": "スタミナグリード",
-    "name_en": "Stamina Greed"
+    "name_jp": "Stamina Siphon",
+    "name_en": "Stamina Siphon",
+    "type": "normal"
   },
   {
     "id": "201222",
-    "name_jp": "スタミナイーター",
-    "name_en": "Stamina Eater"
+    "name_jp": "Stamina Eater",
+    "name_en": "Stamina Eater",
+    "type": "normal"
   },
   {
     "id": "201231",
-    "name_jp": "奇術師",
-    "name_en": "Conjurer"
+    "name_jp": "Illusionist",
+    "name_en": "Illusionist",
+    "type": "normal"
   },
   {
     "id": "201232",
-    "name_jp": "目くらまし",
-    "name_en": "Smoke Screen"
+    "name_jp": "Smoke Screen",
+    "name_en": "Smoke Screen",
+    "type": "normal"
   },
   {
     "id": "201241",
-    "name_jp": "逃げ直線◎",
-    "name_en": "Runner's Straights ◎"
+    "name_jp": "Front Runner Straightaways ◎",
+    "name_en": "Front Runner Straightaways ◎",
+    "type": "normal"
   },
   {
     "id": "201242",
-    "name_jp": "逃げ直線○",
-    "name_en": "Runner's Straights ○"
-  },
-  {
-    "id": "201243",
-    "name_jp": "陣風一閃",
-    "name_en": "Gale Flash"
+    "name_jp": "Front Runner Straightaways ○",
+    "name_en": "Front Runner Straightaways ○",
+    "type": "normal"
   },
   {
     "id": "201251",
-    "name_jp": "逃げコーナー◎",
-    "name_en": "Runner's Corners ◎"
+    "name_jp": "Front Runner Corners ◎",
+    "name_en": "Front Runner Corners ◎",
+    "type": "normal"
   },
   {
     "id": "201252",
-    "name_jp": "逃げコーナー○",
-    "name_en": "Runner's Corners ○"
-  },
-  {
-    "id": "201253",
-    "name_jp": "陣風円刃",
-    "name_en": "Gale Slash"
+    "name_jp": "Front Runner Corners ○",
+    "name_en": "Front Runner Corners ○",
+    "type": "normal"
   },
   {
     "id": "201261",
-    "name_jp": "シックスセンス",
-    "name_en": "Sixth Sense"
+    "name_jp": "Sixth Sense",
+    "name_en": "Sixth Sense",
+    "type": "normal"
   },
   {
     "id": "201262",
-    "name_jp": "危険回避",
-    "name_en": "Danger Avoidance"
-  },
-  {
-    "id": "201271",
-    "name_jp": "トップランナー",
-    "name_en": "Top Runner"
+    "name_jp": "Dodging Danger",
+    "name_en": "Dodging Danger",
+    "type": "normal"
   },
   {
     "id": "201272",
-    "name_jp": "先頭プライド",
-    "name_en": "Lead Pride"
+    "name_jp": "Leader's Pride",
+    "name_en": "Leader's Pride",
+    "type": "normal"
   },
   {
     "id": "201281",
-    "name_jp": "じゃじゃウマ娘",
-    "name_en": "Wild Girl"
+    "name_jp": "Restless",
+    "name_en": "Restless",
+    "type": "normal"
   },
   {
     "id": "201282",
-    "name_jp": "勢い任せ",
-    "name_en": "Leave It to Vigor!"
+    "name_jp": "Moxie",
+    "name_en": "Moxie",
+    "type": "normal"
   },
   {
     "id": "201291",
-    "name_jp": "再燃焼",
-    "name_en": "Recombustion"
+    "name_jp": "Reignition",
+    "name_en": "Reignition",
+    "type": "normal"
   },
   {
     "id": "201292",
-    "name_jp": "二の矢",
-    "name_en": "Next Steps"
+    "name_jp": "Second Wind",
+    "name_en": "Second Wind",
+    "type": "normal"
   },
   {
     "id": "201302",
-    "name_jp": "リスタート",
-    "name_en": "Restart"
+    "name_jp": "Restart",
+    "name_en": "Restart",
+    "type": "normal"
   },
   {
     "id": "201311",
-    "name_jp": "先行直線◎",
-    "name_en": "Leader's Straights ◎"
+    "name_jp": "Pace Chaser Straightaways ◎",
+    "name_en": "Pace Chaser Straightaways ◎",
+    "type": "normal"
   },
   {
     "id": "201312",
-    "name_jp": "先行直線○",
-    "name_en": "Leader's Straights ○"
-  },
-  {
-    "id": "201313",
-    "name_jp": "勇迅一閃",
-    "name_en": "Valiant Flash"
+    "name_jp": "Pace Chaser Straightaways ○",
+    "name_en": "Pace Chaser Straightaways ○",
+    "type": "normal"
   },
   {
     "id": "201321",
-    "name_jp": "先行コーナー◎",
-    "name_en": "Leader's Corners ◎"
+    "name_jp": "Pace Chaser Corners ◎",
+    "name_en": "Pace Chaser Corners ◎",
+    "type": "normal"
   },
   {
     "id": "201322",
-    "name_jp": "先行コーナー○",
-    "name_en": "Leader's Corners ○"
-  },
-  {
-    "id": "201323",
-    "name_jp": "勇迅円刃",
-    "name_en": "Bravery Slash"
+    "name_jp": "Pace Chaser Corners ○",
+    "name_en": "Pace Chaser Corners ○",
+    "type": "normal"
   },
   {
     "id": "201331",
-    "name_jp": "技巧派",
-    "name_en": "Technician"
+    "name_jp": "Technician",
+    "name_en": "Technician",
+    "type": "normal"
   },
   {
     "id": "201332",
-    "name_jp": "巧みなステップ",
-    "name_en": "Clever Step"
+    "name_jp": "Shrewd Step",
+    "name_en": "Shrewd Step",
+    "type": "normal"
   },
   {
     "id": "201341",
-    "name_jp": "決意の直滑降",
-    "name_en": "Straight Down Resolution"
+    "name_jp": "Determined Descent",
+    "name_en": "Determined Descent",
+    "type": "normal"
   },
   {
     "id": "201342",
-    "name_jp": "直滑降",
-    "name_en": "Straight Down"
+    "name_jp": "Straight Descent",
+    "name_en": "Straight Descent",
+    "type": "normal"
   },
   {
     "id": "201351",
-    "name_jp": "食いしん坊",
-    "name_en": "Big Eater"
+    "name_jp": "Gourmand",
+    "name_en": "Gourmand",
+    "type": "normal"
   },
   {
     "id": "201352",
-    "name_jp": "栄養補給",
-    "name_en": "Nutritional Supplements"
+    "name_jp": "Hydrate",
+    "name_en": "Hydrate",
+    "type": "normal"
   },
   {
     "id": "201361",
-    "name_jp": "くじけぬ精神",
-    "name_en": "Unbreakable Spirit"
+    "name_jp": "Shatterproof",
+    "name_en": "Shatterproof",
+    "type": "normal"
   },
   {
     "id": "201362",
-    "name_jp": "まき直し",
-    "name_en": "Redo"
+    "name_jp": "Tactical Tweak",
+    "name_en": "Tactical Tweak",
+    "type": "normal"
   },
   {
     "id": "201371",
-    "name_jp": "幻惑のかく乱",
-    "name_en": "Glamorous Perturbation"
+    "name_jp": "Dazzling Disorientation",
+    "name_en": "Dazzling Disorientation",
+    "type": "normal"
   },
   {
     "id": "201372",
-    "name_jp": "かく乱",
-    "name_en": "Perturbation"
+    "name_jp": "Disorient",
+    "name_en": "Disorient",
+    "type": "normal"
   },
   {
     "id": "201381",
-    "name_jp": "差し直線◎",
-    "name_en": "Betweener's Straights ◎"
+    "name_jp": "Late Surger Straightaways ◎",
+    "name_en": "Late Surger Straightaways ◎",
+    "type": "normal"
   },
   {
     "id": "201382",
-    "name_jp": "差し直線○",
-    "name_en": "Betweener's Straights ○"
-  },
-  {
-    "id": "201383",
-    "name_jp": "鋭脚一閃",
-    "name_en": "Incisive Flash"
+    "name_jp": "Late Surger Straightaways ○",
+    "name_en": "Late Surger Straightaways ○",
+    "type": "normal"
   },
   {
     "id": "201391",
-    "name_jp": "差しコーナー◎",
-    "name_en": "Betweener's Corners ◎"
+    "name_jp": "Later Surger Corners ◎",
+    "name_en": "Later Surger Corners ◎",
+    "type": "normal"
   },
   {
     "id": "201392",
-    "name_jp": "差しコーナー○",
-    "name_en": "Betweener's Corners ○"
-  },
-  {
-    "id": "201393",
-    "name_jp": "鋭脚円刃",
-    "name_en": "Incisive Slash"
+    "name_jp": "Late Surger Corners ○",
+    "name_en": "Late Surger Corners ○",
+    "type": "normal"
   },
   {
     "id": "201401",
-    "name_jp": "努力家",
-    "name_en": "Laborious"
+    "name_jp": "Hard Worker",
+    "name_en": "Hard Worker",
+    "type": "normal"
   },
   {
     "id": "201402",
-    "name_jp": "がんばり屋",
-    "name_en": "Hard Worker"
+    "name_jp": "Fighter",
+    "name_en": "Fighter",
+    "type": "normal"
   },
   {
     "id": "201411",
-    "name_jp": "百万バリキ",
-    "name_en": "1M Horsepower"
+    "name_jp": "15,000,000 CC",
+    "name_en": "15,000,000 CC",
+    "type": "normal"
   },
   {
     "id": "201412",
-    "name_jp": "十万バリキ",
-    "name_en": "100K Horsepower"
+    "name_jp": "1,500,000 CC",
+    "name_en": "1,500,000 CC",
+    "type": "normal"
   },
   {
     "id": "201421",
-    "name_jp": "リラックス",
-    "name_en": "Relax"
+    "name_jp": "Relax",
+    "name_en": "Relax",
+    "type": "normal"
   },
   {
     "id": "201422",
-    "name_jp": "小休憩",
-    "name_en": "A Little Break"
+    "name_jp": "A Small Breather",
+    "name_en": "A Small Breather",
+    "type": "normal"
   },
   {
     "id": "201431",
-    "name_jp": "大局観",
-    "name_en": "Seeing the Big Picture"
+    "name_jp": "The Bigger Picture",
+    "name_en": "The Bigger Picture",
+    "type": "normal"
   },
   {
     "id": "201432",
-    "name_jp": "読解力",
-    "name_en": "Reading Comprehension"
+    "name_jp": "Studious",
+    "name_en": "Studious",
+    "type": "normal"
   },
   {
     "id": "201441",
-    "name_jp": "八方にらみ",
-    "name_en": "Watching All Directions"
+    "name_jp": "All-Seeing Eyes",
+    "name_en": "All-Seeing Eyes",
+    "type": "normal"
   },
   {
     "id": "201442",
-    "name_jp": "鋭い眼光",
-    "name_en": "Sharp Gaze"
+    "name_jp": "Sharp Gaze",
+    "name_en": "Sharp Gaze",
+    "type": "normal"
   },
   {
     "id": "201451",
-    "name_jp": "追込直線◎",
-    "name_en": "Chaser's Straights ◎"
+    "name_jp": "End Closer Straightaways ◎",
+    "name_en": "End Closer Straightaways ◎",
+    "type": "normal"
   },
   {
     "id": "201452",
-    "name_jp": "追込直線○",
-    "name_en": "Chaser's Straights ○"
-  },
-  {
-    "id": "201453",
-    "name_jp": "月影一閃",
-    "name_en": "Moonlight Flash"
+    "name_jp": "End Closer Straightaways ○",
+    "name_en": "End Closer Straightaways ○",
+    "type": "normal"
   },
   {
     "id": "201461",
-    "name_jp": "追込コーナー◎",
-    "name_en": "Chaser's Corners ◎"
+    "name_jp": "End Closer Corners ◎",
+    "name_en": "End Closer Corners ◎",
+    "type": "normal"
   },
   {
     "id": "201462",
-    "name_jp": "追込コーナー○",
-    "name_en": "Chaser's Corners ○"
-  },
-  {
-    "id": "201463",
-    "name_jp": "月影円刃",
-    "name_en": "Moonlight Slash"
+    "name_jp": "End Closer Corners ○",
+    "name_en": "End Closer Corners ○",
+    "type": "normal"
   },
   {
     "id": "201471",
-    "name_jp": "視界良好！異常なし！",
-    "name_en": "Good Visibility! All Clear!"
+    "name_jp": "The Coast Is Clear!",
+    "name_en": "The Coast Is Clear!",
+    "type": "normal"
   },
   {
     "id": "201472",
-    "name_jp": "お見通し",
-    "name_en": "See Right Through"
+    "name_jp": "I Can See Right Through You",
+    "name_en": "I Can See Right Through You",
+    "type": "normal"
   },
   {
     "id": "201481",
-    "name_jp": "下校後のスペシャリスト",
-    "name_en": "After School Specialist"
+    "name_jp": "Go-Home Specialist",
+    "name_en": "Go-Home Specialist",
+    "type": "normal"
   },
   {
     "id": "201482",
-    "name_jp": "下校の楽しみ",
-    "name_en": "Winding Down"
+    "name_jp": "After-School Stroll",
+    "name_en": "After-School Stroll",
+    "type": "normal"
   },
   {
     "id": "201491",
-    "name_jp": "冷静沈着",
-    "name_en": "Calm and Collected"
+    "name_jp": "Serenity",
+    "name_en": "Serenity",
+    "type": "normal"
   },
   {
     "id": "201492",
-    "name_jp": "冷静",
-    "name_en": "Serene"
+    "name_jp": "Levelheaded",
+    "name_en": "Levelheaded",
+    "type": "normal"
   },
   {
     "id": "201501",
-    "name_jp": "天命士",
-    "name_en": "Heavenly Warrior"
+    "name_jp": "Crusader",
+    "name_en": "Crusader",
+    "type": "normal"
   },
   {
     "id": "201502",
-    "name_jp": "策士",
-    "name_en": "Tactician"
+    "name_jp": "Strategist",
+    "name_en": "Strategist",
+    "type": "normal"
   },
   {
     "id": "201511",
-    "name_jp": "熱いまなざし",
-    "name_en": "Passionate Gaze"
+    "name_jp": "Petrifying Gaze",
+    "name_en": "Petrifying Gaze",
+    "type": "normal"
   },
   {
     "id": "201512",
-    "name_jp": "まなざし",
-    "name_en": "Sightlines"
+    "name_jp": "Intense Gaze",
+    "name_en": "Intense Gaze",
+    "type": "normal"
   },
   {
     "id": "201521",
-    "name_jp": "逃げのコツ◎",
-    "name_en": "Runner's Tricks ◎"
+    "name_jp": "Front Runner Savvy ◎",
+    "name_en": "Front Runner Savvy ◎",
+    "type": "normal"
   },
   {
     "id": "201522",
-    "name_jp": "逃げのコツ○",
-    "name_en": "Runner's Tricks ○"
+    "name_jp": "Front Runner Savvy ○",
+    "name_en": "Front Runner Savvy ○",
+    "type": "normal"
   },
   {
     "id": "201531",
-    "name_jp": "先行のコツ◎",
-    "name_en": "Leader's Tricks ◎"
+    "name_jp": "Pace Chaser Savvy ◎",
+    "name_en": "Pace Chaser Savvy ◎",
+    "type": "normal"
   },
   {
     "id": "201532",
-    "name_jp": "先行のコツ○",
-    "name_en": "Leader's Tricks ○"
+    "name_jp": "Pace Chaser Savvy ○",
+    "name_en": "Pace Chaser Savvy ○",
+    "type": "normal"
   },
   {
     "id": "201541",
-    "name_jp": "差しのコツ◎",
-    "name_en": "Betweener's Tricks ◎"
+    "name_jp": "Late Surger Savvy ◎",
+    "name_en": "Late Surger Savvy ◎",
+    "type": "normal"
   },
   {
     "id": "201542",
-    "name_jp": "差しのコツ○",
-    "name_en": "Betweener's Tricks ○"
+    "name_jp": "Late Surger Savvy ○",
+    "name_en": "Late Surger Savvy ○",
+    "type": "normal"
   },
   {
     "id": "201551",
-    "name_jp": "追込のコツ◎",
-    "name_en": "Chaser's Tricks ◎"
+    "name_jp": "End Closer Savvy ◎",
+    "name_en": "End Closer Savvy ◎",
+    "type": "normal"
   },
   {
     "id": "201552",
-    "name_jp": "追込のコツ○",
-    "name_en": "Chaser's Tricks ○"
+    "name_jp": "End Closer Savvy ○",
+    "name_en": "End Closer Savvy ○",
+    "type": "normal"
   },
   {
     "id": "201571",
-    "name_jp": "スリーセブン",
-    "name_en": "Triple 7s"
+    "name_jp": "Triple 7s",
+    "name_en": "Triple 7s",
+    "type": "normal"
   },
   {
     "id": "201581",
-    "name_jp": "登山家",
-    "name_en": "Mountain Climber"
-  },
-  {
-    "id": "201582",
-    "name_jp": "究極のヒルクライマー",
-    "name_en": "Ultimate Hill Climber"
+    "name_jp": "Highlander",
+    "name_en": "Highlander",
+    "type": "normal"
   },
   {
     "id": "201591",
-    "name_jp": "ウマ好み",
-    "name_en": "Big Fan"
-  },
-  {
-    "id": "201592",
-    "name_jp": "ウママニア",
-    "name_en": "Uma Mania"
+    "name_jp": "Uma Stan",
+    "name_en": "Uma Stan",
+    "type": "normal"
   },
   {
     "id": "201601",
-    "name_jp": "地固め",
-    "name_en": "Groundwork"
-  },
-  {
-    "id": "201602",
-    "name_jp": "盤石の構え",
-    "name_en": "Unshakable Stance"
+    "name_jp": "Groundwork",
+    "name_en": "Groundwork",
+    "type": "normal"
   },
   {
     "id": "201611",
-    "name_jp": "尻尾上がり",
-    "name_en": "Hold Your Tail High"
-  },
-  {
-    "id": "201612",
-    "name_jp": "尻尾の滝登り",
-    "name_en": "Tail of Victory"
+    "name_jp": "Tail Held High",
+    "name_en": "Tail Held High",
+    "type": "normal"
   },
   {
     "id": "201621",
-    "name_jp": "ふり絞り",
-    "name_en": "Shake It Out"
-  },
-  {
-    "id": "201632",
-    "name_jp": "コネクト",
-    "name_en": "Connection"
+    "name_jp": "Shake It Out",
+    "name_en": "Shake It Out",
+    "type": "normal"
   },
   {
     "id": "201651",
-    "name_jp": "スリップストリーム",
-    "name_en": "Slipstream"
-  },
-  {
-    "id": "201652",
-    "name_jp": "いいとこ入った！",
-    "name_en": "In the Right Place!"
+    "name_jp": "Slipstream",
+    "name_en": "Slipstream",
+    "type": "normal"
   },
   {
     "id": "201661",
-    "name_jp": "遊びはおしまいっ！",
-    "name_en": "Playtime's Over!"
-  },
-  {
-    "id": "201662",
-    "name_jp": "お先に失礼っ！",
-    "name_en": "Sorry, Gotta Go!"
+    "name_jp": "Playtime's Over!",
+    "name_en": "Playtime's Over!",
+    "type": "normal"
   },
   {
     "id": "201671",
-    "name_jp": "チャート急上昇！",
-    "name_en": "Trending Charts!"
+    "name_jp": "Trending in the Charts!",
+    "name_en": "Trending in the Charts!",
+    "type": "normal"
   },
   {
     "id": "201672",
-    "name_jp": "レコメンド",
-    "name_en": "Recommendation"
-  },
-  {
-    "id": "201681",
-    "name_jp": "狙うは最前列！",
-    "name_en": "Aim for the Front Row!"
-  },
-  {
-    "id": "201682",
-    "name_jp": "前列狙い",
-    "name_en": "Front Row Aim"
-  },
-  {
-    "id": "201691",
-    "name_jp": "潜伏態勢",
-    "name_en": "Concealed Readiness"
-  },
-  {
-    "id": "201692",
-    "name_jp": "静かな呼吸",
-    "name_en": "Quiet Breathing"
-  },
-  {
-    "id": "201701",
-    "name_jp": "決死の覚悟",
-    "name_en": "Prepared to Die"
-  },
-  {
-    "id": "201702",
-    "name_jp": "ありったけ",
-    "name_en": "All That There Is"
-  },
-  {
-    "id": "201901",
-    "name_jp": "鍔迫り合い",
-    "name_en": "Fierce Competition"
-  },
-  {
-    "id": "201902",
-    "name_jp": "真っ向勝負",
-    "name_en": "Head-To-Head"
-  },
-  {
-    "id": "202001",
-    "name_jp": "砂の玄人",
-    "name_en": "Sand Expert"
-  },
-  {
-    "id": "202002",
-    "name_jp": "砂塵慣れ",
-    "name_en": "Sandstorm Practice"
-  },
-  {
-    "id": "202011",
-    "name_jp": "真打",
-    "name_en": "Shinuchi"
-  },
-  {
-    "id": "202012",
-    "name_jp": "影打",
-    "name_en": "Kageuchi"
-  },
-  {
-    "id": "202021",
-    "name_jp": "強攻策",
-    "name_en": "Daring Attack"
-  },
-  {
-    "id": "202022",
-    "name_jp": "早仕掛け",
-    "name_en": "Early Gambit"
-  },
-  {
-    "id": "202031",
-    "name_jp": "博打うち",
-    "name_en": "Gamester"
-  },
-  {
-    "id": "202032",
-    "name_jp": "あやしげな作戦",
-    "name_en": "Questionable Strategy"
-  },
-  {
-    "id": "202041",
-    "name_jp": "意気衝天",
-    "name_en": "In High Spirits"
-  },
-  {
-    "id": "202042",
-    "name_jp": "軽い足取り",
-    "name_en": "Nimble Step"
-  },
-  {
-    "id": "202051",
-    "name_jp": "大逃げ",
-    "name_en": "Great Escape"
-  },
-  {
-    "id": "202061",
-    "name_jp": "日本一のウマ娘",
-    "name_en": "#1 Horsegirl in Japan"
-  },
-  {
-    "id": "202071",
-    "name_jp": "泰然自若",
-    "name_en": "Self-Possessed"
-  },
-  {
-    "id": "202072",
-    "name_jp": "マイペース",
-    "name_en": "My Own Pace"
-  },
-  {
-    "id": "202081",
-    "name_jp": "起死回生",
-    "name_en": "Rise From the Ashes"
-  },
-  {
-    "id": "202082",
-    "name_jp": "ワンチャンス",
-    "name_en": "One Chance"
-  },
-  {
-    "id": "202091",
-    "name_jp": "気炎万丈",
-    "name_en": "Burning Spirit"
-  },
-  {
-    "id": "202092",
-    "name_jp": "闘争心",
-    "name_en": "Fighting Spirit"
-  },
-  {
-    "id": "202101",
-    "name_jp": "高揚感",
-    "name_en": "Elation"
-  },
-  {
-    "id": "202102",
-    "name_jp": "前のめり",
-    "name_en": "Tumbling Forward"
-  },
-  {
-    "id": "202111",
-    "name_jp": "破竹の勢い",
-    "name_en": "Unstoppable Force"
-  },
-  {
-    "id": "202112",
-    "name_jp": "気合十分",
-    "name_en": "Sufficient Spirit"
-  },
-  {
-    "id": "202121",
-    "name_jp": "大胆不敵",
-    "name_en": "Daredevil"
-  },
-  {
-    "id": "202122",
-    "name_jp": "恐れぬ心",
-    "name_en": "Fearless Heart"
-  },
-  {
-    "id": "202131",
-    "name_jp": "荒ぶる旋風",
-    "name_en": "Wild Whirlwind"
-  },
-  {
-    "id": "202132",
-    "name_jp": "気迫を込めて",
-    "name_en": "With Verve"
-  },
-  {
-    "id": "202141",
-    "name_jp": "アタシに指図しないで！！",
-    "name_en": "Don't Tell Me What to Do!"
-  },
-  {
-    "id": "202151",
-    "name_jp": "勇往邁進",
-    "name_en": "Pushing Forward"
-  },
-  {
-    "id": "202152",
-    "name_jp": "フルスロットル",
-    "name_en": "Full Throttle"
-  },
-  {
-    "id": "202161",
-    "name_jp": "自制心",
-    "name_en": "Self-Control"
-  },
-  {
-    "id": "202171",
-    "name_jp": "至高のダウンヒラー",
-    "name_en": "Supreme Downhiller"
-  },
-  {
-    "id": "202172",
-    "name_jp": "下り坂巧者",
-    "name_en": "Downhill Adept"
-  },
-  {
-    "id": "202191",
-    "name_jp": "一意専心",
-    "name_en": "Single-Minded"
-  },
-  {
-    "id": "202192",
-    "name_jp": "抜かりなし",
-    "name_en": "Faultless"
-  },
-  {
-    "id": "202261",
-    "name_jp": "勝利の機運",
-    "name_en": "Victory Opportunity"
-  },
-  {
-    "id": "202262",
-    "name_jp": "明るい兆し",
-    "name_en": "Promising Omen"
-  },
-  {
-    "id": "202271",
-    "name_jp": "捲土重来",
-    "name_en": "Redoubled Efforts"
-  },
-  {
-    "id": "202272",
-    "name_jp": "盛り返し",
-    "name_en": "Turnaround"
-  },
-  {
-    "id": "202281",
-    "name_jp": "全速前進！",
-    "name_en": "Full Speed Ahead!"
-  },
-  {
-    "id": "202282",
-    "name_jp": "まっしぐら",
-    "name_en": "At Full Speed"
-  },
-  {
-    "id": "202291",
-    "name_jp": "明鏡止水",
-    "name_en": "Clear and Serene"
-  },
-  {
-    "id": "202292",
-    "name_jp": "冴える思考",
-    "name_en": "Clear Head"
-  },
-  {
-    "id": "202301",
-    "name_jp": "優雅な砂浴び",
-    "name_en": "Leisurely Dust Bath"
-  },
-  {
-    "id": "202302",
-    "name_jp": "砂浴び○",
-    "name_en": "Dust Bath ○"
-  },
-  {
-    "id": "202303",
-    "name_jp": "砂浴び×",
-    "name_en": "Dust Bath ×"
-  },
-  {
-    "id": "202311",
-    "name_jp": "目指せセンター！",
-    "name_en": "Aim for the Center!"
-  },
-  {
-    "id": "202312",
-    "name_jp": "意気込み十分",
-    "name_en": "Full of Zeal"
-  },
-  {
-    "id": "202321",
-    "name_jp": "爆走モード！",
-    "name_en": "Blast Mode!"
-  },
-  {
-    "id": "202322",
-    "name_jp": "急浮上",
-    "name_en": "Rapid Ascent"
-  },
-  {
-    "id": "202351",
-    "name_jp": "砂上の舞姫",
-    "name_en": "Dancer of the Sands"
-  },
-  {
-    "id": "202352",
-    "name_jp": "土煙",
-    "name_en": "Cloud of Dust"
-  },
-  {
-    "id": "202361",
-    "name_jp": "油断大敵",
-    "name_en": "Don't Let Your Guard Down"
-  },
-  {
-    "id": "202362",
-    "name_jp": "圧迫感",
-    "name_en": "Pressing Feeling"
-  },
-  {
-    "id": "202371",
-    "name_jp": "アンストッパブル",
-    "name_en": "Unstoppable"
-  },
-  {
-    "id": "202372",
-    "name_jp": "攻めの姿勢",
-    "name_en": "Attack Stance"
-  },
-  {
-    "id": "202381",
-    "name_jp": "ブレイクスルー",
-    "name_en": "Breakthrough"
-  },
-  {
-    "id": "202382",
-    "name_jp": "打開策",
-    "name_en": "Breakthrough Plan"
-  },
-  {
-    "id": "202391",
-    "name_jp": "出力1000％！",
-    "name_en": "1000% Output!"
-  },
-  {
-    "id": "202392",
-    "name_jp": "しゃかりき",
-    "name_en": "Frantic State"
-  },
-  {
-    "id": "202401",
-    "name_jp": "電光石火",
-    "name_en": "Lightning Speed"
-  },
-  {
-    "id": "202402",
-    "name_jp": "一足飛び",
-    "name_en": "Mighty Leap"
-  },
-  {
-    "id": "202411",
-    "name_jp": "風雲の志",
-    "name_en": "Winds of Change"
-  },
-  {
-    "id": "202412",
-    "name_jp": "向上心",
-    "name_en": "Ambitions"
-  },
-  {
-    "id": "202421",
-    "name_jp": "無我夢中",
-    "name_en": "Lose Yourself"
-  },
-  {
-    "id": "202422",
-    "name_jp": "がむしゃら",
-    "name_en": "Devil-May-Care"
-  },
-  {
-    "id": "202431",
-    "name_jp": "快進撃",
-    "name_en": "Steady Advance"
-  },
-  {
-    "id": "202432",
-    "name_jp": "確かな足取り",
-    "name_en": "Firm Step"
-  },
-  {
-    "id": "202451",
-    "name_jp": "トップギア",
-    "name_en": "Top Gear"
-  },
-  {
-    "id": "202452",
-    "name_jp": "キレる脚",
-    "name_en": "Razor-Sharp Stride"
-  },
-  {
-    "id": "202461",
-    "name_jp": "踏ませぬ影",
-    "name_en": "Untouchable Shadow"
-  },
-  {
-    "id": "202462",
-    "name_jp": "粘り腰",
-    "name_en": "Steadfast"
-  },
-  {
-    "id": "202471",
-    "name_jp": "猛追",
-    "name_en": "Hot Pursuit"
-  },
-  {
-    "id": "202472",
-    "name_jp": "食らいつき",
-    "name_en": "Tooth and Tail"
-  },
-  {
-    "id": "202481",
-    "name_jp": "怪物",
-    "name_en": "Monster"
-  },
-  {
-    "id": "202482",
-    "name_jp": "本領発揮",
-    "name_en": "True Worth"
-  },
-  {
-    "id": "202491",
-    "name_jp": "抜群の切れ味",
-    "name_en": "Unrivaled Wits"
-  },
-  {
-    "id": "202492",
-    "name_jp": "切れ味",
-    "name_en": "Witful"
-  },
-  {
-    "id": "202501",
-    "name_jp": "遮二無二",
-    "name_en": "Reckless"
-  },
-  {
-    "id": "202502",
-    "name_jp": "向こう見ず",
-    "name_en": "Rushing in Blind"
-  },
-  {
-    "id": "202511",
-    "name_jp": "1番人気でヤバたん",
-    "name_en": "Favorite, For Reals?!"
-  },
-  {
-    "id": "202521",
-    "name_jp": "天衣無縫",
-    "name_en": "Seamless"
-  },
-  {
-    "id": "202522",
-    "name_jp": "型破り",
-    "name_en": "Mold Breaker"
-  },
-  {
-    "id": "202531",
-    "name_jp": "優位形成",
-    "name_en": "Ascendance"
-  },
-  {
-    "id": "202532",
-    "name_jp": "しとやかな足取り",
-    "name_en": "Graceful Step"
-  },
-  {
-    "id": "202541",
-    "name_jp": "威風堂々",
-    "name_en": "Dignified"
-  },
-  {
-    "id": "202542",
-    "name_jp": "プレッシャー",
-    "name_en": "Pressure"
-  },
-  {
-    "id": "202551",
-    "name_jp": "神速",
-    "name_en": "Divine Speed"
-  },
-  {
-    "id": "202552",
-    "name_jp": "快速",
-    "name_en": "Rapid"
-  },
-  {
-    "id": "202561",
-    "name_jp": "一発必中",
-    "name_en": "One-shot"
-  },
-  {
-    "id": "202562",
-    "name_jp": "ロックオン",
-    "name_en": "Lock On"
-  },
-  {
-    "id": "202571",
-    "name_jp": "未来を拓く奇跡",
-    "name_en": "Miracle Pathmaker"
-  },
-  {
-    "id": "202581",
-    "name_jp": "脱兎の先へ",
-    "name_en": "Ahead of the Game"
-  },
-  {
-    "id": "202582",
-    "name_jp": "脇目も振らず",
-    "name_en": "Stay the Course"
-  },
-  {
-    "id": "202591",
-    "name_jp": "一気呵成",
-    "name_en": "In One Fell Swoop"
-  },
-  {
-    "id": "202592",
-    "name_jp": "大急ぎ",
-    "name_en": "Great Haste"
-  },
-  {
-    "id": "202601",
-    "name_jp": "ルミネセンス",
-    "name_en": "Luminescence"
-  },
-  {
-    "id": "202602",
-    "name_jp": "イグニッション",
-    "name_en": "Ignition"
-  },
-  {
-    "id": "202612",
-    "name_jp": "溢れる情熱",
-    "name_en": "Overflowing Passion"
-  },
-  {
-    "id": "202621",
-    "name_jp": "突撃魂",
-    "name_en": "Blitzing Spirit"
-  },
-  {
-    "id": "202622",
-    "name_jp": "進出開始",
-    "name_en": "On the Move"
-  },
-  {
-    "id": "202641",
-    "name_jp": "千里の道",
-    "name_en": "Thousand-Mile Journey"
-  },
-  {
-    "id": "202642",
-    "name_jp": "一歩から",
-    "name_en": "From the First Step"
-  },
-  {
-    "id": "202661",
-    "name_jp": "昂る鼓動",
-    "name_en": "Surging Beat"
-  },
-  {
-    "id": "202662",
-    "name_jp": "込み上げる熱",
-    "name_en": "Rising Passion"
-  },
-  {
-    "id": "202671",
-    "name_jp": "ハイボルテージ",
-    "name_en": "High Voltage"
-  },
-  {
-    "id": "202672",
-    "name_jp": "心弾んで",
-    "name_en": "High Hopes"
-  },
-  {
-    "id": "202681",
-    "name_jp": "ブチ☆アゲ↑バイブス",
-    "name_en": "Seriously☆Good↑Vibes"
-  },
-  {
-    "id": "202682",
-    "name_jp": "バイブス上昇",
-    "name_en": "Up the Vibes"
-  },
-  {
-    "id": "202691",
-    "name_jp": "誰より前へ！",
-    "name_en": "Further Than Anyone"
-  },
-  {
-    "id": "202692",
-    "name_jp": "一番乗り",
-    "name_en": "Early Bird"
-  },
-  {
-    "id": "202711",
-    "name_jp": "王手",
-    "name_en": "Check"
-  },
-  {
-    "id": "202712",
-    "name_jp": "会心の一歩",
-    "name_en": "Satisfying Pace"
-  },
-  {
-    "id": "202721",
-    "name_jp": "ネバーギブアップ",
-    "name_en": "Never Give Up"
-  },
-  {
-    "id": "202722",
-    "name_jp": "折れない心",
-    "name_en": "Unbreakable Mind"
-  },
-  {
-    "id": "202741",
-    "name_jp": "十全十美",
-    "name_en": "Pure Perfection"
-  },
-  {
-    "id": "202742",
-    "name_jp": "品行方正",
-    "name_en": "Refined Conduct"
-  },
-  {
-    "id": "202751",
-    "name_jp": "気骨稜稜",
-    "name_en": "Unyielding Tenacity"
-  },
-  {
-    "id": "202752",
-    "name_jp": "ひたむき前進",
-    "name_en": "Single-Minded Advance"
-  },
-  {
-    "id": "202761",
-    "name_jp": "かっとばせ！",
-    "name_en": "Send It Flying!"
-  },
-  {
-    "id": "202762",
-    "name_jp": "勝利に向かって",
-    "name_en": "Toward Victory"
-  },
-  {
-    "id": "202771",
-    "name_jp": "一点集中",
-    "name_en": "Laser-Focused"
-  },
-  {
-    "id": "202772",
-    "name_jp": "狙いを定めて",
-    "name_en": "Honing In"
-  },
-  {
-    "id": "202791",
-    "name_jp": "時中の妙",
-    "name_en": "Exquisite Timing"
-  },
-  {
-    "id": "202792",
-    "name_jp": "中盤巧者",
-    "name_en": "Middle Leg Adept"
-  },
-  {
-    "id": "202801",
-    "name_jp": "機先の勝負",
-    "name_en": "Battle for Initiative"
-  },
-  {
-    "id": "202802",
-    "name_jp": "序盤巧者",
-    "name_en": "Opening Leg Adept"
-  },
-  {
-    "id": "202811",
-    "name_jp": "画竜点睛",
-    "name_en": "Finishing Touch"
-  },
-  {
-    "id": "202812",
-    "name_jp": "大詰め",
-    "name_en": "Finale"
-  },
-  {
-    "id": "202821",
-    "name_jp": "万里一空",
-    "name_en": "One Sky, One Goal"
-  },
-  {
-    "id": "202822",
-    "name_jp": "迷いなし",
-    "name_en": "No Hesitation"
-  },
-  {
-    "id": "202831",
-    "name_jp": "コール&レスポンス",
-    "name_en": "Call & Response"
-  },
-  {
-    "id": "202832",
-    "name_jp": "二段構え",
-    "name_en": "Backup Planning"
-  },
-  {
-    "id": "202841",
-    "name_jp": "砂の妙手",
-    "name_en": "Sand Virtuoso"
-  },
-  {
-    "id": "202842",
-    "name_jp": "砂払い",
-    "name_en": "Dust Off"
-  },
-  {
-    "id": "202851",
-    "name_jp": "一網打尽",
-    "name_en": "Clean Sweep"
-  },
-  {
-    "id": "202852",
-    "name_jp": "ごぼう抜き",
-    "name_en": "Rapid Overtakes"
-  },
-  {
-    "id": "202861",
-    "name_jp": "ロケットスタート",
-    "name_en": "Rocket Start"
-  },
-  {
-    "id": "202862",
-    "name_jp": "急発進",
-    "name_en": "Swift Takeoff"
-  },
-  {
-    "id": "202871",
-    "name_jp": "君臨",
-    "name_en": "Reign"
-  },
-  {
-    "id": "202872",
-    "name_jp": "渾身の足取り",
-    "name_en": "Mighty Step"
-  },
-  {
-    "id": "202881",
-    "name_jp": "完全燃焼",
-    "name_en": "Complete Combustion"
-  },
-  {
-    "id": "202882",
-    "name_jp": "たぎる血潮",
-    "name_en": "Boiling Blood"
-  },
-  {
-    "id": "202892",
-    "name_jp": "不動の心",
-    "name_en": "Immovable Spirit"
-  },
-  {
-    "id": "202901",
-    "name_jp": "飛翔脚",
-    "name_en": "Soaring Stride"
-  },
-  {
-    "id": "202902",
-    "name_jp": "推力十分",
-    "name_en": "Sufficient Thrust"
-  },
-  {
-    "id": "202912",
-    "name_jp": "切り崩し",
-    "name_en": "Cleave"
-  },
-  {
-    "id": "202921",
-    "name_jp": "一心不乱",
-    "name_en": "Undivided Focus"
-  },
-  {
-    "id": "202922",
-    "name_jp": "惜しみなし",
-    "name_en": "No Reluctance"
-  },
-  {
-    "id": "202931",
-    "name_jp": "肉薄",
-    "name_en": "Relentless Approach"
-  },
-  {
-    "id": "202932",
-    "name_jp": "影踏み",
-    "name_en": "Shadowstepper"
-  },
-  {
-    "id": "202942",
-    "name_jp": "鬼気迫って",
-    "name_en": "Ghastly"
-  },
-  {
-    "id": "202951",
-    "name_jp": "砂の開拓者",
-    "name_en": "Pioneer of the Sands"
-  },
-  {
-    "id": "202952",
-    "name_jp": "パイオニア",
-    "name_en": "Pioneer"
-  },
-  {
-    "id": "202961",
-    "name_jp": "熱情",
-    "name_en": "Ardour"
-  },
-  {
-    "id": "202962",
-    "name_jp": "滾る想い",
-    "name_en": "Boiling Emotions"
-  },
-  {
-    "id": "202971",
-    "name_jp": "千載一遇",
-    "name_en": "Golden Opportunity"
-  },
-  {
-    "id": "202972",
-    "name_jp": "好機を捉えて",
-    "name_en": "Seize the Chance"
-  },
-  {
-    "id": "202981",
-    "name_jp": "流星光底",
-    "name_en": "Gamma Ray Burst"
-  },
-  {
-    "id": "202982",
-    "name_jp": "飛躍の予感",
-    "name_en": "Leap Premonition"
-  },
-  {
-    "id": "203001",
-    "name_jp": "掌握",
-    "name_en": "Manipulation"
-  },
-  {
-    "id": "203002",
-    "name_jp": "手練手管",
-    "name_en": "Art of Coaxing"
-  },
-  {
-    "id": "203011",
-    "name_jp": "電迅速攻",
-    "name_en": "Lightning Blitz"
-  },
-  {
-    "id": "203012",
-    "name_jp": "瞬発力",
-    "name_en": "Explosive Force"
-  },
-  {
-    "id": "203021",
-    "name_jp": "風翔",
-    "name_en": "Wind Rider"
-  },
-  {
-    "id": "203022",
-    "name_jp": "風切り",
-    "name_en": "Wind Vane"
-  },
-  {
-    "id": "203031",
-    "name_jp": "正攻法",
-    "name_en": "Frontal Attack"
-  },
-  {
-    "id": "203032",
-    "name_jp": "素直な一歩",
-    "name_en": "An Honest Step"
-  },
-  {
-    "id": "203041",
-    "name_jp": "トキメキハート",
-    "name_en": "Fluttering Heart"
-  },
-  {
-    "id": "203042",
-    "name_jp": "胸の高鳴り",
-    "name_en": "Pounding Chest"
-  },
-  {
-    "id": "203051",
-    "name_jp": "初志貫徹",
-    "name_en": "Unwavering Ambition"
-  },
-  {
-    "id": "203052",
-    "name_jp": "揺るがぬ信念",
-    "name_en": "Unshakeable Faith"
-  },
-  {
-    "id": "203061",
-    "name_jp": "無二",
-    "name_en": "No Second Thoughts"
-  },
-  {
-    "id": "203071",
-    "name_jp": "無三",
-    "name_en": "No Third Chances"
-  },
-  {
-    "id": "203081",
-    "name_jp": "踏みしめる大地",
-    "name_en": "Stamp on the Ground"
-  },
-  {
-    "id": "203082",
-    "name_jp": "力の限り",
-    "name_en": "With All My Might"
-  },
-  {
-    "id": "203091",
-    "name_jp": "砂塵一閃",
-    "name_en": "Sandstorm Flash"
-  },
-  {
-    "id": "203092",
-    "name_jp": "ダート直線◎",
-    "name_en": "Dirt Straights ◎"
-  },
-  {
-    "id": "203093",
-    "name_jp": "ダート直線○",
-    "name_en": "Dirt Straights ○"
-  },
-  {
-    "id": "203101",
-    "name_jp": "砂塵円刃",
-    "name_en": "Sandstorm Slash"
-  },
-  {
-    "id": "203102",
-    "name_jp": "ダートコーナー◎",
-    "name_en": "Dirt Corners ◎"
-  },
-  {
-    "id": "203103",
-    "name_jp": "ダートコーナー○",
-    "name_en": "Dirt Corners ○"
-  },
-  {
-    "id": "203111",
-    "name_jp": "王道一途",
-    "name_en": "Just Rule"
-  },
-  {
-    "id": "203112",
-    "name_jp": "正面突破",
-    "name_en": "Frontal Breakthrough"
-  },
-  {
-    "id": "203121",
-    "name_jp": "強者の証",
-    "name_en": "Proof of Strength"
-  },
-  {
-    "id": "203122",
-    "name_jp": "さらなる高みへ",
-    "name_en": "To Greater Heights"
-  },
-  {
-    "id": "203131",
-    "name_jp": "幕引き",
-    "name_en": "Curtain Closer"
-  },
-  {
-    "id": "203132",
-    "name_jp": "決定打",
-    "name_en": "Decisive Blow"
-  },
-  {
-    "id": "203141",
-    "name_jp": "怜悧清澄",
-    "name_en": "Sharp-Witted Composure"
-  },
-  {
-    "id": "203142",
-    "name_jp": "克己心",
-    "name_en": "Self-Restraint"
-  },
-  {
-    "id": "203151",
-    "name_jp": "本能の解放",
-    "name_en": "Pure Instincts"
-  },
-  {
-    "id": "203152",
-    "name_jp": "むきだしの情熱",
-    "name_en": "Bare Passion"
-  },
-  {
-    "id": "203161",
-    "name_jp": "豪胆無比",
-    "name_en": "Peerless Boldness"
-  },
-  {
-    "id": "203162",
-    "name_jp": "後先恐れず",
-    "name_en": "Fearless Advance"
-  },
-  {
-    "id": "203171",
-    "name_jp": "一張一弛",
-    "name_en": "Tension and Release"
-  },
-  {
-    "id": "203172",
-    "name_jp": "切り替え上手",
-    "name_en": "Switch Over Pro"
-  },
-  {
-    "id": "203181",
-    "name_jp": "清濁併呑",
-    "name_en": "Embracing Virtue and Vice"
-  },
-  {
-    "id": "203182",
-    "name_jp": "裏腹なキモチ",
-    "name_en": "Contradicting Emotions"
-  },
-  {
-    "id": "203201",
-    "name_jp": "早業",
-    "name_en": "Quick Work"
-  },
-  {
-    "id": "203202",
-    "name_jp": "目にも留まらず",
-    "name_en": "Not Even a Glimpse"
-  },
-  {
-    "id": "203212",
-    "name_jp": "気の向くままに",
-    "name_en": "Free-Spirited"
-  },
-  {
-    "id": "203221",
-    "name_jp": "影従打破",
-    "name_en": "Breaking Free"
-  },
-  {
-    "id": "203222",
-    "name_jp": "アグレッシブ",
-    "name_en": "Aggressive"
-  },
-  {
-    "id": "203232",
-    "name_jp": "逸る足取り",
-    "name_en": "Restless Step"
-  },
-  {
-    "id": "203241",
-    "name_jp": "連鎖反応",
-    "name_en": "Chain Reaction"
-  },
-  {
-    "id": "203242",
-    "name_jp": "端緒",
-    "name_en": "Fuse"
-  },
-  {
-    "id": "203251",
-    "name_jp": "烈火の如く",
-    "name_en": "Like a Blaze"
-  },
-  {
-    "id": "203252",
-    "name_jp": "急襲",
-    "name_en": "Surprise Attack"
-  },
-  {
-    "id": "203262",
-    "name_jp": "覚悟を決めて",
-    "name_en": "Firm Resolve"
-  },
-  {
-    "id": "203272",
-    "name_jp": "切り込み隊長",
-    "name_en": "Spearhead"
-  },
-  {
-    "id": "203301",
-    "name_jp": "熾烈の極み",
-    "name_en": "Peak Ferocity"
-  },
-  {
-    "id": "203302",
-    "name_jp": "熱狂的",
-    "name_en": "Fervor"
-  },
-  {
-    "id": "203311",
-    "name_jp": "閃光",
-    "name_en": "Flash"
-  },
-  {
-    "id": "203312",
-    "name_jp": "光差す方へ",
-    "name_en": "Towards the Light"
-  },
-  {
-    "id": "203322",
-    "name_jp": "駆け降り",
-    "name_en": "Descent"
-  },
-  {
-    "id": "203331",
-    "name_jp": "用意周到",
-    "name_en": "Thorough Preparation"
-  },
-  {
-    "id": "203332",
-    "name_jp": "下準備",
-    "name_en": "Preliminary Preparation"
-  },
-  {
-    "id": "203341",
-    "name_jp": "追跡者",
-    "name_en": "Pursuer"
-  },
-  {
-    "id": "203342",
-    "name_jp": "這い寄る足音",
-    "name_en": "Creeping Footsteps"
-  },
-  {
-    "id": "203351",
-    "name_jp": "勇猛果敢",
-    "name_en": "Brave and Bold"
-  },
-  {
-    "id": "203352",
-    "name_jp": "ハイピッチ",
-    "name_en": "High Pitch"
-  },
-  {
-    "id": "203361",
-    "name_jp": "真骨頂",
-    "name_en": "Proven Mettle"
-  },
-  {
-    "id": "203362",
-    "name_jp": "一歩ずつ前へ",
-    "name_en": "Forward Step by Step"
-  },
-  {
-    "id": "203371",
-    "name_jp": "後の先",
-    "name_en": "Seize the Initiative"
-  },
-  {
-    "id": "203372",
-    "name_jp": "切り返し",
-    "name_en": "Striking Back"
-  },
-  {
-    "id": "203381",
-    "name_jp": "勝負はここから！",
-    "name_en": "The Fight's Not Over Yet!"
-  },
-  {
-    "id": "203382",
-    "name_jp": "逃げ切り体勢",
-    "name_en": "Pulling Away"
-  },
-  {
-    "id": "203391",
-    "name_jp": "英姿颯爽",
-    "name_en": "Gallant Figure"
-  },
-  {
-    "id": "203392",
-    "name_jp": "破天荒",
-    "name_en": "Unprecedented"
-  },
-  {
-    "id": "203402",
-    "name_jp": "追い風に乗って",
-    "name_en": "Riding the Tailwind"
-  },
-  {
-    "id": "203411",
-    "name_jp": "努力の結実",
-    "name_en": "Fruits of Labor"
-  },
-  {
-    "id": "203412",
-    "name_jp": "地道に重ねて",
-    "name_en": "Steady Effort"
-  },
-  {
-    "id": "203421",
-    "name_jp": "正々堂々",
-    "name_en": "Forthright"
-  },
-  {
-    "id": "203422",
-    "name_jp": "己を信じて",
-    "name_en": "Believe in Yourself"
-  },
-  {
-    "id": "203431",
-    "name_jp": "才気煥発",
-    "name_en": "Brilliant Mind"
-  },
-  {
-    "id": "203432",
-    "name_jp": "躍動",
-    "name_en": "Dynamic Motion"
-  },
-  {
-    "id": "203441",
-    "name_jp": "夢の舞台へ",
-    "name_en": "To the Stage of Dreams"
-  },
-  {
-    "id": "203442",
-    "name_jp": "憧れを越えて",
-    "name_en": "Surpassing Ambitions"
-  },
-  {
-    "id": "203452",
-    "name_jp": "ターニングポイント",
-    "name_en": "Turning Point"
-  },
-  {
-    "id": "203461",
-    "name_jp": "傑出",
-    "name_en": "Preeminent"
-  },
-  {
-    "id": "203462",
-    "name_jp": "抜きん出る一歩",
-    "name_en": "Outstanding Step"
-  },
-  {
-    "id": "203471",
-    "name_jp": "猛烈激走",
-    "name_en": "Furious Sprint"
-  },
-  {
-    "id": "203472",
-    "name_jp": "みなぎる闘志",
-    "name_en": "Overflowing Fighting Spirit"
-  },
-  {
-    "id": "203481",
-    "name_jp": "イニシアチブ",
-    "name_en": "Initiative"
-  },
-  {
-    "id": "203482",
-    "name_jp": "譲れぬ一歩",
-    "name_en": "Unyielding Step"
-  },
-  {
-    "id": "203491",
-    "name_jp": "丁々発止",
-    "name_en": "Fierce Clash"
-  },
-  {
-    "id": "203492",
-    "name_jp": "火花散らして",
-    "name_en": "Flying Sparks"
-  },
-  {
-    "id": "203501",
-    "name_jp": "英俊豪傑",
-    "name_en": "Unpredecented Prodigy"
-  },
-  {
-    "id": "203502",
-    "name_jp": "比類なき",
-    "name_en": "Peerless"
-  },
-  {
-    "id": "203511",
-    "name_jp": "睥睨",
-    "name_en": "Domineering Glare"
-  },
-  {
-    "id": "203512",
-    "name_jp": "覇気十分",
-    "name_en": "High Ambitions"
-  },
-  {
-    "id": "203522",
-    "name_jp": "垣間見た光",
-    "name_en": "Glimpse of Light"
-  },
-  {
-    "id": "203532",
-    "name_jp": "登竜門",
-    "name_en": "Gateway to Success"
-  },
-  {
-    "id": "203541",
-    "name_jp": "天真爛漫",
-    "name_en": "Carefree Stride"
-  },
-  {
-    "id": "203542",
-    "name_jp": "足任せ",
-    "name_en": "Footloose"
-  },
-  {
-    "id": "203552",
-    "name_jp": "ステップアップ",
-    "name_en": "Step Up"
-  },
-  {
-    "id": "203562",
-    "name_jp": "奮闘",
-    "name_en": "Fierce Struggle"
-  },
-  {
-    "id": "203571",
-    "name_jp": "突破口",
-    "name_en": "Breach"
-  },
-  {
-    "id": "203572",
-    "name_jp": "足がかり",
-    "name_en": "Foothold"
-  },
-  {
-    "id": "203582",
-    "name_jp": "捕捉",
-    "name_en": "Capture"
-  },
-  {
-    "id": "203591",
-    "name_jp": "独立独歩",
-    "name_en": "Independence"
-  },
-  {
-    "id": "203592",
-    "name_jp": "押し通る！",
-    "name_en": "Pushing Through!"
-  },
-  {
-    "id": "203601",
-    "name_jp": "見事な砂蹴り",
-    "name_en": "Magnificent Sand Stride"
-  },
-  {
-    "id": "203602",
-    "name_jp": "砂蹴り",
-    "name_en": "Sand Stride"
-  },
-  {
-    "id": "203611",
-    "name_jp": "点滴穿石",
-    "name_en": "Sum of Small Efforts"
-  },
-  {
-    "id": "203612",
-    "name_jp": "精進",
-    "name_en": "Diligence"
-  },
-  {
-    "id": "203621",
-    "name_jp": "ストレートハート",
-    "name_en": "Straight Heart"
-  },
-  {
-    "id": "203622",
-    "name_jp": "真っ直ぐな走り",
-    "name_en": "Straight Steps"
-  },
-  {
-    "id": "203631",
-    "name_jp": "唯一無二",
-    "name_en": "One and Only"
-  },
-  {
-    "id": "203632",
-    "name_jp": "夢への挑戦",
-    "name_en": "Dream-Fulfilling Challenge"
-  },
-  {
-    "id": "203642",
-    "name_jp": "光明",
-    "name_en": "Luminance"
-  },
-  {
-    "id": "203651",
-    "name_jp": "パスファインダー",
-    "name_en": "Pathfinder"
-  },
-  {
-    "id": "203652",
-    "name_jp": "活路を拓く！",
-    "name_en": "Find a Way!"
-  },
-  {
-    "id": "203661",
-    "name_jp": "悠久走破",
-    "name_en": "Long Haul"
-  },
-  {
-    "id": "203662",
-    "name_jp": "健脚",
-    "name_en": "Trekker"
-  },
-  {
-    "id": "203671",
-    "name_jp": "陽炎",
-    "name_en": "Heat Haze"
-  },
-  {
-    "id": "203672",
-    "name_jp": "静かな熱",
-    "name_en": "Simmering Heat"
-  },
-  {
-    "id": "203681",
-    "name_jp": "秘めた闘魂",
-    "name_en": "Latent Fighting Spirit"
-  },
-  {
-    "id": "203682",
-    "name_jp": "不断の鍛錬",
-    "name_en": "Ceaseless Training"
-  },
-  {
-    "id": "203691",
-    "name_jp": "ハイパーハイテンション☆",
-    "name_en": "Hyper Excitement"
-  },
-  {
-    "id": "203702",
-    "name_jp": "思い切り",
-    "name_en": "Take the Plunge"
-  },
-  {
-    "id": "203711",
-    "name_jp": "ショーダウン",
-    "name_en": "Showdown"
-  },
-  {
-    "id": "203712",
-    "name_jp": "勇気の一歩",
-    "name_en": "One Brave Step"
-  },
-  {
-    "id": "203721",
-    "name_jp": "この手に掴んだ未来",
-    "name_en": "The Future in My Hands"
-  },
-  {
-    "id": "203731",
-    "name_jp": "エネルギッシュ",
-    "name_en": "Energetic"
-  },
-  {
-    "id": "203732",
-    "name_jp": "張り切り",
-    "name_en": "Enthusiastic"
-  },
-  {
-    "id": "203741",
-    "name_jp": "刹那の勝機",
-    "name_en": "Moment of Opportunity"
-  },
-  {
-    "id": "203742",
-    "name_jp": "間隙を突いて",
-    "name_en": "Exploit the Gap"
-  },
-  {
-    "id": "203751",
-    "name_jp": "残影",
-    "name_en": "Afterimage"
-  },
-  {
-    "id": "203752",
-    "name_jp": "影を追って",
-    "name_en": "Chasing the Shadow"
-  },
-  {
-    "id": "203762",
-    "name_jp": "追駆",
-    "name_en": "Give Chase"
-  },
-  {
-    "id": "203772",
-    "name_jp": "臆せぬ心",
-    "name_en": "Unwavering Heart"
-  },
-  {
-    "id": "203781",
-    "name_jp": "衝動",
-    "name_en": "衝動"
-  },
-  {
-    "id": "203791",
-    "name_jp": "闘争本能",
-    "name_en": "闘争本能"
-  },
-  {
-    "id": "203792",
-    "name_jp": "好戦的",
-    "name_en": "好戦的"
-  },
-  {
-    "id": "203801",
-    "name_jp": "解き放つ情念",
-    "name_en": "解き放つ情念"
-  },
-  {
-    "id": "203802",
-    "name_jp": "想い焦がれて",
-    "name_en": "想い焦がれて"
-  },
-  {
-    "id": "203822",
-    "name_jp": "内なる獣",
-    "name_en": "内なる獣"
-  },
-  {
-    "id": "203831",
-    "name_jp": "天賦の才",
-    "name_en": "天賦の才"
-  },
-  {
-    "id": "203832",
-    "name_jp": "頂を目指して",
-    "name_en": "頂を目指して"
-  },
-  {
-    "id": "203841",
-    "name_jp": "才色兼備",
-    "name_en": "才色兼備"
-  },
-  {
-    "id": "203842",
-    "name_jp": "優等生",
-    "name_en": "優等生"
-  },
-  {
-    "id": "203851",
-    "name_jp": "好奇心",
-    "name_en": "好奇心"
-  },
-  {
-    "id": "203852",
-    "name_jp": "心惹かれて",
-    "name_en": "心惹かれて"
-  },
-  {
-    "id": "203861",
-    "name_jp": "自由奔放",
-    "name_en": "自由奔放"
-  },
-  {
-    "id": "203862",
-    "name_jp": "気ままな足取り",
-    "name_en": "気ままな足取り"
-  },
-  {
-    "id": "210011",
-    "name_jp": "アオハル燃焼・速",
-    "name_en": "Aoharu Burning・Speed"
-  },
-  {
-    "id": "210012",
-    "name_jp": "アオハル点火・速",
-    "name_en": "Aoharu Ignition・Speed"
-  },
-  {
-    "id": "210021",
-    "name_jp": "アオハル燃焼・体",
-    "name_en": "Aoharu Burning・Stamina"
-  },
-  {
-    "id": "210022",
-    "name_jp": "アオハル点火・体",
-    "name_en": "Aoharu Ignition・Stamina"
-  },
-  {
-    "id": "210031",
-    "name_jp": "アオハル燃焼・力",
-    "name_en": "Aoharu Burning・Power"
-  },
-  {
-    "id": "210032",
-    "name_jp": "アオハル点火・力",
-    "name_en": "Aoharu Ignition・Power"
-  },
-  {
-    "id": "210041",
-    "name_jp": "アオハル燃焼・根",
-    "name_en": "Aoharu Burning・Guts"
-  },
-  {
-    "id": "210042",
-    "name_jp": "アオハル点火・根",
-    "name_en": "Aoharu Ignition・Guts"
-  },
-  {
-    "id": "210051",
-    "name_jp": "アオハル燃焼・賢",
-    "name_en": "Aoharu Burning・Wisdom"
-  },
-  {
-    "id": "210052",
-    "name_jp": "アオハル点火・賢",
-    "name_en": "Aoharu Ignition・Wisdom"
-  },
-  {
-    "id": "210061",
-    "name_jp": "一番星",
-    "name_en": "The First Star"
-  },
-  {
-    "id": "210062",
-    "name_jp": "綺羅星",
-    "name_en": "Glittering Stars"
-  },
-  {
-    "id": "210071",
-    "name_jp": "キミと勝ちたい",
-    "name_en": "I Want to Win With You"
-  },
-  {
-    "id": "210072",
-    "name_jp": "夢の途中",
-    "name_en": "Halfway to a Dream"
-  },
-  {
-    "id": "210081",
-    "name_jp": "限界の先へ",
-    "name_en": "Beyond the Limits"
-  },
-  {
-    "id": "210082",
-    "name_jp": "前だけ見据えて",
-    "name_en": "Eyes on the Horizon"
-  },
-  {
-    "id": "210091",
-    "name_jp": "レースの真髄・速",
-    "name_en": "Essence of Racing・Speed"
-  },
-  {
-    "id": "210101",
-    "name_jp": "レースの真髄・体",
-    "name_en": "Essence of Racing・Stamina"
-  },
-  {
-    "id": "210111",
-    "name_jp": "レースの真髄・力",
-    "name_en": "Essence of Racing・Power"
-  },
-  {
-    "id": "210121",
-    "name_jp": "レースの真髄・根",
-    "name_en": "Essence of Racing・Guts"
-  },
-  {
-    "id": "210131",
-    "name_jp": "レースの真髄・賢",
-    "name_en": "Essence of Racing・Wisdom"
-  },
-  {
-    "id": "210261",
-    "name_jp": "太陽の叡智",
-    "name_en": "Wisdom of the Sun"
-  },
-  {
-    "id": "210262",
-    "name_jp": "陽の加護",
-    "name_en": "Blessing of the Sun"
-  },
-  {
-    "id": "210271",
-    "name_jp": "大海の叡智",
-    "name_en": "Wisdom of the Ocean"
-  },
-  {
-    "id": "210272",
-    "name_jp": "海の加護",
-    "name_en": "Blessing of the Ocean"
-  },
-  {
-    "id": "210281",
-    "name_jp": "大地の叡智",
-    "name_en": "Wisdom of the Land"
-  },
-  {
-    "id": "210282",
-    "name_jp": "地の加護",
-    "name_en": "Blessing of the Land"
-  },
-  {
-    "id": "210291",
-    "name_jp": "最高峰の夢",
-    "name_en": "Dreaming of the Peak"
-  },
-  {
-    "id": "210292",
-    "name_jp": "想いを背負って",
-    "name_en": "Bearer of Hope"
-  },
-  {
-    "id": "210301",
-    "name_jp": "爆熱のキラメキ！",
-    "name_en": "Blazing Radiance!"
-  },
-  {
-    "id": "210302",
-    "name_jp": "バーニングソウル",
-    "name_en": "Burning Soul"
-  },
-  {
-    "id": "210311",
-    "name_jp": "アスリート魂",
-    "name_en": "Athlete's Spirit"
-  },
-  {
-    "id": "210321",
-    "name_jp": "私たちの走る道程",
-    "name_en": "The Races We Run"
-  },
-  {
-    "id": "210322",
-    "name_jp": "いつまでも健やかに",
-    "name_en": "Forever Healthy"
-  },
-  {
-    "id": "210331",
-    "name_jp": "食の極意",
-    "name_en": "Essence of Food"
-  },
-  {
-    "id": "210341",
-    "name_jp": "もう少しだけ、いい景色",
-    "name_en": "For a Fleeting View"
-  },
-  {
-    "id": "210342",
-    "name_jp": "夢の再生方法",
-    "name_en": "Reproducing a Dream"
-  },
-  {
-    "id": "210351",
-    "name_jp": "新たな伝説を築く者",
-    "name_en": "Forger of Legends"
-  },
-  {
-    "id": "210352",
-    "name_jp": "時代を変える者",
-    "name_en": "Herald of a New Age"
-  },
-  {
-    "id": "210361",
-    "name_jp": "本能の懸け橋",
-    "name_en": "Guided by Instinct"
-  },
-  {
-    "id": "210362",
-    "name_jp": "あるがままに",
-    "name_en": "Be Myself"
-  },
-  {
-    "id": "300131",
-    "name_jp": "日本総大将",
-    "name_en": "Supreme Commander of Japan"
-  },
-  {
-    "id": "300141",
-    "name_jp": "不撓不屈",
-    "name_en": "Dauntlessness"
+    "name_jp": "Top Pick",
+    "name_en": "Top Pick",
+    "type": "normal"
   },
   {
     "id": "900011",
-    "name_jp": "シューティングスター",
-    "name_en": "シューティングスター"
+    "name_jp": "Shooting Star",
+    "name_en": "Shooting Star",
+    "type": "unique"
   },
   {
     "id": "900021",
-    "name_jp": "先頭の景色は譲らない…！",
-    "name_en": "先頭の景色は譲らない…！"
+    "name_jp": "The View from the Lead Is Mine!",
+    "name_en": "The View from the Lead Is Mine!",
+    "type": "unique"
   },
   {
     "id": "900031",
-    "name_jp": "究極テイオーステップ",
-    "name_en": "究極テイオーステップ"
+    "name_jp": "Sky-High Teio Step",
+    "name_en": "Sky-High Teio Step",
+    "type": "unique"
   },
   {
     "id": "900041",
-    "name_jp": "紅焔ギア/LP1211-M",
-    "name_en": "紅焔ギア/LP1211-M"
-  },
-  {
-    "id": "900051",
-    "name_jp": "煌星のヴォードヴィル",
-    "name_en": "煌星のヴォードヴィル"
+    "name_jp": "Red Shift/LP1211-M",
+    "name_en": "Red Shift/LP1211-M",
+    "type": "unique"
   },
   {
     "id": "900061",
-    "name_jp": "勝利の鼓動",
-    "name_en": "勝利の鼓動"
+    "name_jp": "Triumphant Pulse",
+    "name_en": "Triumphant Pulse",
+    "type": "unique"
   },
   {
     "id": "900071",
-    "name_jp": "不沈艦、抜錨ォッ！",
-    "name_en": "不沈艦、抜錨ォッ！"
+    "name_jp": "Anchors Aweigh!",
+    "name_en": "Anchors Aweigh!",
+    "type": "unique"
   },
   {
     "id": "900081",
-    "name_jp": "カッティング×DRIVE！",
-    "name_en": "カッティング×DRIVE！"
+    "name_jp": "Cut and Drive!",
+    "name_en": "Cut and Drive!",
+    "type": "unique"
   },
   {
     "id": "900091",
-    "name_jp": "ブリリアント・レッドエース",
-    "name_en": "ブリリアント・レッドエース"
+    "name_jp": "Resplendent Red Ace",
+    "name_en": "Resplendent Red Ace",
+    "type": "unique"
   },
   {
     "id": "900101",
-    "name_jp": "ヴィクトリーショット！",
-    "name_en": "ヴィクトリーショット！"
+    "name_jp": "Shooting for Victory!",
+    "name_en": "Shooting for Victory!",
+    "type": "unique"
   },
   {
     "id": "900111",
-    "name_jp": "精神一到何事か成らざらん",
-    "name_en": "精神一到何事か成らざらん"
-  },
-  {
-    "id": "900121",
-    "name_jp": "タイマン！デッドヒート！",
-    "name_en": "タイマン！デッドヒート！"
+    "name_jp": "Where There's a Will, There's a Way",
+    "name_en": "Where There's a Will, There's a Way",
+    "type": "unique"
   },
   {
     "id": "900131",
-    "name_jp": "貴顕の使命を果たすべく",
-    "name_en": "貴顕の使命を果たすべく"
+    "name_jp": "The Duty of Dignity Calls",
+    "name_en": "The Duty of Dignity Calls",
+    "type": "unique"
   },
   {
     "id": "900141",
-    "name_jp": "プランチャ☆ガナドール",
-    "name_en": "プランチャ☆ガナドール"
+    "name_jp": "Victoria por plancha ☆",
+    "name_en": "Victoria por plancha ☆",
+    "type": "unique"
   },
   {
     "id": "900151",
-    "name_jp": "ヴィットーリアに捧ぐ舞踏",
-    "name_en": "ヴィットーリアに捧ぐ舞踏"
+    "name_jp": "This Dance Is for Vittoria!",
+    "name_en": "This Dance Is for Vittoria!",
+    "type": "unique"
   },
   {
     "id": "900161",
     "name_jp": "Shadow Break",
-    "name_en": "Shadow Break"
+    "name_en": "Shadow Break",
+    "type": "unique"
   },
   {
     "id": "900171",
-    "name_jp": "汝、皇帝の神威を見よ",
-    "name_en": "汝、皇帝の神威を見よ"
+    "name_jp": "Behold Thine Emperor's Divine Might",
+    "name_en": "Behold Thine Emperor's Divine Might",
+    "type": "unique"
   },
   {
     "id": "900181",
-    "name_jp": "ブレイズ・オブ・プライド",
-    "name_en": "ブレイズ・オブ・プライド"
-  },
-  {
-    "id": "900191",
-    "name_jp": "尊み☆ﾗｽﾄｽﾊﾟ—(ﾟ∀ﾟ)—ﾄ!",
-    "name_en": "尊み☆ﾗｽﾄｽﾊﾟ—(ﾟ∀ﾟ)—ﾄ!"
+    "name_jp": "Blazing Pride",
+    "name_en": "Blazing Pride",
+    "type": "unique"
   },
   {
     "id": "900201",
-    "name_jp": "アングリング×スキーミング",
-    "name_en": "アングリング×スキーミング"
-  },
-  {
-    "id": "900211",
-    "name_jp": "白い稲妻、見せたるで！",
-    "name_en": "白い稲妻、見せたるで！"
-  },
-  {
-    "id": "900221",
-    "name_jp": "Fairy tale",
-    "name_en": "Fairy tale"
+    "name_jp": "Angling and Scheming",
+    "name_en": "Angling and Scheming",
+    "type": "unique"
   },
   {
     "id": "900231",
     "name_jp": "∴win Q.E.D.",
-    "name_en": "∴win Q.E.D."
+    "name_en": "∴win Q.E.D.",
+    "type": "unique"
   },
   {
     "id": "900241",
-    "name_jp": "ひらめき☆ランディング",
-    "name_en": "ひらめき☆ランディング"
-  },
-  {
-    "id": "900251",
-    "name_jp": "アナタヲ・オイカケテ",
-    "name_en": "アナタヲ・オイカケテ"
+    "name_jp": "Flashy☆Landing",
+    "name_en": "Flashy☆Landing",
+    "type": "unique"
   },
   {
     "id": "900261",
-    "name_jp": "G00 1st.F∞;",
-    "name_en": "G00 1st.F∞;"
+    "name_jp": "G00 1st. F∞;",
+    "name_en": "G00 1st. F∞;",
+    "type": "unique"
   },
   {
     "id": "900271",
-    "name_jp": "レッツ・アナボリック！",
-    "name_en": "レッツ・アナボリック！"
-  },
-  {
-    "id": "900281",
-    "name_jp": "I'M☆FULL☆SPEED!!",
-    "name_en": "I'M☆FULL☆SPEED!!"
-  },
-  {
-    "id": "900291",
-    "name_jp": "ゆきあかり、おいかけて",
-    "name_en": "ゆきあかり、おいかけて"
+    "name_jp": "Let's Pump Some Iron!",
+    "name_en": "Let's Pump Some Iron!",
+    "type": "unique"
   },
   {
     "id": "900301",
-    "name_jp": "ブルーローズチェイサー",
-    "name_en": "ブルーローズチェイサー"
-  },
-  {
-    "id": "900311",
-    "name_jp": "チャージ完了！全速前進！",
-    "name_en": "チャージ完了！全速前進！"
+    "name_jp": "Blue Rose Closer",
+    "name_en": "Blue Rose Closer",
+    "type": "unique"
   },
   {
     "id": "900321",
     "name_jp": "U=ma2",
-    "name_en": "U=ma2"
-  },
-  {
-    "id": "900331",
-    "name_jp": "ディオスクロイの流星",
-    "name_en": "ディオスクロイの流星"
-  },
-  {
-    "id": "900341",
-    "name_jp": "快走かな、快走かな！",
-    "name_en": "快走かな、快走かな！"
+    "name_en": "U=ma2",
+    "type": "unique"
   },
   {
     "id": "900351",
-    "name_jp": "勝利のチケットを、君にッ！",
-    "name_en": "勝利のチケットを、君にッ！"
-  },
-  {
-    "id": "900361",
-    "name_jp": "trigger:BEAT",
-    "name_en": "trigger:BEAT"
-  },
-  {
-    "id": "900371",
-    "name_jp": "Schwarzes Schwert",
-    "name_en": "Schwarzes Schwert"
+    "name_jp": "Our Ticket to Win!",
+    "name_en": "Our Ticket to Win!",
+    "type": "unique"
   },
   {
     "id": "900381",
     "name_jp": "#LookatCurren",
-    "name_en": "#LookatCurren"
-  },
-  {
-    "id": "900391",
-    "name_jp": "姫たるもの、勝利をこの手に",
-    "name_en": "姫たるもの、勝利をこの手に"
-  },
-  {
-    "id": "900401",
-    "name_jp": "KEEP IT REAL.",
-    "name_en": "KEEP IT REAL."
+    "name_en": "#LookatCurren",
+    "type": "unique"
   },
   {
     "id": "900411",
-    "name_jp": "優等生×バクシン＝大勝利ッ",
-    "name_en": "優等生×バクシン＝大勝利ッ"
-  },
-  {
-    "id": "900421",
-    "name_jp": "『I'm possible』",
-    "name_en": "『I'm possible』"
-  },
-  {
-    "id": "900431",
-    "name_jp": "Ding Dong Boo",
-    "name_en": "Ding Dong Boo"
-  },
-  {
-    "id": "900441",
-    "name_jp": "いただき☆ストレリチア！",
-    "name_en": "いただき☆ストレリチア！"
+    "name_jp": "Genius x Bakushin = Victory",
+    "name_en": "Genius x Bakushin = Victory",
+    "type": "unique"
   },
   {
     "id": "900451",
-    "name_jp": "ピュリティオブハート",
-    "name_en": "ピュリティオブハート"
+    "name_jp": "Pure Heart",
+    "name_en": "Pure Heart",
+    "type": "unique"
   },
   {
     "id": "900461",
-    "name_jp": "キラキラ☆STARDOM",
-    "name_en": "キラキラ☆STARDOM"
-  },
-  {
-    "id": "900471",
-    "name_jp": "掲げよ、己が魂の剣を！",
-    "name_en": "掲げよ、己が魂の剣を！"
-  },
-  {
-    "id": "900481",
-    "name_jp": "YEAH☆VIVID TIME!",
-    "name_en": "YEAH☆VIVID TIME!"
-  },
-  {
-    "id": "900491",
-    "name_jp": "剣ヶ峰より、狂気に嗤え",
-    "name_en": "剣ヶ峰より、狂気に嗤え"
+    "name_jp": "SPARKLY☆STARDOM",
+    "name_en": "SPARKLY☆STARDOM",
+    "type": "unique"
   },
   {
     "id": "900501",
     "name_jp": "Nemesis",
-    "name_en": "Nemesis"
-  },
-  {
-    "id": "900511",
-    "name_jp": "つぼみ、ほころぶ時",
-    "name_en": "つぼみ、ほころぶ時"
+    "name_en": "Nemesis",
+    "type": "unique"
   },
   {
     "id": "900521",
-    "name_jp": "ワクワククライマックス",
-    "name_en": "ワクワククライマックス"
-  },
-  {
-    "id": "900531",
-    "name_jp": "熱血！！風紀アタック",
-    "name_en": "熱血！！風紀アタック"
-  },
-  {
-    "id": "900541",
-    "name_jp": "疾風爆走ペガサスダッシュ！",
-    "name_en": "疾風爆走ペガサスダッシュ！"
-  },
-  {
-    "id": "900551",
-    "name_jp": "万彩☆マーベラス★世界",
-    "name_en": "万彩☆マーベラス★世界"
+    "name_jp": "Super-Duper Climax",
+    "name_en": "Super-Duper Climax",
+    "type": "unique"
   },
   {
     "id": "900561",
-    "name_jp": "来ます来てます来させます！",
-    "name_en": "来ます来てます来させます！"
-  },
-  {
-    "id": "900571",
-    "name_jp": "叙情、旅路の果てに",
-    "name_en": "叙情、旅路の果てに"
-  },
-  {
-    "id": "900581",
-    "name_jp": "I Never Goof Up!",
-    "name_en": "I Never Goof Up!"
-  },
-  {
-    "id": "900591",
-    "name_jp": "彼方、その先へ…",
-    "name_en": "彼方、その先へ…"
+    "name_jp": "I See Victory in My Future!",
+    "name_en": "I See Victory in My Future!",
+    "type": "unique"
   },
   {
     "id": "900601",
-    "name_jp": "きっとその先へ…！",
-    "name_en": "きっとその先へ…！"
+    "name_jp": "Just a Little Farther!",
+    "name_en": "Just a Little Farther!",
+    "type": "unique"
   },
   {
     "id": "900611",
-    "name_jp": "Pride of KING",
-    "name_en": "Pride of KING"
-  },
-  {
-    "id": "900621",
-    "name_jp": "どんっ、パッ、むんっ",
-    "name_en": "どんっ、パッ、むんっ"
-  },
-  {
-    "id": "900631",
-    "name_jp": "百錬成鋼",
-    "name_en": "百錬成鋼"
-  },
-  {
-    "id": "900641",
-    "name_jp": "ぶっちぎりロード",
-    "name_en": "ぶっちぎりロード"
-  },
-  {
-    "id": "900651",
-    "name_jp": "アゲてアゲてぷちょへんざ！",
-    "name_en": "アゲてアゲてぷちょへんざ！"
-  },
-  {
-    "id": "900661",
-    "name_jp": "エンジン全開！大噴射！",
-    "name_en": "エンジン全開！大噴射！"
-  },
-  {
-    "id": "900671",
-    "name_jp": "晦冥を照らせ永遠の耀き",
-    "name_en": "晦冥を照らせ永遠の耀き"
-  },
-  {
-    "id": "900681",
-    "name_jp": "勝ち鬨ワッショイ！",
-    "name_en": "勝ち鬨ワッショイ！"
-  },
-  {
-    "id": "900691",
-    "name_jp": "憧れは桜を越える！",
-    "name_en": "憧れは桜を越える！"
-  },
-  {
-    "id": "900701",
-    "name_jp": "セイリオス",
-    "name_en": "セイリオス"
-  },
-  {
-    "id": "900711",
-    "name_jp": "一期の夢、刹那の飛翔",
-    "name_en": "一期の夢、刹那の飛翔"
-  },
-  {
-    "id": "900721",
-    "name_jp": "烈火繚乱、無敵之舞",
-    "name_en": "烈火繚乱、無敵之舞"
-  },
-  {
-    "id": "900731",
-    "name_jp": "燃え盛るは絶対の意志",
-    "name_en": "燃え盛るは絶対の意志"
-  },
-  {
-    "id": "900741",
-    "name_jp": "麗しき花信風",
-    "name_en": "麗しき花信風"
-  },
-  {
-    "id": "900761",
-    "name_jp": "花開き、世界",
-    "name_en": "花開き、世界"
-  },
-  {
-    "id": "900771",
-    "name_jp": "Road to Glory",
-    "name_en": "Road to Glory"
-  },
-  {
-    "id": "900781",
-    "name_jp": "風光る",
-    "name_en": "風光る"
-  },
-  {
-    "id": "900791",
-    "name_jp": "『船橋最強！』",
-    "name_en": "『船橋最強！』"
-  },
-  {
-    "id": "900801",
-    "name_jp": "Info: Acquired",
-    "name_en": "Info: Acquired"
-  },
-  {
-    "id": "900821",
-    "name_jp": "Shining Runway",
-    "name_en": "Shining Runway"
-  },
-  {
-    "id": "900831",
-    "name_jp": "Mission: Triumph",
-    "name_en": "Mission: Triumph"
-  },
-  {
-    "id": "900841",
-    "name_jp": "霹靂のアウフヘーベン",
-    "name_en": "霹靂のアウフヘーベン"
-  },
-  {
-    "id": "900851",
-    "name_jp": "至上であれ",
-    "name_en": "至上であれ"
-  },
-  {
-    "id": "900861",
-    "name_jp": "愛と熔けよただ熔けよ",
-    "name_en": "愛と熔けよただ熔けよ"
-  },
-  {
-    "id": "900871",
-    "name_jp": "Silent letter",
-    "name_en": "Silent letter"
-  },
-  {
-    "id": "900881",
-    "name_jp": "Reversal Illusion",
-    "name_en": "Reversal Illusion"
-  },
-  {
-    "id": "900891",
-    "name_jp": "Celeste Oath",
-    "name_en": "Celeste Oath"
-  },
-  {
-    "id": "900901",
-    "name_jp": "Queen's Rebirth",
-    "name_en": "Queen's Rebirth"
-  },
-  {
-    "id": "900911",
-    "name_jp": "デラックス☆ファウンテン",
-    "name_en": "デラックス☆ファウンテン"
-  },
-  {
-    "id": "900931",
-    "name_jp": "幸せの青い光",
-    "name_en": "幸せの青い光"
-  },
-  {
-    "id": "900941",
-    "name_jp": "Faith in the Feral",
-    "name_en": "Faith in the Feral"
-  },
-  {
-    "id": "900961",
-    "name_jp": "知宵欺敵、百戦不殆",
-    "name_en": "知宵欺敵、百戦不殆"
-  },
-  {
-    "id": "900971",
-    "name_jp": "スカーレットリリィの高揚",
-    "name_en": "スカーレットリリィの高揚"
-  },
-  {
-    "id": "900981",
-    "name_jp": "理運開かりて翔る",
-    "name_en": "理運開かりて翔る"
-  },
-  {
-    "id": "900991",
-    "name_jp": "かがやけ☆とまこまい",
-    "name_en": "かがやけ☆とまこまい"
-  },
-  {
-    "id": "901001",
-    "name_jp": "Never Say Never",
-    "name_en": "Never Say Never"
-  },
-  {
-    "id": "901021",
-    "name_jp": "ヴィヴァーチェ・ヴォラーレ",
-    "name_en": "ヴィヴァーチェ・ヴォラーレ"
-  },
-  {
-    "id": "901041",
-    "name_jp": "暁の御旗『葛城栄主』！",
-    "name_en": "暁の御旗『葛城栄主』！"
-  },
-  {
-    "id": "901051",
-    "name_jp": "アド・アストラ",
-    "name_en": "アド・アストラ"
-  },
-  {
-    "id": "901061",
-    "name_jp": "Bang☆ミラクるわせ！",
-    "name_en": "Bang☆ミラクるわせ！"
-  },
-  {
-    "id": "901071",
-    "name_jp": "Billions of stars",
-    "name_en": "Billions of stars"
-  },
-  {
-    "id": "901081",
-    "name_jp": "羅刹、赤翼にて天上へ至らん",
-    "name_en": "羅刹、赤翼にて天上へ至らん"
-  },
-  {
-    "id": "901091",
-    "name_jp": "繋ぐ・繋がる×夢・未来",
-    "name_en": "繋ぐ・繋がる×夢・未来"
-  },
-  {
-    "id": "901101",
-    "name_jp": "Guiding Sea",
-    "name_en": "Guiding Sea"
-  },
-  {
-    "id": "901111",
-    "name_jp": "辿る血脈、芽吹く未来",
-    "name_en": "辿る血脈、芽吹く未来"
-  },
-  {
-    "id": "901131",
-    "name_jp": "ホップステップ・ゲッチュ♡",
-    "name_en": "ホップステップ・ゲッチュ♡"
-  },
-  {
-    "id": "901151",
-    "name_jp": "我が覇道、阻むものなし",
-    "name_en": "我が覇道、阻むものなし"
-  },
-  {
-    "id": "901161",
-    "name_jp": "烈華の洗礼",
-    "name_en": "烈華の洗礼"
-  },
-  {
-    "id": "901171",
-    "name_jp": "鋭気のアレグロ",
-    "name_en": "鋭気のアレグロ"
-  },
-  {
-    "id": "901191",
-    "name_jp": "『それでは、よき旅を』",
-    "name_en": "『それでは、よき旅を』"
-  },
-  {
-    "id": "901201",
-    "name_jp": "無二無三なる一条の路",
-    "name_en": "無二無三なる一条の路"
-  },
-  {
-    "id": "901211",
-    "name_jp": "Lame de vent",
-    "name_en": "Lame de vent"
-  },
-  {
-    "id": "901241",
-    "name_jp": "ふくらむ夢、先駆の途",
-    "name_en": "ふくらむ夢、先駆の途"
-  },
-  {
-    "id": "901271",
-    "name_jp": "対象捕捉！正義遂行！",
-    "name_en": "対象捕捉！正義遂行！"
-  },
-  {
-    "id": "901311",
-    "name_jp": "¡Qué alegría!",
-    "name_en": "¡Qué alegría!"
-  },
-  {
-    "id": "901321",
-    "name_jp": "Circulating Love♡",
-    "name_en": "Circulating Love♡"
-  },
-  {
-    "id": "901331",
-    "name_jp": "Weaving History",
-    "name_en": "Weaving History"
-  },
-  {
-    "id": "910011",
-    "name_jp": "わやかわ♪マリンダイヴ",
-    "name_en": "わやかわ♪マリンダイヴ"
-  },
-  {
-    "id": "910021",
-    "name_jp": "水平線のその先へ",
-    "name_en": "水平線のその先へ"
+    "name_jp": "Prideful King",
+    "name_en": "Prideful King",
+    "type": "unique"
   },
   {
     "id": "910031",
-    "name_jp": "絶対は、ボクだ",
-    "name_en": "絶対は、ボクだ"
-  },
-  {
-    "id": "910041",
-    "name_jp": "グッときて♪Chu",
-    "name_en": "グッときて♪Chu"
-  },
-  {
-    "id": "910051",
-    "name_jp": "Ravissant",
-    "name_en": "Ravissant"
-  },
-  {
-    "id": "910061",
-    "name_jp": "聖夜のミラクルラン！",
-    "name_en": "聖夜のミラクルラン！"
-  },
-  {
-    "id": "910071",
-    "name_jp": "Adventure of 564",
-    "name_en": "Adventure of 564"
-  },
-  {
-    "id": "910081",
-    "name_jp": "Into High Gear!",
-    "name_en": "Into High Gear!"
-  },
-  {
-    "id": "910091",
-    "name_jp": "Queen's Lumination",
-    "name_en": "Queen's Lumination"
-  },
-  {
-    "id": "910101",
-    "name_jp": "Joyful Voyage!",
-    "name_en": "Joyful Voyage!"
-  },
-  {
-    "id": "910111",
-    "name_jp": "ゲインヒール・スペリアー",
-    "name_en": "ゲインヒール・スペリアー"
-  },
-  {
-    "id": "910121",
-    "name_jp": "大盛り！ファーストバイト！",
-    "name_en": "大盛り！ファーストバイト！"
+    "name_jp": "Certain Victory",
+    "name_en": "Certain Victory",
+    "type": "unique"
   },
   {
     "id": "910131",
-    "name_jp": "最強の名を懸けて",
-    "name_en": "最強の名を懸けて"
-  },
-  {
-    "id": "910141",
-    "name_jp": "コンドル猛撃波",
-    "name_en": "コンドル猛撃波"
-  },
-  {
-    "id": "910151",
-    "name_jp": "恵福バルカローレ",
-    "name_en": "恵福バルカローレ"
-  },
-  {
-    "id": "910161",
-    "name_jp": "灰色の臨界点",
-    "name_en": "灰色の臨界点"
-  },
-  {
-    "id": "910171",
-    "name_jp": "翳り退く、さざめきの矢",
-    "name_en": "翳り退く、さざめきの矢"
+    "name_jp": "Legacy of the Strong",
+    "name_en": "Legacy of the Strong",
+    "type": "unique"
   },
   {
     "id": "910181",
-    "name_jp": "薫風、永遠なる瞬間を",
-    "name_en": "薫風、永遠なる瞬間を"
-  },
-  {
-    "id": "910191",
-    "name_jp": "萌到讓我活過來了！",
-    "name_en": "萌到讓我活過來了！"
-  },
-  {
-    "id": "910201",
-    "name_jp": "Do Ya Breakin!",
-    "name_en": "Do Ya Breakin!"
-  },
-  {
-    "id": "910211",
-    "name_jp": "火神鳴",
-    "name_en": "火神鳴"
-  },
-  {
-    "id": "910221",
-    "name_jp": "Best day ever",
-    "name_en": "Best day ever"
-  },
-  {
-    "id": "910231",
-    "name_jp": "Presents from X",
-    "name_en": "Presents from X"
+    "name_jp": "Eternal Moments",
+    "name_en": "Eternal Moments",
+    "type": "unique"
   },
   {
     "id": "910241",
-    "name_jp": "フラワリー☆マニューバ",
-    "name_en": "フラワリー☆マニューバ"
-  },
-  {
-    "id": "910251",
-    "name_jp": "心からのおもてにゃし",
-    "name_en": "心からのおもてにゃし"
-  },
-  {
-    "id": "910261",
-    "name_jp": "オペレーション・Cacao",
-    "name_en": "オペレーション・Cacao"
-  },
-  {
-    "id": "910271",
-    "name_jp": "あなたに捧げるフリーポア",
-    "name_en": "あなたに捧げるフリーポア"
-  },
-  {
-    "id": "910291",
-    "name_jp": "いっぱいおあげんしぇ！",
-    "name_en": "いっぱいおあげんしぇ！"
-  },
-  {
-    "id": "910301",
-    "name_jp": "Drain for rose",
-    "name_en": "Drain for rose"
-  },
-  {
-    "id": "910311",
-    "name_jp": "フレッシュ☆パーラー",
-    "name_en": "フレッシュ☆パーラー"
-  },
-  {
-    "id": "910321",
-    "name_jp": "夏空ハレーション",
-    "name_en": "夏空ハレーション"
-  },
-  {
-    "id": "910331",
-    "name_jp": "Crystal Mist",
-    "name_en": "Crystal Mist"
-  },
-  {
-    "id": "910341",
-    "name_jp": "灯穂",
-    "name_en": "灯穂"
-  },
-  {
-    "id": "910351",
-    "name_jp": "夢の先へ、届け！",
-    "name_en": "夢の先へ、届け！"
-  },
-  {
-    "id": "910361",
-    "name_jp": "...found you.",
-    "name_en": "...found you."
-  },
-  {
-    "id": "910371",
-    "name_jp": "Guten Appetit♪",
-    "name_en": "Guten Appetit♪"
-  },
-  {
-    "id": "910381",
-    "name_jp": "One True Color",
-    "name_en": "One True Color"
-  },
-  {
-    "id": "910391",
-    "name_jp": "快なる剛力",
-    "name_en": "快なる剛力"
-  },
-  {
-    "id": "910401",
-    "name_jp": "GET DOWN",
-    "name_en": "GET DOWN"
-  },
-  {
-    "id": "910411",
-    "name_jp": "CHERRY☆スクランブル",
-    "name_en": "CHERRY☆スクランブル"
-  },
-  {
-    "id": "910421",
-    "name_jp": "Oh!bento-magic☆",
-    "name_en": "Oh!bento-magic☆"
-  },
-  {
-    "id": "910441",
-    "name_jp": "とっておきmaterialize",
-    "name_en": "とっておきmaterialize"
-  },
-  {
-    "id": "910451",
-    "name_jp": "ぐるぐるマミートリック♡",
-    "name_en": "ぐるぐるマミートリック♡"
-  },
-  {
-    "id": "910461",
-    "name_jp": "α-star*",
-    "name_en": "α-star*"
-  },
-  {
-    "id": "910471",
-    "name_jp": "未知との遭遇、即ち物語",
-    "name_en": "未知との遭遇、即ち物語"
-  },
-  {
-    "id": "910481",
-    "name_jp": "GALmem.ふぉーえば♪",
-    "name_en": "GALmem.ふぉーえば♪"
-  },
-  {
-    "id": "910501",
-    "name_jp": "Hephaistos",
-    "name_en": "Hephaistos"
-  },
-  {
-    "id": "910511",
-    "name_jp": "Flowering Dreams",
-    "name_en": "Flowering Dreams"
-  },
-  {
-    "id": "910521",
-    "name_jp": "113転び114起き",
-    "name_en": "113転び114起き"
-  },
-  {
-    "id": "910531",
-    "name_jp": "奥義・常夏バーニング！！",
-    "name_en": "奥義・常夏バーニング！！"
-  },
-  {
-    "id": "910561",
-    "name_jp": "禾スナハチ登ル",
-    "name_en": "禾スナハチ登ル"
-  },
-  {
-    "id": "910571",
-    "name_jp": "爛然闊歩",
-    "name_en": "爛然闊歩"
-  },
-  {
-    "id": "910581",
-    "name_jp": "Spooky-Scary-Happy",
-    "name_en": "Spooky-Scary-Happy"
-  },
-  {
-    "id": "910591",
-    "name_jp": "ときめきが呼ぶほうへ",
-    "name_en": "ときめきが呼ぶほうへ"
-  },
-  {
-    "id": "910601",
-    "name_jp": "Go☆Go☆for it!",
-    "name_en": "Go☆Go☆for it!"
-  },
-  {
-    "id": "910611",
-    "name_jp": "轟！トレセン応援団！！",
-    "name_en": "轟！トレセン応援団！！"
-  },
-  {
-    "id": "910621",
-    "name_jp": "ごろりん！？パワードライブ",
-    "name_en": "ごろりん！？パワードライブ"
-  },
-  {
-    "id": "910641",
-    "name_jp": "jingle all the way",
-    "name_en": "jingle all the way"
-  },
-  {
-    "id": "910651",
-    "name_jp": "ノッてけ、マッシュアップ！",
-    "name_en": "ノッてけ、マッシュアップ！"
-  },
-  {
-    "id": "910671",
-    "name_jp": "玄雲散らす、黄金甲矢",
-    "name_en": "玄雲散らす、黄金甲矢"
-  },
-  {
-    "id": "910681",
-    "name_jp": "あっぱれ大盤振る舞い！",
-    "name_en": "あっぱれ大盤振る舞い！"
-  },
-  {
-    "id": "910691",
-    "name_jp": "咲け咲け！私！",
-    "name_en": "咲け咲け！私！"
-  },
-  {
-    "id": "910701",
-    "name_jp": "駆るは光、狩るは星々",
-    "name_en": "駆るは光、狩るは星々"
-  },
-  {
-    "id": "910711",
-    "name_jp": "Danser le présent",
-    "name_en": "Danser le présent"
-  },
-  {
-    "id": "910721",
-    "name_jp": "剛勇果断、烈火之刀",
-    "name_en": "剛勇果断、烈火之刀"
-  },
-  {
-    "id": "910741",
-    "name_jp": "Illuminate you",
-    "name_en": "Illuminate you"
-  },
-  {
-    "id": "910771",
-    "name_jp": "Joy to the World",
-    "name_en": "Joy to the World"
-  },
-  {
-    "id": "910781",
-    "name_jp": "Breezy Treat",
-    "name_en": "Breezy Treat"
-  },
-  {
-    "id": "910831",
-    "name_jp": "Immortal Work",
-    "name_en": "Immortal Work"
-  },
-  {
-    "id": "910841",
-    "name_jp": "深淵のテルプシコラー",
-    "name_en": "深淵のテルプシコラー"
-  },
-  {
-    "id": "910851",
-    "name_jp": "蒼炎",
-    "name_en": "蒼炎"
-  },
-  {
-    "id": "910861",
-    "name_jp": "解けぬ結い目",
-    "name_en": "解けぬ結い目"
-  },
-  {
-    "id": "910871",
-    "name_jp": "ふわもこアワー",
-    "name_en": "ふわもこアワー"
-  },
-  {
-    "id": "910881",
-    "name_jp": "夏雷カスケード！",
-    "name_en": "夏雷カスケード！"
-  },
-  {
-    "id": "910891",
-    "name_jp": "Tidebreaker",
-    "name_en": "Tidebreaker"
-  },
-  {
-    "id": "910911",
-    "name_jp": "ジュ・テーム☆バカンス！",
-    "name_en": "ジュ・テーム☆バカンス！"
-  },
-  {
-    "id": "910981",
-    "name_jp": "五獣挙りて彩光奏づ",
-    "name_en": "五獣挙りて彩光奏づ"
-  },
-  {
-    "id": "910991",
-    "name_jp": "とびだせ☆ポッピングシェル",
-    "name_en": "とびだせ☆ポッピングシェル"
-  },
-  {
-    "id": "911041",
-    "name_jp": "決意一筆",
-    "name_en": "決意一筆"
-  },
-  {
-    "id": "911051",
-    "name_jp": "Encounter with U",
-    "name_en": "Encounter with U"
-  },
-  {
-    "id": "911071",
-    "name_jp": "Romantic Horizon",
-    "name_en": "Romantic Horizon"
-  },
-  {
-    "id": "911091",
-    "name_jp": "ずっとずっと輝いて",
-    "name_en": "ずっとずっと輝いて"
-  },
-  {
-    "id": "911101",
-    "name_jp": "時かけるせせらぎ",
-    "name_en": "時かけるせせらぎ"
-  },
-  {
-    "id": "920011",
-    "name_jp": "威風堂々、夢錦！",
-    "name_en": "威風堂々、夢錦！"
-  },
-  {
-    "id": "920031",
-    "name_jp": "歌舞歓楽や、ああをかし",
-    "name_en": "歌舞歓楽や、ああをかし"
-  },
-  {
-    "id": "920041",
-    "name_jp": "霊験灼然チョベリグ神託",
-    "name_en": "霊験灼然チョベリグ神託"
-  },
-  {
-    "id": "920071",
-    "name_jp": "Vive la GOLD",
-    "name_en": "Vive la GOLD"
-  },
-  {
-    "id": "920111",
-    "name_jp": "演舞・撫子大薙刀",
-    "name_en": "演舞・撫子大薙刀"
-  },
-  {
-    "id": "920131",
-    "name_jp": "きらめくは海、まばゆきは君",
-    "name_en": "きらめくは海、まばゆきは君"
-  },
-  {
-    "id": "920231",
-    "name_jp": "勝利ヘ至ル累積",
-    "name_en": "勝利ヘ至ル累積"
-  },
-  {
-    "id": "920241",
-    "name_jp": "HOP STEP♪LOCK ON!",
-    "name_en": "HOP STEP♪LOCK ON!"
-  },
-  {
-    "id": "920301",
-    "name_jp": "あおぞらクッキング♪",
-    "name_en": "あおぞらクッキング♪"
-  },
-  {
-    "id": "920311",
-    "name_jp": "全力全開！サイクロン",
-    "name_en": "全力全開！サイクロン"
-  },
-  {
-    "id": "920321",
-    "name_jp": "超光速微粒子の可能性",
-    "name_en": "超光速微粒子の可能性"
-  },
-  {
-    "id": "920351",
-    "name_jp": "GO! Full-send",
-    "name_en": "GO! Full-send"
-  },
-  {
-    "id": "920371",
-    "name_jp": "潮風のGeschenk",
-    "name_en": "潮風のGeschenk"
-  },
-  {
-    "id": "920401",
-    "name_jp": "Silent Sunset Gold",
-    "name_en": "Silent Sunset Gold"
-  },
-  {
-    "id": "920451",
-    "name_jp": "忍法・ほほえみ心結の印",
-    "name_en": "忍法・ほほえみ心結の印"
-  },
-  {
-    "id": "920461",
-    "name_jp": "Forward March!",
-    "name_en": "Forward March!"
-  },
-  {
-    "id": "920501",
-    "name_jp": "Overdrive Speed",
-    "name_en": "Overdrive Speed"
-  },
-  {
-    "id": "920601",
-    "name_jp": "もちっと・ハレハレ",
-    "name_en": "もちっと・ハレハレ"
-  },
-  {
-    "id": "920611",
-    "name_jp": "理想へのwinding road",
-    "name_en": "理想へのwinding road"
-  },
-  {
-    "id": "920671",
-    "name_jp": "ポンテ・デ・ディアマン",
-    "name_en": "ポンテ・デ・ディアマン"
-  },
-  {
-    "id": "920681",
-    "name_jp": "ミンナノアタシへ！",
-    "name_en": "ミンナノアタシへ！"
-  },
-  {
-    "id": "1400011",
-    "name_jp": "マスターズドライブ",
-    "name_en": "Master's Drive"
-  },
-  {
-    "id": "1400021",
-    "name_jp": "レジェンダリーアクセル",
-    "name_en": "Legendary Accel"
-  },
-  {
-    "id": "92111091",
-    "name_jp": "ずっとずっと輝いて",
-    "name_en": "ずっとずっと輝いて"
-  },
-  {
-    "id": "100701-1",
-    "name_jp": "セイリオス（人気4番以下）",
-    "name_en": "Seirios (popularity 4 or lower)"
-  },
-  {
-    "id": "900701-1",
-    "name_jp": "セイリオス（人気4番以下）（継承）",
-    "name_en": "Seirios (popularity 4 or lower) (inherited)"
+    "name_jp": "Flowery☆Maneuver",
+    "name_en": "Flowery☆Maneuver",
+    "type": "unique"
   }
 ]

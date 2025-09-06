@@ -19,16 +19,16 @@ const skillNames = JSON.parse(fs.readFileSync(skillNamesPath, 'utf8'));
 
 const inheritableSkills = [];
 
-// Rarity IDs: 1=White, 2=Gold, 3/4/5=Unique, 6=Evolution Pink
-const INHERITABLE_RARITIES = [1, 2, 3, 4, 5];
+// Rarity IDs: 1=White, 2=Gold. Uniques (3,4,5) are handled by checking the ID prefix.
+const INHERITABLE_RARITIES = [1, 2];
 
 for (const id in skillData) {
     const skill = skillData[id];
 
-    // Filter for inheritable skills (white, gold, and uniques)
-    // Uniques are a bit tricky. Real uniques are rarity 3, 4, or 5. Inherited start with a '9'.
-    const isInheritableUnique = id.startsWith('9');
-    if (!INHERITABLE_RARITIES.includes(skill.rarity) && !isInheritableUnique) {
+    const isInheritedUnique = id.startsWith('9');
+
+    // Only include white/gold skills and inherited uniques. Exclude base uniques (rarity 3, 4, 5).
+    if (!INHERITABLE_RARITIES.includes(skill.rarity) && !isInheritedUnique) {
         continue;
     }
     
@@ -47,7 +47,8 @@ for (const id in skillData) {
     inheritableSkills.push({
         id: id,
         name_jp: skillNames[id][0],
-        name_en: skillNames[id][1] || skillNames[id][0] // Fallback to JP name if EN is missing
+        name_en: skillNames[id][1] || skillNames[id][0], // Fallback to JP name if EN is missing
+        type: isInheritedUnique ? 'unique' : 'normal'
     });
 }
 
