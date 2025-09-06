@@ -4,6 +4,20 @@ body.page {
     -webkit-font-smoothing: antialiased;
 }
 
+/* Visually Hidden Utility */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+
 /* Simple scrollbar styling */
 ::-webkit-scrollbar {
     width: 8px;
@@ -17,6 +31,17 @@ body.page {
 }
 ::-webkit-scrollbar-thumb:hover {
     background: #555;
+}
+
+/* Header Block */
+.header__actions {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+.header__actions .button {
+    cursor: pointer;
 }
 
 /* Card Block */
