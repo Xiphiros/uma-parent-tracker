@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ]
     };
     let roster = [];
+    let nextGenNumber = 1;
 
     // --- DOM ELEMENTS ---
     const wishlistNameInput = document.getElementById('wishlist-name');
@@ -36,7 +37,6 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Form inputs
     const umaNameInput = document.getElementById('uma-name');
-    const umaGenInput = document.getElementById('uma-gen');
     const blueSparkTypeSelect = document.getElementById('blue-spark-type');
     const blueSparkStarsSelect = document.getElementById('blue-spark-stars');
     const pinkSparkTypeSelect = document.getElementById('pink-spark-type');
@@ -66,6 +66,14 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
         if (savedRoster) roster = JSON.parse(savedRoster);
+        
+        // Determine the next generation number from the loaded roster
+        if (roster.length > 0) {
+            nextGenNumber = Math.max(...roster.map(p => p.gen)) + 1;
+        } else {
+            nextGenNumber = 1;
+        }
+
         renderAll();
     }
 
@@ -414,7 +422,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const newParent = {
             id: Date.now(),
             name: umaNameInput.value,
-            gen: parseInt(umaGenInput.value),
+            gen: nextGenNumber,
             blueSpark: {
                 type: blueSparkTypeSelect.value,
                 stars: parseInt(blueSparkStarsSelect.value)
@@ -428,6 +436,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
         newParent.score = calculateScore(newParent);
         roster.push(newParent);
+        nextGenNumber++; // Increment for the next parent
         saveState();
         renderAll();
         closeModal();
