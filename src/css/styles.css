@@ -71,7 +71,7 @@ html.dark {
 }
 
 
-body.page {
+.page {
     font-family: 'Inter', sans-serif;
     background-color: var(--color-bg);
     color: var(--color-text-primary);
@@ -229,10 +229,6 @@ html.dark ::-webkit-scrollbar-thumb:hover {
     width: 20px;
     height: 20px;
 }
-.theme-toggle .sun-icon { display: none; }
-.theme-toggle .moon-icon { display: block; }
-html.dark .theme-toggle .sun-icon { display: block; }
-html.dark .theme-toggle .moon-icon { display: none; }
 
 /* Tabs Block */
 .tabs__container {
