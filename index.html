@@ -40,38 +40,25 @@
                     </h2>
                     <div class="space-y-4">
                         <div>
-                            <label class="form__label mb-1">Primary Blue Sparks</label>
+                            <h3 class="form__section-title mb-2">Primary Blue Sparks</h3>
                             <div id="primary-blue-select" class="multi-select"></div>
                         </div>
-                        <div>
-                            <h3 class="form__label">Primary Pink Sparks</h3>
-                            <div class="space-y-2 mt-1">
-                                <div>
-                                    <label class="form__label form__label--xs">Terrain</label>
-                                     <div id="primary-pink-terrain-select" class="multi-select"></div>
-                                </div>
-                                <div>
-                                    <label class="form__label form__label--xs">Distance</label>
-                                     <div id="primary-pink-distance-select" class="multi-select"></div>
-                                </div>
-                                <div>
-                                    <label class="form__label form__label--xs">Strategy</label>
-                                     <div id="primary-pink-strategy-select" class="multi-select"></div>
-                                </div>
-                            </div>
+                        <div class="border-t pt-4">
+                            <h3 class="form__section-title mb-2">Primary Pink Sparks</h3>
+                            <div id="primary-pink-select" class="multi-select"></div>
                         </div>
                          <div class="border-t pt-4">
                             <h3 class="form__section-title mb-2">Unique Spark Wishlist</h3>
                             <div id="unique-wishlist-container" class="wishlist space-y-2 max-h-48 overflow-y-auto pr-2"></div>
                             <div class="flex items-center space-x-2 mt-2">
-                                <div id="unique-wishlist-skill-select" class="searchable-select w-full"></div>
-                                <select id="unique-wishlist-tier" class="form__input w-32">
+                                <div id="unique-wishlist-skill-select" class="searchable-select flex-1 min-w-0"></div>
+                                <select id="unique-wishlist-tier" class="form__input w-32 flex-shrink-0">
                                     <option value="S">Rank S</option>
                                     <option value="A">Rank A</option>
                                     <option value="B">Rank B</option>
                                     <option value="C">Rank C</option>
                                 </select>
-                                <button id="add-unique-wishlist-btn" class="button button--primary">Add</button>
+                                <button id="add-unique-wishlist-btn" class="button button--primary flex-shrink-0">Add</button>
                             </div>
                         </div>
                         <div class="border-t pt-4">
@@ -81,14 +68,14 @@
                             </div>
                             <div id="wishlist-container" class="wishlist space-y-2 max-h-48 overflow-y-auto pr-2"></div>
                             <div class="flex items-center space-x-2 mt-2">
-                                <div id="wishlist-skill-select" class="searchable-select w-full"></div>
-                                <select id="wishlist-tier" class="form__input w-32">
+                                <div id="wishlist-skill-select" class="searchable-select flex-1 min-w-0"></div>
+                                <select id="wishlist-tier" class="form__input w-32 flex-shrink-0">
                                     <option value="S">Rank S</option>
                                     <option value="A">Rank A</option>
                                     <option value="B">Rank B</option>
                                     <option value="C">Rank C</option>
                                 </select>
-                                <button id="add-wishlist-btn" class="button button--primary">Add</button>
+                                <button id="add-wishlist-btn" class="button button--primary flex-shrink-0">Add</button>
                             </div>
                         </div>
                     </div>

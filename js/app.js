@@ -6,6 +6,11 @@ document.addEventListener('DOMContentLoaded', async () => {
         distance: ['Sprint', 'Mile', 'Medium', 'Long'],
         strategy: ['Front Runner', 'Pace Chaser', 'Late Surger', 'End Closer'],
     };
+    const ALL_PINK_SPARK_OPTIONS = [
+        ...PINK_SPARK_OPTIONS.terrain,
+        ...PINK_SPARK_OPTIONS.distance,
+        ...PINK_SPARK_OPTIONS.strategy,
+    ];
     const WISH_RANK_ORDER = { S: 0, A: 1, B: 2, C: 3 };
     const DB_KEY = 'umaTrackerData_v2';
 
@@ -475,8 +480,10 @@ document.addEventListener('DOMContentLoaded', async () => {
                     ${blueSparkHTML}
                     ${pinkSparkHTML}
                 </div>
-                ${uniqueSparksHTML ? `<div class="parent-card__spark-container mt-2">${uniqueSparksHTML}</div>` : ''}
-                <div class="parent-card__spark-container parent-card__spark-container--white">
+                <div class="parent-card__spark-container mt-2">
+                    ${uniqueSparksHTML || ''}
+                </div>
+                <div class="parent-card__spark-container mt-2 parent-card__spark-container--white">
                     ${whiteSparksHTML || '<p class="parent-card__no-sparks-text">No wishlist white sparks.</p>'}
                 </div>
             </div>
@@ -551,9 +558,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     function renderMultiSelects() {
         const goal = getActiveProfile().goal;
         createMultiSelect('primary-blue-select', BLUE_SPARK_OPTIONS, goal.primaryBlue, 'blue');
-        createMultiSelect('primary-pink-terrain-select', PINK_SPARK_OPTIONS.terrain, goal.primaryPink.filter(p => PINK_SPARK_OPTIONS.terrain.includes(p)), 'pink');
-        createMultiSelect('primary-pink-distance-select', PINK_SPARK_OPTIONS.distance, goal.primaryPink.filter(p => PINK_SPARK_OPTIONS.distance.includes(p)), 'pink');
-        createMultiSelect('primary-pink-strategy-select', PINK_SPARK_OPTIONS.strategy, goal.primaryPink.filter(p => PINK_SPARK_OPTIONS.strategy.includes(p)), 'pink');
+        createMultiSelect('primary-pink-select', ALL_PINK_SPARK_OPTIONS, goal.primaryPink, 'pink');
     }
 
     document.body.addEventListener('click', e => {
@@ -1199,7 +1204,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const normalSkills = masterSkillList.filter(s => s.type !== 'unique');
 
     const umaNameSelect = new SearchableSelect(document.getElementById('uma-name-select'), 'Select uma name...', masterUmaList);
-    const wishlistSelect = new SearchableSelect(document.getElementById('wishlist-skill-select'), 'Select skill...', masterSkillList, { isTaggable: true });
+    const wishlistSelect = new SearchableSelect(document.getElementById('wishlist-skill-select'), 'Select skill...', normalSkills, { isTaggable: true });
     const uniqueWishlistSkillSelect = new SearchableSelect(document.getElementById('unique-wishlist-skill-select'), 'Select unique skill...', uniqueSkills, { isTaggable: true });
     const newSkillSelect = new SearchableSelect(document.getElementById('new-skill-select'), 'Search skill...', masterSkillList, { isTaggable: true });
     const modalSkillSelect = new SearchableSelect(document.getElementById('modal-skill-select'), 'Search skill...', normalSkills);
