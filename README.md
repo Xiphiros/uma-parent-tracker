@@ -67,3 +67,47 @@ This is an iterative process where you consistently breed from your highest-qual
     * Continue to keep any high-scoring "reserve" parents and discard any results that do not improve upon your worst-kept parent.
 
 By following this cycle, you create a powerful feedback loop. A lucky, high-scoring parent from an early generation can be used for a long time, accelerating your progress until a definitively superior heir is produced. This ensures that the genetic potential of your breeding roster is always on an upward trajectory.
+
+---
+
+### Import/Export Data
+
+You can save and load your progress using the Import and Export buttons in the header.
+
+* **Export Data**: Click this button to download a JSON file containing all your current goal definitions and roster data. It's recommended to do this periodically as a backup.
+* **Import Data**: Click this button to select a previously exported JSON file. **Warning**: Importing a file will overwrite all of your current data. A confirmation prompt will appear before the data is replaced.
+
+#### Data Schema
+
+The exported data is stored in a JSON file with the following structure:
+
+```json
+{
+  "version": 1,
+  "goal": {
+    "primaryBlue": [ "Stamina", "Power" ],
+    "primaryPink": [ "Mile", "Turf" ],
+    "wishlist": [
+      { "name": "Groundwork", "tier": "S" },
+      { "name": "Mile Corners", "tier": "A" }
+    ]
+  },
+  "roster": [
+    {
+      "id": 1725612458123,
+      "name": "Super Creek",
+      "gen": 1,
+      "blueSpark": { "type": "Stamina", "stars": 3 },
+      "pinkSpark": { "type": "Long", "stars": 3 },
+      "whiteSparks": [
+        { "name": "Groundwork", "stars": 2 }
+      ],
+      "score": 20
+    }
+  ]
+}
+```
+
+* **`version`**: The schema version number. This helps with migrating data in future updates.
+* **`goal`**: An object containing your goal parent definition.
+* **`roster`**: An array of objects, where each object represents a parent in your roster.
