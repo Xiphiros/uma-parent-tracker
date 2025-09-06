@@ -83,6 +83,15 @@ body.page {
     box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
     border-color: #6366f1; /* border-indigo-500 */
 }
+.form__static-text {
+    width: 100%;
+    margin-top: 0.25rem;
+    padding: 0.5rem 0.75rem;
+    background-color: #f3f4f6;
+    border: 1px solid #d1d5db;
+    border-radius: 0.375rem;
+    color: #4b5563;
+}
 .form__footer {
     padding: 0.75rem 1rem; /* px-4 py-3 */
     border-top: 1px solid #e5e7eb; /* border-t */
@@ -304,15 +313,26 @@ body.page {
 .parent-card__score-wrapper {
     text-align: right;
 }
+.parent-card__actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.25rem;
+}
 .parent-card__score {
     font-size: 1.5rem; /* text-2xl */
     font-weight: 700; /* font-bold */
     color: #0d9488; /* text-teal-600 */
 }
+.parent-card__edit-btn {
+    font-size: 0.75rem; /* text-xs */
+    color: #3b82f6; /* text-blue-500 */
+}
+.parent-card__edit-btn:hover {
+    color: #1d4ed8; /* text-blue-700 */
+}
 .parent-card__delete-btn {
     font-size: 0.75rem; /* text-xs */
     color: #ef4444; /* text-red-500 */
-    margin-top: 0.25rem; /* mt-1 */
 }
 .parent-card__delete-btn:hover {
     color: #b91c1c; /* text-red-700 */
