@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     };
     let editingParentId = null;
     let masterSkillList = [];
+    let masterUmaList = [];
 
     // --- DOM ELEMENTS ---
     const exportBtn = document.getElementById('export-btn');
@@ -43,7 +44,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     const genDisplayText = document.getElementById('gen-display-text');
     
     // Main Modal Form inputs
-    const umaNameInput = document.getElementById('uma-name');
     const blueSparkTypeSelect = document.getElementById('blue-spark-type');
     const blueSparkStarsSelect = document.getElementById('blue-spark-stars');
     const pinkSparkTypeSelect = document.getElementById('pink-spark-type');
@@ -191,11 +191,13 @@ document.addEventListener('DOMContentLoaded', async () => {
     
     async function loadState() {
         try {
-            const response = await fetch('./js/data/skill-list.json');
-            masterSkillList = await response.json();
+            const skillsResponse = await fetch('./js/data/skill-list.json');
+            masterSkillList = await skillsResponse.json();
+            const umasResponse = await fetch('./js/data/uma-list.json');
+            masterUmaList = await umasResponse.json();
         } catch (e) {
-            console.error("Failed to load skill list:", e);
-            await Dialog.alert("Could not load the master skill list. Autocomplete will not work.", "Data Error");
+            console.error("Failed to load data lists:", e);
+            await Dialog.alert("Could not load master data lists. Autocomplete will not work.", "Data Error");
         }
 
         const savedData = localStorage.getItem(DB_KEY);
@@ -681,7 +683,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         saveParentBtn.textContent = 'Update Parent';
         genDisplay.classList.remove('hidden');
         genDisplayText.textContent = parent.gen;
-        umaNameInput.value = parent.name;
+        umaNameSelect.setValue(parent.name);
         blueSparkTypeSelect.value = parent.blueSpark.type;
         blueSparkStarsSelect.value = parent.blueSpark.stars;
         pinkSparkTypeSelect.value = parent.pinkSpark.type;
@@ -697,6 +699,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         saveParentBtn.textContent = 'Calculate Score & Save';
         genDisplay.classList.add('hidden');
         addParentForm.reset();
+        umaNameSelect.clear();
         currentWhiteSparks = [];
         renderModalWhiteSparks();
         openModal();
@@ -896,9 +899,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     // --- SEARCHABLE SELECT LOGIC ---
     let activeSelect = null;
     class SearchableSelect {
-        constructor(container, placeholder) {
+        constructor(container, placeholder, listItems, options = {}) {
             this.container = container;
             this.placeholder = placeholder;
+            this.listItems = listItems;
+            this.options = { isTaggable: false, ...options };
             this.selected = null;
             this._build();
             this._addEventListeners();
@@ -906,6 +911,21 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         getValue() { return this.selected ? this.selected.name_en : null; }
         
+        setValue(name) {
+            if (!name) {
+                this.clear();
+                return;
+            }
+            const item = this.listItems.find(i => i.name_en === name);
+            if (item) {
+                this.selected = item;
+                this.buttonText.textContent = item.name_en;
+                this.buttonText.classList.remove('searchable-select__button-placeholder');
+            } else {
+                this.clear();
+            }
+        }
+
         clear() {
             this.selected = null;
             this.buttonText.textContent = this.placeholder;
@@ -946,7 +966,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             this.dropdown = document.createElement('div');
             this.dropdown.className = 'searchable-select__dropdown';
             this.dropdown.innerHTML = `
-                <input type="text" class="searchable-select__search-input form__input" placeholder="Search skills...">
+                <input type="text" class="searchable-select__search-input form__input" placeholder="Search...">
                 <ul class="searchable-select__list"></ul>
             `;
             this.container.appendChild(this.dropdown);
@@ -972,31 +992,31 @@ document.addEventListener('DOMContentLoaded', async () => {
             const query = this.searchInput.value.toLowerCase();
             this.list.innerHTML = '';
             
-            const results = masterSkillList.filter(skill => 
-                skill.name_jp.toLowerCase().includes(query) || skill.name_en.toLowerCase().includes(query)
+            const results = this.listItems.filter(item => 
+                (item.name_jp && item.name_jp.toLowerCase().includes(query)) || item.name_en.toLowerCase().includes(query)
             ).slice(0, 100);
 
             if (results.length === 0) {
-                this.list.innerHTML = `<li class="searchable-select__item--no-results">No skills found.</li>`;
+                this.list.innerHTML = `<li class="searchable-select__item--no-results">No results found.</li>`;
                 return;
             }
 
-            results.forEach(skill => {
+            results.forEach(item => {
                 const li = document.createElement('li');
                 li.className = 'searchable-select__item';
-                const name = skill.name_en;
+                const name = item.name_en;
                 const regex = new RegExp(query.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&'), 'i');
                 let nameHTML = name.replace(regex, (match) => `<strong>${match}</strong>`);
 
-                if (skill.type === 'unique') {
+                if (this.options.isTaggable && item.type === 'unique') {
                     nameHTML += ` <span class="skill-tag bg-pink-100 text-pink-800">Unique</span>`;
                 }
                 
                 li.innerHTML = nameHTML;
                 
                 li.addEventListener('click', () => {
-                    this.selected = skill;
-                    this.buttonText.textContent = skill.name_en;
+                    this.selected = item;
+                    this.buttonText.textContent = item.name_en;
                     this.buttonText.classList.remove('searchable-select__button-placeholder');
                     this._closeDropdown();
                 });
@@ -1011,11 +1031,18 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
 
     // --- MAIN FORM SUBMISSION ---
-    addParentForm.addEventListener('submit', (e) => {
+    addParentForm.addEventListener('submit', async (e) => {
         e.preventDefault();
+        
+        const umaName = umaNameSelect.getValue();
+        if (!umaName) {
+            await Dialog.alert("Please select an Uma Name.");
+            return;
+        }
+
         const profile = getActiveProfile();
         const parentData = {
-            name: umaNameInput.value,
+            name: umaName,
             blueSpark: { type: blueSparkTypeSelect.value, stars: parseInt(blueSparkStarsSelect.value) },
             pinkSpark: { type: pinkSparkTypeSelect.value, stars: parseInt(pinkSparkStarsSelect.value) },
             whiteSparks: [...currentWhiteSparks],
@@ -1042,7 +1069,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     await loadState();
     
     // Init searchable selects
-    const wishlistSelect = new SearchableSelect(document.getElementById('wishlist-skill-select'), 'Select skill...');
-    const newSkillSelect = new SearchableSelect(document.getElementById('new-skill-select'), 'Search skill...');
-    const modalSkillSelect = new SearchableSelect(document.getElementById('modal-skill-select'), 'Search skill...');
+    const umaNameSelect = new SearchableSelect(document.getElementById('uma-name-select'), 'Select uma name...', masterUmaList);
+    const wishlistSelect = new SearchableSelect(document.getElementById('wishlist-skill-select'), 'Select skill...', masterSkillList, { isTaggable: true });
+    const newSkillSelect = new SearchableSelect(document.getElementById('new-skill-select'), 'Search skill...', masterSkillList, { isTaggable: true });
+    const modalSkillSelect = new SearchableSelect(document.getElementById('modal-skill-select'), 'Search skill...', masterSkillList, { isTaggable: true });
 });
