@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     let roster = [];
     let nextGenNumber = 1;
+    let editingParentId = null;
 
     // --- DOM ELEMENTS ---
     const wishlistNameInput = document.getElementById('wishlist-name');
@@ -32,8 +33,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // Modal elements
     const addParentBtn = document.getElementById('add-parent-btn');
     const modal = document.getElementById('add-parent-modal');
+    const modalTitle = document.getElementById('modal-title');
     const closeModalBtn = document.getElementById('close-modal-btn');
     const addParentForm = document.getElementById('add-parent-form');
+    const saveParentBtn = document.getElementById('save-parent-btn');
+    const genDisplay = document.getElementById('gen-display');
+    const genDisplayText = document.getElementById('gen-display-text');
     
     // Form inputs
     const umaNameInput = document.getElementById('uma-name');
@@ -58,7 +63,6 @@ document.addEventListener('DOMContentLoaded', () => {
             goal.primaryPink = Array.isArray(parsedGoal.primaryPink) ? parsedGoal.primaryPink : [];
             goal.wishlist = parsedGoal.wishlist || [];
             
-            // Migration for old numeric tiers
             goal.wishlist.forEach(item => {
                 if (item.tier === 1) item.tier = 'S';
                 if (item.tier === 2) item.tier = 'A';
@@ -67,7 +71,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         if (savedRoster) roster = JSON.parse(savedRoster);
         
-        // Determine the next generation number from the loaded roster
         if (roster.length > 0) {
             nextGenNumber = Math.max(...roster.map(p => p.gen)) + 1;
         } else {
@@ -186,6 +189,13 @@ document.addEventListener('DOMContentLoaded', () => {
             return `<div class="spark-tag bg-gray-200 text-gray-800">${spark.name} ${'★'.repeat(spark.stars)} <span class="parent-card__spark-tier">(${tier})</span></div>`;
         }).join('');
 
+        const actionsHTML = !isTopParent ? `
+            <div class="parent-card__actions">
+                <button data-id="${parent.id}" class="parent-card__edit-btn">Edit</button>
+                <button data-id="${parent.id}" class="parent-card__delete-btn">Delete</button>
+            </div>
+        ` : '';
+
         card.innerHTML = `
             <div class="parent-card__header">
                 <div>
@@ -193,7 +203,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
                 <div class="parent-card__score-wrapper">
                      <div class="parent-card__score">${parent.score} pts</div>
-                     ${!isTopParent ? `<button data-id="${parent.id}" class="parent-card__delete-btn">Delete</button>` : ''}
+                     ${actionsHTML}
                 </div>
             </div>
             <div class="parent-card__body">
@@ -358,23 +368,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
     rosterContainer.addEventListener('click', e => {
         if(e.target.classList.contains('parent-card__delete-btn')) {
-            const id = e.target.dataset.id;
-            roster = roster.filter(p => p.id != id);
+            const id = parseInt(e.target.dataset.id);
+            roster = roster.filter(p => p.id !== id);
             saveState();
             renderAll();
         }
+        if(e.target.classList.contains('parent-card__edit-btn')) {
+            const id = parseInt(e.target.dataset.id);
+            openEditModal(id);
+        }
     });
 
-    // Modal Logic
-    addParentBtn.addEventListener('click', () => {
+    // --- MODAL LOGIC ---
+    function openModal() {
         modal.classList.remove('hidden');
         setTimeout(()=> {
            modal.classList.remove('opacity-0');
            modal.querySelector('.modal__content').classList.remove('transform', '-translate-y-10');
         }, 10);
-    });
-    
-    const closeModal = () => {
+    }
+
+    function closeModal() {
+        editingParentId = null;
         modal.classList.add('opacity-0');
         modal.querySelector('.modal__content').classList.add('transform', '-translate-y-10');
         setTimeout(()=> {
@@ -385,6 +400,40 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 250);
     };
 
+    function openEditModal(parentId) {
+        const parent = roster.find(p => p.id === parentId);
+        if (!parent) return;
+
+        editingParentId = parentId;
+        
+        modalTitle.textContent = 'Edit Parent';
+        saveParentBtn.textContent = 'Update Parent';
+        genDisplay.classList.remove('hidden');
+        genDisplayText.textContent = parent.gen;
+
+        umaNameInput.value = parent.name;
+        blueSparkTypeSelect.value = parent.blueSpark.type;
+        blueSparkStarsSelect.value = parent.blueSpark.stars;
+        pinkSparkTypeSelect.value = parent.pinkSpark.type;
+        pinkSparkStarsSelect.value = parent.pinkSpark.stars;
+        
+        currentWhiteSparks = [...parent.whiteSparks];
+        renderModalWhiteSparks();
+
+        openModal();
+    }
+
+    addParentBtn.addEventListener('click', () => {
+        editingParentId = null;
+        modalTitle.textContent = 'Add New Parent';
+        saveParentBtn.textContent = 'Calculate Score & Save';
+        genDisplay.classList.add('hidden');
+        addParentForm.reset();
+        currentWhiteSparks = [];
+        renderModalWhiteSparks();
+        openModal();
+    });
+    
     closeModalBtn.addEventListener('click', closeModal);
 
     addModalWhiteBtn.addEventListener('click', () => {
@@ -419,10 +468,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     addParentForm.addEventListener('submit', (e) => {
         e.preventDefault();
-        const newParent = {
-            id: Date.now(),
+
+        const parentData = {
             name: umaNameInput.value,
-            gen: nextGenNumber,
             blueSpark: {
                 type: blueSparkTypeSelect.value,
                 stars: parseInt(blueSparkStarsSelect.value)
@@ -432,11 +480,28 @@ document.addEventListener('DOMContentLoaded', () => {
                 stars: parseInt(pinkSparkStarsSelect.value)
             },
             whiteSparks: [...currentWhiteSparks],
-            score: 0
         };
-        newParent.score = calculateScore(newParent);
-        roster.push(newParent);
-        nextGenNumber++; // Increment for the next parent
+
+        if (editingParentId) {
+            // Update existing parent
+            const parentToUpdate = roster.find(p => p.id === editingParentId);
+            if(parentToUpdate) {
+                Object.assign(parentToUpdate, parentData);
+                parentToUpdate.score = calculateScore(parentToUpdate);
+            }
+        } else {
+            // Add new parent
+            const newParent = {
+                id: Date.now(),
+                gen: nextGenNumber,
+                ...parentData,
+                score: 0
+            };
+            newParent.score = calculateScore(newParent);
+            roster.push(newParent);
+            nextGenNumber++;
+        }
+        
         saveState();
         renderAll();
         closeModal();
