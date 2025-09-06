@@ -12,6 +12,8 @@ interface AppContextType {
   masterUmaList: Uma[];
   getActiveProfile: () => Profile | undefined;
   saveState: (newData: AppData) => void;
+  exportData: () => void;
+  importData: (file: File) => Promise<void>;
 }
 
 const AppContext = createContext<AppContextType | null>(null);
@@ -52,9 +54,6 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
         data = JSON.parse(savedData);
       }
       
-      // Note: V1 migration logic from original app.js would go here if needed.
-      // For this implementation, we'll assume a fresh start or V2 data.
-
       if (!data || data.profiles.length === 0) {
         const firstProfile = createNewProfile('My First Project');
         data = {
@@ -64,7 +63,6 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
         };
       }
 
-      // Schema migration from old versions if necessary
       data.profiles.forEach(p => {
         if (!p.goal.uniqueWishlist) p.goal.uniqueWishlist = [];
         p.roster.forEach(parent => {
@@ -95,6 +93,41 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
   const getActiveProfile = () => {
     return appData.profiles.find(p => p.id === appData.activeProfileId);
   };
+
+  const exportData = () => {
+    const jsonString = JSON.stringify(appData, null, 2);
+    const blob = new Blob([jsonString], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    const today = new Date().toISOString().split('T')[0];
+    a.href = url;
+    a.download = `umamusume_tracker_backup_${today}.json`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  };
+
+  const importData = (file: File): Promise<void> => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        try {
+          const data = JSON.parse(e.target?.result as string);
+          if (!data.version || !data.profiles || !data.activeProfileId) {
+            throw new Error("Invalid backup file format.");
+          }
+          setAppData(data);
+          resolve();
+        } catch (error) {
+          console.error("Import Error:", error);
+          reject(error);
+        }
+      };
+      reader.onerror = (error) => reject(error);
+      reader.readAsText(file);
+    });
+  };
   
   const value = {
     loading,
@@ -103,6 +136,8 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
     masterUmaList,
     getActiveProfile,
     saveState,
+    exportData,
+    importData,
   };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
