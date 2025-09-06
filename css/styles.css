@@ -197,6 +197,43 @@ body.page {
     color: #4b5563; /* text-gray-600 */
 }
 
+/* Skill Modal Block */
+.skill-modal {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(107, 114, 128, 0.5);
+    width: 100%;
+    height: 100%;
+    z-index: 60; /* Higher z-index to appear over main modal */
+    transition: opacity 0.25s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.skill-modal__content {
+    padding: 1.5rem;
+    border: 1px solid #e5e7eb;
+    width: 100%;
+    max-width: 24rem; /* max-w-sm */
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    border-radius: 0.375rem;
+    background-color: white;
+}
+.skill-modal__title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+.skill-modal__footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+    border-top: 1px solid #e5e7eb;
+    padding-top: 1rem;
+}
+
+
 /* Spark Tag Component */
 .spark-tag {
     display: inline-flex;
