@@ -30,8 +30,7 @@ html {
     --color-button-danger-bg: #dc2626; /* red-600 */
     --color-button-danger-hover: #b91c1c; /* red-700 */
 
-    --color-top-pair-bg: #fffbeb; /* amber-50 */
-    --color-top-pair-border: #fde68a; /* amber-200 */
+    --color-top-pair-border: #f59e0b; /* amber-500 */
 
     --color-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.07), 0 2px 4px -2px rgb(0 0 0 / 0.07);
     --color-modal-overlay: rgba(28, 25, 23, 0.5); /* stone-900 w/ alpha */
@@ -64,8 +63,7 @@ html.dark {
     --color-button-neutral-bg: #57534e; /* stone-600 */
     --color-button-neutral-hover: #44403c; /* stone-700 */
 
-    --color-top-pair-bg: #2c1d07;
-    --color-top-pair-border: #5c3d0b;
+    --color-top-pair-border: var(--color-score);
 
     --color-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.4), 0 2px 4px -2px rgb(0 0 0 / 0.4);
     --color-modal-overlay: rgba(0, 0, 0, 0.7);
@@ -331,6 +329,9 @@ html.dark .theme-toggle .moon-icon { display: none; }
     color: var(--color-text-primary);
     margin-bottom: 1rem; /* mb-4 */
     transition: color 0.3s ease;
+}
+.card__title-icon--highlight {
+    color: var(--color-score);
 }
 .card__header .card__title {
     border-bottom: none;
@@ -796,7 +797,6 @@ html.dark .multi-select__chip {
     transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 .parent-card--top-pair {
-    background-color: var(--color-top-pair-bg);
     border-color: var(--color-top-pair-border);
 }
 .parent-card__header {
