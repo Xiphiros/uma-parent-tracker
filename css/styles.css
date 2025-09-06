@@ -435,6 +435,17 @@ body.page {
     padding-top: 1rem;
 }
 
+/* Skill Tag for dropdowns */
+.skill-tag {
+    display: inline-block;
+    padding: 0.125rem 0.5rem; /* py-0.5 px-2 */
+    font-size: 0.75rem; /* text-xs */
+    font-weight: 500; /* font-medium */
+    border-radius: 9999px; /* rounded-full */
+    margin-left: 0.5rem; /* ml-2 */
+    vertical-align: middle;
+}
+
 /* Dialog Modal Block */
 .dialog-modal {
     position: fixed;

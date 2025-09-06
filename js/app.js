@@ -986,7 +986,13 @@ document.addEventListener('DOMContentLoaded', async () => {
                 li.className = 'searchable-select__item';
                 const name = skill.name_en;
                 const regex = new RegExp(query.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&'), 'i');
-                li.innerHTML = name.replace(regex, (match) => `<strong>${match}</strong>`);
+                let nameHTML = name.replace(regex, (match) => `<strong>${match}</strong>`);
+
+                if (skill.type === 'unique') {
+                    nameHTML += ` <span class="skill-tag bg-pink-100 text-pink-800">Unique</span>`;
+                }
+                
+                li.innerHTML = nameHTML;
                 
                 li.addEventListener('click', () => {
                     this.selected = skill;
