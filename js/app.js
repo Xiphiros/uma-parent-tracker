@@ -27,6 +27,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     // --- DOM ELEMENTS ---
     const exportBtn = document.getElementById('export-btn');
     const importFile = document.getElementById('import-file');
+    const themeToggleBtn = document.getElementById('theme-toggle-btn');
     
     const tabsList = document.getElementById('tabs-list');
     const addProfileBtn = document.getElementById('add-profile-btn');
@@ -87,6 +88,32 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     let currentWhiteSparks = [];
     let currentUniqueSparks = [];
+
+    // --- THEME MANAGEMENT ---
+    function applyTheme(theme) {
+        if (theme === 'dark') {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    }
+
+    function initTheme() {
+        const savedTheme = localStorage.getItem('theme');
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+        if (savedTheme) {
+            applyTheme(savedTheme);
+        } else {
+            applyTheme(systemPrefersDark ? 'dark' : 'light');
+        }
+    }
+
+    themeToggleBtn.addEventListener('click', () => {
+        const isDark = document.documentElement.classList.toggle('dark');
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    });
+
 
     // --- DIALOG SERVICE ---
     class DialogService {
@@ -1197,6 +1224,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
 
     // --- INITIAL LOAD ---
+    initTheme();
     await loadState();
     
     // Init searchable selects
