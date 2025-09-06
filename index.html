@@ -15,6 +15,11 @@
         <header class="header mb-8 text-center">
             <h1 class="header__title text-4xl font-bold text-gray-800">Umamusume Parent Tracker</h1>
             <p class="header__subtitle text-gray-600 mt-2">A point-based system for progressive parent farming.</p>
+            <div class="header__actions">
+                <label for="import-file" class="button button--secondary">Import Data</label>
+                <input type="file" id="import-file" class="visually-hidden" accept="application/json">
+                <button id="export-btn" class="button button--neutral">Export Data</button>
+            </div>
         </header>
 
         <main class="grid grid-cols-1 lg:grid-cols-3 gap-8">
