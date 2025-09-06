@@ -148,25 +148,6 @@
                     <div class="border-t pt-4">
                        <h4 class="form__label text-md font-medium mb-2">Obtained White Sparks</h4>
                        <div id="modal-white-sparks-container" class="form__obtained-sparks-container space-y-2 max-h-32 overflow-y-auto pr-2 mb-2"></div>
-                       <div class="flex space-x-2">
-                           <select id="modal-wishlist-select" class="form__input"></select>
-                           <select id="modal-white-stars" class="form__input">
-                               <option>1</option><option>2</option><option>3</option>
-                           </select>
-                           <button type="button" id="add-modal-white-btn" class="button button--neutral">Add</button>
-                       </div>
-                    </div>
-
-                    <div class="form__footer">
-                        <button id="save-parent-btn" type="submit" class="button button--primary w-full">
-                            Calculate Score & Save
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <script src="js/app.js" defer></script>
-</body>
-</html>
+                       <div class="flex items-center space-x-2">
+                           <select id="modal-wishlist-select" class="form__input flex-grow"></select>
+                           <button type="button" id="show-add-skill-modal-btn" class="button button--neutral flex-shrink-0">
