@@ -68,7 +68,87 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeWishlistModalBtn = document.getElementById('close-wishlist-modal-btn');
     const doneWishlistModalBtn = document.getElementById('done-wishlist-modal-btn');
 
+    // Generic Dialog Modal elements
+    const dialogModal = document.getElementById('dialog-modal');
+    const dialogTitle = document.getElementById('dialog-title');
+    const dialogMessage = document.getElementById('dialog-message');
+    const dialogInputContainer = document.getElementById('dialog-input-container');
+    const dialogInput = document.getElementById('dialog-input');
+    const dialogFooter = document.getElementById('dialog-footer');
+
     let currentWhiteSparks = [];
+
+    // --- DIALOG SERVICE ---
+    class DialogService {
+        constructor() {
+            this._resolve = null;
+            dialogFooter.addEventListener('click', (e) => this._handleButtonClick(e));
+        }
+
+        _handleButtonClick(e) {
+            const button = e.target.closest('button');
+            if (!button || !this._resolve) return;
+
+            const value = button.dataset.value;
+
+            if (value === 'prompt') {
+                this._resolve(dialogInput.value);
+            } else if(value === 'true') {
+                this._resolve(true);
+            } else {
+                this._resolve(false);
+            }
+            this._hide();
+        }
+
+        _show(title, message, buttons, input) {
+            return new Promise(resolve => {
+                this._resolve = resolve;
+                dialogTitle.textContent = title;
+                dialogMessage.textContent = message;
+                dialogFooter.innerHTML = buttons;
+
+                if (input) {
+                    dialogInputContainer.classList.remove('hidden');
+                    dialogInput.value = input.defaultValue || '';
+                } else {
+                    dialogInputContainer.classList.add('hidden');
+                }
+
+                dialogModal.classList.remove('hidden');
+                setTimeout(() => dialogModal.classList.remove('opacity-0'), 10);
+                if (input) dialogInput.focus();
+            });
+        }
+
+        _hide() {
+            this._resolve = null;
+            dialogModal.classList.add('opacity-0');
+            setTimeout(() => dialogModal.classList.add('hidden'), 250);
+        }
+
+        alert(message, title = 'Alert') {
+            const buttons = `<button class="button button--primary" data-value="true">OK</button>`;
+            return this._show(title, message, buttons);
+        }
+
+        confirm(message, title = 'Confirm') {
+            const buttons = `
+                <button class="button button--neutral" data-value="false">Cancel</button>
+                <button class="button button--primary" data-value="true">Confirm</button>
+            `;
+            return this._show(title, message, buttons);
+        }
+
+        prompt(message, title = 'Input Required', defaultValue = '') {
+            const buttons = `
+                <button class="button button--neutral" data-value="false">Cancel</button>
+                <button class="button button--primary" data-value="prompt">OK</button>
+            `;
+            return this._show(title, message, buttons, { defaultValue });
+        }
+    }
+    const Dialog = new DialogService();
     
     // --- HELPERS ---
     const getActiveProfile = () => appData.profiles.find(p => p.id === appData.activeProfileId);
@@ -135,25 +215,26 @@ document.addEventListener('DOMContentLoaded', () => {
         URL.revokeObjectURL(url);
     }
 
-    function handleImport(event) {
+    async function handleImport(event) {
         const file = event.target.files[0];
         if (!file) return;
 
         const reader = new FileReader();
-        reader.onload = (e) => {
+        reader.onload = async (e) => {
             try {
                 const data = JSON.parse(e.target.result);
                 if (!data.version || !data.profiles || !data.activeProfileId) {
                     throw new Error("Invalid backup file format.");
                 }
 
-                if (window.confirm("Are you sure? This will overwrite ALL your projects.")) {
+                const confirmed = await Dialog.confirm("Are you sure? This will overwrite ALL your projects.", "Import Data");
+                if (confirmed) {
                     appData = data;
                     saveState();
                     renderAll();
                 }
             } catch (error) {
-                alert(`Error importing file: ${error.message}`);
+                await Dialog.alert(`Error importing file: ${error.message}`, "Import Error");
             } finally {
                 event.target.value = null;
             }
@@ -457,8 +538,8 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     }
     
-    addProfileBtn.addEventListener('click', () => {
-        const name = prompt("Enter a name for the new project:", "New Project");
+    addProfileBtn.addEventListener('click', async () => {
+        const name = await Dialog.prompt("Enter a name for the new project:", "New Project", "New Project");
         if (name) {
             const newProfile = createNewProfile(name);
             appData.profiles.push(newProfile);
@@ -468,7 +549,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
     
-    tabsList.addEventListener('click', e => {
+    tabsList.addEventListener('click', async (e) => {
         const button = e.target.closest('button');
         if (!button) return;
 
@@ -482,11 +563,12 @@ document.addEventListener('DOMContentLoaded', () => {
         
         if(button.matches('.tab__settings-btn')) {
             const profile = appData.profiles.find(p => p.id === profileId);
-            const action = prompt(`Actions for "${profile.name}":\nType RENAME or DELETE`);
+            const action = await Dialog.prompt(`Actions for "${profile.name}":\nType RENAME or DELETE`, 'Project Settings');
+            
             if (action) {
                 switch(action.toUpperCase()) {
                     case 'RENAME':
-                        const newName = prompt("Enter new name:", profile.name);
+                        const newName = await Dialog.prompt("Enter new name:", "Rename Project", profile.name);
                         if (newName) {
                             profile.name = newName;
                             saveState();
@@ -495,10 +577,11 @@ document.addEventListener('DOMContentLoaded', () => {
                         break;
                     case 'DELETE':
                         if (appData.profiles.length <= 1) {
-                            alert("You cannot delete the last project.");
+                            await Dialog.alert("You cannot delete the last project.", "Action Prohibited");
                             return;
                         }
-                        if (confirm(`Are you sure you want to delete "${profile.name}"? This cannot be undone.`)) {
+                        const confirmed = await Dialog.confirm(`Delete "${profile.name}"? This cannot be undone.`, "Confirm Deletion");
+                        if (confirmed) {
                             appData.profiles = appData.profiles.filter(p => p.id !== profileId);
                             if (appData.activeProfileId === profileId) {
                                 appData.activeProfileId = appData.profiles[0].id;
@@ -508,7 +591,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                         break;
                     default:
-                        alert("Invalid action.");
+                        await Dialog.alert(`"${action}" is not a valid action.`, "Invalid Action");
                 }
             }
         }
@@ -653,7 +736,7 @@ document.addEventListener('DOMContentLoaded', () => {
     showAddSkillModalBtn.addEventListener('click', openAddSkillModal);
     cancelAddSkillBtn.addEventListener('click', closeAddSkillModal);
     
-    addSkillForm.addEventListener('submit', (e) => {
+    addSkillForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         const name = newSkillNameInput.value.trim();
         const tier = newSkillTierSelect.value;
@@ -665,7 +748,7 @@ document.addEventListener('DOMContentLoaded', () => {
             updateModalWishlist(name); // Update dropdown and select the new skill
             closeAddSkillModal();
         } else {
-            alert("Skill name cannot be empty or already exist.");
+            await Dialog.alert("Skill name cannot be empty or already exist.");
         }
     });
 
@@ -713,7 +796,7 @@ document.addEventListener('DOMContentLoaded', () => {
     closeWishlistModalBtn.addEventListener('click', closeWishlistManagementModal);
     doneWishlistModalBtn.addEventListener('click', closeWishlistManagementModal);
 
-    wishlistManagementList.addEventListener('click', e => {
+    wishlistManagementList.addEventListener('click', async (e) => {
         const target = e.target;
         const li = target.closest('.wishlist-manage__item');
         if (!li && !target.closest('.wishlist-manage__edit-form')) return;
@@ -722,7 +805,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const goal = getActiveProfile().goal;
 
         if (target.matches('.wishlist-manage__delete-btn')) {
-            if (confirm(`Are you sure you want to delete "${originalName}"?`)) {
+            const confirmed = await Dialog.confirm(`Are you sure you want to delete "${originalName}"?`, "Confirm Deletion");
+            if (confirmed) {
                 goal.wishlist = goal.wishlist.filter(item => item.name !== originalName);
                 saveState();
                 renderAll();
@@ -752,7 +836,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    wishlistManagementList.addEventListener('submit', e => {
+    wishlistManagementList.addEventListener('submit', async (e) => {
         e.preventDefault();
         const form = e.target;
         if (!form.matches('.wishlist-manage__edit-form')) return;
@@ -763,13 +847,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const profile = getActiveProfile();
         
         if (!newName) {
-            alert('Skill name cannot be empty.');
+            await Dialog.alert('Skill name cannot be empty.');
             return;
         }
 
         const isDuplicate = profile.goal.wishlist.some(item => item.name.toLowerCase() === newName.toLowerCase() && item.name !== originalName);
         if (isDuplicate) {
-            alert('A skill with this name already exists.');
+            await Dialog.alert('A skill with this name already exists.');
             return;
         }
         
