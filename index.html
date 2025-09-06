@@ -67,8 +67,10 @@
                             </div>
                             <div id="wishlist-container" class="wishlist space-y-2 max-h-48 overflow-y-auto pr-2"></div>
                             <div class="flex space-x-2 mt-2">
-                                <input type="text" id="wishlist-name" placeholder="Skill Name" class="form__input">
-                                <select id="wishlist-tier" class="form__input">
+                                <div id="wishlist-autocomplete-container" class="autocomplete-container w-full">
+                                    <input type="text" id="wishlist-name" placeholder="Skill Name" class="form__input">
+                                </div>
+                                <select id="wishlist-tier" class="form__input w-32">
                                     <option value="S">Rank S</option>
                                     <option value="A">Rank A</option>
                                     <option value="B">Rank B</option>
@@ -177,8 +179,10 @@
                        <div id="modal-white-sparks-container" class="form__obtained-sparks-container"></div>
                        
                        <div class="form__input-group">
-                           <select id="modal-wishlist-select" class="form__input" aria-label="Select Skill"></select>
-                           <select id="modal-white-stars" class="form__input" aria-label="Select Stars">
+                           <div id="modal-skill-autocomplete-container" class="autocomplete-container w-full">
+                               <input type="text" id="modal-skill-name" class="form__input" placeholder="Search for any skill...">
+                           </div>
+                           <select id="modal-white-stars" class="form__input w-24" aria-label="Select Stars">
                                <option>1</option><option>2</option><option>3</option>
                            </select>
                            <button type="button" id="add-modal-white-btn" class="button button--secondary flex-shrink-0">Add</button>
@@ -202,7 +206,9 @@
                 <div class="space-y-4">
                     <div>
                         <label for="new-skill-name" class="form__label">Skill Name</label>
-                        <input type="text" id="new-skill-name" class="form__input" required>
+                        <div id="new-skill-autocomplete-container" class="autocomplete-container">
+                            <input type="text" id="new-skill-name" class="form__input" required>
+                        </div>
                     </div>
                     <div>
                         <label for="new-skill-tier" class="form__label">Rank</label>

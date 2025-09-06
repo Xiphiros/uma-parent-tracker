@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
     // --- CONSTANTS ---
     const BLUE_SPARK_OPTIONS = ['Speed', 'Stamina', 'Power', 'Guts', 'Wit'];
     const PINK_SPARK_OPTIONS = {
@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
         profiles: []
     };
     let editingParentId = null;
+    let masterSkillList = [];
 
     // --- DOM ELEMENTS ---
     const exportBtn = document.getElementById('export-btn');
@@ -28,6 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const wishlistTierSelect = document.getElementById('wishlist-tier');
     const addWishlistBtn = document.getElementById('add-wishlist-btn');
     const wishlistContainer = document.getElementById('wishlist-container');
+    const wishlistAutocompleteContainer = document.getElementById('wishlist-autocomplete-container');
     
     const rosterContainer = document.getElementById('roster-container');
     const topParentsContainer = document.getElementById('top-parents-container');
@@ -48,7 +50,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const blueSparkStarsSelect = document.getElementById('blue-spark-stars');
     const pinkSparkTypeSelect = document.getElementById('pink-spark-type');
     const pinkSparkStarsSelect = document.getElementById('pink-spark-stars');
-    const modalWishlistSelect = document.getElementById('modal-wishlist-select');
+    const modalSkillNameInput = document.getElementById('modal-skill-name');
+    const modalSkillAutocompleteContainer = document.getElementById('modal-skill-autocomplete-container');
     const modalWhiteStarsSelect = document.getElementById('modal-white-stars');
     const addModalWhiteBtn = document.getElementById('add-modal-white-btn');
     const modalWhiteSparksContainer = document.getElementById('modal-white-sparks-container');
@@ -58,6 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const addSkillModal = document.getElementById('add-skill-modal');
     const addSkillForm = document.getElementById('add-skill-form');
     const newSkillNameInput = document.getElementById('new-skill-name');
+    const newSkillAutocompleteContainer = document.getElementById('new-skill-autocomplete-container');
     const newSkillTierSelect = document.getElementById('new-skill-tier');
     const cancelAddSkillBtn = document.getElementById('cancel-add-skill-btn');
 
@@ -191,7 +195,15 @@ document.addEventListener('DOMContentLoaded', () => {
         return false;
     }
     
-    function loadState() {
+    async function loadState() {
+        try {
+            const response = await fetch('./js/data/skill-list.json');
+            masterSkillList = await response.json();
+        } catch (e) {
+            console.error("Failed to load skill list:", e);
+            await Dialog.alert("Could not load the master skill list. Autocomplete will not work.", "Data Error");
+        }
+
         const savedData = localStorage.getItem(DB_KEY);
         if (savedData) {
             appData = JSON.parse(savedData);
@@ -438,12 +450,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     function updateModalWishlist(skillToSelect = null) {
-        const goal = getActiveProfile().goal;
-        const sortedWishlist = [...goal.wishlist].sort((a, b) => a.name.localeCompare(b.name));
-        modalWishlistSelect.innerHTML = sortedWishlist.map(w => `<option>${w.name}</option>`).join('');
-        if (skillToSelect) {
-            modalWishlistSelect.value = skillToSelect;
-        }
         const allPinkOptions = [].concat(...Object.values(PINK_SPARK_OPTIONS));
         document.getElementById('pink-spark-type').innerHTML = allPinkOptions.map(o => `<option>${o}</option>`).join('');
     }
@@ -706,11 +712,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- OBTAINED WHITE SPARK LOGIC (IN MAIN MODAL) ---
     addModalWhiteBtn.addEventListener('click', () => {
-        const name = modalWishlistSelect.value;
+        const name = modalSkillNameInput.value;
         const stars = parseInt(modalWhiteStarsSelect.value);
         if (name && !currentWhiteSparks.some(s => s.name === name)) {
             currentWhiteSparks.push({ name, stars });
             renderModalWhiteSparks();
+            modalSkillNameInput.value = '';
         }
     });
 
@@ -759,7 +766,6 @@ document.addEventListener('DOMContentLoaded', () => {
             goal.wishlist.push({ name, tier });
             saveState();
             renderWishlist();
-            updateModalWishlist(name); // Update dropdown and select the new skill
             closeAddSkillModal();
         } else {
             await Dialog.alert("Skill name cannot be empty or already exist.");
@@ -890,6 +896,88 @@ document.addEventListener('DOMContentLoaded', () => {
         renderWishlistManagementModal();
     });
 
+    // --- AUTOCOMPLETE LOGIC ---
+    function createAutocomplete(input, container) {
+        let currentFocus = -1;
+        let dropdown;
+
+        const closeAllLists = (elm) => {
+            const dropdowns = document.getElementsByClassName("autocomplete-dropdown");
+            for (let i = 0; i < dropdowns.length; i++) {
+                if (elm != dropdowns[i] && elm != input) {
+                    dropdowns[i].parentNode.removeChild(dropdowns[i]);
+                }
+            }
+        };
+        
+        input.addEventListener("input", function(e) {
+            let val = this.value;
+            closeAllLists();
+            if (!val) { return false; }
+            currentFocus = -1;
+            
+            dropdown = document.createElement("div");
+            dropdown.setAttribute("class", "autocomplete-dropdown");
+            container.appendChild(dropdown);
+            
+            const searchVal = val.toLowerCase();
+            const filteredSkills = masterSkillList.filter(skill => 
+                skill.name_jp.toLowerCase().includes(searchVal) || skill.name_en.toLowerCase().includes(searchVal)
+            ).slice(0, 100); // Limit results for performance
+
+            filteredSkills.forEach(skill => {
+                const item = document.createElement("div");
+                item.className = 'autocomplete-item';
+
+                // Highlight match
+                const name = `${skill.name_jp} (${skill.name_en})`;
+                const regex = new RegExp(val.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&'), 'i');
+                item.innerHTML = name.replace(regex, (match) => `<strong>${match}</strong>`);
+                
+                item.addEventListener("click", function(e) {
+                    input.value = skill.name_jp;
+                    closeAllLists();
+                });
+                dropdown.appendChild(item);
+            });
+        });
+
+        input.addEventListener("keydown", function(e) {
+            if (!dropdown) return;
+            let items = dropdown.getElementsByClassName("autocomplete-item");
+            if (e.keyCode == 40) { // Down
+                currentFocus++;
+                addActive(items);
+            } else if (e.keyCode == 38) { // Up
+                currentFocus--;
+                addActive(items);
+            } else if (e.keyCode == 13) { // Enter
+                e.preventDefault();
+                if (currentFocus > -1) {
+                    if (items[currentFocus]) items[currentFocus].click();
+                }
+            }
+        });
+
+        function addActive(items) {
+            if (!items) return false;
+            removeActive(items);
+            if (currentFocus >= items.length) currentFocus = 0;
+            if (currentFocus < 0) currentFocus = (items.length - 1);
+            items[currentFocus].classList.add("autocomplete-item--active");
+        }
+
+        function removeActive(items) {
+            for (let i = 0; i < items.length; i++) {
+                items[i].classList.remove("autocomplete-item--active");
+            }
+        }
+
+        document.addEventListener("click", function (e) {
+            closeAllLists(e.target);
+        });
+    }
+
     // --- MAIN FORM SUBMISSION ---
     addParentForm.addEventListener('submit', (e) => {
         e.preventDefault();
@@ -919,5 +1007,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // --- INITIAL LOAD ---
-    loadState();
+    await loadState();
+    createAutocomplete(wishlistNameInput, wishlistAutocompleteContainer);
+    createAutocomplete(newSkillNameInput, newSkillAutocompleteContainer);
+    createAutocomplete(modalSkillNameInput, modalSkillAutocompleteContainer);
 });

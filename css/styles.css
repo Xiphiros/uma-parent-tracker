@@ -33,6 +33,38 @@ body.page {
     background: #555;
 }
 
+/* Autocomplete Component */
+.autocomplete-container {
+    position: relative;
+}
+.autocomplete-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: white;
+    border: 1px solid #d1d5db;
+    border-top: none;
+    border-radius: 0 0 0.375rem 0.375rem;
+    z-index: 20;
+    max-height: 200px;
+    overflow-y: auto;
+}
+.autocomplete-item {
+    display: block;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    font-size: 0.875rem;
+}
+.autocomplete-item:hover, .autocomplete-item--active {
+    background-color: #f3f4f6;
+}
+.autocomplete-item strong {
+    font-weight: 600;
+    color: #4f46e5;
+}
+
+
 /* Header Block */
 .header__actions {
     display: flex;
