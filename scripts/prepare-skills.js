@@ -2,16 +2,16 @@
 // 1. Place this script in a `scripts/` directory in your project root.
 // 2. Create a `raw_data/` directory in your project root.
 // 3. Copy `skill_data.json` and `skillnames.json` from the `uma-skill-tools` project into `raw_data/`.
-// 4. Create an empty `data/` directory in your `js/` directory.
+// 4. Create an empty `data/` directory in your `src/` directory.
 // 5. Run this script from your project root: `node scripts/prepare-skills.js`
-// 6. It will generate a `js/data/skill-list.json` file, which the application will use.
+// 6. It will generate a `src/data/skill-list.json` file, which the application will use.
 
 const fs = require('fs');
 const path = require('path');
 
 const skillDataPath = path.join(__dirname, '../raw_data/skill_data.json');
 const skillNamesPath = path.join(__dirname, '../raw_data/skillnames.json');
-const outputPath = path.join(__dirname, '../js/data/skill-list.json');
+const outputPath = path.join(__dirname, '../src/data/skill-list.json');
 
 console.log('Reading skill data...');
 const skillData = JSON.parse(fs.readFileSync(skillDataPath, 'utf8'));
