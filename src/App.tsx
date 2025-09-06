@@ -2,8 +2,32 @@ import GoalDefinition from './components/GoalDefinition';
 import Header from './components/Header';
 import Roster from './components/Roster';
 import TopBreedingPair from './components/TopBreedingPair';
+import { useAppContext } from './context/AppContext';
 
 function App() {
+  const { loading, getActiveProfile } = useAppContext();
+  const activeProfile = getActiveProfile();
+  
+  if (loading) {
+    return (
+      <div className="page">
+        <div className="container mx-auto p-4 md:p-8 max-w-7xl text-center">
+          <p>Loading data...</p>
+        </div>
+      </div>
+    );
+  }
+  
+  if (!activeProfile) {
+    return (
+       <div className="page">
+        <div className="container mx-auto p-4 md:p-8 max-w-7xl text-center">
+          <p>Error: No active profile found.</p>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className="page">
       <div className="container mx-auto p-4 md:p-8 max-w-7xl">
@@ -13,7 +37,7 @@ function App() {
             <ul id="tabs-list" className="tabs__list">
                 {/* Placeholder for tabs */}
                 <li className="tab tab--active">
-                    <button className="tab__button">My First Project</button>
+                    <button className="tab__button">{activeProfile.name}</button>
                 </li>
             </ul>
             <button id="add-profile-btn" className="tabs__add-btn" title="Add New Project">
