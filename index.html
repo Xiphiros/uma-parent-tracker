@@ -8,246 +8,158 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f3f4f6; /* gray-100 */
-        }
-        /* Simple scrollbar styling */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #888;
-            border-radius: 10px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #555;
-        }
-        /* Custom styles for modal and other elements */
-        .modal {
-            transition: opacity 0.25s ease;
-        }
-        .modal-content {
-            transition: transform 0.25s ease;
-        }
-        .spark-tag {
-            display: inline-flex;
-            align-items: center;
-            padding: 0.25rem 0.75rem;
-            border-radius: 9999px;
-            font-weight: 500;
-            font-size: 0.8rem;
-            margin-right: 0.5rem;
-            margin-bottom: 0.5rem;
-        }
-        /* Custom multi-select styles */
-        .multi-select-container {
-            position: relative;
-        }
-        .multi-select-input {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            padding: 0.25rem;
-            border: 1px solid #d1d5db; /* gray-300 */
-            border-radius: 0.375rem; /* rounded-md */
-            min-height: 42px;
-            cursor: pointer;
-            background-color: white;
-        }
-        .chip {
-            display: flex;
-            align-items: center;
-            background-color: #e0e7ff; /* indigo-100 */
-            color: #3730a3; /* indigo-800 */
-            border-radius: 9999px;
-            padding: 0.25rem 0.75rem;
-            margin: 0.25rem;
-            font-size: 0.875rem;
-        }
-        .chip-remove {
-            margin-left: 0.5rem;
-            cursor: pointer;
-            font-weight: bold;
-        }
-        .multi-select-dropdown {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            right: 0;
-            background-color: white;
-            border: 1px solid #d1d5db;
-            border-top: none;
-            border-radius: 0 0 0.375rem 0.375rem;
-            z-index: 10;
-            max-height: 200px;
-            overflow-y: auto;
-        }
-        .multi-select-dropdown label {
-            display: block;
-            padding: 0.5rem 1rem;
-            cursor: pointer;
-        }
-        .multi-select-dropdown label:hover {
-            background-color: #f3f4f6; /* gray-100 */
-        }
-    </style>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
-<body class="antialiased">
+<body class="page">
     <div class="container mx-auto p-4 md:p-8 max-w-7xl">
-        <header class="mb-8 text-center">
-            <h1 class="text-4xl font-bold text-gray-800">Umamusume Parent Tracker</h1>
-            <p class="text-gray-600 mt-2">A point-based system for progressive parent farming.</p>
+        <header class="header mb-8 text-center">
+            <h1 class="header__title text-4xl font-bold text-gray-800">Umamusume Parent Tracker</h1>
+            <p class="header__subtitle text-gray-600 mt-2">A point-based system for progressive parent farming.</p>
         </header>
 
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <main class="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <div class="lg:col-span-1 space-y-8">
-                <div id="goal-definition" class="bg-white p-6 rounded-xl shadow-md">
-                    <h2 class="text-2xl font-semibold text-gray-700 border-b pb-3 mb-4 flex items-center">
+                <section id="goal-definition" class="card">
+                    <h2 class="card__title">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 text-indigo-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6H8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9" /></svg>
                         Define Goal Parent
                     </h2>
                     <div class="space-y-4">
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Primary Blue Sparks</label>
-                            <div id="primary-blue-select" class="multi-select-container"></div>
+                            <label class="form__label mb-1">Primary Blue Sparks</label>
+                            <div id="primary-blue-select" class="multi-select"></div>
                         </div>
-                        
                         <div>
-                            <h3 class="text-md font-medium text-gray-700">Primary Pink Sparks</h3>
+                            <h3 class="form__label">Primary Pink Sparks</h3>
                             <div class="space-y-2 mt-1">
                                 <div>
-                                    <label class="block text-xs font-medium text-gray-500 mb-1">Terrain</label>
-                                     <div id="primary-pink-terrain-select" class="multi-select-container"></div>
+                                    <label class="form__label form__label--xs">Terrain</label>
+                                     <div id="primary-pink-terrain-select" class="multi-select"></div>
                                 </div>
                                 <div>
-                                    <label class="block text-xs font-medium text-gray-500 mb-1">Distance</label>
-                                     <div id="primary-pink-distance-select" class="multi-select-container"></div>
+                                    <label class="form__label form__label--xs">Distance</label>
+                                     <div id="primary-pink-distance-select" class="multi-select"></div>
                                 </div>
                                 <div>
-                                    <label class="block text-xs font-medium text-gray-500 mb-1">Strategy</label>
-                                     <div id="primary-pink-strategy-select" class="multi-select-container"></div>
+                                    <label class="form__label form__label--xs">Strategy</label>
+                                     <div id="primary-pink-strategy-select" class="multi-select"></div>
                                 </div>
                             </div>
                         </div>
-                        
                         <div class="border-t pt-4">
-                            <h3 class="text-lg font-medium text-gray-700 mb-2">White Spark Wishlist</h3>
-                            <div id="wishlist-container" class="space-y-2 max-h-48 overflow-y-auto pr-2"></div>
+                            <h3 class="form__label text-lg font-medium mb-2">White Spark Wishlist</h3>
+                            <div id="wishlist-container" class="wishlist space-y-2 max-h-48 overflow-y-auto pr-2"></div>
                             <div class="flex space-x-2 mt-2">
-                                <input type="text" id="wishlist-name" placeholder="Skill Name" class="block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                <select id="wishlist-tier" class="block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                    <option value="1">Tier 1</option>
-                                    <option value="2">Tier 2</option>
-                                    <option value="3">Tier 3</option>
+                                <input type="text" id="wishlist-name" placeholder="Skill Name" class="form__input">
+                                <select id="wishlist-tier" class="form__input">
+                                    <option value="S">Rank S</option>
+                                    <option value="A">Rank A</option>
+                                    <option value="B">Rank B</option>
+                                    <option value="C">Rank C</option>
                                 </select>
-                                <button id="add-wishlist-btn" class="flex-shrink-0 bg-indigo-500 text-white px-3 py-2 rounded-md hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Add</button>
+                                <button id="add-wishlist-btn" class="button button--primary">Add</button>
                             </div>
                         </div>
                     </div>
-                </div>
+                </section>
 
-                <div class="bg-white p-6 rounded-xl shadow-md">
-                    <h2 class="text-2xl font-semibold text-gray-700 border-b pb-3 mb-4 flex items-center">
+                <section class="card">
+                    <h2 class="card__title">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 text-amber-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" /></svg>
                         Top Breeding Pair
                     </h2>
                     <div id="top-parents-container" class="space-y-4">
-                        <p class="text-gray-500">Add parents to your stable to see the top pair here.</p>
+                        <p class="card__placeholder-text">Add parents to your stable to see the top pair here.</p>
                     </div>
-                </div>
+                </section>
             </div>
 
-            <div class="lg:col-span-2 bg-white p-6 rounded-xl shadow-md">
-                <div class="flex justify-between items-center border-b pb-3 mb-4">
-                    <h2 class="text-2xl font-semibold text-gray-700 flex items-center">
+            <section class="lg:col-span-2 card">
+                <div class="card__header">
+                    <h2 class="card__title">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 text-teal-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7" /></svg>
                         Breeding Stable
                     </h2>
-                    <button id="add-parent-btn" class="bg-teal-500 text-white px-4 py-2 rounded-md hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 flex items-center">
+                    <button id="add-parent-btn" class="button button--secondary">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" /></svg>
                         Add Parent
                     </button>
                 </div>
-                <div id="stable-container" class="space-y-4 max-h-[70vh] overflow-y-auto pr-2">
-                    <p class="text-gray-500 text-center py-8">Your stable is empty. Add a parent to get started!</p>
+                <div id="stable-container" class="stable space-y-4 max-h-[70vh] overflow-y-auto pr-2">
+                    <p class="card__placeholder-text text-center py-8">Your stable is empty. Add a parent to get started!</p>
                 </div>
-            </div>
-        </div>
+            </section>
+        </main>
     </div>
 
-    <div id="add-parent-modal" class="modal fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50 hidden opacity-0">
-        <div class="modal-content relative top-20 mx-auto p-5 border w-full max-w-lg shadow-lg rounded-md bg-white transform -translate-y-10">
+    <div id="add-parent-modal" class="modal hidden opacity-0">
+        <div class="modal__content">
             <div class="mt-3">
-                <div class="flex justify-between items-center border-b pb-3 mb-4">
-                    <h3 class="text-lg leading-6 font-medium text-gray-900">Add New Parent</h3>
-                    <button id="close-modal-btn" class="text-gray-400 hover:text-gray-600">
+                <div class="modal__header">
+                    <h3 class="modal__title">Add New Parent</h3>
+                    <button id="close-modal-btn" class="modal__close-btn">
                         <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
                     </button>
                 </div>
 
-                <form id="add-parent-form" class="space-y-4">
+                <form id="add-parent-form" class="form space-y-4">
                     <div class="grid grid-cols-2 gap-4">
                         <div>
-                            <label for="uma-name" class="block text-sm font-medium text-gray-700">Uma Name</label>
-                            <input type="text" id="uma-name" class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
+                            <label for="uma-name" class="form__label">Uma Name</label>
+                            <input type="text" id="uma-name" class="form__input" required>
                         </div>
                         <div>
-                            <label for="uma-gen" class="block text-sm font-medium text-gray-700">Generation</label>
-                            <input type="number" id="uma-gen" min="0" class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
+                            <label for="uma-gen" class="form__label">Generation</label>
+                            <input type="number" id="uma-gen" min="0" class="form__input" required>
                         </div>
                     </div>
                     
                     <div class="grid grid-cols-2 gap-4">
                         <div>
-                             <label for="blue-spark-type" class="block text-sm font-medium text-gray-700">Blue Spark</label>
-                             <select id="blue-spark-type" class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                             <label for="blue-spark-type" class="form__label">Blue Spark</label>
+                             <select id="blue-spark-type" class="form__input">
                                  <option>Speed</option><option>Stamina</option><option>Power</option><option>Guts</option><option>Wit</option>
                              </select>
                         </div>
                         <div>
-                             <label for="blue-spark-stars" class="block text-sm font-medium text-gray-700">Stars</label>
-                             <select id="blue-spark-stars" class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                             <label for="blue-spark-stars" class="form__label">Stars</label>
+                             <select id="blue-spark-stars" class="form__input">
                                  <option>1</option><option>2</option><option>3</option>
                              </select>
                         </div>
                     </div>
 
-                    <div class="grid grid-cols-2 gap-4">
+                     <div class="grid grid-cols-2 gap-4">
                         <div>
-                             <label for="pink-spark-type" class="block text-sm font-medium text-gray-700">Pink Spark</label>
-                             <select id="pink-spark-type" class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                             <label for="pink-spark-type" class="form__label">Pink Spark</label>
+                             <select id="pink-spark-type" class="form__input">
                                  <option>Turf</option><option>Dirt</option>
                                  <option>Sprint</option><option>Mile</option><option>Medium</option><option>Long</option>
                                  <option>Front Runner</option><option>Pace Chaser</option><option>Late Surger</option><option>End Closer</option>
                              </select>
                         </div>
                         <div>
-                             <label for="pink-spark-stars" class="block text-sm font-medium text-gray-700">Stars</label>
-                             <select id="pink-spark-stars" class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                             <label for="pink-spark-stars" class="form__label">Stars</label>
+                             <select id="pink-spark-stars" class="form__input">
                                  <option>1</option><option>2</option><option>3</option>
                              </select>
                         </div>
                     </div>
                     
                     <div class="border-t pt-4">
-                       <h4 class="text-md font-medium text-gray-800 mb-2">Obtained White Sparks</h4>
-                       <div id="modal-white-sparks-container" class="space-y-2 max-h-32 overflow-y-auto pr-2 mb-2"></div>
+                       <h4 class="form__label text-md font-medium mb-2">Obtained White Sparks</h4>
+                       <div id="modal-white-sparks-container" class="form__obtained-sparks-container space-y-2 max-h-32 overflow-y-auto pr-2 mb-2"></div>
                        <div class="flex space-x-2">
-                           <select id="modal-wishlist-select" class="block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"></select>
-                           <select id="modal-white-stars" class="block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                           <select id="modal-wishlist-select" class="form__input"></select>
+                           <select id="modal-white-stars" class="form__input">
                                <option>1</option><option>2</option><option>3</option>
                            </select>
-                           <button type="button" id="add-modal-white-btn" class="flex-shrink-0 bg-gray-500 text-white px-3 py-2 rounded-md hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">Add</button>
+                           <button type="button" id="add-modal-white-btn" class="button button--neutral">Add</button>
                        </div>
                     </div>
 
-                    <div class="items-center px-4 py-3 border-t mt-4">
-                        <button id="save-parent-btn" type="submit" class="w-full bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    <div class="form__footer">
+                        <button id="save-parent-btn" type="submit" class="button button--primary w-full">
                             Calculate Score & Save
                         </button>
                     </div>
@@ -256,434 +168,6 @@
         </div>
     </div>
 
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // --- CONSTANTS ---
-            const BLUE_SPARK_OPTIONS = ['Speed', 'Stamina', 'Power', 'Guts', 'Wit'];
-            const PINK_SPARK_OPTIONS = {
-                terrain: ['Turf', 'Dirt'],
-                distance: ['Sprint', 'Mile', 'Medium', 'Long'],
-                strategy: ['Front Runner', 'Pace Chaser', 'Late Surger', 'End Closer'],
-            };
-
-            // --- STATE MANAGEMENT ---
-            let goal = {
-                primaryBlue: ['Stamina', 'Power'],
-                primaryPink: ['Mile', 'Turf'],
-                wishlist: [
-                    { name: "Groundwork", tier: 1 },
-                    { name: "Mile Corners", tier: 2 }
-                ]
-            };
-            let stable = [];
-
-            // --- DOM ELEMENTS ---
-            const wishlistNameInput = document.getElementById('wishlist-name');
-            const wishlistTierSelect = document.getElementById('wishlist-tier');
-            const addWishlistBtn = document.getElementById('add-wishlist-btn');
-            const wishlistContainer = document.getElementById('wishlist-container');
-            
-            const stableContainer = document.getElementById('stable-container');
-            const topParentsContainer = document.getElementById('top-parents-container');
-
-            // Modal elements
-            const addParentBtn = document.getElementById('add-parent-btn');
-            const modal = document.getElementById('add-parent-modal');
-            const closeModalBtn = document.getElementById('close-modal-btn');
-            const addParentForm = document.getElementById('add-parent-form');
-            const saveParentBtn = document.getElementById('save-parent-btn');
-            
-            // Form inputs
-            const umaNameInput = document.getElementById('uma-name');
-            const umaGenInput = document.getElementById('uma-gen');
-            const blueSparkTypeSelect = document.getElementById('blue-spark-type');
-            const blueSparkStarsSelect = document.getElementById('blue-spark-stars');
-            const pinkSparkTypeSelect = document.getElementById('pink-spark-type');
-            const pinkSparkStarsSelect = document.getElementById('pink-spark-stars');
-            const modalWishlistSelect = document.getElementById('modal-wishlist-select');
-            const modalWhiteStarsSelect = document.getElementById('modal-white-stars');
-            const addModalWhiteBtn = document.getElementById('add-modal-white-btn');
-            const modalWhiteSparksContainer = document.getElementById('modal-white-sparks-container');
-
-            let currentWhiteSparks = [];
-
-            // --- LOCAL STORAGE ---
-            function loadState() {
-                const savedGoal = localStorage.getItem('umaTrackerGoal');
-                const savedStable = localStorage.getItem('umaTrackerStable');
-                if (savedGoal) {
-                    const parsedGoal = JSON.parse(savedGoal);
-                    // Ensure loaded data is in array format to prevent errors from old data structure
-                    goal.primaryBlue = Array.isArray(parsedGoal.primaryBlue) ? parsedGoal.primaryBlue : [];
-                    goal.primaryPink = Array.isArray(parsedGoal.primaryPink) ? parsedGoal.primaryPink : [];
-                    goal.wishlist = parsedGoal.wishlist || [];
-                }
-                if (savedStable) stable = JSON.parse(savedStable);
-                renderAll();
-            }
-
-            function saveState() {
-                localStorage.setItem('umaTrackerGoal', JSON.stringify(goal));
-                localStorage.setItem('umaTrackerStable', JSON.stringify(stable));
-            }
-
-            // --- SCORING LOGIC ---
-            function getScore(category, type, stars) {
-                const points = {
-                    blue: { primary: [0, 2, 6, 10], secondary: [0, 1, 4, 8], other: [0, 1, 2, 3] },
-                    pink: { primary: [0, 3, 6, 10], other: [0, 1, 2, 3] },
-                    white: { 1: [0, 5, 10, 15], 2: [0, 2, 5, 8], 3: [0, 1, 3, 5] }
-                };
-
-                if (category === 'blue') {
-                    const primaryBlueLower = goal.primaryBlue.map(s => s.toLowerCase());
-                    if (primaryBlueLower.includes(type.toLowerCase())) return points.blue.primary[stars];
-                    if (type.toLowerCase() === 'speed') return points.blue.secondary[stars];
-                    return points.blue.other[stars];
-                } else if (category === 'pink') {
-                    const primaryPinkLower = goal.primaryPink.map(s => s.toLowerCase());
-                    if (primaryPinkLower.includes(type.toLowerCase())) return points.pink.primary[stars];
-                    return points.pink.other[stars];
-                } else if (category === 'white') {
-                    return points.white[type][stars]; // here 'type' is the tier
-                }
-                return 0;
-            }
-
-            function calculateScore(parent) {
-                let totalScore = 0;
-                totalScore += getScore('blue', parent.blueSpark.type, parent.blueSpark.stars);
-                totalScore += getScore('pink', parent.pinkSpark.type, parent.pinkSpark.stars);
-                parent.whiteSparks.forEach(spark => {
-                    const wishlistItem = goal.wishlist.find(w => w.name === spark.name);
-                    if (wishlistItem) {
-                        totalScore += getScore('white', wishlistItem.tier, spark.stars);
-                    }
-                });
-                return totalScore;
-            }
-
-            // --- RENDER FUNCTIONS ---
-            function renderAll() {
-                renderMultiSelects();
-                renderWishlist();
-                recalculateAllScores(); // Recalculate scores in case goal definition changed
-                renderStable();
-                renderTopParents();
-                updateModalWishlist();
-            }
-
-            function recalculateAllScores() {
-                stable.forEach(parent => {
-                    parent.score = calculateScore(parent);
-                });
-            }
-
-            function renderWishlist() {
-                wishlistContainer.innerHTML = '';
-                if (goal.wishlist.length === 0) {
-                    wishlistContainer.innerHTML = `<p class="text-gray-400 text-sm">No wishlist items yet.</p>`;
-                    return;
-                }
-                goal.wishlist.forEach((item, index) => {
-                    const div = document.createElement('div');
-                    div.className = 'flex justify-between items-center bg-gray-100 p-2 rounded';
-                    div.innerHTML = `
-                        <span class="text-gray-800 text-sm">${item.name} <span class="text-gray-500">(Tier ${item.tier})</span></span>
-                        <button data-index="${index}" class="remove-wishlist-btn text-red-500 hover:text-red-700">&times;</button>
-                    `;
-                    wishlistContainer.appendChild(div);
-                });
-            }
-
-            function getSparkColor(type) {
-                switch(type.toLowerCase()) {
-                    case 'speed': return 'bg-blue-100 text-blue-800';
-                    case 'stamina': return 'bg-yellow-100 text-yellow-800';
-                    case 'power': return 'bg-red-100 text-red-800';
-                    case 'guts': return 'bg-orange-100 text-orange-800';
-                    case 'wit': return 'bg-green-100 text-green-800';
-                    case 'sprint': case 'mile': case 'medium': case 'long': return 'bg-pink-100 text-pink-800';
-                    case 'turf': case 'dirt': return 'bg-purple-100 text-purple-800';
-                    default: return 'bg-indigo-100 text-indigo-800';
-                }
-            }
-            
-            function renderParentCard(parent, container, isTopParent = false) {
-                const card = document.createElement('div');
-                card.className = `p-4 rounded-lg border ${isTopParent ? 'bg-amber-50 border-amber-200' : 'bg-gray-50 border-gray-200'}`;
-
-                let blueSparkHTML = `<div class="spark-tag ${getSparkColor(parent.blueSpark.type)}">${parent.blueSpark.type} ${'★'.repeat(parent.blueSpark.stars)}</div>`;
-                let pinkSparkHTML = `<div class="spark-tag ${getSparkColor(parent.pinkSpark.type)}">${parent.pinkSpark.type} ${'★'.repeat(parent.pinkSpark.stars)}</div>`;
-                
-                let whiteSparksHTML = parent.whiteSparks.map(spark => {
-                    const wishlistItem = goal.wishlist.find(w => w.name === spark.name);
-                    const tier = wishlistItem ? `T${wishlistItem.tier}` : 'N/A';
-                    return `<div class="spark-tag bg-gray-200 text-gray-800">${spark.name} ${'★'.repeat(spark.stars)} <span class="ml-1 text-xs opacity-75">(${tier})</span></div>`;
-                }).join('');
-
-                card.innerHTML = `
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <h3 class="font-bold text-lg text-gray-800">${parent.name} <span class="text-sm font-medium text-gray-500">(Gen ${parent.gen})</span></h3>
-                        </div>
-                        <div class="text-right">
-                             <div class="text-2xl font-bold text-teal-600">${parent.score} pts</div>
-                             ${!isTopParent ? `<button data-id="${parent.id}" class="delete-parent-btn text-xs text-red-500 hover:text-red-700 mt-1">Delete</button>` : ''}
-                        </div>
-                    </div>
-                    <div class="mt-3 border-t pt-3">
-                        <div class="flex flex-wrap items-center">
-                            ${blueSparkHTML}
-                            ${pinkSparkHTML}
-                        </div>
-                        <div class="flex flex-wrap items-center mt-2">
-                            ${whiteSparksHTML || '<p class="text-xs text-gray-400">No wishlist white sparks.</p>'}
-                        </div>
-                    </div>
-                `;
-                container.appendChild(card);
-            }
-
-            function renderStable() {
-                stableContainer.innerHTML = '';
-                if (stable.length === 0) {
-                    stableContainer.innerHTML = `<p class="text-gray-500 text-center py-8">Your stable is empty. Add a parent to get started!</p>`;
-                    return;
-                }
-                stable.sort((a, b) => b.score - a.score);
-                stable.forEach(parent => renderParentCard(parent, stableContainer));
-            }
-            
-            function renderTopParents() {
-                topParentsContainer.innerHTML = '';
-                if (stable.length === 0) {
-                    topParentsContainer.innerHTML = `<p class="text-gray-500">Add parents to your stable to see the top pair here.</p>`;
-                    return;
-                }
-                const topTwo = stable.slice(0, 2);
-                topTwo.forEach(parent => renderParentCard(parent, topParentsContainer, true));
-                if (stable.length === 1) {
-                    topParentsContainer.innerHTML += `<p class="text-gray-500 text-sm mt-2">Add one more parent to complete the pair.</p>`;
-                }
-            }
-            
-            function updateModalWishlist() {
-                modalWishlistSelect.innerHTML = goal.wishlist.map(w => `<option>${w.name}</option>`).join('');
-                const allPinkOptions = [].concat(...Object.values(PINK_SPARK_OPTIONS));
-                document.getElementById('pink-spark-type').innerHTML = allPinkOptions.map(o => `<option>${o}</option>`).join('');
-            }
-
-            // --- MULTI-SELECT LOGIC ---
-            let openDropdown = null;
-
-            function createMultiSelect(containerId, options, selectedValues, category) {
-                const container = document.getElementById(containerId);
-                container.innerHTML = '';
-
-                // Input area
-                const inputDiv = document.createElement('div');
-                inputDiv.className = 'multi-select-input';
-                inputDiv.dataset.category = category;
-
-                selectedValues.forEach(value => {
-                    const chip = document.createElement('div');
-                    chip.className = 'chip';
-                    chip.innerHTML = `${value} <span class="chip-remove" data-value="${value}">&times;</span>`;
-                    inputDiv.appendChild(chip);
-                });
-
-                const placeholder = document.createElement('span');
-                if (selectedValues.length === 0) {
-                    placeholder.textContent = 'Select...';
-                    placeholder.className = 'text-gray-400 ml-2';
-                }
-                inputDiv.appendChild(placeholder);
-                
-                // Dropdown area
-                const dropdownDiv = document.createElement('div');
-                dropdownDiv.className = 'multi-select-dropdown hidden';
-
-                options.forEach(option => {
-                    const isChecked = selectedValues.includes(option);
-                    const label = document.createElement('label');
-                    label.innerHTML = `<input type="checkbox" class="mr-2" value="${option}" ${isChecked ? 'checked' : ''}> ${option}`;
-                    dropdownDiv.appendChild(label);
-                });
-
-                container.appendChild(inputDiv);
-                container.appendChild(dropdownDiv);
-            }
-
-            function renderMultiSelects() {
-                createMultiSelect('primary-blue-select', BLUE_SPARK_OPTIONS, goal.primaryBlue, 'blue');
-                createMultiSelect('primary-pink-terrain-select', PINK_SPARK_OPTIONS.terrain, goal.primaryPink.filter(p => PINK_SPARK_OPTIONS.terrain.includes(p)), 'pink');
-                createMultiSelect('primary-pink-distance-select', PINK_SPARK_OPTIONS.distance, goal.primaryPink.filter(p => PINK_SPARK_OPTIONS.distance.includes(p)), 'pink');
-                createMultiSelect('primary-pink-strategy-select', PINK_SPARK_OPTIONS.strategy, goal.primaryPink.filter(p => PINK_SPARK_OPTIONS.strategy.includes(p)), 'pink');
-            }
-
-            document.body.addEventListener('click', e => {
-                const container = e.target.closest('.multi-select-container');
-                
-                if (openDropdown && !openDropdown.contains(e.target)) {
-                    openDropdown.querySelector('.multi-select-dropdown').classList.add('hidden');
-                    openDropdown = null;
-                }
-
-                if (container) {
-                    const dropdown = container.querySelector('.multi-select-dropdown');
-                    const isHidden = dropdown.classList.contains('hidden');
-                    if (isHidden) {
-                        dropdown.classList.remove('hidden');
-                        openDropdown = container;
-                    } else {
-                        dropdown.classList.add('hidden');
-                        openDropdown = null;
-                    }
-                }
-
-                if (e.target.classList.contains('chip-remove')) {
-                    const value = e.target.dataset.value;
-                    const category = e.target.closest('.multi-select-input').dataset.category;
-                    if (category === 'blue') {
-                        goal.primaryBlue = goal.primaryBlue.filter(v => v !== value);
-                    } else {
-                        goal.primaryPink = goal.primaryPink.filter(v => v !== value);
-                    }
-                    saveState();
-                    renderAll();
-                }
-            });
-
-            document.body.addEventListener('change', e => {
-                if (e.target.type === 'checkbox' && e.target.closest('.multi-select-dropdown')) {
-                    const value = e.target.value;
-                    const category = e.target.closest('.multi-select-container').querySelector('.multi-select-input').dataset.category;
-                    
-                    if (category === 'blue') {
-                        if (e.target.checked) goal.primaryBlue.push(value);
-                        else goal.primaryBlue = goal.primaryBlue.filter(v => v !== value);
-                    } else {
-                        if (e.target.checked) goal.primaryPink.push(value);
-                        else goal.primaryPink = goal.primaryPink.filter(v => v !== value);
-                    }
-                    saveState();
-                    renderAll();
-                }
-            });
-
-            // --- EVENT LISTENERS ---
-            addWishlistBtn.addEventListener('click', () => {
-                const name = wishlistNameInput.value.trim();
-                const tier = parseInt(wishlistTierSelect.value);
-                if (name) {
-                    goal.wishlist.push({ name, tier });
-                    wishlistNameInput.value = '';
-                    saveState();
-                    renderAll();
-                }
-            });
-
-            wishlistContainer.addEventListener('click', (e) => {
-                if (e.target.classList.contains('remove-wishlist-btn')) {
-                    const index = parseInt(e.target.dataset.index);
-                    goal.wishlist.splice(index, 1);
-                    saveState();
-                    renderAll();
-                }
-            });
-
-            // Stable Management
-            stableContainer.addEventListener('click', e => {
-                if(e.target.classList.contains('delete-parent-btn')) {
-                    const id = e.target.dataset.id;
-                    stable = stable.filter(p => p.id != id);
-                    saveState();
-                    renderAll();
-                }
-            });
-
-            // Modal Logic
-            addParentBtn.addEventListener('click', () => {
-                modal.classList.remove('hidden');
-                setTimeout(()=> {
-                   modal.classList.remove('opacity-0');
-                   modal.querySelector('.modal-content').classList.remove('-translate-y-10');
-                }, 10);
-            });
-            
-            const closeModal = () => {
-                modal.classList.add('opacity-0');
-                modal.querySelector('.modal-content').classList.add('-translate-y-10');
-                setTimeout(()=> {
-                   modal.classList.add('hidden');
-                   addParentForm.reset();
-                   currentWhiteSparks = [];
-                   modalWhiteSparksContainer.innerHTML = '';
-                }, 250);
-            };
-
-            closeModalBtn.addEventListener('click', closeModal);
-
-            addModalWhiteBtn.addEventListener('click', () => {
-                const name = modalWishlistSelect.value;
-                const stars = parseInt(modalWhiteStarsSelect.value);
-                if (name && !currentWhiteSparks.some(s => s.name === name)) {
-                    currentWhiteSparks.push({ name, stars });
-                    renderModalWhiteSparks();
-                }
-            });
-
-            function renderModalWhiteSparks() {
-                modalWhiteSparksContainer.innerHTML = '';
-                currentWhiteSparks.forEach((spark, index) => {
-                    const div = document.createElement('div');
-                    div.className = 'flex justify-between items-center bg-gray-100 p-2 rounded text-sm';
-                    div.innerHTML = `
-                        <span>${spark.name} - ${'★'.repeat(spark.stars)}</span>
-                        <button type="button" data-index="${index}" class="remove-modal-white text-red-500 hover:text-red-700">&times;</button>
-                    `;
-                    modalWhiteSparksContainer.appendChild(div);
-                });
-            }
-
-            modalWhiteSparksContainer.addEventListener('click', e => {
-                if(e.target.classList.contains('remove-modal-white')) {
-                    const index = parseInt(e.target.dataset.index);
-                    currentWhiteSparks.splice(index, 1);
-                    renderModalWhiteSparks();
-                }
-            });
-
-            // Form Submission
-            addParentForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                const newParent = {
-                    id: Date.now(),
-                    name: umaNameInput.value,
-                    gen: parseInt(umaGenInput.value),
-                    blueSpark: {
-                        type: blueSparkTypeSelect.value,
-                        stars: parseInt(blueSparkStarsSelect.value)
-                    },
-                    pinkSpark: {
-                        type: pinkSparkTypeSelect.value,
-                        stars: parseInt(pinkSparkStarsSelect.value)
-                    },
-                    whiteSparks: [...currentWhiteSparks],
-                    score: 0
-                };
-                newParent.score = calculateScore(newParent);
-                stable.push(newParent);
-                saveState();
-                renderAll();
-                closeModal();
-            });
-
-            // --- INITIAL LOAD ---
-            loadState();
-        });
-    </script>
+    <script src="js/app.js" defer></script>
 </body>
 </html>
