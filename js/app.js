@@ -51,6 +51,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     const modalWhiteStarsSelect = document.getElementById('modal-white-stars');
     const addModalWhiteBtn = document.getElementById('add-modal-white-btn');
     const modalWhiteSparksContainer = document.getElementById('modal-white-sparks-container');
+    const modalUniqueStarsSelect = document.getElementById('modal-unique-stars');
+    const addModalUniqueBtn = document.getElementById('add-modal-unique-btn');
+    const modalUniqueSparksContainer = document.getElementById('modal-unique-sparks-container');
 
     // Skill Mini-Modal elements
     const showAddSkillModalBtn = document.getElementById('show-add-skill-modal-btn');
@@ -75,6 +78,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const dialogFooter = document.getElementById('dialog-footer');
 
     let currentWhiteSparks = [];
+    let currentUniqueSparks = [];
 
     // --- DIALOG SERVICE ---
     class DialogService {
@@ -211,6 +215,15 @@ document.addEventListener('DOMContentLoaded', async () => {
                 appData.activeProfileId = firstProfile.id;
             }
         }
+
+        // Migration for uniqueWishlist
+        appData.profiles.forEach(p => {
+            if (!p.goal.uniqueWishlist) p.goal.uniqueWishlist = [];
+            p.roster.forEach(parent => {
+                if (!parent.uniqueSparks) parent.uniqueSparks = [];
+            });
+        });
+
         renderAll();
     }
 
@@ -265,6 +278,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         const points = {
             blue: { primary: [0, 2, 6, 10], secondary: [0, 1, 4, 8], other: [0, 1, 2, 3] },
             pink: { primary: [0, 3, 6, 10], other: [0, 1, 2, 3] },
+            unique: { primary: [0, 3, 6, 10], other: [0, 1, 2, 3] },
             white: { 'S': [0, 5, 10, 15], 'A': [0, 2, 5, 8], 'B': [0, 1, 3, 5], 'C': [0, 1, 2, 3] }
         };
 
@@ -279,6 +293,10 @@ document.addEventListener('DOMContentLoaded', async () => {
             const primaryPinkLower = goal.primaryPink.map(s => s.toLowerCase());
             if (primaryPinkLower.includes(type.toLowerCase())) return points.pink.primary[stars];
             return points.pink.other[stars];
+        } else if (category === 'unique') {
+            const uniqueWishlistLower = goal.uniqueWishlist.map(s => s.toLowerCase());
+            if (uniqueWishlistLower.includes(type.toLowerCase())) return points.unique.primary[stars];
+            return points.unique.other[stars];
         } else if (category === 'white') {
             return points.white[type] ? points.white[type][stars] : 0;
         }
@@ -290,6 +308,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         const goal = getActiveProfile().goal;
         totalScore += getScore('blue', parent.blueSpark.type, parent.blueSpark.stars);
         totalScore += getScore('pink', parent.pinkSpark.type, parent.pinkSpark.stars);
+        parent.uniqueSparks.forEach(spark => {
+            totalScore += getScore('unique', spark.name, spark.stars);
+        });
         parent.whiteSparks.forEach(spark => {
             const wishlistItem = goal.wishlist.find(w => w.name === spark.name);
             if (wishlistItem) {
@@ -384,6 +405,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         let blueSparkHTML = `<div class="spark-tag ${getSparkColor(parent.blueSpark.type)}">${parent.blueSpark.type} ${'★'.repeat(parent.blueSpark.stars)}</div>`;
         let pinkSparkHTML = `<div class="spark-tag ${getSparkColor(parent.pinkSpark.type)}">${parent.pinkSpark.type} ${'★'.repeat(parent.pinkSpark.stars)}</div>`;
         
+        let uniqueSparksHTML = parent.uniqueSparks.map(spark => {
+            return `<div class="spark-tag bg-amber-100 text-amber-800">${spark.name} ${'★'.repeat(spark.stars)}</div>`;
+        }).join('');
+
         let whiteSparksHTML = parent.whiteSparks.map(spark => {
             const wishlistItem = goal.wishlist.find(w => w.name === spark.name);
             const tier = wishlistItem ? `Rank ${wishlistItem.tier}` : 'N/A';
@@ -412,6 +437,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                     ${blueSparkHTML}
                     ${pinkSparkHTML}
                 </div>
+                ${uniqueSparksHTML ? `<div class="parent-card__spark-container mt-2">${uniqueSparksHTML}</div>` : ''}
                 <div class="parent-card__spark-container parent-card__spark-container--white">
                     ${whiteSparksHTML || '<p class="parent-card__no-sparks-text">No wishlist white sparks.</p>'}
                 </div>
@@ -490,6 +516,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         createMultiSelect('primary-pink-terrain-select', PINK_SPARK_OPTIONS.terrain, goal.primaryPink.filter(p => PINK_SPARK_OPTIONS.terrain.includes(p)), 'pink');
         createMultiSelect('primary-pink-distance-select', PINK_SPARK_OPTIONS.distance, goal.primaryPink.filter(p => PINK_SPARK_OPTIONS.distance.includes(p)), 'pink');
         createMultiSelect('primary-pink-strategy-select', PINK_SPARK_OPTIONS.strategy, goal.primaryPink.filter(p => PINK_SPARK_OPTIONS.strategy.includes(p)), 'pink');
+        const uniqueSkillNames = masterSkillList.filter(s => s.type === 'unique').map(s => s.name_en);
+        createMultiSelect('unique-wishlist-select', uniqueSkillNames, goal.uniqueWishlist, 'unique');
     }
 
     document.body.addEventListener('click', e => {
@@ -515,8 +543,10 @@ document.addEventListener('DOMContentLoaded', async () => {
             const goal = getActiveProfile().goal;
             if (category === 'blue') {
                 goal.primaryBlue = goal.primaryBlue.filter(v => v !== value);
-            } else {
+            } else if (category === 'pink') {
                 goal.primaryPink = goal.primaryPink.filter(v => v !== value);
+            } else if (category === 'unique') {
+                goal.uniqueWishlist = goal.uniqueWishlist.filter(v => v !== value);
             }
             saveState();
             renderAll();
@@ -531,9 +561,12 @@ document.addEventListener('DOMContentLoaded', async () => {
             if (category === 'blue') {
                 if (e.target.checked) goal.primaryBlue.push(value);
                 else goal.primaryBlue = goal.primaryBlue.filter(v => v !== value);
-            } else {
+            } else if (category === 'pink') {
                 if (e.target.checked) goal.primaryPink.push(value);
                 else goal.primaryPink = goal.primaryPink.filter(v => v !== value);
+            } else if (category === 'unique') {
+                if (e.target.checked) goal.uniqueWishlist.push(value);
+                else goal.uniqueWishlist = goal.uniqueWishlist.filter(v => v !== value);
             }
             saveState();
             renderAll();
@@ -545,7 +578,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         return {
             id: Date.now(),
             name,
-            goal: { primaryBlue: [], primaryPink: [], wishlist: [] },
+            goal: { primaryBlue: [], primaryPink: [], uniqueWishlist: [], wishlist: [] },
             roster: []
         };
     }
@@ -670,7 +703,9 @@ document.addEventListener('DOMContentLoaded', async () => {
            modal.classList.add('hidden');
            addParentForm.reset();
            currentWhiteSparks = [];
+           currentUniqueSparks = [];
            modalWhiteSparksContainer.innerHTML = '';
+           modalUniqueSparksContainer.innerHTML = '';
         }, 250);
     };
 
@@ -689,7 +724,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         pinkSparkTypeSelect.value = parent.pinkSpark.type;
         pinkSparkStarsSelect.value = parent.pinkSpark.stars;
         currentWhiteSparks = [...parent.whiteSparks];
+        currentUniqueSparks = [...parent.uniqueSparks];
         renderModalWhiteSparks();
+        renderModalUniqueSparks();
         openModal();
     }
 
@@ -701,7 +738,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         addParentForm.reset();
         umaNameSelect.clear();
         currentWhiteSparks = [];
+        currentUniqueSparks = [];
         renderModalWhiteSparks();
+        renderModalUniqueSparks();
         openModal();
     });
     
@@ -725,19 +764,52 @@ document.addEventListener('DOMContentLoaded', async () => {
             div.className = 'spark-tag bg-gray-200 text-gray-800 obtained-spark';
             div.innerHTML = `
                 ${spark.name} ${'★'.repeat(spark.stars)}
-                <button type="button" data-index="${index}" class="obtained-spark__remove-btn">&times;</button>
+                <button type="button" data-index="${index}" class="obtained-spark__remove-btn white-spark-remove">&times;</button>
             `;
             modalWhiteSparksContainer.appendChild(div);
         });
     }
 
     modalWhiteSparksContainer.addEventListener('click', e => {
-        if(e.target.classList.contains('obtained-spark__remove-btn')) {
+        if(e.target.matches('.white-spark-remove')) {
             const index = parseInt(e.target.dataset.index);
             currentWhiteSparks.splice(index, 1);
             renderModalWhiteSparks();
         }
     });
+
+    // --- OBTAINED UNIQUE SPARK LOGIC (IN MAIN MODAL) ---
+    addModalUniqueBtn.addEventListener('click', () => {
+        const name = modalUniqueSkillSelect.getValue();
+        const stars = parseInt(modalUniqueStarsSelect.value);
+        if (name && !currentUniqueSparks.some(s => s.name === name)) {
+            currentUniqueSparks.push({ name, stars });
+            renderModalUniqueSparks();
+            modalUniqueSkillSelect.clear();
+        }
+    });
+
+    function renderModalUniqueSparks() {
+        modalUniqueSparksContainer.innerHTML = '';
+        currentUniqueSparks.forEach((spark, index) => {
+            const div = document.createElement('div');
+            div.className = 'spark-tag bg-amber-100 text-amber-800 obtained-spark';
+            div.innerHTML = `
+                ${spark.name} ${'★'.repeat(spark.stars)}
+                <button type="button" data-index="${index}" class="obtained-spark__remove-btn unique-spark-remove">&times;</button>
+            `;
+            modalUniqueSparksContainer.appendChild(div);
+        });
+    }
+    
+    modalUniqueSparksContainer.addEventListener('click', e => {
+        if(e.target.matches('.unique-spark-remove')) {
+            const index = parseInt(e.target.dataset.index);
+            currentUniqueSparks.splice(index, 1);
+            renderModalUniqueSparks();
+        }
+    });
+
 
     // --- SKILL MINI-MODAL LOGIC ---
     function openAddSkillModal() {
@@ -1045,6 +1117,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             name: umaName,
             blueSpark: { type: blueSparkTypeSelect.value, stars: parseInt(blueSparkStarsSelect.value) },
             pinkSpark: { type: pinkSparkTypeSelect.value, stars: parseInt(pinkSparkStarsSelect.value) },
+            uniqueSparks: [...currentUniqueSparks],
             whiteSparks: [...currentWhiteSparks],
         };
 
@@ -1069,8 +1142,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     await loadState();
     
     // Init searchable selects
+    const uniqueSkills = masterSkillList.filter(s => s.type === 'unique');
+    const normalSkills = masterSkillList.filter(s => s.type === 'normal');
+
     const umaNameSelect = new SearchableSelect(document.getElementById('uma-name-select'), 'Select uma name...', masterUmaList);
     const wishlistSelect = new SearchableSelect(document.getElementById('wishlist-skill-select'), 'Select skill...', masterSkillList, { isTaggable: true });
     const newSkillSelect = new SearchableSelect(document.getElementById('new-skill-select'), 'Search skill...', masterSkillList, { isTaggable: true });
-    const modalSkillSelect = new SearchableSelect(document.getElementById('modal-skill-select'), 'Search skill...', masterSkillList, { isTaggable: true });
+    const modalSkillSelect = new SearchableSelect(document.getElementById('modal-skill-select'), 'Search skill...', normalSkills, { isTaggable: false });
+    const modalUniqueSkillSelect = new SearchableSelect(document.getElementById('modal-unique-skill-select'), 'Search unique skill...', uniqueSkills, { isTaggable: true });
 });
