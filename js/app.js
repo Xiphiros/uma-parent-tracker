@@ -29,6 +29,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     const wishlistTierSelect = document.getElementById('wishlist-tier');
     const addWishlistBtn = document.getElementById('add-wishlist-btn');
     const wishlistContainer = document.getElementById('wishlist-container');
+    const uniqueWishlistTierSelect = document.getElementById('unique-wishlist-tier');
+    const addUniqueWishlistBtn = document.getElementById('add-unique-wishlist-btn');
+    const uniqueWishlistContainer = document.getElementById('unique-wishlist-container');
     
     const rosterContainer = document.getElementById('roster-container');
     const topParentsContainer = document.getElementById('top-parents-container');
@@ -216,9 +219,14 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
         }
 
-        // Migration for uniqueWishlist
+        // Migration for uniqueWishlist and uniqueSparks
         appData.profiles.forEach(p => {
-            if (!p.goal.uniqueWishlist) p.goal.uniqueWishlist = [];
+            if (!p.goal.uniqueWishlist) {
+                 p.goal.uniqueWishlist = [];
+            } else if (p.goal.uniqueWishlist.length > 0 && typeof p.goal.uniqueWishlist[0] === 'string') {
+                // Migrate old string-based unique wishlist to object-based with default 'A' tier
+                p.goal.uniqueWishlist = p.goal.uniqueWishlist.map(name => ({ name, tier: 'A' }));
+            }
             p.roster.forEach(parent => {
                 if (!parent.uniqueSparks) parent.uniqueSparks = [];
             });
@@ -278,7 +286,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         const points = {
             blue: { primary: [0, 2, 6, 10], secondary: [0, 1, 4, 8], other: [0, 1, 2, 3] },
             pink: { primary: [0, 3, 6, 10], other: [0, 1, 2, 3] },
-            unique: { primary: [0, 3, 6, 10], other: [0, 1, 2, 3] },
+            unique: { 'S': [0, 5, 10, 15], 'A': [0, 3, 6, 10], 'B': [0, 2, 4, 6], 'C': [0, 1, 2, 3], 'OTHER': [0, 1, 2, 3]},
             white: { 'S': [0, 5, 10, 15], 'A': [0, 2, 5, 8], 'B': [0, 1, 3, 5], 'C': [0, 1, 2, 3] }
         };
 
@@ -294,9 +302,9 @@ document.addEventListener('DOMContentLoaded', async () => {
             if (primaryPinkLower.includes(type.toLowerCase())) return points.pink.primary[stars];
             return points.pink.other[stars];
         } else if (category === 'unique') {
-            const uniqueWishlistLower = goal.uniqueWishlist.map(s => s.toLowerCase());
-            if (uniqueWishlistLower.includes(type.toLowerCase())) return points.unique.primary[stars];
-            return points.unique.other[stars];
+            const wishlistItem = goal.uniqueWishlist.find(w => w.name === type);
+            const tier = wishlistItem ? wishlistItem.tier : 'OTHER';
+            return points.unique[tier] ? points.unique[tier][stars] : 0;
         } else if (category === 'white') {
             return points.white[type] ? points.white[type][stars] : 0;
         }
@@ -328,6 +336,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         renderTabs();
         renderMultiSelects();
         renderWishlist();
+        renderUniqueWishlist();
         recalculateAllScores();
         renderRoster();
         renderTopParents();
@@ -384,6 +393,33 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
     }
 
+    function renderUniqueWishlist() {
+        const goal = getActiveProfile().goal;
+        uniqueWishlistContainer.innerHTML = '';
+        if (goal.uniqueWishlist.length === 0) {
+            uniqueWishlistContainer.innerHTML = `<p class="card__placeholder-text">No unique wishlist items yet.</p>`;
+            return;
+        }
+        
+        goal.uniqueWishlist.sort((a, b) => {
+            const rankOrderA = WISH_RANK_ORDER[a.tier];
+            const rankOrderB = WISH_RANK_ORDER[b.tier];
+            if (rankOrderA < rankOrderB) return -1;
+            if (rankOrderA > rankOrderB) return 1;
+            return a.name.localeCompare(b.name);
+        });
+
+        goal.uniqueWishlist.forEach((item) => {
+            const div = document.createElement('div');
+            div.className = 'wishlist__item';
+            div.innerHTML = `
+                <span class="wishlist__item-text">${item.name} <span class="wishlist__item-rank">(Rank ${item.tier})</span></span>
+                <button data-name="${item.name}" class="wishlist__remove-btn unique-wishlist__remove-btn">&times;</button>
+            `;
+            uniqueWishlistContainer.appendChild(div);
+        });
+    }
+
     function getSparkColor(type) {
         switch(type.toLowerCase()) {
             case 'speed': return 'bg-blue-100 text-blue-800';
@@ -406,7 +442,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         let pinkSparkHTML = `<div class="spark-tag ${getSparkColor(parent.pinkSpark.type)}">${parent.pinkSpark.type} ${'★'.repeat(parent.pinkSpark.stars)}</div>`;
         
         let uniqueSparksHTML = parent.uniqueSparks.map(spark => {
-            return `<div class="spark-tag bg-amber-100 text-amber-800">${spark.name} ${'★'.repeat(spark.stars)}</div>`;
+            const wishlistItem = goal.uniqueWishlist.find(w => w.name === spark.name);
+            const tier = wishlistItem ? `Rank ${wishlistItem.tier}` : 'Other';
+            return `<div class="spark-tag bg-amber-100 text-amber-800">${spark.name} ${'★'.repeat(spark.stars)} <span class="parent-card__spark-tier">(${tier})</span></div>`;
         }).join('');
 
         let whiteSparksHTML = parent.whiteSparks.map(spark => {
@@ -516,8 +554,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         createMultiSelect('primary-pink-terrain-select', PINK_SPARK_OPTIONS.terrain, goal.primaryPink.filter(p => PINK_SPARK_OPTIONS.terrain.includes(p)), 'pink');
         createMultiSelect('primary-pink-distance-select', PINK_SPARK_OPTIONS.distance, goal.primaryPink.filter(p => PINK_SPARK_OPTIONS.distance.includes(p)), 'pink');
         createMultiSelect('primary-pink-strategy-select', PINK_SPARK_OPTIONS.strategy, goal.primaryPink.filter(p => PINK_SPARK_OPTIONS.strategy.includes(p)), 'pink');
-        const uniqueSkillNames = masterSkillList.filter(s => s.type === 'unique').map(s => s.name_en);
-        createMultiSelect('unique-wishlist-select', uniqueSkillNames, goal.uniqueWishlist, 'unique');
     }
 
     document.body.addEventListener('click', e => {
@@ -545,8 +581,6 @@ document.addEventListener('DOMContentLoaded', async () => {
                 goal.primaryBlue = goal.primaryBlue.filter(v => v !== value);
             } else if (category === 'pink') {
                 goal.primaryPink = goal.primaryPink.filter(v => v !== value);
-            } else if (category === 'unique') {
-                goal.uniqueWishlist = goal.uniqueWishlist.filter(v => v !== value);
             }
             saveState();
             renderAll();
@@ -564,9 +598,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             } else if (category === 'pink') {
                 if (e.target.checked) goal.primaryPink.push(value);
                 else goal.primaryPink = goal.primaryPink.filter(v => v !== value);
-            } else if (category === 'unique') {
-                if (e.target.checked) goal.uniqueWishlist.push(value);
-                else goal.uniqueWishlist = goal.uniqueWishlist.filter(v => v !== value);
             }
             saveState();
             renderAll();
@@ -661,12 +692,34 @@ document.addEventListener('DOMContentLoaded', async () => {
             renderAll();
         }
     });
+    
+    addUniqueWishlistBtn.addEventListener('click', () => {
+        const name = uniqueWishlistSkillSelect.getValue();
+        const tier = uniqueWishlistTierSelect.value;
+        const goal = getActiveProfile().goal;
+        if (name && !goal.uniqueWishlist.some(w => w.name.toLowerCase() === name.toLowerCase())) {
+            goal.uniqueWishlist.push({ name, tier });
+            uniqueWishlistSkillSelect.clear();
+            saveState();
+            renderAll();
+        }
+    });
 
     wishlistContainer.addEventListener('click', (e) => {
         if (e.target.classList.contains('wishlist__remove-btn')) {
             const name = e.target.dataset.name;
             const goal = getActiveProfile().goal;
             goal.wishlist = goal.wishlist.filter(item => item.name !== name);
+            saveState();
+            renderAll();
+        }
+    });
+
+    uniqueWishlistContainer.addEventListener('click', (e) => {
+        if (e.target.classList.contains('unique-wishlist__remove-btn')) {
+            const name = e.target.dataset.name;
+            const goal = getActiveProfile().goal;
+            goal.uniqueWishlist = goal.uniqueWishlist.filter(item => item.name !== name);
             saveState();
             renderAll();
         }
@@ -724,7 +777,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         pinkSparkTypeSelect.value = parent.pinkSpark.type;
         pinkSparkStarsSelect.value = parent.pinkSpark.stars;
         currentWhiteSparks = [...parent.whiteSparks];
-        currentUniqueSparks = [...parent.uniqueSparks];
+        currentUniqueSparks = [...(parent.uniqueSparks || [])];
         renderModalWhiteSparks();
         renderModalUniqueSparks();
         openModal();
@@ -1143,11 +1196,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     
     // Init searchable selects
     const uniqueSkills = masterSkillList.filter(s => s.type === 'unique');
-    const normalSkills = masterSkillList.filter(s => s.type === 'normal');
+    const normalSkills = masterSkillList.filter(s => s.type !== 'unique');
 
     const umaNameSelect = new SearchableSelect(document.getElementById('uma-name-select'), 'Select uma name...', masterUmaList);
     const wishlistSelect = new SearchableSelect(document.getElementById('wishlist-skill-select'), 'Select skill...', masterSkillList, { isTaggable: true });
+    const uniqueWishlistSkillSelect = new SearchableSelect(document.getElementById('unique-wishlist-skill-select'), 'Select unique skill...', uniqueSkills, { isTaggable: true });
     const newSkillSelect = new SearchableSelect(document.getElementById('new-skill-select'), 'Search skill...', masterSkillList, { isTaggable: true });
-    const modalSkillSelect = new SearchableSelect(document.getElementById('modal-skill-select'), 'Search skill...', normalSkills, { isTaggable: false });
-    const modalUniqueSkillSelect = new SearchableSelect(document.getElementById('modal-unique-skill-select'), 'Search unique skill...', uniqueSkills, { isTaggable: true });
+    const modalSkillSelect = new SearchableSelect(document.getElementById('modal-skill-select'), 'Search skill...', normalSkills);
+    const modalUniqueSkillSelect = new SearchableSelect(document.getElementById('modal-unique-skill-select'), 'Search unique skill...', uniqueSkills);
 });
