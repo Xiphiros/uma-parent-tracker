@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const rosterContainer = document.getElementById('roster-container');
     const topParentsContainer = document.getElementById('top-parents-container');
 
-    // Modal elements
+    // Main Modal elements
     const addParentBtn = document.getElementById('add-parent-btn');
     const modal = document.getElementById('add-parent-modal');
     const modalTitle = document.getElementById('modal-title');
@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const genDisplay = document.getElementById('gen-display');
     const genDisplayText = document.getElementById('gen-display-text');
     
-    // Form inputs
+    // Main Modal Form inputs
     const umaNameInput = document.getElementById('uma-name');
     const blueSparkTypeSelect = document.getElementById('blue-spark-type');
     const blueSparkStarsSelect = document.getElementById('blue-spark-stars');
@@ -50,6 +50,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalWhiteStarsSelect = document.getElementById('modal-white-stars');
     const addModalWhiteBtn = document.getElementById('add-modal-white-btn');
     const modalWhiteSparksContainer = document.getElementById('modal-white-sparks-container');
+
+    // Skill Mini-Modal elements
+    const showAddSkillModalBtn = document.getElementById('show-add-skill-modal-btn');
+    const addSkillModal = document.getElementById('add-skill-modal');
+    const addSkillForm = document.getElementById('add-skill-form');
+    const newSkillNameInput = document.getElementById('new-skill-name');
+    const newSkillTierSelect = document.getElementById('new-skill-tier');
+    const cancelAddSkillBtn = document.getElementById('cancel-add-skill-btn');
 
     let currentWhiteSparks = [];
 
@@ -242,8 +250,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
     
-    function updateModalWishlist() {
-        modalWishlistSelect.innerHTML = goal.wishlist.map(w => `<option>${w.name}</option>`).join('');
+    function updateModalWishlist(skillToSelect = null) {
+        // Sort wishlist alphabetically for the dropdown
+        const sortedWishlist = [...goal.wishlist].sort((a, b) => a.name.localeCompare(b.name));
+        modalWishlistSelect.innerHTML = sortedWishlist.map(w => `<option>${w.name}</option>`).join('');
+        if (skillToSelect) {
+            modalWishlistSelect.value = skillToSelect;
+        }
         const allPinkOptions = [].concat(...Object.values(PINK_SPARK_OPTIONS));
         document.getElementById('pink-spark-type').innerHTML = allPinkOptions.map(o => `<option>${o}</option>`).join('');
     }
@@ -254,28 +267,23 @@ document.addEventListener('DOMContentLoaded', () => {
     function createMultiSelect(containerId, options, selectedValues, category) {
         const container = document.getElementById(containerId);
         container.innerHTML = '';
-
         const inputDiv = document.createElement('div');
         inputDiv.className = 'multi-select__input';
         inputDiv.dataset.category = category;
-
         selectedValues.forEach(value => {
             const chip = document.createElement('div');
             chip.className = 'multi-select__chip';
             chip.innerHTML = `${value} <span class="multi-select__chip-remove" data-value="${value}">&times;</span>`;
             inputDiv.appendChild(chip);
         });
-
         const placeholder = document.createElement('span');
         if (selectedValues.length === 0) {
             placeholder.textContent = 'Select...';
             placeholder.className = 'text-gray-400 ml-2';
         }
         inputDiv.appendChild(placeholder);
-        
         const dropdownDiv = document.createElement('div');
         dropdownDiv.className = 'multi-select__dropdown hidden';
-
         options.forEach(option => {
             const isChecked = selectedValues.includes(option);
             const label = document.createElement('label');
@@ -283,7 +291,6 @@ document.addEventListener('DOMContentLoaded', () => {
             label.innerHTML = `<input type="checkbox" class="mr-2" value="${option}" ${isChecked ? 'checked' : ''}> ${option}`;
             dropdownDiv.appendChild(label);
         });
-
         container.appendChild(inputDiv);
         container.appendChild(dropdownDiv);
     }
@@ -297,12 +304,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.body.addEventListener('click', e => {
         const container = e.target.closest('.multi-select');
-        
         if (openDropdown && !openDropdown.contains(e.target)) {
             openDropdown.querySelector('.multi-select__dropdown').classList.add('hidden');
             openDropdown = null;
         }
-
         if (container) {
             const dropdown = container.querySelector('.multi-select__dropdown');
             const isHidden = dropdown.classList.contains('hidden');
@@ -314,7 +319,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 openDropdown = null;
             }
         }
-
         if (e.target.classList.contains('multi-select__chip-remove')) {
             const value = e.target.dataset.value;
             const category = e.target.closest('.multi-select__input').dataset.category;
@@ -379,7 +383,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // --- MODAL LOGIC ---
+    // --- MAIN MODAL LOGIC ---
     function openModal() {
         modal.classList.remove('hidden');
         setTimeout(()=> {
@@ -403,23 +407,18 @@ document.addEventListener('DOMContentLoaded', () => {
     function openEditModal(parentId) {
         const parent = roster.find(p => p.id === parentId);
         if (!parent) return;
-
         editingParentId = parentId;
-        
         modalTitle.textContent = 'Edit Parent';
         saveParentBtn.textContent = 'Update Parent';
         genDisplay.classList.remove('hidden');
         genDisplayText.textContent = parent.gen;
-
         umaNameInput.value = parent.name;
         blueSparkTypeSelect.value = parent.blueSpark.type;
         blueSparkStarsSelect.value = parent.blueSpark.stars;
         pinkSparkTypeSelect.value = parent.pinkSpark.type;
         pinkSparkStarsSelect.value = parent.pinkSpark.stars;
-        
         currentWhiteSparks = [...parent.whiteSparks];
         renderModalWhiteSparks();
-
         openModal();
     }
 
@@ -436,6 +435,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     closeModalBtn.addEventListener('click', closeModal);
 
+    // --- OBTAINED WHITE SPARK LOGIC (IN MAIN MODAL) ---
     addModalWhiteBtn.addEventListener('click', () => {
         const name = modalWishlistSelect.value;
         const stars = parseInt(modalWhiteStarsSelect.value);
@@ -466,37 +466,54 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // --- SKILL MINI-MODAL LOGIC ---
+    function openAddSkillModal() {
+        addSkillModal.classList.remove('hidden');
+        setTimeout(() => addSkillModal.classList.remove('opacity-0'), 10);
+    }
+
+    function closeAddSkillModal() {
+        addSkillModal.classList.add('opacity-0');
+        setTimeout(() => addSkillModal.classList.add('hidden'), 250);
+        addSkillForm.reset();
+    }
+
+    showAddSkillModalBtn.addEventListener('click', openAddSkillModal);
+    cancelAddSkillBtn.addEventListener('click', closeAddSkillModal);
+    
+    addSkillForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = newSkillNameInput.value.trim();
+        const tier = newSkillTierSelect.value;
+        if (name && !goal.wishlist.some(item => item.name.toLowerCase() === name.toLowerCase())) {
+            goal.wishlist.push({ name, tier });
+            saveState();
+            renderWishlist();
+            updateModalWishlist(name); // Update dropdown and select the new skill
+            closeAddSkillModal();
+        } else {
+            alert("Skill name cannot be empty or already exist.");
+        }
+    });
+
+    // --- MAIN FORM SUBMISSION ---
     addParentForm.addEventListener('submit', (e) => {
         e.preventDefault();
-
         const parentData = {
             name: umaNameInput.value,
-            blueSpark: {
-                type: blueSparkTypeSelect.value,
-                stars: parseInt(blueSparkStarsSelect.value)
-            },
-            pinkSpark: {
-                type: pinkSparkTypeSelect.value,
-                stars: parseInt(pinkSparkStarsSelect.value)
-            },
+            blueSpark: { type: blueSparkTypeSelect.value, stars: parseInt(blueSparkStarsSelect.value) },
+            pinkSpark: { type: pinkSparkTypeSelect.value, stars: parseInt(pinkSparkStarsSelect.value) },
             whiteSparks: [...currentWhiteSparks],
         };
 
         if (editingParentId) {
-            // Update existing parent
             const parentToUpdate = roster.find(p => p.id === editingParentId);
             if(parentToUpdate) {
                 Object.assign(parentToUpdate, parentData);
                 parentToUpdate.score = calculateScore(parentToUpdate);
             }
         } else {
-            // Add new parent
-            const newParent = {
-                id: Date.now(),
-                gen: nextGenNumber,
-                ...parentData,
-                score: 0
-            };
+            const newParent = { id: Date.now(), gen: nextGenNumber, ...parentData, score: 0 };
             newParent.score = calculateScore(newParent);
             roster.push(newParent);
             nextGenNumber++;
