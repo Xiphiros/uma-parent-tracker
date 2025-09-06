@@ -451,38 +451,25 @@ document.addEventListener('DOMContentLoaded', async () => {
             uniqueWishlistContainer.appendChild(div);
         });
     }
-
-    function getSparkColor(type) {
-        switch(type.toLowerCase()) {
-            case 'speed': return 'bg-blue-100 text-blue-800';
-            case 'stamina': return 'bg-yellow-100 text-yellow-800';
-            case 'power': return 'bg-red-100 text-red-800';
-            case 'guts': return 'bg-orange-100 text-orange-800';
-            case 'wit': return 'bg-green-100 text-green-800';
-            case 'sprint': case 'mile': case 'medium': case 'long': return 'bg-pink-100 text-pink-800';
-            case 'turf': case 'dirt': return 'bg-purple-100 text-purple-800';
-            default: return 'bg-indigo-100 text-indigo-800';
-        }
-    }
     
     function renderParentCard(parent, container, isTopParent = false) {
         const card = document.createElement('div');
         card.className = `parent-card ${isTopParent ? 'parent-card--top-pair' : ''}`;
         const goal = getActiveProfile().goal;
 
-        let blueSparkHTML = `<div class="spark-tag ${getSparkColor(parent.blueSpark.type)}">${parent.blueSpark.type} ${'★'.repeat(parent.blueSpark.stars)}</div>`;
-        let pinkSparkHTML = `<div class="spark-tag ${getSparkColor(parent.pinkSpark.type)}">${parent.pinkSpark.type} ${'★'.repeat(parent.pinkSpark.stars)}</div>`;
+        let blueSparkHTML = `<div class="spark-tag" data-spark-type="${parent.blueSpark.type.toLowerCase()}">${parent.blueSpark.type} ${'★'.repeat(parent.blueSpark.stars)}</div>`;
+        let pinkSparkHTML = `<div class="spark-tag" data-spark-type="${parent.pinkSpark.type.toLowerCase().replace(/ /g, '-')}">${parent.pinkSpark.type} ${'★'.repeat(parent.pinkSpark.stars)}</div>`;
         
         let uniqueSparksHTML = parent.uniqueSparks.map(spark => {
             const wishlistItem = goal.uniqueWishlist.find(w => w.name === spark.name);
             const tier = wishlistItem ? `Rank ${wishlistItem.tier}` : 'Other';
-            return `<div class="spark-tag bg-amber-100 text-amber-800">${spark.name} ${'★'.repeat(spark.stars)} <span class="parent-card__spark-tier">(${tier})</span></div>`;
+            return `<div class="spark-tag" data-spark-category="unique">${spark.name} ${'★'.repeat(spark.stars)} <span class="parent-card__spark-tier">(${tier})</span></div>`;
         }).join('');
 
         let whiteSparksHTML = parent.whiteSparks.map(spark => {
             const wishlistItem = goal.wishlist.find(w => w.name === spark.name);
             const tier = wishlistItem ? `Rank ${wishlistItem.tier}` : 'N/A';
-            return `<div class="spark-tag bg-gray-200 text-gray-800">${spark.name} ${'★'.repeat(spark.stars)} <span class="parent-card__spark-tier">(${tier})</span></div>`;
+            return `<div class="spark-tag" data-spark-category="white">${spark.name} ${'★'.repeat(spark.stars)} <span class="parent-card__spark-tier">(${tier})</span></div>`;
         }).join('');
 
         const actionsHTML = !isTopParent ? `
@@ -846,7 +833,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         modalWhiteSparksContainer.innerHTML = '';
         currentWhiteSparks.forEach((spark, index) => {
             const div = document.createElement('div');
-            div.className = 'spark-tag bg-gray-200 text-gray-800 obtained-spark';
+            div.className = 'spark-tag obtained-spark';
+            div.dataset.sparkCategory = 'white';
             div.innerHTML = `
                 ${spark.name} ${'★'.repeat(spark.stars)}
                 <button type="button" data-index="${index}" class="obtained-spark__remove-btn white-spark-remove">&times;</button>
@@ -878,7 +866,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         modalUniqueSparksContainer.innerHTML = '';
         currentUniqueSparks.forEach((spark, index) => {
             const div = document.createElement('div');
-            div.className = 'spark-tag bg-amber-100 text-amber-800 obtained-spark';
+            div.className = 'spark-tag obtained-spark';
+            div.dataset.sparkCategory = 'unique';
             div.innerHTML = `
                 ${spark.name} ${'★'.repeat(spark.stars)}
                 <button type="button" data-index="${index}" class="obtained-spark__remove-btn unique-spark-remove">&times;</button>
