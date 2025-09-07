@@ -2,6 +2,7 @@ import { useState, useRef } from 'react';
 import { WishlistItem, Skill } from '../../types';
 import SearchableSelect from './SearchableSelect';
 import { useScrollLock } from '../../hooks/useScrollLock';
+import './WishlistSection.css';
 
 interface WishlistSectionProps {
   title: string;
