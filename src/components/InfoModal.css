@@ -1,0 +1,46 @@
+.info-modal__content {
+    color: var(--color-text-secondary);
+    padding: 0.5rem 0;
+}
+
+.info-modal__app-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--color-text-header);
+}
+
+.info-modal__meta {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    margin-bottom: 1.5rem;
+}
+
+.info-modal__section {
+    padding-top: 1rem;
+    border-top: 1px solid var(--color-border);
+    transition: border-color 0.3s ease;
+}
+
+.info-modal__section-title {
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: 0.5rem;
+}
+
+.info-modal__text {
+    font-size: 0.875rem;
+    line-height: 1.5;
+}
+
+.info-modal__text--muted {
+    color: var(--color-text-muted);
+    font-size: 0.8rem;
+}
+
+.info-modal__text a {
+    color: var(--color-text-link);
+    text-decoration: underline;
+}
+.info-modal__text a:hover {
+    color: var(--color-text-link-hover);
+}
