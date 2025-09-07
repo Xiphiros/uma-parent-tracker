@@ -39,16 +39,30 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
     const uniqueSkills = useMemo(() => masterSkillList.filter(s => s.type === 'unique'), [masterSkillList]);
     const normalSkills = useMemo(() => masterSkillList.filter(s => s.type !== 'unique' && s.rarity === 1), [masterSkillList]);
 
-    const availableNormalSkills = useMemo(() => {
-        // Create a map of skill names to their group IDs for efficient lookup
-        const skillNameToGroupId = new Map<string, number | undefined>();
+    const skillNameToGroupId = useMemo(() => {
+        const map = new Map<string, number | undefined>();
         masterSkillList.forEach(skill => {
             if (skill.groupId) {
-                skillNameToGroupId.set(skill.name_en, skill.groupId);
+                map.set(skill.name_en, skill.groupId);
             }
         });
+        return map;
+    }, [masterSkillList]);
 
-        // Get all group IDs that are already in the parent's white sparks
+    const availableUniqueSkills = useMemo(() => {
+        const addedGroupIds = new Set<number>();
+        formData.uniqueSparks.forEach(item => {
+            const groupId = skillNameToGroupId.get(item.name);
+            if (groupId) {
+                addedGroupIds.add(groupId);
+            }
+        });
+        return uniqueSkills.filter(skill => 
+            !skill.groupId || !addedGroupIds.has(skill.groupId)
+        );
+    }, [formData.uniqueSparks, uniqueSkills, skillNameToGroupId]);
+
+    const availableNormalSkills = useMemo(() => {
         const addedGroupIds = new Set<number>();
         formData.whiteSparks.forEach(item => {
             const groupId = skillNameToGroupId.get(item.name);
@@ -57,11 +71,10 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
             }
         });
         
-        // Filter the list of selectable skills
         return normalSkills.filter(skill => 
             !skill.groupId || !addedGroupIds.has(skill.groupId)
         );
-    }, [formData.whiteSparks, normalSkills, masterSkillList]);
+    }, [formData.whiteSparks, normalSkills, skillNameToGroupId]);
 
     useEffect(() => {
         if (parentToEdit) {
@@ -180,7 +193,7 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
                         ))}
                     </div>
                     <div className="form__input-group">
-                        <SearchableSelect items={uniqueSkills} placeholder="Search unique skill..." value={currentUniqueSkill?.name_en || null} onSelect={setCurrentUniqueSkill} />
+                        <SearchableSelect items={availableUniqueSkills} placeholder="Search unique skill..." value={currentUniqueSkill?.name_en || null} onSelect={setCurrentUniqueSkill} />
                         <select className="form__input w-24" value={currentUniqueStars} onChange={e => setCurrentUniqueStars(Number(e.target.value) as 1|2|3)}>
                             {STAR_OPTIONS.map(s => <option key={s}>{s}</option>)}
                         </select>
