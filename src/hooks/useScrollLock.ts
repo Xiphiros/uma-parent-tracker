@@ -4,11 +4,12 @@ import { RefObject, useEffect } from 'react';
  * A custom hook that prevents the page from scrolling when the user
  * reaches the top or bottom of a scrollable element.
  * @param ref A React ref attached to the scrollable HTML element.
+ * @param enabled A boolean to enable or disable the lock, for conditionally rendered elements.
  */
-export const useScrollLock = (ref: RefObject<HTMLElement | null>) => {
+export const useScrollLock = (ref: RefObject<HTMLElement | null>, enabled: boolean = true) => {
   useEffect(() => {
     const element = ref.current;
-    if (!element) return;
+    if (!element || !enabled) return;
 
     const handleWheel = (e: WheelEvent) => {
       const { scrollTop, scrollHeight, clientHeight } = element;
@@ -32,5 +33,5 @@ export const useScrollLock = (ref: RefObject<HTMLElement | null>) => {
     return () => {
       element.removeEventListener('wheel', handleWheel);
     };
-  }, [ref]); // Rerun effect if the ref changes
+  }, [ref, enabled]); // Rerun effect if the ref or enabled state changes
 };
