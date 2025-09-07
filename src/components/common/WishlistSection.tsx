@@ -11,12 +11,13 @@ interface WishlistSectionProps {
   onAdd: (item: WishlistItem) => void;
   onRemove: (itemName: string) => void;
   onUpdate: (oldName: string, newItem: WishlistItem) => void;
+  disableAdd?: boolean;
 }
 
 const WISH_RANK_ORDER: { [key: string]: number } = { S: 0, A: 1, B: 2, C: 3 };
 const TIER_OPTIONS: WishlistItem['tier'][] = ['S', 'A', 'B', 'C'];
 
-const WishlistSection = ({ title, wishlist, skillList, onAdd, onRemove, onUpdate }: WishlistSectionProps) => {
+const WishlistSection = ({ title, wishlist, skillList, onAdd, onRemove, onUpdate, disableAdd = false }: WishlistSectionProps) => {
   const [selectedSkill, setSelectedSkill] = useState<Skill | null>(null);
   const [selectedTier, setSelectedTier] = useState<WishlistItem['tier']>('S');
   const wishlistContainerRef = useRef<HTMLDivElement>(null);
@@ -103,16 +104,18 @@ const WishlistSection = ({ title, wishlist, skillList, onAdd, onRemove, onUpdate
           placeholder="Select skill..."
           value={selectedSkill?.name_en || null}
           onSelect={(item) => setSelectedSkill(item as Skill)}
+          disabled={disableAdd}
         />
         <div className="flex justify-between items-center">
           <select
             value={selectedTier}
             onChange={e => setSelectedTier(e.target.value as WishlistItem['tier'])}
             className="form__input w-32"
+            disabled={disableAdd}
           >
             {TIER_OPTIONS.map(t => <option key={t} value={t}>Rank {t}</option>)}
           </select>
-          <button onClick={handleAdd} className="button button--primary">Add</button>
+          <button onClick={handleAdd} className="button button--primary" disabled={disableAdd || !selectedSkill}>Add</button>
         </div>
       </div>
     </div>
