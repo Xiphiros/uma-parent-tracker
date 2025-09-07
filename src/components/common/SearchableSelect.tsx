@@ -1,5 +1,6 @@
-import { useState, useMemo, ChangeEvent } from 'react';
+import { useState, useMemo, ChangeEvent, useRef } from 'react';
 import { useClickOutside } from '../../hooks/useClickOutside';
+import { useScrollLock } from '../../hooks/useScrollLock';
 
 interface SearchableItem {
   name_en: string;
@@ -19,6 +20,8 @@ const SearchableSelect = ({ items, placeholder, onSelect, value }: SearchableSel
   const [query, setQuery] = useState('');
 
   const dropdownRef = useClickOutside<HTMLDivElement>(() => setIsOpen(false));
+  const listRef = useRef<HTMLUListElement>(null);
+  useScrollLock(listRef);
 
   const filteredItems = useMemo(() => {
     const lowerQuery = query.toLowerCase();
@@ -55,7 +58,7 @@ const SearchableSelect = ({ items, placeholder, onSelect, value }: SearchableSel
             onChange={(e: ChangeEvent<HTMLInputElement>) => setQuery(e.target.value)}
             autoFocus
           />
-          <ul className="searchable-select__list">
+          <ul className="searchable-select__list" ref={listRef}>
             {filteredItems.length > 0 ? (
               filteredItems.map(item => (
                 <li key={item.name_en} className="searchable-select__item" onClick={() => handleSelect(item)}>
