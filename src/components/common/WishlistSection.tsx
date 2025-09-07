@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { WishlistItem, Skill } from '../../types';
 import SearchableSelect from './SearchableSelect';
+import { useScrollLock } from '../../hooks/useScrollLock';
 
 interface WishlistSectionProps {
   title: string;
@@ -15,6 +16,8 @@ const WISH_RANK_ORDER: { [key: string]: number } = { S: 0, A: 1, B: 2, C: 3 };
 const WishlistSection = ({ title, wishlist, skillList, onAdd, onRemove }: WishlistSectionProps) => {
   const [selectedSkill, setSelectedSkill] = useState<Skill | null>(null);
   const [selectedTier, setSelectedTier] = useState<'S' | 'A' | 'B' | 'C'>('S');
+  const wishlistContainerRef = useRef<HTMLDivElement>(null);
+  useScrollLock(wishlistContainerRef);
 
   const handleAdd = () => {
     if (selectedSkill) {
@@ -34,7 +37,7 @@ const WishlistSection = ({ title, wishlist, skillList, onAdd, onRemove }: Wishli
   return (
     <div className="border-t pt-4">
       <h3 className="form__section-title mb-2">{title}</h3>
-      <div className="wishlist space-y-2 max-h-48 overflow-y-auto pr-2">
+      <div className="wishlist space-y-2 max-h-48 overflow-y-auto pr-2" ref={wishlistContainerRef}>
         {sortedWishlist.length > 0 ? (
           sortedWishlist.map(item => (
             <div key={item.name} className="wishlist__item">
