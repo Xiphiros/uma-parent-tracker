@@ -15,6 +15,7 @@ interface AppContextType {
   saveState: (newData: AppData) => void;
   exportData: () => void;
   importData: (file: File) => Promise<void>;
+  deleteAllData: () => void;
   addProfile: (name: string) => void;
   switchProfile: (id: number) => void;
   renameProfile: (id: number, newName: string) => void;
@@ -43,6 +44,15 @@ const createNewProfile = (name: string): Profile => ({
   roster: [],
 });
 
+const createDefaultState = (): AppData => {
+    const firstProfile = createNewProfile('My First Project');
+    return {
+        version: 2,
+        activeProfileId: firstProfile.id,
+        profiles: [firstProfile],
+    };
+};
+
 export const AppProvider = ({ children }: { children: ReactNode }) => {
   const [loading, setLoading] = useState(true);
   const [masterSkillList] = useState<Skill[]>(masterSkillListJson as Skill[]);
@@ -65,12 +75,7 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
       }
       
       if (!data || data.profiles.length === 0) {
-        const firstProfile = createNewProfile('My First Project');
-        data = {
-          version: 2,
-          activeProfileId: firstProfile.id,
-          profiles: [firstProfile],
-        };
+        data = createDefaultState();
       }
 
       data.profiles.forEach(p => {
@@ -137,6 +142,10 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
       reader.onerror = (error) => reject(error);
       reader.readAsText(file);
     });
+  };
+
+  const deleteAllData = () => {
+      setAppData(createDefaultState());
   };
 
   const addProfile = (name: string) => {
@@ -289,6 +298,7 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
     saveState,
     exportData,
     importData,
+    deleteAllData,
     addProfile,
     switchProfile,
     renameProfile,
