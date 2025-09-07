@@ -5,7 +5,7 @@ import { RefObject, useEffect } from 'react';
  * reaches the top or bottom of a scrollable element.
  * @param ref A React ref attached to the scrollable HTML element.
  */
-export const useScrollLock = (ref: RefObject<HTMLElement>) => {
+export const useScrollLock = (ref: RefObject<HTMLElement | null>) => {
   useEffect(() => {
     const element = ref.current;
     if (!element) return;
