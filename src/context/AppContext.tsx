@@ -14,6 +14,10 @@ interface AppContextType {
   saveState: (newData: AppData) => void;
   exportData: () => void;
   importData: (file: File) => Promise<void>;
+  addProfile: (name: string) => void;
+  switchProfile: (id: number) => void;
+  renameProfile: (id: number, newName: string) => void;
+  deleteProfile: (id: number) => void;
 }
 
 const AppContext = createContext<AppContextType | null>(null);
@@ -128,6 +132,37 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
       reader.readAsText(file);
     });
   };
+
+  const addProfile = (name: string) => {
+    const newProfile = createNewProfile(name);
+    setAppData(prevData => ({
+      ...prevData,
+      activeProfileId: newProfile.id,
+      profiles: [...prevData.profiles, newProfile],
+    }));
+  };
+
+  const switchProfile = (id: number) => {
+    setAppData(prevData => ({ ...prevData, activeProfileId: id }));
+  };
+
+  const renameProfile = (id: number, newName: string) => {
+    setAppData(prevData => ({
+      ...prevData,
+      profiles: prevData.profiles.map(p => p.id === id ? { ...p, name: newName } : p),
+    }));
+  };
+
+  const deleteProfile = (id: number) => {
+    setAppData(prevData => {
+      const newProfiles = prevData.profiles.filter(p => p.id !== id);
+      let newActiveId = prevData.activeProfileId;
+      if (newActiveId === id) {
+        newActiveId = newProfiles.length > 0 ? newProfiles[0].id : null;
+      }
+      return { ...prevData, profiles: newProfiles, activeProfileId: newActiveId };
+    });
+  };
   
   const value = {
     loading,
@@ -138,6 +173,10 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
     saveState,
     exportData,
     importData,
+    addProfile,
+    switchProfile,
+    renameProfile,
+    deleteProfile
   };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
