@@ -53,6 +53,8 @@ export interface Parent {
   score: number;
 }
 
+export type NewParentData = Omit<Parent, 'id' | 'score' | 'gen'>;
+
 export interface Profile {
   id: number;
   name: string;
