@@ -1,6 +1,7 @@
 import { useClickOutside } from '../../hooks/useClickOutside';
 import { useState, useRef } from 'react';
 import { useScrollLock } from '../../hooks/useScrollLock';
+import './MultiSelect.css';
 
 interface MultiSelectProps {
   options: string[];
