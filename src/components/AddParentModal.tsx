@@ -35,6 +35,7 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
     const [currentUniqueStars, setCurrentUniqueStars] = useState<1 | 2 | 3>(3);
     const [currentWhiteSkill, setCurrentWhiteSkill] = useState<any>(null);
     const [currentWhiteStars, setCurrentWhiteStars] = useState<1 | 2 | 3>(3);
+    const [alertMessage, setAlertMessage] = useState('');
 
     const uniqueSkills = useMemo(() => masterSkillList.filter(s => s.type === 'unique'), [masterSkillList]);
     const normalSkills = useMemo(() => masterSkillList.filter(s => s.type !== 'unique' && s.rarity === 1), [masterSkillList]);
@@ -110,7 +111,7 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         if (!formData.name) {
-            alert('Please select an Uma Name.');
+            setAlertMessage('Please select an Uma Name.');
             return;
         }
 
@@ -123,125 +124,138 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
     };
 
     return (
-        <Modal isOpen={isOpen} onClose={onClose} title={parentToEdit ? 'Edit Parent' : 'Add New Parent'} size="lg">
-            <form onSubmit={handleSubmit} className="form space-y-4">
-                 <div>
-                    <label className="form__label form__label--xs">Uma Name</label>
-                    <SearchableSelect 
-                        items={masterUmaList}
-                        placeholder="Select uma name..."
-                        value={formData.name || null}
-                        onSelect={(item) => handleInputChange('name', item.name_en)}
-                    />
-                </div>
-
-                <div className="form__section">
-                    <h4 className="form__section-title">Blue Spark</h4>
-                    <div className="grid grid-cols-2 gap-4">
-                        <div>
-                            <label className="form__label form__label--xs">Type</label>
-                            <select className="form__input" value={formData.blueSpark.type} onChange={e => handleSparkChange('blueSpark', 'type', e.target.value as BlueSpark['type'])}>
-                                {BLUE_SPARK_TYPES.map(t => <option key={t}>{t}</option>)}
-                            </select>
-                        </div>
-                        <div>
-                            <label className="form__label form__label--xs">Stars</label>
-                            <select className="form__input" value={formData.blueSpark.stars} onChange={e => handleSparkChange('blueSpark', 'stars', Number(e.target.value) as 1|2|3)}>
-                                {STAR_OPTIONS.map(s => <option key={s}>{s}</option>)}
-                            </select>
-                        </div>
-                    </div>
-                </div>
-
-                <div className="form__section">
-                    <h4 className="form__section-title">Pink Spark</h4>
-                    <div className="grid grid-cols-2 gap-4">
-                        <div>
-                            <label className="form__label form__label--xs">Type</label>
-                            <select className="form__input" value={formData.pinkSpark.type} onChange={e => handleSparkChange('pinkSpark', 'type', e.target.value)}>
-                                {PINK_SPARK_TYPES.map(t => <option key={t}>{t}</option>)}
-                            </select>
-                        </div>
-                        <div>
-                            <label className="form__label form__label--xs">Stars</label>
-                            <select className="form__input" value={formData.pinkSpark.stars} onChange={e => handleSparkChange('pinkSpark', 'stars', Number(e.target.value) as 1|2|3)}>
-                                {STAR_OPTIONS.map(s => <option key={s}>{s}</option>)}
-                            </select>
-                        </div>
-                    </div>
-                </div>
-
-                <div className="form__section">
-                    <h4 className="form__section-title">Obtained Unique Sparks</h4>
-                    <div className="form__obtained-sparks-container">
-                        {formData.uniqueSparks.map(spark => (
-                            <div key={spark.name} className="spark-tag obtained-spark" data-spark-category="unique">
-                                {spark.name} {formatStars(spark.stars)}
-                                <button type="button" onClick={() => removeObtainedSpark('uniqueSparks', spark.name)} className="obtained-spark__remove-btn">&times;</button>
-                            </div>
-                        ))}
-                    </div>
-                    <div className="form__input-group">
-                        <SearchableSelect
-                            items={uniqueSkills}
-                            placeholder="Search unique skill..."
-                            value={currentUniqueSkill?.name_en || null}
-                            onSelect={setCurrentUniqueSkill}
-                            disabled={isUniqueSparkSelected}
+        <>
+            <Modal isOpen={isOpen} onClose={onClose} title={parentToEdit ? 'Edit Parent' : 'Add New Parent'} size="lg">
+                <form onSubmit={handleSubmit} className="form space-y-4">
+                    <div>
+                        <label className="form__label form__label--xs">Uma Name</label>
+                        <SearchableSelect 
+                            items={masterUmaList}
+                            placeholder="Select uma name..."
+                            value={formData.name || null}
+                            onSelect={(item) => handleInputChange('name', item.name_en)}
                         />
-                        <select
-                            className="form__input w-24"
-                            value={currentUniqueStars}
-                            onChange={e => setCurrentUniqueStars(Number(e.target.value) as 1|2|3)}
-                            disabled={isUniqueSparkSelected}
-                        >
-                            {STAR_OPTIONS.map(s => <option key={s}>{s}</option>)}
-                        </select>
-                        <button
-                            type="button"
-                            className="button button--secondary flex-shrink-0"
-                            onClick={() => addObtainedSpark('uniqueSparks', currentUniqueSkill, currentUniqueStars)}
-                            disabled={isUniqueSparkSelected || !currentUniqueSkill}
-                        >
-                            Add
-                        </button>
                     </div>
-                </div>
 
-                <div className="form__section">
-                    <h4 className="form__section-title">Obtained White Sparks</h4>
-                    <div className="form__obtained-sparks-container">
-                        {formData.whiteSparks.map(spark => (
-                            <div key={spark.name} className="spark-tag obtained-spark" data-spark-category="white">
-                                {spark.name} {formatStars(spark.stars)}
-                                <button type="button" onClick={() => removeObtainedSpark('whiteSparks', spark.name)} className="obtained-spark__remove-btn">&times;</button>
+                    <div className="form__section">
+                        <h4 className="form__section-title">Blue Spark</h4>
+                        <div className="grid grid-cols-2 gap-4">
+                            <div>
+                                <label className="form__label form__label--xs">Type</label>
+                                <select className="form__input" value={formData.blueSpark.type} onChange={e => handleSparkChange('blueSpark', 'type', e.target.value as BlueSpark['type'])}>
+                                    {BLUE_SPARK_TYPES.map(t => <option key={t}>{t}</option>)}
+                                </select>
                             </div>
-                        ))}
+                            <div>
+                                <label className="form__label form__label--xs">Stars</label>
+                                <select className="form__input" value={formData.blueSpark.stars} onChange={e => handleSparkChange('blueSpark', 'stars', Number(e.target.value) as 1|2|3)}>
+                                    {STAR_OPTIONS.map(s => <option key={s}>{s}</option>)}
+                                </select>
+                            </div>
+                        </div>
                     </div>
-                    <div className="form__input-group">
-                        <SearchableSelect items={availableNormalSkills} placeholder="Search skill..." value={currentWhiteSkill?.name_en || null} onSelect={setCurrentWhiteSkill} />
-                        <select className="form__input w-24" value={currentWhiteStars} onChange={e => setCurrentWhiteStars(Number(e.target.value) as 1|2|3)}>
-                             {STAR_OPTIONS.map(s => <option key={s}>{s}</option>)}
-                        </select>
-                        <button
-                            type="button"
-                            className="button button--secondary flex-shrink-0"
-                            onClick={() => addObtainedSpark('whiteSparks', currentWhiteSkill, currentWhiteStars)}
-                            disabled={!currentWhiteSkill}
-                        >
-                            Add
+
+                    <div className="form__section">
+                        <h4 className="form__section-title">Pink Spark</h4>
+                        <div className="grid grid-cols-2 gap-4">
+                            <div>
+                                <label className="form__label form__label--xs">Type</label>
+                                <select className="form__input" value={formData.pinkSpark.type} onChange={e => handleSparkChange('pinkSpark', 'type', e.target.value)}>
+                                    {PINK_SPARK_TYPES.map(t => <option key={t}>{t}</option>)}
+                                </select>
+                            </div>
+                            <div>
+                                <label className="form__label form__label--xs">Stars</label>
+                                <select className="form__input" value={formData.pinkSpark.stars} onChange={e => handleSparkChange('pinkSpark', 'stars', Number(e.target.value) as 1|2|3)}>
+                                    {STAR_OPTIONS.map(s => <option key={s}>{s}</option>)}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="form__section">
+                        <h4 className="form__section-title">Obtained Unique Sparks</h4>
+                        <div className="form__obtained-sparks-container">
+                            {formData.uniqueSparks.map(spark => (
+                                <div key={spark.name} className="spark-tag obtained-spark" data-spark-category="unique">
+                                    {spark.name} {formatStars(spark.stars)}
+                                    <button type="button" onClick={() => removeObtainedSpark('uniqueSparks', spark.name)} className="obtained-spark__remove-btn">&times;</button>
+                                </div>
+                            ))}
+                        </div>
+                        <div className="form__input-group">
+                            <SearchableSelect
+                                items={uniqueSkills}
+                                placeholder="Search unique skill..."
+                                value={currentUniqueSkill?.name_en || null}
+                                onSelect={setCurrentUniqueSkill}
+                                disabled={isUniqueSparkSelected}
+                            />
+                            <select
+                                className="form__input w-24"
+                                value={currentUniqueStars}
+                                onChange={e => setCurrentUniqueStars(Number(e.target.value) as 1|2|3)}
+                                disabled={isUniqueSparkSelected}
+                            >
+                                {STAR_OPTIONS.map(s => <option key={s}>{s}</option>)}
+                            </select>
+                            <button
+                                type="button"
+                                className="button button--secondary flex-shrink-0"
+                                onClick={() => addObtainedSpark('uniqueSparks', currentUniqueSkill, currentUniqueStars)}
+                                disabled={isUniqueSparkSelected || !currentUniqueSkill}
+                            >
+                                Add
+                            </button>
+                        </div>
+                    </div>
+
+                    <div className="form__section">
+                        <h4 className="form__section-title">Obtained White Sparks</h4>
+                        <div className="form__obtained-sparks-container">
+                            {formData.whiteSparks.map(spark => (
+                                <div key={spark.name} className="spark-tag obtained-spark" data-spark-category="white">
+                                    {spark.name} {formatStars(spark.stars)}
+                                    <button type="button" onClick={() => removeObtainedSpark('whiteSparks', spark.name)} className="obtained-spark__remove-btn">&times;</button>
+                                </div>
+                            ))}
+                        </div>
+                        <div className="form__input-group">
+                            <SearchableSelect items={availableNormalSkills} placeholder="Search skill..." value={currentWhiteSkill?.name_en || null} onSelect={setCurrentWhiteSkill} />
+                            <select className="form__input w-24" value={currentWhiteStars} onChange={e => setCurrentWhiteStars(Number(e.target.value) as 1|2|3)}>
+                                {STAR_OPTIONS.map(s => <option key={s}>{s}</option>)}
+                            </select>
+                            <button
+                                type="button"
+                                className="button button--secondary flex-shrink-0"
+                                onClick={() => addObtainedSpark('whiteSparks', currentWhiteSkill, currentWhiteStars)}
+                                disabled={!currentWhiteSkill}
+                            >
+                                Add
+                            </button>
+                        </div>
+                    </div>
+
+                    <div className="dialog-modal__footer">
+                        <button type="button" className="button button--neutral" onClick={onClose}>Cancel</button>
+                        <button type="submit" className="button button--primary">
+                            {parentToEdit ? 'Update Parent' : 'Calculate Score & Save'}
                         </button>
                     </div>
-                </div>
-
+                </form>
+            </Modal>
+            
+            <Modal
+                isOpen={!!alertMessage}
+                onClose={() => setAlertMessage('')}
+                title="Input Required"
+            >
+                <p className="dialog-modal__message">{alertMessage}</p>
                 <div className="dialog-modal__footer">
-                    <button type="button" className="button button--neutral" onClick={onClose}>Cancel</button>
-                    <button type="submit" className="button button--primary">
-                        {parentToEdit ? 'Update Parent' : 'Calculate Score & Save'}
-                    </button>
+                    <button className="button button--primary" onClick={() => setAlertMessage('')}>OK</button>
                 </div>
-            </form>
-        </Modal>
+            </Modal>
+        </>
     );
 };
 
