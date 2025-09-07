@@ -49,19 +49,6 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
         return map;
     }, [masterSkillList]);
 
-    const availableUniqueSkills = useMemo(() => {
-        const addedGroupIds = new Set<number>();
-        formData.uniqueSparks.forEach(item => {
-            const groupId = skillNameToGroupId.get(item.name);
-            if (groupId) {
-                addedGroupIds.add(groupId);
-            }
-        });
-        return uniqueSkills.filter(skill => 
-            !skill.groupId || !addedGroupIds.has(skill.groupId)
-        );
-    }, [formData.uniqueSparks, uniqueSkills, skillNameToGroupId]);
-
     const availableNormalSkills = useMemo(() => {
         const addedGroupIds = new Set<number>();
         formData.whiteSparks.forEach(item => {
@@ -75,6 +62,8 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
             !skill.groupId || !addedGroupIds.has(skill.groupId)
         );
     }, [formData.whiteSparks, normalSkills, skillNameToGroupId]);
+
+    const isUniqueSparkSelected = formData.uniqueSparks.length > 0;
 
     useEffect(() => {
         if (parentToEdit) {
@@ -193,11 +182,29 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
                         ))}
                     </div>
                     <div className="form__input-group">
-                        <SearchableSelect items={availableUniqueSkills} placeholder="Search unique skill..." value={currentUniqueSkill?.name_en || null} onSelect={setCurrentUniqueSkill} />
-                        <select className="form__input w-24" value={currentUniqueStars} onChange={e => setCurrentUniqueStars(Number(e.target.value) as 1|2|3)}>
+                        <SearchableSelect
+                            items={uniqueSkills}
+                            placeholder="Search unique skill..."
+                            value={currentUniqueSkill?.name_en || null}
+                            onSelect={setCurrentUniqueSkill}
+                            disabled={isUniqueSparkSelected}
+                        />
+                        <select
+                            className="form__input w-24"
+                            value={currentUniqueStars}
+                            onChange={e => setCurrentUniqueStars(Number(e.target.value) as 1|2|3)}
+                            disabled={isUniqueSparkSelected}
+                        >
                             {STAR_OPTIONS.map(s => <option key={s}>{s}</option>)}
                         </select>
-                        <button type="button" className="button button--secondary flex-shrink-0" onClick={() => addObtainedSpark('uniqueSparks', currentUniqueSkill, currentUniqueStars)}>Add</button>
+                        <button
+                            type="button"
+                            className="button button--secondary flex-shrink-0"
+                            onClick={() => addObtainedSpark('uniqueSparks', currentUniqueSkill, currentUniqueStars)}
+                            disabled={isUniqueSparkSelected || !currentUniqueSkill}
+                        >
+                            Add
+                        </button>
                     </div>
                 </div>
 
@@ -216,7 +223,14 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
                         <select className="form__input w-24" value={currentWhiteStars} onChange={e => setCurrentWhiteStars(Number(e.target.value) as 1|2|3)}>
                              {STAR_OPTIONS.map(s => <option key={s}>{s}</option>)}
                         </select>
-                        <button type="button" className="button button--secondary flex-shrink-0" onClick={() => addObtainedSpark('whiteSparks', currentWhiteSkill, currentWhiteStars)}>Add</button>
+                        <button
+                            type="button"
+                            className="button button--secondary flex-shrink-0"
+                            onClick={() => addObtainedSpark('whiteSparks', currentWhiteSkill, currentWhiteStars)}
+                            disabled={!currentWhiteSkill}
+                        >
+                            Add
+                        </button>
                     </div>
                 </div>
 
