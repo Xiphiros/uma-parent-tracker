@@ -38,7 +38,10 @@ function getScore(category: ScoreCategory, type: string, stars: 1 | 2 | 3, goal:
     return 0;
 }
 
-export function calculateScore(parent: Omit<Parent, 'score'>, goal: Goal): number {
+// This type precisely defines only the data needed for scoring.
+type ScorableParent = Pick<Parent, 'blueSpark' | 'pinkSpark' | 'uniqueSparks' | 'whiteSparks'>;
+
+export function calculateScore(parent: ScorableParent, goal: Goal): number {
     let totalScore = 0;
 
     // Blue Spark Score
