@@ -2,6 +2,7 @@ import { useState, useRef, ChangeEvent } from 'react';
 import { useTheme } from '../hooks/useTheme';
 import { useAppContext } from '../context/AppContext';
 import Modal from './common/Modal';
+import './Header.css';
 
 const Header = () => {
     const [theme, toggleTheme] = useTheme();
