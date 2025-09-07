@@ -4,6 +4,7 @@ export interface Skill {
   name_en: string;
   type: 'unique' | 'normal';
   rarity?: number;
+  groupId?: number;
 }
 
 export interface Uma {
