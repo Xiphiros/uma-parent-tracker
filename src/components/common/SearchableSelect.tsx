@@ -22,7 +22,7 @@ const SearchableSelect = ({ items, placeholder, onSelect, value }: SearchableSel
 
   const dropdownRef = useClickOutside<HTMLDivElement>(() => setIsOpen(false));
   const listRef = useRef<HTMLUListElement>(null);
-  useScrollLock(listRef);
+  useScrollLock(listRef, isOpen);
 
   const filteredItems = useMemo(() => {
     const lowerQuery = query.toLowerCase();
