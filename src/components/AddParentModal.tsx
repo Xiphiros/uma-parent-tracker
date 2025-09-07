@@ -3,6 +3,7 @@ import { Parent, NewParentData, BlueSpark, WhiteSpark, UniqueSpark } from '../ty
 import { useAppContext } from '../context/AppContext';
 import Modal from './common/Modal';
 import SearchableSelect from './common/SearchableSelect';
+import { formatStars } from '../utils/ui';
 
 interface AddParentModalProps {
   isOpen: boolean;
@@ -149,7 +150,7 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
                     <div className="form__obtained-sparks-container">
                         {formData.uniqueSparks.map(spark => (
                             <div key={spark.name} className="spark-tag obtained-spark" data-spark-category="unique">
-                                {spark.name} {'★'.repeat(spark.stars)}
+                                {spark.name} {formatStars(spark.stars)}
                                 <button type="button" onClick={() => removeObtainedSpark('uniqueSparks', spark.name)} className="obtained-spark__remove-btn">&times;</button>
                             </div>
                         ))}
@@ -168,7 +169,7 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
                     <div className="form__obtained-sparks-container">
                         {formData.whiteSparks.map(spark => (
                             <div key={spark.name} className="spark-tag obtained-spark" data-spark-category="white">
-                                {spark.name} {'★'.repeat(spark.stars)}
+                                {spark.name} {formatStars(spark.stars)}
                                 <button type="button" onClick={() => removeObtainedSpark('whiteSparks', spark.name)} className="obtained-spark__remove-btn">&times;</button>
                             </div>
                         ))}
