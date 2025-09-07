@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from 'react';
-import { Parent, NewParentData, BlueSpark, PinkSpark, WhiteSpark, UniqueSpark } from '../types';
+import { Parent, NewParentData, BlueSpark, WhiteSpark, UniqueSpark } from '../types';
 import { useAppContext } from '../context/AppContext';
 import Modal from './common/Modal';
 import SearchableSelect from './common/SearchableSelect';
@@ -18,10 +18,10 @@ const PINK_SPARK_TYPES = [
 
 const STAR_OPTIONS: (1 | 2 | 3)[] = [1, 2, 3];
 
-const initialState = {
+const initialState: NewParentData = {
   name: '',
-  blueSpark: { type: 'Speed', stars: 1 as const },
-  pinkSpark: { type: 'Turf', stars: 1 as const },
+  blueSpark: { type: 'Speed', stars: 1 },
+  pinkSpark: { type: 'Turf', stars: 1 },
   uniqueSparks: [],
   whiteSparks: [],
 };
@@ -29,7 +29,7 @@ const initialState = {
 const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) => {
     const { masterUmaList, masterSkillList, addParent, updateParent } = useAppContext();
     
-    const [formData, setFormData] = useState<Omit<NewParentData, 'gen'>>(initialState);
+    const [formData, setFormData] = useState<NewParentData>(initialState);
     const [currentUniqueSkill, setCurrentUniqueSkill] = useState<any>(null);
     const [currentUniqueStars, setCurrentUniqueStars] = useState<1 | 2 | 3>(3);
     const [currentWhiteSkill, setCurrentWhiteSkill] = useState<any>(null);
@@ -113,13 +113,13 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
                     <div className="grid grid-cols-2 gap-4">
                         <div>
                             <label className="form__label">Type</label>
-                            <select className="form__input" value={formData.blueSpark.type} onChange={e => handleSparkChange('blueSpark', 'type', e.target.value)}>
+                            <select className="form__input" value={formData.blueSpark.type} onChange={e => handleSparkChange('blueSpark', 'type', e.target.value as BlueSpark['type'])}>
                                 {BLUE_SPARK_TYPES.map(t => <option key={t}>{t}</option>)}
                             </select>
                         </div>
                         <div>
                             <label className="form__label">Stars</label>
-                            <select className="form__input" value={formData.blueSpark.stars} onChange={e => handleSparkChange('blueSpark', 'stars', Number(e.target.value))}>
+                            <select className="form__input" value={formData.blueSpark.stars} onChange={e => handleSparkChange('blueSpark', 'stars', Number(e.target.value) as 1|2|3)}>
                                 {STAR_OPTIONS.map(s => <option key={s}>{s}</option>)}
                             </select>
                         </div>
@@ -137,7 +137,7 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
                         </div>
                         <div>
                             <label className="form__label">Stars</label>
-                            <select className="form__input" value={formData.pinkSpark.stars} onChange={e => handleSparkChange('pinkSpark', 'stars', Number(e.target.value))}>
+                            <select className="form__input" value={formData.pinkSpark.stars} onChange={e => handleSparkChange('pinkSpark', 'stars', Number(e.target.value) as 1|2|3)}>
                                 {STAR_OPTIONS.map(s => <option key={s}>{s}</option>)}
                             </select>
                         </div>
