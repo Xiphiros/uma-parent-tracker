@@ -1,0 +1,37 @@
+/* Card Block */
+.card {
+    background-color: var(--color-card-bg);
+    padding: 1.5rem; /* p-6 */
+    border-radius: 0.75rem; /* rounded-xl */
+    box-shadow: var(--color-shadow);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+.card__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 0.75rem; /* pb-3 */
+    margin-bottom: 1rem; /* mb-4 */
+    transition: border-color 0.3s ease;
+}
+.card__title {
+    display: flex;
+    align-items: center;
+    font-size: 1.5rem; /* text-2xl */
+    font-weight: 700; /* font-bold */
+    color: var(--color-text-primary);
+    margin-bottom: 1rem; /* mb-4 */
+    transition: color 0.3s ease;
+}
+.card__title-icon--highlight {
+    color: var(--color-score);
+}
+.card__header .card__title {
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+.card__placeholder-text {
+    color: var(--color-text-muted);
+}
