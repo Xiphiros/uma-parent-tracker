@@ -18,6 +18,30 @@ const GoalDefinition = () => {
     const uniqueSkills = useMemo(() => masterSkillList.filter(s => s.type === 'unique'), [masterSkillList]);
     const normalSkills = useMemo(() => masterSkillList.filter(s => s.type !== 'unique' && s.rarity === 1), [masterSkillList]);
 
+    const availableNormalSkills = useMemo(() => {
+        if (!goal) return normalSkills;
+        
+        // Create a map of skill names to their group IDs for efficient lookup
+        const skillNameToGroupId = new Map<string, number | undefined>();
+        masterSkillList.forEach(skill => {
+            skillNameToGroupId.set(skill.name_en, skill.groupId);
+        });
+
+        // Get all group IDs that are already in the wishlist
+        const wishlistedGroupIds = new Set<number>();
+        goal.wishlist.forEach(item => {
+            const groupId = skillNameToGroupId.get(item.name);
+            if (groupId) {
+                wishlistedGroupIds.add(groupId);
+            }
+        });
+
+        // Filter the list of selectable skills
+        return normalSkills.filter(skill => 
+            !skill.groupId || !wishlistedGroupIds.has(skill.groupId)
+        );
+    }, [goal, normalSkills, masterSkillList]);
+
     if (!goal) return null;
 
     const handleGoalChange = (changedValues: Partial<Goal>) => {
@@ -76,7 +100,7 @@ const GoalDefinition = () => {
                 <WishlistSection 
                     title="White Spark Wishlist"
                     wishlist={goal.wishlist}
-                    skillList={normalSkills}
+                    skillList={availableNormalSkills}
                     onAdd={(item) => handleWishlistAdd('wishlist', item)}
                     onRemove={(name) => handleWishlistRemove('wishlist', name)}
                     onUpdate={(oldName, newItem) => handleWishlistUpdate('wishlist', oldName, newItem)}
