@@ -1,0 +1,38 @@
+/* Header Block */
+.header__title {
+    color: var(--color-text-header);
+    transition: color 0.3s ease;
+}
+.header__subtitle {
+    color: var(--color-text-secondary);
+    transition: color 0.3s ease;
+}
+.header__actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+.header__actions .button {
+    cursor: pointer;
+}
+.theme-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 0.375rem;
+    background-color: var(--color-card-bg-hover);
+    color: var(--color-text-muted);
+    transition: background-color 0.3s ease, color 0.3s ease;
+    cursor: pointer;
+}
+.theme-toggle:hover {
+    color: var(--color-text-primary);
+}
+.theme-toggle .icon {
+    width: 20px;
+    height: 20px;
+}
