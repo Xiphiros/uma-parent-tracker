@@ -1,13 +1,16 @@
-import { useMemo, useState } from 'react';
+import { useMemo, useState, useRef } from 'react';
 import { useAppContext } from '../context/AppContext';
 import ParentCard from './ParentCard';
 import AddParentModal from './AddParentModal';
 import { Parent } from '../types';
+import { useScrollLock } from '../hooks/useScrollLock';
 
 const Roster = () => {
     const { getActiveProfile, deleteParent } = useAppContext();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [parentToEdit, setParentToEdit] = useState<Parent | null>(null);
+    const rosterContainerRef = useRef<HTMLDivElement>(null);
+    useScrollLock(rosterContainerRef);
     
     const activeProfile = getActiveProfile();
     const roster = activeProfile?.roster ?? [];
@@ -45,7 +48,7 @@ const Roster = () => {
                         Add Parent
                     </button>
                 </div>
-                <div id="roster-container" className="roster space-y-4 max-h-[70vh] overflow-y-auto pr-2">
+                <div id="roster-container" className="roster space-y-4 max-h-[70vh] overflow-y-auto pr-2" ref={rosterContainerRef}>
                     {sortedRoster.length > 0 ? (
                         sortedRoster.map(parent => (
                             <ParentCard 
