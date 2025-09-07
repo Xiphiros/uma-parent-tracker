@@ -1,7 +1,8 @@
 import { createContext, useContext, useState, useEffect, ReactNode, useRef } from 'react';
-import { AppData, Profile, Skill, Uma, Goal } from '../types';
+import { AppData, Profile, Skill, Uma, Goal, Parent, NewParentData } from '../types';
 import masterSkillListJson from '../data/skill-list.json';
 import masterUmaListJson from '../data/uma-list.json';
+import { calculateScore } from '../utils/scoring';
 
 const DB_KEY = 'umaTrackerData_v2';
 
@@ -19,6 +20,9 @@ interface AppContextType {
   renameProfile: (id: number, newName: string) => void;
   deleteProfile: (id: number) => void;
   updateGoal: (goal: Goal) => void;
+  addParent: (parentData: NewParentData) => void;
+  updateParent: (parent: Parent) => void;
+  deleteParent: (parentId: number) => void;
 }
 
 const AppContext = createContext<AppContextType | null>(null);
@@ -167,8 +171,72 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
   const updateGoal = (goal: Goal) => {
     setAppData(prevData => ({
       ...prevData,
+      profiles: prevData.profiles.map(p => {
+        if (p.id === prevData.activeProfileId) {
+          // Recalculate scores for all parents in the roster with the new goal
+          const updatedRoster = p.roster.map(parent => ({
+            ...parent,
+            score: calculateScore(parent, goal)
+          }));
+          return { ...p, goal, roster: updatedRoster };
+        }
+        return p;
+      })
+    }));
+  };
+
+  const getNextGenNumber = (): number => {
+    const roster = getActiveProfile()?.roster ?? [];
+    return roster.length > 0 ? Math.max(...roster.map(p => p.gen)) + 1 : 1;
+  };
+
+  const addParent = (parentData: NewParentData) => {
+    const activeProfile = getActiveProfile();
+    if (!activeProfile) return;
+
+    const newParent: Parent = {
+      ...parentData,
+      id: Date.now(),
+      gen: getNextGenNumber(),
+      score: calculateScore(parentData, activeProfile.goal),
+    };
+
+    setAppData(prevData => ({
+      ...prevData,
       profiles: prevData.profiles.map(p => 
-        p.id === prevData.activeProfileId ? { ...p, goal } : p
+        p.id === prevData.activeProfileId 
+        ? { ...p, roster: [...p.roster, newParent] } 
+        : p
+      )
+    }));
+  };
+
+  const updateParent = (parent: Parent) => {
+    const activeProfile = getActiveProfile();
+    if (!activeProfile) return;
+
+    const updatedParent = {
+      ...parent,
+      score: calculateScore(parent, activeProfile.goal)
+    };
+
+    setAppData(prevData => ({
+      ...prevData,
+      profiles: prevData.profiles.map(p => 
+        p.id === prevData.activeProfileId 
+        ? { ...p, roster: p.roster.map(r => r.id === parent.id ? updatedParent : r) } 
+        : p
+      )
+    }));
+  };
+
+  const deleteParent = (parentId: number) => {
+    setAppData(prevData => ({
+      ...prevData,
+      profiles: prevData.profiles.map(p => 
+        p.id === prevData.activeProfileId 
+        ? { ...p, roster: p.roster.filter(r => r.id !== parentId) } 
+        : p
       )
     }));
   };
@@ -186,7 +254,10 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
     switchProfile,
     renameProfile,
     deleteProfile,
-    updateGoal
+    updateGoal,
+    addParent,
+    updateParent,
+    deleteParent,
   };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
