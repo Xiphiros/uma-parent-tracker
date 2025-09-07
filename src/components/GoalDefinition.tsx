@@ -46,7 +46,7 @@ const GoalDefinition = () => {
 
     if (!goal) return null;
 
-    const isUniqueWishlisted = goal.uniqueWishlist.length > 0;
+    const isUniqueWishlistFull = goal.uniqueWishlist.length >= 6;
 
     const handleGoalChange = (changedValues: Partial<Goal>) => {
         updateGoal({ ...goal, ...changedValues });
@@ -99,7 +99,7 @@ const GoalDefinition = () => {
                     onAdd={(item) => handleWishlistAdd('uniqueWishlist', item)}
                     onRemove={(name) => handleWishlistRemove('uniqueWishlist', name)}
                     onUpdate={(oldName, newItem) => handleWishlistUpdate('uniqueWishlist', oldName, newItem)}
-                    disableAdd={isUniqueWishlisted}
+                    disableAdd={isUniqueWishlistFull}
                 />
                 
                 <WishlistSection 
