@@ -1,2 +1,5 @@
 @import "tailwindcss";
-@import "./css/styles.css";
+@import "./css/main.css";
+@import "./css/elements/Button.css";
+@import "./css/elements/Card.css";
+@import "./css/elements/Form.css";
