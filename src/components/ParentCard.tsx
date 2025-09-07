@@ -2,6 +2,7 @@ import { useMemo } from 'react';
 import { useAppContext } from '../context/AppContext';
 import { Parent } from '../types';
 import SparkTag from './common/SparkTag';
+import './ParentCard.css';
 
 interface ParentCardProps {
     parent: Parent;
