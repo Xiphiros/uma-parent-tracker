@@ -1,5 +1,6 @@
 import { useClickOutside } from '../../hooks/useClickOutside';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
+import { useScrollLock } from '../../hooks/useScrollLock';
 
 interface MultiSelectProps {
   options: string[];
@@ -14,6 +15,8 @@ const MultiSelect = ({ options, selectedValues, onChange, placeholder = "Select.
   const dropdownRef = useClickOutside<HTMLDivElement>(() => {
     setIsOpen(false);
   });
+  const listRef = useRef<HTMLDivElement>(null);
+  useScrollLock(listRef);
 
   const handleSelect = (option: string) => {
     let newSelected: string[];
@@ -46,7 +49,7 @@ const MultiSelect = ({ options, selectedValues, onChange, placeholder = "Select.
         {selectedValues.length === 0 && <span className="text-gray-400 ml-2">{placeholder}</span>}
       </div>
       {isOpen && (
-        <div className="multi-select__dropdown">
+        <div className="multi-select__dropdown" ref={listRef}>
           {options.map(option => (
             <label key={option} className="multi-select__dropdown-item">
               <input
