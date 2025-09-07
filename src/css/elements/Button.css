@@ -9,6 +9,10 @@
     transition: background-color 0.2s ease;
     cursor: pointer;
 }
+.button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
 .button--primary {
     background-color: var(--color-button-primary-bg);
     color: white;
@@ -16,7 +20,7 @@
 html.dark .button--primary {
     color: var(--color-text-inverted);
 }
-.button--primary:hover {
+.button--primary:hover:not(:disabled) {
     background-color: var(--color-button-primary-hover);
 }
 .button--secondary {
@@ -26,14 +30,14 @@ html.dark .button--primary {
 html.dark .button--secondary {
     color: #1e293b;
 }
-.button--secondary:hover {
+.button--secondary:hover:not(:disabled) {
     background-color: var(--color-button-secondary-hover);
 }
 .button--neutral {
     background-color: var(--color-button-neutral-bg);
     padding: 0.5rem 0.75rem;
 }
-.button--neutral:hover {
+.button--neutral:hover:not(:disabled) {
     background-color: var(--color-button-neutral-hover);
 }
 .button--small {
@@ -44,6 +48,6 @@ html.dark .button--secondary {
     background-color: var(--color-button-danger-bg);
     color: white;
 }
-.button--danger:hover {
+.button--danger:hover:not(:disabled) {
     background-color: var(--color-button-danger-hover);
 }
