@@ -44,7 +44,7 @@ def prepare_skills():
             continue
             
         # Skip skills with no name entry (usually dummy skills)
-        if skill_id not in skill_names:
+        if skill_id not in skill_names or not skill_names[skill_id]:
             continue
             
         # Skip green skills (effects are only stat boosts)
@@ -54,11 +54,16 @@ def prepare_skills():
             effects = first_alt.get('effects', [])
             if effects and all(1 <= e.get('type', 0) <= 5 for e in effects):
                 continue
+
+        name_list = skill_names[skill_id]
+        name_jp = name_list[0]
+        # Safely get the English name, falling back to Japanese if it's missing or empty
+        name_en = name_list[1] if len(name_list) > 1 and name_list[1] else name_jp
                 
         inheritable_skills.append({
             'id': skill_id,
-            'name_jp': skill_names[skill_id][0],
-            'name_en': skill_names[skill_id][1] or skill_names[skill_id][0],
+            'name_jp': name_jp,
+            'name_en': name_en,
             'type': 'unique' if is_inherited_unique else 'normal',
             'rarity': skill.get('rarity')
         })
