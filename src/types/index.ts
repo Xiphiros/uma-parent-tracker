@@ -3,6 +3,7 @@ export interface Skill {
   name_jp: string;
   name_en: string;
   type: 'unique' | 'normal';
+  rarity?: number;
 }
 
 export interface Uma {
