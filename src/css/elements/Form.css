@@ -1,0 +1,94 @@
+/* Form Block */
+.form__label {
+    display: block;
+    font-size: 0.875rem; /* text-sm */
+    font-weight: 500; /* font-medium */
+    color: var(--color-text-primary);
+    margin-bottom: 0.25rem;
+}
+.form__label--xs {
+    font-size: 0.75rem; /* text-xs */
+    color: var(--color-text-secondary);
+}
+.form__input {
+    display: block;
+    width: 100%;
+    padding: 0.5rem 0.75rem; /* px-3 py-2 */
+    background-color: var(--color-input-bg);
+    border: 1px solid var(--color-border-input);
+    border-radius: 0.375rem; /* rounded-md */
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05); /* shadow-sm */
+    color: var(--color-text-primary);
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+.form__input:focus {
+    outline: none;
+    --tw-ring-color: var(--color-border-active);
+    --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+    --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+    box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
+    border-color: var(--color-border-active);
+}
+
+.form__static-text {
+    width: 100%;
+    margin-top: 0.25rem;
+    padding: 0.5rem 0.75rem;
+    background-color: var(--color-card-bg-hover);
+    border: 1px solid var(--color-border-input);
+    border-radius: 0.375rem;
+    color: var(--color-text-secondary);
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+.form__footer {
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--color-border);
+    margin-top: 1rem; /* mt-4 */
+    transition: border-color 0.3s ease;
+}
+.form__section {
+    border-top: 1px solid var(--color-border);
+    padding-top: 1rem;
+    transition: border-color 0.3s ease;
+}
+.form__section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+.form__section-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    transition: color 0.3s ease;
+}
+.form__input-group {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+.form__obtained-sparks-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 0.5rem 0;
+    min-height: 2.5rem;
+}
+.obtained-spark {
+    position: relative;
+    padding-right: 1.75rem; /* Make space for remove button */
+}
+.obtained-spark__remove-btn {
+    position: absolute;
+    top: 50%;
+    right: 0.5rem;
+    transform: translateY(-50%);
+    font-weight: bold;
+    color: var(--color-text-secondary);
+    opacity: 0.5;
+    cursor: pointer;
+}
+.obtained-spark__remove-btn:hover {
+    opacity: 1;
+}
