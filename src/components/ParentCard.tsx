@@ -5,9 +5,11 @@ import SparkTag from './common/SparkTag';
 interface ParentCardProps {
     parent: Parent;
     isTopParent?: boolean;
+    onEdit?: () => void;
+    onDelete?: () => void;
 }
 
-const ParentCard = ({ parent, isTopParent = false }: ParentCardProps) => {
+const ParentCard = ({ parent, isTopParent = false, onEdit, onDelete }: ParentCardProps) => {
     const { getActiveProfile } = useAppContext();
     const goal = getActiveProfile()?.goal;
 
@@ -23,8 +25,8 @@ const ParentCard = ({ parent, isTopParent = false }: ParentCardProps) => {
                     <div className="parent-card__score">{parent.score} pts</div>
                      {!isTopParent && (
                         <div className="parent-card__actions">
-                            <button data-id={parent.id} className="parent-card__edit-btn">Edit</button>
-                            <button data-id={parent.id} className="parent-card__delete-btn">Delete</button>
+                            <button onClick={onEdit} className="parent-card__edit-btn">Edit</button>
+                            <button onClick={onDelete} className="parent-card__delete-btn">Delete</button>
                         </div>
                     )}
                 </div>
@@ -51,9 +53,9 @@ const ParentCard = ({ parent, isTopParent = false }: ParentCardProps) => {
                 
                 <div className="parent-card__spark-container mt-2 parent-card__spark-container--white">
                     {parent.whiteSparks.length > 0 ? (
-                        parent.whiteSparks.map(spark => {
+                        parent.whiteSparks.filter(spark => goal?.wishlist.some(w => w.name === spark.name)).map(spark => {
                             const wishlistItem = goal?.wishlist.find(w => w.name === spark.name);
-                            if (!wishlistItem) return null; // Only show wishlist sparks
+                            if (!wishlistItem) return null; // Should not happen due to filter
                             const tier = `Rank ${wishlistItem.tier}`;
                             return (
                                 <SparkTag key={spark.name} category="white" type={spark.name} stars={spark.stars}>
