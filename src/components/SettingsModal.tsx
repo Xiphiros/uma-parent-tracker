@@ -13,6 +13,7 @@ const SettingsModal = ({ isOpen, onClose }: SettingsModalProps) => {
     const [isImportConfirmOpen, setImportConfirmOpen] = useState(false);
     const [isDeleteConfirmOpen, setDeleteConfirmOpen] = useState(false);
     const [fileToImport, setFileToImport] = useState<File | null>(null);
+    const [errorMessage, setErrorMessage] = useState('');
     const fileInputRef = useRef<HTMLInputElement>(null);
 
     const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -29,7 +30,7 @@ const SettingsModal = ({ isOpen, onClose }: SettingsModalProps) => {
                 await importData(fileToImport);
                 onClose(); // Close main settings modal on success
             } catch (e) {
-                alert(`Error importing file: ${e instanceof Error ? e.message : 'Unknown error'}`);
+                setErrorMessage(`Error importing file: ${e instanceof Error ? e.message : 'Unknown error'}`);
             } finally {
                 setImportConfirmOpen(false);
                 setFileToImport(null);
@@ -113,6 +114,17 @@ const SettingsModal = ({ isOpen, onClose }: SettingsModalProps) => {
                 <div className="dialog-modal__footer">
                     <button className="button button--neutral" onClick={() => setDeleteConfirmOpen(false)}>Cancel</button>
                     <button className="button button--danger" onClick={handleDeleteConfirm}>Delete Everything</button>
+                </div>
+            </Modal>
+
+            <Modal
+                isOpen={!!errorMessage}
+                onClose={() => setErrorMessage('')}
+                title="Import Error"
+            >
+                <p className="dialog-modal__message">{errorMessage}</p>
+                <div className="dialog-modal__footer">
+                    <button className="button button--primary" onClick={() => setErrorMessage('')}>OK</button>
                 </div>
             </Modal>
         </>
