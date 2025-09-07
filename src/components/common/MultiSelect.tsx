@@ -17,7 +17,7 @@ const MultiSelect = ({ options, selectedValues, onChange, placeholder = "Select.
     setIsOpen(false);
   });
   const listRef = useRef<HTMLDivElement>(null);
-  useScrollLock(listRef);
+  useScrollLock(listRef, isOpen);
 
   const handleSelect = (option: string) => {
     let newSelected: string[];
