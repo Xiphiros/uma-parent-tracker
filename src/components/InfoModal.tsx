@@ -6,14 +6,14 @@ interface InfoModalProps {
     onClose: () => void;
 }
 
-const APP_VERSION = '1.0.0';
+const APP_VERSION = '0.2.0';
 
 const InfoModal = ({ isOpen, onClose }: InfoModalProps) => {
     return (
         <Modal isOpen={isOpen} onClose={onClose} title="About This Application" size="lg">
             <div className="info-modal__content">
                 <h3 className="info-modal__app-title">Umamusume Parent Tracker</h3>
-                <p className="info-modal__meta">Version {APP_VERSION} &bull; Created by Xiph</p>
+                <p className="info-modal__meta">Version {APP_VERSION} (In Development) &bull; Created by Xiph</p>
 
                 <div className="info-modal__section">
                     <h4 className="info-modal__section-title">License</h4>
