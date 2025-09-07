@@ -40,7 +40,10 @@ const Roster = () => {
             <section className="lg:col-span-2 card">
                 <div className="card__header">
                     <h2 className="card__title">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mr-2 text-teal-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7" /></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-6 w-6 mr-2 text-teal-500">
+                          <path d="M3.375 3C2.339 3 1.5 3.84 1.5 4.875v.75c0 1.036.84 1.875 1.875 1.875h17.25c1.035 0 1.875-.84 1.875-1.875v-.75C22.5 3.839 21.66 3 20.625 3H3.375Z" />
+                          <path fillRule="evenodd" d="M3.087 9l.54 9.176A3 3 0 0 0 6.62 21h10.757a3 3 0 0 0 2.995-2.824L20.914 9H3.086Zm6.134 4.5a.75.75 0 0 1 .75-.75h2.06a.75.75 0 0 1 0 1.5H9.97a.75.75 0 0 1-.75-.75Zm-2.25 4.5a.75.75 0 0 1 .75-.75h6.56a.75.75 0 0 1 0 1.5H7.72a.75.75 0 0 1-.75-.75Z" clipRule="evenodd" />
+                        </svg>
                         Roster
                     </h2>
                     <button id="add-parent-btn" className="button button--secondary" onClick={handleOpenAddModal}>
