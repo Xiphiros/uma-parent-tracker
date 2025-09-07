@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useAppContext } from '../context/AppContext';
 import Modal from './common/Modal';
 import { Profile } from '../types';
+import './Tabs.css';
 
 const Tabs = () => {
     const { appData, switchProfile, addProfile, renameProfile, deleteProfile } = useAppContext();
