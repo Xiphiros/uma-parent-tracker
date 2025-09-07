@@ -124,3 +124,16 @@ The exported data is stored in a JSON file with the following structure:
 * **`version`**: The schema version number. This helps with migrating data in future updates.
 * **`goal`**: An object containing your goal parent definition.
 * **`roster`**: An array of objects, where each object represents a parent in your roster.
+
+---
+
+### Data Source & Credits
+
+The skill and character datasets used in this application are sourced from the incredible work done by Alpha123 on the [uma-tools](https://github.com/alpha123/uma-tools) project, specifically the [umalator-global](https://github.com/alpha123/uma-tools/tree/master/umalator-global) dataset. This tool would not be possible without their effort.
+
+### Special Thanks
+
+Thank you to the following people for their help with testing and feedback:
+
+*   *Diabellstar*
+*   *Sloovy*
