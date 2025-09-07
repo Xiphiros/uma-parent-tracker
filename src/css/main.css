@@ -1,0 +1,116 @@
+html {
+    /* New Light Theme Palette (Stone & Amber) */
+    --color-bg: #fafaf9; /* stone-50 */
+    --color-text-header: #292524; /* stone-800 */
+    --color-text-primary: #44403c; /* stone-700 */
+    --color-text-secondary: #57534e; /* stone-600 */
+    --color-text-muted: #78716c; /* stone-500 */
+    --color-text-placeholder: #a8a29e; /* stone-400 */
+    --color-text-inverted: white;
+    --color-text-link: #4f46e5; /* indigo-600 */
+    --color-text-link-hover: #3730a3; /* indigo-800 */
+    --color-text-danger: #dc2626; /* red-600 */
+    --color-text-danger-hover: #991b1b; /* red-800 */
+
+    --color-border: #e7e5e4; /* stone-200 */
+    --color-border-input: #d6d3d1; /* stone-300 */
+    --color-border-active: #6366f1; /* indigo-500 */
+
+    --color-card-bg: white;
+    --color-card-bg-hover: #f5f5f4; /* stone-100 */
+    --color-input-bg: white;
+    --color-score: #d97706; /* amber-600 */
+    
+    --color-button-primary-bg: #4f46e5; /* indigo-600 */
+    --color-button-primary-hover: #4338ca; /* indigo-700 */
+    --color-button-secondary-bg: #0d9488; /* teal-600 */
+    --color-button-secondary-hover: #0f766e; /* teal-700 */
+    --color-button-neutral-bg: #57534e; /* stone-600 */
+    --color-button-neutral-hover: #44403c; /* stone-700 */
+    --color-button-danger-bg: #dc2626; /* red-600 */
+    --color-button-danger-hover: #b91c1c; /* red-700 */
+
+    --color-top-pair-border: #f59e0b; /* amber-500 */
+
+    --color-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.07), 0 2px 4px -2px rgb(0 0 0 / 0.07);
+    --color-modal-overlay: rgba(28, 25, 23, 0.5); /* stone-900 w/ alpha */
+    --color-dialog-overlay: rgba(28, 25, 23, 0.75); /* stone-900 w/ alpha */
+}
+
+html.dark {
+    /* New Dark Theme Palette (Stone & Amber) */
+    --color-bg: #1c1917; /* stone-900 */
+    --color-text-header: #f5f5f4; /* stone-100 */
+    --color-text-primary: #d6d3d1; /* stone-300 */
+    --color-text-secondary: #a8a29e; /* stone-400 */
+    --color-text-muted: #78716c; /* stone-500 */
+    --color-text-placeholder: #78716c; /* stone-500 */
+    --color-text-inverted: #f5f5f4; /* stone-100 */
+    --color-text-link: #818cf8; /* indigo-400 */
+    --color-text-link-hover: #a5b4fc; /* indigo-300 */
+    --color-text-danger: #f87171; /* red-400 */
+    --color-text-danger-hover: #fb923c; /* orange-400 */
+
+    --color-border: #44403c; /* stone-700 */
+    --color-border-input: #57534e; /* stone-600 */
+    --color-border-active: #818cf8; /* indigo-400 */
+
+    --color-card-bg: #292524; /* stone-800 */
+    --color-card-bg-hover: #44403c; /* stone-700 */
+    --color-input-bg: #292524; /* stone-800 */
+    --color-score: #fcd34d; /* amber-400 */
+
+    --color-button-neutral-bg: #57534e; /* stone-600 */
+    --color-button-neutral-hover: #44403c; /* stone-700 */
+
+    --color-top-pair-border: var(--color-score);
+
+    --color-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.4), 0 2px 4px -2px rgb(0 0 0 / 0.4);
+    --color-modal-overlay: rgba(0, 0, 0, 0.7);
+    --color-dialog-overlay: rgba(0, 0, 0, 0.85);
+}
+
+
+.page {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--color-bg);
+    color: var(--color-text-primary);
+    -webkit-font-smoothing: antialiased;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    min-height: 100vh;
+}
+
+/* Visually Hidden Utility */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+
+/* Simple scrollbar styling */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: var(--color-card-bg-hover);
+}
+::-webkit-scrollbar-thumb {
+    background: #a8a29e;
+    border-radius: 10px;
+}
+html.dark ::-webkit-scrollbar-thumb {
+    background: #57534e;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #78716c;
+}
+html.dark ::-webkit-scrollbar-thumb:hover {
+    background: #44403c;
+}
