@@ -28,6 +28,12 @@ const GoalDefinition = () => {
         return map;
     }, [masterSkillList]);
 
+    const availableUniqueSkills = useMemo(() => {
+        if (!goal) return uniqueSkills;
+        const wishlistedNames = new Set(goal.uniqueWishlist.map(item => item.name));
+        return uniqueSkills.filter(skill => !wishlistedNames.has(skill.name_en));
+    }, [goal, uniqueSkills]);
+
     const availableNormalSkills = useMemo(() => {
         if (!goal) return normalSkills;
         
@@ -95,7 +101,7 @@ const GoalDefinition = () => {
                 <WishlistSection 
                     title="Unique Spark Wishlist"
                     wishlist={goal.uniqueWishlist}
-                    skillList={uniqueSkills}
+                    skillList={availableUniqueSkills}
                     onAdd={(item) => handleWishlistAdd('uniqueWishlist', item)}
                     onRemove={(name) => handleWishlistRemove('uniqueWishlist', name)}
                     onUpdate={(oldName, newItem) => handleWishlistUpdate('uniqueWishlist', oldName, newItem)}
