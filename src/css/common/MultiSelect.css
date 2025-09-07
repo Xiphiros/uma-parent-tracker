@@ -1,0 +1,56 @@
+/* Multi-select Block */
+.multi-select {
+    position: relative;
+}
+.multi-select__input {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 0.25rem;
+    border: 1px solid var(--color-border-input);
+    border-radius: 0.375rem;
+    min-height: 42px;
+    cursor: pointer;
+    background-color: var(--color-input-bg);
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+.multi-select__chip {
+    display: flex;
+    align-items: center;
+    background-color: #e0e7ff;
+    color: #3730a3;
+    border-radius: 9999px;
+    padding: 0.25rem 0.75rem;
+    margin: 0.25rem;
+    font-size: 0.875rem;
+}
+html.dark .multi-select__chip {
+    background-color: #3730a3;
+    color: #e0e7ff;
+}
+.multi-select__chip-remove {
+    margin-left: 0.5rem;
+    cursor: pointer;
+    font-weight: bold;
+}
+.multi-select__dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: var(--color-card-bg);
+    border: 1px solid var(--color-border);
+    border-top: none;
+    border-radius: 0 0 0.375rem 0.375rem;
+    z-index: 10;
+    max-height: 200px;
+    overflow-y: auto;
+}
+.multi-select__dropdown-item {
+    display: block;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+}
+.multi-select__dropdown-item:hover {
+    background-color: var(--color-card-bg-hover);
+}
