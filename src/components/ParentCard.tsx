@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { useAppContext } from '../context/AppContext';
 import { Parent } from '../types';
 import SparkTag from './common/SparkTag';
@@ -12,6 +13,13 @@ interface ParentCardProps {
 const ParentCard = ({ parent, isTopParent = false, onEdit, onDelete }: ParentCardProps) => {
     const { getActiveProfile } = useAppContext();
     const goal = getActiveProfile()?.goal;
+
+    const whiteSparksOnWishlist = useMemo(() => {
+        if (!goal) return [];
+        return parent.whiteSparks.filter(spark => 
+            goal.wishlist.some(w => w.name === spark.name)
+        );
+    }, [parent.whiteSparks, goal]);
 
     return (
         <div className={`parent-card ${isTopParent ? 'parent-card--top-pair' : ''}`}>
@@ -52,8 +60,8 @@ const ParentCard = ({ parent, isTopParent = false, onEdit, onDelete }: ParentCar
                 )}
                 
                 <div className="parent-card__spark-container mt-2 parent-card__spark-container--white">
-                    {parent.whiteSparks.length > 0 ? (
-                        parent.whiteSparks.filter(spark => goal?.wishlist.some(w => w.name === spark.name)).map(spark => {
+                    {whiteSparksOnWishlist.length > 0 ? (
+                        whiteSparksOnWishlist.map(spark => {
                             const wishlistItem = goal?.wishlist.find(w => w.name === spark.name);
                             if (!wishlistItem) return null; // Should not happen due to filter
                             const tier = `Rank ${wishlistItem.tier}`;
