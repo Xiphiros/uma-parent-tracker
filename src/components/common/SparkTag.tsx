@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
 import { formatStars } from '../../utils/ui';
+import './SparkTag.css';
 
 type SparkCategory = 'blue' | 'pink' | 'unique' | 'white';
 
