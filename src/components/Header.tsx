@@ -16,7 +16,9 @@ const Header = () => {
                 <p className="header__subtitle mt-2">A point-based system for progressive parent farming.</p>
                 <div className="header__actions">
                     <button id="settings-btn" className="theme-toggle" title="Settings" onClick={() => setSettingsModalOpen(true)}>
-                        <svg className="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M11.49 3.17a.75.75 0 01.447.886l-1.353 4.869a.75.75 0 01-1.341.342l-1.353-4.869a.75.75 0 01.886-1.034l1.712.433zM10 0a.75.75 0 01.75.75v1.252a.75.75 0 01-1.5 0V.75A.75.75 0 0110 0zM7.5 15.586a.75.75 0 00-1.06 1.06l-1.152 1.151a.75.75 0 001.06 1.06l1.152-1.151a.75.75 0 00-1.06-1.06zM13.53 16.646a.75.75 0 001.06-1.06l1.151-1.152a.75.75 0 00-1.06-1.06l-1.151 1.152a.75.75 0 00-1.06 1.06zM2 10a.75.75 0 01.75-.75h1.252a.75.75 0 010 1.5H2.75A.75.75 0 012 10zM15.248 10a.75.75 0 01.75-.75h1.252a.75.75 0 010 1.5h-1.252a.75.75 0 01-.75-.75zM6.47 4.354a.75.75 0 00-1.06-1.06L4.258 4.445a.75.75 0 001.06 1.06L6.47 4.354zM14.596 5.404a.75.75 0 001.06-1.06l-1.152-1.151a.75.75 0 10-1.06 1.06l1.152 1.151zM10 18a.75.75 0 01.75-.75v-1.252a.75.75 0 01-1.5 0v1.252c0 .414.336.75.75.75zM10 5a5 5 0 100 10 5 5 0 000-10z" clipRule="evenodd" /></svg>
+                        <svg className="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M5 4a1 1 0 0 0-2 0v2.268a2 2 0 0 0 0 3.464V16a1 1 0 0 0 2 0v-6.268a2 2 0 0 0 0-3.464V4ZM11 4a1 1 0 1 0-2 0v2.268a2 2 0 0 0 0 3.464V16a1 1 0 1 0 2 0v-6.268a2 2 0 0 0 0-3.464V4ZM17 4a1 1 0 1 0-2 0v2.268a2 2 0 0 0 0 3.464V16a1 1 0 1 0 2 0v-6.268a2 2 0 0 0 0-3.464V4Z" />
+                        </svg>
                     </button>
                     <button id="theme-toggle-btn" className="theme-toggle" title="Toggle theme" onClick={toggleTheme}>
                         {theme === 'light' ? (
