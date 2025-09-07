@@ -24,6 +24,11 @@
     box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
     border-color: var(--color-border-active);
 }
+.searchable-select__button:disabled {
+    background-color: var(--color-card-bg-hover);
+    color: var(--color-text-muted);
+    cursor: not-allowed;
+}
 .searchable-select__button-placeholder {
     color: var(--color-text-placeholder);
 }
@@ -60,7 +65,8 @@
     padding: 0.5rem 1rem;
     cursor: pointer;
     font-size: 0.875rem;
-    transition: background-color 0.2s ease;
+    transition: background-color 0.2s ease, color 0.3s ease;
+    color: var(--color-text-primary);
 }
 .searchable-select__item:hover, .searchable-select__item--active {
     background-color: var(--color-card-bg-hover);
