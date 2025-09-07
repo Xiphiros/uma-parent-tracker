@@ -15,6 +15,7 @@ const Tabs = () => {
     const [isRenameModalOpen, setRenameModalOpen] = useState(false);
     const [renameValue, setRenameValue] = useState('');
     const [isDeleteConfirmOpen, setDeleteConfirmOpen] = useState(false);
+    const [alertMessage, setAlertMessage] = useState('');
 
     const handleAddProfile = () => {
         if (newProfileName.trim()) {
@@ -40,7 +41,8 @@ const Tabs = () => {
         if (settingsModalProfile && profiles.length > 1) {
             setDeleteConfirmOpen(true);
         } else {
-            alert('You cannot delete the last project.');
+            setSettingsModalProfile(null);
+            setAlertMessage('You cannot delete the last project.');
         }
     };
 
@@ -134,6 +136,17 @@ const Tabs = () => {
                 <div className="dialog-modal__footer">
                     <button className="button button--neutral" onClick={() => setDeleteConfirmOpen(false)}>Cancel</button>
                     <button className="button button--danger" onClick={handleConfirmDelete}>Delete Project</button>
+                </div>
+            </Modal>
+            
+            <Modal
+                isOpen={!!alertMessage}
+                onClose={() => setAlertMessage('')}
+                title="Action Not Allowed"
+            >
+                <p className="dialog-modal__message">{alertMessage}</p>
+                <div className="dialog-modal__footer">
+                    <button className="button button--primary" onClick={() => setAlertMessage('')}>OK</button>
                 </div>
             </Modal>
         </>
