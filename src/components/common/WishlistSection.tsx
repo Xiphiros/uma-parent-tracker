@@ -10,21 +10,43 @@ interface WishlistSectionProps {
   skillList: Skill[];
   onAdd: (item: WishlistItem) => void;
   onRemove: (itemName: string) => void;
+  onUpdate: (oldName: string, newItem: WishlistItem) => void;
 }
 
 const WISH_RANK_ORDER: { [key: string]: number } = { S: 0, A: 1, B: 2, C: 3 };
+const TIER_OPTIONS: WishlistItem['tier'][] = ['S', 'A', 'B', 'C'];
 
-const WishlistSection = ({ title, wishlist, skillList, onAdd, onRemove }: WishlistSectionProps) => {
+const WishlistSection = ({ title, wishlist, skillList, onAdd, onRemove, onUpdate }: WishlistSectionProps) => {
   const [selectedSkill, setSelectedSkill] = useState<Skill | null>(null);
-  const [selectedTier, setSelectedTier] = useState<'S' | 'A' | 'B' | 'C'>('S');
+  const [selectedTier, setSelectedTier] = useState<WishlistItem['tier']>('S');
   const wishlistContainerRef = useRef<HTMLDivElement>(null);
   useScrollLock(wishlistContainerRef);
+
+  const [editingItemName, setEditingItemName] = useState<string | null>(null);
+  const [editingTier, setEditingTier] = useState<WishlistItem['tier']>('S');
 
   const handleAdd = () => {
     if (selectedSkill) {
       onAdd({ name: selectedSkill.name_en, tier: selectedTier });
       setSelectedSkill(null);
     }
+  };
+  
+  const handleEditClick = (item: WishlistItem) => {
+    setEditingItemName(item.name);
+    setEditingTier(item.tier);
+  };
+
+  const handleCancelEdit = () => {
+    setEditingItemName(null);
+  };
+
+  const handleSaveEdit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!editingItemName) return;
+    
+    onUpdate(editingItemName, { name: editingItemName, tier: editingTier });
+    setEditingItemName(null);
   };
 
   const sortedWishlist = [...wishlist].sort((a, b) => {
@@ -41,9 +63,34 @@ const WishlistSection = ({ title, wishlist, skillList, onAdd, onRemove }: Wishli
       <div className="wishlist space-y-2 max-h-48 overflow-y-auto pr-2" ref={wishlistContainerRef}>
         {sortedWishlist.length > 0 ? (
           sortedWishlist.map(item => (
-            <div key={item.name} className="wishlist__item">
-              <span className="wishlist__item-text">{item.name} <span className="wishlist__item-rank">(Rank {item.tier})</span></span>
-              <button onClick={() => onRemove(item.name)} className="wishlist__remove-btn">&times;</button>
+            <div key={item.name} className="wishlist-manage__item">
+              {editingItemName === item.name ? (
+                <form className="wishlist-manage__edit-form" onSubmit={handleSaveEdit}>
+                  <span className="wishlist-manage__item-info flex-grow">{item.name}</span>
+                  <select 
+                    className="form__input w-28"
+                    value={editingTier}
+                    onChange={e => setEditingTier(e.target.value as WishlistItem['tier'])}
+                  >
+                    {TIER_OPTIONS.map(t => <option key={t} value={t}>Rank {t}</option>)}
+                  </select>
+                  <div className="wishlist-manage__item-actions">
+                    <button type="submit" className="parent-card__edit-btn">Save</button>
+                    <button type="button" onClick={handleCancelEdit} className="parent-card__delete-btn">Cancel</button>
+                  </div>
+                </form>
+              ) : (
+                <>
+                  <div className="wishlist-manage__item-info">
+                    <span>{item.name}</span>
+                    <span className="wishlist-manage__item-rank">Rank {item.tier}</span>
+                  </div>
+                  <div className="wishlist-manage__item-actions">
+                    <button onClick={() => handleEditClick(item)} className="parent-card__edit-btn">Edit</button>
+                    <button onClick={() => onRemove(item.name)} className="parent-card__delete-btn">Delete</button>
+                  </div>
+                </>
+              )}
             </div>
           ))
         ) : (
@@ -60,13 +107,10 @@ const WishlistSection = ({ title, wishlist, skillList, onAdd, onRemove }: Wishli
         <div className="flex justify-between items-center">
           <select
             value={selectedTier}
-            onChange={e => setSelectedTier(e.target.value as 'S' | 'A' | 'B' | 'C')}
+            onChange={e => setSelectedTier(e.target.value as WishlistItem['tier'])}
             className="form__input w-32"
           >
-            <option value="S">Rank S</option>
-            <option value="A">Rank A</option>
-            <option value="B">Rank B</option>
-            <option value="C">Rank C</option>
+            {TIER_OPTIONS.map(t => <option key={t} value={t}>Rank {t}</option>)}
           </select>
           <button onClick={handleAdd} className="button button--primary">Add</button>
         </div>
