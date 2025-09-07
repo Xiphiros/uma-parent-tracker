@@ -1,8 +1,10 @@
 # Umamusume Parent Farming: A Point-Based Methodology
 
-This guide outlines a structured, progressive methodology for farming high-quality parents in Umamusume: Pretty Derby. It is designed to be used with the accompanying `index.html` application, which automates the scoring and tracking process.
+This project provides a web-based tool to help players of *Umamusume: Pretty Derby* systematically farm high-quality parents. It's built around a structured, point-based methodology designed to replace subjective guesswork with quantitative scoring.
 
-The core principle is to replace subjective guesswork with a quantitative **Parent Score**. This allows for consistent, incremental improvement of your breeding stock over generations.
+**You can use the live application here: [https://xiphiros.github.io/uma-parent-tracker/](https://xiphiros.github.io/uma-parent-tracker/)**
+
+The core principle is to assign a **Parent Score** to each potential parent, allowing for consistent, incremental improvement of your breeding stock over generations.
 
 ### The Methodology
 
