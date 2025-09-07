@@ -39,6 +39,30 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
     const uniqueSkills = useMemo(() => masterSkillList.filter(s => s.type === 'unique'), [masterSkillList]);
     const normalSkills = useMemo(() => masterSkillList.filter(s => s.type !== 'unique' && s.rarity === 1), [masterSkillList]);
 
+    const availableNormalSkills = useMemo(() => {
+        // Create a map of skill names to their group IDs for efficient lookup
+        const skillNameToGroupId = new Map<string, number | undefined>();
+        masterSkillList.forEach(skill => {
+            if (skill.groupId) {
+                skillNameToGroupId.set(skill.name_en, skill.groupId);
+            }
+        });
+
+        // Get all group IDs that are already in the parent's white sparks
+        const addedGroupIds = new Set<number>();
+        formData.whiteSparks.forEach(item => {
+            const groupId = skillNameToGroupId.get(item.name);
+            if (groupId) {
+                addedGroupIds.add(groupId);
+            }
+        });
+        
+        // Filter the list of selectable skills
+        return normalSkills.filter(skill => 
+            !skill.groupId || !addedGroupIds.has(skill.groupId)
+        );
+    }, [formData.whiteSparks, normalSkills, masterSkillList]);
+
     useEffect(() => {
         if (parentToEdit) {
             setFormData({
@@ -175,7 +199,7 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
                         ))}
                     </div>
                     <div className="form__input-group">
-                        <SearchableSelect items={normalSkills} placeholder="Search skill..." value={currentWhiteSkill?.name_en || null} onSelect={setCurrentWhiteSkill} />
+                        <SearchableSelect items={availableNormalSkills} placeholder="Search skill..." value={currentWhiteSkill?.name_en || null} onSelect={setCurrentWhiteSkill} />
                         <select className="form__input w-24" value={currentWhiteStars} onChange={e => setCurrentWhiteStars(Number(e.target.value) as 1|2|3)}>
                              {STAR_OPTIONS.map(s => <option key={s}>{s}</option>)}
                         </select>
