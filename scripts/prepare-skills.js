@@ -48,7 +48,8 @@ for (const id in skillData) {
         id: id,
         name_jp: skillNames[id][0],
         name_en: skillNames[id][1] || skillNames[id][0], // Fallback to JP name if EN is missing
-        type: isInheritedUnique ? 'unique' : 'normal'
+        type: isInheritedUnique ? 'unique' : 'normal',
+        rarity: skill.rarity
     });
 }
 
