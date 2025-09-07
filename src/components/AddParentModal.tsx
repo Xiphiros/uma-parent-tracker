@@ -96,10 +96,10 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
     };
 
     return (
-        <Modal isOpen={isOpen} onClose={onClose} title={parentToEdit ? 'Edit Parent' : 'Add New Parent'}>
+        <Modal isOpen={isOpen} onClose={onClose} title={parentToEdit ? 'Edit Parent' : 'Add New Parent'} size="lg">
             <form onSubmit={handleSubmit} className="form space-y-4">
                  <div>
-                    <label className="form__label">Uma Name</label>
+                    <label className="form__label form__label--xs">Uma Name</label>
                     <SearchableSelect 
                         items={masterUmaList}
                         placeholder="Select uma name..."
@@ -112,13 +112,13 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
                     <h4 className="form__section-title">Blue Spark</h4>
                     <div className="grid grid-cols-2 gap-4">
                         <div>
-                            <label className="form__label">Type</label>
+                            <label className="form__label form__label--xs">Type</label>
                             <select className="form__input" value={formData.blueSpark.type} onChange={e => handleSparkChange('blueSpark', 'type', e.target.value as BlueSpark['type'])}>
                                 {BLUE_SPARK_TYPES.map(t => <option key={t}>{t}</option>)}
                             </select>
                         </div>
                         <div>
-                            <label className="form__label">Stars</label>
+                            <label className="form__label form__label--xs">Stars</label>
                             <select className="form__input" value={formData.blueSpark.stars} onChange={e => handleSparkChange('blueSpark', 'stars', Number(e.target.value) as 1|2|3)}>
                                 {STAR_OPTIONS.map(s => <option key={s}>{s}</option>)}
                             </select>
@@ -130,13 +130,13 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
                     <h4 className="form__section-title">Pink Spark</h4>
                     <div className="grid grid-cols-2 gap-4">
                         <div>
-                            <label className="form__label">Type</label>
+                            <label className="form__label form__label--xs">Type</label>
                             <select className="form__input" value={formData.pinkSpark.type} onChange={e => handleSparkChange('pinkSpark', 'type', e.target.value)}>
                                 {PINK_SPARK_TYPES.map(t => <option key={t}>{t}</option>)}
                             </select>
                         </div>
                         <div>
-                            <label className="form__label">Stars</label>
+                            <label className="form__label form__label--xs">Stars</label>
                             <select className="form__input" value={formData.pinkSpark.stars} onChange={e => handleSparkChange('pinkSpark', 'stars', Number(e.target.value) as 1|2|3)}>
                                 {STAR_OPTIONS.map(s => <option key={s}>{s}</option>)}
                             </select>
