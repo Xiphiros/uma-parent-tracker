@@ -1,6 +1,7 @@
 import { useState, useMemo, ChangeEvent, useRef } from 'react';
 import { useClickOutside } from '../../hooks/useClickOutside';
 import { useScrollLock } from '../../hooks/useScrollLock';
+import './SearchableSelect.css';
 
 interface SearchableItem {
   name_en: string;
