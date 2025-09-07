@@ -37,7 +37,7 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
     const [currentWhiteStars, setCurrentWhiteStars] = useState<1 | 2 | 3>(3);
 
     const uniqueSkills = useMemo(() => masterSkillList.filter(s => s.type === 'unique'), [masterSkillList]);
-    const normalSkills = useMemo(() => masterSkillList.filter(s => s.type !== 'unique'), [masterSkillList]);
+    const normalSkills = useMemo(() => masterSkillList.filter(s => s.type !== 'unique' && s.rarity === 1), [masterSkillList]);
 
     useEffect(() => {
         if (parentToEdit) {
