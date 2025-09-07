@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect, ReactNode, useRef } from 'react';
+import { createContext, useContext, useState, useEffect, ReactNode, useRef } from 'react';
 import { AppData, Profile, Skill, Uma, Goal } from '../types';
 import masterSkillListJson from '../data/skill-list.json';
 import masterUmaListJson from '../data/uma-list.json';
@@ -105,7 +105,6 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     const today = new Date().toISOString().split('T')[0];
-    a.href = url;
     a.download = `umamusume_tracker_backup_${today}.json`;
     document.body.appendChild(a);
     a.click();
