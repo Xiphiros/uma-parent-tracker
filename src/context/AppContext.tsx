@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect, ReactNode, useRef } from 'react';
-import { AppData, Profile, Skill, Uma, Goal, Parent, NewParentData } from '../types';
+import { AppData, Profile, Skill, Uma, Goal, Parent, NewParentData, WishlistItem } from '../types';
 import masterSkillListJson from '../data/skill-list.json';
 import masterUmaListJson from '../data/uma-list.json';
 import { calculateScore } from '../utils/scoring';
@@ -20,6 +20,7 @@ interface AppContextType {
   renameProfile: (id: number, newName: string) => void;
   deleteProfile: (id: number) => void;
   updateGoal: (goal: Goal) => void;
+  updateWishlistItem: (listName: 'wishlist' | 'uniqueWishlist', oldName: string, newItem: WishlistItem) => void;
   addParent: (parentData: NewParentData) => void;
   updateParent: (parent: Parent) => void;
   deleteParent: (parentId: number) => void;
@@ -109,6 +110,7 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     const today = new Date().toISOString().split('T')[0];
+    a.href = url; // This line was missing
     a.download = `umamusume_tracker_backup_${today}.json`;
     document.body.appendChild(a);
     a.click();
@@ -185,6 +187,43 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
     }));
   };
 
+  const updateWishlistItem = (listName: 'wishlist' | 'uniqueWishlist', oldName: string, newItem: WishlistItem) => {
+    setAppData(prevData => ({
+      ...prevData,
+      profiles: prevData.profiles.map(p => {
+        if (p.id === prevData.activeProfileId) {
+          const newGoal = { ...p.goal };
+          const list = newGoal[listName] as WishlistItem[];
+          const itemIndex = list.findIndex(i => i.name === oldName);
+          if (itemIndex === -1) return p; // Item not found
+
+          list[itemIndex] = newItem;
+
+          let newRoster = p.roster;
+          // If a skill name changes, we must update it across the entire roster
+          if (oldName !== newItem.name) {
+            const sparkListName = listName === 'wishlist' ? 'whiteSparks' : 'uniqueSparks';
+            newRoster = p.roster.map(parent => ({
+              ...parent,
+              [sparkListName]: parent[sparkListName].map(spark => 
+                spark.name === oldName ? { ...spark, name: newItem.name } : spark
+              )
+            }));
+          }
+
+          // Recalculate all scores with the updated goal
+          newRoster = newRoster.map(parent => ({
+            ...parent,
+            score: calculateScore(parent, newGoal)
+          }));
+
+          return { ...p, goal: newGoal, roster: newRoster };
+        }
+        return p;
+      })
+    }));
+  };
+
   const getNextGenNumber = (): number => {
     const roster = getActiveProfile()?.roster ?? [];
     return roster.length > 0 ? Math.max(...roster.map(p => p.gen)) + 1 : 1;
@@ -255,6 +294,7 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
     renameProfile,
     deleteProfile,
     updateGoal,
+    updateWishlistItem,
     addParent,
     updateParent,
     deleteParent,
