@@ -4,1875 +4,2143 @@
     "name_jp": "Professor of Curvature",
     "name_en": "Professor of Curvature",
     "type": "normal",
-    "rarity": 2
+    "rarity": 2,
+    "groupId": 20033
   },
   {
     "id": "200332",
     "name_jp": "Corner Adept ○",
     "name_en": "Corner Adept ○",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20033
   },
   {
     "id": "200333",
     "name_jp": "Corner Adept ×",
     "name_en": "Corner Adept ×",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20033
   },
   {
     "id": "200341",
     "name_jp": "Corner Connoisseur",
     "name_en": "Corner Connoisseur",
     "type": "normal",
-    "rarity": 2
+    "rarity": 2,
+    "groupId": 20034
   },
   {
     "id": "200342",
     "name_jp": "Corner Acceleration ○",
     "name_en": "Corner Acceleration ○",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20034
   },
   {
     "id": "200343",
     "name_jp": "Corner Acceleration ×",
     "name_en": "Corner Acceleration ×",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20034
   },
   {
     "id": "200351",
     "name_jp": "Swinging Maestro",
     "name_en": "Swinging Maestro",
     "type": "normal",
-    "rarity": 2
+    "rarity": 2,
+    "groupId": 20035
   },
   {
     "id": "200352",
     "name_jp": "Corner Recovery ○",
     "name_en": "Corner Recovery ○",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20035
   },
   {
     "id": "200353",
     "name_jp": "Corner Recovery ×",
     "name_en": "Corner Recovery ×",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20035
   },
   {
     "id": "200361",
     "name_jp": "Beeline Burst",
     "name_en": "Beeline Burst",
     "type": "normal",
-    "rarity": 2
+    "rarity": 2,
+    "groupId": 20036
   },
   {
     "id": "200362",
     "name_jp": "Straightaway Adept",
     "name_en": "Straightaway Adept",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20036
   },
   {
     "id": "200371",
     "name_jp": "Rushing Gale!",
     "name_en": "Rushing Gale!",
     "type": "normal",
-    "rarity": 2
+    "rarity": 2,
+    "groupId": 20037
   },
   {
     "id": "200372",
     "name_jp": "Straightaway Acceleration",
     "name_en": "Straightaway Acceleration",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20037
   },
   {
     "id": "200381",
     "name_jp": "Breath of Fresh Air",
     "name_en": "Breath of Fresh Air",
     "type": "normal",
-    "rarity": 2
+    "rarity": 2,
+    "groupId": 20038
   },
   {
     "id": "200382",
     "name_jp": "Straightaway Recovery",
     "name_en": "Straightaway Recovery",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20038
   },
   {
     "id": "200391",
     "name_jp": "Ramp Revulsion",
     "name_en": "Ramp Revulsion",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20039
   },
   {
     "id": "200401",
     "name_jp": "Packphobia",
     "name_en": "Packphobia",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20040
   },
   {
     "id": "200411",
     "name_jp": "Defeatist",
     "name_en": "Defeatist",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20041
   },
   {
     "id": "200421",
     "name_jp": "Reckless",
     "name_en": "Reckless",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20042
   },
   {
     "id": "200431",
     "name_jp": "Concentration",
     "name_en": "Concentration",
     "type": "normal",
-    "rarity": 2
+    "rarity": 2,
+    "groupId": 20043
   },
   {
     "id": "200432",
     "name_jp": "Focus",
     "name_en": "Focus",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20043
   },
   {
     "id": "200433",
     "name_jp": "Gatekept",
     "name_en": "Gatekept",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20043
   },
   {
     "id": "200441",
     "name_jp": "Iron Will",
     "name_en": "Iron Will",
     "type": "normal",
-    "rarity": 2
+    "rarity": 2,
+    "groupId": 20044
   },
   {
     "id": "200442",
     "name_jp": "Lay Low",
     "name_en": "Lay Low",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20044
   },
   {
     "id": "200451",
     "name_jp": "Center Stage",
     "name_en": "Center Stage",
     "type": "normal",
-    "rarity": 2
+    "rarity": 2,
+    "groupId": 20045
   },
   {
     "id": "200452",
     "name_jp": "Prudent Positioning",
     "name_en": "Prudent Positioning",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20045
   },
   {
     "id": "200461",
     "name_jp": "It's On!",
     "name_en": "It's On!",
     "type": "normal",
-    "rarity": 2
+    "rarity": 2,
+    "groupId": 20046
   },
   {
     "id": "200462",
     "name_jp": "Ramp Up",
     "name_en": "Ramp Up",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20046
   },
   {
     "id": "200471",
     "name_jp": "Indomitable",
     "name_en": "Indomitable",
     "type": "normal",
-    "rarity": 2
+    "rarity": 2,
+    "groupId": 20047
   },
   {
     "id": "200472",
     "name_jp": "Pace Strategy",
     "name_en": "Pace Strategy",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20047
   },
   {
     "id": "200481",
     "name_jp": "Unruffled",
     "name_en": "Unruffled",
     "type": "normal",
-    "rarity": 2
+    "rarity": 2,
+    "groupId": 20048
   },
   {
     "id": "200482",
     "name_jp": "Calm in a Crowd",
     "name_en": "Calm in a Crowd",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20048
   },
   {
     "id": "200491",
     "name_jp": "No Stopping Me!",
     "name_en": "No Stopping Me!",
     "type": "normal",
-    "rarity": 2
+    "rarity": 2,
+    "groupId": 20049
   },
   {
     "id": "200492",
     "name_jp": "Nimble Navigator",
     "name_en": "Nimble Navigator",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20049
   },
   {
     "id": "200501",
     "name_jp": "Lane Legerdemain",
     "name_en": "Lane Legerdemain",
     "type": "normal",
-    "rarity": 2
+    "rarity": 2,
+    "groupId": 20050
   },
   {
     "id": "200502",
     "name_jp": "Go with the Flow",
     "name_en": "Go with the Flow",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20050
   },
   {
     "id": "200511",
     "name_jp": "In Body and Mind",
     "name_en": "In Body and Mind",
     "type": "normal",
-    "rarity": 2
+    "rarity": 2,
+    "groupId": 20051
   },
   {
     "id": "200512",
     "name_jp": "Homestretch Haste",
     "name_en": "Homestretch Haste",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20051
   },
   {
     "id": "200521",
     "name_jp": "Running Idle",
     "name_en": "Running Idle",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20052
   },
   {
     "id": "200531",
     "name_jp": "Taking the Lead",
     "name_en": "Taking the Lead",
     "type": "normal",
-    "rarity": 2
+    "rarity": 2,
+    "groupId": 20053
   },
   {
     "id": "200532",
     "name_jp": "Early Lead",
     "name_en": "Early Lead",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20053
   },
   {
     "id": "200541",
     "name_jp": "Escape Artist",
     "name_en": "Escape Artist",
     "type": "normal",
-    "rarity": 2
+    "rarity": 2,
+    "groupId": 20054
   },
   {
     "id": "200542",
     "name_jp": "Fast-Paced",
     "name_en": "Fast-Paced",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20054
   },
   {
     "id": "200551",
     "name_jp": "Unrestrained",
     "name_en": "Unrestrained",
     "type": "normal",
-    "rarity": 2
+    "rarity": 2,
+    "groupId": 20055
   },
   {
     "id": "200552",
     "name_jp": "Final Push",
     "name_en": "Final Push",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20055
   },
   {
     "id": "200561",
     "name_jp": "Calm and Collected",
     "name_en": "Calm and Collected",
     "type": "normal",
-    "rarity": 2
+    "rarity": 2,
+    "groupId": 20056
   },
   {
     "id": "200562",
     "name_jp": "Stamina to Spare",
     "name_en": "Stamina to Spare",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20056
   },
   {
     "id": "200571",
     "name_jp": "Race Planner",
     "name_en": "Race Planner",
     "type": "normal",
-    "rarity": 2
+    "rarity": 2,
+    "groupId": 20057
   },
   {
     "id": "200572",
     "name_jp": "Preferred Position",
     "name_en": "Preferred Position",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20057
   },
   {
     "id": "200581",
     "name_jp": "Speed Star",
     "name_en": "Speed Star",
     "type": "normal",
-    "rarity": 2
+    "rarity": 2,
+    "groupId": 20058
   },
   {
     "id": "200582",
     "name_jp": "Prepared to Pass",
     "name_en": "Prepared to Pass",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20058
   },
   {
     "id": "200591",
     "name_jp": "Fast & Furious",
     "name_en": "Fast & Furious",
     "type": "normal",
-    "rarity": 2
+    "rarity": 2,
+    "groupId": 20059
   },
   {
     "id": "200592",
     "name_jp": "Position Pilfer",
     "name_en": "Position Pilfer",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20059
   },
   {
     "id": "200601",
     "name_jp": "On Your Left!",
     "name_en": "On Your Left!",
     "type": "normal",
-    "rarity": 2
+    "rarity": 2,
+    "groupId": 20060
   },
   {
     "id": "200602",
     "name_jp": "Slick Surge",
     "name_en": "Slick Surge",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20060
   },
   {
     "id": "200611",
     "name_jp": "Rising Dragon",
     "name_en": "Rising Dragon",
     "type": "normal",
-    "rarity": 2
+    "rarity": 2,
+    "groupId": 20061
   },
   {
     "id": "200612",
     "name_jp": "Outer Swell",
     "name_en": "Outer Swell",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20061
   },
   {
     "id": "200621",
     "name_jp": "Sleeping Lion",
     "name_en": "Sleeping Lion",
     "type": "normal",
-    "rarity": 2
+    "rarity": 2,
+    "groupId": 20062
   },
   {
     "id": "200622",
     "name_jp": "Standing By",
     "name_en": "Standing By",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20062
   },
   {
     "id": "200631",
     "name_jp": "Sturm und Drang",
     "name_en": "Sturm und Drang",
     "type": "normal",
-    "rarity": 2
+    "rarity": 2,
+    "groupId": 20063
   },
   {
     "id": "200632",
     "name_jp": "Masterful Gambit",
     "name_en": "Masterful Gambit",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20063
   },
   {
     "id": "200641",
     "name_jp": "Encroaching Shadow",
     "name_en": "Encroaching Shadow",
     "type": "normal",
-    "rarity": 2
+    "rarity": 2,
+    "groupId": 20064
   },
   {
     "id": "200642",
     "name_jp": "Straightaway Spurt",
     "name_en": "Straightaway Spurt",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20064
   },
   {
     "id": "200651",
     "name_jp": "Turbo Sprint",
     "name_en": "Turbo Sprint",
     "type": "normal",
-    "rarity": 2
+    "rarity": 2,
+    "groupId": 20065
   },
   {
     "id": "200652",
     "name_jp": "Sprinting Gear",
     "name_en": "Sprinting Gear",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20065
   },
   {
     "id": "200662",
     "name_jp": "Wait-and-See",
     "name_en": "Wait-and-See",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20066
   },
   {
     "id": "200671",
     "name_jp": "Blinding Flash",
     "name_en": "Blinding Flash",
     "type": "normal",
-    "rarity": 2
+    "rarity": 2,
+    "groupId": 20067
   },
   {
     "id": "200672",
     "name_jp": "Gap Closer",
     "name_en": "Gap Closer",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20067
   },
   {
     "id": "200681",
     "name_jp": "Mile Maven",
     "name_en": "Mile Maven",
     "type": "normal",
-    "rarity": 2
+    "rarity": 2,
+    "groupId": 20068
   },
   {
     "id": "200682",
     "name_jp": "Productive Plan",
     "name_en": "Productive Plan",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20068
   },
   {
     "id": "200691",
     "name_jp": "Keen Eye",
     "name_en": "Keen Eye",
     "type": "normal",
-    "rarity": 2
+    "rarity": 2,
+    "groupId": 20069
   },
   {
     "id": "200692",
     "name_jp": "Watchful Eye",
     "name_en": "Watchful Eye",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20069
   },
   {
     "id": "200701",
     "name_jp": "Furious Feat",
     "name_en": "Furious Feat",
     "type": "normal",
-    "rarity": 2
+    "rarity": 2,
+    "groupId": 20070
   },
   {
     "id": "200702",
     "name_jp": "Updrafters",
     "name_en": "Updrafters",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20070
   },
   {
     "id": "200711",
     "name_jp": "Trackblazer",
     "name_en": "Trackblazer",
     "type": "normal",
-    "rarity": 2
+    "rarity": 2,
+    "groupId": 20071
   },
   {
     "id": "200712",
     "name_jp": "Rosy Outlook",
     "name_en": "Rosy Outlook",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20071
   },
   {
     "id": "200721",
     "name_jp": "Killer Tunes",
     "name_en": "Killer Tunes",
     "type": "normal",
-    "rarity": 2
+    "rarity": 2,
+    "groupId": 20072
   },
   {
     "id": "200722",
     "name_jp": "Up-Tempo",
     "name_en": "Up-Tempo",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20072
   },
   {
     "id": "200731",
     "name_jp": "Unyielding",
     "name_en": "Unyielding",
     "type": "normal",
-    "rarity": 2
+    "rarity": 2,
+    "groupId": 20073
   },
   {
     "id": "200732",
     "name_jp": "Steadfast",
     "name_en": "Steadfast",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20073
   },
   {
     "id": "200741",
     "name_jp": "Cooldown",
     "name_en": "Cooldown",
     "type": "normal",
-    "rarity": 2
+    "rarity": 2,
+    "groupId": 20074
   },
   {
     "id": "200742",
     "name_jp": "Deep Breaths",
     "name_en": "Deep Breaths",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20074
   },
   {
     "id": "200751",
     "name_jp": "Innate Experience",
     "name_en": "Innate Experience",
     "type": "normal",
-    "rarity": 2
+    "rarity": 2,
+    "groupId": 20075
   },
   {
     "id": "200752",
     "name_jp": "Inside Scoop",
     "name_en": "Inside Scoop",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20075
   },
   {
     "id": "200761",
     "name_jp": "Adrenaline Rush",
     "name_en": "Adrenaline Rush",
     "type": "normal",
-    "rarity": 2
+    "rarity": 2,
+    "groupId": 20076
   },
   {
     "id": "200762",
     "name_jp": "Extra Tank",
     "name_en": "Extra Tank",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20076
   },
   {
     "id": "200771",
     "name_jp": "Trick (Front)",
     "name_en": "Trick (Front)",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20077
   },
   {
     "id": "200781",
     "name_jp": "Trick (Rear)",
     "name_en": "Trick (Rear)",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20078
   },
   {
     "id": "200791",
     "name_jp": "Frenzied Front Runners",
     "name_en": "Frenzied Front Runners",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20079
   },
   {
     "id": "200801",
     "name_jp": "Frenzied Pace Chasers",
     "name_en": "Frenzied Pace Chasers",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20080
   },
   {
     "id": "200811",
     "name_jp": "Frenzied Late Surgers",
     "name_en": "Frenzied Late Surgers",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20081
   },
   {
     "id": "200821",
     "name_jp": "Frenzied End Closers",
     "name_en": "Frenzied End Closers",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20082
   },
   {
     "id": "200831",
     "name_jp": "Subdued Front Runners",
     "name_en": "Subdued Front Runners",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20083
   },
   {
     "id": "200841",
     "name_jp": "Flustered Front Runners",
     "name_en": "Flustered Front Runners",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20084
   },
   {
     "id": "200851",
     "name_jp": "Hesitant Front Runners",
     "name_en": "Hesitant Front Runners",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20085
   },
   {
     "id": "200861",
     "name_jp": "Subdued Pace Chasers",
     "name_en": "Subdued Pace Chasers",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20086
   },
   {
     "id": "200871",
     "name_jp": "Flustered Pace Chasers",
     "name_en": "Flustered Pace Chasers",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20087
   },
   {
     "id": "200881",
     "name_jp": "Hesitant Pace Chasers",
     "name_en": "Hesitant Pace Chasers",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20088
   },
   {
     "id": "200891",
     "name_jp": "Subdued Late Surgers",
     "name_en": "Subdued Late Surgers",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20089
   },
   {
     "id": "200901",
     "name_jp": "Flustered Late Surgers",
     "name_en": "Flustered Late Surgers",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20090
   },
   {
     "id": "200911",
     "name_jp": "Hesitant Late Surgers",
     "name_en": "Hesitant Late Surgers",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20091
   },
   {
     "id": "200921",
     "name_jp": "Subdued End Closers",
     "name_en": "Subdued End Closers",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20092
   },
   {
     "id": "200931",
     "name_jp": "Flustered End Closers",
     "name_en": "Flustered End Closers",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20093
   },
   {
     "id": "200941",
     "name_jp": "Hesitant End Closers",
     "name_en": "Hesitant End Closers",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20094
   },
   {
     "id": "200961",
     "name_jp": "Sprint Straightaways ◎",
     "name_en": "Sprint Straightaways ◎",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20096
   },
   {
     "id": "200962",
     "name_jp": "Sprint Straightaways ○",
     "name_en": "Sprint Straightaways ○",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20096
   },
   {
     "id": "200971",
     "name_jp": "Sprint Corners ◎",
     "name_en": "Sprint Corners ◎",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20097
   },
   {
     "id": "200972",
     "name_jp": "Sprint Corners ○",
     "name_en": "Sprint Corners ○",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20097
   },
   {
     "id": "200981",
     "name_jp": "Staggering Lead",
     "name_en": "Staggering Lead",
     "type": "normal",
-    "rarity": 2
+    "rarity": 2,
+    "groupId": 20098
   },
   {
     "id": "200982",
     "name_jp": "Huge Lead",
     "name_en": "Huge Lead",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20098
   },
   {
     "id": "200991",
     "name_jp": "Plan X",
     "name_en": "Plan X",
     "type": "normal",
-    "rarity": 2
+    "rarity": 2,
+    "groupId": 20099
   },
   {
     "id": "200992",
     "name_jp": "Countermeasure",
     "name_en": "Countermeasure",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20099
   },
   {
     "id": "201001",
     "name_jp": "Perfect Prep!",
     "name_en": "Perfect Prep!",
     "type": "normal",
-    "rarity": 2
+    "rarity": 2,
+    "groupId": 20100
   },
   {
     "id": "201002",
     "name_jp": "Meticulous Measures",
     "name_en": "Meticulous Measures",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20100
   },
   {
     "id": "201011",
     "name_jp": "Adored by All",
     "name_en": "Adored by All",
     "type": "normal",
-    "rarity": 2
+    "rarity": 2,
+    "groupId": 20101
   },
   {
     "id": "201012",
     "name_jp": "Intimidate",
     "name_en": "Intimidate",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20101
   },
   {
     "id": "201021",
     "name_jp": "You've Got No Shot",
     "name_en": "You've Got No Shot",
     "type": "normal",
-    "rarity": 2
+    "rarity": 2,
+    "groupId": 20102
   },
   {
     "id": "201022",
     "name_jp": "Stop Right There!",
     "name_en": "Stop Right There!",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20102
   },
   {
     "id": "201031",
     "name_jp": "Mile Straightaways ◎",
     "name_en": "Mile Straightaways ◎",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20103
   },
   {
     "id": "201032",
     "name_jp": "Mile Straightaways ○",
     "name_en": "Mile Straightaways ○",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20103
   },
   {
     "id": "201041",
     "name_jp": "Mile Corners ◎",
     "name_en": "Mile Corners ◎",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20104
   },
   {
     "id": "201042",
     "name_jp": "Mile Corners ○",
     "name_en": "Mile Corners ○",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20104
   },
   {
     "id": "201051",
     "name_jp": "Changing Gears",
     "name_en": "Changing Gears",
     "type": "normal",
-    "rarity": 2
+    "rarity": 2,
+    "groupId": 20105
   },
   {
     "id": "201052",
     "name_jp": "Shifting Gears",
     "name_en": "Shifting Gears",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20105
   },
   {
     "id": "201061",
     "name_jp": "Step on the Gas!",
     "name_en": "Step on the Gas!",
     "type": "normal",
-    "rarity": 2
+    "rarity": 2,
+    "groupId": 20106
   },
   {
     "id": "201062",
     "name_jp": "Acceleration",
     "name_en": "Acceleration",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20106
   },
   {
     "id": "201071",
     "name_jp": "Big-Sisterly",
     "name_en": "Big-Sisterly",
     "type": "normal",
-    "rarity": 2
+    "rarity": 2,
+    "groupId": 20107
   },
   {
     "id": "201072",
     "name_jp": "Unyielding Spirit",
     "name_en": "Unyielding Spirit",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20107
   },
   {
     "id": "201081",
     "name_jp": "Greed for Speed",
     "name_en": "Greed for Speed",
     "type": "normal",
-    "rarity": 2
+    "rarity": 2,
+    "groupId": 20108
   },
   {
     "id": "201082",
     "name_jp": "Speed Eater",
     "name_en": "Speed Eater",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20108
   },
   {
     "id": "201091",
     "name_jp": "Battle Formation",
     "name_en": "Battle Formation",
     "type": "normal",
-    "rarity": 2
+    "rarity": 2,
+    "groupId": 20109
   },
   {
     "id": "201092",
     "name_jp": "Opening Gambit",
     "name_en": "Opening Gambit",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20109
   },
   {
     "id": "201101",
     "name_jp": "Medium Straightaways ◎",
     "name_en": "Medium Straightaways ◎",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20110
   },
   {
     "id": "201102",
     "name_jp": "Medium Straightaways ○",
     "name_en": "Medium Straightaways ○",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20110
   },
   {
     "id": "201111",
     "name_jp": "Medium Corners ◎",
     "name_en": "Medium Corners ◎",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20111
   },
   {
     "id": "201112",
     "name_jp": "Medium Corners ○",
     "name_en": "Medium Corners ○",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20111
   },
   {
     "id": "201121",
     "name_jp": "Clairvoyance",
     "name_en": "Clairvoyance",
     "type": "normal",
-    "rarity": 2
+    "rarity": 2,
+    "groupId": 20112
   },
   {
     "id": "201122",
     "name_jp": "Hawkeye",
     "name_en": "Hawkeye",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20112
   },
   {
     "id": "201131",
     "name_jp": "Lightning Step",
     "name_en": "Lightning Step",
     "type": "normal",
-    "rarity": 2
+    "rarity": 2,
+    "groupId": 20113
   },
   {
     "id": "201132",
     "name_jp": "Thunderbolt Step",
     "name_en": "Thunderbolt Step",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20113
   },
   {
     "id": "201141",
     "name_jp": "Miraculous Step",
     "name_en": "Miraculous Step",
     "type": "normal",
-    "rarity": 2
+    "rarity": 2,
+    "groupId": 20114
   },
   {
     "id": "201142",
     "name_jp": "Soft Step",
     "name_en": "Soft Step",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20114
   },
   {
     "id": "201151",
     "name_jp": "Dominator",
     "name_en": "Dominator",
     "type": "normal",
-    "rarity": 2
+    "rarity": 2,
+    "groupId": 20115
   },
   {
     "id": "201152",
     "name_jp": "Tether",
     "name_en": "Tether",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20115
   },
   {
     "id": "201161",
     "name_jp": "Mystifying Murmur",
     "name_en": "Mystifying Murmur",
     "type": "normal",
-    "rarity": 2
+    "rarity": 2,
+    "groupId": 20116
   },
   {
     "id": "201162",
     "name_jp": "Murmur",
     "name_en": "Murmur",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20116
   },
   {
     "id": "201171",
     "name_jp": "Long Straightaways ◎",
     "name_en": "Long Straightaways ◎",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20117
   },
   {
     "id": "201172",
     "name_jp": "Long Straightaways ○",
     "name_en": "Long Straightaways ○",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20117
   },
   {
     "id": "201181",
     "name_jp": "Long Corners ◎",
     "name_en": "Long Corners ◎",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20118
   },
   {
     "id": "201182",
     "name_jp": "Long Corners ○",
     "name_en": "Long Corners ○",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20118
   },
   {
     "id": "201191",
     "name_jp": "Vanguard Spirit",
     "name_en": "Vanguard Spirit",
     "type": "normal",
-    "rarity": 2
+    "rarity": 2,
+    "groupId": 20119
   },
   {
     "id": "201192",
     "name_jp": "Keeping the Lead",
     "name_en": "Keeping the Lead",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20119
   },
   {
     "id": "201202",
     "name_jp": "Passing Pro",
     "name_en": "Passing Pro",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20120
   },
   {
     "id": "201211",
     "name_jp": "Overwhelming Pressure",
     "name_en": "Overwhelming Pressure",
     "type": "normal",
-    "rarity": 2
+    "rarity": 2,
+    "groupId": 20121
   },
   {
     "id": "201212",
     "name_jp": "Pressure",
     "name_en": "Pressure",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20121
   },
   {
     "id": "201221",
     "name_jp": "Stamina Siphon",
     "name_en": "Stamina Siphon",
     "type": "normal",
-    "rarity": 2
+    "rarity": 2,
+    "groupId": 20122
   },
   {
     "id": "201222",
     "name_jp": "Stamina Eater",
     "name_en": "Stamina Eater",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20122
   },
   {
     "id": "201231",
     "name_jp": "Illusionist",
     "name_en": "Illusionist",
     "type": "normal",
-    "rarity": 2
+    "rarity": 2,
+    "groupId": 20123
   },
   {
     "id": "201232",
     "name_jp": "Smoke Screen",
     "name_en": "Smoke Screen",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20123
   },
   {
     "id": "201241",
     "name_jp": "Front Runner Straightaways ◎",
     "name_en": "Front Runner Straightaways ◎",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20124
   },
   {
     "id": "201242",
     "name_jp": "Front Runner Straightaways ○",
     "name_en": "Front Runner Straightaways ○",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20124
   },
   {
     "id": "201251",
     "name_jp": "Front Runner Corners ◎",
     "name_en": "Front Runner Corners ◎",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20125
   },
   {
     "id": "201252",
     "name_jp": "Front Runner Corners ○",
     "name_en": "Front Runner Corners ○",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20125
   },
   {
     "id": "201261",
     "name_jp": "Sixth Sense",
     "name_en": "Sixth Sense",
     "type": "normal",
-    "rarity": 2
+    "rarity": 2,
+    "groupId": 20126
   },
   {
     "id": "201262",
     "name_jp": "Dodging Danger",
     "name_en": "Dodging Danger",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20126
   },
   {
     "id": "201272",
     "name_jp": "Leader's Pride",
     "name_en": "Leader's Pride",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20127
   },
   {
     "id": "201281",
     "name_jp": "Restless",
     "name_en": "Restless",
     "type": "normal",
-    "rarity": 2
+    "rarity": 2,
+    "groupId": 20128
   },
   {
     "id": "201282",
     "name_jp": "Moxie",
     "name_en": "Moxie",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20128
   },
   {
     "id": "201291",
     "name_jp": "Reignition",
     "name_en": "Reignition",
     "type": "normal",
-    "rarity": 2
+    "rarity": 2,
+    "groupId": 20129
   },
   {
     "id": "201292",
     "name_jp": "Second Wind",
     "name_en": "Second Wind",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20129
   },
   {
     "id": "201302",
     "name_jp": "Restart",
     "name_en": "Restart",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20130
   },
   {
     "id": "201311",
     "name_jp": "Pace Chaser Straightaways ◎",
     "name_en": "Pace Chaser Straightaways ◎",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20131
   },
   {
     "id": "201312",
     "name_jp": "Pace Chaser Straightaways ○",
     "name_en": "Pace Chaser Straightaways ○",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20131
   },
   {
     "id": "201321",
     "name_jp": "Pace Chaser Corners ◎",
     "name_en": "Pace Chaser Corners ◎",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20132
   },
   {
     "id": "201322",
     "name_jp": "Pace Chaser Corners ○",
     "name_en": "Pace Chaser Corners ○",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20132
   },
   {
     "id": "201331",
     "name_jp": "Technician",
     "name_en": "Technician",
     "type": "normal",
-    "rarity": 2
+    "rarity": 2,
+    "groupId": 20133
   },
   {
     "id": "201332",
     "name_jp": "Shrewd Step",
     "name_en": "Shrewd Step",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20133
   },
   {
     "id": "201341",
     "name_jp": "Determined Descent",
     "name_en": "Determined Descent",
     "type": "normal",
-    "rarity": 2
+    "rarity": 2,
+    "groupId": 20134
   },
   {
     "id": "201342",
     "name_jp": "Straight Descent",
     "name_en": "Straight Descent",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20134
   },
   {
     "id": "201351",
     "name_jp": "Gourmand",
     "name_en": "Gourmand",
     "type": "normal",
-    "rarity": 2
+    "rarity": 2,
+    "groupId": 20135
   },
   {
     "id": "201352",
     "name_jp": "Hydrate",
     "name_en": "Hydrate",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20135
   },
   {
     "id": "201361",
     "name_jp": "Shatterproof",
     "name_en": "Shatterproof",
     "type": "normal",
-    "rarity": 2
+    "rarity": 2,
+    "groupId": 20136
   },
   {
     "id": "201362",
     "name_jp": "Tactical Tweak",
     "name_en": "Tactical Tweak",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20136
   },
   {
     "id": "201371",
     "name_jp": "Dazzling Disorientation",
     "name_en": "Dazzling Disorientation",
     "type": "normal",
-    "rarity": 2
+    "rarity": 2,
+    "groupId": 20137
   },
   {
     "id": "201372",
     "name_jp": "Disorient",
     "name_en": "Disorient",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20137
   },
   {
     "id": "201381",
     "name_jp": "Late Surger Straightaways ◎",
     "name_en": "Late Surger Straightaways ◎",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20138
   },
   {
     "id": "201382",
     "name_jp": "Late Surger Straightaways ○",
     "name_en": "Late Surger Straightaways ○",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20138
   },
   {
     "id": "201391",
     "name_jp": "Later Surger Corners ◎",
     "name_en": "Later Surger Corners ◎",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20139
   },
   {
     "id": "201392",
     "name_jp": "Late Surger Corners ○",
     "name_en": "Late Surger Corners ○",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20139
   },
   {
     "id": "201401",
     "name_jp": "Hard Worker",
     "name_en": "Hard Worker",
     "type": "normal",
-    "rarity": 2
+    "rarity": 2,
+    "groupId": 20140
   },
   {
     "id": "201402",
     "name_jp": "Fighter",
     "name_en": "Fighter",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20140
   },
   {
     "id": "201411",
     "name_jp": "15,000,000 CC",
     "name_en": "15,000,000 CC",
     "type": "normal",
-    "rarity": 2
+    "rarity": 2,
+    "groupId": 20141
   },
   {
     "id": "201412",
     "name_jp": "1,500,000 CC",
     "name_en": "1,500,000 CC",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20141
   },
   {
     "id": "201421",
     "name_jp": "Relax",
     "name_en": "Relax",
     "type": "normal",
-    "rarity": 2
+    "rarity": 2,
+    "groupId": 20142
   },
   {
     "id": "201422",
     "name_jp": "A Small Breather",
     "name_en": "A Small Breather",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20142
   },
   {
     "id": "201431",
     "name_jp": "The Bigger Picture",
     "name_en": "The Bigger Picture",
     "type": "normal",
-    "rarity": 2
+    "rarity": 2,
+    "groupId": 20143
   },
   {
     "id": "201432",
     "name_jp": "Studious",
     "name_en": "Studious",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20143
   },
   {
     "id": "201441",
     "name_jp": "All-Seeing Eyes",
     "name_en": "All-Seeing Eyes",
     "type": "normal",
-    "rarity": 2
+    "rarity": 2,
+    "groupId": 20144
   },
   {
     "id": "201442",
     "name_jp": "Sharp Gaze",
     "name_en": "Sharp Gaze",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20144
   },
   {
     "id": "201451",
     "name_jp": "End Closer Straightaways ◎",
     "name_en": "End Closer Straightaways ◎",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20145
   },
   {
     "id": "201452",
     "name_jp": "End Closer Straightaways ○",
     "name_en": "End Closer Straightaways ○",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20145
   },
   {
     "id": "201461",
     "name_jp": "End Closer Corners ◎",
     "name_en": "End Closer Corners ◎",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20146
   },
   {
     "id": "201462",
     "name_jp": "End Closer Corners ○",
     "name_en": "End Closer Corners ○",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20146
   },
   {
     "id": "201471",
     "name_jp": "The Coast Is Clear!",
     "name_en": "The Coast Is Clear!",
     "type": "normal",
-    "rarity": 2
+    "rarity": 2,
+    "groupId": 20147
   },
   {
     "id": "201472",
     "name_jp": "I Can See Right Through You",
     "name_en": "I Can See Right Through You",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20147
   },
   {
     "id": "201481",
     "name_jp": "Go-Home Specialist",
     "name_en": "Go-Home Specialist",
     "type": "normal",
-    "rarity": 2
+    "rarity": 2,
+    "groupId": 20148
   },
   {
     "id": "201482",
     "name_jp": "After-School Stroll",
     "name_en": "After-School Stroll",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20148
   },
   {
     "id": "201491",
     "name_jp": "Serenity",
     "name_en": "Serenity",
     "type": "normal",
-    "rarity": 2
+    "rarity": 2,
+    "groupId": 20149
   },
   {
     "id": "201492",
     "name_jp": "Levelheaded",
     "name_en": "Levelheaded",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20149
   },
   {
     "id": "201501",
     "name_jp": "Crusader",
     "name_en": "Crusader",
     "type": "normal",
-    "rarity": 2
+    "rarity": 2,
+    "groupId": 20150
   },
   {
     "id": "201502",
     "name_jp": "Strategist",
     "name_en": "Strategist",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20150
   },
   {
     "id": "201511",
     "name_jp": "Petrifying Gaze",
     "name_en": "Petrifying Gaze",
     "type": "normal",
-    "rarity": 2
+    "rarity": 2,
+    "groupId": 20151
   },
   {
     "id": "201512",
     "name_jp": "Intense Gaze",
     "name_en": "Intense Gaze",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20151
   },
   {
     "id": "201521",
     "name_jp": "Front Runner Savvy ◎",
     "name_en": "Front Runner Savvy ◎",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20152
   },
   {
     "id": "201522",
     "name_jp": "Front Runner Savvy ○",
     "name_en": "Front Runner Savvy ○",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20152
   },
   {
     "id": "201531",
     "name_jp": "Pace Chaser Savvy ◎",
     "name_en": "Pace Chaser Savvy ◎",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20153
   },
   {
     "id": "201532",
     "name_jp": "Pace Chaser Savvy ○",
     "name_en": "Pace Chaser Savvy ○",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20153
   },
   {
     "id": "201541",
     "name_jp": "Late Surger Savvy ◎",
     "name_en": "Late Surger Savvy ◎",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20154
   },
   {
     "id": "201542",
     "name_jp": "Late Surger Savvy ○",
     "name_en": "Late Surger Savvy ○",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20154
   },
   {
     "id": "201551",
     "name_jp": "End Closer Savvy ◎",
     "name_en": "End Closer Savvy ◎",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20155
   },
   {
     "id": "201552",
     "name_jp": "End Closer Savvy ○",
     "name_en": "End Closer Savvy ○",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20155
   },
   {
     "id": "201571",
     "name_jp": "Triple 7s",
     "name_en": "Triple 7s",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20157
   },
   {
     "id": "201581",
     "name_jp": "Highlander",
     "name_en": "Highlander",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20158
   },
   {
     "id": "201591",
     "name_jp": "Uma Stan",
     "name_en": "Uma Stan",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20159
   },
   {
     "id": "201601",
     "name_jp": "Groundwork",
     "name_en": "Groundwork",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20160
   },
   {
     "id": "201611",
     "name_jp": "Tail Held High",
     "name_en": "Tail Held High",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20161
   },
   {
     "id": "201621",
     "name_jp": "Shake It Out",
     "name_en": "Shake It Out",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20162
   },
   {
     "id": "201651",
     "name_jp": "Slipstream",
     "name_en": "Slipstream",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20165
   },
   {
     "id": "201661",
     "name_jp": "Playtime's Over!",
     "name_en": "Playtime's Over!",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20166
   },
   {
     "id": "201671",
     "name_jp": "Trending in the Charts!",
     "name_en": "Trending in the Charts!",
     "type": "normal",
-    "rarity": 2
+    "rarity": 2,
+    "groupId": 20167
   },
   {
     "id": "201672",
     "name_jp": "Top Pick",
     "name_en": "Top Pick",
     "type": "normal",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 20167
   },
   {
     "id": "900011",
     "name_jp": "Shooting Star",
     "name_en": "Shooting Star",
     "type": "unique",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 90001
   },
   {
     "id": "900021",
     "name_jp": "The View from the Lead Is Mine!",
     "name_en": "The View from the Lead Is Mine!",
     "type": "unique",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 90002
   },
   {
     "id": "900031",
     "name_jp": "Sky-High Teio Step",
     "name_en": "Sky-High Teio Step",
     "type": "unique",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 90003
   },
   {
     "id": "900041",
     "name_jp": "Red Shift/LP1211-M",
     "name_en": "Red Shift/LP1211-M",
     "type": "unique",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 90004
   },
   {
     "id": "900061",
     "name_jp": "Triumphant Pulse",
     "name_en": "Triumphant Pulse",
     "type": "unique",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 90006
   },
   {
     "id": "900071",
     "name_jp": "Anchors Aweigh!",
     "name_en": "Anchors Aweigh!",
     "type": "unique",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 90007
   },
   {
     "id": "900081",
     "name_jp": "Cut and Drive!",
     "name_en": "Cut and Drive!",
     "type": "unique",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 90008
   },
   {
     "id": "900091",
     "name_jp": "Resplendent Red Ace",
     "name_en": "Resplendent Red Ace",
     "type": "unique",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 90009
   },
   {
     "id": "900101",
     "name_jp": "Shooting for Victory!",
     "name_en": "Shooting for Victory!",
     "type": "unique",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 90010
   },
   {
     "id": "900111",
     "name_jp": "Where There's a Will, There's a Way",
     "name_en": "Where There's a Will, There's a Way",
     "type": "unique",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 90011
   },
   {
     "id": "900131",
     "name_jp": "The Duty of Dignity Calls",
     "name_en": "The Duty of Dignity Calls",
     "type": "unique",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 90013
   },
   {
     "id": "900141",
     "name_jp": "Victoria por plancha ☆",
     "name_en": "Victoria por plancha ☆",
     "type": "unique",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 90014
   },
   {
     "id": "900151",
     "name_jp": "This Dance Is for Vittoria!",
     "name_en": "This Dance Is for Vittoria!",
     "type": "unique",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 90015
   },
   {
     "id": "900161",
     "name_jp": "Shadow Break",
     "name_en": "Shadow Break",
     "type": "unique",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 90016
   },
   {
     "id": "900171",
     "name_jp": "Behold Thine Emperor's Divine Might",
     "name_en": "Behold Thine Emperor's Divine Might",
     "type": "unique",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 90017
   },
   {
     "id": "900181",
     "name_jp": "Blazing Pride",
     "name_en": "Blazing Pride",
     "type": "unique",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 90018
   },
   {
     "id": "900201",
     "name_jp": "Angling and Scheming",
     "name_en": "Angling and Scheming",
     "type": "unique",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 90020
   },
   {
     "id": "900231",
     "name_jp": "∴win Q.E.D.",
     "name_en": "∴win Q.E.D.",
     "type": "unique",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 90023
   },
   {
     "id": "900241",
     "name_jp": "Flashy☆Landing",
     "name_en": "Flashy☆Landing",
     "type": "unique",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 90024
   },
   {
     "id": "900261",
     "name_jp": "G00 1st. F∞;",
     "name_en": "G00 1st. F∞;",
     "type": "unique",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 90026
   },
   {
     "id": "900271",
     "name_jp": "Let's Pump Some Iron!",
     "name_en": "Let's Pump Some Iron!",
     "type": "unique",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 90027
   },
   {
     "id": "900301",
     "name_jp": "Blue Rose Closer",
     "name_en": "Blue Rose Closer",
     "type": "unique",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 90030
   },
   {
     "id": "900321",
     "name_jp": "U=ma2",
     "name_en": "U=ma2",
     "type": "unique",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 90032
   },
   {
     "id": "900351",
     "name_jp": "Our Ticket to Win!",
     "name_en": "Our Ticket to Win!",
     "type": "unique",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 90035
   },
   {
     "id": "900381",
     "name_jp": "#LookatCurren",
     "name_en": "#LookatCurren",
     "type": "unique",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 90038
   },
   {
     "id": "900411",
     "name_jp": "Genius x Bakushin = Victory",
     "name_en": "Genius x Bakushin = Victory",
     "type": "unique",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 90041
   },
   {
     "id": "900451",
     "name_jp": "Pure Heart",
     "name_en": "Pure Heart",
     "type": "unique",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 90045
   },
   {
     "id": "900461",
     "name_jp": "SPARKLY☆STARDOM",
     "name_en": "SPARKLY☆STARDOM",
     "type": "unique",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 90046
   },
   {
     "id": "900501",
     "name_jp": "Nemesis",
     "name_en": "Nemesis",
     "type": "unique",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 90050
   },
   {
     "id": "900521",
     "name_jp": "Super-Duper Climax",
     "name_en": "Super-Duper Climax",
     "type": "unique",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 90052
   },
   {
     "id": "900561",
     "name_jp": "I See Victory in My Future!",
     "name_en": "I See Victory in My Future!",
     "type": "unique",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 90056
   },
   {
     "id": "900601",
     "name_jp": "Just a Little Farther!",
     "name_en": "Just a Little Farther!",
     "type": "unique",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 90060
   },
   {
     "id": "900611",
     "name_jp": "Prideful King",
     "name_en": "Prideful King",
     "type": "unique",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 90061
   },
   {
     "id": "910031",
     "name_jp": "Certain Victory",
     "name_en": "Certain Victory",
     "type": "unique",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 91003
   },
   {
     "id": "910131",
     "name_jp": "Legacy of the Strong",
     "name_en": "Legacy of the Strong",
     "type": "unique",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 91013
   },
   {
     "id": "910181",
     "name_jp": "Eternal Moments",
     "name_en": "Eternal Moments",
     "type": "unique",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 91018
   },
   {
     "id": "910241",
     "name_jp": "Flowery☆Maneuver",
     "name_en": "Flowery☆Maneuver",
     "type": "unique",
-    "rarity": 1
+    "rarity": 1,
+    "groupId": 91024
   }
 ]

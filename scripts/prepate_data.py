@@ -3,7 +3,7 @@ from pathlib import Path
 
 # --- INSTRUCTIONS ---
 # 1. Create a `raw_data/` directory in your project root.
-# 2. Copy `skill_data.json`, `skillnames.json`, and `umas.json` from the `uma-tools` project into `raw_data/`.
+# 2. Copy `skill_data.json`, `skillnames.json`, `skill_meta.json`, and `umas.json` from the `uma-tools` project into `raw_data/`.
 # 3. Create a `src/data/` directory in your project root if it doesn't exist.
 # 4. Run this script from your project root: `python scripts/prepare_data.py`
 # 5. It will generate `src/data/skill-list.json` and `src/data/uma-list.json`.
@@ -20,16 +20,19 @@ def prepare_skills():
     
     skill_data_path = RAW_DATA_DIR / 'skill_data.json'
     skill_names_path = RAW_DATA_DIR / 'skillnames.json'
+    skill_meta_path = RAW_DATA_DIR / 'skill_meta.json'
     output_path = OUTPUT_DATA_DIR / 'skill-list.json'
 
-    if not all([skill_data_path.exists(), skill_names_path.exists()]):
-        print("Error: skill_data.json or skillnames.json not found in raw_data/. Skipping skill preparation.")
+    if not all([p.exists() for p in [skill_data_path, skill_names_path, skill_meta_path]]):
+        print("Error: One or more required skill files not found in raw_data/. Skipping skill preparation.")
         return
 
     with open(skill_data_path, 'r', encoding='utf-8') as f:
         skill_data = json.load(f)
     with open(skill_names_path, 'r', encoding='utf-8') as f:
         skill_names = json.load(f)
+    with open(skill_meta_path, 'r', encoding='utf-8') as f:
+        skill_meta = json.load(f)
         
     inheritable_skills = []
     
@@ -43,8 +46,8 @@ def prepare_skills():
         if skill.get('rarity') not in INHERITABLE_RARITIES and not is_inherited_unique:
             continue
             
-        # Skip skills with no name entry (usually dummy skills)
-        if skill_id not in skill_names or not skill_names[skill_id]:
+        # Skip skills with no name or meta entry (usually dummy skills)
+        if skill_id not in skill_names or not skill_names[skill_id] or skill_id not in skill_meta:
             continue
             
         # Skip green skills (effects are only stat boosts)
@@ -57,7 +60,6 @@ def prepare_skills():
 
         name_list = skill_names[skill_id]
         name_jp = name_list[0]
-        # Safely get the English name, falling back to Japanese if it's missing or empty
         name_en = name_list[1] if len(name_list) > 1 and name_list[1] else name_jp
                 
         inheritable_skills.append({
@@ -65,7 +67,8 @@ def prepare_skills():
             'name_jp': name_jp,
             'name_en': name_en,
             'type': 'unique' if is_inherited_unique else 'normal',
-            'rarity': skill.get('rarity')
+            'rarity': skill.get('rarity'),
+            'groupId': skill_meta[skill_id].get('groupId')
         })
 
     # Ensure output directory exists
