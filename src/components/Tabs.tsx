@@ -14,6 +14,7 @@ const Tabs = () => {
     const [settingsModalProfile, setSettingsModalProfile] = useState<Profile | null>(null);
     const [isRenameModalOpen, setRenameModalOpen] = useState(false);
     const [renameValue, setRenameValue] = useState('');
+    const [isDeleteConfirmOpen, setDeleteConfirmOpen] = useState(false);
 
     const handleAddProfile = () => {
         if (newProfileName.trim()) {
@@ -37,12 +38,17 @@ const Tabs = () => {
     
     const handleDelete = () => {
         if (settingsModalProfile && profiles.length > 1) {
-            if (window.confirm(`Are you sure you want to delete "${settingsModalProfile.name}"? This cannot be undone.`)) {
-                deleteProfile(settingsModalProfile.id);
-                setSettingsModalProfile(null);
-            }
+            setDeleteConfirmOpen(true);
         } else {
             alert('You cannot delete the last project.');
+        }
+    };
+
+    const handleConfirmDelete = () => {
+        if (settingsModalProfile) {
+            deleteProfile(settingsModalProfile.id);
+            setSettingsModalProfile(null);
+            setDeleteConfirmOpen(false);
         }
     };
 
@@ -111,6 +117,23 @@ const Tabs = () => {
                 <div className="dialog-modal__footer">
                     <button className="button button--neutral" onClick={() => setRenameModalOpen(false)}>Cancel</button>
                     <button className="button button--primary" onClick={handleRename}>Save</button>
+                </div>
+            </Modal>
+
+            {/* Delete Confirmation Modal */}
+            <Modal
+                isOpen={isDeleteConfirmOpen}
+                onClose={() => setDeleteConfirmOpen(false)}
+                title="Confirm Project Deletion"
+            >
+                <p className="dialog-modal__message">
+                    Are you sure you want to delete project "{settingsModalProfile?.name}"?
+                    <br />
+                    <strong>This cannot be undone.</strong>
+                </p>
+                <div className="dialog-modal__footer">
+                    <button className="button button--neutral" onClick={() => setDeleteConfirmOpen(false)}>Cancel</button>
+                    <button className="button button--danger" onClick={handleConfirmDelete}>Delete Project</button>
                 </div>
             </Modal>
         </>
