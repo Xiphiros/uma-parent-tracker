@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode, useRef } from 'react';
-import { AppData, Profile, Skill, Uma } from '../types';
+import { AppData, Profile, Skill, Uma, Goal } from '../types';
 import masterSkillListJson from '../data/skill-list.json';
 import masterUmaListJson from '../data/uma-list.json';
 
@@ -18,6 +18,7 @@ interface AppContextType {
   switchProfile: (id: number) => void;
   renameProfile: (id: number, newName: string) => void;
   deleteProfile: (id: number) => void;
+  updateGoal: (goal: Goal) => void;
 }
 
 const AppContext = createContext<AppContextType | null>(null);
@@ -164,6 +165,15 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
     });
   };
   
+  const updateGoal = (goal: Goal) => {
+    setAppData(prevData => ({
+      ...prevData,
+      profiles: prevData.profiles.map(p => 
+        p.id === prevData.activeProfileId ? { ...p, goal } : p
+      )
+    }));
+  };
+  
   const value = {
     loading,
     appData,
@@ -176,7 +186,8 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
     addProfile,
     switchProfile,
     renameProfile,
-    deleteProfile
+    deleteProfile,
+    updateGoal
   };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
