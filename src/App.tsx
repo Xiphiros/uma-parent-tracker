@@ -2,11 +2,11 @@ import GoalDefinition from './components/GoalDefinition';
 import Header from './components/Header';
 import Roster from './components/Roster';
 import TopBreedingPair from './components/TopBreedingPair';
+import Tabs from './components/Tabs';
 import { useAppContext } from './context/AppContext';
 
 function App() {
   const { loading, getActiveProfile } = useAppContext();
-  const activeProfile = getActiveProfile();
   
   if (loading) {
     return (
@@ -18,11 +18,13 @@ function App() {
     );
   }
   
-  if (!activeProfile) {
+  if (!getActiveProfile()) {
     return (
        <div className="page">
         <div className="container mx-auto p-4 md:p-8 max-w-7xl text-center">
-          <p>Error: No active profile found.</p>
+          <Header />
+          <p className="mt-8">No active profile found. Please add a new project to begin.</p>
+           <Tabs />
         </div>
       </div>
     )
@@ -32,19 +34,7 @@ function App() {
     <div className="page">
       <div className="container mx-auto p-4 md:p-8 max-w-7xl">
         <Header />
-
-        <nav className="tabs__container">
-            <ul id="tabs-list" className="tabs__list">
-                {/* Placeholder for tabs */}
-                <li className="tab tab--active">
-                    <button className="tab__button">{activeProfile.name}</button>
-                </li>
-            </ul>
-            <button id="add-profile-btn" className="tabs__add-btn" title="Add New Project">
-                <svg xmlns="http://www.w.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" /></svg>
-            </button>
-        </nav>
-
+        <Tabs />
         <main className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <div className="lg-col-span-1 space-y-8">
                 <GoalDefinition />
