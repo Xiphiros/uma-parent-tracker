@@ -11,7 +11,7 @@ const PINK_SPARK_OPTIONS = [
 ];
 
 const GoalDefinition = () => {
-    const { getActiveProfile, updateGoal, masterSkillList } = useAppContext();
+    const { getActiveProfile, updateGoal, masterSkillList, updateWishlistItem } = useAppContext();
     const activeProfile = getActiveProfile();
     const goal = activeProfile?.goal;
 
@@ -24,16 +24,20 @@ const GoalDefinition = () => {
         updateGoal({ ...goal, ...changedValues });
     };
     
-    const handleWishlistAdd = (listName: keyof Goal, item: WishlistItem) => {
+    const handleWishlistAdd = (listName: 'wishlist' | 'uniqueWishlist', item: WishlistItem) => {
         const currentList = goal[listName] as WishlistItem[];
         if (!currentList.some(w => w.name.toLowerCase() === item.name.toLowerCase())) {
             handleGoalChange({ [listName]: [...currentList, item] });
         }
     };
     
-    const handleWishlistRemove = (listName: keyof Goal, itemName: string) => {
+    const handleWishlistRemove = (listName: 'wishlist' | 'uniqueWishlist', itemName: string) => {
         const currentList = goal[listName] as WishlistItem[];
         handleGoalChange({ [listName]: currentList.filter(w => w.name !== itemName) });
+    };
+
+    const handleWishlistUpdate = (listName: 'wishlist' | 'uniqueWishlist', oldName: string, newItem: WishlistItem) => {
+        updateWishlistItem(listName, oldName, newItem);
     };
 
     return (
@@ -66,6 +70,7 @@ const GoalDefinition = () => {
                     skillList={uniqueSkills}
                     onAdd={(item) => handleWishlistAdd('uniqueWishlist', item)}
                     onRemove={(name) => handleWishlistRemove('uniqueWishlist', name)}
+                    onUpdate={(oldName, newItem) => handleWishlistUpdate('uniqueWishlist', oldName, newItem)}
                 />
                 
                 <WishlistSection 
@@ -74,6 +79,7 @@ const GoalDefinition = () => {
                     skillList={normalSkills}
                     onAdd={(item) => handleWishlistAdd('wishlist', item)}
                     onRemove={(name) => handleWishlistRemove('wishlist', name)}
+                    onUpdate={(oldName, newItem) => handleWishlistUpdate('wishlist', oldName, newItem)}
                 />
 
             </div>
