@@ -1,0 +1,78 @@
+/* Parent Card Block */
+.parent-card {
+    padding: 1rem; /* p-4 */
+    border-radius: 0.5rem; /* rounded-lg */
+    border: 1px solid var(--color-border);
+    background-color: var(--color-card-bg-hover);
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+.parent-card--top-pair {
+    border-color: var(--color-top-pair-border);
+}
+.parent-card__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+.parent-card__name {
+    font-weight: 700; /* font-bold */
+    font-size: 1.125rem; /* text-lg */
+    color: var(--color-text-primary);
+}
+.parent-card__gen {
+    font-size: 0.875rem; /* text-sm */
+    font-weight: 500; /* font-medium */
+    color: var(--color-text-muted);
+}
+.parent-card__score-wrapper {
+    text-align: right;
+}
+.parent-card__actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.25rem;
+}
+.parent-card__score {
+    font-size: 1.5rem; /* text-2xl */
+    font-weight: 700; /* font-bold */
+    color: var(--color-score);
+}
+.parent-card__edit-btn {
+    font-size: 0.75rem; /* text-xs */
+    color: var(--color-text-link);
+    cursor: pointer;
+}
+.parent-card__edit-btn:hover {
+    color: var(--color-text-link-hover);
+}
+.parent-card__delete-btn {
+    font-size: 0.75rem; /* text-xs */
+    color: var(--color-text-danger);
+    cursor: pointer;
+}
+.parent-card__delete-btn:hover {
+    color: var(--color-text-danger-hover);
+}
+.parent-card__body {
+    margin-top: 0.75rem; /* mt-3 */
+    border-top: 1px solid var(--color-border);
+    padding-top: 0.75rem; /* pt-3 */
+    transition: border-color 0.3s ease;
+}
+.parent-card__spark-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.parent-card__spark-container--white {
+    margin-top: 0.5rem; /* mt-2 */
+}
+.parent-card__spark-tier {
+    margin-left: 0.25rem; /* ml-1 */
+    font-size: 0.75rem; /* text-xs */
+    opacity: 0.75;
+}
+.parent-card__no-sparks-text {
+    font-size: 0.75rem; /* text-xs */
+    color: var(--color-text-placeholder);
+}
