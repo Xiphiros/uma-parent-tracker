@@ -18,16 +18,35 @@ const GoalDefinition = () => {
     const uniqueSkills = useMemo(() => masterSkillList.filter(s => s.type === 'unique'), [masterSkillList]);
     const normalSkills = useMemo(() => masterSkillList.filter(s => s.type !== 'unique' && s.rarity === 1), [masterSkillList]);
 
+    const skillNameToGroupId = useMemo(() => {
+        const map = new Map<string, number | undefined>();
+        masterSkillList.forEach(skill => {
+            if (skill.groupId) {
+                map.set(skill.name_en, skill.groupId);
+            }
+        });
+        return map;
+    }, [masterSkillList]);
+
+    const availableUniqueSkills = useMemo(() => {
+        if (!goal) return uniqueSkills;
+
+        const wishlistedGroupIds = new Set<number>();
+        goal.uniqueWishlist.forEach(item => {
+            const groupId = skillNameToGroupId.get(item.name);
+            if (groupId) {
+                wishlistedGroupIds.add(groupId);
+            }
+        });
+
+        return uniqueSkills.filter(skill => 
+            !skill.groupId || !wishlistedGroupIds.has(skill.groupId)
+        );
+    }, [goal, uniqueSkills, skillNameToGroupId]);
+
     const availableNormalSkills = useMemo(() => {
         if (!goal) return normalSkills;
         
-        // Create a map of skill names to their group IDs for efficient lookup
-        const skillNameToGroupId = new Map<string, number | undefined>();
-        masterSkillList.forEach(skill => {
-            skillNameToGroupId.set(skill.name_en, skill.groupId);
-        });
-
-        // Get all group IDs that are already in the wishlist
         const wishlistedGroupIds = new Set<number>();
         goal.wishlist.forEach(item => {
             const groupId = skillNameToGroupId.get(item.name);
@@ -36,11 +55,10 @@ const GoalDefinition = () => {
             }
         });
 
-        // Filter the list of selectable skills
         return normalSkills.filter(skill => 
             !skill.groupId || !wishlistedGroupIds.has(skill.groupId)
         );
-    }, [goal, normalSkills, masterSkillList]);
+    }, [goal, normalSkills, skillNameToGroupId]);
 
     if (!goal) return null;
 
@@ -91,7 +109,7 @@ const GoalDefinition = () => {
                 <WishlistSection 
                     title="Unique Spark Wishlist"
                     wishlist={goal.uniqueWishlist}
-                    skillList={uniqueSkills}
+                    skillList={availableUniqueSkills}
                     onAdd={(item) => handleWishlistAdd('uniqueWishlist', item)}
                     onRemove={(name) => handleWishlistRemove('uniqueWishlist', name)}
                     onUpdate={(oldName, newItem) => handleWishlistUpdate('uniqueWishlist', oldName, newItem)}
