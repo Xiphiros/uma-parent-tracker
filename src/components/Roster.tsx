@@ -4,11 +4,14 @@ import ParentCard from './ParentCard';
 import AddParentModal from './AddParentModal';
 import { Parent } from '../types';
 import { useScrollLock } from '../hooks/useScrollLock';
+import Modal from './common/Modal';
 
 const Roster = () => {
     const { getActiveProfile, deleteParent } = useAppContext();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [parentToEdit, setParentToEdit] = useState<Parent | null>(null);
+    const [isDeleteConfirmOpen, setDeleteConfirmOpen] = useState(false);
+    const [parentToDelete, setParentToDelete] = useState<Parent | null>(null);
     const rosterContainerRef = useRef<HTMLDivElement>(null);
     useScrollLock(rosterContainerRef);
     
@@ -30,9 +33,16 @@ const Roster = () => {
     };
 
     const handleDeleteParent = (parent: Parent) => {
-        if (window.confirm(`Are you sure you want to delete "${parent.name}"?`)) {
-            deleteParent(parent.id);
+        setParentToDelete(parent);
+        setDeleteConfirmOpen(true);
+    };
+
+    const handleConfirmDelete = () => {
+        if (parentToDelete) {
+            deleteParent(parentToDelete.id);
         }
+        setParentToDelete(null);
+        setDeleteConfirmOpen(false);
     };
     
     return (
@@ -72,6 +82,20 @@ const Roster = () => {
                 onClose={() => setIsModalOpen(false)}
                 parentToEdit={parentToEdit}
             />
+
+            <Modal
+                isOpen={isDeleteConfirmOpen}
+                onClose={() => setDeleteConfirmOpen(false)}
+                title="Confirm Deletion"
+            >
+                <p className="dialog-modal__message">
+                    Are you sure you want to delete "{parentToDelete?.name}"?
+                </p>
+                <div className="dialog-modal__footer">
+                    <button className="button button--neutral" onClick={() => setDeleteConfirmOpen(false)}>Cancel</button>
+                    <button className="button button--danger" onClick={handleConfirmDelete}>Delete</button>
+                </div>
+            </Modal>
         </>
     );
 };
