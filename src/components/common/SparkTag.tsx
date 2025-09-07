@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+import { formatStars } from '../../utils/ui';
 
 type SparkCategory = 'blue' | 'pink' | 'unique' | 'white';
 
@@ -19,7 +20,7 @@ const SparkTag = ({ category, type, stars, children }: SparkTagProps) => {
             data-spark-category={category} 
             data-spark-type={category === 'blue' || category === 'pink' ? dataType : undefined}
         >
-            {type} {'★'.repeat(stars)}
+            {type} {formatStars(stars)}
             {children}
         </div>
     );
