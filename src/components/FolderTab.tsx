@@ -1,3 +1,4 @@
+import React from 'react';
 import { Folder, Profile } from "../types";
 import { getIcon } from "./icons";
 import './FolderTab.css';
@@ -21,11 +22,18 @@ const FolderTab = ({ folder, profilesInFolder, isActive, isDragOver, onToggleCol
         isDragOver ? 'folder-tab--drag-over' : ''
     ].filter(Boolean).join(' ');
 
+    const buttonStyle: React.CSSProperties = {
+        color: folder.color,
+    };
+    if (isActive) {
+        buttonStyle.borderBottomColor = folder.color;
+    }
+
     return (
         <div className={folderClasses}>
             <div
                 className="folder-tab__button"
-                style={{ color: folder.color }}
+                style={buttonStyle}
             >
                 <Icon />
                 {folder.name}
