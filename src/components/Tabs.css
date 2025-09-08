@@ -11,6 +11,7 @@
 .tabs__list-wrapper {
     flex-grow: 1;
     overflow: hidden;
+    position: relative; /* For nav buttons */
 }
 .tabs__list {
     display: flex;
@@ -128,7 +129,12 @@
     left: -1rem;
 }
 .tabs__nav-btn--right {
-    right: 3.25rem; /* Make space for the add button */
+    right: -1rem;
+}
+.tabs__actions-group {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
 }
 .tabs__add-btn {
     display: flex;
