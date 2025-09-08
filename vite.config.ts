@@ -43,7 +43,7 @@ const devServerEndpoints = (): Plugin => ({
 
         const busboy = Busboy({ headers: req.headers });
         let umaId = '';
-        let fileStream: NodeJS.ReadableStream | null = null;
+        const chunks: Buffer[] = [];
         let originalFilename = '';
 
         busboy.on('field', (fieldname: string, val: string) => {
@@ -54,36 +54,35 @@ const devServerEndpoints = (): Plugin => ({
 
         busboy.on('file', (fieldname: string, file: NodeJS.ReadableStream, { filename }: { filename: string }) => {
             if (fieldname === 'image') {
-                fileStream = file;
                 originalFilename = filename;
+                file.on('data', (chunk) => {
+                    chunks.push(chunk as Buffer);
+                });
             }
         });
 
         busboy.on('finish', () => {
-            if (!umaId || !fileStream) {
+            if (!umaId || chunks.length === 0) {
                 res.writeHead(400, { 'Content-Type': 'application/json' });
                 return res.end(JSON.stringify({ message: 'Missing umaId or image file.' }));
             }
-
-            const extension = path.extname(originalFilename) || '.png';
-            const saveTo = path.join(process.cwd(), 'public/images/umas', `${umaId}${extension}`);
             
-            fs.mkdirSync(path.dirname(saveTo), { recursive: true });
-            
-            const writeStream = fs.createWriteStream(saveTo);
-            fileStream.pipe(writeStream);
+            try {
+                const fileBuffer = Buffer.concat(chunks);
+                const extension = path.extname(originalFilename) || '.png';
+                const saveTo = path.join(process.cwd(), 'public/images/umas', `${umaId}${extension}`);
+                
+                fs.mkdirSync(path.dirname(saveTo), { recursive: true });
+                fs.writeFileSync(saveTo, fileBuffer);
 
-            writeStream.on('finish', () => {
                 console.log(`Successfully saved image for umaId ${umaId} to ${saveTo}`);
                 res.writeHead(200, { 'Content-Type': 'application/json' });
                 res.end(JSON.stringify({ message: `Image for ${umaId} uploaded. Run prepare_data.py to apply.` }));
-            });
-
-            writeStream.on('error', (err) => {
+            } catch (err) {
                 console.error('Error writing file:', err);
                 res.writeHead(500, { 'Content-Type': 'application/json' });
-                res.end(JSON.stringify({ message: `Server error while saving file: ${err.message}` }));
-            });
+                res.end(JSON.stringify({ message: `Server error while saving file: ${(err as Error).message}` }));
+            }
         });
 
         req.pipe(busboy);
