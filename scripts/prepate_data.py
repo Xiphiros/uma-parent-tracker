@@ -13,6 +13,7 @@ SCRIPT_DIR = Path(__file__).parent
 PROJECT_ROOT = SCRIPT_DIR.parent
 RAW_DATA_DIR = PROJECT_ROOT / 'raw_data'
 OUTPUT_DATA_DIR = PROJECT_ROOT / 'src' / 'data'
+EXCLUSION_PATH = OUTPUT_DATA_DIR / 'skill-exclusions.json'
 
 def prepare_skills():
     """Processes raw skill data into a format usable by the application."""
@@ -33,6 +34,17 @@ def prepare_skills():
         skill_names = json.load(f)
     with open(skill_meta_path, 'r', encoding='utf-8') as f:
         skill_meta = json.load(f)
+
+    # Load exclusions
+    exclusions = set()
+    if EXCLUSION_PATH.exists():
+        with open(EXCLUSION_PATH, 'r', encoding='utf-8') as f:
+            exclusions = set(json.load(f))
+        print(f"Loaded {len(exclusions)} skill exclusions.")
+    else:
+        print("No skill-exclusions.json file found. Creating an empty one.")
+        with open(EXCLUSION_PATH, 'w', encoding='utf-8') as f:
+            json.dump([], f, indent=2)
         
     inheritable_skills = []
     
@@ -40,6 +52,10 @@ def prepare_skills():
     INHERITABLE_RARITIES = {1, 2}
     
     for skill_id, skill in skill_data.items():
+        # 1. Exclude based on explicit ID list
+        if skill_id in exclusions:
+            continue
+            
         is_inherited_unique = skill_id.startswith('9')
 
         # Only include white/gold skills and inherited uniques.
@@ -50,18 +66,14 @@ def prepare_skills():
         if skill_id not in skill_names or not skill_names[skill_id] or skill_id not in skill_meta:
             continue
             
-        # Skip green skills (effects are only stat boosts)
-        alternatives = skill.get('alternatives', [])
-        if alternatives:
-            first_alt = alternatives[0]
-            effects = first_alt.get('effects', [])
-            if effects and all(1 <= e.get('type', 0) <= 5 for e in effects):
-                continue
-
         name_list = skill_names[skill_id]
         name_jp = name_list[0]
         name_en = name_list[1] if len(name_list) > 1 and name_list[1] else name_jp
                 
+        # 2. Exclude non-inheritable skill tiers (◎) and negative skills (×)
+        if '◎' in name_jp or '×' in name_jp:
+            continue
+
         inheritable_skills.append({
             'id': skill_id,
             'name_jp': name_jp,
