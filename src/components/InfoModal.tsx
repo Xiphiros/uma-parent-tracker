@@ -6,7 +6,7 @@ interface InfoModalProps {
     onClose: () => void;
 }
 
-const APP_VERSION = '0.6.1';
+const APP_VERSION = '0.6.2';
 
 const InfoModal = ({ isOpen, onClose }: InfoModalProps) => {
     return (
