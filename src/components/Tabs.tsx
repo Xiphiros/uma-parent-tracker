@@ -225,6 +225,11 @@ const Tabs = () => {
     const handleDragEnd = (e: React.DragEvent<HTMLElement>) => {
         e.currentTarget.classList.remove('tab--dragging');
         setDragOverFolderId(null);
+        
+        // Force cleanup for any target elements that were hovered
+        document.querySelectorAll('.tab--drag-over').forEach(el => {
+            el.classList.remove('tab--drag-over');
+        });
     };
 
     // --- Modals ---
