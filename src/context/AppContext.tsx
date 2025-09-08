@@ -325,11 +325,24 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
               });
           } else {
               const newLayout = [...newData.layout];
-              if (destIndex > -1) {
-                newLayout.splice(destIndex, 0, profileId);
-              } else {
-                newLayout.push(profileId);
+              const profilesMap = new Map(newData.profiles.map(p => [p.id, p]));
+              const foldersMap = new Map(newData.folders.map(f => [f.id, f]));
+
+              // Find the index of the first unpinned item in the layout
+              let firstUnpinnedIndex = newLayout.findIndex(id => {
+                  const item = typeof id === 'string' ? foldersMap.get(id) : profilesMap.get(id);
+                  return !item?.isPinned;
+              });
+
+              // If all items are pinned, or layout is empty, append to the end
+              if (firstUnpinnedIndex === -1) {
+                  firstUnpinnedIndex = newLayout.length;
               }
+
+              // An unpinned item can't be dropped before the first unpinned item
+              const finalIndex = destIndex > -1 ? Math.max(firstUnpinnedIndex, destIndex) : firstUnpinnedIndex;
+              
+              newLayout.splice(finalIndex, 0, profileId);
               newData.layout = newLayout;
           }
           return newData;
