@@ -1,15 +1,20 @@
-import { createContext, useContext, useState, useEffect, ReactNode, useRef } from 'react';
+import { createContext, useContext, useState, useEffect, ReactNode, useRef, useMemo } from 'react';
 import { AppData, Profile, Skill, Uma, Goal, Parent, NewParentData, WishlistItem, Folder, IconName } from '../types';
 import masterSkillListJson from '../data/skill-list.json';
 import masterUmaListJson from '../data/uma-list.json';
 import { calculateScore } from '../utils/scoring';
 
-const DB_KEY = 'umaTrackerData_v2'; // Keep old key for migration
+const DB_KEY = 'umaTrackerData_v2';
+const PREFS_KEY = 'umaTrackerPrefs_v1';
 const CURRENT_VERSION = 3;
+
+type DataMode = 'jp' | 'global';
 
 interface AppContextType {
   loading: boolean;
   appData: AppData;
+  dataMode: DataMode;
+  setDataMode: (mode: DataMode) => void;
   masterSkillList: Skill[];
   masterUmaList: Uma[];
   getActiveProfile: () => Profile | undefined;
@@ -106,8 +111,9 @@ const migrateData = (data: any): AppData => {
 
 export const AppProvider = ({ children }: { children: ReactNode }) => {
   const [loading, setLoading] = useState(true);
-  const [masterSkillList] = useState<Skill[]>(masterSkillListJson as Skill[]);
-  const [masterUmaList] = useState<Uma[]>(masterUmaListJson as Uma[]);
+  const [fullMasterSkillList] = useState<Skill[]>(masterSkillListJson as Skill[]);
+  const [fullMasterUmaList] = useState<Uma[]>(masterUmaListJson as Uma[]);
+  const [dataMode, setDataModeState] = useState<DataMode>('jp');
   const [appData, setAppData] = useState<AppData>({
     version: CURRENT_VERSION,
     activeProfileId: null,
@@ -119,28 +125,36 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
   const isInitialLoad = useRef(true);
 
   useEffect(() => {
-    const loadState = () => {
-      let data: AppData | null = null;
-      const savedData = localStorage.getItem(DB_KEY);
+    // Load main app data
+    let data: AppData | null = null;
+    const savedData = localStorage.getItem(DB_KEY);
 
-      if (savedData) {
+    if (savedData) {
+      try {
+          data = migrateData(JSON.parse(savedData));
+      } catch (e) {
+          console.error("Failed to parse or migrate saved data", e);
+          data = createDefaultState();
+      }
+    }
+    
+    if (!data || data.profiles.length === 0) {
+      data = createDefaultState();
+    }
+    setAppData(data);
+
+    // Load user preferences
+    const savedPrefs = localStorage.getItem(PREFS_KEY);
+    if (savedPrefs) {
         try {
-            data = migrateData(JSON.parse(savedData));
+            const prefs = JSON.parse(savedPrefs);
+            if (prefs.dataMode) setDataModeState(prefs.dataMode);
         } catch (e) {
-            console.error("Failed to parse or migrate saved data", e);
-            data = createDefaultState();
+            console.error("Failed to parse user preferences", e);
         }
-      }
-      
-      if (!data || data.profiles.length === 0) {
-        data = createDefaultState();
-      }
+    }
 
-      setAppData(data);
-      setLoading(false);
-    };
-
-    loadState();
+    setLoading(false);
   }, []);
   
   useEffect(() => {
@@ -151,6 +165,30 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
     localStorage.setItem(DB_KEY, JSON.stringify(appData));
   }, [appData]);
 
+  const setDataMode = (mode: DataMode) => {
+      setDataModeState(mode);
+      try {
+          const prefs = JSON.parse(localStorage.getItem(PREFS_KEY) || '{}');
+          prefs.dataMode = mode;
+          localStorage.setItem(PREFS_KEY, JSON.stringify(prefs));
+      } catch (e) {
+          console.error("Could not save data mode preference", e);
+      }
+  };
+
+  const masterSkillList = useMemo(() => {
+      if (dataMode === 'global') {
+          return fullMasterSkillList.filter(s => s.isGlobal);
+      }
+      return fullMasterSkillList;
+  }, [dataMode, fullMasterSkillList]);
+
+  const masterUmaList = useMemo(() => {
+      if (dataMode === 'global') {
+          return fullMasterUmaList.filter(u => u.isGlobal);
+      }
+      return fullMasterUmaList;
+  }, [dataMode, fullMasterUmaList]);
 
   const saveState = (newData: AppData) => {
     setAppData(newData);
@@ -572,6 +610,8 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
   const value = {
     loading,
     appData,
+    dataMode,
+    setDataMode,
     masterSkillList,
     masterUmaList,
     getActiveProfile,
