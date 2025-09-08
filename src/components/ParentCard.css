@@ -21,7 +21,8 @@
     height: 80px;
     object-fit: cover;
     border-radius: 9999px;
-    border: 1px solid var(--color-border);
+    border: 2px solid var(--color-avatar-border);
+    transition: border-color 0.3s ease;
 }
 .parent-card__details {
     flex-grow: 1;
