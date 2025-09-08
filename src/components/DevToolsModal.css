@@ -28,3 +28,7 @@
     letter-spacing: 0.05em;
     border-bottom: 1px solid var(--color-border);
 }
+
+.dev-tools__table tbody {
+    color: var(--color-text-primary);
+}
