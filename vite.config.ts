@@ -46,13 +46,13 @@ const devServerEndpoints = (): Plugin => ({
         let fileStream: NodeJS.ReadableStream | null = null;
         let originalFilename = '';
 
-        busboy.on('field', (fieldname, val) => {
+        busboy.on('field', (fieldname: string, val: string) => {
             if (fieldname === 'umaId') {
                 umaId = val;
             }
         });
 
-        busboy.on('file', (fieldname, file, { filename }) => {
+        busboy.on('file', (fieldname: string, file: NodeJS.ReadableStream, { filename }: { filename: string }) => {
             if (fieldname === 'image') {
                 fileStream = file;
                 originalFilename = filename;
