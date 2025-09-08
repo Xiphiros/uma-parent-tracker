@@ -7,7 +7,7 @@ interface ModalProps {
   onClose: () => void;
   title: string;
   children: ReactNode;
-  size?: 'sm' | 'lg';
+  size?: 'sm' | 'lg' | 'xl';
 }
 
 const Modal = ({ isOpen, onClose, title, children, size = 'sm' }: ModalProps) => {
@@ -16,7 +16,9 @@ const Modal = ({ isOpen, onClose, title, children, size = 'sm' }: ModalProps) =>
   const modalRoot = document.getElementById('modal-root');
   if (!modalRoot) return null; // Should not happen if index.html is correct
 
-  const sizeClass = size === 'lg' ? 'dialog-modal__content--lg' : 'dialog-modal__content--sm';
+  let sizeClass = 'dialog-modal__content--sm';
+  if (size === 'lg') sizeClass = 'dialog-modal__content--lg';
+  if (size === 'xl') sizeClass = 'dialog-modal__content--xl';
 
   return ReactDOM.createPortal(
     <div className="dialog-modal opacity-100" onClick={onClose}>
