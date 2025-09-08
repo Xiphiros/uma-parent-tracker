@@ -3,7 +3,7 @@ import { Folder, Profile } from "../types";
 import { getIcon } from "./icons";
 import './FolderTab.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGear, faChevronDown, faBookmark } from '@fortawesome/free-solid-svg-icons';
+import { faGear, faChevronDown, faBookmark, faThumbtack } from '@fortawesome/free-solid-svg-icons';
 
 interface FolderTabProps {
     folder: Folder;
@@ -12,9 +12,10 @@ interface FolderTabProps {
     isDragOver: boolean;
     onToggleCollapse: (folderId: string) => void;
     onSettings: (folder: Folder) => void;
+    onTogglePin: (folderId: string) => void;
 }
 
-const FolderTab: React.FC<FolderTabProps> = ({ folder, profilesInFolder, isActive, isDragOver, onToggleCollapse, onSettings }) => {
+const FolderTab: React.FC<FolderTabProps> = ({ folder, profilesInFolder, isActive, isDragOver, onToggleCollapse, onSettings, onTogglePin }) => {
     const Icon = getIcon(folder.icon);
 
     const folderClasses = [
@@ -42,6 +43,9 @@ const FolderTab: React.FC<FolderTabProps> = ({ folder, profilesInFolder, isActiv
                 {folder.name}
                 <span className="text-xs opacity-60 ml-1">({profilesInFolder.length})</span>
                 <div className="tab__actions">
+                    <button className={`tab__pin-btn ${folder.isPinned ? 'tab__pin-btn--pinned' : ''}`} title={folder.isPinned ? 'Unpin Folder' : 'Pin Folder'} onClick={(e) => { e.stopPropagation(); onTogglePin(folder.id); }}>
+                        <FontAwesomeIcon icon={folder.isPinned ? faBookmark : faThumbtack} className="h-4 w-4" />
+                    </button>
                     <button className="tab__settings-btn" title="Folder Settings" onClick={(e) => { e.stopPropagation(); onSettings(folder); }}>
                         <FontAwesomeIcon icon={faGear} className="h-4 w-4" />
                     </button>
