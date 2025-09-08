@@ -22,6 +22,7 @@ interface AppContextType {
   renameProfile: (id: number, newName: string) => void;
   deleteProfile: (id: number) => void;
   togglePinProfile: (id: number) => void;
+  togglePinFolder: (id: string) => void;
   reorderLayout: (sourceIndex: number, destinationIndex: number) => void;
   reorderProfileInFolder: (folderId: string, sourceIndex: number, destIndex: number) => void;
   moveProfileToFolder: (profileId: number, folderId: string | null, destIndex?: number) => void;
@@ -94,6 +95,9 @@ const migrateData = (data: any): AppData => {
         p.roster.forEach(parent => {
             if (!parent.uniqueSparks) parent.uniqueSparks = [];
         });
+    });
+    data.folders.forEach((f: Folder) => {
+        if (f.isPinned === undefined) f.isPinned = false;
     });
 
     return data as AppData;
@@ -238,12 +242,36 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
     });
   };
 
+  const sortLayoutByPin = (layout: (string|number)[], profiles: Profile[], folders: Folder[]) => {
+      const profilePinMap = new Map(profiles.map(p => [p.id, p.isPinned ?? false]));
+      const folderPinMap = new Map(folders.map(f => [f.id, f.isPinned ?? false]));
+
+      const isPinned = (id: string | number) => {
+          return typeof id === 'string' ? folderPinMap.get(id) : profilePinMap.get(id);
+      }
+
+      return [...layout].sort((a, b) => {
+          return (isPinned(b) ? 1 : 0) - (isPinned(a) ? 1 : 0);
+      });
+  };
+
   const togglePinProfile = (id: number) => {
     setAppData(prevData => {
         const newProfiles = prevData.profiles.map(p => 
             p.id === id ? { ...p, isPinned: !p.isPinned } : p
         );
-        return { ...prevData, profiles: newProfiles };
+        const newLayout = sortLayoutByPin(prevData.layout, newProfiles, prevData.folders);
+        return { ...prevData, profiles: newProfiles, layout: newLayout };
+    });
+  };
+
+  const togglePinFolder = (id: string) => {
+    setAppData(prevData => {
+        const newFolders = prevData.folders.map(f =>
+            f.id === id ? { ...f, isPinned: !f.isPinned } : f
+        );
+        const newLayout = sortLayoutByPin(prevData.layout, prevData.profiles, newFolders);
+        return { ...prevData, folders: newFolders, layout: newLayout };
     });
   };
 
@@ -316,6 +344,7 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
           icon,
           isCollapsed: false,
           profileIds: [],
+          isPinned: false,
       };
       setAppData(prevData => ({
           ...prevData,
@@ -481,6 +510,7 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
     renameProfile,
     deleteProfile,
     togglePinProfile,
+    togglePinFolder,
     reorderLayout,
     reorderProfileInFolder,
     moveProfileToFolder,
