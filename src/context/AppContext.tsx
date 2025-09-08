@@ -365,13 +365,15 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
           if (folderId) {
               newData.folders = newData.folders.map(f => {
                   if (f.id === folderId) {
-                      const newProfileIds = [...f.profileIds];
+                      let newProfileIds = [...f.profileIds];
                       if (destIndex > -1) {
                           newProfileIds.splice(destIndex, 0, profileId);
                       } else {
                           newProfileIds.push(profileId);
                       }
-                      return { ...f, profileIds: newProfileIds };
+                      // Always re-sort the folder's contents by pin status after a move.
+                      const sortedIds = sortProfileIdsByPin(newProfileIds, newData.profiles);
+                      return { ...f, profileIds: sortedIds };
                   }
                   return f;
               });
