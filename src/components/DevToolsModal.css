@@ -1,0 +1,30 @@
+/* DevToolsModal Styles */
+.dev-tools__info-text {
+    font-size: 0.875rem; /* text-sm */
+    color: var(--color-text-muted);
+}
+
+.dev-tools__info-text code {
+    background-color: var(--color-border);
+    color: var(--color-text-secondary);
+    padding: 0.125rem 0.375rem;
+    border-radius: 0.25rem;
+    font-size: 0.8em;
+}
+
+.dev-tools__table thead {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background-color: var(--color-card-bg-hover);
+}
+
+.dev-tools__table th {
+    padding: 0.75rem 0.5rem;
+    font-size: 0.75rem; /* 12px */
+    font-weight: 600;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid var(--color-border);
+}
