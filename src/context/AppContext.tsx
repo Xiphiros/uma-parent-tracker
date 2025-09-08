@@ -282,13 +282,17 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
         const folderPinMap = new Map(prevData.folders.map(f => [f.id, f.isPinned ?? false]));
         const isPinned = (id: string | number) => typeof id === 'string' ? folderPinMap.get(id) : profilePinMap.get(id);
 
+        // A pinned item cannot be the source of a move.
+        if (isPinned(layoutCopy[sourceIndex])) {
+            return prevData;
+        }
+
+        // Find the boundary of the pinned items.
         const firstUnpinnedIndex = layoutCopy.findIndex(id => !isPinned(id));
         const pinnedZoneEnd = firstUnpinnedIndex === -1 ? layoutCopy.length : firstUnpinnedIndex;
 
-        const sourceIsPinned = isPinned(layoutCopy[sourceIndex]);
-
-        // If the destination is in the pinned zone, the source must also be pinned.
-        if (destinationIndex < pinnedZoneEnd && !sourceIsPinned) {
+        // If the destination is in the pinned zone, block the move.
+        if (destinationIndex < pinnedZoneEnd) {
             return prevData;
         }
 
@@ -307,13 +311,17 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
       if (!folder) return prevData;
 
       const profileIds = folder.profileIds;
+      
+      // A pinned item cannot be the source of a move.
+      if (isPinned(profileIds[sourceIndex])) {
+          return prevData;
+      }
+
       const firstUnpinnedIndex = profileIds.findIndex(id => !isPinned(id));
       const pinnedZoneEnd = firstUnpinnedIndex === -1 ? profileIds.length : firstUnpinnedIndex;
 
-      const sourceIsPinned = isPinned(profileIds[sourceIndex]);
-
-      // If the destination is in the pinned zone, the source must also be pinned.
-      if (destIndex < pinnedZoneEnd && !sourceIsPinned) {
+      // If the destination is in the pinned zone, block the move.
+      if (destIndex < pinnedZoneEnd) {
           return prevData;
       }
 
