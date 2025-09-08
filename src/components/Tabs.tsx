@@ -56,14 +56,13 @@ const Tabs = () => {
             menuItems = [
                 { label: 'Edit Folder', onClick: () => handleOpenFolderSettings(item) },
                 { label: item.isPinned ? 'Unpin Folder' : 'Pin Folder', onClick: () => togglePinFolder(item.id) },
-                { label: 'Delete Folder...', onClick: () => handleDeleteFolder(), isDestructive: true, disabled: !!item.isPinned },
+                { label: 'Delete Folder...', onClick: () => handleDeleteFolder(item), isDestructive: true, disabled: !!item.isPinned },
             ];
-            setFolderToEdit(item); // Set context for deletion
         } else { // It's a Profile
             menuItems = [
                 { label: 'Rename Project', onClick: () => { setSettingsModalProfile(item); setRenameValue(item.name); setRenameModalOpen(true); } },
                 { label: item.isPinned ? 'Unpin Project' : 'Pin Project', onClick: () => togglePinProfile(item.id) },
-                { label: 'Delete Project...', onClick: () => { setSettingsModalProfile(item); handleDelete(); }, isDestructive: true, disabled: !!item.isPinned },
+                { label: 'Delete Project...', onClick: () => handleDelete(item), isDestructive: true, disabled: !!item.isPinned },
             ];
         }
 
@@ -249,8 +248,9 @@ const Tabs = () => {
         }
     };
     
-    const handleDelete = () => {
-        if (settingsModalProfile && profiles.length > 1) {
+    const handleDelete = (profile: Profile | null) => {
+        if (profile && profiles.length > 1) {
+            setSettingsModalProfile(profile);
             setDeleteConfirmOpen(true);
         } else {
             setSettingsModalProfile(null);
@@ -279,9 +279,9 @@ const Tabs = () => {
         setFolderSettingsOpen(true);
     };
 
-    const handleDeleteFolder = () => {
-        if (folderToEdit) {
-            setFolderToDelete(folderToEdit);
+    const handleDeleteFolder = (folder: Folder | null) => {
+        if (folder) {
+            setFolderToDelete(folder);
             setDeleteFolderConfirmOpen(true);
             setFolderSettingsOpen(false);
         }
@@ -440,7 +440,7 @@ const Tabs = () => {
                 <div className="dialog-modal__footer">
                     <button className="button button--neutral" onClick={() => setFolderSettingsOpen(false)}>Cancel</button>
                     <button className="button button--secondary" onClick={() => { setFolderSettingsOpen(false); setFolderModalOpen(true); }}>Edit</button>
-                    <button className="button button--danger" onClick={handleDeleteFolder}>Delete</button>
+                    <button className="button button--danger" onClick={() => handleDeleteFolder(folderToEdit)}>Delete</button>
                 </div>
             </Modal>
 
@@ -467,7 +467,7 @@ const Tabs = () => {
                 <div className="dialog-modal__footer">
                     <button className="button button--neutral" onClick={() => setSettingsModalProfile(null)}>Cancel</button>
                     <button className="button button--secondary" onClick={() => { setRenameValue(settingsModalProfile?.name || ''); setRenameModalOpen(true); }}>Rename</button>
-                    <button className="button button--danger" onClick={handleDelete}>Delete</button>
+                    <button className="button button--danger" onClick={() => handleDelete(settingsModalProfile)}>Delete</button>
                 </div>
             </Modal>
             
