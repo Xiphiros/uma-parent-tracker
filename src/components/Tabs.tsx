@@ -46,6 +46,7 @@ const Tabs = () => {
     // --- Context Menu ---
     const handleOpenContextMenu = (e: React.MouseEvent, item: Profile | Folder) => {
         e.preventDefault();
+        e.stopPropagation(); // Stop event from bubbling to parent folder handlers
         
         let menuItems: MenuItem[] = [];
         if ('profileIds' in item) { // It's a Folder
@@ -297,11 +298,12 @@ const Tabs = () => {
                 const folder = foldersById.get(itemId)!;
                 const profilesInFolder = folder.profileIds.map(pid => profilesById.get(pid)).filter(Boolean) as Profile[];
                 const isFolderActive = profilesInFolder.some(p => p.id === activeProfileId);
-                const folderContentStyle = { '--folder-color': folder.color } as React.CSSProperties;
+                const folderGroupStyle = { '--folder-color': folder.color } as React.CSSProperties;
 
                 return (
                     <li key={folder.id} className="folder-group" draggable="true"
                         data-id={folder.id} data-type="folder"
+                        style={folderGroupStyle}
                         onDragStart={handleDragStart} onDragEnter={handleDragEnter} onDragLeave={handleDragLeave}
                         onDragOver={(e) => e.preventDefault()} onDrop={handleDrop} onDragEnd={handleDragEnd}
                         onContextMenu={(e) => handleOpenContextMenu(e, folder)}>
@@ -309,11 +311,9 @@ const Tabs = () => {
                         <FolderTab folder={folder} profilesInFolder={profilesInFolder} isActive={isFolderActive} isDragOver={dragOverFolderId === folder.id} onToggleCollapse={toggleFolderCollapse} onSettings={handleOpenFolderSettings} />
                         
                         {!folder.isCollapsed && profilesInFolder.length > 0 && (
-                            <div className="folder-content" style={folderContentStyle}>
-                                <ul>
-                                    {profilesInFolder.map(profile => renderProfileTab(profile, true, folder.id))}
-                                </ul>
-                            </div>
+                            <ul>
+                                {profilesInFolder.map(profile => renderProfileTab(profile, true, folder.id))}
+                            </ul>
                         )}
                     </li>
                 );
