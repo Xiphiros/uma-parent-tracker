@@ -30,3 +30,17 @@
     background-color: var(--color-button-danger-bg);
     color: white;
 }
+
+.context-menu__item--disabled {
+    color: var(--color-text-muted);
+    cursor: not-allowed;
+}
+
+.context-menu__item--disabled:hover {
+    background-color: transparent;
+}
+
+.context-menu__item--destructive.context-menu__item--disabled:hover {
+    background-color: transparent;
+    color: var(--color-text-muted);
+}
