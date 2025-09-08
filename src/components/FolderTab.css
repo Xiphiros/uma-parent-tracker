@@ -23,15 +23,25 @@
 .folder-tab:hover .tab__actions {
     opacity: 1;
 }
+/* Override default absolute positioning for actions inside a folder tab button */
+.folder-tab__button .tab__actions {
+    position: static;
+    top: auto;
+    right: auto;
+    margin-left: auto; /* Push actions to the right */
+    align-items: center; /* Vertically align the icons */
+}
 .folder-tab--active .folder-tab__button {
     border-bottom-color: var(--color-accent-primary);
+}
+.folder-tab--drag-over .folder-tab__button {
+    background-color: color-mix(in srgb, var(--folder-color, var(--color-text-muted)) 20%, transparent) !important;
 }
 .folder-tab__collapse-btn {
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 0.25rem;
-    margin-left: 0.5rem;
     border-radius: 9999px;
     transition: transform 0.2s ease-out, background-color 0.2s ease;
 }
