@@ -1,134 +1,224 @@
 [
   {
-    "id": "1032",
-    "name_en": "Agnes Tachyon"
+    "id": "105201",
+    "characterId": "1052",
+    "name_en": "[Bestest Prize ♪] Haru Urara",
+    "image": "/images/umas/105201.png"
   },
   {
-    "id": "1018",
-    "name_en": "Air Groove"
+    "id": "100302",
+    "characterId": "1003",
+    "name_en": "[Beyond the Horizon] Tokai Teio",
+    "image": "/images/umas/100302.png"
   },
   {
-    "id": "1023",
-    "name_en": "Biwa Hayahide"
+    "id": "104101",
+    "characterId": "1041",
+    "name_en": "[Blossom in Learning] Sakura Bakushin O",
+    "image": "/images/umas/104101.png"
   },
   {
-    "id": "1038",
-    "name_en": "Curren Chan"
+    "id": "102701",
+    "characterId": "1027",
+    "name_en": "[Down the Line] Mejiro Ryan",
+    "image": "/images/umas/102701.png"
   },
   {
-    "id": "1009",
-    "name_en": "Daiwa Scarlet"
+    "id": "101401",
+    "characterId": "1014",
+    "name_en": "[El☆Número 1] El Condor Pasa",
+    "image": "/images/umas/101401.png"
   },
   {
-    "id": "1014",
-    "name_en": "El Condor Pasa"
+    "id": "101701",
+    "characterId": "1017",
+    "name_en": "[Emperor's Path] Symboli Rudolf",
+    "image": "/images/umas/101701.png"
   },
   {
-    "id": "1007",
-    "name_en": "Gold Ship"
+    "id": "101801",
+    "characterId": "1018",
+    "name_en": "[Empress Road] Air Groove",
+    "image": "/images/umas/101801.png"
   },
   {
-    "id": "1011",
-    "name_en": "Grass Wonder"
+    "id": "101302",
+    "characterId": "1013",
+    "name_en": "[End of the Skies] Mejiro McQueen",
+    "image": "/images/umas/101302.png"
   },
   {
-    "id": "1052",
-    "name_en": "Haru Urara"
+    "id": "103801",
+    "characterId": "1038",
+    "name_en": "[Fille Éclair] Curren Chan",
+    "image": "/images/umas/103801.png"
   },
   {
-    "id": "1061",
-    "name_en": "King Halo"
+    "id": "100401",
+    "characterId": "1004",
+    "name_en": "[Formula R] Maruzensky",
+    "image": "/images/umas/100401.png"
   },
   {
-    "id": "1004",
-    "name_en": "Maruzensky"
+    "id": "101301",
+    "characterId": "1013",
+    "name_en": "[Frontline Elegance] Mejiro McQueen",
+    "image": "/images/umas/101301.png"
   },
   {
-    "id": "1056",
-    "name_en": "Matikanefukukitaru"
+    "id": "103501",
+    "characterId": "1035",
+    "name_en": "[Get to Winning!] Winning Ticket",
+    "image": "/images/umas/103501.png"
   },
   {
-    "id": "1024",
-    "name_en": "Mayano Top Gun"
+    "id": "100201",
+    "characterId": "1002",
+    "name_en": "[Innocent Silence] Silence Suzuka",
+    "image": "/images/umas/100201.png"
   },
   {
-    "id": "1013",
-    "name_en": "Mejiro McQueen"
+    "id": "106101",
+    "characterId": "1061",
+    "name_en": "[King of Emeralds] King Halo",
+    "image": "/images/umas/106101.png"
   },
   {
-    "id": "1027",
-    "name_en": "Mejiro Ryan"
+    "id": "104601",
+    "characterId": "1046",
+    "name_en": "[LOVE☆4EVER] Smart Falcon",
+    "image": "/images/umas/104601.png"
   },
   {
-    "id": "1026",
-    "name_en": "Mihono Bourbon"
+    "id": "102601",
+    "characterId": "1026",
+    "name_en": "[MB-19890425] Mihono Bourbon",
+    "image": "/images/umas/102601.png"
   },
   {
-    "id": "1016",
-    "name_en": "Narita Brian"
+    "id": "101601",
+    "characterId": "1016",
+    "name_en": "[Maverick] Narita Brian",
+    "image": "/images/umas/101601.png"
   },
   {
-    "id": "1050",
-    "name_en": "Narita Taishin"
+    "id": "104501",
+    "characterId": "1045",
+    "name_en": "[Murmuring Stream] Super Creek",
+    "image": "/images/umas/104501.png"
   },
   {
-    "id": "1060",
-    "name_en": "Nice Nature"
+    "id": "105001",
+    "characterId": "1050",
+    "name_en": "[Nevertheless] Narita Taishin",
+    "image": "/images/umas/105001.png"
   },
   {
-    "id": "1006",
-    "name_en": "Oguri Cap"
+    "id": "101501",
+    "characterId": "1015",
+    "name_en": "[O Sole Suo!] T.M. Opera O",
+    "image": "/images/umas/101501.png"
   },
   {
-    "id": "1030",
-    "name_en": "Rice Shower"
+    "id": "100901",
+    "characterId": "1009",
+    "name_en": "[Peak Blue] Daiwa Scarlet",
+    "image": "/images/umas/100901.png"
   },
   {
-    "id": "1041",
-    "name_en": "Sakura Bakushin O"
+    "id": "100301",
+    "characterId": "1003",
+    "name_en": "[Peak Joy] Tokai Teio",
+    "image": "/images/umas/100301.png"
   },
   {
-    "id": "1020",
-    "name_en": "Seiun Sky"
+    "id": "106001",
+    "characterId": "1060",
+    "name_en": "[Poinsettia Ribbon] Nice Nature",
+    "image": "/images/umas/106001.png"
   },
   {
-    "id": "1002",
-    "name_en": "Silence Suzuka"
+    "id": "101802",
+    "characterId": "1018",
+    "name_en": "[Quercus Civilis] Air Groove",
+    "image": "/images/umas/101802.png"
   },
   {
-    "id": "1046",
-    "name_en": "Smart Falcon"
+    "id": "100701",
+    "characterId": "1007",
+    "name_en": "[Red Strife] Gold Ship",
+    "image": "/images/umas/100701.png"
   },
   {
-    "id": "1001",
-    "name_en": "Special Week"
+    "id": "102001",
+    "characterId": "1020",
+    "name_en": "[Reeling in the Big One] Seiun Sky",
+    "image": "/images/umas/102001.png"
   },
   {
-    "id": "1045",
-    "name_en": "Super Creek"
+    "id": "105601",
+    "characterId": "1056",
+    "name_en": "[Rising☆Fortune] Matikanefukukitaru",
+    "image": "/images/umas/105601.png"
   },
   {
-    "id": "1017",
-    "name_en": "Symboli Rudolf"
+    "id": "103001",
+    "characterId": "1030",
+    "name_en": "[Rosy Dreams] Rice Shower",
+    "image": "/images/umas/103001.png"
   },
   {
-    "id": "1015",
-    "name_en": "T.M. Opera O"
+    "id": "102401",
+    "characterId": "1024",
+    "name_en": "[Scramble☆Zone] Mayano Top Gun",
+    "image": "/images/umas/102401.png"
   },
   {
-    "id": "1010",
-    "name_en": "Taiki Shuttle"
+    "id": "100101",
+    "characterId": "1001",
+    "name_en": "[Special Dreamer] Special Week",
+    "image": "/images/umas/100101.png"
   },
   {
-    "id": "1003",
-    "name_en": "Tokai Teio"
+    "id": "100601",
+    "characterId": "1006",
+    "name_en": "[Starlight Beat] Oguri Cap",
+    "image": "/images/umas/100601.png"
   },
   {
-    "id": "1008",
-    "name_en": "Vodka"
+    "id": "101101",
+    "characterId": "1011",
+    "name_en": "[Stone-Piercing Blue] Grass Wonder",
+    "image": "/images/umas/101101.png"
   },
   {
-    "id": "1035",
-    "name_en": "Winning Ticket"
+    "id": "102402",
+    "characterId": "1024",
+    "name_en": "[Sunlight Bouquet] Mayano Top Gun",
+    "image": "/images/umas/102402.png"
+  },
+  {
+    "id": "101001",
+    "characterId": "1010",
+    "name_en": "[Wild Frontier] Taiki Shuttle",
+    "image": "/images/umas/101001.png"
+  },
+  {
+    "id": "100801",
+    "characterId": "1008",
+    "name_en": "[Wild Top Gear] Vodka",
+    "image": "/images/umas/100801.png"
+  },
+  {
+    "id": "102301",
+    "characterId": "1023",
+    "name_en": "[pf. Winning Equation...] Biwa Hayahide",
+    "image": "/images/umas/102301.png"
+  },
+  {
+    "id": "103201",
+    "characterId": "1032",
+    "name_en": "[tach-nology] Agnes Tachyon",
+    "image": "/images/umas/103201.png"
   }
 ]
