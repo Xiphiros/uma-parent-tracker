@@ -7,7 +7,7 @@ import FolderTab from './FolderTab';
 import AddFolderModal from './AddFolderModal';
 
 const Tabs = () => {
-    const { appData, switchProfile, addProfile, renameProfile, deleteProfile, togglePinProfile, reorderLayout, addFolder, updateFolder, deleteFolder, toggleFolderCollapse } = useAppContext();
+    const { appData, switchProfile, addProfile, renameProfile, deleteProfile, togglePinProfile, reorderLayout, reorderProfileInFolder, moveProfileToFolder, addFolder, updateFolder, deleteFolder, toggleFolderCollapse } = useAppContext();
     const { profiles, folders, layout, activeProfileId } = appData;
 
     const [isAddModalOpen, setAddModalOpen] = useState(false);
@@ -25,18 +25,14 @@ const Tabs = () => {
     const [isDeleteFolderConfirmOpen, setDeleteFolderConfirmOpen] = useState(false);
     const [isFolderSettingsOpen, setFolderSettingsOpen] = useState(false);
 
+    const [dragOverFolderId, setDragOverFolderId] = useState<string | null>(null);
+
     const tabListRef = useRef<HTMLUListElement>(null);
     const [canScrollLeft, setCanScrollLeft] = useState(false);
     const [canScrollRight, setCanScrollRight] = useState(false);
 
     const profilesById = useMemo(() => new Map(profiles.map(p => [p.id, p])), [profiles]);
     const foldersById = useMemo(() => new Map(folders.map(f => [f.id, f])), [folders]);
-
-    const sortedProfiles = useMemo(() => {
-        const pinned = profiles.filter(p => p.isPinned);
-        const unpinned = profiles.filter(p => !p.isPinned);
-        return [...pinned, ...unpinned];
-    }, [profiles]);
 
     // --- Overflow Navigation ---
     const checkScrollState = () => {
@@ -61,7 +57,7 @@ const Tabs = () => {
             resizeObserver.disconnect();
             tabList.removeEventListener('scroll', checkScrollState);
         };
-    }, [sortedProfiles, layout, folders]);
+    }, [profiles, layout, folders]);
 
     const handleScroll = (event: React.MouseEvent, direction: 'left' | 'right') => {
         const el = tabListRef.current;
@@ -92,46 +88,91 @@ const Tabs = () => {
     };
 
     // --- Drag and Drop ---
-    const dragItem = useRef<string | number | null>(null);
-    const dragOverItem = useRef<string | number | null>(null);
+    const dragItem = useRef<{ id: string | number, type: 'folder' | 'profile', parentId: string | null } | null>(null);
 
-    const handleDragStart = (e: React.DragEvent<HTMLLIElement>, id: string | number) => {
-        dragItem.current = id;
-        e.currentTarget.classList.add('tab--dragging');
+    const getDragTargetInfo = (element: HTMLElement) => {
+        const li = element.closest('.tab');
+        if (!li) return null;
+        return {
+            id: li.dataset.id!,
+            type: li.dataset.type as 'folder' | 'profile',
+            parentId: li.dataset.parentId || null
+        }
     };
 
-    const handleDragEnter = (e: React.DragEvent<HTMLLIElement>, id: string | number) => {
-        dragOverItem.current = id;
+    const handleDragStart = (e: React.DragEvent<HTMLLIElement>) => {
+        const info = getDragTargetInfo(e.currentTarget);
+        if (info) {
+            dragItem.current = {
+                id: info.type === 'folder' ? info.id : Number(info.id),
+                type: info.type,
+                parentId: info.parentId,
+            };
+            e.currentTarget.classList.add('tab--dragging');
+        }
+    };
+
+    const handleDragEnter = (e: React.DragEvent<HTMLLIElement>) => {
+        e.preventDefault();
+        const info = getDragTargetInfo(e.currentTarget);
+        if (info?.type === 'folder' && dragItem.current?.type === 'profile') {
+            setDragOverFolderId(info.id);
+        }
         e.currentTarget.classList.add('tab--drag-over');
     };
     
     const handleDragLeave = (e: React.DragEvent<HTMLLIElement>) => {
+        e.preventDefault();
+        const info = getDragTargetInfo(e.currentTarget);
+        if (info?.id === dragOverFolderId) {
+            setDragOverFolderId(null);
+        }
         e.currentTarget.classList.remove('tab--drag-over');
     };
 
     const handleDrop = (e: React.DragEvent<HTMLLIElement>) => {
+        e.preventDefault();
+        setDragOverFolderId(null);
         e.currentTarget.classList.remove('tab--drag-over');
-        if (dragItem.current === null || dragOverItem.current === null) return;
         
-        const sourceId = dragItem.current;
-        const destId = dragOverItem.current;
+        const sourceInfo = dragItem.current;
+        const destInfo = getDragTargetInfo(e.currentTarget);
 
-        // Logic for reordering main layout items (folders and top-level projects)
-        const sourceIndex = layout.findIndex(item => item === sourceId);
-        const destIndex = layout.findIndex(item => item === destId);
-
-        if (sourceIndex !== -1 && destIndex !== -1) {
-            reorderLayout(sourceIndex, destIndex);
+        if (!sourceInfo || !destInfo || sourceInfo.id === destInfo.id) return;
+        
+        // Case 1: Dropping a profile onto a folder
+        if (sourceInfo.type === 'profile' && destInfo.type === 'folder' && sourceInfo.parentId !== destInfo.id) {
+            moveProfileToFolder(sourceInfo.id as number, destInfo.id);
+        }
+        // Case 2: Reordering top-level items (folders or profiles)
+        else if (sourceInfo.parentId === null && destInfo.parentId === null) {
+            const sourceIndex = layout.indexOf(sourceInfo.id);
+            const destIndex = layout.indexOf(destInfo.id as (string|number));
+            if (sourceIndex > -1 && destIndex > -1) reorderLayout(sourceIndex, destIndex);
+        }
+        // Case 3: Reordering profiles within the same folder
+        else if (sourceInfo.parentId && sourceInfo.parentId === destInfo.parentId) {
+            const folder = foldersById.get(sourceInfo.parentId);
+            if (folder) {
+                const sourceIndex = folder.profileIds.indexOf(sourceInfo.id as number);
+                const destIndex = folder.profileIds.indexOf(destInfo.id as number);
+                if (sourceIndex > -1 && destIndex > -1) reorderProfileInFolder(folder.id, sourceIndex, destIndex);
+            }
+        }
+        // Case 4: Moving a profile from a folder to top-level, or between folders
+        else if (sourceInfo.type === 'profile') {
+            const destFolder = foldersById.get(destInfo.parentId!)
+            const destIndex = destFolder ? destFolder.profileIds.indexOf(destInfo.id as number) : layout.indexOf(destInfo.id as number);
+            moveProfileToFolder(sourceInfo.id as number, destInfo.parentId, destIndex);
         }
 
         dragItem.current = null;
-        dragOverItem.current = null;
     };
     
     const handleDragEnd = (e: React.DragEvent<HTMLLIElement>) => {
         e.currentTarget.classList.remove('tab--dragging');
+        setDragOverFolderId(null);
     };
-
 
     // --- Modals ---
     const handleAddProfile = () => {
@@ -212,41 +253,35 @@ const Tabs = () => {
 
                 renderedItems.push(
                     <li key={folder.id} className="tab" draggable="true"
-                        onDragStart={(e) => handleDragStart(e, folder.id)}
-                        onDragEnter={(e) => handleDragEnter(e, folder.id)}
-                        onDragLeave={handleDragLeave}
-                        onDragOver={(e) => e.preventDefault()}
-                        onDrop={handleDrop}
-                        onDragEnd={handleDragEnd}>
-                        <FolderTab folder={folder} profilesInFolder={profilesInFolder} isActive={isFolderActive} onToggleCollapse={toggleFolderCollapse} onSettings={handleOpenFolderSettings} />
+                        data-id={folder.id} data-type="folder"
+                        onDragStart={handleDragStart} onDragEnter={handleDragEnter} onDragLeave={handleDragLeave}
+                        onDragOver={(e) => e.preventDefault()} onDrop={handleDrop} onDragEnd={handleDragEnd}>
+                        <FolderTab folder={folder} profilesInFolder={profilesInFolder} isActive={isFolderActive} isDragOver={dragOverFolderId === folder.id} onToggleCollapse={toggleFolderCollapse} onSettings={handleOpenFolderSettings} />
                     </li>
                 );
 
                 if (!folder.isCollapsed) {
                     profilesInFolder.forEach(profile => {
-                        renderedItems.push(renderProfileTab(profile, true));
+                        renderedItems.push(renderProfileTab(profile, true, folder.id));
                     });
                 }
 
             } else if (typeof itemId === 'number' && profilesById.has(itemId)) {
                 // It's a top-level profile
                 const profile = profilesById.get(itemId)!;
-                renderedItems.push(renderProfileTab(profile, false));
+                renderedItems.push(renderProfileTab(profile, false, null));
             }
         });
         return renderedItems;
     };
     
-    const renderProfileTab = (profile: Profile, inFolder: boolean) => (
+    const renderProfileTab = (profile: Profile, inFolder: boolean, parentId: string | null) => (
         <li key={profile.id} 
             className={`tab ${profile.id === activeProfileId ? 'tab--active' : ''} ${inFolder ? 'tab--in-folder' : ''}`}
             draggable="true"
-            onDragStart={(e) => handleDragStart(e, profile.id)}
-            onDragEnter={(e) => handleDragEnter(e, profile.id)}
-            onDragLeave={handleDragLeave}
-            onDragOver={(e) => e.preventDefault()}
-            onDrop={handleDrop}
-            onDragEnd={handleDragEnd}
+            data-id={profile.id} data-type="profile" data-parent-id={parentId || ''}
+            onDragStart={handleDragStart} onDragEnter={handleDragEnter} onDragLeave={handleDragLeave}
+            onDragOver={(e) => e.preventDefault()} onDrop={handleDrop} onDragEnd={handleDragEnd}
         >
             <button className="tab__button" onClick={() => switchProfile(profile.id)}>
                 {profile.isPinned && <svg className="h-4 w-4 text-amber-500" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>}
@@ -268,28 +303,28 @@ const Tabs = () => {
     return (
         <>
             <nav className="tabs__container">
-                 <button 
-                    className={`tabs__nav-btn tabs__nav-btn--left ${canScrollLeft ? 'tabs__nav-btn--visible' : ''}`} 
-                    onClick={(e) => handleScroll(e, 'left')} 
-                    disabled={!canScrollLeft}
-                    title="Scroll Left (Hold Shift for Start)"
-                >
-                    <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" /></svg>
-                </button>
-                <div className="tabs__list-wrapper">
+                 <div className="tabs__list-wrapper">
+                    <button 
+                        className={`tabs__nav-btn tabs__nav-btn--left ${canScrollLeft ? 'tabs__nav-btn--visible' : ''}`} 
+                        onClick={(e) => handleScroll(e, 'left')} 
+                        disabled={!canScrollLeft}
+                        title="Scroll Left (Hold Shift for Start)"
+                    >
+                        <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" /></svg>
+                    </button>
                     <ul className="tabs__list" ref={tabListRef}>
                        {renderLayout()}
                     </ul>
+                    <button 
+                        className={`tabs__nav-btn tabs__nav-btn--right ${canScrollRight ? 'tabs__nav-btn--visible' : ''}`} 
+                        onClick={(e) => handleScroll(e, 'right')} 
+                        disabled={!canScrollRight}
+                        title="Scroll Right (Hold Shift for End)"
+                    >
+                        <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" /></svg>
+                    </button>
                 </div>
-                 <button 
-                    className={`tabs__nav-btn tabs__nav-btn--right ${canScrollRight ? 'tabs__nav-btn--visible' : ''}`} 
-                    onClick={(e) => handleScroll(e, 'right')} 
-                    disabled={!canScrollRight}
-                    title="Scroll Right (Hold Shift for End)"
-                >
-                    <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" /></svg>
-                </button>
-                <div className="flex items-center">
+                <div className="tabs__actions-group">
                     <button className="tabs__add-btn" title="Add New Folder" onClick={() => { setFolderToEdit(null); setFolderModalOpen(true); }}>
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 19a2 2 0 01-2-2V7a2 2 0 012-2h4l2 2h4a2 2 0 012 2v1M5 19h14a2 2 0 002-2v-5a2 2 0 00-2-2H9a2 2 0 00-2 2v5a2 2 0 01-2 2z" /></svg>
                     </button>
