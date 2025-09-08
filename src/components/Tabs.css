@@ -6,22 +6,39 @@
     margin-bottom: 2rem;
     border-bottom: 2px solid var(--color-border);
     transition: border-color 0.3s ease;
+    position: relative;
+}
+.tabs__list-wrapper {
+    flex-grow: 1;
+    overflow: hidden;
 }
 .tabs__list {
     display: flex;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
-}
-.tabs__list::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Opera */
+    position: relative;
+    transition: transform 0.3s ease-out;
 }
 .tab {
     position: relative;
+    flex-shrink: 0;
+}
+.tab--dragging {
+    opacity: 0.5;
+}
+.tab--drag-over::after {
+    content: '';
+    position: absolute;
+    left: -2px;
+    top: 0.25rem;
+    bottom: 0.25rem;
+    width: 4px;
+    background-color: var(--color-accent-primary);
+    border-radius: 2px;
 }
 .tab__button {
-    padding: 0.75rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.75rem 1.25rem;
     font-size: 1rem;
     font-weight: 500;
     color: var(--color-text-secondary);
@@ -29,7 +46,10 @@
     margin-bottom: -2px; /* Overlap the container border */
     white-space: nowrap;
     transition: all 0.2s ease;
-    cursor: pointer;
+    cursor: grab;
+}
+.tab__button:active {
+    cursor: grabbing;
 }
 .tab__button:hover {
     color: var(--color-text-primary);
@@ -39,23 +59,66 @@
     color: var(--color-accent-primary);
     border-bottom-color: var(--color-accent-primary);
 }
-.tab__settings-btn {
+.tab__actions {
     position: absolute;
     top: 0.25rem;
     right: 0.25rem;
+    display: flex;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+.tab:hover .tab__actions {
+    opacity: 1;
+}
+.tab__pin-btn,
+.tab__settings-btn {
     padding: 0.125rem;
     border-radius: 9999px;
     color: var(--color-text-placeholder);
-    opacity: 0;
-    transition: opacity 0.2s ease;
     cursor: pointer;
 }
-.tab:hover .tab__settings-btn {
-    opacity: 1;
-}
+.tab__pin-btn:hover,
 .tab__settings-btn:hover {
     background-color: var(--color-border);
     color: var(--color-text-primary);
+}
+.tab__pin-btn--pinned,
+.tab__pin-btn--pinned:hover {
+    color: var(--color-accent-primary);
+}
+.tabs__nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 0.5rem 0.25rem;
+    background-color: var(--color-bg);
+    border-radius: 9999px;
+    box-shadow: var(--color-shadow);
+    z-index: 10;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    border: 1px solid var(--color-border);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s, visibility 0.2s;
+}
+.tabs__nav-btn:hover:not(:disabled) {
+    color: var(--color-text-primary);
+    background-color: var(--color-card-bg-hover);
+}
+.tabs__nav-btn:disabled {
+    opacity: 0.25;
+    cursor: not-allowed;
+}
+.tabs__nav-btn--visible {
+    opacity: 1;
+    visibility: visible;
+}
+.tabs__nav-btn--left {
+    left: -1rem;
+}
+.tabs__nav-btn--right {
+    right: 2rem; /* Make space for the add button */
 }
 .tabs__add-btn {
     display: flex;
