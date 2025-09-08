@@ -50,7 +50,7 @@ def load_and_merge_skill_data():
     for skill_id in all_skill_ids:
         jp_name = jp_names.get(skill_id, ["", ""])[0]
         gl_name = gl_names.get(skill_id, ["", ""])[1]
-        skill_names[skill_id] = [jp_name, gl_name or jp_name]
+        skill_names[skill_id] = [jp_name, gl_name or jp_name, bool(gl_name)] # [jp, en, isGlobal]
 
     print("Skill data merging complete.")
     return skill_data, skill_meta, skill_names
@@ -79,6 +79,7 @@ def prepare_skills(skill_data, skill_meta, skill_names):
         name_list = skill_names[skill_id]
         name_jp = name_list[0]
         name_en = name_list[1]
+        is_global = name_list[2]
                 
         if '◎' in name_jp or '×' in name_jp:
             continue
@@ -89,7 +90,8 @@ def prepare_skills(skill_data, skill_meta, skill_names):
             'name_en': name_en,
             'type': 'unique' if is_inherited_unique else 'normal',
             'rarity': skill.get('rarity'),
-            'groupId': skill_meta[base_id].get('groupId')
+            'groupId': skill_meta[base_id].get('groupId'),
+            'isGlobal': is_global
         })
         
     # Process and add races
@@ -105,7 +107,8 @@ def prepare_skills(skill_data, skill_meta, skill_names):
                 'name_en': race_name,
                 'type': 'normal',
                 'rarity': 1,
-                'groupId': None
+                'groupId': None,
+                'isGlobal': True # Races are considered global by default
             })
     else:
         print("Warning: races.json not found in raw_data/. No races will be added.")
@@ -175,6 +178,7 @@ def prepare_umas():
                 'characterId': char_id,
                 'name_jp': formatted_name_jp,
                 'name_en': formatted_name_en,
+                'isGlobal': bool(gl_outfits.get(outfit_id)) and bool(gl_uma.get('name', ['', ''])[1])
             }
             
             if outfit_id in image_files:
