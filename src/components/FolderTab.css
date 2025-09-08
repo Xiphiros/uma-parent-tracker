@@ -26,9 +26,6 @@
 .folder-tab--active .folder-tab__button {
     border-bottom-color: var(--color-accent-primary);
 }
-.folder-tab--drag-over .folder-tab__button {
-    background-color: color-mix(in srgb, var(--folder-color, var(--color-text-muted)) 20%, transparent) !important;
-}
 .folder-tab__collapse-btn {
     display: flex;
     align-items: center;
