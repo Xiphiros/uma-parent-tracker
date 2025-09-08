@@ -10,6 +10,7 @@ export interface Skill {
 export interface Uma {
   id: string; // This will now be the Outfit ID, e.g., "100101"
   characterId: string; // This will be the base character ID, e.g., "1001"
+  name_jp: string;
   name_en: string;
   image?: string;
 }
