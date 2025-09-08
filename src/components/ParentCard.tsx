@@ -15,11 +15,14 @@ const ParentCard = ({ parent, isTopParent = false, onEdit, onDelete }: ParentCar
     const { getActiveProfile } = useAppContext();
     const goal = getActiveProfile()?.goal;
 
-    const whiteSparksOnWishlist = useMemo(() => {
-        if (!goal) return [];
-        return parent.whiteSparks.filter(spark => 
-            goal.wishlist.some(w => w.name === spark.name)
-        );
+    const allWhiteSparks = useMemo(() => {
+        if (!goal) return parent.whiteSparks.map(spark => ({ ...spark, tier: 'Other' }));
+
+        return parent.whiteSparks.map(spark => {
+            const wishlistItem = goal.wishlist.find(w => w.name === spark.name);
+            const tier = wishlistItem ? `Rank ${wishlistItem.tier}` : 'Other';
+            return { ...spark, tier };
+        });
     }, [parent.whiteSparks, goal]);
 
     return (
@@ -61,19 +64,14 @@ const ParentCard = ({ parent, isTopParent = false, onEdit, onDelete }: ParentCar
                 )}
                 
                 <div className="parent-card__spark-container mt-2 parent-card__spark-container--white">
-                    {whiteSparksOnWishlist.length > 0 ? (
-                        whiteSparksOnWishlist.map(spark => {
-                            const wishlistItem = goal?.wishlist.find(w => w.name === spark.name);
-                            if (!wishlistItem) return null; // Should not happen due to filter
-                            const tier = `Rank ${wishlistItem.tier}`;
-                            return (
-                                <SparkTag key={spark.name} category="white" type={spark.name} stars={spark.stars}>
-                                    <span className="parent-card__spark-tier">({tier})</span>
-                                </SparkTag>
-                            )
-                        })
+                    {allWhiteSparks.length > 0 ? (
+                        allWhiteSparks.map(spark => (
+                             <SparkTag key={spark.name} category="white" type={spark.name} stars={spark.stars}>
+                                <span className="parent-card__spark-tier">({spark.tier})</span>
+                            </SparkTag>
+                        ))
                     ) : (
-                        <p className="parent-card__no-sparks-text">No wishlist white sparks.</p>
+                        <p className="parent-card__no-sparks-text">No white sparks.</p>
                     )}
                 </div>
             </div>
