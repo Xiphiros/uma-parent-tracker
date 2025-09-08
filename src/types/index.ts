@@ -65,7 +65,7 @@ export interface Profile {
   isPinned?: boolean;
 }
 
-export type IconName = 'default' | 'runner' | 'trophy' | 'book' | 'star' | 'heart';
+export type IconName = 'default' | 'runner' | 'trophy' | 'book' | 'star' | 'heart' | 'bolt' | 'flame' | 'brain' | 'carrot' | 'horseshoe' | 'flag';
 
 export interface Folder {
   id: string;
