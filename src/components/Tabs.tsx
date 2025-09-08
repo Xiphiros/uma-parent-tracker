@@ -136,6 +136,7 @@ const Tabs = () => {
     };
 
     const handleDragStart = (e: React.DragEvent<HTMLElement>) => {
+        e.stopPropagation();
         const info = getDragTargetInfo(e.currentTarget);
         if (info) {
             dragItem.current = {
