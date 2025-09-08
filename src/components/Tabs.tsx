@@ -17,7 +17,7 @@ interface ContextMenuState {
 }
 
 const Tabs = () => {
-    const { appData, switchProfile, addProfile, renameProfile, deleteProfile, togglePinProfile, reorderLayout, reorderProfileInFolder, moveProfileToFolder, addFolder, updateFolder, deleteFolder, toggleFolderCollapse } = useAppContext();
+    const { appData, switchProfile, addProfile, renameProfile, deleteProfile, togglePinProfile, togglePinFolder, reorderLayout, reorderProfileInFolder, moveProfileToFolder, addFolder, updateFolder, deleteFolder, toggleFolderCollapse } = useAppContext();
     const { profiles, folders, layout, activeProfileId } = appData;
 
     const [isAddModalOpen, setAddModalOpen] = useState(false);
@@ -54,6 +54,7 @@ const Tabs = () => {
         if ('profileIds' in item) { // It's a Folder
             menuItems = [
                 { label: 'Edit Folder', onClick: () => handleOpenFolderSettings(item) },
+                { label: item.isPinned ? 'Unpin Folder' : 'Pin Folder', onClick: () => togglePinFolder(item.id) },
                 { label: 'Delete Folder...', onClick: () => handleDeleteFolder(), isDestructive: true },
             ];
             setFolderToEdit(item); // Set context for deletion
