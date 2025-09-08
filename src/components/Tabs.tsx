@@ -249,13 +249,22 @@ const Tabs = () => {
     };
     
     const handleDelete = (profile: Profile | null) => {
-        if (profile && profiles.length > 1) {
-            setSettingsModalProfile(profile);
-            setDeleteConfirmOpen(true);
-        } else {
+        if (!profile) return;
+
+        if (profile.isPinned) {
+            setSettingsModalProfile(null);
+            setAlertMessage('You cannot delete a pinned project. Please unpin it first.');
+            return;
+        }
+        
+        if (profiles.length <= 1) {
             setSettingsModalProfile(null);
             setAlertMessage('You cannot delete the last project.');
+            return;
         }
+        
+        setSettingsModalProfile(profile);
+        setDeleteConfirmOpen(true);
     };
 
     const handleConfirmDelete = () => {
