@@ -17,6 +17,9 @@
     align-items: flex-start; /* Align items to the top */
     position: relative;
     overflow-x: auto; /* Allow horizontal scrolling */
+    list-style: none;
+    margin: 0;
+    padding: 0;
     /* Hide the scrollbar since we have custom buttons */
     scrollbar-width: none; /* For Firefox */
     -ms-overflow-style: none;  /* For Internet Explorer and Edge */
@@ -35,12 +38,17 @@
     align-items: flex-start;
 }
 .folder-content {
-    display: flex;
-    padding: 0.25rem 0.5rem 0.25rem 0.75rem;
+    padding: 0;
     margin-top: -2px; /* Overlap with bottom border */
     border-left: 2px solid var(--folder-color);
     background-color: var(--color-card-bg-hover);
     border-radius: 0 0 6px 6px;
+}
+.folder-content > ul {
+    list-style: none;
+    margin: 0;
+    padding: 0.25rem 0.5rem 0.25rem 0.75rem;
+    display: flex;
 }
 .tab--dragging {
     opacity: 0.5;
