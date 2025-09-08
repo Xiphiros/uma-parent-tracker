@@ -39,8 +39,8 @@
     border-bottom: none;
 }
 .dual-list-box__item--selected {
-    background-color: var(--color-accent-primary);
-    color: white;
+    background-color: var(--color-button-primary-bg);
+    color: var(--color-text-inverted);
 }
 .dual-list-box__controls {
     display: flex;
