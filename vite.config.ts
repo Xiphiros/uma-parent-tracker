@@ -1,14 +1,17 @@
+/// <reference types="node" />
+
 import { defineConfig, Plugin } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 import fs from 'fs'
 import path from 'path'
+import { IncomingMessage, ServerResponse } from 'http';
 
 // Custom plugin to create a dev-only API endpoint for saving exclusions
 const devServerEndpoints = (): Plugin => ({
   name: 'dev-server-endpoints',
   configureServer(server) {
-    server.middlewares.use('/api/update-exclusions', (req, res, next) => {
+    server.middlewares.use('/api/update-exclusions', (req: IncomingMessage, res: ServerResponse, next) => {
       if (req.method !== 'POST') {
         return next();
       }
