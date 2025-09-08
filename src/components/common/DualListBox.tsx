@@ -1,5 +1,4 @@
 import { useState, useMemo, useEffect, useRef } from 'react';
-import { Skill } from '../../types';
 
 interface Item {
     id: string;
