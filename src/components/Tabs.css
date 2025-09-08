@@ -27,6 +27,9 @@
 .tabs__list::-webkit-scrollbar {
     display: none; /* For Chrome, Safari, and Opera */
 }
+.tabs__list--drag-over {
+    background-color: var(--color-card-bg-hover);
+}
 .tab {
     position: relative;
     flex-shrink: 0;
