@@ -118,7 +118,7 @@
     left: -1rem;
 }
 .tabs__nav-btn--right {
-    right: 2rem; /* Make space for the add button */
+    right: 3.25rem; /* Make space for the add button */
 }
 .tabs__add-btn {
     display: flex;
