@@ -1,0 +1,36 @@
+/* Settings Modal Block */
+.settings-modal__option {
+    display: flex;
+    align-items: flex-start;
+    padding: 0.75rem;
+    border-radius: 0.375rem;
+    border: 1px solid var(--color-border);
+    cursor: pointer;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+.settings-modal__option:hover {
+    background-color: var(--color-card-bg-hover);
+}
+
+.settings-modal__option--selected {
+    border-color: var(--color-border-active);
+    /* Use color-mix to create a semi-transparent background from our theme color */
+    background-color: color-mix(in srgb, var(--color-border-active) 10%, transparent);
+}
+
+.settings-modal__option-radio {
+    margin-right: 0.75rem;
+    margin-top: 0.25rem;
+    accent-color: var(--color-button-primary-bg);
+}
+
+.settings-modal__option-label {
+    font-weight: 500;
+    color: var(--color-text-primary);
+}
+
+.settings-modal__option-description {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+}
