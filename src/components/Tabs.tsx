@@ -281,6 +281,10 @@ const Tabs = () => {
 
     const handleDeleteFolder = (folder: Folder | null) => {
         if (folder) {
+            if (folder.isPinned) {
+                setAlertMessage('You cannot delete a pinned folder. Please unpin it first.');
+                return;
+            }
             setFolderToDelete(folder);
             setDeleteFolderConfirmOpen(true);
             setFolderSettingsOpen(false);
@@ -502,13 +506,19 @@ const Tabs = () => {
             </Modal>
             
              <Modal isOpen={isDeleteFolderConfirmOpen} onClose={() => setDeleteFolderConfirmOpen(false)} title={`Delete Folder "${folderToDelete?.name}"?`}>
-                <div className="dialog-modal__message">
-                    <p>What should be done with the projects inside this folder?</p>
+                <p className="dialog-modal__message">
+                    What should be done with the projects inside this folder?
+                </p>
+                <div className="my-4 space-y-3">
+                    <button className="button button--secondary w-full justify-center" onClick={() => handleConfirmDeleteFolder(false)}>
+                        Move Projects to Top Level
+                    </button>
+                    <button className="button button--danger w-full justify-center" onClick={() => handleConfirmDeleteFolder(true)}>
+                        Delete Folder and All Projects Inside
+                    </button>
                 </div>
                 <div className="dialog-modal__footer">
                     <button className="button button--neutral" onClick={() => setDeleteFolderConfirmOpen(false)}>Cancel</button>
-                    <button className="button button--secondary" onClick={() => handleConfirmDeleteFolder(false)}>Move Projects to Top Level</button>
-                    <button className="button button--danger" onClick={() => handleConfirmDeleteFolder(true)}>Delete Folder and All Projects Inside</button>
                 </div>
             </Modal>
 
