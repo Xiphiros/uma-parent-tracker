@@ -55,14 +55,14 @@ const Tabs = () => {
             menuItems = [
                 { label: 'Edit Folder', onClick: () => handleOpenFolderSettings(item) },
                 { label: item.isPinned ? 'Unpin Folder' : 'Pin Folder', onClick: () => togglePinFolder(item.id) },
-                { label: 'Delete Folder...', onClick: () => handleDeleteFolder(), isDestructive: true },
+                { label: 'Delete Folder...', onClick: () => handleDeleteFolder(), isDestructive: true, disabled: !!item.isPinned },
             ];
             setFolderToEdit(item); // Set context for deletion
         } else { // It's a Profile
             menuItems = [
                 { label: 'Rename Project', onClick: () => { setSettingsModalProfile(item); setRenameValue(item.name); setRenameModalOpen(true); } },
                 { label: item.isPinned ? 'Unpin Project' : 'Pin Project', onClick: () => togglePinProfile(item.id) },
-                { label: 'Delete Project...', onClick: () => { setSettingsModalProfile(item); handleDelete(); }, isDestructive: true },
+                { label: 'Delete Project...', onClick: () => { setSettingsModalProfile(item); handleDelete(); }, isDestructive: true, disabled: !!item.isPinned },
             ];
         }
 
@@ -304,7 +304,7 @@ const Tabs = () => {
                 const folderGroupStyle = { '--folder-color': folder.color } as React.CSSProperties;
 
                 return (
-                    <li key={folder.id} className="folder-group" draggable="true"
+                    <li key={folder.id} className="folder-group" draggable={!folder.isPinned}
                         data-id={folder.id} data-type="folder"
                         style={folderGroupStyle}
                         onDragStart={handleDragStart} onDragEnter={handleDragEnter} onDragLeave={handleDragLeave}
@@ -341,7 +341,7 @@ const Tabs = () => {
     const renderProfileTab = (profile: Profile, inFolder: boolean, parentId: string | null) => (
         <li key={profile.id} 
             className={`tab ${profile.id === activeProfileId ? 'tab--active' : ''} ${inFolder ? 'tab--in-folder' : ''}`}
-            draggable="true"
+            draggable={!profile.isPinned}
             data-id={profile.id} data-type="profile" data-parent-id={parentId || ''}
             onDragStart={handleDragStart} onDragEnter={handleDragEnter} onDragLeave={handleDragLeave}
             onDragOver={(e) => e.preventDefault()} onDrop={handleDrop} onDragEnd={handleDragEnd}
