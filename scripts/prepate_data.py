@@ -113,20 +113,28 @@ def prepare_umas():
         umas_data = json.load(f)
 
     uma_list = []
-    for uma_id, uma in umas_data.items():
+    for char_id, uma in umas_data.items():
         name_array = uma.get('name', [])
-        if len(name_array) > 1 and name_array[1]:
-            uma_entry = {
-                'id': uma_id,
-                'name_en': name_array[1]
-            }
-            # Check if an image exists for this uma_id
-            if uma_id in image_files:
-                image_path = image_files[uma_id]
-                # Construct the web-accessible path
-                uma_entry['image'] = f"/images/umas/{image_path.name}"
-            
-            uma_list.append(uma_entry)
+        outfits = uma.get('outfits', {})
+        
+        if len(name_array) > 1 and name_array[1] and outfits:
+            char_name_en = name_array[1]
+            for outfit_id, outfit_name in outfits.items():
+                formatted_name = f"{outfit_name} {char_name_en}"
+                
+                uma_entry = {
+                    'id': outfit_id,
+                    'characterId': char_id,
+                    'name_en': formatted_name
+                }
+                
+                # Check if an image exists for this outfit_id
+                if outfit_id in image_files:
+                    image_path = image_files[outfit_id]
+                    # Construct the web-accessible path
+                    uma_entry['image'] = f"/images/umas/{image_path.name}"
+                
+                uma_list.append(uma_entry)
 
     # Sort alphabetically by name
     uma_list.sort(key=lambda x: x['name_en'])
