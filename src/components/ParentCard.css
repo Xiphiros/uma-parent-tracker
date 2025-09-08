@@ -1,7 +1,7 @@
 /* Parent Card Block */
 .parent-card {
-    padding: 1rem; /* p-4 */
-    border-radius: 0.5rem; /* rounded-lg */
+    padding: 1rem;
+    border-radius: 0.5rem;
     border: 1px solid var(--color-border);
     background-color: var(--color-card-bg-hover);
     transition: background-color 0.3s ease, border-color 0.3s ease;
@@ -9,19 +9,37 @@
 .parent-card--top-pair {
     border-color: var(--color-top-pair-border);
 }
+.parent-card__main-content {
+    display: flex;
+    gap: 1rem;
+}
+.parent-card__image-container {
+    flex-shrink: 0;
+}
+.parent-card__image {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 0.375rem;
+    border: 1px solid var(--color-border);
+}
+.parent-card__details {
+    flex-grow: 1;
+    min-width: 0; /* Prevents flexbox overflow */
+}
 .parent-card__header {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
 }
 .parent-card__name {
-    font-weight: 700; /* font-bold */
-    font-size: 1.125rem; /* text-lg */
+    font-weight: 700;
+    font-size: 1.125rem;
     color: var(--color-text-primary);
 }
 .parent-card__gen {
-    font-size: 0.875rem; /* text-sm */
-    font-weight: 500; /* font-medium */
+    font-size: 0.875rem;
+    font-weight: 500;
     color: var(--color-text-muted);
 }
 .parent-card__score-wrapper {
@@ -33,12 +51,12 @@
     margin-top: 0.25rem;
 }
 .parent-card__score {
-    font-size: 1.5rem; /* text-2xl */
-    font-weight: 700; /* font-bold */
+    font-size: 1.5rem;
+    font-weight: 700;
     color: var(--color-score);
 }
 .parent-card__edit-btn {
-    font-size: 0.75rem; /* text-xs */
+    font-size: 0.75rem;
     color: var(--color-text-link);
     cursor: pointer;
 }
@@ -46,7 +64,7 @@
     color: var(--color-text-link-hover);
 }
 .parent-card__delete-btn {
-    font-size: 0.75rem; /* text-xs */
+    font-size: 0.75rem;
     color: var(--color-text-danger);
     cursor: pointer;
 }
@@ -54,9 +72,9 @@
     color: var(--color-text-danger-hover);
 }
 .parent-card__body {
-    margin-top: 0.75rem; /* mt-3 */
+    margin-top: 0.75rem;
     border-top: 1px solid var(--color-border);
-    padding-top: 0.75rem; /* pt-3 */
+    padding-top: 0.75rem;
     transition: border-color 0.3s ease;
 }
 .parent-card__spark-container {
@@ -65,14 +83,14 @@
     align-items: center;
 }
 .parent-card__spark-container--white {
-    margin-top: 0.5rem; /* mt-2 */
+    margin-top: 0.5rem;
 }
 .parent-card__spark-tier {
-    margin-left: 0.25rem; /* ml-1 */
-    font-size: 0.75rem; /* text-xs */
+    margin-left: 0.25rem;
+    font-size: 0.75rem;
     opacity: 0.75;
 }
 .parent-card__no-sparks-text {
-    font-size: 0.75rem; /* text-xs */
+    font-size: 0.75rem;
     color: var(--color-text-placeholder);
 }
