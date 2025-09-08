@@ -1,0 +1,32 @@
+.context-menu {
+    position: absolute;
+    z-index: 100;
+    min-width: 180px;
+    background-color: var(--color-card-bg);
+    border-radius: 0.5rem;
+    border: 1px solid var(--color-border);
+    box-shadow: var(--color-shadow);
+    padding: 0.5rem;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.context-menu__item {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    user-select: none;
+    color: var(--color-text-primary);
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.context-menu__item:hover {
+    background-color: var(--color-card-bg-hover);
+}
+
+.context-menu__item--destructive:hover {
+    background-color: var(--color-button-danger-bg);
+    color: white;
+}
