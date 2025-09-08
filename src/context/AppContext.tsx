@@ -278,17 +278,17 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
   const reorderLayout = (sourceIndex: number, destinationIndex: number) => {
      setAppData(prevData => {
         const layoutCopy = [...prevData.layout];
-
         const profilePinMap = new Map(prevData.profiles.map(p => [p.id, p.isPinned ?? false]));
         const folderPinMap = new Map(prevData.folders.map(f => [f.id, f.isPinned ?? false]));
-        const isPinned = (id: string | number) => {
-            return typeof id === 'string' ? folderPinMap.get(id) : profilePinMap.get(id);
-        }
+        const isPinned = (id: string | number) => typeof id === 'string' ? folderPinMap.get(id) : profilePinMap.get(id);
 
-        const sourceItem = layoutCopy[sourceIndex];
-        const destinationItem = layoutCopy[destinationIndex];
-        // An unpinned item cannot be moved into a pinned item's slot.
-        if (!isPinned(sourceItem) && isPinned(destinationItem)) {
+        const firstUnpinnedIndex = layoutCopy.findIndex(id => !isPinned(id));
+        const pinnedZoneEnd = firstUnpinnedIndex === -1 ? layoutCopy.length : firstUnpinnedIndex;
+
+        const sourceIsPinned = isPinned(layoutCopy[sourceIndex]);
+
+        // If the destination is in the pinned zone, the source must also be pinned.
+        if (destinationIndex < pinnedZoneEnd && !sourceIsPinned) {
             return prevData;
         }
 
@@ -306,11 +306,14 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
       const folder = prevData.folders.find(f => f.id === folderId);
       if (!folder) return prevData;
 
-      const sourceItem = folder.profileIds[sourceIndex];
-      const destinationItem = folder.profileIds[destIndex];
+      const profileIds = folder.profileIds;
+      const firstUnpinnedIndex = profileIds.findIndex(id => !isPinned(id));
+      const pinnedZoneEnd = firstUnpinnedIndex === -1 ? profileIds.length : firstUnpinnedIndex;
 
-      // An unpinned item cannot be moved into a pinned item's slot.
-      if (!isPinned(sourceItem) && isPinned(destinationItem)) {
+      const sourceIsPinned = isPinned(profileIds[sourceIndex]);
+
+      // If the destination is in the pinned zone, the source must also be pinned.
+      if (destIndex < pinnedZoneEnd && !sourceIsPinned) {
           return prevData;
       }
 
