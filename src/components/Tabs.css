@@ -6,12 +6,11 @@
     margin-bottom: 2rem;
     border-bottom: 2px solid var(--color-border);
     transition: border-color 0.3s ease;
-    position: relative;
 }
 .tabs__list-wrapper {
     flex-grow: 1;
     overflow: hidden;
-    position: relative; /* For nav buttons */
+    min-width: 0; /* Prevents flexbox overflow */
 }
 .tabs__list {
     display: flex;
@@ -98,20 +97,18 @@
     color: var(--color-accent-primary);
 }
 .tabs__nav-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    padding: 0.5rem 0.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    padding: 0.5rem;
     background-color: var(--color-bg);
     border-radius: 9999px;
     box-shadow: var(--color-shadow);
-    z-index: 10;
     color: var(--color-text-muted);
     cursor: pointer;
     border: 1px solid var(--color-border);
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.2s, visibility 0.2s;
+    transition: opacity 0.2s, background-color 0.2s;
 }
 .tabs__nav-btn:hover:not(:disabled) {
     color: var(--color-text-primary);
@@ -120,16 +117,6 @@
 .tabs__nav-btn:disabled {
     opacity: 0.25;
     cursor: not-allowed;
-}
-.tabs__nav-btn--visible {
-    opacity: 1;
-    visibility: visible;
-}
-.tabs__nav-btn--left {
-    left: -1rem;
-}
-.tabs__nav-btn--right {
-    right: -1rem;
 }
 .tabs__actions-group {
     display: flex;
