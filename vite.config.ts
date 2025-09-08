@@ -1,5 +1,3 @@
-/// <reference types="node" />
-
 import { defineConfig, Plugin } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
@@ -17,7 +15,7 @@ const devServerEndpoints = (): Plugin => ({
       }
 
       let body = '';
-      req.on('data', chunk => {
+      req.on('data', (chunk: any) => {
         body += chunk.toString();
       });
 
