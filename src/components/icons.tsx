@@ -1,6 +1,7 @@
+import React from 'react';
 import { IconName } from "../types";
 
-const iconStyles = {
+const iconStyles: React.CSSProperties = {
     height: '1rem',
     width: '1rem',
     marginRight: '0.25rem',
