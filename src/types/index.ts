@@ -65,8 +65,21 @@ export interface Profile {
   isPinned?: boolean;
 }
 
+export type IconName = 'default' | 'runner' | 'trophy' | 'book' | 'star' | 'heart';
+
+export interface Folder {
+  id: string;
+  name: string;
+  color: string;
+  icon: IconName;
+  isCollapsed: boolean;
+  profileIds: number[];
+}
+
 export interface AppData {
-  version: 2;
+  version: 3;
   activeProfileId: number | null;
   profiles: Profile[];
+  folders: Folder[];
+  layout: (string | number)[]; // string for folderId, number for profileId
 }
