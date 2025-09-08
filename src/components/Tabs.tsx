@@ -1,4 +1,4 @@
-import { useState, useMemo, useRef, useEffect } from 'react';
+import React, { useState, useMemo, useRef, useEffect } from 'react';
 import { useAppContext } from '../context/AppContext';
 import Modal from './common/Modal';
 import { Profile, Folder, IconName } from '../types';
@@ -63,7 +63,7 @@ const Tabs = () => {
         };
     }, [sortedProfiles, layout, folders]);
 
-    const handleScroll = (direction: 'left' | 'right', event: React.MouseEvent) => {
+    const handleScroll = (event: React.MouseEvent, direction: 'left' | 'right') => {
         const el = tabListRef.current;
         if (el) {
             if (event.shiftKey) {
@@ -202,7 +202,7 @@ const Tabs = () => {
 
     // --- Render Logic ---
     const renderLayout = () => {
-        const renderedItems: JSX.Element[] = [];
+        const renderedItems: React.ReactElement[] = [];
         layout.forEach(itemId => {
             if (typeof itemId === 'string' && foldersById.has(itemId)) {
                 // It's a folder
@@ -270,7 +270,7 @@ const Tabs = () => {
             <nav className="tabs__container">
                  <button 
                     className={`tabs__nav-btn tabs__nav-btn--left ${canScrollLeft ? 'tabs__nav-btn--visible' : ''}`} 
-                    onClick={(e) => handleScroll('left', e)} 
+                    onClick={(e) => handleScroll(e, 'left')} 
                     disabled={!canScrollLeft}
                     title="Scroll Left (Hold Shift for Start)"
                 >
@@ -283,7 +283,7 @@ const Tabs = () => {
                 </div>
                  <button 
                     className={`tabs__nav-btn tabs__nav-btn--right ${canScrollRight ? 'tabs__nav-btn--visible' : ''}`} 
-                    onClick={(e) => handleScroll('right', e)} 
+                    onClick={(e) => handleScroll(e, 'right')} 
                     disabled={!canScrollRight}
                     title="Scroll Right (Hold Shift for End)"
                 >
