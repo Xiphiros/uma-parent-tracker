@@ -1,4 +1,4 @@
-import { useMemo, useState, useRef } from 'react';
+import { useMemo, useState, useRef, useEffect } from 'react';
 import { useAppContext } from '../context/AppContext';
 import ParentCard from './ParentCard';
 import AddParentModal from './AddParentModal';
@@ -15,7 +15,9 @@ const Roster = () => {
     const [isDeleteConfirmOpen, setDeleteConfirmOpen] = useState(false);
     const [parentToDelete, setParentToDelete] = useState<Parent | null>(null);
     const rosterContainerRef = useRef<HTMLDivElement>(null);
-    useScrollLock(rosterContainerRef);
+    
+    const [isRosterScrollable, setIsRosterScrollable] = useState(false);
+    useScrollLock(rosterContainerRef, isRosterScrollable);
     
     const activeProfile = getActiveProfile();
     const roster = activeProfile?.roster ?? [];
@@ -23,6 +25,31 @@ const Roster = () => {
     const sortedRoster = useMemo(() => {
         return [...roster].sort((a, b) => b.score - a.score);
     }, [roster]);
+
+    useEffect(() => {
+        const checkScroll = () => {
+            const element = rosterContainerRef.current;
+            if (element) {
+                const hasScrollbar = element.scrollHeight > element.clientHeight;
+                setIsRosterScrollable(hasScrollbar);
+            }
+        };
+
+        checkScroll(); // Check on initial render and when roster changes
+
+        const resizeObserver = new ResizeObserver(checkScroll);
+        const element = rosterContainerRef.current;
+        if (element) {
+            resizeObserver.observe(element);
+        }
+
+        return () => {
+            if (element) {
+                resizeObserver.unobserve(element);
+            }
+        };
+    }, [sortedRoster]);
+
 
     const handleOpenAddModal = () => {
         setParentToEdit(null);
