@@ -21,7 +21,7 @@ const InfoModal = ({ isOpen, onClose }: InfoModalProps) => {
                         This application is licensed under the MIT License.
                     </p>
                     <p className="info-modal__text info-modal__text--muted mt-2">
-                        The underlying skill, character, and game data is sourced from the `uma-tools` project, which is distributed under the GNU General Public License v3.0.
+                        The underlying skill, character, and game data is sourced from the 'uma-tools' project, which is distributed under the GNU General Public License v3.0.
                     </p>
                 </div>
 
