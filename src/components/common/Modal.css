@@ -102,6 +102,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 1rem;
 }
 .dialog-modal__content {
     padding: 1.5rem;
@@ -112,6 +113,8 @@
     background-color: var(--color-card-bg);
     transform: scale(0.95);
     transition: transform 0.25s ease, background-color 0.3s ease, border-color 0.3s ease;
+    max-height: calc(100vh - 2rem);
+    overflow-y: auto;
 }
 .dialog-modal__content--sm {
     max-width: 24rem; /* max-w-sm */
