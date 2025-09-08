@@ -39,21 +39,28 @@
     background-color: var(--color-card-bg-hover);
     border-left: 3px solid var(--folder-color);
     border-radius: 6px;
-    padding-right: 0.25rem;
+    padding-right: 0.5rem; /* Add space at the end */
     padding-bottom: 0.25rem;
     margin-right: 0.5rem;
 }
 .folder-group > ul {
     list-style: none;
     margin: 0;
-    padding: 0 0 0 0.5rem;
+    padding: 0.5rem 0 0 0.5rem;
     display: flex;
+    width: 100%;
+    border-top: 2px solid var(--folder-color);
 }
 .tab--in-folder .tab__button {
     background-color: transparent;
+    border-radius: 0; /* Make tabs inside flush */
 }
 .tab--in-folder .tab__button:hover {
     background-color: var(--color-border);
+    border-radius: 4px;
+}
+.tab--in-folder.tab--active .tab__button {
+    border-bottom-color: var(--folder-color);
 }
 .tab--dragging {
     opacity: 0.5;
