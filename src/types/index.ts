@@ -62,6 +62,7 @@ export interface Profile {
   name: string;
   goal: Goal;
   roster: Parent[];
+  isPinned?: boolean;
 }
 
 export interface AppData {
