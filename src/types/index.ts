@@ -10,6 +10,7 @@ export interface Skill {
 export interface Uma {
   id: string;
   name_en: string;
+  image?: string;
 }
 
 export interface BlueSpark {
