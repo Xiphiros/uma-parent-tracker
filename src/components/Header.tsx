@@ -18,6 +18,9 @@ const Header = () => {
             <header className="header mb-8 text-center">
                 <h1 className="header__title text-4xl font-bold">Umamusume Parent Tracker</h1>
                 <p className="header__subtitle mt-2">A point-based system for progressive parent farming.</p>
+                <p className="mt-4 text-sm italic text-stone-500 dark:text-stone-400">
+                    This site is a fan-made project and is not affiliated with Cygames, Inc.
+                </p>
                 <div className="header__actions">
                     {import.meta.env.DEV && (
                         <button id="dev-tools-btn" className="theme-toggle" title="Dev Tools" onClick={() => setDevToolsModalOpen(true)}>
