@@ -23,7 +23,8 @@ interface AppContextType {
   deleteProfile: (id: number) => void;
   togglePinProfile: (id: number) => void;
   reorderLayout: (sourceIndex: number, destinationIndex: number) => void;
-  moveProfileToFolder: (profileId: number, folderId: string | null) => void;
+  reorderProfileInFolder: (folderId: string, sourceIndex: number, destIndex: number) => void;
+  moveProfileToFolder: (profileId: number, folderId: string | null, destIndex?: number) => void;
   addFolder: (name: string, color: string, icon: IconName) => void;
   updateFolder: (folderId: string, updates: Partial<Folder>) => void;
   deleteFolder: (folderId: string, deleteContained: boolean) => void;
@@ -255,9 +256,24 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
     });
   };
 
-  const moveProfileToFolder = (profileId: number, folderId: string | null) => {
+  const reorderProfileInFolder = (folderId: string, sourceIndex: number, destIndex: number) => {
+    setAppData(prevData => ({
+      ...prevData,
+      folders: prevData.folders.map(f => {
+        if (f.id === folderId) {
+          const profileIdsCopy = [...f.profileIds];
+          const [removed] = profileIdsCopy.splice(sourceIndex, 1);
+          profileIdsCopy.splice(destIndex, 0, removed);
+          return { ...f, profileIds: profileIdsCopy };
+        }
+        return f;
+      })
+    }));
+  };
+
+  const moveProfileToFolder = (profileId: number, folderId: string | null, destIndex: number = -1) => {
       setAppData(prevData => {
-          const newData = { ...prevData };
+          let newData = { ...prevData };
           // 1. Remove from old location (either layout or another folder)
           newData.layout = newData.layout.filter(item => item !== profileId);
           newData.folders = newData.folders.map(f => ({
@@ -267,11 +283,26 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
 
           // 2. Add to new location
           if (folderId) {
-              newData.folders = newData.folders.map(f =>
-                  f.id === folderId ? { ...f, profileIds: [...f.profileIds, profileId] } : f
-              );
+              newData.folders = newData.folders.map(f => {
+                  if (f.id === folderId) {
+                      const newProfileIds = [...f.profileIds];
+                      if (destIndex > -1) {
+                          newProfileIds.splice(destIndex, 0, profileId);
+                      } else {
+                          newProfileIds.push(profileId);
+                      }
+                      return { ...f, profileIds: newProfileIds };
+                  }
+                  return f;
+              });
           } else {
-              newData.layout.push(profileId);
+              const newLayout = [...newData.layout];
+              if (destIndex > -1) {
+                newLayout.splice(destIndex, 0, profileId);
+              } else {
+                newLayout.push(profileId);
+              }
+              newData.layout = newLayout;
           }
           return newData;
       });
@@ -451,6 +482,7 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
     deleteProfile,
     togglePinProfile,
     reorderLayout,
+    reorderProfileInFolder,
     moveProfileToFolder,
     addFolder,
     updateFolder,
