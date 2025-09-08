@@ -3,11 +3,13 @@ import { useTheme } from '../hooks/useTheme';
 import SettingsModal from './SettingsModal';
 import InfoModal from './InfoModal';
 import './Header.css';
+import DevToolsModal from './DevToolsModal';
 
 const Header = () => {
     const [theme, toggleTheme] = useTheme();
     const [isSettingsModalOpen, setSettingsModalOpen] = useState(false);
     const [isInfoModalOpen, setInfoModalOpen] = useState(false);
+    const [isDevToolsModalOpen, setDevToolsModalOpen] = useState(false);
 
     return (
         <>
@@ -15,6 +17,14 @@ const Header = () => {
                 <h1 className="header__title text-4xl font-bold">Umamusume Parent Tracker</h1>
                 <p className="header__subtitle mt-2">A point-based system for progressive parent farming.</p>
                 <div className="header__actions">
+                    {import.meta.env.DEV && (
+                        <button id="dev-tools-btn" className="theme-toggle" title="Dev Tools" onClick={() => setDevToolsModalOpen(true)}>
+                            <svg className="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                              <path fillRule="evenodd" d="M11.09 3.012a4.5 4.5 0 00-5.68 6.364l-2.203 2.203a.75.75 0 000 1.06l1.59 1.59a.75.75 0 001.06 0l2.204-2.203a4.5 4.5 0 006.363-5.681l-3.334-3.333zM7.365 8.43a2.5 2.5 0 013.535-3.536l2.082 2.082a2.5 2.5 0 01-3.536 3.535L7.365 8.43z" clipRule="evenodd" />
+                              <path d="M12.95 10.95a.75.75 0 000-1.06l-2.082-2.083a.75.75 0 00-1.06 0l-2.083 2.082a.75.75 0 000 1.061l2.082 2.082a.75.75 0 001.06 0l2.083-2.082z" />
+                            </svg>
+                        </button>
+                    )}
                     <button id="settings-btn" className="theme-toggle" title="Settings" onClick={() => setSettingsModalOpen(true)}>
                         <svg className="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                             <path d="M5 4a1 1 0 0 0-2 0v2.268a2 2 0 0 0 0 3.464V16a1 1 0 0 0 2 0v-6.268a2 2 0 0 0 0-3.464V4ZM11 4a1 1 0 1 0-2 0v2.268a2 2 0 0 0 0 3.464V16a1 1 0 1 0 2 0v-6.268a2 2 0 0 0 0-3.464V4ZM17 4a1 1 0 1 0-2 0v2.268a2 2 0 0 0 0 3.464V16a1 1 0 1 0 2 0v-6.268a2 2 0 0 0 0-3.464V4Z" />
@@ -32,6 +42,13 @@ const Header = () => {
                     </button>
                 </div>
             </header>
+
+            {import.meta.env.DEV && (
+                <DevToolsModal
+                    isOpen={isDevToolsModalOpen}
+                    onClose={() => setDevToolsModalOpen(false)}
+                />
+            )}
 
             <SettingsModal 
                 isOpen={isSettingsModalOpen}
