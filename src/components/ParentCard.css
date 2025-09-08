@@ -20,7 +20,7 @@
     width: 80px;
     height: 80px;
     object-fit: cover;
-    border-radius: 0.375rem;
+    border-radius: 9999px;
     border: 1px solid var(--color-border);
 }
 .parent-card__details {
