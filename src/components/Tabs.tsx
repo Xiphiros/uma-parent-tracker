@@ -285,6 +285,13 @@ const Tabs = () => {
                 setAlertMessage('You cannot delete a pinned folder. Please unpin it first.');
                 return;
             }
+
+            const hasPinnedProjects = folder.profileIds.some(pid => profilesById.get(pid)?.isPinned);
+            if (hasPinnedProjects) {
+                setAlertMessage('This folder contains pinned projects. Please unpin them before deleting the folder.');
+                return;
+            }
+
             setFolderToDelete(folder);
             setDeleteFolderConfirmOpen(true);
             setFolderSettingsOpen(false);
