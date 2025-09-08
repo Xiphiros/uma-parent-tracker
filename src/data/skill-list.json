@@ -8,24 +8,64 @@
     "groupId": 90038
   },
   {
+    "id": "910361",
+    "name_jp": "...found you.",
+    "name_en": "...found you.",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 91036
+  },
+  {
     "id": "201412",
-    "name_jp": "1,500,000 CC",
+    "name_jp": "十万バリキ",
     "name_en": "1,500,000 CC",
     "type": "normal",
     "rarity": 1,
     "groupId": 20141
   },
   {
+    "id": "910521",
+    "name_jp": "113転び114起き",
+    "name_en": "113転び114起き",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 91052
+  },
+  {
     "id": "201411",
-    "name_jp": "15,000,000 CC",
+    "name_jp": "百万バリキ",
     "name_en": "15,000,000 CC",
     "type": "normal",
     "rarity": 2,
     "groupId": 20141
   },
   {
+    "id": "202511",
+    "name_jp": "1番人気でヤバたん",
+    "name_en": "1番人気でヤバたん",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20251
+  },
+  {
+    "id": "202181",
+    "name_jp": "99 Problems",
+    "name_en": "99 Problems",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20218
+  },
+  {
+    "id": "910041",
+    "name_jp": "グッときて♪Chu",
+    "name_en": "A Kiss for Courage",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 91004
+  },
+  {
     "id": "201422",
-    "name_jp": "A Small Breather",
+    "name_jp": "小休憩",
     "name_en": "A Small Breather",
     "type": "normal",
     "rarity": 1,
@@ -33,7 +73,7 @@
   },
   {
     "id": "201062",
-    "name_jp": "Acceleration",
+    "name_jp": "アクセラレーション",
     "name_en": "Acceleration",
     "type": "normal",
     "rarity": 1,
@@ -41,7 +81,7 @@
   },
   {
     "id": "201011",
-    "name_jp": "Adored by All",
+    "name_jp": "悩殺術",
     "name_en": "Adored by All",
     "type": "normal",
     "rarity": 2,
@@ -49,15 +89,23 @@
   },
   {
     "id": "200761",
-    "name_jp": "Adrenaline Rush",
+    "name_jp": "火事場のバ鹿力",
     "name_en": "Adrenaline Rush",
     "type": "normal",
     "rarity": 2,
     "groupId": 20076
   },
   {
+    "id": "910071",
+    "name_jp": "Adventure of 564",
+    "name_en": "Adventure of 564",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 91007
+  },
+  {
     "id": "201482",
-    "name_jp": "After-School Stroll",
+    "name_jp": "下校の楽しみ",
     "name_en": "After-School Stroll",
     "type": "normal",
     "rarity": 1,
@@ -65,7 +113,7 @@
   },
   {
     "id": "201441",
-    "name_jp": "All-Seeing Eyes",
+    "name_jp": "八方にらみ",
     "name_en": "All-Seeing Eyes",
     "type": "normal",
     "rarity": 2,
@@ -73,39 +121,23 @@
   },
   {
     "id": "900071",
-    "name_jp": "Anchors Aweigh!",
+    "name_jp": "不沈艦、抜錨ォッ！",
     "name_en": "Anchors Aweigh!",
     "type": "unique",
     "rarity": 1,
     "groupId": 90007
   },
   {
-    "id": "900201",
-    "name_jp": "Angling and Scheming",
-    "name_en": "Angling and Scheming",
+    "id": "901061",
+    "name_jp": "Bang☆ミラクるわせ！",
+    "name_en": "Bang☆ミラクるわせ！",
     "type": "unique",
     "rarity": 1,
-    "groupId": 90020
-  },
-  {
-    "id": "race_arimakinen",
-    "name_jp": "Arima Kinen",
-    "name_en": "Arima Kinen",
-    "type": "normal",
-    "rarity": 1,
-    "groupId": null
-  },
-  {
-    "id": "race_asahihaifs",
-    "name_jp": "Asahi Hai F.S.",
-    "name_en": "Asahi Hai F.S.",
-    "type": "normal",
-    "rarity": 1,
-    "groupId": null
+    "groupId": 90106
   },
   {
     "id": "201091",
-    "name_jp": "Battle Formation",
+    "name_jp": "布陣",
     "name_en": "Battle Formation",
     "type": "normal",
     "rarity": 2,
@@ -113,7 +145,7 @@
   },
   {
     "id": "200361",
-    "name_jp": "Beeline Burst",
+    "name_jp": "ハヤテ一文字",
     "name_en": "Beeline Burst",
     "type": "normal",
     "rarity": 2,
@@ -121,23 +153,39 @@
   },
   {
     "id": "900171",
-    "name_jp": "Behold Thine Emperor's Divine Might",
+    "name_jp": "汝、皇帝の神威を見よ",
     "name_en": "Behold Thine Emperor's Divine Might",
     "type": "unique",
     "rarity": 1,
     "groupId": 90017
   },
   {
+    "id": "910221",
+    "name_jp": "Best day ever",
+    "name_en": "Best day ever",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 91022
+  },
+  {
     "id": "201071",
-    "name_jp": "Big-Sisterly",
+    "name_jp": "姉御肌",
     "name_en": "Big-Sisterly",
     "type": "normal",
     "rarity": 2,
     "groupId": 20107
   },
   {
+    "id": "901071",
+    "name_jp": "Billions of stars",
+    "name_en": "Billions of stars",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 90107
+  },
+  {
     "id": "900181",
-    "name_jp": "Blazing Pride",
+    "name_jp": "ブレイズ・オブ・プライド",
     "name_en": "Blazing Pride",
     "type": "unique",
     "rarity": 1,
@@ -145,7 +193,7 @@
   },
   {
     "id": "200671",
-    "name_jp": "Blinding Flash",
+    "name_jp": "電撃の煌めき",
     "name_en": "Blinding Flash",
     "type": "normal",
     "rarity": 2,
@@ -153,23 +201,87 @@
   },
   {
     "id": "900301",
-    "name_jp": "Blue Rose Closer",
+    "name_jp": "ブルーローズチェイサー",
     "name_en": "Blue Rose Closer",
     "type": "unique",
     "rarity": 1,
     "groupId": 90030
   },
   {
+    "id": "910561",
+    "name_jp": "禾スナハチ登ル",
+    "name_en": "Bountiful Harvest",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 91056
+  },
+  {
     "id": "200381",
-    "name_jp": "Breath of Fresh Air",
+    "name_jp": "好転一息",
     "name_en": "Breath of Fresh Air",
     "type": "normal",
     "rarity": 2,
     "groupId": 20038
   },
   {
+    "id": "910781",
+    "name_jp": "Breezy Treat",
+    "name_en": "Breezy Treat",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 91078
+  },
+  {
+    "id": "210041",
+    "name_jp": "アオハル燃焼・根",
+    "name_en": "Burning Spirit GUTS",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 21004
+  },
+  {
+    "id": "210031",
+    "name_jp": "アオハル燃焼・力",
+    "name_en": "Burning Spirit PWR",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 21003
+  },
+  {
+    "id": "210011",
+    "name_jp": "アオハル燃焼・速",
+    "name_en": "Burning Spirit SPD",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 21001
+  },
+  {
+    "id": "210021",
+    "name_jp": "アオハル燃焼・体",
+    "name_en": "Burning Spirit STA",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 21002
+  },
+  {
+    "id": "210051",
+    "name_jp": "アオハル燃焼・賢",
+    "name_en": "Burning Spirit WIT",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 21005
+  },
+  {
+    "id": "910411",
+    "name_jp": "CHERRY☆スクランブル",
+    "name_en": "CHERRY☆スクランブル",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 91041
+  },
+  {
     "id": "200561",
-    "name_jp": "Calm and Collected",
+    "name_jp": "余裕綽々",
     "name_en": "Calm and Collected",
     "type": "normal",
     "rarity": 2,
@@ -177,15 +289,23 @@
   },
   {
     "id": "200482",
-    "name_jp": "Calm in a Crowd",
+    "name_jp": "ウマ込み冷静",
     "name_en": "Calm in a Crowd",
     "type": "normal",
     "rarity": 1,
     "groupId": 20048
   },
   {
+    "id": "900891",
+    "name_jp": "Celeste Oath",
+    "name_en": "Celeste Oath",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 90089
+  },
+  {
     "id": "200451",
-    "name_jp": "Center Stage",
+    "name_jp": "注目の踊り子",
     "name_en": "Center Stage",
     "type": "normal",
     "rarity": 2,
@@ -193,23 +313,15 @@
   },
   {
     "id": "910031",
-    "name_jp": "Certain Victory",
+    "name_jp": "絶対は、ボクだ",
     "name_en": "Certain Victory",
     "type": "unique",
     "rarity": 1,
     "groupId": 91003
   },
   {
-    "id": "race_championsc",
-    "name_jp": "Champions C.",
-    "name_en": "Champions C.",
-    "type": "normal",
-    "rarity": 1,
-    "groupId": null
-  },
-  {
     "id": "201051",
-    "name_jp": "Changing Gears",
+    "name_jp": "ギアチェンジ",
     "name_en": "Changing Gears",
     "type": "normal",
     "rarity": 2,
@@ -217,15 +329,23 @@
   },
   {
     "id": "200072",
-    "name_jp": "Chukyo Racecourse ○",
+    "name_jp": "中京レース場○",
     "name_en": "Chukyo Racecourse ○",
     "type": "normal",
     "rarity": 1,
     "groupId": 20007
   },
   {
+    "id": "901321",
+    "name_jp": "Circulating Love♡",
+    "name_en": "Circulating Love♡",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 90132
+  },
+  {
     "id": "201121",
-    "name_jp": "Clairvoyance",
+    "name_jp": "千里眼",
     "name_en": "Clairvoyance",
     "type": "normal",
     "rarity": 2,
@@ -233,7 +353,7 @@
   },
   {
     "id": "200222",
-    "name_jp": "Cloudy Days ○",
+    "name_jp": "曇りの日○",
     "name_en": "Cloudy Days ○",
     "type": "normal",
     "rarity": 1,
@@ -241,7 +361,7 @@
   },
   {
     "id": "200282",
-    "name_jp": "Competitive Spirit ○",
+    "name_jp": "対抗意識○",
     "name_en": "Competitive Spirit ○",
     "type": "normal",
     "rarity": 1,
@@ -249,15 +369,23 @@
   },
   {
     "id": "200431",
-    "name_jp": "Concentration",
+    "name_jp": "コンセントレーション",
     "name_en": "Concentration",
     "type": "normal",
     "rarity": 2,
     "groupId": 20043
   },
   {
+    "id": "910141",
+    "name_jp": "コンドル猛撃波",
+    "name_en": "Condor's Fury",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 91014
+  },
+  {
     "id": "200741",
-    "name_jp": "Cooldown",
+    "name_jp": "クールダウン",
     "name_en": "Cooldown",
     "type": "normal",
     "rarity": 2,
@@ -265,7 +393,7 @@
   },
   {
     "id": "200342",
-    "name_jp": "Corner Acceleration ○",
+    "name_jp": "コーナー加速○",
     "name_en": "Corner Acceleration ○",
     "type": "normal",
     "rarity": 1,
@@ -273,7 +401,7 @@
   },
   {
     "id": "200332",
-    "name_jp": "Corner Adept ○",
+    "name_jp": "コーナー巧者○",
     "name_en": "Corner Adept ○",
     "type": "normal",
     "rarity": 1,
@@ -281,7 +409,7 @@
   },
   {
     "id": "200341",
-    "name_jp": "Corner Connoisseur",
+    "name_jp": "曲線のソムリエ",
     "name_en": "Corner Connoisseur",
     "type": "normal",
     "rarity": 2,
@@ -289,7 +417,7 @@
   },
   {
     "id": "200352",
-    "name_jp": "Corner Recovery ○",
+    "name_jp": "コーナー回復○",
     "name_en": "Corner Recovery ○",
     "type": "normal",
     "rarity": 1,
@@ -297,7 +425,7 @@
   },
   {
     "id": "200992",
-    "name_jp": "Countermeasure",
+    "name_jp": "善後策",
     "name_en": "Countermeasure",
     "type": "normal",
     "rarity": 1,
@@ -305,23 +433,39 @@
   },
   {
     "id": "201501",
-    "name_jp": "Crusader",
+    "name_jp": "天命士",
     "name_en": "Crusader",
     "type": "normal",
     "rarity": 2,
     "groupId": 20150
   },
   {
-    "id": "900081",
-    "name_jp": "Cut and Drive!",
-    "name_en": "Cut and Drive!",
+    "id": "910331",
+    "name_jp": "Crystal Mist",
+    "name_en": "Crystal Mist",
     "type": "unique",
     "rarity": 1,
-    "groupId": 90008
+    "groupId": 91033
+  },
+  {
+    "id": "910711",
+    "name_jp": "Danser le présent",
+    "name_en": "Danser le présent",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 91071
+  },
+  {
+    "id": "910011",
+    "name_jp": "わやかわ♪マリンダイヴ",
+    "name_en": "Dazzl'n ♪ Diver",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 91001
   },
   {
     "id": "201371",
-    "name_jp": "Dazzling Disorientation",
+    "name_jp": "幻惑のかく乱",
     "name_en": "Dazzling Disorientation",
     "type": "normal",
     "rarity": 2,
@@ -329,7 +473,7 @@
   },
   {
     "id": "200742",
-    "name_jp": "Deep Breaths",
+    "name_jp": "深呼吸",
     "name_en": "Deep Breaths",
     "type": "normal",
     "rarity": 1,
@@ -337,23 +481,39 @@
   },
   {
     "id": "201341",
-    "name_jp": "Determined Descent",
+    "name_jp": "決意の直滑降",
     "name_en": "Determined Descent",
     "type": "normal",
     "rarity": 2,
     "groupId": 20134
   },
   {
+    "id": "900431",
+    "name_jp": "Ding Dong Boo",
+    "name_en": "Ding Dong Boo",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 90043
+  },
+  {
     "id": "201372",
-    "name_jp": "Disorient",
+    "name_jp": "かく乱",
     "name_en": "Disorient",
     "type": "normal",
     "rarity": 1,
     "groupId": 20137
   },
   {
+    "id": "910201",
+    "name_jp": "Do Ya Breakin!",
+    "name_en": "Do Ya Breakin!",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 91020
+  },
+  {
     "id": "201262",
-    "name_jp": "Dodging Danger",
+    "name_jp": "危険回避",
     "name_en": "Dodging Danger",
     "type": "normal",
     "rarity": 1,
@@ -361,23 +521,39 @@
   },
   {
     "id": "201151",
-    "name_jp": "Dominator",
+    "name_jp": "独占力",
     "name_en": "Dominator",
     "type": "normal",
     "rarity": 2,
     "groupId": 20115
   },
   {
+    "id": "910301",
+    "name_jp": "Drain for rose",
+    "name_en": "Drain for rose",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 91030
+  },
+  {
     "id": "200532",
-    "name_jp": "Early Lead",
+    "name_jp": "先駆け",
     "name_en": "Early Lead",
     "type": "normal",
     "rarity": 1,
     "groupId": 20053
   },
   {
+    "id": "911051",
+    "name_jp": "Encounter with U",
+    "name_en": "Encounter with U",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 91105
+  },
+  {
     "id": "200641",
-    "name_jp": "Encroaching Shadow",
+    "name_jp": "迫る影",
     "name_en": "Encroaching Shadow",
     "type": "normal",
     "rarity": 2,
@@ -385,7 +561,7 @@
   },
   {
     "id": "201462",
-    "name_jp": "End Closer Corners ○",
+    "name_jp": "追込コーナー○",
     "name_en": "End Closer Corners ○",
     "type": "normal",
     "rarity": 1,
@@ -393,7 +569,7 @@
   },
   {
     "id": "201552",
-    "name_jp": "End Closer Savvy ○",
+    "name_jp": "追込のコツ○",
     "name_en": "End Closer Savvy ○",
     "type": "normal",
     "rarity": 1,
@@ -401,7 +577,7 @@
   },
   {
     "id": "201452",
-    "name_jp": "End Closer Straightaways ○",
+    "name_jp": "追込直線○",
     "name_en": "End Closer Straightaways ○",
     "type": "normal",
     "rarity": 1,
@@ -409,7 +585,7 @@
   },
   {
     "id": "200541",
-    "name_jp": "Escape Artist",
+    "name_jp": "脱出術",
     "name_en": "Escape Artist",
     "type": "normal",
     "rarity": 2,
@@ -417,7 +593,7 @@
   },
   {
     "id": "910181",
-    "name_jp": "Eternal Moments",
+    "name_jp": "薫風、永遠なる瞬間を",
     "name_en": "Eternal Moments",
     "type": "unique",
     "rarity": 1,
@@ -425,15 +601,31 @@
   },
   {
     "id": "200762",
-    "name_jp": "Extra Tank",
+    "name_jp": "別腹タンク",
     "name_en": "Extra Tank",
     "type": "normal",
     "rarity": 1,
     "groupId": 20076
   },
   {
+    "id": "900221",
+    "name_jp": "Fairy tale",
+    "name_en": "Fairy tale",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 90022
+  },
+  {
+    "id": "900941",
+    "name_jp": "Faith in the Feral",
+    "name_en": "Faith in the Feral",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 90094
+  },
+  {
     "id": "200192",
-    "name_jp": "Fall Runner ○",
+    "name_jp": "秋ウマ娘○",
     "name_en": "Fall Runner ○",
     "type": "normal",
     "rarity": 1,
@@ -441,7 +633,7 @@
   },
   {
     "id": "200591",
-    "name_jp": "Fast & Furious",
+    "name_jp": "迅速果断",
     "name_en": "Fast & Furious",
     "type": "normal",
     "rarity": 2,
@@ -449,23 +641,15 @@
   },
   {
     "id": "200542",
-    "name_jp": "Fast-Paced",
+    "name_jp": "急ぎ足",
     "name_en": "Fast-Paced",
     "type": "normal",
     "rarity": 1,
     "groupId": 20054
   },
   {
-    "id": "race_februarys",
-    "name_jp": "February S.",
-    "name_en": "February S.",
-    "type": "normal",
-    "rarity": 1,
-    "groupId": null
-  },
-  {
     "id": "201402",
-    "name_jp": "Fighter",
+    "name_jp": "がんばり屋",
     "name_en": "Fighter",
     "type": "normal",
     "rarity": 1,
@@ -473,7 +657,7 @@
   },
   {
     "id": "200552",
-    "name_jp": "Final Push",
+    "name_jp": "押し切り準備",
     "name_en": "Final Push",
     "type": "normal",
     "rarity": 1,
@@ -481,7 +665,7 @@
   },
   {
     "id": "200152",
-    "name_jp": "Firm Conditions ○",
+    "name_jp": "良バ場○",
     "name_en": "Firm Conditions ○",
     "type": "normal",
     "rarity": 1,
@@ -489,15 +673,23 @@
   },
   {
     "id": "900241",
-    "name_jp": "Flashy☆Landing",
+    "name_jp": "ひらめき☆ランディング",
     "name_en": "Flashy☆Landing",
     "type": "unique",
     "rarity": 1,
     "groupId": 90024
   },
   {
+    "id": "910511",
+    "name_jp": "Flowering Dreams",
+    "name_en": "Flowering Dreams",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 91051
+  },
+  {
     "id": "910241",
-    "name_jp": "Flowery☆Maneuver",
+    "name_jp": "フラワリー☆マニューバ",
     "name_en": "Flowery☆Maneuver",
     "type": "unique",
     "rarity": 1,
@@ -505,7 +697,7 @@
   },
   {
     "id": "200931",
-    "name_jp": "Flustered End Closers",
+    "name_jp": "追込焦り",
     "name_en": "Flustered End Closers",
     "type": "normal",
     "rarity": 1,
@@ -513,7 +705,7 @@
   },
   {
     "id": "200841",
-    "name_jp": "Flustered Front Runners",
+    "name_jp": "逃げ焦り",
     "name_en": "Flustered Front Runners",
     "type": "normal",
     "rarity": 1,
@@ -521,7 +713,7 @@
   },
   {
     "id": "200901",
-    "name_jp": "Flustered Late Surgers",
+    "name_jp": "差し焦り",
     "name_en": "Flustered Late Surgers",
     "type": "normal",
     "rarity": 1,
@@ -529,7 +721,7 @@
   },
   {
     "id": "200871",
-    "name_jp": "Flustered Pace Chasers",
+    "name_jp": "先行焦り",
     "name_en": "Flustered Pace Chasers",
     "type": "normal",
     "rarity": 1,
@@ -537,15 +729,23 @@
   },
   {
     "id": "200432",
-    "name_jp": "Focus",
+    "name_jp": "集中力",
     "name_en": "Focus",
     "type": "normal",
     "rarity": 1,
     "groupId": 20043
   },
   {
+    "id": "920461",
+    "name_jp": "Forward March!",
+    "name_en": "Forward March!",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 92046
+  },
+  {
     "id": "200821",
-    "name_jp": "Frenzied End Closers",
+    "name_jp": "追込駆け引き",
     "name_en": "Frenzied End Closers",
     "type": "normal",
     "rarity": 1,
@@ -553,7 +753,7 @@
   },
   {
     "id": "200791",
-    "name_jp": "Frenzied Front Runners",
+    "name_jp": "逃げ駆け引き",
     "name_en": "Frenzied Front Runners",
     "type": "normal",
     "rarity": 1,
@@ -561,7 +761,7 @@
   },
   {
     "id": "200811",
-    "name_jp": "Frenzied Late Surgers",
+    "name_jp": "差し駆け引き",
     "name_en": "Frenzied Late Surgers",
     "type": "normal",
     "rarity": 1,
@@ -569,7 +769,7 @@
   },
   {
     "id": "200801",
-    "name_jp": "Frenzied Pace Chasers",
+    "name_jp": "先行駆け引き",
     "name_en": "Frenzied Pace Chasers",
     "type": "normal",
     "rarity": 1,
@@ -577,7 +777,7 @@
   },
   {
     "id": "201252",
-    "name_jp": "Front Runner Corners ○",
+    "name_jp": "逃げコーナー○",
     "name_en": "Front Runner Corners ○",
     "type": "normal",
     "rarity": 1,
@@ -585,7 +785,7 @@
   },
   {
     "id": "201522",
-    "name_jp": "Front Runner Savvy ○",
+    "name_jp": "逃げのコツ○",
     "name_en": "Front Runner Savvy ○",
     "type": "normal",
     "rarity": 1,
@@ -593,7 +793,7 @@
   },
   {
     "id": "201242",
-    "name_jp": "Front Runner Straightaways ○",
+    "name_jp": "逃げ直線○",
     "name_en": "Front Runner Straightaways ○",
     "type": "normal",
     "rarity": 1,
@@ -601,7 +801,7 @@
   },
   {
     "id": "200102",
-    "name_jp": "Fukushima Racecourse ○",
+    "name_jp": "福島レース場○",
     "name_en": "Fukushima Racecourse ○",
     "type": "normal",
     "rarity": 1,
@@ -609,7 +809,7 @@
   },
   {
     "id": "200701",
-    "name_jp": "Furious Feat",
+    "name_jp": "豪脚",
     "name_en": "Furious Feat",
     "type": "normal",
     "rarity": 2,
@@ -617,7 +817,7 @@
   },
   {
     "id": "900261",
-    "name_jp": "G00 1st. F∞;",
+    "name_jp": "G00 1st.F∞;",
     "name_en": "G00 1st. F∞;",
     "type": "unique",
     "rarity": 1,
@@ -625,31 +825,47 @@
   },
   {
     "id": "200311",
-    "name_jp": "G1 Averseness",
+    "name_jp": "GⅠ苦手",
     "name_en": "G1 Averseness",
     "type": "normal",
     "rarity": 1,
     "groupId": 20031
   },
   {
+    "id": "910481",
+    "name_jp": "GALmem.ふぉーえば♪",
+    "name_en": "GALmem.ふぉーえば♪",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 91048
+  },
+  {
+    "id": "910401",
+    "name_jp": "GET DOWN",
+    "name_en": "GET DOWN",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 91040
+  },
+  {
+    "id": "920351",
+    "name_jp": "GO! Full-send",
+    "name_en": "GO! Full-send",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 92035
+  },
+  {
     "id": "200672",
-    "name_jp": "Gap Closer",
+    "name_jp": "詰め寄り",
     "name_en": "Gap Closer",
     "type": "normal",
     "rarity": 1,
     "groupId": 20067
   },
   {
-    "id": "900411",
-    "name_jp": "Genius x Bakushin = Victory",
-    "name_en": "Genius x Bakushin = Victory",
-    "type": "unique",
-    "rarity": 1,
-    "groupId": 90041
-  },
-  {
     "id": "200502",
-    "name_jp": "Go with the Flow",
+    "name_jp": "臨機応変",
     "name_en": "Go with the Flow",
     "type": "normal",
     "rarity": 1,
@@ -657,7 +873,7 @@
   },
   {
     "id": "201481",
-    "name_jp": "Go-Home Specialist",
+    "name_jp": "下校後のスペシャリスト",
     "name_en": "Go-Home Specialist",
     "type": "normal",
     "rarity": 2,
@@ -665,15 +881,23 @@
   },
   {
     "id": "201351",
-    "name_jp": "Gourmand",
+    "name_jp": "食いしん坊",
     "name_en": "Gourmand",
     "type": "normal",
     "rarity": 2,
     "groupId": 20135
   },
   {
+    "id": "910601",
+    "name_jp": "Go☆Go☆for it!",
+    "name_en": "Go☆Go☆for it!",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 91060
+  },
+  {
     "id": "201081",
-    "name_jp": "Greed for Speed",
+    "name_jp": "スピードグリード",
     "name_en": "Greed for Speed",
     "type": "normal",
     "rarity": 2,
@@ -681,31 +905,47 @@
   },
   {
     "id": "201601",
-    "name_jp": "Groundwork",
+    "name_jp": "地固め",
     "name_en": "Groundwork",
     "type": "normal",
     "rarity": 1,
     "groupId": 20160
   },
   {
+    "id": "901101",
+    "name_jp": "Guiding Sea",
+    "name_en": "Guiding Sea",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 90110
+  },
+  {
+    "id": "910371",
+    "name_jp": "Guten Appetit♪",
+    "name_en": "Guten Appetit♪",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 91037
+  },
+  {
+    "id": "920241",
+    "name_jp": "HOP STEP♪LOCK ON!",
+    "name_en": "HOP STEP♪LOCK ON!",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 92024
+  },
+  {
     "id": "200092",
-    "name_jp": "Hakodate Racecourse ○",
+    "name_jp": "函館レース場○",
     "name_en": "Hakodate Racecourse ○",
     "type": "normal",
     "rarity": 1,
     "groupId": 20009
   },
   {
-    "id": "race_hanshinjf",
-    "name_jp": "Hanshin J.F.",
-    "name_en": "Hanshin J.F.",
-    "type": "normal",
-    "rarity": 1,
-    "groupId": null
-  },
-  {
     "id": "200052",
-    "name_jp": "Hanshin Racecourse ○",
+    "name_jp": "阪神レース場○",
     "name_en": "Hanshin Racecourse ○",
     "type": "normal",
     "rarity": 1,
@@ -713,7 +953,7 @@
   },
   {
     "id": "201401",
-    "name_jp": "Hard Worker",
+    "name_jp": "努力家",
     "name_en": "Hard Worker",
     "type": "normal",
     "rarity": 2,
@@ -721,15 +961,23 @@
   },
   {
     "id": "201122",
-    "name_jp": "Hawkeye",
+    "name_jp": "ホークアイ",
     "name_en": "Hawkeye",
     "type": "normal",
     "rarity": 1,
     "groupId": 20112
   },
   {
+    "id": "910501",
+    "name_jp": "Hephaistos",
+    "name_en": "Hephaistos",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 91050
+  },
+  {
     "id": "200941",
-    "name_jp": "Hesitant End Closers",
+    "name_jp": "追込ためらい",
     "name_en": "Hesitant End Closers",
     "type": "normal",
     "rarity": 1,
@@ -737,7 +985,7 @@
   },
   {
     "id": "200851",
-    "name_jp": "Hesitant Front Runners",
+    "name_jp": "逃げためらい",
     "name_en": "Hesitant Front Runners",
     "type": "normal",
     "rarity": 1,
@@ -745,7 +993,7 @@
   },
   {
     "id": "200911",
-    "name_jp": "Hesitant Late Surgers",
+    "name_jp": "差しためらい",
     "name_en": "Hesitant Late Surgers",
     "type": "normal",
     "rarity": 1,
@@ -753,7 +1001,7 @@
   },
   {
     "id": "200881",
-    "name_jp": "Hesitant Pace Chasers",
+    "name_jp": "先行ためらい",
     "name_en": "Hesitant Pace Chasers",
     "type": "normal",
     "rarity": 1,
@@ -761,7 +1009,7 @@
   },
   {
     "id": "201581",
-    "name_jp": "Highlander",
+    "name_jp": "登山家",
     "name_en": "Highlander",
     "type": "normal",
     "rarity": 1,
@@ -769,23 +1017,15 @@
   },
   {
     "id": "200512",
-    "name_jp": "Homestretch Haste",
+    "name_jp": "末脚",
     "name_en": "Homestretch Haste",
     "type": "normal",
     "rarity": 1,
     "groupId": 20051
   },
   {
-    "id": "race_hopefuls",
-    "name_jp": "Hopeful S.",
-    "name_en": "Hopeful S.",
-    "type": "normal",
-    "rarity": 1,
-    "groupId": null
-  },
-  {
     "id": "200982",
-    "name_jp": "Huge Lead",
+    "name_jp": "大きなリード",
     "name_en": "Huge Lead",
     "type": "normal",
     "rarity": 1,
@@ -793,7 +1033,7 @@
   },
   {
     "id": "201352",
-    "name_jp": "Hydrate",
+    "name_jp": "栄養補給",
     "name_en": "Hydrate",
     "type": "normal",
     "rarity": 1,
@@ -801,31 +1041,103 @@
   },
   {
     "id": "201472",
-    "name_jp": "I Can See Right Through You",
+    "name_jp": "お見通し",
     "name_en": "I Can See Right Through You",
     "type": "normal",
     "rarity": 1,
     "groupId": 20147
   },
   {
+    "id": "900581",
+    "name_jp": "I Never Goof Up!",
+    "name_en": "I Never Goof Up!",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 90058
+  },
+  {
     "id": "900561",
-    "name_jp": "I See Victory in My Future!",
+    "name_jp": "来ます来てます来させます！",
     "name_en": "I See Victory in My Future!",
     "type": "unique",
     "rarity": 1,
     "groupId": 90056
   },
   {
+    "id": "900281",
+    "name_jp": "I'M☆FULL☆SPEED!!",
+    "name_en": "I'M☆FULL☆SPEED!!",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 90028
+  },
+  {
+    "id": "210042",
+    "name_jp": "アオハル点火・根",
+    "name_en": "Ignited Spirit GUTS",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 21004
+  },
+  {
+    "id": "210032",
+    "name_jp": "アオハル点火・力",
+    "name_en": "Ignited Spirit PWR",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 21003
+  },
+  {
+    "id": "210012",
+    "name_jp": "アオハル点火・速",
+    "name_en": "Ignited Spirit SPD",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 21001
+  },
+  {
+    "id": "210022",
+    "name_jp": "アオハル点火・体",
+    "name_en": "Ignited Spirit STA",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 21002
+  },
+  {
+    "id": "210052",
+    "name_jp": "アオハル点火・賢",
+    "name_en": "Ignited Spirit WIT",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 21005
+  },
+  {
+    "id": "910741",
+    "name_jp": "Illuminate you",
+    "name_en": "Illuminate you",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 91074
+  },
+  {
     "id": "201231",
-    "name_jp": "Illusionist",
+    "name_jp": "奇術師",
     "name_en": "Illusionist",
     "type": "normal",
     "rarity": 2,
     "groupId": 20123
   },
   {
+    "id": "910831",
+    "name_jp": "Immortal Work",
+    "name_en": "Immortal Work",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 91083
+  },
+  {
     "id": "200511",
-    "name_jp": "In Body and Mind",
+    "name_jp": "全身全霊",
     "name_en": "In Body and Mind",
     "type": "normal",
     "rarity": 2,
@@ -833,15 +1145,23 @@
   },
   {
     "id": "200471",
-    "name_jp": "Indomitable",
+    "name_jp": "不屈の心",
     "name_en": "Indomitable",
     "type": "normal",
     "rarity": 2,
     "groupId": 20047
   },
   {
+    "id": "900801",
+    "name_jp": "Info: Acquired",
+    "name_en": "Info: Acquired",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 90080
+  },
+  {
     "id": "200751",
-    "name_jp": "Innate Experience",
+    "name_jp": "内的体験",
     "name_en": "Innate Experience",
     "type": "normal",
     "rarity": 2,
@@ -849,7 +1169,7 @@
   },
   {
     "id": "200252",
-    "name_jp": "Inner Post Proficiency ○",
+    "name_jp": "内枠得意○",
     "name_en": "Inner Post Proficiency ○",
     "type": "normal",
     "rarity": 1,
@@ -857,7 +1177,7 @@
   },
   {
     "id": "200752",
-    "name_jp": "Inside Scoop",
+    "name_jp": "内弁慶",
     "name_en": "Inside Scoop",
     "type": "normal",
     "rarity": 1,
@@ -865,7 +1185,7 @@
   },
   {
     "id": "201512",
-    "name_jp": "Intense Gaze",
+    "name_jp": "まなざし",
     "name_en": "Intense Gaze",
     "type": "normal",
     "rarity": 1,
@@ -873,15 +1193,23 @@
   },
   {
     "id": "201012",
-    "name_jp": "Intimidate",
+    "name_jp": "後方釘付",
     "name_en": "Intimidate",
     "type": "normal",
     "rarity": 1,
     "groupId": 20101
   },
   {
+    "id": "910081",
+    "name_jp": "Into High Gear!",
+    "name_en": "Into High Gear!",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 91008
+  },
+  {
     "id": "200441",
-    "name_jp": "Iron Will",
+    "name_jp": "鋼の意志",
     "name_en": "Iron Will",
     "type": "normal",
     "rarity": 2,
@@ -889,79 +1217,47 @@
   },
   {
     "id": "200461",
-    "name_jp": "It's On!",
+    "name_jp": "アガッてきた！",
     "name_en": "It's On!",
     "type": "normal",
     "rarity": 2,
     "groupId": 20046
   },
   {
-    "id": "race_jdderby",
-    "name_jp": "J.D. Derby",
-    "name_en": "J.D. Derby",
-    "type": "normal",
+    "id": "910771",
+    "name_jp": "Joy to the World",
+    "name_en": "Joy to the World",
+    "type": "unique",
     "rarity": 1,
-    "groupId": null
+    "groupId": 91077
   },
   {
-    "id": "race_jbcclassic",
-    "name_jp": "JBC Classic",
-    "name_en": "JBC Classic",
-    "type": "normal",
+    "id": "910101",
+    "name_jp": "Joyful Voyage!",
+    "name_en": "Joyful Voyage!",
+    "type": "unique",
     "rarity": 1,
-    "groupId": null
-  },
-  {
-    "id": "race_jbclclassic",
-    "name_jp": "JBC L. Classic",
-    "name_en": "JBC L. Classic",
-    "type": "normal",
-    "rarity": 1,
-    "groupId": null
-  },
-  {
-    "id": "race_jbcsprint",
-    "name_jp": "JBC Sprint",
-    "name_en": "JBC Sprint",
-    "type": "normal",
-    "rarity": 1,
-    "groupId": null
-  },
-  {
-    "id": "race_japanc",
-    "name_jp": "Japan C.",
-    "name_en": "Japan C.",
-    "type": "normal",
-    "rarity": 1,
-    "groupId": null
-  },
-  {
-    "id": "race_japanesederby",
-    "name_jp": "Japanese Derby",
-    "name_en": "Japanese Derby",
-    "type": "normal",
-    "rarity": 1,
-    "groupId": null
-  },
-  {
-    "id": "race_japaneseoaks",
-    "name_jp": "Japanese Oaks",
-    "name_en": "Japanese Oaks",
-    "type": "normal",
-    "rarity": 1,
-    "groupId": null
+    "groupId": 91010
   },
   {
     "id": "900601",
-    "name_jp": "Just a Little Farther!",
+    "name_jp": "きっとその先へ…！",
     "name_en": "Just a Little Farther!",
     "type": "unique",
     "rarity": 1,
     "groupId": 90060
   },
   {
+    "id": "900401",
+    "name_jp": "KEEP IT REAL.",
+    "name_en": "KEEP IT REAL.",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 90040
+  },
+  {
     "id": "200691",
-    "name_jp": "Keen Eye",
+    "name_jp": "慧眼",
     "name_en": "Keen Eye",
     "type": "normal",
     "rarity": 2,
@@ -969,23 +1265,15 @@
   },
   {
     "id": "201192",
-    "name_jp": "Keeping the Lead",
+    "name_jp": "リードキープ",
     "name_en": "Keeping the Lead",
     "type": "normal",
     "rarity": 1,
     "groupId": 20119
   },
   {
-    "id": "race_kikukasho",
-    "name_jp": "Kikuka Sho",
-    "name_en": "Kikuka Sho",
-    "type": "normal",
-    "rarity": 1,
-    "groupId": null
-  },
-  {
     "id": "200721",
-    "name_jp": "Killer Tunes",
+    "name_jp": "キラーチューン",
     "name_en": "Killer Tunes",
     "type": "normal",
     "rarity": 2,
@@ -993,7 +1281,7 @@
   },
   {
     "id": "200122",
-    "name_jp": "Kokura Racecourse ○",
+    "name_jp": "小倉レース場○",
     "name_en": "Kokura Racecourse ○",
     "type": "normal",
     "rarity": 1,
@@ -1001,15 +1289,23 @@
   },
   {
     "id": "200062",
-    "name_jp": "Kyoto Racecourse ○",
+    "name_jp": "京都レース場○",
     "name_en": "Kyoto Racecourse ○",
     "type": "normal",
     "rarity": 1,
     "groupId": 20006
   },
   {
+    "id": "901211",
+    "name_jp": "Lame de vent",
+    "name_en": "Lame de vent",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 90121
+  },
+  {
     "id": "200501",
-    "name_jp": "Lane Legerdemain",
+    "name_jp": "レーンの魔術師",
     "name_en": "Lane Legerdemain",
     "type": "normal",
     "rarity": 2,
@@ -1017,7 +1313,7 @@
   },
   {
     "id": "201392",
-    "name_jp": "Late Surger Corners ○",
+    "name_jp": "差しコーナー○",
     "name_en": "Late Surger Corners ○",
     "type": "normal",
     "rarity": 1,
@@ -1025,7 +1321,7 @@
   },
   {
     "id": "201542",
-    "name_jp": "Late Surger Savvy ○",
+    "name_jp": "差しのコツ○",
     "name_en": "Late Surger Savvy ○",
     "type": "normal",
     "rarity": 1,
@@ -1033,7 +1329,7 @@
   },
   {
     "id": "201382",
-    "name_jp": "Late Surger Straightaways ○",
+    "name_jp": "差し直線○",
     "name_en": "Late Surger Straightaways ○",
     "type": "normal",
     "rarity": 1,
@@ -1041,7 +1337,7 @@
   },
   {
     "id": "200442",
-    "name_jp": "Lay Low",
+    "name_jp": "隠れ蓑",
     "name_en": "Lay Low",
     "type": "normal",
     "rarity": 1,
@@ -1049,7 +1345,7 @@
   },
   {
     "id": "201272",
-    "name_jp": "Leader's Pride",
+    "name_jp": "先頭プライド",
     "name_en": "Leader's Pride",
     "type": "normal",
     "rarity": 1,
@@ -1057,7 +1353,7 @@
   },
   {
     "id": "200022",
-    "name_jp": "Left-Handed ○",
+    "name_jp": "左回り○",
     "name_en": "Left-Handed ○",
     "type": "normal",
     "rarity": 1,
@@ -1065,7 +1361,7 @@
   },
   {
     "id": "910131",
-    "name_jp": "Legacy of the Strong",
+    "name_jp": "最強の名を懸けて",
     "name_en": "Legacy of the Strong",
     "type": "unique",
     "rarity": 1,
@@ -1073,7 +1369,7 @@
   },
   {
     "id": "900271",
-    "name_jp": "Let's Pump Some Iron!",
+    "name_jp": "レッツ・アナボリック！",
     "name_en": "Let's Pump Some Iron!",
     "type": "unique",
     "rarity": 1,
@@ -1081,7 +1377,7 @@
   },
   {
     "id": "201492",
-    "name_jp": "Levelheaded",
+    "name_jp": "冷静",
     "name_en": "Levelheaded",
     "type": "normal",
     "rarity": 1,
@@ -1089,15 +1385,23 @@
   },
   {
     "id": "201131",
-    "name_jp": "Lightning Step",
+    "name_jp": "ライトニングステップ",
     "name_en": "Lightning Step",
     "type": "normal",
     "rarity": 2,
     "groupId": 20113
   },
   {
+    "id": "900051",
+    "name_jp": "煌星のヴォードヴィル",
+    "name_en": "Lights of Vaudeville",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 90005
+  },
+  {
     "id": "201641",
-    "name_jp": "Lone Wolf",
+    "name_jp": "一匹狼",
     "name_en": "Lone Wolf",
     "type": "normal",
     "rarity": 1,
@@ -1105,7 +1409,7 @@
   },
   {
     "id": "201182",
-    "name_jp": "Long Corners ○",
+    "name_jp": "長距離コーナー○",
     "name_en": "Long Corners ○",
     "type": "normal",
     "rarity": 1,
@@ -1113,7 +1417,7 @@
   },
   {
     "id": "200302",
-    "name_jp": "Long Shot ○",
+    "name_jp": "伏兵○",
     "name_en": "Long Shot ○",
     "type": "normal",
     "rarity": 1,
@@ -1121,7 +1425,7 @@
   },
   {
     "id": "201172",
-    "name_jp": "Long Straightaways ○",
+    "name_jp": "長距離直線○",
     "name_en": "Long Straightaways ○",
     "type": "normal",
     "rarity": 1,
@@ -1129,7 +1433,7 @@
   },
   {
     "id": "201562",
-    "name_jp": "Lucky Seven",
+    "name_jp": "ラッキーセブン",
     "name_en": "Lucky Seven",
     "type": "normal",
     "rarity": 1,
@@ -1137,7 +1441,7 @@
   },
   {
     "id": "200632",
-    "name_jp": "Masterful Gambit",
+    "name_jp": "仕掛け抜群",
     "name_en": "Masterful Gambit",
     "type": "normal",
     "rarity": 1,
@@ -1145,7 +1449,7 @@
   },
   {
     "id": "200272",
-    "name_jp": "Maverick ○",
+    "name_jp": "おひとり様○",
     "name_en": "Maverick ○",
     "type": "normal",
     "rarity": 1,
@@ -1153,7 +1457,7 @@
   },
   {
     "id": "201112",
-    "name_jp": "Medium Corners ○",
+    "name_jp": "中距離コーナー○",
     "name_en": "Medium Corners ○",
     "type": "normal",
     "rarity": 1,
@@ -1161,7 +1465,7 @@
   },
   {
     "id": "201102",
-    "name_jp": "Medium Straightaways ○",
+    "name_jp": "中距離直線○",
     "name_en": "Medium Straightaways ○",
     "type": "normal",
     "rarity": 1,
@@ -1169,23 +1473,15 @@
   },
   {
     "id": "201002",
-    "name_jp": "Meticulous Measures",
+    "name_jp": "仕掛け準備",
     "name_en": "Meticulous Measures",
     "type": "normal",
     "rarity": 1,
     "groupId": 20100
   },
   {
-    "id": "race_milech",
-    "name_jp": "Mile Ch.",
-    "name_en": "Mile Ch.",
-    "type": "normal",
-    "rarity": 1,
-    "groupId": null
-  },
-  {
     "id": "201042",
-    "name_jp": "Mile Corners ○",
+    "name_jp": "マイルコーナー○",
     "name_en": "Mile Corners ○",
     "type": "normal",
     "rarity": 1,
@@ -1193,7 +1489,7 @@
   },
   {
     "id": "200681",
-    "name_jp": "Mile Maven",
+    "name_jp": "マイルの支配者",
     "name_en": "Mile Maven",
     "type": "normal",
     "rarity": 2,
@@ -1201,7 +1497,7 @@
   },
   {
     "id": "201032",
-    "name_jp": "Mile Straightaways ○",
+    "name_jp": "マイル直線○",
     "name_en": "Mile Straightaways ○",
     "type": "normal",
     "rarity": 1,
@@ -1209,15 +1505,23 @@
   },
   {
     "id": "201141",
-    "name_jp": "Miraculous Step",
+    "name_jp": "神業ステップ",
     "name_en": "Miraculous Step",
     "type": "normal",
     "rarity": 2,
     "groupId": 20114
   },
   {
+    "id": "900831",
+    "name_jp": "Mission: Triumph",
+    "name_en": "Mission: Triumph",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 90083
+  },
+  {
     "id": "201282",
-    "name_jp": "Moxie",
+    "name_jp": "勢い任せ",
     "name_en": "Moxie",
     "type": "normal",
     "rarity": 1,
@@ -1225,7 +1529,7 @@
   },
   {
     "id": "201162",
-    "name_jp": "Murmur",
+    "name_jp": "ささやき",
     "name_en": "Murmur",
     "type": "normal",
     "rarity": 1,
@@ -1233,23 +1537,15 @@
   },
   {
     "id": "201161",
-    "name_jp": "Mystifying Murmur",
+    "name_jp": "魅惑のささやき",
     "name_en": "Mystifying Murmur",
     "type": "normal",
     "rarity": 2,
     "groupId": 20116
   },
   {
-    "id": "race_nhkmilec",
-    "name_jp": "NHK Mile C.",
-    "name_en": "NHK Mile C.",
-    "type": "normal",
-    "rarity": 1,
-    "groupId": null
-  },
-  {
     "id": "200042",
-    "name_jp": "Nakayama Racecourse ○",
+    "name_jp": "中山レース場○",
     "name_en": "Nakayama Racecourse ○",
     "type": "normal",
     "rarity": 1,
@@ -1264,8 +1560,16 @@
     "groupId": 90050
   },
   {
+    "id": "901001",
+    "name_jp": "Never Say Never",
+    "name_en": "Never Say Never",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 90100
+  },
+  {
     "id": "200112",
-    "name_jp": "Niigata Racecourse ○",
+    "name_jp": "新潟レース場○",
     "name_en": "Niigata Racecourse ○",
     "type": "normal",
     "rarity": 1,
@@ -1273,7 +1577,7 @@
   },
   {
     "id": "200492",
-    "name_jp": "Nimble Navigator",
+    "name_jp": "垂れウマ回避",
     "name_en": "Nimble Navigator",
     "type": "normal",
     "rarity": 1,
@@ -1281,7 +1585,7 @@
   },
   {
     "id": "200491",
-    "name_jp": "No Stopping Me!",
+    "name_jp": "ノンストップガール",
     "name_en": "No Stopping Me!",
     "type": "normal",
     "rarity": 2,
@@ -1289,55 +1593,55 @@
   },
   {
     "id": "200142",
-    "name_jp": "Non-Standard Distance ○",
+    "name_jp": "非根幹距離○",
     "name_en": "Non-Standard Distance ○",
     "type": "normal",
     "rarity": 1,
     "groupId": 20014
   },
   {
+    "id": "910421",
+    "name_jp": "Oh!bento-magic☆",
+    "name_en": "Oh!bento-magic☆",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 91042
+  },
+  {
     "id": "200952",
-    "name_jp": "Oi Racecourse ○",
+    "name_jp": "大井レース場○",
     "name_en": "Oi Racecourse ○",
     "type": "normal",
     "rarity": 1,
     "groupId": 20095
   },
   {
-    "id": "race_okasho",
-    "name_jp": "Oka Sho",
-    "name_en": "Oka Sho",
-    "type": "normal",
-    "rarity": 1,
-    "groupId": null
-  },
-  {
     "id": "200601",
-    "name_jp": "On Your Left!",
+    "name_jp": "乗り換え上手",
     "name_en": "On Your Left!",
     "type": "normal",
     "rarity": 2,
     "groupId": 20060
   },
   {
+    "id": "910381",
+    "name_jp": "One True Color",
+    "name_en": "One True Color",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 91038
+  },
+  {
     "id": "201092",
-    "name_jp": "Opening Gambit",
+    "name_jp": "布石",
     "name_en": "Opening Gambit",
     "type": "normal",
     "rarity": 1,
     "groupId": 20109
   },
   {
-    "id": "race_osakahai",
-    "name_jp": "Osaka Hai",
-    "name_en": "Osaka Hai",
-    "type": "normal",
-    "rarity": 1,
-    "groupId": null
-  },
-  {
     "id": "900351",
-    "name_jp": "Our Ticket to Win!",
+    "name_jp": "勝利のチケットを、君にッ！",
     "name_en": "Our Ticket to Win!",
     "type": "unique",
     "rarity": 1,
@@ -1345,7 +1649,7 @@
   },
   {
     "id": "200263",
-    "name_jp": "Outer Post Averseness",
+    "name_jp": "外枠苦手",
     "name_en": "Outer Post Averseness",
     "type": "normal",
     "rarity": 1,
@@ -1353,7 +1657,7 @@
   },
   {
     "id": "200262",
-    "name_jp": "Outer Post Proficiency ○",
+    "name_jp": "外枠得意○",
     "name_en": "Outer Post Proficiency ○",
     "type": "normal",
     "rarity": 1,
@@ -1361,15 +1665,23 @@
   },
   {
     "id": "200612",
-    "name_jp": "Outer Swell",
+    "name_jp": "外差し準備",
     "name_en": "Outer Swell",
     "type": "normal",
     "rarity": 1,
     "groupId": 20061
   },
   {
+    "id": "920501",
+    "name_jp": "Overdrive Speed",
+    "name_en": "Overdrive Speed",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 92050
+  },
+  {
     "id": "201211",
-    "name_jp": "Overwhelming Pressure",
+    "name_jp": "怒涛の追い上げ",
     "name_en": "Overwhelming Pressure",
     "type": "normal",
     "rarity": 2,
@@ -1377,7 +1689,7 @@
   },
   {
     "id": "201322",
-    "name_jp": "Pace Chaser Corners ○",
+    "name_jp": "先行コーナー○",
     "name_en": "Pace Chaser Corners ○",
     "type": "normal",
     "rarity": 1,
@@ -1385,7 +1697,7 @@
   },
   {
     "id": "201532",
-    "name_jp": "Pace Chaser Savvy ○",
+    "name_jp": "先行のコツ○",
     "name_en": "Pace Chaser Savvy ○",
     "type": "normal",
     "rarity": 1,
@@ -1393,7 +1705,7 @@
   },
   {
     "id": "201312",
-    "name_jp": "Pace Chaser Straightaways ○",
+    "name_jp": "先行直線○",
     "name_en": "Pace Chaser Straightaways ○",
     "type": "normal",
     "rarity": 1,
@@ -1401,7 +1713,7 @@
   },
   {
     "id": "200472",
-    "name_jp": "Pace Strategy",
+    "name_jp": "ペースキープ",
     "name_en": "Pace Strategy",
     "type": "normal",
     "rarity": 1,
@@ -1409,7 +1721,7 @@
   },
   {
     "id": "201202",
-    "name_jp": "Passing Pro",
+    "name_jp": "パス上手",
     "name_en": "Passing Pro",
     "type": "normal",
     "rarity": 1,
@@ -1417,7 +1729,7 @@
   },
   {
     "id": "201001",
-    "name_jp": "Perfect Prep!",
+    "name_jp": "準備万全！",
     "name_en": "Perfect Prep!",
     "type": "normal",
     "rarity": 2,
@@ -1425,7 +1737,7 @@
   },
   {
     "id": "201511",
-    "name_jp": "Petrifying Gaze",
+    "name_jp": "熱いまなざし",
     "name_en": "Petrifying Gaze",
     "type": "normal",
     "rarity": 2,
@@ -1433,7 +1745,7 @@
   },
   {
     "id": "200991",
-    "name_jp": "Plan X",
+    "name_jp": "プランX",
     "name_en": "Plan X",
     "type": "normal",
     "rarity": 2,
@@ -1441,7 +1753,7 @@
   },
   {
     "id": "201661",
-    "name_jp": "Playtime's Over!",
+    "name_jp": "遊びはおしまいっ！",
     "name_en": "Playtime's Over!",
     "type": "normal",
     "rarity": 1,
@@ -1449,7 +1761,7 @@
   },
   {
     "id": "200592",
-    "name_jp": "Position Pilfer",
+    "name_jp": "位置取り押し上げ",
     "name_en": "Position Pilfer",
     "type": "normal",
     "rarity": 1,
@@ -1457,7 +1769,7 @@
   },
   {
     "id": "200572",
-    "name_jp": "Preferred Position",
+    "name_jp": "好位追走",
     "name_en": "Preferred Position",
     "type": "normal",
     "rarity": 1,
@@ -1465,15 +1777,23 @@
   },
   {
     "id": "200582",
-    "name_jp": "Prepared to Pass",
+    "name_jp": "抜け出し準備",
     "name_en": "Prepared to Pass",
     "type": "normal",
     "rarity": 1,
     "groupId": 20058
   },
   {
+    "id": "910231",
+    "name_jp": "Presents from X",
+    "name_en": "Presents from X",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 91023
+  },
+  {
     "id": "201212",
-    "name_jp": "Pressure",
+    "name_jp": "追い上げ",
     "name_en": "Pressure",
     "type": "normal",
     "rarity": 1,
@@ -1481,7 +1801,7 @@
   },
   {
     "id": "900611",
-    "name_jp": "Prideful King",
+    "name_jp": "Pride of KING",
     "name_en": "Prideful King",
     "type": "unique",
     "rarity": 1,
@@ -1489,7 +1809,7 @@
   },
   {
     "id": "200682",
-    "name_jp": "Productive Plan",
+    "name_jp": "積極策",
     "name_en": "Productive Plan",
     "type": "normal",
     "rarity": 1,
@@ -1497,7 +1817,7 @@
   },
   {
     "id": "200331",
-    "name_jp": "Professor of Curvature",
+    "name_jp": "弧線のプロフェッサー",
     "name_en": "Professor of Curvature",
     "type": "normal",
     "rarity": 2,
@@ -1505,7 +1825,7 @@
   },
   {
     "id": "200452",
-    "name_jp": "Prudent Positioning",
+    "name_jp": "ポジションセンス",
     "name_en": "Prudent Positioning",
     "type": "normal",
     "rarity": 1,
@@ -1513,23 +1833,31 @@
   },
   {
     "id": "900451",
-    "name_jp": "Pure Heart",
+    "name_jp": "ピュリティオブハート",
     "name_en": "Pure Heart",
     "type": "unique",
     "rarity": 1,
     "groupId": 90045
   },
   {
-    "id": "race_queenelizabethiicup",
-    "name_jp": "Queen Elizabeth II Cup",
-    "name_en": "Queen Elizabeth II Cup",
-    "type": "normal",
+    "id": "910091",
+    "name_jp": "Queen's Lumination",
+    "name_en": "Queen's Lumination",
+    "type": "unique",
     "rarity": 1,
-    "groupId": null
+    "groupId": 91009
+  },
+  {
+    "id": "900901",
+    "name_jp": "Queen's Rebirth",
+    "name_en": "Queen's Rebirth",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 90090
   },
   {
     "id": "200571",
-    "name_jp": "Race Planner",
+    "name_jp": "レースプランナー",
     "name_en": "Race Planner",
     "type": "normal",
     "rarity": 2,
@@ -1537,7 +1865,7 @@
   },
   {
     "id": "200232",
-    "name_jp": "Rainy Days ○",
+    "name_jp": "雨の日○",
     "name_en": "Rainy Days ○",
     "type": "normal",
     "rarity": 1,
@@ -1545,15 +1873,23 @@
   },
   {
     "id": "200462",
-    "name_jp": "Ramp Up",
+    "name_jp": "ペースアップ",
     "name_en": "Ramp Up",
     "type": "normal",
     "rarity": 1,
     "groupId": 20046
   },
   {
+    "id": "910051",
+    "name_jp": "Ravissant",
+    "name_en": "Ravissant",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 91005
+  },
+  {
     "id": "900041",
-    "name_jp": "Red Shift/LP1211-M",
+    "name_jp": "紅焔ギア/LP1211-M",
     "name_en": "Red Shift/LP1211-M",
     "type": "unique",
     "rarity": 1,
@@ -1561,7 +1897,7 @@
   },
   {
     "id": "201291",
-    "name_jp": "Reignition",
+    "name_jp": "再燃焼",
     "name_en": "Reignition",
     "type": "normal",
     "rarity": 2,
@@ -1569,7 +1905,7 @@
   },
   {
     "id": "201421",
-    "name_jp": "Relax",
+    "name_jp": "リラックス",
     "name_en": "Relax",
     "type": "normal",
     "rarity": 2,
@@ -1577,7 +1913,7 @@
   },
   {
     "id": "900091",
-    "name_jp": "Resplendent Red Ace",
+    "name_jp": "ブリリアント・レッドエース",
     "name_en": "Resplendent Red Ace",
     "type": "unique",
     "rarity": 1,
@@ -1585,7 +1921,7 @@
   },
   {
     "id": "201302",
-    "name_jp": "Restart",
+    "name_jp": "リスタート",
     "name_en": "Restart",
     "type": "normal",
     "rarity": 1,
@@ -1593,15 +1929,23 @@
   },
   {
     "id": "201281",
-    "name_jp": "Restless",
+    "name_jp": "じゃじゃウマ娘",
     "name_en": "Restless",
     "type": "normal",
     "rarity": 2,
     "groupId": 20128
   },
   {
+    "id": "900881",
+    "name_jp": "Reversal Illusion",
+    "name_en": "Reversal Illusion",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 90088
+  },
+  {
     "id": "200012",
-    "name_jp": "Right-Handed ○",
+    "name_jp": "右回り○",
     "name_en": "Right-Handed ○",
     "type": "normal",
     "rarity": 1,
@@ -1609,15 +1953,31 @@
   },
   {
     "id": "200611",
-    "name_jp": "Rising Dragon",
+    "name_jp": "昇り龍",
     "name_en": "Rising Dragon",
     "type": "normal",
     "rarity": 2,
     "groupId": 20061
   },
   {
+    "id": "900771",
+    "name_jp": "Road to Glory",
+    "name_en": "Road to Glory",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 90077
+  },
+  {
+    "id": "911071",
+    "name_jp": "Romantic Horizon",
+    "name_en": "Romantic Horizon",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 91107
+  },
+  {
     "id": "200712",
-    "name_jp": "Rosy Outlook",
+    "name_jp": "前途洋々",
     "name_en": "Rosy Outlook",
     "type": "normal",
     "rarity": 1,
@@ -1625,7 +1985,7 @@
   },
   {
     "id": "200371",
-    "name_jp": "Rushing Gale!",
+    "name_jp": "一陣の風",
     "name_en": "Rushing Gale!",
     "type": "normal",
     "rarity": 2,
@@ -1633,7 +1993,7 @@
   },
   {
     "id": "900461",
-    "name_jp": "SPARKLY☆STARDOM",
+    "name_jp": "キラキラ☆STARDOM",
     "name_en": "SPARKLY☆STARDOM",
     "type": "unique",
     "rarity": 1,
@@ -1641,23 +2001,23 @@
   },
   {
     "id": "200082",
-    "name_jp": "Sapporo Racecourse ○",
+    "name_jp": "札幌レース場○",
     "name_en": "Sapporo Racecourse ○",
     "type": "normal",
     "rarity": 1,
     "groupId": 20008
   },
   {
-    "id": "race_satsukisho",
-    "name_jp": "Satsuki Sho",
-    "name_en": "Satsuki Sho",
-    "type": "normal",
+    "id": "900371",
+    "name_jp": "Schwarzes Schwert",
+    "name_en": "Schwarzes Schwert",
+    "type": "unique",
     "rarity": 1,
-    "groupId": null
+    "groupId": 90037
   },
   {
     "id": "201292",
-    "name_jp": "Second Wind",
+    "name_jp": "二の矢",
     "name_en": "Second Wind",
     "type": "normal",
     "rarity": 1,
@@ -1665,7 +2025,7 @@
   },
   {
     "id": "201491",
-    "name_jp": "Serenity",
+    "name_jp": "冷静沈着",
     "name_en": "Serenity",
     "type": "normal",
     "rarity": 2,
@@ -1681,7 +2041,7 @@
   },
   {
     "id": "201621",
-    "name_jp": "Shake It Out",
+    "name_jp": "ふり絞り",
     "name_en": "Shake It Out",
     "type": "normal",
     "rarity": 1,
@@ -1689,7 +2049,7 @@
   },
   {
     "id": "201442",
-    "name_jp": "Sharp Gaze",
+    "name_jp": "鋭い眼光",
     "name_en": "Sharp Gaze",
     "type": "normal",
     "rarity": 1,
@@ -1697,7 +2057,7 @@
   },
   {
     "id": "201361",
-    "name_jp": "Shatterproof",
+    "name_jp": "くじけぬ精神",
     "name_en": "Shatterproof",
     "type": "normal",
     "rarity": 2,
@@ -1705,15 +2065,23 @@
   },
   {
     "id": "201052",
-    "name_jp": "Shifting Gears",
+    "name_jp": "ギアシフト",
     "name_en": "Shifting Gears",
     "type": "normal",
     "rarity": 1,
     "groupId": 20105
   },
   {
+    "id": "900821",
+    "name_jp": "Shining Runway",
+    "name_en": "Shining Runway",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 90082
+  },
+  {
     "id": "900011",
-    "name_jp": "Shooting Star",
+    "name_jp": "シューティングスター",
     "name_en": "Shooting Star",
     "type": "unique",
     "rarity": 1,
@@ -1721,7 +2089,7 @@
   },
   {
     "id": "900101",
-    "name_jp": "Shooting for Victory!",
+    "name_jp": "ヴィクトリーショット！",
     "name_en": "Shooting for Victory!",
     "type": "unique",
     "rarity": 1,
@@ -1729,23 +2097,31 @@
   },
   {
     "id": "201332",
-    "name_jp": "Shrewd Step",
+    "name_jp": "巧みなステップ",
     "name_en": "Shrewd Step",
     "type": "normal",
     "rarity": 1,
     "groupId": 20133
   },
   {
-    "id": "race_shukasho",
-    "name_jp": "Shuka Sho",
-    "name_en": "Shuka Sho",
-    "type": "normal",
+    "id": "920401",
+    "name_jp": "Silent Sunset Gold",
+    "name_en": "Silent Sunset Gold",
+    "type": "unique",
     "rarity": 1,
-    "groupId": null
+    "groupId": 92040
+  },
+  {
+    "id": "900871",
+    "name_jp": "Silent letter",
+    "name_en": "Silent letter",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 90087
   },
   {
     "id": "201261",
-    "name_jp": "Sixth Sense",
+    "name_jp": "シックスセンス",
     "name_en": "Sixth Sense",
     "type": "normal",
     "rarity": 2,
@@ -1753,7 +2129,7 @@
   },
   {
     "id": "900031",
-    "name_jp": "Sky-High Teio Step",
+    "name_jp": "究極テイオーステップ",
     "name_en": "Sky-High Teio Step",
     "type": "unique",
     "rarity": 1,
@@ -1761,7 +2137,7 @@
   },
   {
     "id": "200621",
-    "name_jp": "Sleeping Lion",
+    "name_jp": "眠れる獅子",
     "name_en": "Sleeping Lion",
     "type": "normal",
     "rarity": 2,
@@ -1769,7 +2145,7 @@
   },
   {
     "id": "200602",
-    "name_jp": "Slick Surge",
+    "name_jp": "差し切り体勢",
     "name_en": "Slick Surge",
     "type": "normal",
     "rarity": 1,
@@ -1777,7 +2153,7 @@
   },
   {
     "id": "201651",
-    "name_jp": "Slipstream",
+    "name_jp": "スリップストリーム",
     "name_en": "Slipstream",
     "type": "normal",
     "rarity": 1,
@@ -1785,7 +2161,7 @@
   },
   {
     "id": "201232",
-    "name_jp": "Smoke Screen",
+    "name_jp": "目くらまし",
     "name_en": "Smoke Screen",
     "type": "normal",
     "rarity": 1,
@@ -1793,7 +2169,7 @@
   },
   {
     "id": "200242",
-    "name_jp": "Snowy Days ○",
+    "name_jp": "雪の日○",
     "name_en": "Snowy Days ○",
     "type": "normal",
     "rarity": 1,
@@ -1801,7 +2177,7 @@
   },
   {
     "id": "201142",
-    "name_jp": "Soft Step",
+    "name_jp": "軽やかステップ",
     "name_en": "Soft Step",
     "type": "normal",
     "rarity": 1,
@@ -1809,7 +2185,7 @@
   },
   {
     "id": "201082",
-    "name_jp": "Speed Eater",
+    "name_jp": "スピードイーター",
     "name_en": "Speed Eater",
     "type": "normal",
     "rarity": 1,
@@ -1817,15 +2193,23 @@
   },
   {
     "id": "200581",
-    "name_jp": "Speed Star",
+    "name_jp": "スピードスター",
     "name_en": "Speed Star",
     "type": "normal",
     "rarity": 2,
     "groupId": 20058
   },
   {
+    "id": "910581",
+    "name_jp": "Spooky-Scary-Happy",
+    "name_en": "Spooky-Scary-Happy",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 91058
+  },
+  {
     "id": "200172",
-    "name_jp": "Spring Runner ○",
+    "name_jp": "春ウマ娘○",
     "name_en": "Spring Runner ○",
     "type": "normal",
     "rarity": 1,
@@ -1833,7 +2217,7 @@
   },
   {
     "id": "200972",
-    "name_jp": "Sprint Corners ○",
+    "name_jp": "短距離コーナー○",
     "name_en": "Sprint Corners ○",
     "type": "normal",
     "rarity": 1,
@@ -1841,23 +2225,15 @@
   },
   {
     "id": "200962",
-    "name_jp": "Sprint Straightaways ○",
+    "name_jp": "短距離直線○",
     "name_en": "Sprint Straightaways ○",
     "type": "normal",
     "rarity": 1,
     "groupId": 20096
   },
   {
-    "id": "race_sprinterss",
-    "name_jp": "Sprinters S.",
-    "name_en": "Sprinters S.",
-    "type": "normal",
-    "rarity": 1,
-    "groupId": null
-  },
-  {
     "id": "200652",
-    "name_jp": "Sprinting Gear",
+    "name_jp": "スプリントギア",
     "name_en": "Sprinting Gear",
     "type": "normal",
     "rarity": 1,
@@ -1865,7 +2241,7 @@
   },
   {
     "id": "200981",
-    "name_jp": "Staggering Lead",
+    "name_jp": "圧倒的リード",
     "name_en": "Staggering Lead",
     "type": "normal",
     "rarity": 2,
@@ -1873,7 +2249,7 @@
   },
   {
     "id": "201222",
-    "name_jp": "Stamina Eater",
+    "name_jp": "スタミナイーター",
     "name_en": "Stamina Eater",
     "type": "normal",
     "rarity": 1,
@@ -1881,7 +2257,7 @@
   },
   {
     "id": "201221",
-    "name_jp": "Stamina Siphon",
+    "name_jp": "スタミナグリード",
     "name_en": "Stamina Siphon",
     "type": "normal",
     "rarity": 2,
@@ -1889,7 +2265,7 @@
   },
   {
     "id": "200562",
-    "name_jp": "Stamina to Spare",
+    "name_jp": "スタミナキープ",
     "name_en": "Stamina to Spare",
     "type": "normal",
     "rarity": 1,
@@ -1897,7 +2273,7 @@
   },
   {
     "id": "200132",
-    "name_jp": "Standard Distance ○",
+    "name_jp": "根幹距離○",
     "name_en": "Standard Distance ○",
     "type": "normal",
     "rarity": 1,
@@ -1905,7 +2281,7 @@
   },
   {
     "id": "200622",
-    "name_jp": "Standing By",
+    "name_jp": "後方待機",
     "name_en": "Standing By",
     "type": "normal",
     "rarity": 1,
@@ -1913,7 +2289,7 @@
   },
   {
     "id": "200732",
-    "name_jp": "Steadfast",
+    "name_jp": "食い下がり",
     "name_en": "Steadfast",
     "type": "normal",
     "rarity": 1,
@@ -1921,7 +2297,7 @@
   },
   {
     "id": "201061",
-    "name_jp": "Step on the Gas!",
+    "name_jp": "アクセル全開！",
     "name_en": "Step on the Gas!",
     "type": "normal",
     "rarity": 2,
@@ -1929,7 +2305,7 @@
   },
   {
     "id": "201022",
-    "name_jp": "Stop Right There!",
+    "name_jp": "抜け駆け禁止",
     "name_en": "Stop Right There!",
     "type": "normal",
     "rarity": 1,
@@ -1937,7 +2313,7 @@
   },
   {
     "id": "201342",
-    "name_jp": "Straight Descent",
+    "name_jp": "直滑降",
     "name_en": "Straight Descent",
     "type": "normal",
     "rarity": 1,
@@ -1945,7 +2321,7 @@
   },
   {
     "id": "200372",
-    "name_jp": "Straightaway Acceleration",
+    "name_jp": "直線加速",
     "name_en": "Straightaway Acceleration",
     "type": "normal",
     "rarity": 1,
@@ -1953,7 +2329,7 @@
   },
   {
     "id": "200362",
-    "name_jp": "Straightaway Adept",
+    "name_jp": "直線巧者",
     "name_en": "Straightaway Adept",
     "type": "normal",
     "rarity": 1,
@@ -1961,7 +2337,7 @@
   },
   {
     "id": "200382",
-    "name_jp": "Straightaway Recovery",
+    "name_jp": "直線回復",
     "name_en": "Straightaway Recovery",
     "type": "normal",
     "rarity": 1,
@@ -1969,7 +2345,7 @@
   },
   {
     "id": "200642",
-    "name_jp": "Straightaway Spurt",
+    "name_jp": "直線一気",
     "name_en": "Straightaway Spurt",
     "type": "normal",
     "rarity": 1,
@@ -1977,7 +2353,7 @@
   },
   {
     "id": "201502",
-    "name_jp": "Strategist",
+    "name_jp": "策士",
     "name_en": "Strategist",
     "type": "normal",
     "rarity": 1,
@@ -1985,7 +2361,7 @@
   },
   {
     "id": "201432",
-    "name_jp": "Studious",
+    "name_jp": "読解力",
     "name_en": "Studious",
     "type": "normal",
     "rarity": 1,
@@ -1993,7 +2369,7 @@
   },
   {
     "id": "200631",
-    "name_jp": "Sturm und Drang",
+    "name_jp": "疾風怒濤",
     "name_en": "Sturm und Drang",
     "type": "normal",
     "rarity": 2,
@@ -2001,7 +2377,7 @@
   },
   {
     "id": "200921",
-    "name_jp": "Subdued End Closers",
+    "name_jp": "追込けん制",
     "name_en": "Subdued End Closers",
     "type": "normal",
     "rarity": 1,
@@ -2009,7 +2385,7 @@
   },
   {
     "id": "200831",
-    "name_jp": "Subdued Front Runners",
+    "name_jp": "逃げけん制",
     "name_en": "Subdued Front Runners",
     "type": "normal",
     "rarity": 1,
@@ -2017,7 +2393,7 @@
   },
   {
     "id": "200891",
-    "name_jp": "Subdued Late Surgers",
+    "name_jp": "差しけん制",
     "name_en": "Subdued Late Surgers",
     "type": "normal",
     "rarity": 1,
@@ -2025,7 +2401,7 @@
   },
   {
     "id": "200861",
-    "name_jp": "Subdued Pace Chasers",
+    "name_jp": "先行けん制",
     "name_en": "Subdued Pace Chasers",
     "type": "normal",
     "rarity": 1,
@@ -2033,7 +2409,7 @@
   },
   {
     "id": "200182",
-    "name_jp": "Summer Runner ○",
+    "name_jp": "夏ウマ娘○",
     "name_en": "Summer Runner ○",
     "type": "normal",
     "rarity": 1,
@@ -2041,7 +2417,7 @@
   },
   {
     "id": "200212",
-    "name_jp": "Sunny Days ○",
+    "name_jp": "晴れの日○",
     "name_en": "Sunny Days ○",
     "type": "normal",
     "rarity": 1,
@@ -2049,7 +2425,7 @@
   },
   {
     "id": "201561",
-    "name_jp": "Super Lucky Seven",
+    "name_jp": "スーパーラッキーセブン",
     "name_en": "Super Lucky Seven",
     "type": "normal",
     "rarity": 2,
@@ -2057,15 +2433,23 @@
   },
   {
     "id": "900521",
-    "name_jp": "Super-Duper Climax",
+    "name_jp": "ワクワククライマックス",
     "name_en": "Super-Duper Climax",
     "type": "unique",
     "rarity": 1,
     "groupId": 90052
   },
   {
+    "id": "910111",
+    "name_jp": "ゲインヒール・スペリアー",
+    "name_en": "Superior Heal",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 91011
+  },
+  {
     "id": "200351",
-    "name_jp": "Swinging Maestro",
+    "name_jp": "円弧のマエストロ",
     "name_en": "Swinging Maestro",
     "type": "normal",
     "rarity": 2,
@@ -2073,7 +2457,7 @@
   },
   {
     "id": "201631",
-    "name_jp": "Sympathy",
+    "name_jp": "シンパシー",
     "name_en": "Sympathy",
     "type": "normal",
     "rarity": 1,
@@ -2081,7 +2465,7 @@
   },
   {
     "id": "201362",
-    "name_jp": "Tactical Tweak",
+    "name_jp": "まき直し",
     "name_en": "Tactical Tweak",
     "type": "normal",
     "rarity": 1,
@@ -2089,31 +2473,15 @@
   },
   {
     "id": "201611",
-    "name_jp": "Tail Held High",
+    "name_jp": "尻尾上がり",
     "name_en": "Tail Held High",
     "type": "normal",
     "rarity": 1,
     "groupId": 20161
   },
   {
-    "id": "race_takamatsunomiyakinen",
-    "name_jp": "Takamatsunomiya Kinen",
-    "name_en": "Takamatsunomiya Kinen",
-    "type": "normal",
-    "rarity": 1,
-    "groupId": null
-  },
-  {
-    "id": "race_takarazukakinen",
-    "name_jp": "Takarazuka Kinen",
-    "name_en": "Takarazuka Kinen",
-    "type": "normal",
-    "rarity": 1,
-    "groupId": null
-  },
-  {
     "id": "200531",
-    "name_jp": "Taking the Lead",
+    "name_jp": "先手必勝",
     "name_en": "Taking the Lead",
     "type": "normal",
     "rarity": 2,
@@ -2121,7 +2489,7 @@
   },
   {
     "id": "200292",
-    "name_jp": "Target in Sight ○",
+    "name_jp": "徹底マーク○",
     "name_en": "Target in Sight ○",
     "type": "normal",
     "rarity": 1,
@@ -2129,39 +2497,15 @@
   },
   {
     "id": "201331",
-    "name_jp": "Technician",
+    "name_jp": "技巧派",
     "name_en": "Technician",
     "type": "normal",
     "rarity": 2,
     "groupId": 20133
   },
   {
-    "id": "race_teiosho",
-    "name_jp": "Teio Sho",
-    "name_en": "Teio Sho",
-    "type": "normal",
-    "rarity": 1,
-    "groupId": null
-  },
-  {
-    "id": "race_tennoshoautumn",
-    "name_jp": "Tenno Sho (Autumn)",
-    "name_en": "Tenno Sho (Autumn)",
-    "type": "normal",
-    "rarity": 1,
-    "groupId": null
-  },
-  {
-    "id": "race_tennoshospring",
-    "name_jp": "Tenno Sho (Spring)",
-    "name_en": "Tenno Sho (Spring)",
-    "type": "normal",
-    "rarity": 1,
-    "groupId": null
-  },
-  {
     "id": "201152",
-    "name_jp": "Tether",
+    "name_jp": "束縛",
     "name_en": "Tether",
     "type": "normal",
     "rarity": 1,
@@ -2169,7 +2513,7 @@
   },
   {
     "id": "201431",
-    "name_jp": "The Bigger Picture",
+    "name_jp": "大局観",
     "name_en": "The Bigger Picture",
     "type": "normal",
     "rarity": 2,
@@ -2177,7 +2521,7 @@
   },
   {
     "id": "201471",
-    "name_jp": "The Coast Is Clear!",
+    "name_jp": "視界良好！異常なし！",
     "name_en": "The Coast Is Clear!",
     "type": "normal",
     "rarity": 2,
@@ -2185,7 +2529,7 @@
   },
   {
     "id": "900131",
-    "name_jp": "The Duty of Dignity Calls",
+    "name_jp": "貴顕の使命を果たすべく",
     "name_en": "The Duty of Dignity Calls",
     "type": "unique",
     "rarity": 1,
@@ -2193,7 +2537,7 @@
   },
   {
     "id": "900021",
-    "name_jp": "The View from the Lead Is Mine!",
+    "name_jp": "先頭の景色は譲らない…！",
     "name_en": "The View from the Lead Is Mine!",
     "type": "unique",
     "rarity": 1,
@@ -2201,7 +2545,7 @@
   },
   {
     "id": "900151",
-    "name_jp": "This Dance Is for Vittoria!",
+    "name_jp": "ヴィットーリアに捧ぐ舞踏",
     "name_en": "This Dance Is for Vittoria!",
     "type": "unique",
     "rarity": 1,
@@ -2209,23 +2553,23 @@
   },
   {
     "id": "201132",
-    "name_jp": "Thunderbolt Step",
+    "name_jp": "イナズマステップ",
     "name_en": "Thunderbolt Step",
     "type": "normal",
     "rarity": 1,
     "groupId": 20113
   },
   {
-    "id": "race_tokyodaishoten",
-    "name_jp": "Tokyo Daishoten",
-    "name_en": "Tokyo Daishoten",
-    "type": "normal",
+    "id": "910891",
+    "name_jp": "Tidebreaker",
+    "name_en": "Tidebreaker",
+    "type": "unique",
     "rarity": 1,
-    "groupId": null
+    "groupId": 91089
   },
   {
     "id": "200032",
-    "name_jp": "Tokyo Racecourse ○",
+    "name_jp": "東京レース場○",
     "name_en": "Tokyo Racecourse ○",
     "type": "normal",
     "rarity": 1,
@@ -2233,7 +2577,7 @@
   },
   {
     "id": "201672",
-    "name_jp": "Top Pick",
+    "name_jp": "レコメンド",
     "name_en": "Top Pick",
     "type": "normal",
     "rarity": 1,
@@ -2241,7 +2585,7 @@
   },
   {
     "id": "200711",
-    "name_jp": "Trackblazer",
+    "name_jp": "切り開く者",
     "name_en": "Trackblazer",
     "type": "normal",
     "rarity": 2,
@@ -2249,7 +2593,7 @@
   },
   {
     "id": "201671",
-    "name_jp": "Trending in the Charts!",
+    "name_jp": "チャート急上昇！",
     "name_en": "Trending in the Charts!",
     "type": "normal",
     "rarity": 2,
@@ -2257,7 +2601,7 @@
   },
   {
     "id": "200771",
-    "name_jp": "Trick (Front)",
+    "name_jp": "トリック（前）",
     "name_en": "Trick (Front)",
     "type": "normal",
     "rarity": 1,
@@ -2265,7 +2609,7 @@
   },
   {
     "id": "200781",
-    "name_jp": "Trick (Rear)",
+    "name_jp": "トリック（後）",
     "name_en": "Trick (Rear)",
     "type": "normal",
     "rarity": 1,
@@ -2273,7 +2617,7 @@
   },
   {
     "id": "201571",
-    "name_jp": "Triple 7s",
+    "name_jp": "スリーセブン",
     "name_en": "Triple 7s",
     "type": "normal",
     "rarity": 1,
@@ -2281,7 +2625,7 @@
   },
   {
     "id": "900061",
-    "name_jp": "Triumphant Pulse",
+    "name_jp": "勝利の鼓動",
     "name_en": "Triumphant Pulse",
     "type": "unique",
     "rarity": 1,
@@ -2289,7 +2633,7 @@
   },
   {
     "id": "200651",
-    "name_jp": "Turbo Sprint",
+    "name_jp": "スプリントターボ",
     "name_en": "Turbo Sprint",
     "type": "normal",
     "rarity": 2,
@@ -2304,16 +2648,8 @@
     "groupId": 90032
   },
   {
-    "id": "race_urafinale",
-    "name_jp": "URA Finale",
-    "name_en": "URA Finale",
-    "type": "normal",
-    "rarity": 1,
-    "groupId": null
-  },
-  {
     "id": "201591",
-    "name_jp": "Uma Stan",
+    "name_jp": "ウマ好み",
     "name_en": "Uma Stan",
     "type": "normal",
     "rarity": 1,
@@ -2321,7 +2657,7 @@
   },
   {
     "id": "200551",
-    "name_jp": "Unrestrained",
+    "name_jp": "逃亡者",
     "name_en": "Unrestrained",
     "type": "normal",
     "rarity": 2,
@@ -2329,7 +2665,7 @@
   },
   {
     "id": "200481",
-    "name_jp": "Unruffled",
+    "name_jp": "どこ吹く風",
     "name_en": "Unruffled",
     "type": "normal",
     "rarity": 2,
@@ -2337,7 +2673,7 @@
   },
   {
     "id": "200731",
-    "name_jp": "Unyielding",
+    "name_jp": "勝利への執念",
     "name_en": "Unyielding",
     "type": "normal",
     "rarity": 2,
@@ -2345,7 +2681,7 @@
   },
   {
     "id": "201072",
-    "name_jp": "Unyielding Spirit",
+    "name_jp": "負けん気",
     "name_en": "Unyielding Spirit",
     "type": "normal",
     "rarity": 1,
@@ -2353,7 +2689,7 @@
   },
   {
     "id": "200722",
-    "name_jp": "Up-Tempo",
+    "name_jp": "テンポアップ",
     "name_en": "Up-Tempo",
     "type": "normal",
     "rarity": 1,
@@ -2361,39 +2697,47 @@
   },
   {
     "id": "200702",
-    "name_jp": "Updrafters",
+    "name_jp": "上昇気流",
     "name_en": "Updrafters",
     "type": "normal",
     "rarity": 1,
     "groupId": 20070
   },
   {
+    "id": "201201",
+    "name_jp": "VIP顔パス",
+    "name_en": "VIP顔パス",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20120
+  },
+  {
     "id": "201191",
-    "name_jp": "Vanguard Spirit",
+    "name_jp": "先陣の心得",
     "name_en": "Vanguard Spirit",
     "type": "normal",
     "rarity": 2,
     "groupId": 20119
   },
   {
-    "id": "race_victoriamile",
-    "name_jp": "Victoria Mile",
-    "name_en": "Victoria Mile",
-    "type": "normal",
-    "rarity": 1,
-    "groupId": null
-  },
-  {
     "id": "900141",
-    "name_jp": "Victoria por plancha ☆",
+    "name_jp": "プランチャ☆ガナドール",
     "name_en": "Victoria por plancha ☆",
     "type": "unique",
     "rarity": 1,
     "groupId": 90014
   },
   {
+    "id": "920071",
+    "name_jp": "Vive la GOLD",
+    "name_en": "Vive la GOLD",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 92007
+  },
+  {
     "id": "200662",
-    "name_jp": "Wait-and-See",
+    "name_jp": "様子見",
     "name_en": "Wait-and-See",
     "type": "normal",
     "rarity": 1,
@@ -2401,15 +2745,23 @@
   },
   {
     "id": "200692",
-    "name_jp": "Watchful Eye",
+    "name_jp": "展開窺い",
     "name_en": "Watchful Eye",
     "type": "normal",
     "rarity": 1,
     "groupId": 20069
   },
   {
+    "id": "901331",
+    "name_jp": "Weaving History",
+    "name_en": "Weaving History",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 90133
+  },
+  {
     "id": "200162",
-    "name_jp": "Wet Conditions ○",
+    "name_jp": "道悪○",
     "name_en": "Wet Conditions ○",
     "type": "normal",
     "rarity": 1,
@@ -2417,7 +2769,7 @@
   },
   {
     "id": "900111",
-    "name_jp": "Where There's a Will, There's a Way",
+    "name_jp": "精神一到何事か成らざらん",
     "name_en": "Where There's a Will, There's a Way",
     "type": "unique",
     "rarity": 1,
@@ -2425,27 +2777,67 @@
   },
   {
     "id": "200202",
-    "name_jp": "Winter Runner ○",
+    "name_jp": "冬ウマ娘○",
     "name_en": "Winter Runner ○",
     "type": "normal",
     "rarity": 1,
     "groupId": 20020
   },
   {
-    "id": "race_yasudakinen",
-    "name_jp": "Yasuda Kinen",
-    "name_en": "Yasuda Kinen",
-    "type": "normal",
+    "id": "900481",
+    "name_jp": "YEAH☆VIVID TIME!",
+    "name_en": "YEAH☆VIVID TIME!",
+    "type": "unique",
     "rarity": 1,
-    "groupId": null
+    "groupId": 90048
+  },
+  {
+    "id": "900121",
+    "name_jp": "タイマン！デッドヒート！",
+    "name_en": "You and Me! One-on-One!",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 90012
   },
   {
     "id": "201021",
-    "name_jp": "You've Got No Shot",
+    "name_jp": "逃亡禁止令",
     "name_en": "You've Got No Shot",
     "type": "normal",
     "rarity": 2,
     "groupId": 20102
+  },
+  {
+    "id": "910641",
+    "name_jp": "jingle all the way",
+    "name_en": "jingle all the way",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 91064
+  },
+  {
+    "id": "900361",
+    "name_jp": "trigger:BEAT",
+    "name_en": "trigger:BEAT",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 90036
+  },
+  {
+    "id": "901311",
+    "name_jp": "¡Qué alegría!",
+    "name_en": "¡Qué alegría!",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 90131
+  },
+  {
+    "id": "910461",
+    "name_jp": "α-star*",
+    "name_en": "α-star*",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 91046
   },
   {
     "id": "900231",
@@ -2454,5 +2846,4181 @@
     "type": "unique",
     "rarity": 1,
     "groupId": 90023
+  },
+  {
+    "id": "900421",
+    "name_jp": "『I'm possible』",
+    "name_en": "『I'm possible』",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 90042
+  },
+  {
+    "id": "901191",
+    "name_jp": "『それでは、よき旅を』",
+    "name_en": "『それでは、よき旅を』",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 90119
+  },
+  {
+    "id": "900791",
+    "name_jp": "『船橋最強！』",
+    "name_en": "『船橋最強！』",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 90079
+  },
+  {
+    "id": "920301",
+    "name_jp": "あおぞらクッキング♪",
+    "name_en": "あおぞらクッキング♪",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 92030
+  },
+  {
+    "id": "910681",
+    "name_jp": "あっぱれ大盤振る舞い！",
+    "name_en": "あっぱれ大盤振る舞い！",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 91068
+  },
+  {
+    "id": "910271",
+    "name_jp": "あなたに捧げるフリーポア",
+    "name_en": "あなたに捧げるフリーポア",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 91027
+  },
+  {
+    "id": "202032",
+    "name_jp": "あやしげな作戦",
+    "name_en": "あやしげな作戦",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20203
+  },
+  {
+    "id": "201702",
+    "name_jp": "ありったけ",
+    "name_en": "ありったけ",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20170
+  },
+  {
+    "id": "210362",
+    "name_jp": "あるがままに",
+    "name_en": "あるがままに",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 21036
+  },
+  {
+    "id": "201652",
+    "name_jp": "いいとこ入った！",
+    "name_en": "いいとこ入った！",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20165
+  },
+  {
+    "id": "900441",
+    "name_jp": "いただき☆ストレリチア！",
+    "name_en": "いただき☆ストレリチア！",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 90044
+  },
+  {
+    "id": "910291",
+    "name_jp": "いっぱいおあげんしぇ！",
+    "name_en": "いっぱいおあげんしぇ！",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 91029
+  },
+  {
+    "id": "210322",
+    "name_jp": "いつまでも健やかに",
+    "name_en": "いつまでも健やかに",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 21032
+  },
+  {
+    "id": "201662",
+    "name_jp": "お先に失礼っ！",
+    "name_en": "お先に失礼っ！",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20166
+  },
+  {
+    "id": "900991",
+    "name_jp": "かがやけ☆とまこまい",
+    "name_en": "かがやけ☆とまこまい",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 90099
+  },
+  {
+    "id": "202761",
+    "name_jp": "かっとばせ！",
+    "name_en": "かっとばせ！",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20276
+  },
+  {
+    "id": "202422",
+    "name_jp": "がむしゃら",
+    "name_en": "がむしゃら",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20242
+  },
+  {
+    "id": "910931",
+    "name_jp": "きせき・おもい・かなで",
+    "name_en": "きせき・おもい・かなで",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 91093
+  },
+  {
+    "id": "920131",
+    "name_jp": "きらめくは海、まばゆきは君",
+    "name_en": "きらめくは海、まばゆきは君",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 92013
+  },
+  {
+    "id": "910451",
+    "name_jp": "ぐるぐるマミートリック♡",
+    "name_en": "ぐるぐるマミートリック♡",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 91045
+  },
+  {
+    "id": "203721",
+    "name_jp": "この手に掴んだ未来",
+    "name_en": "この手に掴んだ未来",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20372
+  },
+  {
+    "id": "202852",
+    "name_jp": "ごぼう抜き",
+    "name_en": "ごぼう抜き",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20285
+  },
+  {
+    "id": "910621",
+    "name_jp": "ごろりん！？パワードライブ",
+    "name_en": "ごろりん！？パワードライブ",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 91062
+  },
+  {
+    "id": "203122",
+    "name_jp": "さらなる高みへ",
+    "name_en": "さらなる高みへ",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20312
+  },
+  {
+    "id": "202532",
+    "name_jp": "しとやかな足取り",
+    "name_en": "しとやかな足取り",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20253
+  },
+  {
+    "id": "202392",
+    "name_jp": "しゃかりき",
+    "name_en": "しゃかりき",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20239
+  },
+  {
+    "id": "911091",
+    "name_jp": "ずっとずっと輝いて",
+    "name_en": "ずっとずっと輝いて",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 91109
+  },
+  {
+    "id": "92111091",
+    "name_jp": "ずっとずっと輝いて",
+    "name_en": "ずっとずっと輝いて",
+    "type": "unique",
+    "rarity": 6,
+    "groupId": 9211109
+  },
+  {
+    "id": "202882",
+    "name_jp": "たぎる血潮",
+    "name_en": "たぎる血潮",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20288
+  },
+  {
+    "id": "900511",
+    "name_jp": "つぼみ、ほころぶ時",
+    "name_en": "つぼみ、ほころぶ時",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 90051
+  },
+  {
+    "id": "910591",
+    "name_jp": "ときめきが呼ぶほうへ",
+    "name_en": "ときめきが呼ぶほうへ",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 91059
+  },
+  {
+    "id": "910441",
+    "name_jp": "とっておきmaterialize",
+    "name_en": "とっておきmaterialize",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 91044
+  },
+  {
+    "id": "910991",
+    "name_jp": "とびだせ☆ポッピングシェル",
+    "name_en": "とびだせ☆ポッピングシェル",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 91099
+  },
+  {
+    "id": "900621",
+    "name_jp": "どんっ、パッ、むんっ",
+    "name_en": "どんっ、パッ、むんっ",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 90062
+  },
+  {
+    "id": "202752",
+    "name_jp": "ひたむき前進",
+    "name_en": "ひたむき前進",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20275
+  },
+  {
+    "id": "901241",
+    "name_jp": "ふくらむ夢、先駆の途",
+    "name_en": "ふくらむ夢、先駆の途",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 90124
+  },
+  {
+    "id": "910871",
+    "name_jp": "ふわもこアワー",
+    "name_en": "ふわもこアワー",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 91087
+  },
+  {
+    "id": "900641",
+    "name_jp": "ぶっちぎりロード",
+    "name_en": "ぶっちぎりロード",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 90064
+  },
+  {
+    "id": "202282",
+    "name_jp": "まっしぐら",
+    "name_en": "まっしぐら",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20228
+  },
+  {
+    "id": "203472",
+    "name_jp": "みなぎる闘志",
+    "name_en": "みなぎる闘志",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20347
+  },
+  {
+    "id": "203152",
+    "name_jp": "むきだしの情熱",
+    "name_en": "むきだしの情熱",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20315
+  },
+  {
+    "id": "210341",
+    "name_jp": "もう少しだけ、いい景色",
+    "name_en": "もう少しだけ、いい景色",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 21034
+  },
+  {
+    "id": "920601",
+    "name_jp": "もちっと・ハレハレ",
+    "name_en": "もちっと・ハレハレ",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 92060
+  },
+  {
+    "id": "202442",
+    "name_jp": "やまっけ",
+    "name_en": "やまっけ",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20244
+  },
+  {
+    "id": "900291",
+    "name_jp": "ゆきあかり、おいかけて",
+    "name_en": "ゆきあかり、おいかけて",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 90029
+  },
+  {
+    "id": "203222",
+    "name_jp": "アグレッシブ",
+    "name_en": "アグレッシブ",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20322
+  },
+  {
+    "id": "900651",
+    "name_jp": "アゲてアゲてぷちょへんざ！",
+    "name_en": "アゲてアゲてぷちょへんざ！",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 90065
+  },
+  {
+    "id": "210311",
+    "name_jp": "アスリート魂",
+    "name_en": "アスリート魂",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 21031
+  },
+  {
+    "id": "202141",
+    "name_jp": "アタシに指図しないで！！",
+    "name_en": "アタシに指図しないで！！",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20214
+  },
+  {
+    "id": "901051",
+    "name_jp": "アド・アストラ",
+    "name_en": "アド・アストラ",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 90105
+  },
+  {
+    "id": "900251",
+    "name_jp": "アナタヲ・オイカケテ",
+    "name_en": "アナタヲ・オイカケテ",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 90025
+  },
+  {
+    "id": "202371",
+    "name_jp": "アンストッパブル",
+    "name_en": "アンストッパブル",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20237
+  },
+  {
+    "id": "202602",
+    "name_jp": "イグニッション",
+    "name_en": "イグニッション",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20260
+  },
+  {
+    "id": "203481",
+    "name_jp": "イニシアチブ",
+    "name_en": "イニシアチブ",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20348
+  },
+  {
+    "id": "201592",
+    "name_jp": "ウママニア",
+    "name_en": "ウママニア",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20159
+  },
+  {
+    "id": "203731",
+    "name_jp": "エネルギッシュ",
+    "name_en": "エネルギッシュ",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20373
+  },
+  {
+    "id": "900661",
+    "name_jp": "エンジン全開！大噴射！",
+    "name_en": "エンジン全開！大噴射！",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 90066
+  },
+  {
+    "id": "910261",
+    "name_jp": "オペレーション・Cacao",
+    "name_en": "オペレーション・Cacao",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 91026
+  },
+  {
+    "id": "210071",
+    "name_jp": "キミと勝ちたい",
+    "name_en": "キミと勝ちたい",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 21007
+  },
+  {
+    "id": "202452",
+    "name_jp": "キレる脚",
+    "name_en": "キレる脚",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20245
+  },
+  {
+    "id": "201632",
+    "name_jp": "コネクト",
+    "name_en": "コネクト",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20163
+  },
+  {
+    "id": "202831",
+    "name_jp": "コール&レスポンス",
+    "name_en": "コール&レスポンス",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20283
+  },
+  {
+    "id": "203711",
+    "name_jp": "ショーダウン",
+    "name_en": "ショーダウン",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20371
+  },
+  {
+    "id": "202701",
+    "name_jp": "シンギュラリティ",
+    "name_en": "シンギュラリティ",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20270
+  },
+  {
+    "id": "910911",
+    "name_jp": "ジュ・テーム☆バカンス！",
+    "name_en": "ジュ・テーム☆バカンス！",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 91091
+  },
+  {
+    "id": "900971",
+    "name_jp": "スカーレットリリィの高揚",
+    "name_en": "スカーレットリリィの高揚",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 90097
+  },
+  {
+    "id": "203552",
+    "name_jp": "ステップアップ",
+    "name_en": "ステップアップ",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20355
+  },
+  {
+    "id": "203621",
+    "name_jp": "ストレートハート",
+    "name_en": "ストレートハート",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20362
+  },
+  {
+    "id": "900701",
+    "name_jp": "セイリオス（人気1～3番）（継承）",
+    "name_en": "セイリオス（人気1～3番）（継承）",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 90070
+  },
+  {
+    "id": "203452",
+    "name_jp": "ターニングポイント",
+    "name_en": "ターニングポイント",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20345
+  },
+  {
+    "id": "203103",
+    "name_jp": "ダートコーナー○",
+    "name_en": "ダートコーナー○",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20310
+  },
+  {
+    "id": "203093",
+    "name_jp": "ダート直線○",
+    "name_en": "ダート直線○",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20309
+  },
+  {
+    "id": "900311",
+    "name_jp": "チャージ完了！全速前進！",
+    "name_en": "チャージ完了！全速前進！",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 90031
+  },
+  {
+    "id": "900331",
+    "name_jp": "ディオスクロイの流星",
+    "name_en": "ディオスクロイの流星",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 90033
+  },
+  {
+    "id": "900911",
+    "name_jp": "デラックス☆ファウンテン",
+    "name_en": "デラックス☆ファウンテン",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 90091
+  },
+  {
+    "id": "203041",
+    "name_jp": "トキメキハート",
+    "name_en": "トキメキハート",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20304
+  },
+  {
+    "id": "202451",
+    "name_jp": "トップギア",
+    "name_en": "トップギア",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20245
+  },
+  {
+    "id": "201271",
+    "name_jp": "トップランナー",
+    "name_en": "トップランナー",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20127
+  },
+  {
+    "id": "202232",
+    "name_jp": "ナイター○",
+    "name_en": "ナイター○",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20223
+  },
+  {
+    "id": "202721",
+    "name_jp": "ネバーギブアップ",
+    "name_en": "ネバーギブアップ",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20272
+  },
+  {
+    "id": "910651",
+    "name_jp": "ノッてけ、マッシュアップ！",
+    "name_en": "ノッてけ、マッシュアップ！",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 91065
+  },
+  {
+    "id": "203691",
+    "name_jp": "ハイパーハイテンション☆",
+    "name_en": "ハイパーハイテンション☆",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20369
+  },
+  {
+    "id": "203352",
+    "name_jp": "ハイピッチ",
+    "name_en": "ハイピッチ",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20335
+  },
+  {
+    "id": "202671",
+    "name_jp": "ハイボルテージ",
+    "name_en": "ハイボルテージ",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20267
+  },
+  {
+    "id": "202682",
+    "name_jp": "バイブス上昇",
+    "name_en": "バイブス上昇",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20268
+  },
+  {
+    "id": "210302",
+    "name_jp": "バーニングソウル",
+    "name_en": "バーニングソウル",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 21030
+  },
+  {
+    "id": "202952",
+    "name_jp": "パイオニア",
+    "name_en": "パイオニア",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20295
+  },
+  {
+    "id": "203651",
+    "name_jp": "パスファインダー",
+    "name_en": "パスファインダー",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20365
+  },
+  {
+    "id": "203892",
+    "name_jp": "ヒートアップ",
+    "name_en": "ヒートアップ",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20389
+  },
+  {
+    "id": "202152",
+    "name_jp": "フルスロットル",
+    "name_en": "フルスロットル",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20215
+  },
+  {
+    "id": "910311",
+    "name_jp": "フレッシュ☆パーラー",
+    "name_en": "フレッシュ☆パーラー",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 91031
+  },
+  {
+    "id": "202681",
+    "name_jp": "ブチ☆アゲ↑バイブス",
+    "name_en": "ブチ☆アゲ↑バイブス",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20268
+  },
+  {
+    "id": "202381",
+    "name_jp": "ブレイクスルー",
+    "name_en": "ブレイクスルー",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20238
+  },
+  {
+    "id": "202542",
+    "name_jp": "プレッシャー",
+    "name_en": "プレッシャー",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20254
+  },
+  {
+    "id": "901131",
+    "name_jp": "ホップステップ・ゲッチュ♡",
+    "name_en": "ホップステップ・ゲッチュ♡",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 90113
+  },
+  {
+    "id": "920671",
+    "name_jp": "ポンテ・デ・ディアマン",
+    "name_en": "ポンテ・デ・ディアマン",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 92067
+  },
+  {
+    "id": "202072",
+    "name_jp": "マイペース",
+    "name_en": "マイペース",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20207
+  },
+  {
+    "id": "920681",
+    "name_jp": "ミンナノアタシへ！",
+    "name_en": "ミンナノアタシへ！",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 92068
+  },
+  {
+    "id": "202601",
+    "name_jp": "ルミネセンス",
+    "name_en": "ルミネセンス",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20260
+  },
+  {
+    "id": "210101",
+    "name_jp": "レースの真髄・体",
+    "name_en": "レースの真髄・体",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 21010
+  },
+  {
+    "id": "210111",
+    "name_jp": "レースの真髄・力",
+    "name_en": "レースの真髄・力",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 21011
+  },
+  {
+    "id": "210141",
+    "name_jp": "レースの真髄・心",
+    "name_en": "レースの真髄・心",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 21014
+  },
+  {
+    "id": "210121",
+    "name_jp": "レースの真髄・根",
+    "name_en": "レースの真髄・根",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 21012
+  },
+  {
+    "id": "210131",
+    "name_jp": "レースの真髄・賢",
+    "name_en": "レースの真髄・賢",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 21013
+  },
+  {
+    "id": "210091",
+    "name_jp": "レースの真髄・速",
+    "name_en": "レースの真髄・速",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 21009
+  },
+  {
+    "id": "202861",
+    "name_jp": "ロケットスタート",
+    "name_en": "ロケットスタート",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20286
+  },
+  {
+    "id": "202562",
+    "name_jp": "ロックオン",
+    "name_en": "ロックオン",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20256
+  },
+  {
+    "id": "202734",
+    "name_jp": "ロンシャンの申し子",
+    "name_en": "ロンシャンの申し子",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20273
+  },
+  {
+    "id": "202732",
+    "name_jp": "ロンシャンレース場○",
+    "name_en": "ロンシャンレース場○",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20273
+  },
+  {
+    "id": "202082",
+    "name_jp": "ワンチャンス",
+    "name_en": "ワンチャンス",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20208
+  },
+  {
+    "id": "901021",
+    "name_jp": "ヴィヴァーチェ・ヴォラーレ",
+    "name_en": "ヴィヴァーチェ・ヴォラーレ",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 90102
+  },
+  {
+    "id": "203171",
+    "name_jp": "一張一弛",
+    "name_en": "一張一弛",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20317
+  },
+  {
+    "id": "202921",
+    "name_jp": "一心不乱",
+    "name_en": "一心不乱",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20292
+  },
+  {
+    "id": "202191",
+    "name_jp": "一意専心",
+    "name_en": "一意専心",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20219
+  },
+  {
+    "id": "900711",
+    "name_jp": "一期の夢、刹那の飛翔",
+    "name_en": "一期の夢、刹那の飛翔",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 90071
+  },
+  {
+    "id": "202642",
+    "name_jp": "一歩から",
+    "name_en": "一歩から",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20264
+  },
+  {
+    "id": "203362",
+    "name_jp": "一歩ずつ前へ",
+    "name_en": "一歩ずつ前へ",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20336
+  },
+  {
+    "id": "202591",
+    "name_jp": "一気呵成",
+    "name_en": "一気呵成",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20259
+  },
+  {
+    "id": "202771",
+    "name_jp": "一点集中",
+    "name_en": "一点集中",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20277
+  },
+  {
+    "id": "202692",
+    "name_jp": "一番乗り",
+    "name_en": "一番乗り",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20269
+  },
+  {
+    "id": "210061",
+    "name_jp": "一番星",
+    "name_en": "一番星",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 21006
+  },
+  {
+    "id": "202561",
+    "name_jp": "一発必中",
+    "name_en": "一発必中",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20256
+  },
+  {
+    "id": "202851",
+    "name_jp": "一網打尽",
+    "name_en": "一網打尽",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20285
+  },
+  {
+    "id": "202402",
+    "name_jp": "一足飛び",
+    "name_en": "一足飛び",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20240
+  },
+  {
+    "id": "203491",
+    "name_jp": "丁々発止",
+    "name_en": "丁々発止",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20349
+  },
+  {
+    "id": "900551",
+    "name_jp": "万彩☆マーベラス★世界",
+    "name_en": "万彩☆マーベラス★世界",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 90055
+  },
+  {
+    "id": "202821",
+    "name_jp": "万里一空",
+    "name_en": "万里一空",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20282
+  },
+  {
+    "id": "202172",
+    "name_jp": "下り坂巧者",
+    "name_en": "下り坂巧者",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20217
+  },
+  {
+    "id": "203332",
+    "name_jp": "下準備",
+    "name_en": "下準備",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20333
+  },
+  {
+    "id": "202892",
+    "name_jp": "不動の心",
+    "name_en": "不動の心",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20289
+  },
+  {
+    "id": "203682",
+    "name_jp": "不断の鍛錬",
+    "name_en": "不断の鍛錬",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20368
+  },
+  {
+    "id": "202792",
+    "name_jp": "中盤巧者",
+    "name_en": "中盤巧者",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20279
+  },
+  {
+    "id": "202832",
+    "name_jp": "二段構え",
+    "name_en": "二段構え",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20283
+  },
+  {
+    "id": "910981",
+    "name_jp": "五獣挙りて彩光奏づ",
+    "name_en": "五獣挙りて彩光奏づ",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 91098
+  },
+  {
+    "id": "202252",
+    "name_jp": "交流重賞○",
+    "name_en": "交流重賞○",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20225
+  },
+  {
+    "id": "202254",
+    "name_jp": "交流重賞の鬼",
+    "name_en": "交流重賞の鬼",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20225
+  },
+  {
+    "id": "202712",
+    "name_jp": "会心の一歩",
+    "name_en": "会心の一歩",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20271
+  },
+  {
+    "id": "203662",
+    "name_jp": "健脚",
+    "name_en": "健脚",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20366
+  },
+  {
+    "id": "203461",
+    "name_jp": "傑出",
+    "name_en": "傑出",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20346
+  },
+  {
+    "id": "202531",
+    "name_jp": "優位形成",
+    "name_en": "優位形成",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20253
+  },
+  {
+    "id": "203842",
+    "name_jp": "優等生",
+    "name_en": "優等生",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20384
+  },
+  {
+    "id": "202301",
+    "name_jp": "優雅な砂浴び",
+    "name_en": "優雅な砂浴び",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20230
+  },
+  {
+    "id": "203312",
+    "name_jp": "光差す方へ",
+    "name_en": "光差す方へ",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20331
+  },
+  {
+    "id": "203642",
+    "name_jp": "光明",
+    "name_en": "光明",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20364
+  },
+  {
+    "id": "201103",
+    "name_jp": "光芒一閃",
+    "name_en": "光芒一閃",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20110
+  },
+  {
+    "id": "201113",
+    "name_jp": "光芒円刃",
+    "name_en": "光芒円刃",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20111
+  },
+  {
+    "id": "203142",
+    "name_jp": "克己心",
+    "name_en": "克己心",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20314
+  },
+  {
+    "id": "920311",
+    "name_jp": "全力全開！サイクロン",
+    "name_en": "全力全開！サイクロン",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 92031
+  },
+  {
+    "id": "202281",
+    "name_jp": "全速前進！",
+    "name_en": "全速前進！",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20228
+  },
+  {
+    "id": "203822",
+    "name_jp": "内なる獣",
+    "name_en": "内なる獣",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20382
+  },
+  {
+    "id": "202292",
+    "name_jp": "冴える思考",
+    "name_en": "冴える思考",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20229
+  },
+  {
+    "id": "200204",
+    "name_jp": "凍て風",
+    "name_en": "凍て風",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20020
+  },
+  {
+    "id": "201801",
+    "name_jp": "凸凹ネイル",
+    "name_en": "凸凹ネイル",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20180
+  },
+  {
+    "id": "202391",
+    "name_jp": "出力1000％！",
+    "name_en": "出力1000％！",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20239
+  },
+  {
+    "id": "202912",
+    "name_jp": "切り崩し",
+    "name_en": "切り崩し",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20291
+  },
+  {
+    "id": "203172",
+    "name_jp": "切り替え上手",
+    "name_en": "切り替え上手",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20317
+  },
+  {
+    "id": "203272",
+    "name_jp": "切り込み隊長",
+    "name_en": "切り込み隊長",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20327
+  },
+  {
+    "id": "203372",
+    "name_jp": "切り返し",
+    "name_en": "切り返し",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20337
+  },
+  {
+    "id": "202492",
+    "name_jp": "切れ味",
+    "name_en": "切れ味",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20249
+  },
+  {
+    "id": "200194",
+    "name_jp": "初嵐",
+    "name_en": "初嵐",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20019
+  },
+  {
+    "id": "203051",
+    "name_jp": "初志貫徹",
+    "name_en": "初志貫徹",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20305
+  },
+  {
+    "id": "203741",
+    "name_jp": "刹那の勝機",
+    "name_en": "刹那の勝機",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20374
+  },
+  {
+    "id": "210082",
+    "name_jp": "前だけ見据えて",
+    "name_en": "前だけ見据えて",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 21008
+  },
+  {
+    "id": "202102",
+    "name_jp": "前のめり",
+    "name_en": "前のめり",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20210
+  },
+  {
+    "id": "201682",
+    "name_jp": "前列狙い",
+    "name_en": "前列狙い",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20168
+  },
+  {
+    "id": "910721",
+    "name_jp": "剛勇果断、烈火之刀",
+    "name_en": "剛勇果断、烈火之刀",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 91072
+  },
+  {
+    "id": "900491",
+    "name_jp": "剣ヶ峰より、狂気に嗤え",
+    "name_en": "剣ヶ峰より、狂気に嗤え",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 90049
+  },
+  {
+    "id": "203082",
+    "name_jp": "力の限り",
+    "name_en": "力の限り",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20308
+  },
+  {
+    "id": "203411",
+    "name_jp": "努力の結実",
+    "name_en": "努力の結実",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20341
+  },
+  {
+    "id": "202151",
+    "name_jp": "勇往邁進",
+    "name_en": "勇往邁進",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20215
+  },
+  {
+    "id": "203712",
+    "name_jp": "勇気の一歩",
+    "name_en": "勇気の一歩",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20371
+  },
+  {
+    "id": "203351",
+    "name_jp": "勇猛果敢",
+    "name_en": "勇猛果敢",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20335
+  },
+  {
+    "id": "201313",
+    "name_jp": "勇迅一閃",
+    "name_en": "勇迅一閃",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20131
+  },
+  {
+    "id": "201323",
+    "name_jp": "勇迅円刃",
+    "name_en": "勇迅円刃",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20132
+  },
+  {
+    "id": "900681",
+    "name_jp": "勝ち鬨ワッショイ！",
+    "name_en": "勝ち鬨ワッショイ！",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 90068
+  },
+  {
+    "id": "202762",
+    "name_jp": "勝利に向かって",
+    "name_en": "勝利に向かって",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20276
+  },
+  {
+    "id": "202261",
+    "name_jp": "勝利の機運",
+    "name_en": "勝利の機運",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20226
+  },
+  {
+    "id": "920231",
+    "name_jp": "勝利ヘ至ル累積",
+    "name_en": "勝利ヘ至ル累積",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 92023
+  },
+  {
+    "id": "203381",
+    "name_jp": "勝負はここから！",
+    "name_en": "勝負はここから！",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20338
+  },
+  {
+    "id": "202441",
+    "name_jp": "勝負師",
+    "name_en": "勝負師",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20244
+  },
+  {
+    "id": "202741",
+    "name_jp": "十全十美",
+    "name_en": "十全十美",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20274
+  },
+  {
+    "id": "202971",
+    "name_jp": "千載一遇",
+    "name_en": "千載一遇",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20297
+  },
+  {
+    "id": "202641",
+    "name_jp": "千里の道",
+    "name_en": "千里の道",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20264
+  },
+  {
+    "id": "202031",
+    "name_jp": "博打うち",
+    "name_en": "博打うち",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20203
+  },
+  {
+    "id": "203761",
+    "name_jp": "即断即決",
+    "name_en": "即断即決",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20376
+  },
+  {
+    "id": "900571",
+    "name_jp": "叙情、旅路の果てに",
+    "name_en": "叙情、旅路の果てに",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 90057
+  },
+  {
+    "id": "200014",
+    "name_jp": "右回りの鬼",
+    "name_en": "右回りの鬼",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20001
+  },
+  {
+    "id": "202502",
+    "name_jp": "向こう見ず",
+    "name_en": "向こう見ず",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20250
+  },
+  {
+    "id": "202412",
+    "name_jp": "向上心",
+    "name_en": "向上心",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20241
+  },
+  {
+    "id": "202871",
+    "name_jp": "君臨",
+    "name_en": "君臨",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20287
+  },
+  {
+    "id": "910691",
+    "name_jp": "咲け咲け！私！",
+    "name_en": "咲け咲け！私！",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 91069
+  },
+  {
+    "id": "202742",
+    "name_jp": "品行方正",
+    "name_en": "品行方正",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20274
+  },
+  {
+    "id": "203631",
+    "name_jp": "唯一無二",
+    "name_en": "唯一無二",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20363
+  },
+  {
+    "id": "203881",
+    "name_jp": "問答無用",
+    "name_en": "問答無用",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20388
+  },
+  {
+    "id": "202352",
+    "name_jp": "土煙",
+    "name_en": "土煙",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20235
+  },
+  {
+    "id": "202362",
+    "name_jp": "圧迫感",
+    "name_en": "圧迫感",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20236
+  },
+  {
+    "id": "210282",
+    "name_jp": "地の加護",
+    "name_en": "地の加護",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 21028
+  },
+  {
+    "id": "203412",
+    "name_jp": "地道に重ねて",
+    "name_en": "地道に重ねて",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20341
+  },
+  {
+    "id": "202522",
+    "name_jp": "型破り",
+    "name_en": "型破り",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20252
+  },
+  {
+    "id": "203522",
+    "name_jp": "垣間見た光",
+    "name_en": "垣間見た光",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20352
+  },
+  {
+    "id": "910321",
+    "name_jp": "夏空ハレーション",
+    "name_en": "夏空ハレーション",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 91032
+  },
+  {
+    "id": "910881",
+    "name_jp": "夏雷カスケード！",
+    "name_en": "夏雷カスケード！",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 91088
+  },
+  {
+    "id": "910351",
+    "name_jp": "夢の先へ、届け！",
+    "name_en": "夢の先へ、届け！",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 91035
+  },
+  {
+    "id": "210342",
+    "name_jp": "夢の再生方法",
+    "name_en": "夢の再生方法",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 21034
+  },
+  {
+    "id": "203441",
+    "name_jp": "夢の舞台へ",
+    "name_en": "夢の舞台へ",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20344
+  },
+  {
+    "id": "210072",
+    "name_jp": "夢の途中",
+    "name_en": "夢の途中",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 21007
+  },
+  {
+    "id": "203632",
+    "name_jp": "夢への挑戦",
+    "name_en": "夢への挑戦",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20363
+  },
+  {
+    "id": "210281",
+    "name_jp": "大地の叡智",
+    "name_en": "大地の叡智",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 21028
+  },
+  {
+    "id": "202592",
+    "name_jp": "大急ぎ",
+    "name_en": "大急ぎ",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20259
+  },
+  {
+    "id": "210271",
+    "name_jp": "大海の叡智",
+    "name_en": "大海の叡智",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 21027
+  },
+  {
+    "id": "910121",
+    "name_jp": "大盛り！ファーストバイト！",
+    "name_en": "大盛り！ファーストバイト！",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 91012
+  },
+  {
+    "id": "202121",
+    "name_jp": "大胆不敵",
+    "name_en": "大胆不敵",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20212
+  },
+  {
+    "id": "202812",
+    "name_jp": "大詰め",
+    "name_en": "大詰め",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20281
+  },
+  {
+    "id": "202051",
+    "name_jp": "大逃げ",
+    "name_en": "大逃げ",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20205
+  },
+  {
+    "id": "203541",
+    "name_jp": "天真爛漫",
+    "name_en": "天真爛漫",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20354
+  },
+  {
+    "id": "202521",
+    "name_jp": "天衣無縫",
+    "name_en": "天衣無縫",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20252
+  },
+  {
+    "id": "203831",
+    "name_jp": "天賦の才",
+    "name_en": "天賦の才",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20383
+  },
+  {
+    "id": "210261",
+    "name_jp": "太陽の叡智",
+    "name_en": "太陽の叡智",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 21026
+  },
+  {
+    "id": "910531",
+    "name_jp": "奥義・常夏バーニング！！",
+    "name_en": "奥義・常夏バーニング！！",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 91053
+  },
+  {
+    "id": "203562",
+    "name_jp": "奮闘",
+    "name_en": "奮闘",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20356
+  },
+  {
+    "id": "203851",
+    "name_jp": "好奇心",
+    "name_en": "好奇心",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20385
+  },
+  {
+    "id": "203792",
+    "name_jp": "好戦的",
+    "name_en": "好戦的",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20379
+  },
+  {
+    "id": "202972",
+    "name_jp": "好機を捉えて",
+    "name_en": "好機を捉えて",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20297
+  },
+  {
+    "id": "900391",
+    "name_jp": "姫たるもの、勝利をこの手に",
+    "name_en": "姫たるもの、勝利をこの手に",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 90039
+  },
+  {
+    "id": "202541",
+    "name_jp": "威風堂々",
+    "name_en": "威風堂々",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20254
+  },
+  {
+    "id": "920011",
+    "name_jp": "威風堂々、夢錦！",
+    "name_en": "威風堂々、夢錦！",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 92001
+  },
+  {
+    "id": "202881",
+    "name_jp": "完全燃焼",
+    "name_en": "完全燃焼",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20288
+  },
+  {
+    "id": "901271",
+    "name_jp": "対象捕捉！正義遂行！",
+    "name_en": "対象捕捉！正義遂行！",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 90127
+  },
+  {
+    "id": "900191",
+    "name_jp": "尊み☆ﾗｽﾄｽﾊﾟ—(ﾟ∀ﾟ)—ﾄ!",
+    "name_en": "尊み☆ﾗｽﾄｽﾊﾟ—(ﾟ∀ﾟ)—ﾄ!",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 90019
+  },
+  {
+    "id": "911061",
+    "name_jp": "小さな奇跡、フォーユー♪",
+    "name_en": "小さな奇跡、フォーユー♪",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 91106
+  },
+  {
+    "id": "202242",
+    "name_jp": "小回り○",
+    "name_en": "小回り○",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20224
+  },
+  {
+    "id": "201612",
+    "name_jp": "尻尾の滝登り",
+    "name_en": "尻尾の滝登り",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20161
+  },
+  {
+    "id": "202202",
+    "name_jp": "川崎レース場○",
+    "name_en": "川崎レース場○",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20220
+  },
+  {
+    "id": "200024",
+    "name_jp": "左回りの鬼",
+    "name_en": "左回りの鬼",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20002
+  },
+  {
+    "id": "203422",
+    "name_jp": "己を信じて",
+    "name_en": "己を信じて",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20342
+  },
+  {
+    "id": "203131",
+    "name_jp": "幕引き",
+    "name_en": "幕引き",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20313
+  },
+  {
+    "id": "900931",
+    "name_jp": "幸せの青い光",
+    "name_en": "幸せの青い光",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 90093
+  },
+  {
+    "id": "202802",
+    "name_jp": "序盤巧者",
+    "name_en": "序盤巧者",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20280
+  },
+  {
+    "id": "200034",
+    "name_jp": "府中の申し子",
+    "name_en": "府中の申し子",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20003
+  },
+  {
+    "id": "203732",
+    "name_jp": "張り切り",
+    "name_en": "張り切り",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20373
+  },
+  {
+    "id": "202021",
+    "name_jp": "強攻策",
+    "name_en": "強攻策",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20202
+  },
+  {
+    "id": "203121",
+    "name_jp": "強者の証",
+    "name_en": "強者の証",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20312
+  },
+  {
+    "id": "203872",
+    "name_jp": "弾ける足取り",
+    "name_en": "弾ける足取り",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20387
+  },
+  {
+    "id": "203752",
+    "name_jp": "影を追って",
+    "name_en": "影を追って",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20375
+  },
+  {
+    "id": "203221",
+    "name_jp": "影従打破",
+    "name_en": "影従打破",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20322
+  },
+  {
+    "id": "202012",
+    "name_jp": "影打",
+    "name_en": "影打",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20201
+  },
+  {
+    "id": "202932",
+    "name_jp": "影踏み",
+    "name_en": "影踏み",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20293
+  },
+  {
+    "id": "900591",
+    "name_jp": "彼方、その先へ…",
+    "name_en": "彼方、その先へ…",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 90059
+  },
+  {
+    "id": "203882",
+    "name_jp": "待ったなし",
+    "name_en": "待ったなし",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20388
+  },
+  {
+    "id": "203371",
+    "name_jp": "後の先",
+    "name_en": "後の先",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20337
+  },
+  {
+    "id": "203162",
+    "name_jp": "後先恐れず",
+    "name_en": "後先恐れず",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20316
+  },
+  {
+    "id": "910251",
+    "name_jp": "心からのおもてにゃし",
+    "name_en": "心からのおもてにゃし",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 91025
+  },
+  {
+    "id": "202672",
+    "name_jp": "心弾んで",
+    "name_en": "心弾んで",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20267
+  },
+  {
+    "id": "203852",
+    "name_jp": "心惹かれて",
+    "name_en": "心惹かれて",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20385
+  },
+  {
+    "id": "920451",
+    "name_jp": "忍法・ほほえみ心結の印",
+    "name_en": "忍法・ほほえみ心結の印",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 92045
+  },
+  {
+    "id": "910391",
+    "name_jp": "快なる剛力",
+    "name_en": "快なる剛力",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 91039
+  },
+  {
+    "id": "900341",
+    "name_jp": "快走かな、快走かな！",
+    "name_en": "快走かな、快走かな！",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 90034
+  },
+  {
+    "id": "202552",
+    "name_jp": "快速",
+    "name_en": "快速",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20255
+  },
+  {
+    "id": "202431",
+    "name_jp": "快進撃",
+    "name_en": "快進撃",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20243
+  },
+  {
+    "id": "203141",
+    "name_jp": "怜悧清澄",
+    "name_en": "怜悧清澄",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20314
+  },
+  {
+    "id": "203702",
+    "name_jp": "思い切り",
+    "name_en": "思い切り",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20370
+  },
+  {
+    "id": "202322",
+    "name_jp": "急浮上",
+    "name_en": "急浮上",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20232
+  },
+  {
+    "id": "202862",
+    "name_jp": "急発進",
+    "name_en": "急発進",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20286
+  },
+  {
+    "id": "203252",
+    "name_jp": "急襲",
+    "name_en": "急襲",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20325
+  },
+  {
+    "id": "203902",
+    "name_jp": "急降下",
+    "name_en": "急降下",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20390
+  },
+  {
+    "id": "202481",
+    "name_jp": "怪物",
+    "name_en": "怪物",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20248
+  },
+  {
+    "id": "202122",
+    "name_jp": "恐れぬ心",
+    "name_en": "恐れぬ心",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20212
+  },
+  {
+    "id": "910151",
+    "name_jp": "恵福バルカローレ",
+    "name_en": "恵福バルカローレ",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 91015
+  },
+  {
+    "id": "203661",
+    "name_jp": "悠久走破",
+    "name_en": "悠久走破",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20366
+  },
+  {
+    "id": "202922",
+    "name_jp": "惜しみなし",
+    "name_en": "惜しみなし",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20292
+  },
+  {
+    "id": "210292",
+    "name_jp": "想いを背負って",
+    "name_en": "想いを背負って",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 21029
+  },
+  {
+    "id": "203802",
+    "name_jp": "想い焦がれて",
+    "name_en": "想い焦がれて",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20380
+  },
+  {
+    "id": "202041",
+    "name_jp": "意気衝天",
+    "name_en": "意気衝天",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20204
+  },
+  {
+    "id": "202312",
+    "name_jp": "意気込み十分",
+    "name_en": "意気込み十分",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20231
+  },
+  {
+    "id": "900861",
+    "name_jp": "愛と熔けよただ熔けよ",
+    "name_en": "愛と熔けよただ熔けよ",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 90086
+  },
+  {
+    "id": "900691",
+    "name_jp": "憧れは桜を越える！",
+    "name_en": "憧れは桜を越える！",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 90069
+  },
+  {
+    "id": "203442",
+    "name_jp": "憧れを越えて",
+    "name_en": "憧れを越えて",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20344
+  },
+  {
+    "id": "901151",
+    "name_jp": "我が覇道、阻むものなし",
+    "name_en": "我が覇道、阻むものなし",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 90115
+  },
+  {
+    "id": "203002",
+    "name_jp": "手練手管",
+    "name_en": "手練手管",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20300
+  },
+  {
+    "id": "203431",
+    "name_jp": "才気煥発",
+    "name_en": "才気煥発",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20343
+  },
+  {
+    "id": "203841",
+    "name_jp": "才色兼備",
+    "name_en": "才色兼備",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20384
+  },
+  {
+    "id": "202382",
+    "name_jp": "打開策",
+    "name_en": "打開策",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20238
+  },
+  {
+    "id": "202722",
+    "name_jp": "折れない心",
+    "name_en": "折れない心",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20272
+  },
+  {
+    "id": "202192",
+    "name_jp": "抜かりなし",
+    "name_en": "抜かりなし",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20219
+  },
+  {
+    "id": "203462",
+    "name_jp": "抜きん出る一歩",
+    "name_en": "抜きん出る一歩",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20346
+  },
+  {
+    "id": "202491",
+    "name_jp": "抜群の切れ味",
+    "name_en": "抜群の切れ味",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20249
+  },
+  {
+    "id": "202331",
+    "name_jp": "抜群の踏み込み",
+    "name_en": "抜群の踏み込み",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20233
+  },
+  {
+    "id": "203592",
+    "name_jp": "押し通る！",
+    "name_en": "押し通る！",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20359
+  },
+  {
+    "id": "203582",
+    "name_jp": "捕捉",
+    "name_en": "捕捉",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20358
+  },
+  {
+    "id": "202271",
+    "name_jp": "捲土重来",
+    "name_en": "捲土重来",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20227
+  },
+  {
+    "id": "203001",
+    "name_jp": "掌握",
+    "name_en": "掌握",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20300
+  },
+  {
+    "id": "202702",
+    "name_jp": "探求心",
+    "name_en": "探求心",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20270
+  },
+  {
+    "id": "202902",
+    "name_jp": "推力十分",
+    "name_en": "推力十分",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20290
+  },
+  {
+    "id": "900471",
+    "name_jp": "掲げよ、己が魂の剣を！",
+    "name_en": "掲げよ、己が魂の剣を！",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 90047
+  },
+  {
+    "id": "203052",
+    "name_jp": "揺るがぬ信念",
+    "name_en": "揺るがぬ信念",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20305
+  },
+  {
+    "id": "202372",
+    "name_jp": "攻めの姿勢",
+    "name_en": "攻めの姿勢",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20237
+  },
+  {
+    "id": "210351",
+    "name_jp": "新たな伝説を築く者",
+    "name_en": "新たな伝説を築く者",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 21035
+  },
+  {
+    "id": "202061",
+    "name_jp": "日本一のウマ娘",
+    "name_en": "日本一のウマ娘",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20206
+  },
+  {
+    "id": "202022",
+    "name_jp": "早仕掛け",
+    "name_en": "早仕掛け",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20202
+  },
+  {
+    "id": "203201",
+    "name_jp": "早業",
+    "name_en": "早業",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20320
+  },
+  {
+    "id": "202661",
+    "name_jp": "昂る鼓動",
+    "name_en": "昂る鼓動",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20266
+  },
+  {
+    "id": "202262",
+    "name_jp": "明るい兆し",
+    "name_en": "明るい兆し",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20226
+  },
+  {
+    "id": "202291",
+    "name_jp": "明鏡止水",
+    "name_en": "明鏡止水",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20229
+  },
+  {
+    "id": "200174",
+    "name_jp": "春一番",
+    "name_en": "春一番",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20017
+  },
+  {
+    "id": "911101",
+    "name_jp": "時かけるせせらぎ",
+    "name_en": "時かけるせせらぎ",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 91110
+  },
+  {
+    "id": "202791",
+    "name_jp": "時中の妙",
+    "name_en": "時中の妙",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20279
+  },
+  {
+    "id": "210352",
+    "name_jp": "時代を変える者",
+    "name_en": "時代を変える者",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 21035
+  },
+  {
+    "id": "900671",
+    "name_jp": "晦冥を照らせ永遠の耀き",
+    "name_en": "晦冥を照らせ永遠の耀き",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 90067
+  },
+  {
+    "id": "901041",
+    "name_jp": "暁の御旗『葛城栄主』！",
+    "name_en": "暁の御旗『葛城栄主』！",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 90104
+  },
+  {
+    "id": "210291",
+    "name_jp": "最高峰の夢",
+    "name_en": "最高峰の夢",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 21029
+  },
+  {
+    "id": "201453",
+    "name_jp": "月影一閃",
+    "name_en": "月影一閃",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20145
+  },
+  {
+    "id": "201463",
+    "name_jp": "月影円刃",
+    "name_en": "月影円刃",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20146
+  },
+  {
+    "id": "202571",
+    "name_jp": "未来を拓く奇跡",
+    "name_en": "未来を拓く奇跡",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20257
+  },
+  {
+    "id": "910471",
+    "name_jp": "未知との遭遇、即ち物語",
+    "name_en": "未知との遭遇、即ち物語",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 91047
+  },
+  {
+    "id": "210361",
+    "name_jp": "本能の懸け橋",
+    "name_en": "本能の懸け橋",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 21036
+  },
+  {
+    "id": "203151",
+    "name_jp": "本能の解放",
+    "name_en": "本能の解放",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20315
+  },
+  {
+    "id": "202482",
+    "name_jp": "本領発揮",
+    "name_en": "本領発揮",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20248
+  },
+  {
+    "id": "202801",
+    "name_jp": "機先の勝負",
+    "name_en": "機先の勝負",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20280
+  },
+  {
+    "id": "920031",
+    "name_jp": "歌舞歓楽や、ああをかし",
+    "name_en": "歌舞歓楽や、ああをかし",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 92003
+  },
+  {
+    "id": "203421",
+    "name_jp": "正々堂々",
+    "name_en": "正々堂々",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20342
+  },
+  {
+    "id": "203031",
+    "name_jp": "正攻法",
+    "name_en": "正攻法",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20303
+  },
+  {
+    "id": "203112",
+    "name_jp": "正面突破",
+    "name_en": "正面突破",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20311
+  },
+  {
+    "id": "203751",
+    "name_jp": "残影",
+    "name_en": "残影",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20375
+  },
+  {
+    "id": "203502",
+    "name_jp": "比類なき",
+    "name_en": "比類なき",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20350
+  },
+  {
+    "id": "203212",
+    "name_jp": "気の向くままに",
+    "name_en": "気の向くままに",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20321
+  },
+  {
+    "id": "203862",
+    "name_jp": "気ままな足取り",
+    "name_en": "気ままな足取り",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20386
+  },
+  {
+    "id": "202112",
+    "name_jp": "気合十分",
+    "name_en": "気合十分",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20211
+  },
+  {
+    "id": "202091",
+    "name_jp": "気炎万丈",
+    "name_en": "気炎万丈",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20209
+  },
+  {
+    "id": "202132",
+    "name_jp": "気迫を込めて",
+    "name_en": "気迫を込めて",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20213
+  },
+  {
+    "id": "202751",
+    "name_jp": "気骨稜稜",
+    "name_en": "気骨稜稜",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20275
+  },
+  {
+    "id": "910021",
+    "name_jp": "水平線のその先へ",
+    "name_en": "水平線のその先へ",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 91002
+  },
+  {
+    "id": "203132",
+    "name_jp": "決定打",
+    "name_en": "決定打",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20313
+  },
+  {
+    "id": "911041",
+    "name_jp": "決意一筆",
+    "name_en": "決意一筆",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 91104
+  },
+  {
+    "id": "201701",
+    "name_jp": "決死の覚悟",
+    "name_en": "決死の覚悟",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20170
+  },
+  {
+    "id": "202361",
+    "name_jp": "油断大敵",
+    "name_en": "油断大敵",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20236
+  },
+  {
+    "id": "202341",
+    "name_jp": "泥んこマイスター",
+    "name_en": "泥んこマイスター",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20234
+  },
+  {
+    "id": "202343",
+    "name_jp": "泥遊び○",
+    "name_en": "泥遊び○",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20234
+  },
+  {
+    "id": "202071",
+    "name_jp": "泰然自若",
+    "name_en": "泰然自若",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20207
+  },
+  {
+    "id": "203652",
+    "name_jp": "活路を拓く！",
+    "name_en": "活路を拓く！",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20365
+  },
+  {
+    "id": "202981",
+    "name_jp": "流星光底",
+    "name_en": "流星光底",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20298
+  },
+  {
+    "id": "210272",
+    "name_jp": "海の加護",
+    "name_en": "海の加護",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 21027
+  },
+  {
+    "id": "200064",
+    "name_jp": "淀の申し子",
+    "name_en": "淀の申し子",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20006
+  },
+  {
+    "id": "910841",
+    "name_jp": "深淵のテルプシコラー",
+    "name_en": "深淵のテルプシコラー",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 91084
+  },
+  {
+    "id": "203181",
+    "name_jp": "清濁併呑",
+    "name_en": "清濁併呑",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20318
+  },
+  {
+    "id": "202872",
+    "name_jp": "渾身の足取り",
+    "name_en": "渾身の足取り",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20287
+  },
+  {
+    "id": "202612",
+    "name_jp": "溢れる情熱",
+    "name_en": "溢れる情熱",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20261
+  },
+  {
+    "id": "202962",
+    "name_jp": "滾る想い",
+    "name_en": "滾る想い",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20296
+  },
+  {
+    "id": "920111",
+    "name_jp": "演舞・撫子大薙刀",
+    "name_en": "演舞・撫子大薙刀",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 92011
+  },
+  {
+    "id": "201691",
+    "name_jp": "潜伏態勢",
+    "name_en": "潜伏態勢",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20169
+  },
+  {
+    "id": "920371",
+    "name_jp": "潮風のGeschenk",
+    "name_en": "潮風のGeschenk",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 92037
+  },
+  {
+    "id": "910211",
+    "name_jp": "火神鳴",
+    "name_en": "火神鳴",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 91021
+  },
+  {
+    "id": "203492",
+    "name_jp": "火花散らして",
+    "name_en": "火花散らして",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20349
+  },
+  {
+    "id": "910341",
+    "name_jp": "灯穂",
+    "name_en": "灯穂",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 91034
+  },
+  {
+    "id": "910161",
+    "name_jp": "灰色の臨界点",
+    "name_en": "灰色の臨界点",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 91016
+  },
+  {
+    "id": "203611",
+    "name_jp": "点滴穿石",
+    "name_en": "点滴穿石",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20361
+  },
+  {
+    "id": "203251",
+    "name_jp": "烈火の如く",
+    "name_en": "烈火の如く",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20325
+  },
+  {
+    "id": "900721",
+    "name_jp": "烈火繚乱、無敵之舞",
+    "name_en": "烈火繚乱、無敵之舞",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 90072
+  },
+  {
+    "id": "901161",
+    "name_jp": "烈華の洗礼",
+    "name_en": "烈華の洗礼",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 90116
+  },
+  {
+    "id": "201173",
+    "name_jp": "烈風一閃",
+    "name_en": "烈風一閃",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20117
+  },
+  {
+    "id": "201183",
+    "name_jp": "烈風円刃",
+    "name_en": "烈風円刃",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20118
+  },
+  {
+    "id": "203071",
+    "name_jp": "無三",
+    "name_en": "無三",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20307
+  },
+  {
+    "id": "203061",
+    "name_jp": "無二",
+    "name_en": "無二",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20306
+  },
+  {
+    "id": "901201",
+    "name_jp": "無二無三なる一条の路",
+    "name_en": "無二無三なる一条の路",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 90120
+  },
+  {
+    "id": "203281",
+    "name_jp": "無意識の枷",
+    "name_en": "無意識の枷",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20328
+  },
+  {
+    "id": "202421",
+    "name_jp": "無我夢中",
+    "name_en": "無我夢中",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20242
+  },
+  {
+    "id": "202961",
+    "name_jp": "熱情",
+    "name_en": "熱情",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20296
+  },
+  {
+    "id": "203302",
+    "name_jp": "熱狂的",
+    "name_en": "熱狂的",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20330
+  },
+  {
+    "id": "900531",
+    "name_jp": "熱血！！風紀アタック",
+    "name_en": "熱血！！風紀アタック",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 90053
+  },
+  {
+    "id": "203301",
+    "name_jp": "熾烈の極み",
+    "name_en": "熾烈の極み",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20330
+  },
+  {
+    "id": "900731",
+    "name_jp": "燃え盛るは絶対の意志",
+    "name_en": "燃え盛るは絶対の意志",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 90073
+  },
+  {
+    "id": "210301",
+    "name_jp": "爆熱のキラメキ！",
+    "name_en": "爆熱のキラメキ！",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 21030
+  },
+  {
+    "id": "202321",
+    "name_jp": "爆走モード！",
+    "name_en": "爆走モード！",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20232
+  },
+  {
+    "id": "910571",
+    "name_jp": "爛然闊歩",
+    "name_en": "爛然闊歩",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 91057
+  },
+  {
+    "id": "202772",
+    "name_jp": "狙いを定めて",
+    "name_en": "狙いを定めて",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20277
+  },
+  {
+    "id": "201681",
+    "name_jp": "狙うは最前列！",
+    "name_en": "狙うは最前列！",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20168
+  },
+  {
+    "id": "203591",
+    "name_jp": "独立独歩",
+    "name_en": "独立独歩",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20359
+  },
+  {
+    "id": "203471",
+    "name_jp": "猛烈激走",
+    "name_en": "猛烈激走",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20347
+  },
+  {
+    "id": "202471",
+    "name_jp": "猛追",
+    "name_en": "猛追",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20247
+  },
+  {
+    "id": "910671",
+    "name_jp": "玄雲散らす、黄金甲矢",
+    "name_en": "玄雲散らす、黄金甲矢",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 91067
+  },
+  {
+    "id": "202711",
+    "name_jp": "王手",
+    "name_en": "王手",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20271
+  },
+  {
+    "id": "203111",
+    "name_jp": "王道一途",
+    "name_en": "王道一途",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20311
+  },
+  {
+    "id": "920611",
+    "name_jp": "理想へのwinding road",
+    "name_en": "理想へのwinding road",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 92061
+  },
+  {
+    "id": "900981",
+    "name_jp": "理運開かりて翔る",
+    "name_en": "理運開かりて翔る",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 90098
+  },
+  {
+    "id": "203331",
+    "name_jp": "用意周到",
+    "name_en": "用意周到",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20333
+  },
+  {
+    "id": "202811",
+    "name_jp": "画竜点睛",
+    "name_en": "画竜点睛",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20281
+  },
+  {
+    "id": "900541",
+    "name_jp": "疾風爆走ペガサスダッシュ！",
+    "name_en": "疾風爆走ペガサスダッシュ！",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 90054
+  },
+  {
+    "id": "203532",
+    "name_jp": "登竜門",
+    "name_en": "登竜門",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20353
+  },
+  {
+    "id": "900211",
+    "name_jp": "白い稲妻、見せたるで！",
+    "name_en": "白い稲妻、見せたるで！",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 90021
+  },
+  {
+    "id": "900631",
+    "name_jp": "百錬成鋼",
+    "name_en": "百錬成鋼",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 90063
+  },
+  {
+    "id": "202272",
+    "name_jp": "盛り返し",
+    "name_en": "盛り返し",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20227
+  },
+  {
+    "id": "202222",
+    "name_jp": "盛岡レース場○",
+    "name_en": "盛岡レース場○",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20222
+  },
+  {
+    "id": "201602",
+    "name_jp": "盤石の構え",
+    "name_en": "盤石の構え",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20160
+  },
+  {
+    "id": "203202",
+    "name_jp": "目にも留まらず",
+    "name_en": "目にも留まらず",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20320
+  },
+  {
+    "id": "202311",
+    "name_jp": "目指せセンター！",
+    "name_en": "目指せセンター！",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20231
+  },
+  {
+    "id": "202992",
+    "name_jp": "直線コース○",
+    "name_en": "直線コース○",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20299
+  },
+  {
+    "id": "201902",
+    "name_jp": "真っ向勝負",
+    "name_en": "真っ向勝負",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20190
+  },
+  {
+    "id": "203622",
+    "name_jp": "真っ直ぐな走り",
+    "name_en": "真っ直ぐな走り",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20362
+  },
+  {
+    "id": "202011",
+    "name_jp": "真打",
+    "name_en": "真打",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20201
+  },
+  {
+    "id": "203361",
+    "name_jp": "真骨頂",
+    "name_en": "真骨頂",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20336
+  },
+  {
+    "id": "203511",
+    "name_jp": "睥睨",
+    "name_en": "睥睨",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20351
+  },
+  {
+    "id": "203012",
+    "name_jp": "瞬発力",
+    "name_en": "瞬発力",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20301
+  },
+  {
+    "id": "900961",
+    "name_jp": "知宵欺敵、百戦不殆",
+    "name_en": "知宵欺敵、百戦不殆",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 90096
+  },
+  {
+    "id": "202841",
+    "name_jp": "砂の妙手",
+    "name_en": "砂の妙手",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20284
+  },
+  {
+    "id": "202001",
+    "name_jp": "砂の玄人",
+    "name_en": "砂の玄人",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20200
+  },
+  {
+    "id": "202951",
+    "name_jp": "砂の開拓者",
+    "name_en": "砂の開拓者",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20295
+  },
+  {
+    "id": "202351",
+    "name_jp": "砂上の舞姫",
+    "name_en": "砂上の舞姫",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20235
+  },
+  {
+    "id": "203091",
+    "name_jp": "砂塵一閃",
+    "name_en": "砂塵一閃",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20309
+  },
+  {
+    "id": "203101",
+    "name_jp": "砂塵円刃",
+    "name_en": "砂塵円刃",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20310
+  },
+  {
+    "id": "202002",
+    "name_jp": "砂塵慣れ",
+    "name_en": "砂塵慣れ",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20200
+  },
+  {
+    "id": "202842",
+    "name_jp": "砂払い",
+    "name_en": "砂払い",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20284
+  },
+  {
+    "id": "202302",
+    "name_jp": "砂浴び○",
+    "name_en": "砂浴び○",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20230
+  },
+  {
+    "id": "203602",
+    "name_jp": "砂蹴り",
+    "name_en": "砂蹴り",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20360
+  },
+  {
+    "id": "203392",
+    "name_jp": "破天荒",
+    "name_en": "破天荒",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20339
+  },
+  {
+    "id": "202111",
+    "name_jp": "破竹の勢い",
+    "name_en": "破竹の勢い",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20211
+  },
+  {
+    "id": "202432",
+    "name_jp": "確かな足取り",
+    "name_en": "確かな足取り",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20243
+  },
+  {
+    "id": "202551",
+    "name_jp": "神速",
+    "name_en": "神速",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20255
+  },
+  {
+    "id": "210321",
+    "name_jp": "私たちの走る道程",
+    "name_en": "私たちの走る道程",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 21032
+  },
+  {
+    "id": "203681",
+    "name_jp": "秘めた闘魂",
+    "name_en": "秘めた闘魂",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20368
+  },
+  {
+    "id": "201582",
+    "name_jp": "究極のヒルクライマー",
+    "name_en": "究極のヒルクライマー",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20158
+  },
+  {
+    "id": "202621",
+    "name_jp": "突撃魂",
+    "name_en": "突撃魂",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20262
+  },
+  {
+    "id": "203571",
+    "name_jp": "突破口",
+    "name_en": "突破口",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20357
+  },
+  {
+    "id": "203242",
+    "name_jp": "端緒",
+    "name_en": "端緒",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20324
+  },
+  {
+    "id": "202462",
+    "name_jp": "粘り腰",
+    "name_en": "粘り腰",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20246
+  },
+  {
+    "id": "203812",
+    "name_jp": "精神力",
+    "name_en": "精神力",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20381
+  },
+  {
+    "id": "203612",
+    "name_jp": "精進",
+    "name_en": "精進",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20361
+  },
+  {
+    "id": "203032",
+    "name_jp": "素直な一歩",
+    "name_en": "素直な一歩",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20303
+  },
+  {
+    "id": "200963",
+    "name_jp": "紫電一閃",
+    "name_en": "紫電一閃",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20096
+  },
+  {
+    "id": "200973",
+    "name_jp": "紫電円刃",
+    "name_en": "紫電円刃",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20097
+  },
+  {
+    "id": "210062",
+    "name_jp": "綺羅星",
+    "name_en": "綺羅星",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 21006
+  },
+  {
+    "id": "901081",
+    "name_jp": "羅刹、赤翼にて天上へ至らん",
+    "name_en": "羅刹、赤翼にて天上へ至らん",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 90108
+  },
+  {
+    "id": "910171",
+    "name_jp": "翳り退く、さざめきの矢",
+    "name_en": "翳り退く、さざめきの矢",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 91017
+  },
+  {
+    "id": "910061",
+    "name_jp": "聖夜のミラクルラン！",
+    "name_en": "聖夜のミラクルラン！",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 91006
+  },
+  {
+    "id": "202931",
+    "name_jp": "肉薄",
+    "name_en": "肉薄",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20293
+  },
+  {
+    "id": "203042",
+    "name_jp": "胸の高鳴り",
+    "name_en": "胸の高鳴り",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20304
+  },
+  {
+    "id": "202582",
+    "name_jp": "脇目も振らず",
+    "name_en": "脇目も振らず",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20258
+  },
+  {
+    "id": "202581",
+    "name_jp": "脱兎の先へ",
+    "name_en": "脱兎の先へ",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20258
+  },
+  {
+    "id": "203772",
+    "name_jp": "臆せぬ心",
+    "name_en": "臆せぬ心",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20377
+  },
+  {
+    "id": "202652",
+    "name_jp": "自信家",
+    "name_en": "自信家",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20265
+  },
+  {
+    "id": "202161",
+    "name_jp": "自制心",
+    "name_en": "自制心",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20216
+  },
+  {
+    "id": "203861",
+    "name_jp": "自由奔放",
+    "name_en": "自由奔放",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20386
+  },
+  {
+    "id": "900851",
+    "name_jp": "至上であれ",
+    "name_en": "至上であれ",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 90085
+  },
+  {
+    "id": "202171",
+    "name_jp": "至高のダウンヒラー",
+    "name_en": "至高のダウンヒラー",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20217
+  },
+  {
+    "id": "202212",
+    "name_jp": "船橋レース場○",
+    "name_en": "船橋レース場○",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20221
+  },
+  {
+    "id": "200154",
+    "name_jp": "良バ場の鬼",
+    "name_en": "良バ場の鬼",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20015
+  },
+  {
+    "id": "900761",
+    "name_jp": "花開き、世界",
+    "name_en": "花開き、世界",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 90076
+  },
+  {
+    "id": "203501",
+    "name_jp": "英俊豪傑",
+    "name_en": "英俊豪傑",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20350
+  },
+  {
+    "id": "203391",
+    "name_jp": "英姿颯爽",
+    "name_en": "英姿颯爽",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20339
+  },
+  {
+    "id": "202131",
+    "name_jp": "荒ぶる旋風",
+    "name_en": "荒ぶる旋風",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20213
+  },
+  {
+    "id": "910191",
+    "name_jp": "萌到讓我活過來了！",
+    "name_en": "萌到讓我活過來了！",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 91019
+  },
+  {
+    "id": "910851",
+    "name_jp": "蒼炎",
+    "name_en": "蒼炎",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 91085
+  },
+  {
+    "id": "203781",
+    "name_jp": "衝動",
+    "name_en": "衝動",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20378
+  },
+  {
+    "id": "203182",
+    "name_jp": "裏腹なキモチ",
+    "name_en": "裏腹なキモチ",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20318
+  },
+  {
+    "id": "203512",
+    "name_jp": "覇気十分",
+    "name_en": "覇気十分",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20351
+  },
+  {
+    "id": "203601",
+    "name_jp": "見事な砂蹴り",
+    "name_en": "見事な砂蹴り",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20360
+  },
+  {
+    "id": "200772",
+    "name_jp": "見惚れるトリック",
+    "name_en": "見惚れるトリック",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20077
+  },
+  {
+    "id": "203262",
+    "name_jp": "覚悟を決めて",
+    "name_en": "覚悟を決めて",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20326
+  },
+  {
+    "id": "203801",
+    "name_jp": "解き放つ情念",
+    "name_en": "解き放つ情念",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20380
+  },
+  {
+    "id": "910861",
+    "name_jp": "解けぬ結い目",
+    "name_en": "解けぬ結い目",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 91086
+  },
+  {
+    "id": "202691",
+    "name_jp": "誰より前へ！",
+    "name_en": "誰より前へ！",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20269
+  },
+  {
+    "id": "203482",
+    "name_jp": "譲れぬ一歩",
+    "name_en": "譲れぬ一歩",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20348
+  },
+  {
+    "id": "203161",
+    "name_jp": "豪胆無比",
+    "name_en": "豪胆無比",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20316
+  },
+  {
+    "id": "201033",
+    "name_jp": "豪風一閃",
+    "name_en": "豪風一閃",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20103
+  },
+  {
+    "id": "201043",
+    "name_jp": "豪風円刃",
+    "name_en": "豪風円刃",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20104
+  },
+  {
+    "id": "202081",
+    "name_jp": "起死回生",
+    "name_en": "起死回生",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20208
+  },
+  {
+    "id": "920321",
+    "name_jp": "超光速微粒子の可能性",
+    "name_en": "超光速微粒子の可能性",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 92032
+  },
+  {
+    "id": "203572",
+    "name_jp": "足がかり",
+    "name_en": "足がかり",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20357
+  },
+  {
+    "id": "203542",
+    "name_jp": "足任せ",
+    "name_en": "足任せ",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20354
+  },
+  {
+    "id": "202461",
+    "name_jp": "踏ませぬ影",
+    "name_en": "踏ませぬ影",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20246
+  },
+  {
+    "id": "203081",
+    "name_jp": "踏みしめる大地",
+    "name_en": "踏みしめる大地",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20308
+  },
+  {
+    "id": "202332",
+    "name_jp": "踏み込み上手",
+    "name_en": "踏み込み上手",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20233
+  },
+  {
+    "id": "203432",
+    "name_jp": "躍動",
+    "name_en": "躍動",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20343
+  },
+  {
+    "id": "202042",
+    "name_jp": "軽い足取り",
+    "name_en": "軽い足取り",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20204
+  },
+  {
+    "id": "910611",
+    "name_jp": "轟！トレセン応援団！！",
+    "name_en": "轟！トレセン応援団！！",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 91061
+  },
+  {
+    "id": "202662",
+    "name_jp": "込み上げる熱",
+    "name_en": "込み上げる熱",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20266
+  },
+  {
+    "id": "901111",
+    "name_jp": "辿る血脈、芽吹く未来",
+    "name_en": "辿る血脈、芽吹く未来",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 90111
+  },
+  {
+    "id": "202822",
+    "name_jp": "迷いなし",
+    "name_en": "迷いなし",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20282
+  },
+  {
+    "id": "203402",
+    "name_jp": "追い風に乗って",
+    "name_en": "追い風に乗って",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20340
+  },
+  {
+    "id": "203341",
+    "name_jp": "追跡者",
+    "name_en": "追跡者",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20334
+  },
+  {
+    "id": "203762",
+    "name_jp": "追駆",
+    "name_en": "追駆",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20376
+  },
+  {
+    "id": "203382",
+    "name_jp": "逃げ切り体勢",
+    "name_en": "逃げ切り体勢",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20338
+  },
+  {
+    "id": "203342",
+    "name_jp": "這い寄る足音",
+    "name_en": "這い寄る足音",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20334
+  },
+  {
+    "id": "203241",
+    "name_jp": "連鎖反応",
+    "name_en": "連鎖反応",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20324
+  },
+  {
+    "id": "202622",
+    "name_jp": "進出開始",
+    "name_en": "進出開始",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20262
+  },
+  {
+    "id": "203232",
+    "name_jp": "逸る足取り",
+    "name_en": "逸る足取り",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20323
+  },
+  {
+    "id": "200164",
+    "name_jp": "道悪の鬼",
+    "name_en": "道悪の鬼",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20016
+  },
+  {
+    "id": "202501",
+    "name_jp": "遮二無二",
+    "name_en": "遮二無二",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20250
+  },
+  {
+    "id": "901171",
+    "name_jp": "鋭気のアレグロ",
+    "name_en": "鋭気のアレグロ",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 90117
+  },
+  {
+    "id": "201383",
+    "name_jp": "鋭脚一閃",
+    "name_en": "鋭脚一閃",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20138
+  },
+  {
+    "id": "201393",
+    "name_jp": "鋭脚円刃",
+    "name_en": "鋭脚円刃",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20139
+  },
+  {
+    "id": "201901",
+    "name_jp": "鍔迫り合い",
+    "name_en": "鍔迫り合い",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20190
+  },
+  {
+    "id": "203871",
+    "name_jp": "閃く雷光",
+    "name_en": "閃く雷光",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20387
+  },
+  {
+    "id": "203311",
+    "name_jp": "閃光",
+    "name_en": "閃光",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20331
+  },
+  {
+    "id": "203742",
+    "name_jp": "間隙を突いて",
+    "name_en": "間隙を突いて",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20374
+  },
+  {
+    "id": "202092",
+    "name_jp": "闘争心",
+    "name_en": "闘争心",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20209
+  },
+  {
+    "id": "203791",
+    "name_jp": "闘争本能",
+    "name_en": "闘争本能",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20379
+  },
+  {
+    "id": "210081",
+    "name_jp": "限界の先へ",
+    "name_en": "限界の先へ",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 21008
+  },
+  {
+    "id": "201243",
+    "name_jp": "陣風一閃",
+    "name_en": "陣風一閃",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20124
+  },
+  {
+    "id": "201253",
+    "name_jp": "陣風円刃",
+    "name_en": "陣風円刃",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20125
+  },
+  {
+    "id": "210262",
+    "name_jp": "陽の加護",
+    "name_en": "陽の加護",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 21026
+  },
+  {
+    "id": "203671",
+    "name_jp": "陽炎",
+    "name_en": "陽炎",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20367
+  },
+  {
+    "id": "202651",
+    "name_jp": "雲蒸竜変",
+    "name_en": "雲蒸竜変",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20265
+  },
+  {
+    "id": "202401",
+    "name_jp": "電光石火",
+    "name_en": "電光石火",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20240
+  },
+  {
+    "id": "203011",
+    "name_jp": "電迅速攻",
+    "name_en": "電迅速攻",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20301
+  },
+  {
+    "id": "920041",
+    "name_jp": "霊験灼然チョベリグ神託",
+    "name_en": "霊験灼然チョベリグ神託",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 92004
+  },
+  {
+    "id": "900841",
+    "name_jp": "霹靂のアウフヘーベン",
+    "name_en": "霹靂のアウフヘーベン",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 90084
+  },
+  {
+    "id": "200184",
+    "name_jp": "青嵐",
+    "name_en": "青嵐",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20018
+  },
+  {
+    "id": "201692",
+    "name_jp": "静かな呼吸",
+    "name_en": "静かな呼吸",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20169
+  },
+  {
+    "id": "203672",
+    "name_jp": "静かな熱",
+    "name_en": "静かな熱",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20367
+  },
+  {
+    "id": "203832",
+    "name_jp": "頂を目指して",
+    "name_en": "頂を目指して",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20383
+  },
+  {
+    "id": "900781",
+    "name_jp": "風光る",
+    "name_en": "風光る",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 90078
+  },
+  {
+    "id": "203022",
+    "name_jp": "風切り",
+    "name_en": "風切り",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20302
+  },
+  {
+    "id": "203021",
+    "name_jp": "風翔",
+    "name_en": "風翔",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20302
+  },
+  {
+    "id": "202411",
+    "name_jp": "風雲の志",
+    "name_en": "風雲の志",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20241
+  },
+  {
+    "id": "202901",
+    "name_jp": "飛翔脚",
+    "name_en": "飛翔脚",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20290
+  },
+  {
+    "id": "202982",
+    "name_jp": "飛躍の予感",
+    "name_en": "飛躍の予感",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20298
+  },
+  {
+    "id": "210331",
+    "name_jp": "食の極意",
+    "name_en": "食の極意",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 21033
+  },
+  {
+    "id": "202472",
+    "name_jp": "食らいつき",
+    "name_en": "食らいつき",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20247
+  },
+  {
+    "id": "203322",
+    "name_jp": "駆け降り",
+    "name_en": "駆け降り",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20332
+  },
+  {
+    "id": "910701",
+    "name_jp": "駆るは光、狩るは星々",
+    "name_en": "駆るは光、狩るは星々",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 91070
+  },
+  {
+    "id": "202101",
+    "name_jp": "高揚感",
+    "name_en": "高揚感",
+    "type": "normal",
+    "rarity": 2,
+    "groupId": 20210
+  },
+  {
+    "id": "202942",
+    "name_jp": "鬼気迫って",
+    "name_en": "鬼気迫って",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 20294
+  },
+  {
+    "id": "900741",
+    "name_jp": "麗しき花信風",
+    "name_en": "麗しき花信風",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 90074
   }
 ]
