@@ -86,46 +86,7 @@ You can save and load your progress using the Import and Export buttons in the h
 * **Export Data**: Click this button to download a JSON file containing all your current goal definitions and roster data. It's recommended to do this periodically as a backup.
 * **Import Data**: Click this button to select a previously exported JSON file. **Warning**: Importing a file will overwrite all of your current data. A confirmation prompt will appear before the data is replaced.
 
-#### Data Schema
-
-The exported data is stored in a JSON file with the following structure:
-
-```json
-{
-  "version": 1,
-  "goal": {
-    "primaryBlue": [ "Stamina", "Power" ],
-    "primaryPink": [ "Mile", "Turf" ],
-    "uniqueWishlist": [
-      { "name": "Victory Shot! (Inherited)", "tier": "S" }
-    ],
-    "wishlist": [
-      { "name": "Groundwork", "tier": "S" },
-      { "name": "Mile Corners", "tier": "A" }
-    ]
-  },
-  "roster": [
-    {
-      "id": 1725612458123,
-      "name": "Super Creek",
-      "gen": 1,
-      "blueSpark": { "type": "Stamina", "stars": 3 },
-      "pinkSpark": { "type": "Long", "stars": 3 },
-      "uniqueSparks": [
-        { "name": "Victory Shot! (Inherited)", "stars": 3 }
-      ],
-      "whiteSparks": [
-        { "name": "Groundwork", "stars": 2 }
-      ],
-      "score": 40
-    }
-  ]
-}
-```
-
-* **`version`**: The schema version number. This helps with migrating data in future updates.
-* **`goal`**: An object containing your goal parent definition.
-* **`roster`**: An array of objects, where each object represents a parent in your roster.
+For detailed information on the data structure, please see the [Data Schema Documentation](./docs/data_schema.md).
 
 ---
 
