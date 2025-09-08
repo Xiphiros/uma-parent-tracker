@@ -84,7 +84,7 @@ const DevToolsModal = ({ isOpen, onClose }: DevToolsModalProps) => {
     return (
         <Modal isOpen={isOpen} onClose={onClose} title="Developer Tools: Skill Exclusions" size="xl">
             {isLoading ? (
-                <p>Loading skill data...</p>
+                <p className="dialog-modal__message">Loading skill data...</p>
             ) : (
                 <>
                     <div className="my-4">
