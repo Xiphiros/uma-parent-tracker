@@ -4,7 +4,7 @@ const points = {
     blue: { primary: [0, 2, 6, 10], secondary: [0, 1, 4, 8], other: [0, 1, 2, 3] },
     pink: { primary: [0, 3, 6, 10], other: [0, 1, 2, 3] },
     unique: { 'S': [0, 5, 10, 15], 'A': [0, 3, 6, 10], 'B': [0, 2, 4, 6], 'C': [0, 1, 2, 3], 'OTHER': [0, 1, 2, 3] },
-    white: { 'S': [0, 5, 10, 15], 'A': [0, 2, 5, 8], 'B': [0, 1, 3, 5], 'C': [0, 1, 2, 3] }
+    white: { 'S': [0, 5, 10, 15], 'A': [0, 2, 5, 8], 'B': [0, 1, 3, 5], 'C': [0, 1, 2, 3], 'OTHER': [0, 1, 2, 3] }
 };
 
 type ScoreCategory = 'blue' | 'pink' | 'unique' | 'white';
@@ -27,7 +27,7 @@ function getScore(category: ScoreCategory, type: string, stars: 1 | 2 | 3, goal:
     if (category === 'unique') {
         const wishlistItem = goal.uniqueWishlist.find(w => w.name === type);
         const tier = wishlistItem ? wishlistItem.tier : 'OTHER';
-        return points.unique[tier]?.[stars] ?? 0;
+        return points.unique[tier as keyof typeof points.unique]?.[stars] ?? 0;
     }
     
     if (category === 'white') {
@@ -60,6 +60,9 @@ export function calculateScore(parent: ScorableParent, goal: Goal): number {
         const wishlistItem = goal.wishlist.find(w => w.name === spark.name);
         if (wishlistItem) {
             totalScore += getScore('white', wishlistItem.tier, spark.stars, goal);
+        } else {
+            // If the spark is not on the wishlist, give it a baseline "OTHER" score.
+            totalScore += getScore('white', 'OTHER', spark.stars, goal);
         }
     });
 
