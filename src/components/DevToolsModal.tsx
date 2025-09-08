@@ -143,12 +143,12 @@ const UmaImageManager = () => {
                         <tr key={uma.id} className="border-b border-stone-200 dark:border-stone-700">
                             <td className="p-2 align-middle">
                                 {uma.image ? (
-                                    <img src={`${import.meta.env.BASE_URL}${uma.image}`} alt={uma.name_en} className="w-12 h-12 object-cover rounded-md" />
+                                    <img src={`${import.meta.env.BASE_URL}${uma.image}`} alt={uma.name_en} className="w-12 h-12 object-cover rounded-full" />
                                 ) : (
-                                    <div className="w-12 h-12 rounded-md bg-stone-200 dark:bg-stone-700"></div>
+                                    <div className="w-12 h-12 rounded-full bg-stone-200 dark:bg-stone-700" />
                                 )}
                             </td>
-                            <td className="p-2 font-medium align-middle">{uma.name_en}</td>
+                            <td className="p-2 font-medium align-middle break-words">{uma.name_en}</td>
                             <td className="p-2 align-middle">
                                 <div className="flex items-center gap-2">
                                     <label className="button button--neutral button--small cursor-pointer whitespace-nowrap">
