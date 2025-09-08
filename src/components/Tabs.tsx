@@ -31,10 +31,19 @@ const Tabs = () => {
     const checkScrollability = () => {
         const el = tabListRef.current;
         if (el) {
-            // Use a small buffer to account for floating point inaccuracies
             const buffer = 1; 
-            setCanScrollLeft(el.scrollLeft > buffer);
-            setCanScrollRight(el.scrollLeft < el.scrollWidth - el.clientWidth - buffer);
+            const canScrollLeftVal = el.scrollLeft > buffer;
+            const canScrollRightVal = el.scrollLeft < el.scrollWidth - el.clientWidth - buffer;
+
+            console.log('[checkScrollability]', {
+                scrollLeft: el.scrollLeft,
+                scrollWidth: el.scrollWidth,
+                clientWidth: el.clientWidth,
+                canScrollRight: canScrollRightVal
+            });
+
+            setCanScrollLeft(canScrollLeftVal);
+            setCanScrollRight(canScrollRightVal);
         }
     };
 
@@ -45,7 +54,7 @@ const Tabs = () => {
         checkScrollability();
         const resizeObserver = new ResizeObserver(checkScrollability);
         resizeObserver.observe(tabList);
-        tabList.addEventListener('scroll', checkScrollability);
+        tabList.addEventListener('scroll', checkScrollability, { passive: true });
 
         return () => {
             resizeObserver.disconnect();
@@ -56,6 +65,8 @@ const Tabs = () => {
     const handleScroll = (direction: 'left' | 'right', event: React.MouseEvent) => {
         const el = tabListRef.current;
         if (el) {
+            console.log(`[handleScroll] Direction: ${direction}, Shift: ${event.shiftKey}`);
+            
             if (event.shiftKey) {
                 const scrollPos = direction === 'left' ? 0 : el.scrollWidth - el.clientWidth;
                 el.scrollTo({ left: scrollPos, behavior: 'smooth' });
@@ -66,12 +77,14 @@ const Tabs = () => {
 
             if (direction === 'right') {
                 const remainingScroll = el.scrollWidth - el.clientWidth - el.scrollLeft;
+                console.log(`[handleScroll] Right: remaining=${remainingScroll}, scrollAmount=${scrollAmount}`);
                 if (remainingScroll <= scrollAmount + 1) {
                     el.scrollTo({ left: el.scrollWidth - el.clientWidth, behavior: 'smooth' });
                 } else {
                     el.scrollBy({ left: scrollAmount, behavior: 'smooth' });
                 }
             } else { // direction === 'left'
+                console.log(`[handleScroll] Left: scrollLeft=${el.scrollLeft}, scrollAmount=${scrollAmount}`);
                 if (el.scrollLeft <= scrollAmount + 1) {
                     el.scrollTo({ left: 0, behavior: 'smooth' });
                 } else {
