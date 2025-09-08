@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from 'react';
-import { Parent, NewParentData, BlueSpark, WhiteSpark, UniqueSpark } from '../types';
+import { Parent, NewParentData, BlueSpark, WhiteSpark, UniqueSpark, Uma } from '../types';
 import { useAppContext } from '../context/AppContext';
 import Modal from './common/Modal';
 import SearchableSelect from './common/SearchableSelect';
@@ -20,6 +20,7 @@ const PINK_SPARK_TYPES = [
 const STAR_OPTIONS: (1 | 2 | 3)[] = [1, 2, 3];
 
 const initialState: NewParentData = {
+  umaId: '',
   name: '',
   blueSpark: { type: 'Speed', stars: 1 },
   pinkSpark: { type: 'Turf', stars: 1 },
@@ -69,6 +70,7 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
     useEffect(() => {
         if (parentToEdit) {
             setFormData({
+                umaId: parentToEdit.umaId,
                 name: parentToEdit.name,
                 blueSpark: parentToEdit.blueSpark,
                 pinkSpark: parentToEdit.pinkSpark,
@@ -80,8 +82,8 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
         }
     }, [parentToEdit, isOpen]);
 
-    const handleInputChange = (field: keyof NewParentData, value: any) => {
-        setFormData(prev => ({ ...prev, [field]: value }));
+    const handleUmaSelect = (item: Uma) => {
+        setFormData(prev => ({ ...prev, name: item.name_en, umaId: item.id }));
     };
 
     const handleSparkChange = (sparkType: 'blueSpark' | 'pinkSpark', part: 'type' | 'stars', value: string | number) => {
@@ -110,7 +112,7 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
     
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        if (!formData.name) {
+        if (!formData.name || !formData.umaId) {
             setAlertMessage('Please select an Uma Name.');
             return;
         }
@@ -133,7 +135,7 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
                             items={masterUmaList}
                             placeholder="Select uma name..."
                             value={formData.name || null}
-                            onSelect={(item) => handleInputChange('name', item.name_en)}
+                            onSelect={(item) => handleUmaSelect(item as Uma)}
                         />
                     </div>
 
