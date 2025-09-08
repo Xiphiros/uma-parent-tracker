@@ -101,6 +101,14 @@
     color: var(--color-accent-primary);
     border-bottom-color: var(--color-accent-primary);
 }
+.tab[draggable="false"] .tab__button,
+.folder-group[draggable="false"] .folder-tab__button {
+    cursor: default;
+}
+.tab[draggable="false"] .tab__button:active,
+.folder-group[draggable="false"] .folder-tab__button:active {
+    cursor: default;
+}
 .tab__actions {
     position: absolute;
     top: 0.25rem;
@@ -110,6 +118,9 @@
     transition: opacity 0.2s ease;
 }
 .tab:hover .tab__actions {
+    opacity: 1;
+}
+.folder-tab:hover .tab__actions {
     opacity: 1;
 }
 .tab__pin-btn,
