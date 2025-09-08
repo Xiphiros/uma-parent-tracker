@@ -18,6 +18,9 @@
 .folder-tab__button:hover {
     background-color: var(--color-card-bg-hover);
 }
+.folder-tab:hover .tab__actions {
+    opacity: 1;
+}
 .folder-tab--active .folder-tab__button {
     border-bottom-color: var(--color-accent-primary);
 }
