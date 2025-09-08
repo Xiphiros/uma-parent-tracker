@@ -3,7 +3,7 @@ import { Folder, Profile } from "../types";
 import { getIcon } from "./icons";
 import './FolderTab.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGear, faChevronDown } from '@fortawesome/free-solid-svg-icons';
+import { faGear, faChevronDown, faBookmark } from '@fortawesome/free-solid-svg-icons';
 
 interface FolderTabProps {
     folder: Folder;
@@ -37,6 +37,7 @@ const FolderTab: React.FC<FolderTabProps> = ({ folder, profilesInFolder, isActiv
                 className="folder-tab__button"
                 style={buttonStyle}
             >
+                {folder.isPinned && <FontAwesomeIcon icon={faBookmark} className="text-amber-500 mr-1" />}
                 <Icon />
                 {folder.name}
                 <span className="text-xs opacity-60 ml-1">({profilesInFolder.length})</span>
