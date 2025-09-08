@@ -1,4 +1,4 @@
-import { useState, useMemo, ChangeEvent, useRef } from 'react';
+import { useState, useMemo, ChangeEvent, useRef, useEffect } from 'react';
 import { useClickOutside } from '../../hooks/useClickOutside';
 import { useScrollLock } from '../../hooks/useScrollLock';
 import './SearchableSelect.css';
@@ -20,10 +20,29 @@ interface SearchableSelectProps {
 const SearchableSelect = ({ items, placeholder, onSelect, value, disabled = false }: SearchableSelectProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [query, setQuery] = useState('');
+  const [position, setPosition] = useState<'bottom' | 'top'>('bottom');
 
   const dropdownRef = useClickOutside<HTMLDivElement>(() => setIsOpen(false));
   const listRef = useRef<HTMLUListElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
   useScrollLock(listRef, isOpen);
+
+  useEffect(() => {
+    if (isOpen) {
+        const button = buttonRef.current;
+        if (button) {
+            const rect = button.getBoundingClientRect();
+            const spaceBelow = window.innerHeight - rect.bottom;
+            const dropdownHeight = 220; // Estimated height: 200 list + 20 search
+
+            if (spaceBelow < dropdownHeight && rect.top > dropdownHeight) {
+                setPosition('top');
+            } else {
+                setPosition('bottom');
+            }
+        }
+    }
+  }, [isOpen]);
 
   const filteredItems = useMemo(() => {
     const lowerQuery = query.toLowerCase();
@@ -41,6 +60,8 @@ const SearchableSelect = ({ items, placeholder, onSelect, value, disabled = fals
     setIsOpen(false);
   };
 
+  const dropdownClasses = `searchable-select__dropdown searchable-select__dropdown--${position}`;
+
   return (
     <div className="searchable-select w-full" ref={dropdownRef}>
       <button
@@ -48,6 +69,7 @@ const SearchableSelect = ({ items, placeholder, onSelect, value, disabled = fals
         className="searchable-select__button"
         onClick={() => !disabled && setIsOpen(!isOpen)}
         disabled={disabled}
+        ref={buttonRef}
       >
         <span className={!value ? 'searchable-select__button-placeholder' : ''}>
           {value || placeholder}
@@ -56,7 +78,7 @@ const SearchableSelect = ({ items, placeholder, onSelect, value, disabled = fals
       </button>
 
       {isOpen && !disabled && (
-        <div className="searchable-select__dropdown">
+        <div className={dropdownClasses}>
           <input
             type="text"
             className="searchable-select__search-input form__input"
