@@ -7,7 +7,7 @@ import FolderTab from './FolderTab';
 import AddFolderModal from './AddFolderModal';
 
 const Tabs = () => {
-    const { appData, switchProfile, addProfile, renameProfile, deleteProfile, togglePinProfile, reorderLayout, addFolder, updateFolder, deleteFolder, toggleFolderCollapse, moveProfileToFolder } = useAppContext();
+    const { appData, switchProfile, addProfile, renameProfile, deleteProfile, togglePinProfile, reorderLayout, addFolder, updateFolder, deleteFolder, toggleFolderCollapse } = useAppContext();
     const { profiles, folders, layout, activeProfileId } = appData;
 
     const [isAddModalOpen, setAddModalOpen] = useState(false);
@@ -23,6 +23,7 @@ const Tabs = () => {
     const [folderToEdit, setFolderToEdit] = useState<Folder | null>(null);
     const [folderToDelete, setFolderToDelete] = useState<Folder | null>(null);
     const [isDeleteFolderConfirmOpen, setDeleteFolderConfirmOpen] = useState(false);
+    const [isFolderSettingsOpen, setFolderSettingsOpen] = useState(false);
 
     const tabListRef = useRef<HTMLUListElement>(null);
     const [canScrollLeft, setCanScrollLeft] = useState(false);
@@ -38,7 +39,7 @@ const Tabs = () => {
     }, [profiles]);
 
     // --- Overflow Navigation ---
-    const checkScrollability = () => {
+    const checkScrollState = () => {
         const el = tabListRef.current;
         if (el) {
             const buffer = 1; 
@@ -51,14 +52,14 @@ const Tabs = () => {
         const tabList = tabListRef.current;
         if (!tabList) return;
 
-        checkScrollability();
-        const resizeObserver = new ResizeObserver(checkScrollability);
+        checkScrollState();
+        const resizeObserver = new ResizeObserver(checkScrollState);
         resizeObserver.observe(tabList);
-        tabList.addEventListener('scroll', checkScrollability, { passive: true });
+        tabList.addEventListener('scroll', checkScrollState, { passive: true });
 
         return () => {
             resizeObserver.disconnect();
-            tabList.removeEventListener('scroll', checkScrollability);
+            tabList.removeEventListener('scroll', checkScrollState);
         };
     }, [sortedProfiles, layout, folders]);
 
@@ -180,12 +181,15 @@ const Tabs = () => {
     
     const handleOpenFolderSettings = (folder: Folder) => {
         setFolderToEdit(folder);
-        setFolderModalOpen(true);
+        setFolderSettingsOpen(true);
     };
 
-    const handleDeleteFolder = (folder: Folder) => {
-        setFolderToDelete(folder);
-        setDeleteFolderConfirmOpen(true);
+    const handleDeleteFolder = () => {
+        if (folderToEdit) {
+            setFolderToDelete(folderToEdit);
+            setDeleteFolderConfirmOpen(true);
+            setFolderSettingsOpen(false);
+        }
     };
 
     const handleConfirmDeleteFolder = (deleteContained: boolean) => {
@@ -297,6 +301,15 @@ const Tabs = () => {
 
             {/* Modals */}
             <AddFolderModal isOpen={isFolderModalOpen} onClose={() => setFolderModalOpen(false)} onSave={handleFolderSave} folderToEdit={folderToEdit} />
+
+            <Modal isOpen={isFolderSettingsOpen} onClose={() => setFolderSettingsOpen(false)} title={`Settings for "${folderToEdit?.name}"`}>
+                 <div className="dialog-modal__message">What would you like to do?</div>
+                <div className="dialog-modal__footer">
+                    <button className="button button--neutral" onClick={() => setFolderSettingsOpen(false)}>Cancel</button>
+                    <button className="button button--secondary" onClick={() => { setFolderSettingsOpen(false); setFolderModalOpen(true); }}>Edit</button>
+                    <button className="button button--danger" onClick={handleDeleteFolder}>Delete</button>
+                </div>
+            </Modal>
 
             <Modal isOpen={isAddModalOpen} onClose={() => setAddModalOpen(false)} title="Add New Project">
                 <div className="my-4">
