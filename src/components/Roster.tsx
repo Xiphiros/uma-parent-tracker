@@ -49,7 +49,7 @@ const Roster = () => {
     
     return (
         <>
-            <section className="lg:col-span-2 card">
+            <section className="lg:col-span-2 card flex flex-col">
                 <div className="card__header">
                     <h2 className="card__title">
                         <FontAwesomeIcon icon={faBoxArchive} className="h-6 w-6 mr-2 text-teal-500" />
@@ -60,7 +60,7 @@ const Roster = () => {
                         Add Parent
                     </button>
                 </div>
-                <div id="roster-container" className="roster space-y-4 max-h-[70vh] overflow-y-auto pr-2" ref={rosterContainerRef}>
+                <div id="roster-container" className="roster space-y-4 overflow-y-auto pr-2 flex-1 min-h-0" ref={rosterContainerRef}>
                     {sortedRoster.length > 0 ? (
                         sortedRoster.map(parent => (
                             <ParentCard 
