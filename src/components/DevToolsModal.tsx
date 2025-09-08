@@ -128,7 +128,7 @@ const UmaImageManager = () => {
 
     return (
         <div className="max-h-[60vh] overflow-y-auto space-y-4 pr-2">
-            <p className="dev-tools__info-text">Upload an image for each character. Images should be square. After uploading, you must run <code>python scripts/prepare_data.py</code> and then refresh the application to see the changes.</p>
+            <p className="dev-tools__info-text">Upload an image for each character. Images should be square. After uploading, you must run code>python scripts/prepare_data.py</code> and then refresh the application to see the changes.</p>
             <table className="w-full text-left table-fixed dev-tools__table">
                 <thead>
                     <tr>
@@ -142,9 +142,13 @@ const UmaImageManager = () => {
                     {masterUmaList.map(uma => (
                         <tr key={uma.id} className="border-b border-stone-200 dark:border-stone-700">
                             <td className="p-2 align-middle">
-                                <img src={uma.image ? `${import.meta.env.BASE_URL}${uma.image}` : `https://via.placeholder.com/48`} alt={uma.name_en} className="w-12 h-12 object-cover rounded-md" />
+                                {uma.image ? (
+                                    <img src={`${import.meta.env.BASE_URL}${uma.image}`} alt={uma.name_en} className="w-12 h-12 object-cover rounded-md" />
+                                ) : (
+                                    <div className="w-12 h-12 rounded-md bg-stone-200 dark:bg-stone-700" />
+                                )}
                             </td>
-                            <td className="p-2 font-medium align-middle break-words">{uma.name_en}</td>
+                            <td className="p-2 font-medium align-middle truncate" title={uma.name_en}>{uma.name_en}</td>
                             <td className="p-2 align-middle">
                                 <div className="flex items-center gap-2">
                                     <label className="button button--neutral button--small cursor-pointer whitespace-nowrap">
