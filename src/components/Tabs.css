@@ -27,6 +27,10 @@
     position: relative;
     flex-shrink: 0;
 }
+.tab--in-folder {
+    margin-left: -15px;
+    padding-left: 15px;
+}
 .tab--dragging {
     opacity: 0.5;
 }
