@@ -21,6 +21,10 @@
 .folder-tab--active .folder-tab__button {
     border-bottom-color: var(--color-accent-primary);
 }
+.folder-tab--drag-over .folder-tab__button {
+    background-color: var(--color-accent-primary);
+    color: white !important; /* Override inline color style */
+}
 .folder-tab__collapse-icon {
     width: 1rem;
     height: 1rem;
