@@ -1,60 +1,127 @@
-import React from 'react';
-import { Folder, Profile } from "../types";
-import { getIcon } from "./icons";
-import './FolderTab.css';
+import { useMemo } from 'react';
+import { useAppContext } from '../context/AppContext';
+import { Goal, WishlistItem } from '../types';
+import MultiSelect from './common/MultiSelect';
+import WishlistSection from './common/WishlistSection';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFlag } from '@fortawesome/free-solid-svg-icons';
 
-interface FolderTabProps {
-    folder: Folder;
-    profilesInFolder: Profile[];
-    isActive: boolean;
-    isDragOver: boolean;
-    onToggleCollapse: (folderId: string) => void;
-    onSettings: (folder: Folder) => void;
-}
+const BLUE_SPARK_OPTIONS = ['Speed', 'Stamina', 'Power', 'Guts', 'Wit'];
+const PINK_SPARK_OPTIONS = [
+  'Turf', 'Dirt', 'Sprint', 'Mile', 'Medium', 'Long',
+  'Front Runner', 'Pace Chaser', 'Late Surger', 'End Closer'
+];
 
-const FolderTab = ({ folder, profilesInFolder, isActive, isDragOver, onToggleCollapse, onSettings }: FolderTabProps) => {
-    const Icon = getIcon(folder.icon);
+const GoalDefinition = () => {
+    const { getActiveProfile, updateGoal, masterSkillList, updateWishlistItem } = useAppContext();
+    const activeProfile = getActiveProfile();
+    const goal = activeProfile?.goal;
 
-    const folderClasses = [
-        'folder-tab',
-        isActive ? 'folder-tab--active' : '',
-        folder.isCollapsed ? 'folder-tab--collapsed' : '',
-        isDragOver ? 'folder-tab--drag-over' : ''
-    ].filter(Boolean).join(' ');
+    const uniqueSkills = useMemo(() => masterSkillList.filter(s => s.type === 'unique'), [masterSkillList]);
+    const normalSkills = useMemo(() => masterSkillList.filter(s => s.type !== 'unique' && s.rarity === 1), [masterSkillList]);
 
-    const buttonStyle: React.CSSProperties = {
-        color: folder.color,
+    const skillNameToGroupId = useMemo(() => {
+        const map = new Map<string, number | undefined>();
+        masterSkillList.forEach(skill => {
+            if (skill.groupId) {
+                map.set(skill.name_en, skill.groupId);
+            }
+        });
+        return map;
+    }, [masterSkillList]);
+
+    const availableUniqueSkills = useMemo(() => {
+        if (!goal) return uniqueSkills;
+        const wishlistedNames = new Set(goal.uniqueWishlist.map(item => item.name));
+        return uniqueSkills.filter(skill => !wishlistedNames.has(skill.name_en));
+    }, [goal, uniqueSkills]);
+
+    const availableNormalSkills = useMemo(() => {
+        if (!goal) return normalSkills;
+        
+        const wishlistedGroupIds = new Set<number>();
+        goal.wishlist.forEach(item => {
+            const groupId = skillNameToGroupId.get(item.name);
+            if (groupId) {
+                wishlistedGroupIds.add(groupId);
+            }
+        });
+
+        return normalSkills.filter(skill => 
+            !skill.groupId || !wishlistedGroupIds.has(skill.groupId)
+        );
+    }, [goal, normalSkills, skillNameToGroupId]);
+
+    if (!goal) return null;
+
+    const isUniqueWishlistFull = goal.uniqueWishlist.length >= 6;
+
+    const handleGoalChange = (changedValues: Partial<Goal>) => {
+        updateGoal({ ...goal, ...changedValues });
     };
-    if (isActive) {
-        buttonStyle.borderBottomColor = folder.color;
-    }
+    
+    const handleWishlistAdd = (listName: 'wishlist' | 'uniqueWishlist', item: WishlistItem) => {
+        const currentList = goal[listName] as WishlistItem[];
+        if (!currentList.some(w => w.name.toLowerCase() === item.name.toLowerCase())) {
+            handleGoalChange({ [listName]: [...currentList, item] });
+        }
+    };
+    
+    const handleWishlistRemove = (listName: 'wishlist' | 'uniqueWishlist', itemName: string) => {
+        const currentList = goal[listName] as WishlistItem[];
+        handleGoalChange({ [listName]: currentList.filter(w => w.name !== itemName) });
+    };
+
+    const handleWishlistUpdate = (listName: 'wishlist' | 'uniqueWishlist', oldName: string, newItem: WishlistItem) => {
+        updateWishlistItem(listName, oldName, newItem);
+    };
 
     return (
-        <div className={folderClasses}>
-            <div
-                className="folder-tab__button"
-                style={buttonStyle}
-            >
-                <Icon />
-                {folder.name}
-                <span className="text-xs opacity-60 ml-1">({profilesInFolder.length})</span>
-                <div className="tab__actions">
-                    <button className="tab__settings-btn" title="Folder Settings" onClick={(e) => { e.stopPropagation(); onSettings(folder); }}>
-                        <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
-                    </button>
+        <section id="goal-definition" className="card">
+            <h2 className="card__title">
+                <FontAwesomeIcon icon={faFlag} className="h-6 w-6 mr-2 text-indigo-500" />
+                Define Goal Parent
+            </h2>
+            <div className="space-y-4">
+                <div>
+                    <h3 className="form__section-title mb-2">Primary Blue Sparks</h3>
+                    <MultiSelect
+                        options={BLUE_SPARK_OPTIONS}
+                        selectedValues={goal.primaryBlue}
+                        onChange={(selected) => handleGoalChange({ primaryBlue: selected })}
+                    />
                 </div>
-                <button
-                    className="folder-tab__collapse-btn"
-                    onClick={(e) => { e.stopPropagation(); onToggleCollapse(folder.id); }}
-                    title={folder.isCollapsed ? 'Expand Folder' : 'Collapse Folder'}
-                >
-                    <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
-                    </svg>
-                </button>
-            </div>
-        </div>
-    );
-}
+                <div className="border-t pt-4">
+                    <h3 className="form__section-title mb-2">Primary Pink Sparks</h3>
+                    <MultiSelect
+                        options={PINK_SPARK_OPTIONS}
+                        selectedValues={goal.primaryPink}
+                        onChange={(selected) => handleGoalChange({ primaryPink: selected })}
+                    />
+                </div>
+                
+                <WishlistSection 
+                    title="Unique Spark Wishlist"
+                    wishlist={goal.uniqueWishlist}
+                    skillList={availableUniqueSkills}
+                    onAdd={(item) => handleWishlistAdd('uniqueWishlist', item)}
+                    onRemove={(name) => handleWishlistRemove('uniqueWishlist', name)}
+                    onUpdate={(oldName, newItem) => handleWishlistUpdate('uniqueWishlist', oldName, newItem)}
+                    disableAdd={isUniqueWishlistFull}
+                />
+                
+                <WishlistSection 
+                    title="White Spark Wishlist"
+                    wishlist={goal.wishlist}
+                    skillList={availableNormalSkills}
+                    onAdd={(item) => handleWishlistAdd('wishlist', item)}
+                    onRemove={(name) => handleWishlistRemove('wishlist', name)}
+                    onUpdate={(oldName, newItem) => handleWishlistUpdate('wishlist', oldName, newItem)}
+                />
 
-export default FolderTab;
+            </div>
+        </section>
+    );
+};
+
+export default GoalDefinition;
