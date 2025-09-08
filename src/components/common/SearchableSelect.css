@@ -41,7 +41,6 @@
 }
 .searchable-select__dropdown {
     position: absolute;
-    top: calc(100% + 0.25rem);
     left: 0;
     right: 0;
     background-color: var(--color-card-bg);
@@ -49,6 +48,12 @@
     border-radius: 0.375rem;
     z-index: 30;
     box-shadow: var(--color-shadow);
+}
+.searchable-select__dropdown--bottom {
+    top: calc(100% + 0.25rem);
+}
+.searchable-select__dropdown--top {
+    bottom: calc(100% + 0.25rem);
 }
 .searchable-select__search-input {
     border-bottom: 1px solid var(--color-border);
