@@ -5,6 +5,7 @@ export interface Skill {
   type: 'unique' | 'normal';
   rarity?: number;
   groupId?: number;
+  isGlobal: boolean;
 }
 
 export interface Uma {
@@ -13,6 +14,7 @@ export interface Uma {
   name_jp: string;
   name_en: string;
   image?: string;
+  isGlobal: boolean;
 }
 
 export interface BlueSpark {
