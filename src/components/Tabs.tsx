@@ -31,8 +31,10 @@ const Tabs = () => {
     const checkScrollability = () => {
         const el = tabListRef.current;
         if (el) {
-            setCanScrollLeft(el.scrollLeft > 0);
-            setCanScrollRight(el.scrollLeft < el.scrollWidth - el.clientWidth);
+            // Use a small buffer to account for floating point inaccuracies
+            const buffer = 1; 
+            setCanScrollLeft(el.scrollLeft > buffer);
+            setCanScrollRight(el.scrollLeft < el.scrollWidth - el.clientWidth - buffer);
         }
     };
 
@@ -51,10 +53,15 @@ const Tabs = () => {
         };
     }, [sortedProfiles]); // Re-check when profiles change
 
-    const handleScroll = (direction: 'left' | 'right') => {
+    const handleScroll = (direction: 'left' | 'right', event: React.MouseEvent) => {
         const el = tabListRef.current;
         if (el) {
-            const scrollAmount = direction === 'left' ? -el.clientWidth * 0.8 : el.clientWidth * 0.8;
+            let scrollAmount = 0;
+            if (event.shiftKey) {
+                scrollAmount = direction === 'left' ? -el.scrollWidth : el.scrollWidth;
+            } else {
+                scrollAmount = direction === 'left' ? -el.clientWidth * 0.8 : el.clientWidth * 0.8;
+            }
             el.scrollBy({ left: scrollAmount, behavior: 'smooth' });
         }
     };
@@ -151,7 +158,12 @@ const Tabs = () => {
     return (
         <>
             <nav className="tabs__container">
-                 <button className={`tabs__nav-btn tabs__nav-btn--left ${canScrollLeft ? 'tabs__nav-btn--visible' : ''}`} onClick={() => handleScroll('left')} disabled={!canScrollLeft}>
+                 <button 
+                    className={`tabs__nav-btn tabs__nav-btn--left ${canScrollLeft ? 'tabs__nav-btn--visible' : ''}`} 
+                    onClick={(e) => handleScroll('left', e)} 
+                    disabled={!canScrollLeft}
+                    title="Scroll Left (Hold Shift for Start)"
+                >
                     <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" /></svg>
                 </button>
                 <div className="tabs__list-wrapper">
@@ -183,7 +195,12 @@ const Tabs = () => {
                         ))}
                     </ul>
                 </div>
-                 <button className={`tabs__nav-btn tabs__nav-btn--right ${canScrollRight ? 'tabs__nav-btn--visible' : ''}`} onClick={() => handleScroll('right')} disabled={!canScrollRight}>
+                 <button 
+                    className={`tabs__nav-btn tabs__nav-btn--right ${canScrollRight ? 'tabs__nav-btn--visible' : ''}`} 
+                    onClick={(e) => handleScroll('right', e)} 
+                    disabled={!canScrollRight}
+                    title="Scroll Right (Hold Shift for End)"
+                >
                     <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" /></svg>
                 </button>
                 <button className="tabs__add-btn" title="Add New Project" onClick={() => setAddModalOpen(true)}>
