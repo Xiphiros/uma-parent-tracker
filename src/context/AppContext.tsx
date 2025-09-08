@@ -273,7 +273,14 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
             p.id === id ? { ...p, isPinned: !p.isPinned } : p
         );
         const newLayout = sortLayoutByPin(prevData.layout, newProfiles, prevData.folders);
-        return { ...prevData, profiles: newProfiles, layout: newLayout };
+        const newFolders = prevData.folders.map(folder => {
+            if (folder.profileIds.includes(id)) {
+                const sortedProfileIds = sortProfileIdsByPin(folder.profileIds, newProfiles);
+                return { ...folder, profileIds: sortedProfileIds };
+            }
+            return folder;
+        });
+        return { ...prevData, profiles: newProfiles, layout: newLayout, folders: newFolders };
     });
   };
 
