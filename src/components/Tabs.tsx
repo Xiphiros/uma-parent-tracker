@@ -311,7 +311,15 @@ const Tabs = () => {
                         onDragOver={(e) => e.preventDefault()} onDrop={handleDrop} onDragEnd={handleDragEnd}
                         onContextMenu={(e) => handleOpenContextMenu(e, folder)}>
                         
-                        <FolderTab folder={folder} profilesInFolder={profilesInFolder} isActive={isFolderActive} isDragOver={dragOverFolderId === folder.id} onToggleCollapse={toggleFolderCollapse} onSettings={handleOpenFolderSettings} />
+                        <FolderTab 
+                            folder={folder} 
+                            profilesInFolder={profilesInFolder} 
+                            isActive={isFolderActive} 
+                            isDragOver={dragOverFolderId === folder.id} 
+                            onToggleCollapse={toggleFolderCollapse} 
+                            onSettings={handleOpenFolderSettings}
+                            onTogglePin={togglePinFolder}
+                        />
                         
                         {!folder.isCollapsed && profilesInFolder.length > 0 && (
                             <ul>
