@@ -6,6 +6,9 @@ import './Tabs.css';
 import FolderTab from './FolderTab';
 import AddFolderModal from './AddFolderModal';
 import ContextMenu, { MenuItem } from './common/ContextMenu';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBookmark, faGear, faChevronLeft, faChevronRight, faFolderPlus, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faBookmark as faBookmarkRegular } from '@fortawesome/free-regular-svg-icons';
 
 interface ContextMenuState {
     isOpen: boolean;
@@ -337,17 +340,15 @@ const Tabs = () => {
             onContextMenu={(e) => handleOpenContextMenu(e, profile)}
         >
             <button className="tab__button" onClick={() => switchProfile(profile.id)}>
-                {profile.isPinned && <svg className="h-4 w-4 text-amber-500" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>}
+                {profile.isPinned && <FontAwesomeIcon icon={faBookmark} className="h-4 w-4 text-amber-500" />}
                 {profile.name}
             </button>
             <div className="tab__actions">
                     <button className={`tab__pin-btn ${profile.isPinned ? 'tab__pin-btn--pinned' : ''}`} title={profile.isPinned ? 'Unpin Project' : 'Pin Project'} onClick={() => togglePinProfile(profile.id)}>
-                    <svg className="h-4 w-4" fill={profile.isPinned ? 'currentColor' : 'none'} viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
-                    </svg>
+                        <FontAwesomeIcon icon={profile.isPinned ? faBookmark : faBookmarkRegular} className="h-4 w-4" />
                 </button>
                 <button className="tab__settings-btn" title="Project Settings" onClick={() => openSettings(profile)}>
-                    <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                    <FontAwesomeIcon icon={faGear} className="h-4 w-4" />
                 </button>
             </div>
         </li>
@@ -362,7 +363,7 @@ const Tabs = () => {
                     disabled={!canScrollLeft}
                     title="Scroll Left (Hold Shift for Start)"
                 >
-                    <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" /></svg>
+                    <FontAwesomeIcon icon={faChevronLeft} className="h-5 w-5" />
                 </button>
                 <div className="tabs__list-wrapper">
                     <ul className="tabs__list" ref={tabListRef}>
@@ -375,14 +376,14 @@ const Tabs = () => {
                     disabled={!canScrollRight}
                     title="Scroll Right (Hold Shift for End)"
                 >
-                    <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" /></svg>
+                    <FontAwesomeIcon icon={faChevronRight} className="h-5 w-5" />
                 </button>
                 <div className="tabs__actions-group">
                     <button className="tabs__add-btn" title="Add New Folder" onClick={() => { setFolderToEdit(null); setFolderModalOpen(true); }}>
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 19a2 2 0 01-2-2V7a2 2 0 012-2h4l2 2h4a2 2 0 012 2v1M5 19h14a2 2 0 002-2v-5a2 2 0 00-2-2H9a2 2 0 00-2 2v5a2 2 0 01-2 2z" /></svg>
+                        <FontAwesomeIcon icon={faFolderPlus} className="h-6 w-6" />
                     </button>
                     <button className="tabs__add-btn" title="Add New Project" onClick={() => setAddModalOpen(true)}>
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" /></svg>
+                        <FontAwesomeIcon icon={faPlus} className="h-6 w-6" />
                     </button>
                 </div>
             </nav>
