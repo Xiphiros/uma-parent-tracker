@@ -7,8 +7,7 @@ import FolderTab from './FolderTab';
 import AddFolderModal from './AddFolderModal';
 import ContextMenu, { MenuItem } from './common/ContextMenu';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBookmark, faGear, faChevronLeft, faChevronRight, faFolderPlus, faPlus } from '@fortawesome/free-solid-svg-icons';
-import { faBookmark as faBookmarkRegular } from '@fortawesome/free-regular-svg-icons';
+import { faBookmark, faGear, faChevronLeft, faChevronRight, faFolderPlus, faPlus, faThumbtack } from '@fortawesome/free-solid-svg-icons';
 
 interface ContextMenuState {
     isOpen: boolean;
@@ -345,7 +344,7 @@ const Tabs = () => {
             </button>
             <div className="tab__actions">
                     <button className={`tab__pin-btn ${profile.isPinned ? 'tab__pin-btn--pinned' : ''}`} title={profile.isPinned ? 'Unpin Project' : 'Pin Project'} onClick={() => togglePinProfile(profile.id)}>
-                        <FontAwesomeIcon icon={profile.isPinned ? faBookmark : faBookmarkRegular} className="h-4 w-4" />
+                        <FontAwesomeIcon icon={profile.isPinned ? faBookmark : faThumbtack} className="h-4 w-4" />
                 </button>
                 <button className="tab__settings-btn" title="Project Settings" onClick={() => openSettings(profile)}>
                     <FontAwesomeIcon icon={faGear} className="h-4 w-4" />
