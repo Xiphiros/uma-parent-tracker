@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, ChangeEvent } from 'react';
 import Modal from './common/Modal';
 import { DualListBox } from './common/DualListBox';
 import { useAppContext } from '../context/AppContext';
@@ -93,7 +93,13 @@ const SkillExclusionTool = ({ onClose }: { onClose: () => void }) => {
 const UmaImageManager = () => {
     const { masterUmaList } = useAppContext();
     const [statusMessages, setStatusMessages] = useState<Record<string, string>>({});
+    const [selectedFileNames, setSelectedFileNames] = useState<Record<string, string>>({});
     const fileInputRefs = useRef<Record<string, HTMLInputElement | null>>({});
+
+    const handleFileSelect = (e: ChangeEvent<HTMLInputElement>, umaId: string) => {
+        const fileName = e.target.files?.[0]?.name;
+        setSelectedFileNames(prev => ({ ...prev, [umaId]: fileName || '' }));
+    };
 
     const handleImageUpload = async (umaId: string) => {
         const fileInput = fileInputRefs.current[umaId];
@@ -123,7 +129,7 @@ const UmaImageManager = () => {
         <div className="max-h-[60vh] overflow-y-auto space-y-4 pr-2">
             <p className="text-sm text-stone-500">Upload an image for each character. Images should be square. After uploading, you must run <code className="bg-stone-200 dark:bg-stone-900 px-1 rounded">python scripts/prepare_data.py</code> and then refresh the application to see the changes.</p>
             <table className="w-full text-left table-fixed">
-                <thead className="sticky top-0 bg-stone-50 dark:bg-stone-700 z-10">
+                <thead className="sticky top-0 bg-stone-100 dark:bg-stone-800 z-10">
                     <tr>
                         <th className="p-2 w-20">Image</th>
                         <th className="p-2 w-48">Name</th>
@@ -140,12 +146,19 @@ const UmaImageManager = () => {
                             <td className="p-2 font-medium align-middle">{uma.name_en}</td>
                             <td className="p-2 align-middle">
                                 <div className="flex items-center gap-2">
-                                    <input 
-                                        type="file" 
-                                        className="text-xs text-stone-500 file:mr-3 file:py-1 file:px-2 file:rounded file:border file:border-stone-300 dark:file:border-stone-600 file:text-xs file:font-medium file:bg-stone-100 dark:file:bg-stone-800 file:text-stone-600 dark:file:text-stone-300 hover:file:bg-stone-200 dark:hover:file:bg-stone-600 file:cursor-pointer"
-                                        ref={el => { fileInputRefs.current[uma.id] = el }} 
-                                        accept="image/png, image/jpeg, image/webp" 
-                                    />
+                                    <label className="button button--neutral button--small cursor-pointer whitespace-nowrap">
+                                        <span>Choose File</span>
+                                        <input 
+                                            type="file" 
+                                            className="visually-hidden"
+                                            ref={el => { fileInputRefs.current[uma.id] = el; }}
+                                            accept="image/png, image/jpeg, image/webp"
+                                            onChange={(e) => handleFileSelect(e, uma.id)}
+                                        />
+                                    </label>
+                                    <span className="text-xs text-stone-500 truncate flex-grow min-w-0" title={selectedFileNames[uma.id]}>
+                                        {selectedFileNames[uma.id] || 'No file selected.'}
+                                    </span>
                                     <button 
                                         className="button button--secondary button--small flex-shrink-0" 
                                         onClick={() => handleImageUpload(uma.id)}
