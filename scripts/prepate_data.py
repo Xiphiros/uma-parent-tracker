@@ -13,6 +13,7 @@ SCRIPT_DIR = Path(__file__).parent
 PROJECT_ROOT = SCRIPT_DIR.parent
 RAW_DATA_DIR = PROJECT_ROOT / 'raw_data'
 OUTPUT_DATA_DIR = PROJECT_ROOT / 'src' / 'data'
+UMA_IMG_DIR = PROJECT_ROOT / 'public' / 'images' / 'umas'
 EXCLUSION_PATH = OUTPUT_DATA_DIR / 'skill-exclusions.json'
 
 def prepare_skills():
@@ -93,7 +94,7 @@ def prepare_skills():
     print(f"Skill output saved to: {output_path.relative_to(PROJECT_ROOT)}")
 
 def prepare_umas():
-    """Processes raw uma data into a format usable by the application."""
+    """Processes raw uma data and links it with available images."""
     print("\nProcessing umas...")
 
     umas_path = RAW_DATA_DIR / 'umas.json'
@@ -103,18 +104,29 @@ def prepare_umas():
         print("Error: umas.json not found in raw_data/. Skipping uma preparation.")
         return
 
+    # Find available images
+    UMA_IMG_DIR.mkdir(parents=True, exist_ok=True)
+    image_files = {p.stem: p for p in UMA_IMG_DIR.glob('*')}
+    print(f"Found {len(image_files)} images in {UMA_IMG_DIR.relative_to(PROJECT_ROOT)}")
+
     with open(umas_path, 'r', encoding='utf-8') as f:
         umas_data = json.load(f)
 
     uma_list = []
     for uma_id, uma in umas_data.items():
-        # The name is the second element in the name array
         name_array = uma.get('name', [])
         if len(name_array) > 1 and name_array[1]:
-            uma_list.append({
+            uma_entry = {
                 'id': uma_id,
                 'name_en': name_array[1]
-            })
+            }
+            # Check if an image exists for this uma_id
+            if uma_id in image_files:
+                image_path = image_files[uma_id]
+                # Construct the web-accessible path
+                uma_entry['image'] = f"/images/umas/{image_path.name}"
+            
+            uma_list.append(uma_entry)
 
     # Sort alphabetically by name
     uma_list.sort(key=lambda x: x['name_en'])
