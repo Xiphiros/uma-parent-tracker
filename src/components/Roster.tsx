@@ -5,6 +5,8 @@ import AddParentModal from './AddParentModal';
 import { Parent } from '../types';
 import { useScrollLock } from '../hooks/useScrollLock';
 import Modal from './common/Modal';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBoxArchive, faPlus } from '@fortawesome/free-solid-svg-icons';
 
 const Roster = () => {
     const { getActiveProfile, deleteParent } = useAppContext();
@@ -50,14 +52,11 @@ const Roster = () => {
             <section className="lg:col-span-2 card">
                 <div className="card__header">
                     <h2 className="card__title">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-6 w-6 mr-2 text-teal-500">
-                          <path d="M3.375 3C2.339 3 1.5 3.84 1.5 4.875v.75c0 1.036.84 1.875 1.875 1.875h17.25c1.035 0 1.875-.84 1.875-1.875v-.75C22.5 3.839 21.66 3 20.625 3H3.375Z" />
-                          <path fillRule="evenodd" d="M3.087 9l.54 9.176A3 3 0 0 0 6.62 21h10.757a3 3 0 0 0 2.995-2.824L20.914 9H3.086Zm6.134 4.5a.75.75 0 0 1 .75-.75h2.06a.75.75 0 0 1 0 1.5H9.97a.75.75 0 0 1-.75-.75Zm-2.25 4.5a.75.75 0 0 1 .75-.75h6.56a.75.75 0 0 1 0 1.5H7.72a.75.75 0 0 1-.75-.75Z" clipRule="evenodd" />
-                        </svg>
+                        <FontAwesomeIcon icon={faBoxArchive} className="h-6 w-6 mr-2 text-teal-500" />
                         Roster
                     </h2>
                     <button id="add-parent-btn" className="button button--secondary" onClick={handleOpenAddModal}>
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" /></svg>
+                        <FontAwesomeIcon icon={faPlus} className="h-5 w-5 mr-1" />
                         Add Parent
                     </button>
                 </div>
