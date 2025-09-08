@@ -200,14 +200,6 @@
     "groupId": 20025
   },
   {
-    "id": "200253",
-    "name_jp": "Inner Post Averseness",
-    "name_en": "Inner Post Averseness",
-    "type": "normal",
-    "rarity": 1,
-    "groupId": 20025
-  },
-  {
     "id": "200262",
     "name_jp": "Outer Post Proficiency ○",
     "name_en": "Outer Post Proficiency ○",
@@ -240,14 +232,6 @@
     "groupId": 20028
   },
   {
-    "id": "200283",
-    "name_jp": "Wallflower",
-    "name_en": "Wallflower",
-    "type": "normal",
-    "rarity": 1,
-    "groupId": 20028
-  },
-  {
     "id": "200292",
     "name_jp": "Target in Sight ○",
     "name_en": "Target in Sight ○",
@@ -270,14 +254,6 @@
     "type": "normal",
     "rarity": 1,
     "groupId": 20031
-  },
-  {
-    "id": "200321",
-    "name_jp": "Paddock Fright",
-    "name_en": "Paddock Fright",
-    "type": "normal",
-    "rarity": 1,
-    "groupId": 20032
   },
   {
     "id": "200331",
@@ -376,38 +352,6 @@
     "groupId": 20038
   },
   {
-    "id": "200391",
-    "name_jp": "Ramp Revulsion",
-    "name_en": "Ramp Revulsion",
-    "type": "normal",
-    "rarity": 1,
-    "groupId": 20039
-  },
-  {
-    "id": "200401",
-    "name_jp": "Packphobia",
-    "name_en": "Packphobia",
-    "type": "normal",
-    "rarity": 1,
-    "groupId": 20040
-  },
-  {
-    "id": "200411",
-    "name_jp": "Defeatist",
-    "name_en": "Defeatist",
-    "type": "normal",
-    "rarity": 1,
-    "groupId": 20041
-  },
-  {
-    "id": "200421",
-    "name_jp": "Reckless",
-    "name_en": "Reckless",
-    "type": "normal",
-    "rarity": 1,
-    "groupId": 20042
-  },
-  {
     "id": "200431",
     "name_jp": "Concentration",
     "name_en": "Concentration",
@@ -419,14 +363,6 @@
     "id": "200432",
     "name_jp": "Focus",
     "name_en": "Focus",
-    "type": "normal",
-    "rarity": 1,
-    "groupId": 20043
-  },
-  {
-    "id": "200433",
-    "name_jp": "Gatekept",
-    "name_en": "Gatekept",
     "type": "normal",
     "rarity": 1,
     "groupId": 20043
@@ -558,14 +494,6 @@
     "type": "normal",
     "rarity": 1,
     "groupId": 20051
-  },
-  {
-    "id": "200521",
-    "name_jp": "Running Idle",
-    "name_en": "Running Idle",
-    "type": "normal",
-    "rarity": 1,
-    "groupId": 20052
   },
   {
     "id": "200531",
