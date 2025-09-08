@@ -40,50 +40,111 @@ BEM provides a structured, semantic way to name CSS classes, which helps avoid s
 
 -   **Classes Only:** Use classes exclusively for styling. This keeps specificity low and predictable.
 -   **Avoid ID Selectors:** Do **not** use ID selectors (e.g., `#my-id`) for styling. They have high specificity and can make overriding styles difficult. IDs should only be used for JavaScript hooks or fragment identifiers.
--   **Avoid Nesting:** Avoid deep nesting in CSS. A flat structure using BEM classes is preferred. A maximum nesting level of 1 is acceptable for pseudo-classes (e.g., `.button:hover`).
+-   **Avoid Nesting:** Avoid deep nesting in CSS. A flat structure using BEM classes is preferred.
 
 ### 4. Inline Styles
 
 -   **Forbidden:** Inline `style` attributes (`<div style={{ color: 'red' }}>`) are strictly forbidden for static styling. They are difficult to override and violate the separation of concerns.
 -   **Exception:** The only acceptable use for inline styles is for dynamic properties that cannot be known ahead of time (e.g., setting `top` and `left` for a context menu based on mouse coordinates).
 
+---
+
 ## Color Palette & Theming
 
-Our application supports both a light and a dark theme. The entire color system is managed through CSS variables defined in `src/css/main.css`.
+Our application supports both light and dark themes. All colors **must** be applied using the CSS variables defined in `src/css/main.css`. This is critical for ensuring components adapt correctly to theme changes.
 
-### 1. Using CSS Variables
+### Light Theme Palette
 
-**Always** use the defined CSS variables for colors, shadows, and other themeable properties. This is crucial for our light/dark theme implementation.
+| Variable | Value | Description |
+| :--- | :--- | :--- |
+| `--color-bg` | `#fafaf9` | Main page background |
+| `--color-card-bg` | `white` | Card and modal backgrounds |
+| `--color-text-header` | `#292524` | Primary headers |
+| `--color-text-primary` | `#44403c` | Main text color |
+| `--color-text-secondary` | `#57534e` | Secondary text, subtitles |
+| `--color-text-muted` | `#78716c` | Muted text, placeholders |
+| `--color-border` | `#e7e5e4` | Borders for cards, dividers |
+| `--color-score` | `#d97706` | Score text, highlight elements |
+| `--color-button-primary-bg` | `#4f46e5` | Primary action buttons |
+| `--color-button-secondary-bg` | `#0d9488` | Secondary action buttons |
+| `--color-button-danger-bg` | `#dc2626` | Destructive action buttons |
 
--   **Correct:** `color: var(--color-text-primary);`
--   **Incorrect:** `color: #44403c;`
+### Dark Theme Palette
 
-### 2. Light & Dark Mode Design
+| Variable | Value | Description |
+| :--- | :--- | :--- |
+| `--color-bg` | `#1c1917` | Main page background |
+| `--color-card-bg` | `#292524` | Card and modal backgrounds |
+| `--color-text-header` | `#f5f5f4` | Primary headers |
+| `--color-text-primary` | `#d6d3d1` | Main text color |
+| `--color-text-secondary` | `#a8a29e` | Secondary text, subtitles |
+| `--color-text-muted` | `#78716c` | Muted text, placeholders |
+| `--color-border` | `#44403c` | Borders for cards, dividers |
+| `--color-score` | `#fcd34d` | Score text, highlight elements |
+| `--color-button-primary-bg` | `#4f46e5` | Primary action buttons |
+| `--color-button-secondary-bg` | `#0d9488` | Secondary action buttons |
+| `--color-button-danger-bg` | `#dc2626` | Destructive action buttons |
 
-When creating or modifying components, you must verify they look correct in both themes. The use of CSS variables should handle most cases, but pay special attention to:
+---
 
--   **Contrast:** Ensure text is easily readable against its background. Use `--color-text-primary` for main text, `--color-text-secondary` for supporting text, and `--color-text-muted` for hints.
--   **Backgrounds:** Use `--color-bg` for the main page background and `--color-card-bg` for elevated surfaces like cards and modals. Use `--color-card-bg-hover` for hover states.
--   **Borders:** Use `--color-border` for standard borders and `--color-border-input` for form inputs. Use `--color-border-active` for focused or selected states.
+## TypeScript Component Structure
 
-### 3. Core Color Variables
+To maintain consistency across the codebase, all React components should follow this general structure:
 
-The following table documents the primary color variables and their intended use.
+1.  **Imports:** Start with all necessary imports from React, other libraries, and local files.
+2.  **Type/Interface Definitions:** Define `Props` and any other component-specific types.
+3.  **Component Function:** The main component function.
+4.  **Internal Logic Order:** Inside the component, the order of operations should be:
+    a. Context Hooks (`useAppContext`)
+    b. State Hooks (`useState`)
+    c. Refs (`useRef`)
+    d. Other Hooks (`useEffect`, `useMemo`, `useCallback`)
+    e. Event Handlers and other functions.
+    f. The `return` statement with the JSX.
+5.  **Default Export:** End the file with `export default ComponentName;`.
 
-| Variable Name                 | Light Theme Value (Stone/Amber) | Dark Theme Value (Stone/Amber) | Usage                                            |
-| :---------------------------- | :------------------------------ | :----------------------------- | :----------------------------------------------- |
-| `--color-bg`                  | `#fafaf9` (stone-50)            | `#1c1917` (stone-900)           | Main page background                             |
-| `--color-card-bg`             | `white`                         | `#292524` (stone-800)           | Cards, modals, dropdowns                         |
-| `--color-card-bg-hover`       | `#f5f5f4` (stone-100)           | `#44403c` (stone-700)           | Hover states for cards, list items               |
-| `--color-text-header`         | `#292524` (stone-800)           | `#f5f5f4` (stone-100)           | Main page and modal titles                       |
-| `--color-text-primary`        | `#44403c` (stone-700)           | `#d6d3d1` (stone-300)           | Primary text content                             |
-| `--color-text-secondary`      | `#57534e` (stone-600)           | `#a8a29e` (stone-400)           | Secondary text, descriptions                     |
-| `--color-text-muted`          | `#78716c` (stone-500)           | `#78716c` (stone-500)           | Muted text, placeholders, hints                  |
-| `--color-text-link`           | `#4f46e5` (indigo-600)          | `#818cf8` (indigo-400)          | Hyperlinks                                       |
-| `--color-text-danger`         | `#dc2626` (red-600)             | `#f87171` (red-400)             | Destructive action text (e.g., "Delete")         |
-| `--color-border`              | `#e7e5e4` (stone-200)           | `#44403c` (stone-700)           | Standard borders, dividers                       |
-| `--color-border-input`        | `#d6d3d1` (stone-300)           | `#57534e` (stone-600)           | Form input borders                               |
-| `--color-border-active`       | `#6366f1` (indigo-500)          | `#818cf8` (indigo-400)          | Focused inputs, selected items                   |
-| `--color-button-primary-bg`   | `#4f46e5` (indigo-600)          | `#4f46e5` (indigo-600)          | Primary action buttons                           |
-| `--color-button-danger-bg`    | `#dc2626` (red-600)             | `#dc2626` (red-600)             | Destructive action buttons                       |
-| `--color-score`               | `#d97706` (amber-600)           | `#fcd34d` (amber-400)           | Score text, important highlights                 |
+### Example Structure
+
+```typescript
+// 1. Imports
+import { useState, useMemo } from 'react';
+import { useAppContext } from '../context/AppContext';
+import './MyComponent.css';
+
+// 2. Type Definitions
+interface MyComponentProps {
+  title: string;
+}
+
+// 3. Component Function
+const MyComponent = ({ title }: MyComponentProps) => {
+  // 4a. Context Hooks
+  const { appData } = useAppContext();
+
+  // 4b. State Hooks
+  const [isActive, setIsActive] = useState(false);
+
+  // 4d. Other Hooks
+  const formattedTitle = useMemo(() => {
+    return title.toUpperCase();
+  }, [title]);
+
+  // 4e. Event Handlers
+  const handleClick = () => {
+    setIsActive(!isActive);
+  };
+
+  // 4f. Return JSX
+  return (
+    <div className="my-component">
+      <h2 className="my-component__title">{formattedTitle}</h2>
+      <button onClick={handleClick} className="my-component__button">
+        Toggle
+      </button>
+    </div>
+  );
+};
+
+// 5. Default Export
+export default MyComponent;
+```
