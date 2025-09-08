@@ -56,7 +56,7 @@ const AddFolderModal = ({ isOpen, onClose, onSave, folderToEdit }: AddFolderModa
                         {FOLDER_COLORS.map(c => (
                             <button
                                 key={c}
-                                className={`h-8 w-8 rounded-full border-2 ${color === c ? 'border-blue-500' : 'border-transparent'}`}
+                                className={`h-8 w-8 rounded-full border-2 transition ${color === c ? 'border-indigo-500' : 'border-transparent hover:border-gray-400'}`}
                                 style={{ backgroundColor: c }}
                                 onClick={() => setColor(c)}
                             />
@@ -69,7 +69,7 @@ const AddFolderModal = ({ isOpen, onClose, onSave, folderToEdit }: AddFolderModa
                         {FOLDER_ICONS.map(i => (
                             <button
                                 key={i.name}
-                                className={`flex items-center justify-center h-8 w-8 rounded-full ${icon === i.name ? 'bg-blue-500 text-white' : 'bg-gray-200 dark:bg-gray-700'}`}
+                                className={`flex items-center justify-center h-8 w-8 rounded-full transition ${icon === i.name ? 'bg-indigo-500 text-white' : 'bg-stone-100 hover:bg-stone-200 dark:bg-stone-700 dark:hover:bg-stone-600'}`}
                                 onClick={() => setIcon(i.name)}
                             >
                                 <i.component />
