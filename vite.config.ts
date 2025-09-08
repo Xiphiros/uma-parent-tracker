@@ -4,33 +4,25 @@ import tailwindcss from '@tailwindcss/vite'
 import fs from 'fs'
 import path from 'path'
 import { IncomingMessage, ServerResponse } from 'http';
+import Busboy from 'busboy';
 
 // Custom plugin to create a dev-only API endpoint for saving exclusions
 const devServerEndpoints = (): Plugin => ({
   name: 'dev-server-endpoints',
   configureServer(server) {
+    // Endpoint for skill exclusions
     server.middlewares.use('/api/update-exclusions', (req: IncomingMessage, res: ServerResponse, next) => {
-      if (req.method !== 'POST') {
-        return next();
-      }
-
+      if (req.method !== 'POST') return next();
       let body = '';
-      req.on('data', (chunk: any) => {
-        body += chunk.toString();
-      });
-
+      req.on('data', (chunk: any) => { body += chunk.toString(); });
       req.on('end', () => {
         try {
           const data = JSON.parse(body);
-          if (!Array.isArray(data)) {
-            throw new Error('Invalid data format. Expected an array of skill IDs.');
-          }
-          const filePath = path.resolve(process.cwd(), 'src/data/skill-exclusions.json');
+          if (!Array.isArray(data)) throw new Error('Invalid data format. Expected an array of skill IDs.');
           
-          // Sort for consistency and pretty-print
+          const filePath = path.resolve(process.cwd(), 'src/data/skill-exclusions.json');
           const sortedData = data.sort();
           const jsonString = JSON.stringify(sortedData, null, 2);
-
           fs.writeFileSync(filePath, jsonString + '\n');
           
           res.statusCode = 200;
@@ -43,6 +35,44 @@ const devServerEndpoints = (): Plugin => ({
           res.end(JSON.stringify({ message: `Error updating exclusions: ${message}` }));
         }
       });
+    });
+
+    // Endpoint for uma image uploads
+    server.middlewares.use('/api/upload-uma-image', (req: IncomingMessage, res: ServerResponse, next) => {
+        if (req.method !== 'POST') return next();
+
+        const busboy = Busboy({ headers: req.headers });
+        let umaId = '';
+        
+        busboy.on('field', (fieldname, val) => {
+            if (fieldname === 'umaId') {
+                umaId = val;
+            }
+        });
+
+        busboy.on('file', (fieldname, file, { filename, mimeType }) => {
+            if (fieldname === 'image' && umaId) {
+                const extension = path.extname(filename) || '.png';
+                const saveTo = path.join(process.cwd(), 'public/images/umas', `${umaId}${extension}`);
+                
+                // Ensure the directory exists
+                fs.mkdirSync(path.dirname(saveTo), { recursive: true });
+                
+                const writeStream = fs.createWriteStream(saveTo);
+                file.pipe(writeStream);
+                
+                writeStream.on('finish', () => {
+                    console.log(`Successfully saved image for umaId ${umaId} to ${saveTo}`);
+                });
+            }
+        });
+
+        busboy.on('finish', () => {
+            res.writeHead(200, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({ message: `Image for ${umaId} uploaded. Run prepare_data.py to apply.` }));
+        });
+
+        req.pipe(busboy);
     });
   }
 });
