@@ -128,7 +128,7 @@ const UmaImageManager = () => {
 
     return (
         <div className="max-h-[60vh] overflow-y-auto space-y-4 pr-2">
-            <p className="dev-tools__info-text">Upload an image for each character. Images should be square. After uploading, you must run code>python scripts/prepare_data.py</code> and then refresh the application to see the changes.</p>
+            <p className="dev-tools__info-text">Upload an image for each character. Images should be square. After uploading, you must run <code>python scripts/prepare_data.py</code> and then refresh the application to see the changes.</p>
             <table className="w-full text-left table-fixed dev-tools__table">
                 <thead>
                     <tr>
