@@ -15,7 +15,13 @@
 .tabs__list {
     display: flex;
     position: relative;
-    transition: transform 0.3s ease-out;
+    overflow-x: auto; /* Allow horizontal scrolling */
+    /* Hide the scrollbar since we have custom buttons */
+    scrollbar-width: none; /* For Firefox */
+    -ms-overflow-style: none;  /* For Internet Explorer and Edge */
+}
+.tabs__list::-webkit-scrollbar {
+    display: none; /* For Chrome, Safari, and Opera */
 }
 .tab {
     position: relative;
