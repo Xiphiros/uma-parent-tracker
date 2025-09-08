@@ -69,7 +69,7 @@ const AddFolderModal = ({ isOpen, onClose, onSave, folderToEdit }: AddFolderModa
                         {FOLDER_ICONS.map(i => (
                             <button
                                 key={i.name}
-                                className={`flex items-center justify-center h-8 w-8 rounded-full transition ${icon === i.name ? 'bg-indigo-500 text-white' : 'bg-stone-100 hover:bg-stone-200 dark:bg-stone-700 dark:hover:bg-stone-600'}`}
+                                className={`flex items-center justify-center h-8 w-8 rounded-full transition ${icon === i.name ? 'bg-indigo-500 text-white' : 'bg-stone-200 text-stone-600 hover:bg-stone-300 dark:bg-stone-700 dark:text-stone-300 dark:hover:bg-stone-600'}`}
                                 onClick={() => setIcon(i.name)}
                             >
                                 <i.component />
