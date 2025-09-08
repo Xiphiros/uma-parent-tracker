@@ -68,7 +68,7 @@ const Tabs = () => {
                 return;
             }
 
-            const scrollAmount = el.clientWidth * 0.8;
+            const scrollAmount = el.clientWidth * 0.5;
 
             if (direction === 'right') {
                 const remainingScroll = el.scrollWidth - el.clientWidth - el.scrollLeft;
