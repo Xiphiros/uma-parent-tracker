@@ -1,12 +1,14 @@
 import json
 from pathlib import Path
+import re
 
 # --- INSTRUCTIONS ---
 # 1. Create a `raw_data/` directory in your project root.
 # 2. Copy `skill_data.json`, `skillnames.json`, `skill_meta.json`, and `umas.json` from the `uma-tools` project into `raw_data/`.
-# 3. Create a `src/data/` directory in your project root if it doesn't exist.
-# 4. Run this script from your project root: `python scripts/prepare_data.py`
-# 5. It will generate `src/data/skill-list.json` and `src/data/uma-list.json`.
+# 3. Create `races.json` in `raw_data/` with a list of race names.
+# 4. Create a `src/data/` directory in your project root if it doesn't exist.
+# 5. Run this script from your project root: `python scripts/prepare_data.py`
+# 6. It will generate `src/data/skill-list.json` and `src/data/uma-list.json`.
 
 # Define paths relative to the script's location
 SCRIPT_DIR = Path(__file__).parent
@@ -17,12 +19,13 @@ UMA_IMG_DIR = PROJECT_ROOT / 'public' / 'images' / 'umas'
 EXCLUSION_PATH = OUTPUT_DATA_DIR / 'skill-exclusions.json'
 
 def prepare_skills():
-    """Processes raw skill data into a format usable by the application."""
-    print("Processing skills...")
+    """Processes raw skill and race data into a format usable by the application."""
+    print("Processing skills and races...")
     
     skill_data_path = RAW_DATA_DIR / 'skill_data.json'
     skill_names_path = RAW_DATA_DIR / 'skillnames.json'
     skill_meta_path = RAW_DATA_DIR / 'skill_meta.json'
+    races_path = RAW_DATA_DIR / 'races.json'
     output_path = OUTPUT_DATA_DIR / 'skill-list.json'
     dev_output_path = OUTPUT_DATA_DIR / 'skill-list-dev.json'
 
@@ -64,8 +67,29 @@ def prepare_skills():
             'rarity': skill.get('rarity'),
             'groupId': skill_meta[skill_id].get('groupId')
         })
+        
+    # Process and add races
+    if races_path.exists():
+        with open(races_path, 'r', encoding='utf-8') as f:
+            races = json.load(f)
+        print(f"Loaded {len(races)} races.")
+        for race_name in races:
+            # Generate a simple, unique ID from the race name
+            race_id = "race_" + re.sub(r'[^a-z0-9]+', '', race_name.lower())
+            all_possible_skills.append({
+                'id': race_id,
+                'name_jp': race_name,
+                'name_en': race_name,
+                'type': 'normal', # Treat races as normal white sparks
+                'rarity': 1,
+                'groupId': None
+            })
+    else:
+        print("Warning: races.json not found in raw_data/. No races will be added.")
+
 
     # Save the dev-only unfiltered list
+    all_possible_skills.sort(key=lambda x: x['name_en'])
     with open(dev_output_path, 'w', encoding='utf-8') as f:
         json.dump(all_possible_skills, f, indent=2, ensure_ascii=False)
     print(f"Dev skill list saved to: {dev_output_path.relative_to(PROJECT_ROOT)}")
@@ -90,7 +114,7 @@ def prepare_skills():
     with open(output_path, 'w', encoding='utf-8') as f:
         json.dump(inheritable_skills, f, indent=2, ensure_ascii=False)
         
-    print(f"Successfully processed {len(inheritable_skills)} skills for production.")
+    print(f"Successfully processed {len(inheritable_skills)} skills and races for production.")
     print(f"Skill output saved to: {output_path.relative_to(PROJECT_ROOT)}")
 
 def prepare_umas():
