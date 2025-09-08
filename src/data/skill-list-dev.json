@@ -2368,6 +2368,14 @@
     "groupId": 90032
   },
   {
+    "id": "race_urafinale",
+    "name_jp": "URA Finale",
+    "name_en": "URA Finale",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": null
+  },
+  {
     "id": "201591",
     "name_jp": "Uma Stan",
     "name_en": "Uma Stan",
