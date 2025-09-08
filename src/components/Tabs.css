@@ -39,16 +39,22 @@
 }
 .folder-content {
     padding: 0;
-    margin-top: -2px; /* Overlap with bottom border */
+    margin-top: -3px; /* Overlap with bottom border */
     border-left: 2px solid var(--folder-color);
     background-color: var(--color-card-bg-hover);
-    border-radius: 0 0 6px 6px;
+    border-radius: 0 6px 6px 6px; /* Sharpen top-left corner */
 }
 .folder-content > ul {
     list-style: none;
     margin: 0;
     padding: 0.25rem 0.5rem 0.25rem 0.75rem;
     display: flex;
+}
+.tab--in-folder .tab__button {
+    background-color: var(--color-card-bg-hover);
+}
+.tab--in-folder .tab__button:hover {
+    background-color: var(--color-border);
 }
 .tab--dragging {
     opacity: 0.5;
@@ -76,6 +82,7 @@
     white-space: nowrap;
     transition: all 0.2s ease;
     cursor: grab;
+    border-radius: 4px;
 }
 .tab__button:active {
     cursor: grabbing;
