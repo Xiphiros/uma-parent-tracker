@@ -91,7 +91,7 @@ const Tabs = () => {
     const dragItem = useRef<{ id: string | number, type: 'folder' | 'profile', parentId: string | null } | null>(null);
 
     const getDragTargetInfo = (element: HTMLElement) => {
-        const li = element.closest<HTMLElement>('.tab');
+        const li = element.closest<HTMLElement>('.tab, .folder-group');
         if (!li) return null;
         return {
             id: li.dataset.id!,
@@ -100,7 +100,7 @@ const Tabs = () => {
         }
     };
 
-    const handleDragStart = (e: React.DragEvent<HTMLLIElement>) => {
+    const handleDragStart = (e: React.DragEvent<HTMLElement>) => {
         const info = getDragTargetInfo(e.currentTarget);
         if (info) {
             dragItem.current = {
@@ -112,7 +112,7 @@ const Tabs = () => {
         }
     };
 
-    const handleDragEnter = (e: React.DragEvent<HTMLLIElement>) => {
+    const handleDragEnter = (e: React.DragEvent<HTMLElement>) => {
         e.preventDefault();
         const info = getDragTargetInfo(e.currentTarget);
         if (info?.type === 'folder' && dragItem.current?.type === 'profile') {
@@ -121,7 +121,7 @@ const Tabs = () => {
         e.currentTarget.classList.add('tab--drag-over');
     };
     
-    const handleDragLeave = (e: React.DragEvent<HTMLLIElement>) => {
+    const handleDragLeave = (e: React.DragEvent<HTMLElement>) => {
         e.preventDefault();
         const info = getDragTargetInfo(e.currentTarget);
         if (info?.id === dragOverFolderId) {
@@ -130,7 +130,7 @@ const Tabs = () => {
         e.currentTarget.classList.remove('tab--drag-over');
     };
 
-    const handleDrop = (e: React.DragEvent<HTMLLIElement>) => {
+    const handleDrop = (e: React.DragEvent<HTMLElement>) => {
         e.preventDefault();
         setDragOverFolderId(null);
         e.currentTarget.classList.remove('tab--drag-over');
@@ -186,7 +186,7 @@ const Tabs = () => {
         dragItem.current = null;
     };
     
-    const handleDragEnd = (e: React.DragEvent<HTMLLIElement>) => {
+    const handleDragEnd = (e: React.DragEvent<HTMLElement>) => {
         e.currentTarget.classList.remove('tab--dragging');
         setDragOverFolderId(null);
     };
@@ -260,40 +260,41 @@ const Tabs = () => {
 
     // --- Render Logic ---
     const renderLayout = () => {
-        const renderedItems: React.ReactElement[] = [];
-        layout.forEach(itemId => {
+        return layout.map(itemId => {
             if (typeof itemId === 'string' && foldersById.has(itemId)) {
                 // It's a folder
                 const folder = foldersById.get(itemId)!;
                 const profilesInFolder = folder.profileIds.map(pid => profilesById.get(pid)).filter(Boolean) as Profile[];
                 const isFolderActive = profilesInFolder.some(p => p.id === activeProfileId);
+                const folderContentStyle = { '--folder-color': folder.color } as React.CSSProperties;
 
-                renderedItems.push(
-                    <li key={folder.id} className="tab" draggable="true"
+                return (
+                    <li key={folder.id} className="folder-group" draggable="true"
                         data-id={folder.id} data-type="folder"
                         onDragStart={handleDragStart} onDragEnter={handleDragEnter} onDragLeave={handleDragLeave}
                         onDragOver={(e) => e.preventDefault()} onDrop={handleDrop} onDragEnd={handleDragEnd}>
+                        
                         <FolderTab folder={folder} profilesInFolder={profilesInFolder} isActive={isFolderActive} isDragOver={dragOverFolderId === folder.id} onToggleCollapse={toggleFolderCollapse} onSettings={handleOpenFolderSettings} />
+                        
+                        {!folder.isCollapsed && (
+                            <div className="folder-content" style={folderContentStyle}>
+                                {profilesInFolder.map(profile => renderProfileTab(profile, true, folder.id))}
+                            </div>
+                        )}
                     </li>
                 );
-
-                if (!folder.isCollapsed) {
-                    profilesInFolder.forEach(profile => {
-                        renderedItems.push(renderProfileTab(profile, true, folder.id));
-                    });
-                }
 
             } else if (typeof itemId === 'number' && profilesById.has(itemId)) {
                 // It's a top-level profile
                 const profile = profilesById.get(itemId)!;
-                renderedItems.push(renderProfileTab(profile, false, null));
+                return renderProfileTab(profile, false, null);
             }
+            return null;
         });
-        return renderedItems;
     };
     
     const renderProfileTab = (profile: Profile, inFolder: boolean, parentId: string | null) => (
-        <li key={profile.id} 
+        <div key={profile.id} 
             className={`tab ${profile.id === activeProfileId ? 'tab--active' : ''} ${inFolder ? 'tab--in-folder' : ''}`}
             draggable="true"
             data-id={profile.id} data-type="profile" data-parent-id={parentId || ''}
@@ -314,7 +315,7 @@ const Tabs = () => {
                     <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
                 </button>
             </div>
-        </li>
+        </div>
     );
 
     return (
