@@ -8,7 +8,8 @@ export interface Skill {
 }
 
 export interface Uma {
-  id: string;
+  id: string; // This will now be the Outfit ID, e.g., "100101"
+  characterId: string; // This will be the base character ID, e.g., "1001"
   name_en: string;
   image?: string;
 }
@@ -47,7 +48,8 @@ export interface Goal {
 
 export interface Parent {
   id: number;
-  name: string;
+  umaId: string; // The outfit ID, e.g., "100101"
+  name: string; // The formatted name, e.g., "[Special Dreamer] Special Week"
   gen: number;
   blueSpark: BlueSpark;
   pinkSpark: PinkSpark;
