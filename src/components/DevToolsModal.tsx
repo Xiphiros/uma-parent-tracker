@@ -1,31 +1,49 @@
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Modal from './common/Modal';
 import { DualListBox } from './common/DualListBox';
-import skillListDev from '../data/skill-list-dev.json';
-import initialExclusions from '../data/skill-exclusions.json';
 
 interface DevToolsModalProps {
     isOpen: boolean;
     onClose: () => void;
 }
 
+interface DevSkill {
+    id: string;
+    name_en: string;
+}
+
+interface Item {
+    id: string;
+    name: string;
+}
+
 const DevToolsModal = ({ isOpen, onClose }: DevToolsModalProps) => {
-    const [excludedIds, setExcludedIds] = useState(new Set(initialExclusions));
+    const [excludedIds, setExcludedIds] = useState<Set<string>>(new Set());
+    const [allSkills, setAllSkills] = useState<Item[]>([]);
     const [statusMessage, setStatusMessage] = useState('');
     const [hasChanges, setHasChanges] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
 
-    const allSkills = useMemo(() =>
-        skillListDev.map(s => ({ id: s.id, name: s.name_en })).sort((a,b) => a.name.localeCompare(b.name))
-    , []);
-    
     useEffect(() => {
         if (isOpen) {
+            setIsLoading(true);
             setStatusMessage('');
             setHasChanges(false);
-            // Re-fetch initial state in case it was changed elsewhere
-            // The import is static, so for now we reset from the imported value.
-            // A more robust solution would fetch from server if this becomes an issue.
-            setExcludedIds(new Set(initialExclusions));
+            
+            Promise.all([
+                fetch('../data/skill-list-dev.json').then(res => res.json()),
+                fetch('../data/skill-exclusions.json').then(res => res.json())
+            ]).then(([devSkills, initialExclusions]: [DevSkill[], string[]]) => {
+                const sortedSkills = devSkills
+                    .map(s => ({ id: s.id, name: s.name_en }))
+                    .sort((a, b) => a.name.localeCompare(b.name));
+                setAllSkills(sortedSkills);
+                setExcludedIds(new Set(initialExclusions));
+            }).catch(err => {
+                setStatusMessage('Error: Could not load skill data. ' + err.message);
+            }).finally(() => {
+                setIsLoading(false);
+            });
         }
     }, [isOpen]);
 
@@ -57,23 +75,29 @@ const DevToolsModal = ({ isOpen, onClose }: DevToolsModalProps) => {
 
     return (
         <Modal isOpen={isOpen} onClose={onClose} title="Developer Tools: Skill Exclusions" size="lg">
-            <div className="my-4">
-                <DualListBox
-                    allItems={allSkills}
-                    initialExcludedIds={excludedIds}
-                    onChange={handleExclusionsChange}
-                    availableTitle="Available Skills"
-                    excludedTitle="Excluded Skills"
-                />
-            </div>
-            {statusMessage && (
-                <p className={`mt-4 text-sm ${statusMessage.startsWith('Error') ? 'text-red-500' : 'text-green-500'}`}>
-                    {statusMessage}
-                </p>
+            {isLoading ? (
+                <p>Loading skill data...</p>
+            ) : (
+                <>
+                    <div className="my-4">
+                        <DualListBox
+                            allItems={allSkills}
+                            initialExcludedIds={excludedIds}
+                            onChange={handleExclusionsChange}
+                            availableTitle="Available Skills"
+                            excludedTitle="Excluded Skills"
+                        />
+                    </div>
+                    {statusMessage && (
+                        <p className={`mt-4 text-sm ${statusMessage.startsWith('Error') ? 'text-red-500' : 'text-green-500'}`}>
+                            {statusMessage}
+                        </p>
+                    )}
+                </>
             )}
             <div className="dialog-modal__footer">
                 <button className="button button--neutral" onClick={onClose}>Close</button>
-                <button className="button button--primary" onClick={handleSave} disabled={!hasChanges}>Save Changes</button>
+                <button className="button button--primary" onClick={handleSave} disabled={!hasChanges || isLoading}>Save Changes</button>
             </div>
         </Modal>
     );
