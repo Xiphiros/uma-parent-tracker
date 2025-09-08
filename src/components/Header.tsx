@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { useTheme } from '../hooks/useTheme';
-import SettingsModal from './SettingsModal';
-import InfoModal from './InfoModal';
+import SettingsModal from './SettingsModal.tsx';
+import InfoModal from './InfoModal.tsx';
 import './Header.css';
-import DevToolsModal from './DevToolsModal';
+import DevToolsModal from './DevToolsModal.tsx';
 
 const Header = () => {
     const [theme, toggleTheme] = useTheme();
