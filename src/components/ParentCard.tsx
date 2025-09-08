@@ -15,7 +15,7 @@ const ParentCard = ({ parent, isTopParent = false, onEdit, onDelete }: ParentCar
     const { masterUmaList, getActiveProfile } = useAppContext();
     const goal = getActiveProfile()?.goal;
 
-    const umaData = useMemo(() => masterUmaList.find(u => u.name_en === parent.name), [masterUmaList, parent.name]);
+    const umaData = useMemo(() => masterUmaList.find(u => u.id === parent.umaId), [masterUmaList, parent.umaId]);
 
     const allWhiteSparks = useMemo(() => {
         if (!goal) return parent.whiteSparks.map(spark => ({ ...spark, tier: 'Other' }));
