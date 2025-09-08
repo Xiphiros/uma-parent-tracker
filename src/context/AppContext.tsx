@@ -20,6 +20,8 @@ interface AppContextType {
   switchProfile: (id: number) => void;
   renameProfile: (id: number, newName: string) => void;
   deleteProfile: (id: number) => void;
+  togglePinProfile: (id: number) => void;
+  reorderProfiles: (sourceIndex: number, destinationIndex: number) => void;
   updateGoal: (goal: Goal) => void;
   updateWishlistItem: (listName: 'wishlist' | 'uniqueWishlist', oldName: string, newItem: WishlistItem) => void;
   addParent: (parentData: NewParentData) => void;
@@ -42,6 +44,7 @@ const createNewProfile = (name: string): Profile => ({
   name,
   goal: { primaryBlue: [], primaryPink: [], uniqueWishlist: [], wishlist: [] },
   roster: [],
+  isPinned: false,
 });
 
 const createDefaultState = (): AppData => {
@@ -78,8 +81,10 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
         data = createDefaultState();
       }
 
+      // Migration for older data structures
       data.profiles.forEach(p => {
         if (!p.goal.uniqueWishlist) p.goal.uniqueWishlist = [];
+        if (p.isPinned === undefined) p.isPinned = false;
         p.roster.forEach(parent => {
             if (!parent.uniqueSparks) parent.uniqueSparks = [];
         });
@@ -176,6 +181,24 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
         newActiveId = newProfiles.length > 0 ? newProfiles[0].id : null;
       }
       return { ...prevData, profiles: newProfiles, activeProfileId: newActiveId };
+    });
+  };
+
+  const togglePinProfile = (id: number) => {
+    setAppData(prevData => {
+        const newProfiles = prevData.profiles.map(p => 
+            p.id === id ? { ...p, isPinned: !p.isPinned } : p
+        );
+        return { ...prevData, profiles: newProfiles };
+    });
+  };
+
+  const reorderProfiles = (sourceIndex: number, destinationIndex: number) => {
+     setAppData(prevData => {
+        const profilesCopy = [...prevData.profiles];
+        const [removed] = profilesCopy.splice(sourceIndex, 1);
+        profilesCopy.splice(destinationIndex, 0, removed);
+        return { ...prevData, profiles: profilesCopy };
     });
   };
   
@@ -303,6 +326,8 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
     switchProfile,
     renameProfile,
     deleteProfile,
+    togglePinProfile,
+    reorderProfiles,
     updateGoal,
     updateWishlistItem,
     addParent,
