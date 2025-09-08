@@ -14,6 +14,7 @@
 }
 .tabs__list {
     display: flex;
+    align-items: flex-start; /* Align items to the top */
     position: relative;
     overflow-x: auto; /* Allow horizontal scrolling */
     /* Hide the scrollbar since we have custom buttons */
@@ -27,9 +28,19 @@
     position: relative;
     flex-shrink: 0;
 }
-.tab--in-folder {
-    margin-left: -15px;
-    padding-left: 15px;
+.folder-group {
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.folder-content {
+    display: flex;
+    padding: 0.25rem 0.5rem 0.25rem 0.75rem;
+    margin-top: -2px; /* Overlap with bottom border */
+    border-left: 2px solid var(--folder-color);
+    background-color: var(--color-card-bg-hover);
+    border-radius: 0 0 6px 6px;
 }
 .tab--dragging {
     opacity: 0.5;
