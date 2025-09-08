@@ -320,27 +320,27 @@ const Tabs = () => {
     return (
         <>
             <nav className="tabs__container">
-                 <div className="tabs__list-wrapper">
-                    <button 
-                        className={`tabs__nav-btn tabs__nav-btn--left ${canScrollLeft ? 'tabs__nav-btn--visible' : ''}`} 
-                        onClick={(e) => handleScroll(e, 'left')} 
-                        disabled={!canScrollLeft}
-                        title="Scroll Left (Hold Shift for Start)"
-                    >
-                        <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" /></svg>
-                    </button>
+                <button 
+                    className="tabs__nav-btn" 
+                    onClick={(e) => handleScroll(e, 'left')} 
+                    disabled={!canScrollLeft}
+                    title="Scroll Left (Hold Shift for Start)"
+                >
+                    <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" /></svg>
+                </button>
+                <div className="tabs__list-wrapper">
                     <ul className="tabs__list" ref={tabListRef}>
                        {renderLayout()}
                     </ul>
-                    <button 
-                        className={`tabs__nav-btn tabs__nav-btn--right ${canScrollRight ? 'tabs__nav-btn--visible' : ''}`} 
-                        onClick={(e) => handleScroll(e, 'right')} 
-                        disabled={!canScrollRight}
-                        title="Scroll Right (Hold Shift for End)"
-                    >
-                        <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" /></svg>
-                    </button>
                 </div>
+                <button 
+                    className="tabs__nav-btn" 
+                    onClick={(e) => handleScroll(e, 'right')} 
+                    disabled={!canScrollRight}
+                    title="Scroll Right (Hold Shift for End)"
+                >
+                    <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" /></svg>
+                </button>
                 <div className="tabs__actions-group">
                     <button className="tabs__add-btn" title="Add New Folder" onClick={() => { setFolderToEdit(null); setFolderModalOpen(true); }}>
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 19a2 2 0 01-2-2V7a2 2 0 012-2h4l2 2h4a2 2 0 012 2v1M5 19h14a2 2 0 002-2v-5a2 2 0 00-2-2H9a2 2 0 00-2 2v5a2 2 0 01-2 2z" /></svg>
