@@ -1,10 +1,11 @@
 import { createContext, useContext, useState, useEffect, ReactNode, useRef } from 'react';
-import { AppData, Profile, Skill, Uma, Goal, Parent, NewParentData, WishlistItem } from '../types';
+import { AppData, Profile, Skill, Uma, Goal, Parent, NewParentData, WishlistItem, Folder, IconName } from '../types';
 import masterSkillListJson from '../data/skill-list.json';
 import masterUmaListJson from '../data/uma-list.json';
 import { calculateScore } from '../utils/scoring';
 
-const DB_KEY = 'umaTrackerData_v2';
+const DB_KEY = 'umaTrackerData_v2'; // Keep old key for migration
+const CURRENT_VERSION = 3;
 
 interface AppContextType {
   loading: boolean;
@@ -16,12 +17,17 @@ interface AppContextType {
   exportData: () => void;
   importData: (file: File) => Promise<void>;
   deleteAllData: () => void;
-  addProfile: (name: string) => void;
+  addProfile: (name: string, folderId?: string) => void;
   switchProfile: (id: number) => void;
   renameProfile: (id: number, newName: string) => void;
   deleteProfile: (id: number) => void;
   togglePinProfile: (id: number) => void;
-  reorderProfiles: (sourceIndex: number, destinationIndex: number) => void;
+  reorderLayout: (sourceIndex: number, destinationIndex: number) => void;
+  moveProfileToFolder: (profileId: number, folderId: string | null) => void;
+  addFolder: (name: string, color: string, icon: IconName) => void;
+  updateFolder: (folderId: string, updates: Partial<Folder>) => void;
+  deleteFolder: (folderId: string, deleteContained: boolean) => void;
+  toggleFolderCollapse: (folderId: string) => void;
   updateGoal: (goal: Goal) => void;
   updateWishlistItem: (listName: 'wishlist' | 'uniqueWishlist', oldName: string, newItem: WishlistItem) => void;
   addParent: (parentData: NewParentData) => void;
@@ -50,20 +56,59 @@ const createNewProfile = (name: string): Profile => ({
 const createDefaultState = (): AppData => {
     const firstProfile = createNewProfile('My First Project');
     return {
-        version: 2,
+        version: CURRENT_VERSION,
         activeProfileId: firstProfile.id,
         profiles: [firstProfile],
+        folders: [],
+        layout: [firstProfile.id],
     };
 };
+
+const migrateData = (data: any): AppData => {
+    // V1 -> V2: Single project structure to multi-project
+    if (!data.version || data.version < 2) {
+        console.log("Migrating data from v1 to v2");
+        const singleProfile = createNewProfile('Imported Project');
+        singleProfile.goal = data.goal || { primaryBlue: [], primaryPink: [], uniqueWishlist: [], wishlist: [] };
+        singleProfile.roster = data.roster || [];
+        data = {
+            version: 2,
+            activeProfileId: singleProfile.id,
+            profiles: [singleProfile],
+        };
+    }
+    
+    // V2 -> V3: Add folders and layout
+    if (data.version < 3) {
+        console.log("Migrating data from v2 to v3");
+        data.version = 3;
+        data.folders = [];
+        data.layout = data.profiles.map((p: Profile) => p.id);
+    }
+    
+    // Universal sanity checks for all versions
+    data.profiles.forEach((p: Profile) => {
+        if (!p.goal.uniqueWishlist) p.goal.uniqueWishlist = [];
+        if (p.isPinned === undefined) p.isPinned = false;
+        p.roster.forEach(parent => {
+            if (!parent.uniqueSparks) parent.uniqueSparks = [];
+        });
+    });
+
+    return data as AppData;
+};
+
 
 export const AppProvider = ({ children }: { children: ReactNode }) => {
   const [loading, setLoading] = useState(true);
   const [masterSkillList] = useState<Skill[]>(masterSkillListJson as Skill[]);
   const [masterUmaList] = useState<Uma[]>(masterUmaListJson as Uma[]);
   const [appData, setAppData] = useState<AppData>({
-    version: 2,
+    version: CURRENT_VERSION,
     activeProfileId: null,
     profiles: [],
+    folders: [],
+    layout: [],
   });
 
   const isInitialLoad = useRef(true);
@@ -74,21 +119,17 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
       const savedData = localStorage.getItem(DB_KEY);
 
       if (savedData) {
-        data = JSON.parse(savedData);
+        try {
+            data = migrateData(JSON.parse(savedData));
+        } catch (e) {
+            console.error("Failed to parse or migrate saved data", e);
+            data = createDefaultState();
+        }
       }
       
       if (!data || data.profiles.length === 0) {
         data = createDefaultState();
       }
-
-      // Migration for older data structures
-      data.profiles.forEach(p => {
-        if (!p.goal.uniqueWishlist) p.goal.uniqueWishlist = [];
-        if (p.isPinned === undefined) p.isPinned = false;
-        p.roster.forEach(parent => {
-            if (!parent.uniqueSparks) parent.uniqueSparks = [];
-        });
-      });
 
       setAppData(data);
       setLoading(false);
@@ -120,7 +161,7 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     const today = new Date().toISOString().split('T')[0];
-    a.href = url; // This line was missing
+    a.href = url;
     a.download = `umamusume_tracker_backup_${today}.json`;
     document.body.appendChild(a);
     a.click();
@@ -133,11 +174,9 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
       const reader = new FileReader();
       reader.onload = (e) => {
         try {
-          const data = JSON.parse(e.target?.result as string);
-          if (!data.version || !data.profiles || !data.activeProfileId) {
-            throw new Error("Invalid backup file format.");
-          }
-          setAppData(data);
+          const rawData = JSON.parse(e.target?.result as string);
+          const migratedData = migrateData(rawData);
+          setAppData(migratedData);
           resolve();
         } catch (error) {
           console.error("Import Error:", error);
@@ -153,13 +192,21 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
       setAppData(createDefaultState());
   };
 
-  const addProfile = (name: string) => {
+  const addProfile = (name: string, folderId?: string) => {
     const newProfile = createNewProfile(name);
-    setAppData(prevData => ({
-      ...prevData,
-      activeProfileId: newProfile.id,
-      profiles: [...prevData.profiles, newProfile],
-    }));
+    setAppData(prevData => {
+        const newData = { ...prevData };
+        newData.profiles = [...newData.profiles, newProfile];
+        if (folderId) {
+            newData.folders = newData.folders.map(f =>
+                f.id === folderId ? { ...f, profileIds: [...f.profileIds, newProfile.id] } : f
+            );
+        } else {
+            newData.layout = [...newData.layout, newProfile.id];
+        }
+        newData.activeProfileId = newProfile.id;
+        return newData;
+    });
   };
 
   const switchProfile = (id: number) => {
@@ -176,11 +223,17 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
   const deleteProfile = (id: number) => {
     setAppData(prevData => {
       const newProfiles = prevData.profiles.filter(p => p.id !== id);
+      const newLayout = prevData.layout.filter(item => item !== id);
+      const newFolders = prevData.folders.map(f => ({
+          ...f,
+          profileIds: f.profileIds.filter(pid => pid !== id),
+      }));
+      
       let newActiveId = prevData.activeProfileId;
       if (newActiveId === id) {
         newActiveId = newProfiles.length > 0 ? newProfiles[0].id : null;
       }
-      return { ...prevData, profiles: newProfiles, activeProfileId: newActiveId };
+      return { ...prevData, profiles: newProfiles, layout: newLayout, folders: newFolders, activeProfileId: newActiveId };
     });
   };
 
@@ -193,13 +246,86 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
     });
   };
 
-  const reorderProfiles = (sourceIndex: number, destinationIndex: number) => {
+  const reorderLayout = (sourceIndex: number, destinationIndex: number) => {
      setAppData(prevData => {
-        const profilesCopy = [...prevData.profiles];
-        const [removed] = profilesCopy.splice(sourceIndex, 1);
-        profilesCopy.splice(destinationIndex, 0, removed);
-        return { ...prevData, profiles: profilesCopy };
+        const layoutCopy = [...prevData.layout];
+        const [removed] = layoutCopy.splice(sourceIndex, 1);
+        layoutCopy.splice(destinationIndex, 0, removed);
+        return { ...prevData, layout: layoutCopy };
     });
+  };
+
+  const moveProfileToFolder = (profileId: number, folderId: string | null) => {
+      setAppData(prevData => {
+          const newData = { ...prevData };
+          // 1. Remove from old location (either layout or another folder)
+          newData.layout = newData.layout.filter(item => item !== profileId);
+          newData.folders = newData.folders.map(f => ({
+              ...f,
+              profileIds: f.profileIds.filter(pId => pId !== profileId)
+          }));
+
+          // 2. Add to new location
+          if (folderId) {
+              newData.folders = newData.folders.map(f =>
+                  f.id === folderId ? { ...f, profileIds: [...f.profileIds, profileId] } : f
+              );
+          } else {
+              newData.layout.push(profileId);
+          }
+          return newData;
+      });
+  };
+
+  const addFolder = (name: string, color: string, icon: IconName) => {
+      const newFolder: Folder = {
+          id: `f${Date.now()}`,
+          name,
+          color,
+          icon,
+          isCollapsed: false,
+          profileIds: [],
+      };
+      setAppData(prevData => ({
+          ...prevData,
+          folders: [...prevData.folders, newFolder],
+          layout: [...prevData.layout, newFolder.id],
+      }));
+  };
+
+  const updateFolder = (folderId: string, updates: Partial<Folder>) => {
+      setAppData(prevData => ({
+          ...prevData,
+          folders: prevData.folders.map(f => f.id === folderId ? { ...f, ...updates } : f)
+      }));
+  };
+
+  const deleteFolder = (folderId: string, deleteContained: boolean) => {
+      setAppData(prevData => {
+          const folderToDelete = prevData.folders.find(f => f.id === folderId);
+          if (!folderToDelete) return prevData;
+
+          const newFolders = prevData.folders.filter(f => f.id !== folderId);
+          let newLayout = prevData.layout.filter(item => item !== folderId);
+          let newProfiles = [...prevData.profiles];
+
+          if (deleteContained) {
+              const idsToDelete = new Set(folderToDelete.profileIds);
+              newProfiles = newProfiles.filter(p => !idsToDelete.has(p.id));
+          } else {
+              // Move profiles to top-level layout
+              newLayout = [...newLayout, ...folderToDelete.profileIds];
+          }
+          
+          return { ...prevData, folders: newFolders, layout: newLayout, profiles: newProfiles };
+      });
+  };
+
+  const toggleFolderCollapse = (folderId: string) => {
+      setAppData(prevData => ({
+          ...prevData,
+          folders: prevData.folders.map(f => f.id === folderId ? { ...f, isCollapsed: !f.isCollapsed } : f)
+      }));
   };
   
   const updateGoal = (goal: Goal) => {
@@ -207,7 +333,6 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
       ...prevData,
       profiles: prevData.profiles.map(p => {
         if (p.id === prevData.activeProfileId) {
-          // Recalculate scores for all parents in the roster with the new goal
           const updatedRoster = p.roster.map(parent => ({
             ...parent,
             score: calculateScore(parent, goal)
@@ -227,12 +352,11 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
           const newGoal = { ...p.goal };
           const list = newGoal[listName] as WishlistItem[];
           const itemIndex = list.findIndex(i => i.name === oldName);
-          if (itemIndex === -1) return p; // Item not found
+          if (itemIndex === -1) return p;
 
           list[itemIndex] = newItem;
 
           let newRoster = p.roster;
-          // If a skill name changes, we must update it across the entire roster
           if (oldName !== newItem.name) {
             const sparkListName = listName === 'wishlist' ? 'whiteSparks' : 'uniqueSparks';
             newRoster = p.roster.map(parent => ({
@@ -243,7 +367,6 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
             }));
           }
 
-          // Recalculate all scores with the updated goal
           newRoster = newRoster.map(parent => ({
             ...parent,
             score: calculateScore(parent, newGoal)
@@ -327,7 +450,12 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
     renameProfile,
     deleteProfile,
     togglePinProfile,
-    reorderProfiles,
+    reorderLayout,
+    moveProfileToFolder,
+    addFolder,
+    updateFolder,
+    deleteFolder,
+    toggleFolderCollapse,
     updateGoal,
     updateWishlistItem,
     addParent,
