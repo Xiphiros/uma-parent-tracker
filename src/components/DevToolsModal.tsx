@@ -123,12 +123,12 @@ const UmaImageManager = () => {
         <div className="max-h-[60vh] overflow-y-auto space-y-4 pr-2">
             <p className="text-sm text-stone-500">Upload an image for each character. Images should be square. After uploading, you must run <code className="bg-stone-200 dark:bg-stone-900 px-1 rounded">python scripts/prepare_data.py</code> and then refresh the application to see the changes.</p>
             <table className="w-full text-left table-fixed">
-                <thead className="sticky top-0 bg-stone-100 dark:bg-stone-800 z-10">
+                <thead className="sticky top-0 bg-stone-50 dark:bg-stone-700 z-10">
                     <tr>
                         <th className="p-2 w-20">Image</th>
-                        <th className="p-2 w-1/4">Name</th>
-                        <th className="p-2 w-1/2">Actions</th>
-                        <th className="p-2">Status</th>
+                        <th className="p-2 w-48">Name</th>
+                        <th className="p-2">Actions</th>
+                        <th className="p-2 w-48">Status</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -142,8 +142,8 @@ const UmaImageManager = () => {
                                 <div className="flex items-center gap-2">
                                     <input 
                                         type="file" 
-                                        className="form__input py-1 text-xs w-full" 
-                                        ref={el => fileInputRefs.current[uma.id] = el} 
+                                        className="text-xs text-stone-500 file:mr-3 file:py-1 file:px-2 file:rounded file:border file:border-stone-300 dark:file:border-stone-600 file:text-xs file:font-medium file:bg-stone-100 dark:file:bg-stone-800 file:text-stone-600 dark:file:text-stone-300 hover:file:bg-stone-200 dark:hover:file:bg-stone-600 file:cursor-pointer"
+                                        ref={el => { fileInputRefs.current[uma.id] = el }} 
                                         accept="image/png, image/jpeg, image/webp" 
                                     />
                                     <button 
@@ -154,7 +154,7 @@ const UmaImageManager = () => {
                                     </button>
                                 </div>
                             </td>
-                            <td className="p-2 text-xs text-stone-500 align-middle">{statusMessages[uma.id]}</td>
+                            <td className="p-2 text-xs text-stone-500 align-middle truncate">{statusMessages[uma.id]}</td>
                         </tr>
                     ))}
                 </tbody>
