@@ -11,12 +11,13 @@
     transition: all 0.2s ease;
     cursor: grab;
     border-radius: 6px 6px 0 0;
+    background-color: transparent !important;
 }
 .folder-tab__button:active {
     cursor: grabbing;
 }
 .folder-tab__button:hover {
-    background-color: var(--color-card-bg-hover);
+    background-color: transparent !important;
 }
 .folder-tab:hover .tab__actions {
     opacity: 1;
@@ -25,7 +26,7 @@
     border-bottom-color: var(--color-accent-primary);
 }
 .folder-tab--drag-over .folder-tab__button {
-    background-color: var(--color-accent-primary);
+    background-color: var(--color-accent-primary) !important;
     color: white !important; /* Override inline color style */
 }
 .folder-tab__collapse-btn {
