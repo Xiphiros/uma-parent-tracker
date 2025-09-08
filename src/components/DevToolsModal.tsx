@@ -31,8 +31,8 @@ const DevToolsModal = ({ isOpen, onClose }: DevToolsModalProps) => {
             setHasChanges(false);
             
             Promise.all([
-                fetch('../data/skill-list-dev.json').then(res => res.json()),
-                fetch('../data/skill-exclusions.json').then(res => res.json())
+                fetch('/src/data/skill-list-dev.json').then(res => res.json()),
+                fetch('/src/data/skill-exclusions.json').then(res => res.json())
             ]).then(([devSkills, initialExclusions]: [DevSkill[], string[]]) => {
                 const sortedSkills = devSkills
                     .map(s => ({ id: s.id, name: s.name_en }))
@@ -74,7 +74,7 @@ const DevToolsModal = ({ isOpen, onClose }: DevToolsModalProps) => {
     };
 
     return (
-        <Modal isOpen={isOpen} onClose={onClose} title="Developer Tools: Skill Exclusions" size="lg">
+        <Modal isOpen={isOpen} onClose={onClose} title="Developer Tools: Skill Exclusions" size="xl">
             {isLoading ? (
                 <p>Loading skill data...</p>
             ) : (
