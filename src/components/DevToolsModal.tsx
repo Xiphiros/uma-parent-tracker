@@ -2,6 +2,7 @@ import { useState, useEffect, useRef, ChangeEvent } from 'react';
 import Modal from './common/Modal';
 import { DualListBox } from './common/DualListBox';
 import { useAppContext } from '../context/AppContext';
+import './DevToolsModal.css';
 
 type DevTab = 'skills' | 'images';
 
@@ -127,14 +128,14 @@ const UmaImageManager = () => {
 
     return (
         <div className="max-h-[60vh] overflow-y-auto space-y-4 pr-2">
-            <p className="text-sm text-stone-500">Upload an image for each character. Images should be square. After uploading, you must run <code className="bg-stone-200 dark:bg-stone-900 px-1 rounded">python scripts/prepare_data.py</code> and then refresh the application to see the changes.</p>
-            <table className="w-full text-left table-fixed">
-                <thead className="sticky top-0 bg-stone-100 dark:bg-stone-700 z-10">
+            <p className="dev-tools__info-text">Upload an image for each character. Images should be square. After uploading, you must run <code>python scripts/prepare_data.py</code> and then refresh the application to see the changes.</p>
+            <table className="w-full text-left table-fixed dev-tools__table">
+                <thead>
                     <tr>
-                        <th className="p-2 w-20 text-xs font-semibold text-stone-600 dark:text-stone-300 uppercase tracking-wider">Image</th>
-                        <th className="p-2 w-48 text-xs font-semibold text-stone-600 dark:text-stone-300 uppercase tracking-wider">Name</th>
-                        <th className="p-2 text-xs font-semibold text-stone-600 dark:text-stone-300 uppercase tracking-wider">Actions</th>
-                        <th className="p-2 w-48 text-xs font-semibold text-stone-600 dark:text-stone-300 uppercase tracking-wider">Status</th>
+                        <th className="w-20">Image</th>
+                        <th className="w-48">Name</th>
+                        <th>Actions</th>
+                        <th className="w-48">Status</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -143,7 +144,7 @@ const UmaImageManager = () => {
                             <td className="p-2 align-middle">
                                 <img src={uma.image ? `${import.meta.env.BASE_URL}${uma.image}` : `https://via.placeholder.com/48`} alt={uma.name_en} className="w-12 h-12 object-cover rounded-md" />
                             </td>
-                            <td className="p-2 font-medium align-middle">{uma.name_en}</td>
+                            <td className="p-2 font-medium align-middle break-words">{uma.name_en}</td>
                             <td className="p-2 align-middle">
                                 <div className="flex items-center gap-2">
                                     <label className="button button--neutral button--small cursor-pointer whitespace-nowrap">
