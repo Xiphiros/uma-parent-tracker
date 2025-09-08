@@ -15,6 +15,7 @@ html {
     --color-border: #e7e5e4; /* stone-200 */
     --color-border-input: #d6d3d1; /* stone-300 */
     --color-border-active: #6366f1; /* indigo-500 */
+    --color-avatar-border: #d6d3d1; /* stone-300 */
 
     --color-card-bg: white;
     --color-card-bg-hover: #f5f5f4; /* stone-100 */
@@ -54,6 +55,7 @@ html.dark {
     --color-border: #44403c; /* stone-700 */
     --color-border-input: #57534e; /* stone-600 */
     --color-border-active: #818cf8; /* indigo-400 */
+    --color-avatar-border: #78716c; /* stone-500 */
 
     --color-card-bg: #292524; /* stone-800 */
     --color-card-bg-hover: #44403c; /* stone-700 */
