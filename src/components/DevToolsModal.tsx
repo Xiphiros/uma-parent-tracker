@@ -30,9 +30,16 @@ const DevToolsModal = ({ isOpen, onClose }: DevToolsModalProps) => {
             setStatusMessage('');
             setHasChanges(false);
             
+            const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
+            const devListUrl = `${baseUrl}/src/data/skill-list-dev.json`;
+            const exclusionsUrl = `${baseUrl}/src/data/skill-exclusions.json`;
+
+            console.log('Attempting to fetch:', devListUrl);
+            console.log('Attempting to fetch:', exclusionsUrl);
+
             Promise.all([
-                fetch('/src/data/skill-list-dev.json').then(res => res.json()),
-                fetch('/src/data/skill-exclusions.json').then(res => res.json())
+                fetch(devListUrl).then(res => res.json()),
+                fetch(exclusionsUrl).then(res => res.json())
             ]).then(([devSkills, initialExclusions]: [DevSkill[], string[]]) => {
                 const sortedSkills = devSkills
                     .map(s => ({ id: s.id, name: s.name_en }))
@@ -41,6 +48,7 @@ const DevToolsModal = ({ isOpen, onClose }: DevToolsModalProps) => {
                 setExcludedIds(new Set(initialExclusions));
             }).catch(err => {
                 setStatusMessage('Error: Could not load skill data. ' + err.message);
+                console.error("Failed to fetch or parse skill data:", err);
             }).finally(() => {
                 setIsLoading(false);
             });
