@@ -4,7 +4,7 @@
     align-items: center;
     gap: 0.5rem;
     margin-bottom: 2rem;
-    border-bottom: 2px solid var(--color-border);
+    border-bottom: 3px solid var(--color-border);
     transition: border-color 0.3s ease;
 }
 .tabs__list-wrapper {
@@ -35,7 +35,7 @@
     flex-shrink: 0;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: stretch;
     background-color: var(--color-card-bg-hover);
     border-left: 3px solid var(--folder-color);
     border-radius: 6px;
@@ -84,7 +84,7 @@
     font-weight: 500;
     color: var(--color-text-secondary);
     border-bottom: 3px solid transparent;
-    margin-bottom: -2px; /* Overlap the container border */
+    margin-bottom: -3px; /* Overlap the container border */
     white-space: nowrap;
     transition: all 0.2s ease;
     cursor: grab;
