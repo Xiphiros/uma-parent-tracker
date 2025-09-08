@@ -52,6 +52,7 @@ export const DualListBox = ({
     const handleSelect = (listType: 'available' | 'excluded', item: Item, event: React.MouseEvent) => {
         const currentSelection = listType === 'available' ? selectedAvailable : selectedExcluded;
         const setSelection = listType === 'available' ? setSelectedAvailable : setSelectedExcluded;
+        const setOtherSelection = listType === 'available' ? setSelectedExcluded : setSelectedAvailable;
         const lastClickedRef = listType === 'available' ? lastClickedAvailable : lastClickedExcluded;
         const items = listType === 'available' ? filteredAvailable : filteredExcluded;
         
@@ -80,6 +81,7 @@ export const DualListBox = ({
         
         lastClickedRef.current = item.id;
         setSelection(newSelection);
+        setOtherSelection(new Set()); // Deselect items in the other list
     };
 
     const moveItems = (from: 'available' | 'excluded') => {
