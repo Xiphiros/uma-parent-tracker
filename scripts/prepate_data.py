@@ -23,6 +23,7 @@ def prepare_skills():
     skill_names_path = RAW_DATA_DIR / 'skillnames.json'
     skill_meta_path = RAW_DATA_DIR / 'skill_meta.json'
     output_path = OUTPUT_DATA_DIR / 'skill-list.json'
+    dev_output_path = OUTPUT_DATA_DIR / 'skill-list-dev.json'
 
     if not all([p.exists() for p in [skill_data_path, skill_names_path, skill_meta_path]]):
         print("Error: One or more required skill files not found in raw_data/. Skipping skill preparation.")
@@ -35,7 +36,41 @@ def prepare_skills():
     with open(skill_meta_path, 'r', encoding='utf-8') as f:
         skill_meta = json.load(f)
 
-    # Load exclusions
+    # Create a full list of potentially inheritable skills before any exclusions
+    all_possible_skills = []
+    INHERITABLE_RARITIES = {1, 2}
+    
+    for skill_id, skill in skill_data.items():
+        is_inherited_unique = skill_id.startswith('9')
+
+        if skill.get('rarity') not in INHERITABLE_RARITIES and not is_inherited_unique:
+            continue
+        if skill_id not in skill_names or not skill_names[skill_id] or skill_id not in skill_meta:
+            continue
+            
+        name_list = skill_names[skill_id]
+        name_jp = name_list[0]
+        name_en = name_list[1] if len(name_list) > 1 and name_list[1] else name_jp
+                
+        if '◎' in name_jp or '×' in name_jp:
+            continue
+
+        all_possible_skills.append({
+            'id': skill_id,
+            'name_jp': name_jp,
+            'name_en': name_en,
+            'type': 'unique' if is_inherited_unique else 'normal',
+            'rarity': skill.get('rarity'),
+            'groupId': skill_meta[skill_id].get('groupId')
+        })
+
+    # Save the dev-only unfiltered list
+    with open(dev_output_path, 'w', encoding='utf-8') as f:
+        json.dump(all_possible_skills, f, indent=2, ensure_ascii=False)
+    print(f"Dev skill list saved to: {dev_output_path.relative_to(PROJECT_ROOT)}")
+
+
+    # Load exclusions and filter the main list
     exclusions = set()
     if EXCLUSION_PATH.exists():
         with open(EXCLUSION_PATH, 'r', encoding='utf-8') as f:
@@ -45,43 +80,8 @@ def prepare_skills():
         print("No skill-exclusions.json file found. Creating an empty one.")
         with open(EXCLUSION_PATH, 'w', encoding='utf-8') as f:
             json.dump([], f, indent=2)
-        
-    inheritable_skills = []
     
-    # Rarity IDs: 1=White, 2=Gold. Uniques (3,4,5) are handled by checking the ID prefix.
-    INHERITABLE_RARITIES = {1, 2}
-    
-    for skill_id, skill in skill_data.items():
-        # 1. Exclude based on explicit ID list
-        if skill_id in exclusions:
-            continue
-            
-        is_inherited_unique = skill_id.startswith('9')
-
-        # Only include white/gold skills and inherited uniques.
-        if skill.get('rarity') not in INHERITABLE_RARITIES and not is_inherited_unique:
-            continue
-            
-        # Skip skills with no name or meta entry (usually dummy skills)
-        if skill_id not in skill_names or not skill_names[skill_id] or skill_id not in skill_meta:
-            continue
-            
-        name_list = skill_names[skill_id]
-        name_jp = name_list[0]
-        name_en = name_list[1] if len(name_list) > 1 and name_list[1] else name_jp
-                
-        # 2. Exclude non-inheritable skill tiers (◎) and negative skills (×)
-        if '◎' in name_jp or '×' in name_jp:
-            continue
-
-        inheritable_skills.append({
-            'id': skill_id,
-            'name_jp': name_jp,
-            'name_en': name_en,
-            'type': 'unique' if is_inherited_unique else 'normal',
-            'rarity': skill.get('rarity'),
-            'groupId': skill_meta[skill_id].get('groupId')
-        })
+    inheritable_skills = [s for s in all_possible_skills if s['id'] not in exclusions]
 
     # Ensure output directory exists
     OUTPUT_DATA_DIR.mkdir(parents=True, exist_ok=True)
@@ -89,7 +89,7 @@ def prepare_skills():
     with open(output_path, 'w', encoding='utf-8') as f:
         json.dump(inheritable_skills, f, indent=2, ensure_ascii=False)
         
-    print(f"Successfully processed {len(inheritable_skills)} skills.")
+    print(f"Successfully processed {len(inheritable_skills)} skills for production.")
     print(f"Skill output saved to: {output_path.relative_to(PROJECT_ROOT)}")
 
 def prepare_umas():
