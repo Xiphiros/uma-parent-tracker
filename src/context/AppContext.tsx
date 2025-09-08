@@ -278,6 +278,20 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
   const reorderLayout = (sourceIndex: number, destinationIndex: number) => {
      setAppData(prevData => {
         const layoutCopy = [...prevData.layout];
+
+        const profilePinMap = new Map(prevData.profiles.map(p => [p.id, p.isPinned ?? false]));
+        const folderPinMap = new Map(prevData.folders.map(f => [f.id, f.isPinned ?? false]));
+        const isPinned = (id: string | number) => {
+            return typeof id === 'string' ? folderPinMap.get(id) : profilePinMap.get(id);
+        }
+
+        const sourceItem = layoutCopy[sourceIndex];
+        const destinationItem = layoutCopy[destinationIndex];
+        // An unpinned item cannot be moved into a pinned item's slot.
+        if (!isPinned(sourceItem) && isPinned(destinationItem)) {
+            return prevData;
+        }
+
         const [removed] = layoutCopy.splice(sourceIndex, 1);
         layoutCopy.splice(destinationIndex, 0, removed);
         return { ...prevData, layout: layoutCopy };
@@ -285,9 +299,22 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const reorderProfileInFolder = (folderId: string, sourceIndex: number, destIndex: number) => {
-    setAppData(prevData => ({
-      ...prevData,
-      folders: prevData.folders.map(f => {
+    setAppData(prevData => {
+      const profilePinMap = new Map(prevData.profiles.map(p => [p.id, p.isPinned ?? false]));
+      const isPinned = (id: number) => profilePinMap.get(id);
+
+      const folder = prevData.folders.find(f => f.id === folderId);
+      if (!folder) return prevData;
+
+      const sourceItem = folder.profileIds[sourceIndex];
+      const destinationItem = folder.profileIds[destIndex];
+
+      // An unpinned item cannot be moved into a pinned item's slot.
+      if (!isPinned(sourceItem) && isPinned(destinationItem)) {
+          return prevData;
+      }
+
+      const foldersCopy = prevData.folders.map(f => {
         if (f.id === folderId) {
           const profileIdsCopy = [...f.profileIds];
           const [removed] = profileIdsCopy.splice(sourceIndex, 1);
@@ -295,8 +322,10 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
           return { ...f, profileIds: profileIdsCopy };
         }
         return f;
-      })
-    }));
+      });
+
+      return { ...prevData, folders: foldersCopy };
+    });
   };
 
   const moveProfileToFolder = (profileId: number, folderId: string | null, destIndex: number = -1) => {
