@@ -122,29 +122,39 @@ const UmaImageManager = () => {
     return (
         <div className="max-h-[60vh] overflow-y-auto space-y-4 pr-2">
             <p className="text-sm text-stone-500">Upload an image for each character. Images should be square. After uploading, you must run <code className="bg-stone-200 dark:bg-stone-900 px-1 rounded">python scripts/prepare_data.py</code> and then refresh the application to see the changes.</p>
-            <table className="w-full text-left">
-                <thead className="sticky top-0 bg-stone-100 dark:bg-stone-800">
+            <table className="w-full text-left table-fixed">
+                <thead className="sticky top-0 bg-stone-100 dark:bg-stone-800 z-10">
                     <tr>
-                        <th className="p-2">Image</th>
-                        <th className="p-2">Name</th>
-                        <th className="p-2">Actions</th>
+                        <th className="p-2 w-20">Image</th>
+                        <th className="p-2 w-1/4">Name</th>
+                        <th className="p-2 w-1/2">Actions</th>
                         <th className="p-2">Status</th>
                     </tr>
                 </thead>
                 <tbody>
                     {masterUmaList.map(uma => (
                         <tr key={uma.id} className="border-b border-stone-200 dark:border-stone-700">
-                            <td className="p-2">
+                            <td className="p-2 align-middle">
                                 <img src={uma.image ? `${import.meta.env.BASE_URL}${uma.image}` : `https://via.placeholder.com/48`} alt={uma.name_en} className="w-12 h-12 object-cover rounded-md" />
                             </td>
-                            <td className="p-2 font-medium">{uma.name_en}</td>
-                            <td className="p-2">
+                            <td className="p-2 font-medium align-middle">{uma.name_en}</td>
+                            <td className="p-2 align-middle">
                                 <div className="flex items-center gap-2">
-                                    <input type="file" className="text-xs" ref={el => fileInputRefs.current[uma.id] = el} accept="image/png, image/jpeg, image/webp" />
-                                    <button className="button button--secondary button--small" onClick={() => handleImageUpload(uma.id)}>Upload</button>
+                                    <input 
+                                        type="file" 
+                                        className="form__input py-1 text-xs w-full" 
+                                        ref={el => fileInputRefs.current[uma.id] = el} 
+                                        accept="image/png, image/jpeg, image/webp" 
+                                    />
+                                    <button 
+                                        className="button button--secondary button--small flex-shrink-0" 
+                                        onClick={() => handleImageUpload(uma.id)}
+                                    >
+                                        Upload
+                                    </button>
                                 </div>
                             </td>
-                            <td className="p-2 text-xs text-stone-500">{statusMessages[uma.id]}</td>
+                            <td className="p-2 text-xs text-stone-500 align-middle">{statusMessages[uma.id]}</td>
                         </tr>
                     ))}
                 </tbody>
