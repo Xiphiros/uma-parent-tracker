@@ -74,6 +74,7 @@ export interface Folder {
   icon: IconName;
   isCollapsed: boolean;
   profileIds: number[];
+  isPinned?: boolean;
 }
 
 export interface AppData {
