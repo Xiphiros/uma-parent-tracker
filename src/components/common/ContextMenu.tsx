@@ -7,6 +7,7 @@ export interface MenuItem {
     label: string;
     onClick: () => void;
     isDestructive?: boolean;
+    disabled?: boolean;
 }
 
 interface ContextMenuProps {
@@ -49,8 +50,9 @@ const ContextMenu = ({ isOpen, position, items, onClose }: ContextMenuProps) => 
             {items.map((item, index) => (
                 <div
                     key={index}
-                    className={`context-menu__item ${item.isDestructive ? 'context-menu__item--destructive' : ''}`}
+                    className={`context-menu__item ${item.isDestructive ? 'context-menu__item--destructive' : ''} ${item.disabled ? 'context-menu__item--disabled' : ''}`}
                     onClick={() => {
+                        if (item.disabled) return;
                         item.onClick();
                         onClose();
                     }}
