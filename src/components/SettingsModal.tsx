@@ -8,7 +8,7 @@ interface SettingsModalProps {
 }
 
 const SettingsModal = ({ isOpen, onClose }: SettingsModalProps) => {
-    const { exportData, importData, deleteAllData } = useAppContext();
+    const { exportData, importData, deleteAllData, dataMode, setDataMode } = useAppContext();
     
     const [isImportConfirmOpen, setImportConfirmOpen] = useState(false);
     const [isDeleteConfirmOpen, setDeleteConfirmOpen] = useState(false);
@@ -59,21 +59,45 @@ const SettingsModal = ({ isOpen, onClose }: SettingsModalProps) => {
         <>
             <Modal isOpen={isOpen} onClose={onClose} title="Settings & Data Management">
                 <div className="space-y-4 my-4">
-                     <button id="export-btn" className="button button--secondary w-full" onClick={exportData}>
-                        Export All Data
-                    </button>
-                    
-                    <label htmlFor="import-file" className="button button--neutral w-full">
-                        Import Data
-                    </label>
-                    <input
-                        type="file"
-                        id="import-file"
-                        ref={fileInputRef}
-                        className="visually-hidden"
-                        accept="application/json"
-                        onChange={handleFileChange}
-                    />
+                    <div className="form__section !border-t-0 !pt-0">
+                        <h4 className="form__section-title mb-2">Data Language</h4>
+                        <p className="text-sm text-stone-500 dark:text-stone-400 mb-3">Select which dataset to use for skills and characters.</p>
+                        <div className="space-y-2">
+                            <label className="flex items-start p-2 rounded-md hover:bg-stone-100 dark:hover:bg-stone-700 cursor-pointer">
+                                <input type="radio" value="jp" checked={dataMode === 'jp'} onChange={() => setDataMode('jp')} className="mr-3 mt-1" />
+                                <div>
+                                    <span className="font-medium text-stone-800 dark:text-stone-200">Japanese (All Data)</span>
+                                    <p className="text-xs text-stone-500 dark:text-stone-400">Includes all characters and skills, with Japanese names as fallbacks.</p>
+                                </div>
+                            </label>
+                             <label className="flex items-start p-2 rounded-md hover:bg-stone-100 dark:hover:bg-stone-700 cursor-pointer">
+                                <input type="radio" value="global" checked={dataMode === 'global'} onChange={() => setDataMode('global')} className="mr-3 mt-1" />
+                                <div>
+                                    <span className="font-medium text-stone-800 dark:text-stone-200">Global (Translated Only)</span>
+                                    <p className="text-xs text-stone-500 dark:text-stone-400">Only shows characters and skills that have an official English translation.</p>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div className="form__section">
+                        <h4 className="form__section-title mb-2">Manage Data</h4>
+                         <button id="export-btn" className="button button--secondary w-full" onClick={exportData}>
+                            Export All Data
+                        </button>
+                        
+                        <label htmlFor="import-file" className="button button--neutral w-full mt-2">
+                            Import Data
+                        </label>
+                        <input
+                            type="file"
+                            id="import-file"
+                            ref={fileInputRef}
+                            className="visually-hidden"
+                            accept="application/json"
+                            onChange={handleFileChange}
+                        />
+                    </div>
                     
                     <div className="border-t pt-4">
                         <button className="button button--danger w-full" onClick={() => setDeleteConfirmOpen(true)}>
