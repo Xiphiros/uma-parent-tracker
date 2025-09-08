@@ -1,6 +1,7 @@
 import { useState, useRef, ChangeEvent } from 'react';
 import { useAppContext } from '../context/AppContext';
 import Modal from './common/Modal';
+import './SettingsModal.css';
 
 interface SettingsModalProps {
   isOpen: boolean;
@@ -63,18 +64,18 @@ const SettingsModal = ({ isOpen, onClose }: SettingsModalProps) => {
                         <h4 className="form__section-title mb-2">Data Language</h4>
                         <p className="text-sm text-stone-500 dark:text-stone-400 mb-3">Select which dataset to use for skills and characters.</p>
                         <div className="space-y-2">
-                            <label className="flex items-start p-2 rounded-md hover:bg-stone-100 dark:hover:bg-stone-700 cursor-pointer">
-                                <input type="radio" value="jp" checked={dataMode === 'jp'} onChange={() => setDataMode('jp')} className="mr-3 mt-1" />
+                            <label className={`settings-modal__option ${dataMode === 'jp' ? 'settings-modal__option--selected' : ''}`}>
+                                <input type="radio" value="jp" checked={dataMode === 'jp'} onChange={() => setDataMode('jp')} className="settings-modal__option-radio" />
                                 <div>
-                                    <span className="font-medium text-stone-800 dark:text-stone-200">Japanese (All Data)</span>
-                                    <p className="text-xs text-stone-500 dark:text-stone-400">Includes all characters and skills, with Japanese names as fallbacks.</p>
+                                    <span className="settings-modal__option-label">Japanese (All Data)</span>
+                                    <p className="settings-modal__option-description">Includes all characters and skills, with Japanese names as fallbacks.</p>
                                 </div>
                             </label>
-                             <label className="flex items-start p-2 rounded-md hover:bg-stone-100 dark:hover:bg-stone-700 cursor-pointer">
-                                <input type="radio" value="global" checked={dataMode === 'global'} onChange={() => setDataMode('global')} className="mr-3 mt-1" />
+                             <label className={`settings-modal__option ${dataMode === 'global' ? 'settings-modal__option--selected' : ''}`}>
+                                <input type="radio" value="global" checked={dataMode === 'global'} onChange={() => setDataMode('global')} className="settings-modal__option-radio" />
                                 <div>
-                                    <span className="font-medium text-stone-800 dark:text-stone-200">Global (Translated Only)</span>
-                                    <p className="text-xs text-stone-500 dark:text-stone-400">Only shows characters and skills that have an official English translation.</p>
+                                    <span className="settings-modal__option-label">Global (Translated Only)</span>
+                                    <p className="settings-modal__option-description">Only shows characters and skills that have an official English translation.</p>
                                 </div>
                             </label>
                         </div>
