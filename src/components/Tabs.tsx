@@ -37,6 +37,7 @@ const Tabs = () => {
 
     const [contextMenu, setContextMenu] = useState<ContextMenuState>({ isOpen: false, x: 0, y: 0, items: [] });
     const [dragOverFolderId, setDragOverFolderId] = useState<string | null>(null);
+    const [isDraggingOverList, setIsDraggingOverList] = useState(false);
 
     const tabListRef = useRef<HTMLUListElement>(null);
     const [canScrollLeft, setCanScrollLeft] = useState(false);
@@ -375,7 +376,34 @@ const Tabs = () => {
                     <FontAwesomeIcon icon={faChevronLeft} className="h-5 w-5" />
                 </button>
                 <div className="tabs__list-wrapper">
-                    <ul className="tabs__list" ref={tabListRef}>
+                    <ul 
+                        className={`tabs__list ${isDraggingOverList ? 'tabs__list--drag-over' : ''}`}
+                        ref={tabListRef}
+                        onDragOver={(e) => e.preventDefault()}
+                        onDragEnter={(e) => {
+                            if (e.target === tabListRef.current) setIsDraggingOverList(true);
+                        }}
+                        onDragLeave={(e) => {
+                            if (e.target === tabListRef.current) setIsDraggingOverList(false);
+                        }}
+                        onDrop={(e) => {
+                            setIsDraggingOverList(false);
+                            if (e.target !== tabListRef.current) return;
+                            
+                            const sourceInfo = dragItem.current;
+                            if (!sourceInfo) return;
+
+                            if (sourceInfo.type === 'profile' && sourceInfo.parentId) {
+                                moveProfileToFolder(sourceInfo.id as number, null, -1);
+                            } else if (!sourceInfo.parentId) {
+                                const sourceIndex = layout.indexOf(sourceInfo.id);
+                                if (sourceIndex > -1) {
+                                    reorderLayout(sourceIndex, layout.length - 1);
+                                }
+                            }
+                            dragItem.current = null;
+                        }}
+                    >
                        {renderLayout()}
                     </ul>
                 </div>
