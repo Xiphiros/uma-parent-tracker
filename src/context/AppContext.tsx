@@ -197,20 +197,45 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
       setAppData(createDefaultState());
   };
 
+  const sortLayoutByPin = (layout: (string|number)[], profiles: Profile[], folders: Folder[]) => {
+      const profilePinMap = new Map(profiles.map(p => [p.id, p.isPinned ?? false]));
+      const folderPinMap = new Map(folders.map(f => [f.id, f.isPinned ?? false]));
+      const isPinned = (id: string | number) => typeof id === 'string' ? folderPinMap.get(id) : profilePinMap.get(id);
+      return [...layout].sort((a, b) => (isPinned(b) ? 1 : 0) - (isPinned(a) ? 1 : 0));
+  };
+
+  const sortProfileIdsByPin = (profileIds: number[], profiles: Profile[]) => {
+      const profilePinMap = new Map(profiles.map(p => [p.id, p.isPinned ?? false]));
+      const isPinned = (id: number) => profilePinMap.get(id);
+      return [...profileIds].sort((a, b) => (isPinned(b) ? 1 : 0) - (isPinned(a) ? 1 : 0));
+  };
+
   const addProfile = (name: string, folderId?: string) => {
     const newProfile = createNewProfile(name);
     setAppData(prevData => {
-        const newData = { ...prevData };
-        newData.profiles = [...newData.profiles, newProfile];
+        const newProfiles = [...prevData.profiles, newProfile];
+        let newFolders = prevData.folders;
+        let newLayout = prevData.layout;
+
         if (folderId) {
-            newData.folders = newData.folders.map(f =>
-                f.id === folderId ? { ...f, profileIds: [...f.profileIds, newProfile.id] } : f
-            );
+            newFolders = prevData.folders.map(f => {
+                if (f.id === folderId) {
+                    const updatedProfileIds = sortProfileIdsByPin([...f.profileIds, newProfile.id], newProfiles);
+                    return { ...f, profileIds: updatedProfileIds };
+                }
+                return f;
+            });
         } else {
-            newData.layout = [...newData.layout, newProfile.id];
+            newLayout = sortLayoutByPin([...prevData.layout, newProfile.id], newProfiles, newFolders);
         }
-        newData.activeProfileId = newProfile.id;
-        return newData;
+        
+        return {
+            ...prevData,
+            profiles: newProfiles,
+            folders: newFolders,
+            layout: newLayout,
+            activeProfileId: newProfile.id,
+        };
     });
   };
 
@@ -240,19 +265,6 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
       }
       return { ...prevData, profiles: newProfiles, layout: newLayout, folders: newFolders, activeProfileId: newActiveId };
     });
-  };
-
-  const sortLayoutByPin = (layout: (string|number)[], profiles: Profile[], folders: Folder[]) => {
-      const profilePinMap = new Map(profiles.map(p => [p.id, p.isPinned ?? false]));
-      const folderPinMap = new Map(folders.map(f => [f.id, f.isPinned ?? false]));
-
-      const isPinned = (id: string | number) => {
-          return typeof id === 'string' ? folderPinMap.get(id) : profilePinMap.get(id);
-      }
-
-      return [...layout].sort((a, b) => {
-          return (isPinned(b) ? 1 : 0) - (isPinned(a) ? 1 : 0);
-      });
   };
 
   const togglePinProfile = (id: number) => {
