@@ -91,7 +91,7 @@ const Tabs = () => {
     const dragItem = useRef<{ id: string | number, type: 'folder' | 'profile', parentId: string | null } | null>(null);
 
     const getDragTargetInfo = (element: HTMLElement) => {
-        const li = element.closest('.tab');
+        const li = element.closest<HTMLElement>('.tab');
         if (!li) return null;
         return {
             id: li.dataset.id!,
@@ -138,31 +138,48 @@ const Tabs = () => {
         const sourceInfo = dragItem.current;
         const destInfo = getDragTargetInfo(e.currentTarget);
 
-        if (!sourceInfo || !destInfo || sourceInfo.id === destInfo.id) return;
-        
-        // Case 1: Dropping a profile onto a folder
+        // Exit if no valid source/destination, or if dropping on itself
+        if (!sourceInfo || !destInfo || sourceInfo.id == destInfo.id) {
+            dragItem.current = null;
+            return;
+        }
+
+        // Case 1: Dropping a profile onto a folder tab to move it inside.
         if (sourceInfo.type === 'profile' && destInfo.type === 'folder' && sourceInfo.parentId !== destInfo.id) {
-            moveProfileToFolder(sourceInfo.id as number, destInfo.id);
+            moveProfileToFolder(sourceInfo.id as number, destInfo.id, -1); // Append to end of folder
+            dragItem.current = null;
+            return;
         }
-        // Case 2: Reordering top-level items (folders or profiles)
-        else if (sourceInfo.parentId === null && destInfo.parentId === null) {
-            const sourceIndex = layout.indexOf(sourceInfo.id);
-            const destIndex = layout.indexOf(destInfo.id as (string|number));
-            if (sourceIndex > -1 && destIndex > -1) reorderLayout(sourceIndex, destIndex);
-        }
-        // Case 3: Reordering profiles within the same folder
-        else if (sourceInfo.parentId && sourceInfo.parentId === destInfo.parentId) {
-            const folder = foldersById.get(sourceInfo.parentId);
-            if (folder) {
-                const sourceIndex = folder.profileIds.indexOf(sourceInfo.id as number);
-                const destIndex = folder.profileIds.indexOf(destInfo.id as number);
-                if (sourceIndex > -1 && destIndex > -1) reorderProfileInFolder(folder.id, sourceIndex, destIndex);
+
+        // For all reordering cases, determine the correctly typed destination ID
+        const destId = destInfo.type === 'profile' ? Number(destInfo.id) : destInfo.id;
+
+        // Case 2: Reordering items within the same context (either top-level or same folder)
+        if (sourceInfo.parentId === destInfo.parentId) {
+            if (sourceInfo.parentId) { // Reordering inside a folder
+                const folder = foldersById.get(sourceInfo.parentId);
+                if (folder) {
+                    const sourceIndex = folder.profileIds.indexOf(sourceInfo.id as number);
+                    const destIndex = folder.profileIds.indexOf(destId as number);
+                    if (sourceIndex > -1 && destIndex > -1) {
+                        reorderProfileInFolder(folder.id, sourceIndex, destIndex);
+                    }
+                }
+            } else { // Reordering in top-level layout
+                const sourceIndex = layout.indexOf(sourceInfo.id);
+                const destIndex = layout.indexOf(destId);
+                if (sourceIndex > -1 && destIndex > -1) {
+                    reorderLayout(sourceIndex, destIndex);
+                }
             }
         }
-        // Case 4: Moving a profile from a folder to top-level, or between folders
+        // Case 3: Moving a profile between different contexts (e.g., folder to layout, layout to folder, folder to folder)
         else if (sourceInfo.type === 'profile') {
-            const destFolder = foldersById.get(destInfo.parentId!)
-            const destIndex = destFolder ? destFolder.profileIds.indexOf(destInfo.id as number) : layout.indexOf(destInfo.id as number);
+            const destFolder = destInfo.parentId ? foldersById.get(destInfo.parentId) : null;
+            const destIndex = destFolder
+                ? destFolder.profileIds.indexOf(destId as number)
+                : layout.indexOf(destId);
+            
             moveProfileToFolder(sourceInfo.id as number, destInfo.parentId, destIndex);
         }
 
