@@ -129,12 +129,12 @@ const UmaImageManager = () => {
         <div className="max-h-[60vh] overflow-y-auto space-y-4 pr-2">
             <p className="text-sm text-stone-500">Upload an image for each character. Images should be square. After uploading, you must run <code className="bg-stone-200 dark:bg-stone-900 px-1 rounded">python scripts/prepare_data.py</code> and then refresh the application to see the changes.</p>
             <table className="w-full text-left table-fixed">
-                <thead className="sticky top-0 bg-stone-100 dark:bg-stone-800 z-10">
+                <thead className="sticky top-0 bg-stone-100 dark:bg-stone-700 z-10">
                     <tr>
-                        <th className="p-2 w-20">Image</th>
-                        <th className="p-2 w-48">Name</th>
-                        <th className="p-2">Actions</th>
-                        <th className="p-2 w-48">Status</th>
+                        <th className="p-2 w-20 text-xs font-semibold text-stone-600 dark:text-stone-300 uppercase tracking-wider">Image</th>
+                        <th className="p-2 w-48 text-xs font-semibold text-stone-600 dark:text-stone-300 uppercase tracking-wider">Name</th>
+                        <th className="p-2 text-xs font-semibold text-stone-600 dark:text-stone-300 uppercase tracking-wider">Actions</th>
+                        <th className="p-2 w-48 text-xs font-semibold text-stone-600 dark:text-stone-300 uppercase tracking-wider">Status</th>
                     </tr>
                 </thead>
                 <tbody>
