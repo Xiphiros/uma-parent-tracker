@@ -158,8 +158,8 @@ def main():
     parser.add_argument("master_db_path", type=Path, help="Path to the master.mdb file.")
     args = parser.parse_args()
 
-    output_dir = Path("raw_data")
-    output_dir.mkdir(exist_ok=True)
+    output_dir = Path("raw_data/global")
+    output_dir.mkdir(parents=True, exist_ok=True)
 
     try:
         conn = get_db_connection(args.master_db_path)
