@@ -31,9 +31,9 @@ def _load_json(version: str, filename: str):
     print(f"Warning: {file_path} not found. Continuing with empty data.")
     return {}
 
-def load_and_merge_data():
-    """Loads and merges JP and Global data sources."""
-    print("Loading and merging data from raw_data/jp and raw_data/global...")
+def load_and_merge_skill_data():
+    """Loads and merges JP and Global skill-related data sources."""
+    print("Loading and merging skill data...")
     
     jp_skill_data = _load_json('jp', 'skill_data.json')
     gl_skill_data = _load_json('global', 'skill_data.json')
@@ -42,18 +42,6 @@ def load_and_merge_data():
     jp_skill_meta = _load_json('jp', 'skill_meta.json')
     gl_skill_meta = _load_json('global', 'skill_meta.json')
     skill_meta = {**jp_skill_meta, **gl_skill_meta}
-
-    jp_umas = _load_json('jp', 'umas.json')
-    gl_umas = _load_json('global', 'umas.json')
-    umas = {}
-    all_uma_ids = set(jp_umas.keys()) | set(gl_umas.keys())
-    for char_id in all_uma_ids:
-        jp_uma = jp_umas.get(char_id, {})
-        gl_uma = gl_umas.get(char_id, {})
-        umas[char_id] = {
-            "name": [jp_uma.get('name', ["", ""])[0], gl_uma.get('name', ["", ""])[1]],
-            "outfits": {**jp_uma.get('outfits', {}), **gl_uma.get('outfits', {})}
-        }
 
     jp_names = _load_json('jp', 'skillnames.json')
     gl_names = _load_json('global', 'skillnames.json')
@@ -64,8 +52,8 @@ def load_and_merge_data():
         gl_name = gl_names.get(skill_id, ["", ""])[1]
         skill_names[skill_id] = [jp_name, gl_name or jp_name]
 
-    print("Data merging complete.")
-    return skill_data, skill_meta, skill_names, umas
+    print("Skill data merging complete.")
+    return skill_data, skill_meta, skill_names
 
 def prepare_skills(skill_data, skill_meta, skill_names):
     """Processes merged skill and race data into a format usable by the application."""
@@ -146,9 +134,11 @@ def prepare_skills(skill_data, skill_meta, skill_names):
     print(f"Successfully processed {len(inheritable_skills)} skills and races for production.")
     print(f"Skill output saved to: {output_path.relative_to(PROJECT_ROOT)}")
 
-def prepare_umas(umas_data):
+def prepare_umas():
     """Processes merged uma data and links it with available images."""
     print("\nProcessing umas...")
+    jp_umas_data = _load_json('jp', 'umas.json')
+    gl_umas_data = _load_json('global', 'umas.json')
 
     output_path = OUTPUT_DATA_DIR / 'uma-list.json'
 
@@ -157,26 +147,41 @@ def prepare_umas(umas_data):
     print(f"Found {len(image_files)} images in {UMA_IMG_DIR.relative_to(PROJECT_ROOT)}")
 
     uma_list = []
-    for char_id, uma in umas_data.items():
-        name_array = uma.get('name', [])
-        outfits = uma.get('outfits', {})
-        
-        if len(name_array) > 1 and name_array[1] and outfits:
-            char_name_en = name_array[1]
-            for outfit_id, outfit_name in outfits.items():
-                formatted_name = f"{outfit_name} {char_name_en}" if outfit_name else char_name_en
-                
-                uma_entry = {
-                    'id': outfit_id,
-                    'characterId': char_id,
-                    'name_en': formatted_name
-                }
-                
-                if outfit_id in image_files:
-                    image_path = image_files[outfit_id]
-                    uma_entry['image'] = f"/images/umas/{image_path.name}"
-                
-                uma_list.append(uma_entry)
+    all_char_ids = set(jp_umas_data.keys()) | set(gl_umas_data.keys())
+
+    for char_id in sorted(list(all_char_ids)):
+        jp_uma = jp_umas_data.get(char_id, {})
+        gl_uma = gl_umas_data.get(char_id, {})
+
+        char_name_jp = jp_uma.get('name', ['', ''])[0]
+        char_name_en = gl_uma.get('name', ['', ''])[1] or char_name_jp
+
+        jp_outfits = jp_uma.get('outfits', {})
+        gl_outfits = gl_uma.get('outfits', {})
+        all_outfit_ids = set(jp_outfits.keys()) | set(gl_outfits.keys())
+
+        if not char_name_en: continue # Skip if no English name for the character
+
+        for outfit_id in sorted(list(all_outfit_ids)):
+            outfit_name_jp = jp_outfits.get(outfit_id)
+            outfit_name_en = gl_outfits.get(outfit_id)
+
+            # Construct the full names
+            formatted_name_jp = f"{outfit_name_jp}{char_name_jp}" if outfit_name_jp else char_name_jp
+            formatted_name_en = f"{outfit_name_en} {char_name_en}" if outfit_name_en else char_name_en
+
+            uma_entry = {
+                'id': outfit_id,
+                'characterId': char_id,
+                'name_jp': formatted_name_jp,
+                'name_en': formatted_name_en,
+            }
+            
+            if outfit_id in image_files:
+                image_path = image_files[outfit_id]
+                uma_entry['image'] = f"/images/umas/{image_path.name}"
+            
+            uma_list.append(uma_entry)
 
     uma_list.sort(key=lambda x: x['name_en'])
 
@@ -191,8 +196,8 @@ def prepare_umas(umas_data):
 
 if __name__ == "__main__":
     try:
-        skill_data, skill_meta, skill_names, umas = load_and_merge_data()
+        skill_data, skill_meta, skill_names = load_and_merge_skill_data()
         prepare_skills(skill_data, skill_meta, skill_names)
-        prepare_umas(umas)
+        prepare_umas()
     except Exception as e:
         print(f"\nAn error occurred during data preparation: {e}")
