@@ -6,7 +6,7 @@ html {
     --color-text-secondary: #57534e; /* stone-600 */
     --color-text-muted: #78716c; /* stone-500 */
     --color-text-placeholder: #a8a29e; /* stone-400 */
-    --color-text-inverted: white;
+    --color-text-inverted: #ffffff;
     --color-text-link: #4f46e5; /* indigo-600 */
     --color-text-link-hover: #3730a3; /* indigo-800 */
     --color-text-danger: #dc2626; /* red-600 */
@@ -17,9 +17,9 @@ html {
     --color-border-active: #6366f1; /* indigo-500 */
     --color-avatar-border: #d6d3d1; /* stone-300 */
 
-    --color-card-bg: white;
+    --color-card-bg: #ffffff;
     --color-card-bg-hover: #f5f5f4; /* stone-100 */
-    --color-input-bg: white;
+    --color-input-bg: #ffffff;
     --color-score: #d97706; /* amber-600 */
     
     --color-button-primary-bg: #4f46e5; /* indigo-600 */
@@ -32,6 +32,18 @@ html {
     --color-button-danger-hover: #b91c1c; /* red-700 */
 
     --color-top-pair-border: #f59e0b; /* amber-500 */
+    --color-scrollbar-track: #f5f5f4; /* stone-100 */
+    --color-scrollbar-thumb: #a8a29e; /* stone-400 */
+    --color-scrollbar-thumb-hover: #78716c; /* stone-500 */
+
+    --color-spark-speed: #60a5fa;
+    --color-spark-stamina: #facc15;
+    --color-spark-power: #f87171;
+    --color-spark-guts: #fb923c;
+    --color-spark-wit: #4ade80;
+    --color-spark-apt-ground: #c084fc;
+    --color-spark-apt-dist: #f472b6;
+    --color-spark-apt-strat: #818cf8;
 
     --color-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.07), 0 2px 4px -2px rgb(0 0 0 / 0.07);
     --color-modal-overlay: rgba(28, 25, 23, 0.5); /* stone-900 w/ alpha */
@@ -66,6 +78,9 @@ html.dark {
     --color-button-neutral-hover: #44403c; /* stone-700 */
 
     --color-top-pair-border: var(--color-score);
+    --color-scrollbar-track: #292524; /* stone-800 */
+    --color-scrollbar-thumb: #57534e; /* stone-600 */
+    --color-scrollbar-thumb-hover: #44403c; /* stone-700 */
 
     --color-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.4), 0 2px 4px -2px rgb(0 0 0 / 0.4);
     --color-modal-overlay: rgba(0, 0, 0, 0.7);
@@ -101,18 +116,12 @@ html.dark {
     width: 8px;
 }
 ::-webkit-scrollbar-track {
-    background: var(--color-card-bg-hover);
+    background: var(--color-scrollbar-track);
 }
 ::-webkit-scrollbar-thumb {
-    background: #a8a29e;
+    background: var(--color-scrollbar-thumb);
     border-radius: 10px;
 }
-html.dark ::-webkit-scrollbar-thumb {
-    background: #57534e;
-}
 ::-webkit-scrollbar-thumb:hover {
-    background: #78716c;
-}
-html.dark ::-webkit-scrollbar-thumb:hover {
-    background: #44403c;
+    background: var(--color-scrollbar-thumb-hover);
 }

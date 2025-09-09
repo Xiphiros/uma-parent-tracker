@@ -46,7 +46,7 @@
     transition: transform 0.2s ease-out, background-color 0.2s ease;
 }
 .folder-tab__collapse-btn:hover {
-    background-color: rgba(128, 128, 128, 0.2);
+    background-color: color-mix(in srgb, var(--color-text-muted) 20%, transparent);
 }
 .folder-tab--collapsed .folder-tab__collapse-btn {
     transform: rotate(-90deg);

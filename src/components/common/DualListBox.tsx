@@ -13,7 +13,7 @@ interface DualListBoxProps {
     excludedTitle?: string;
 }
 
-export const DualListBox = ({
+const DualListBox = ({
     allItems,
     initialExcludedIds,
     onChange,
@@ -151,3 +151,5 @@ export const DualListBox = ({
         </div>
     );
 };
+
+export default DualListBox;

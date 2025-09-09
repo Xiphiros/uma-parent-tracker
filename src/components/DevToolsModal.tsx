@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, ChangeEvent } from 'react';
 import Modal from './common/Modal';
-import { DualListBox } from './common/DualListBox';
+import DualListBox from './common/DualListBox';
 import { useAppContext } from '../context/AppContext';
 import './DevToolsModal.css';
 
