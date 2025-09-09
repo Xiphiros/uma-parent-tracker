@@ -17,16 +17,15 @@
 .multi-select__chip {
     display: flex;
     align-items: center;
-    background-color: #e0e7ff;
-    color: #3730a3;
+    background-color: color-mix(in srgb, var(--color-border-active) 20%, transparent);
+    color: var(--color-text-link);
     border-radius: 9999px;
     padding: 0.25rem 0.75rem;
     margin: 0.25rem;
     font-size: 0.875rem;
 }
 html.dark .multi-select__chip {
-    background-color: #3730a3;
-    color: #e0e7ff;
+    color: var(--color-text-link);
 }
 .multi-select__chip-remove {
     margin-left: 0.5rem;

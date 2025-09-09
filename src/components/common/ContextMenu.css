@@ -28,7 +28,7 @@
 
 .context-menu__item--destructive:hover {
     background-color: var(--color-button-danger-bg);
-    color: white;
+    color: var(--color-text-inverted);
 }
 
 .context-menu__item--disabled {

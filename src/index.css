@@ -7,3 +7,13 @@
 @import "./components/FolderTab.css";
 @import "./components/common/ContextMenu.css";
 @import "./components/SettingsModal.css";
+@import "./components/DevToolsModal.css";
+@import "./components/Header.css";
+@import "./components/InfoModal.css";
+@import "./components/ParentCard.css";
+@import "./components/Tabs.css";
+@import "./components/common/Modal.css";
+@import "./components/common/MultiSelect.css";
+@import "./components/common/SearchableSelect.css";
+@import "./components/common/SparkTag.css";
+@import "./components/common/WishlistSection.css";
