@@ -1,0 +1,14 @@
+{
+  "title": "目標の親を定義",
+  "primaryBlue": "主要な青因子",
+  "primaryPink": "主要な赤因子",
+  "uniqueWishlist": "固有スキルウィッシュリスト",
+  "whiteWishlist": "白因子ウィッシュリスト",
+  "wishlist": {
+    "noItems": "ウィッシュリストにアイテムがありません。",
+    "selectSkill": "スキルを選択...",
+    "rank": "ランク",
+    "save": "保存",
+    "cancel": "キャンセル"
+  }
+}
