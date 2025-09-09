@@ -74,7 +74,6 @@ const createDefaultState = (): AppData => {
 const migrateData = (data: any): AppData => {
     // V1 -> V2: Single project structure to multi-project
     if (!data.version || data.version < 2) {
-        console.log("Migrating data from v1 to v2");
         const singleProfile = createNewProfile('Imported Project');
         singleProfile.goal = data.goal || { primaryBlue: [], primaryPink: [], uniqueWishlist: [], wishlist: [] };
         singleProfile.roster = data.roster || [];
@@ -87,7 +86,6 @@ const migrateData = (data: any): AppData => {
     
     // V2 -> V3: Add folders and layout
     if (data.version < 3) {
-        console.log("Migrating data from v2 to v3");
         data.version = 3;
         data.folders = [];
         data.layout = data.profiles.map((p: Profile) => p.id);

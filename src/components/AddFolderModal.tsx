@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Folder, IconName } from '../types';
 import Modal from './common/Modal';
-import { FOLDER_COLORS, FOLDER_ICONS } from './icons';
+import { FOLDER_COLORS, FOLDER_ICONS } from './Icons';
 
 interface AddFolderModalProps {
   isOpen: boolean;
