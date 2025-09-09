@@ -7,6 +7,7 @@ interface SearchableItem {
   name_en: string;
   name_jp?: string;
   type?: string;
+  [key: string]: any; // Allow other properties
 }
 
 interface SearchableSelectProps {
@@ -14,10 +15,11 @@ interface SearchableSelectProps {
   placeholder: string;
   onSelect: (item: SearchableItem) => void;
   value: string | null;
+  displayProp?: 'name_en' | 'name_jp';
   disabled?: boolean;
 }
 
-const SearchableSelect = ({ items, placeholder, onSelect, value, disabled = false }: SearchableSelectProps) => {
+const SearchableSelect = ({ items, placeholder, onSelect, value, displayProp = 'name_en', disabled = false }: SearchableSelectProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [query, setQuery] = useState('');
   const [position, setPosition] = useState<'bottom' | 'top'>('bottom');
@@ -91,7 +93,7 @@ const SearchableSelect = ({ items, placeholder, onSelect, value, disabled = fals
             {filteredItems.length > 0 ? (
               filteredItems.map(item => (
                 <li key={item.name_en} className="searchable-select__item" onClick={() => handleSelect(item)}>
-                  {item.name_en}
+                  {item[displayProp]}
                 </li>
               ))
             ) : (

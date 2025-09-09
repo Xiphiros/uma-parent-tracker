@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { useAppContext } from '../context/AppContext';
-import { Parent } from '../types';
+import { Parent, UniqueSpark, WhiteSpark } from '../types';
 import SparkTag from './common/SparkTag';
 import './ParentCard.css';
 
@@ -12,10 +12,17 @@ interface ParentCardProps {
 }
 
 const ParentCard = ({ parent, isTopParent = false, onEdit, onDelete }: ParentCardProps) => {
-    const { masterUmaList, getActiveProfile } = useAppContext();
+    const { getActiveProfile, displayLanguage, umaMapById, skillMapByName } = useAppContext();
     const goal = getActiveProfile()?.goal;
+    const displayNameProp = displayLanguage === 'jp' ? 'name_jp' : 'name_en';
 
-    const umaData = useMemo(() => masterUmaList.find(u => u.id === parent.umaId), [masterUmaList, parent.umaId]);
+    const umaData = useMemo(() => umaMapById.get(parent.umaId), [umaMapById, parent.umaId]);
+    const displayName = umaData ? umaData[displayNameProp] : parent.name;
+
+    const getSparkDisplayName = (spark: WhiteSpark | UniqueSpark) => {
+        const skill = skillMapByName.get(spark.name);
+        return skill ? skill[displayNameProp] : spark.name;
+    };
 
     const allWhiteSparks = useMemo(() => {
         if (!goal) return parent.whiteSparks.map(spark => ({ ...spark, tier: 'Other' }));
@@ -41,7 +48,7 @@ const ParentCard = ({ parent, isTopParent = false, onEdit, onDelete }: ParentCar
                     <div className="parent-card__header">
                         <div>
                             <h3 className="parent-card__name">
-                                {parent.name} <span className="parent-card__gen">(Gen {parent.gen})</span>
+                                {displayName} <span className="parent-card__gen">(Gen {parent.gen})</span>
                             </h3>
                         </div>
                         <div className="parent-card__score-wrapper">
@@ -66,7 +73,7 @@ const ParentCard = ({ parent, isTopParent = false, onEdit, onDelete }: ParentCar
                                     const wishlistItem = goal?.uniqueWishlist.find(w => w.name === spark.name);
                                     const tier = wishlistItem ? `Rank ${wishlistItem.tier}` : 'Other';
                                     return (
-                                        <SparkTag key={spark.name} category="unique" type={spark.name} stars={spark.stars}>
+                                        <SparkTag key={spark.name} category="unique" type={getSparkDisplayName(spark)} stars={spark.stars}>
                                             <span className="parent-card__spark-tier">({tier})</span>
                                         </SparkTag>
                                     )
@@ -77,7 +84,7 @@ const ParentCard = ({ parent, isTopParent = false, onEdit, onDelete }: ParentCar
                         <div className="parent-card__spark-container mt-2 parent-card__spark-container--white">
                             {allWhiteSparks.length > 0 ? (
                                 allWhiteSparks.map(spark => (
-                                    <SparkTag key={spark.name} category="white" type={spark.name} stars={spark.stars}>
+                                    <SparkTag key={spark.name} category="white" type={getSparkDisplayName(spark)} stars={spark.stars}>
                                         <span className="parent-card__spark-tier">({spark.tier})</span>
                                     </SparkTag>
                                 ))
