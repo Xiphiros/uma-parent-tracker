@@ -24,8 +24,8 @@ html {
     
     --color-button-primary-bg: #4f46e5; /* indigo-600 */
     --color-button-primary-hover: #4338ca; /* indigo-700 */
-    --color-button-secondary-bg: #0d9488; /* teal-600 */
-    --color-button-secondary-hover: #0f766e; /* teal-700 */
+    --color-button-secondary-bg: #0f766e; /* teal-700 - Darkened for AA contrast */
+    --color-button-secondary-hover: #115e59; /* teal-800 */
     --color-button-neutral-bg: #57534e; /* stone-600 */
     --color-button-neutral-hover: #44403c; /* stone-700 */
     --color-button-danger-bg: #dc2626; /* red-600 */
@@ -74,6 +74,8 @@ html.dark {
     --color-input-bg: #292524; /* stone-800 */
     --color-score: #fcd34d; /* amber-400 */
 
+    --color-button-secondary-bg: #0f766e; /* teal-700 - Darkened for AA contrast */
+    --color-button-secondary-hover: #115e59; /* teal-800 */
     --color-button-neutral-bg: #57534e; /* stone-600 */
     --color-button-neutral-hover: #44403c; /* stone-700 */
 
