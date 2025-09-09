@@ -24,6 +24,9 @@
     background-color: var(--color-button-secondary-bg);
     color: var(--color-text-inverted);
 }
+html.dark .button--secondary {
+    color: var(--color-text-inverted);
+}
 .button--secondary:hover:not(:disabled) {
     background-color: var(--color-button-secondary-hover);
 }
