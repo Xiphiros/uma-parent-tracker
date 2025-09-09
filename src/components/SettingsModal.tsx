@@ -86,7 +86,7 @@ const SettingsModal = ({ isOpen, onClose }: SettingsModalProps) => {
                             </div>
                         </div>
 
-                        <div className="form__section !border-t-0 !pt-0">
+                        <div className="form__section">
                             <h4 className="form__section-title mb-2">{t('dataDisplayLangTitle')}</h4>
                             <p className="text-sm text-stone-500 dark:text-stone-400 mb-3">{t('dataDisplayLangDesc')}</p>
                             <div className="space-y-2">
@@ -106,8 +106,10 @@ const SettingsModal = ({ isOpen, onClose }: SettingsModalProps) => {
                                 </label>
                             </div>
                         </div>
-
-                        <div className="form__section !border-t-0 !pt-0">
+                    </div>
+                    {/* Right Column: UI & Data Management */}
+                    <div className="settings-modal__column">
+                         <div className="form__section !border-t-0 !pt-0">
                             <h4 className="form__section-title mb-2">{t('uiLangTitle')}</h4>
                             <p className="text-sm text-stone-500 dark:text-stone-400 mb-3">{t('uiLangDesc')}</p>
                             <div className="space-y-2">
@@ -127,10 +129,7 @@ const SettingsModal = ({ isOpen, onClose }: SettingsModalProps) => {
                                 </label>
                             </div>
                         </div>
-                    </div>
-                    {/* Right Column: Data Management */}
-                    <div className="settings-modal__column">
-                        <div className="form__section !border-t-0 !pt-0">
+                        <div className="form__section">
                             <h4 className="form__section-title mb-2">{t('manageDataTitle')}</h4>
                             <div className="space-y-2">
                                 <button id="export-btn" className="button button--secondary w-full justify-center" onClick={exportData}>
