@@ -4,6 +4,7 @@ import SearchableSelect from './SearchableSelect';
 import { useScrollLock } from '../../hooks/useScrollLock';
 import './WishlistSection.css';
 import { useAppContext } from '../../context/AppContext';
+import { useTranslation } from 'react-i18next';
 
 interface WishlistSectionProps {
   title: string;
@@ -19,8 +20,9 @@ const WISH_RANK_ORDER: { [key: string]: number } = { S: 0, A: 1, B: 2, C: 3 };
 const TIER_OPTIONS: WishlistItem['tier'][] = ['S', 'A', 'B', 'C'];
 
 const WishlistSection = ({ title, wishlist, skillList, onAdd, onRemove, onUpdate, disableAdd = false }: WishlistSectionProps) => {
-  const { displayLanguage, skillMapByName } = useAppContext();
-  const displayNameProp = displayLanguage === 'jp' ? 'name_jp' : 'name_en';
+  const { t } = useTranslation(['goal', 'common']);
+  const { dataDisplayLanguage, skillMapByName } = useAppContext();
+  const displayNameProp = dataDisplayLanguage === 'jp' ? 'name_jp' : 'name_en';
   
   const [selectedSkill, setSelectedSkill] = useState<Skill | null>(null);
   const [selectedTier, setSelectedTier] = useState<WishlistItem['tier']>('S');
@@ -82,35 +84,35 @@ const WishlistSection = ({ title, wishlist, skillList, onAdd, onRemove, onUpdate
                     value={editingTier}
                     onChange={e => setEditingTier(e.target.value as WishlistItem['tier'])}
                   >
-                    {TIER_OPTIONS.map(t => <option key={t} value={t}>Rank {t}</option>)}
+                    {TIER_OPTIONS.map(t => <option key={t} value={t}>{t('wishlist.rank')} {t}</option>)}
                   </select>
                   <div className="wishlist-manage__item-actions">
-                    <button type="submit" className="parent-card__edit-btn">Save</button>
-                    <button type="button" onClick={handleCancelEdit} className="parent-card__delete-btn">Cancel</button>
+                    <button type="submit" className="parent-card__edit-btn">{t('wishlist.save')}</button>
+                    <button type="button" onClick={handleCancelEdit} className="parent-card__delete-btn">{t('wishlist.cancel')}</button>
                   </div>
                 </form>
               ) : (
                 <>
                   <div className="wishlist-manage__item-info">
                     <span>{getDisplayName(item.name)}</span>
-                    <span className="wishlist-manage__item-rank">Rank {item.tier}</span>
+                    <span className="wishlist-manage__item-rank">{t('wishlist.rank')} {item.tier}</span>
                   </div>
                   <div className="wishlist-manage__item-actions">
-                    <button onClick={() => handleEditClick(item)} className="parent-card__edit-btn">Edit</button>
-                    <button onClick={() => onRemove(item.name)} className="parent-card__delete-btn">Delete</button>
+                    <button onClick={() => handleEditClick(item)} className="parent-card__edit-btn">{t('common:edit')}</button>
+                    <button onClick={() => onRemove(item.name)} className="parent-card__delete-btn">{t('common:delete')}</button>
                   </div>
                 </>
               )}
             </div>
           ))
         ) : (
-          <p className="card__placeholder-text">No wishlist items yet.</p>
+          <p className="card__placeholder-text">{t('wishlist.noItems')}</p>
         )}
       </div>
       <div className="mt-2 space-y-2">
         <SearchableSelect
           items={skillList}
-          placeholder="Select skill..."
+          placeholder={t('wishlist.selectSkill')}
           value={selectedSkill?.[displayNameProp] || null}
           onSelect={(item) => setSelectedSkill(item as Skill)}
           displayProp={displayNameProp}
@@ -123,9 +125,9 @@ const WishlistSection = ({ title, wishlist, skillList, onAdd, onRemove, onUpdate
             className="form__input w-32"
             disabled={disableAdd}
           >
-            {TIER_OPTIONS.map(t => <option key={t} value={t}>Rank {t}</option>)}
+            {TIER_OPTIONS.map(t => <option key={t} value={t}>{t('wishlist.rank')} {t}</option>)}
           </select>
-          <button onClick={handleAdd} className="button button--primary" disabled={disableAdd || !selectedSkill}>Add</button>
+          <button onClick={handleAdd} className="button button--primary" disabled={disableAdd || !selectedSkill}>{t('common:add')}</button>
         </div>
       </div>
     </div>
