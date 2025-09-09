@@ -1,0 +1,13 @@
+{
+  "add": "Add",
+  "cancel": "Cancel",
+  "close": "Close",
+  "confirm": "Confirm",
+  "delete": "Delete",
+  "edit": "Edit",
+  "ok": "OK",
+  "save": "Save",
+  "selectPlaceholder": "Select...",
+  "searchPlaceholder": "Search...",
+  "noResults": "No results found."
+}
