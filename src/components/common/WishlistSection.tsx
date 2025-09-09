@@ -84,7 +84,7 @@ const WishlistSection = ({ title, wishlist, skillList, onAdd, onRemove, onUpdate
                     value={editingTier}
                     onChange={e => setEditingTier(e.target.value as WishlistItem['tier'])}
                   >
-                    {TIER_OPTIONS.map(t => <option key={t} value={t}>{t('wishlist.rank')} {t}</option>)}
+                    {TIER_OPTIONS.map(tier => <option key={tier} value={tier}>{t('wishlist.rank')} {tier}</option>)}
                   </select>
                   <div className="wishlist-manage__item-actions">
                     <button type="submit" className="parent-card__edit-btn">{t('wishlist.save')}</button>
@@ -125,7 +125,7 @@ const WishlistSection = ({ title, wishlist, skillList, onAdd, onRemove, onUpdate
             className="form__input w-32"
             disabled={disableAdd}
           >
-            {TIER_OPTIONS.map(t => <option key={t} value={t}>{t('wishlist.rank')} {t}</option>)}
+            {TIER_OPTIONS.map(tier => <option key={tier} value={tier}>{t('wishlist.rank')} {tier}</option>)}
           </select>
           <button onClick={handleAdd} className="button button--primary" disabled={disableAdd || !selectedSkill}>{t('common:add')}</button>
         </div>
