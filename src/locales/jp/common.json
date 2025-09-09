@@ -1,0 +1,13 @@
+{
+  "add": "追加",
+  "cancel": "キャンセル",
+  "close": "閉じる",
+  "confirm": "確認",
+  "delete": "削除",
+  "edit": "編集",
+  "ok": "OK",
+  "save": "保存",
+  "selectPlaceholder": "選択...",
+  "searchPlaceholder": "検索...",
+  "noResults": "結果が見つかりません。"
+}
