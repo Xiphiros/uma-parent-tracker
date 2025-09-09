@@ -1,0 +1,18 @@
+{
+  "addParentTitle": "Add New Parent",
+  "editParentTitle": "Edit Parent",
+  "umaNameLabel": "Uma Name",
+  "selectUmaPlaceholder": "Select uma name...",
+  "blueSparkSection": "Blue Spark",
+  "pinkSparkSection": "Pink Spark",
+  "typeLabel": "Type",
+  "starsLabel": "Stars",
+  "uniqueSparksSection": "Obtained Unique Sparks",
+  "searchUniqueSkill": "Search unique skill...",
+  "whiteSparksSection": "Obtained White Sparks",
+  "searchSkill": "Search skill...",
+  "updateParentBtn": "Update Parent",
+  "calculateScoreBtn": "Calculate Score & Save",
+  "inputRequiredTitle": "Input Required",
+  "selectUmaAlert": "Please select an Uma Name."
+}
