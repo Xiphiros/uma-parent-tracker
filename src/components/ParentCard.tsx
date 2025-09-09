@@ -3,6 +3,7 @@ import { useAppContext } from '../context/AppContext';
 import { Parent, UniqueSpark, WhiteSpark } from '../types';
 import SparkTag from './common/SparkTag';
 import './ParentCard.css';
+import { useTranslation } from 'react-i18next';
 
 interface ParentCardProps {
     parent: Parent;
@@ -12,9 +13,10 @@ interface ParentCardProps {
 }
 
 const ParentCard = ({ parent, isTopParent = false, onEdit, onDelete }: ParentCardProps) => {
-    const { getActiveProfile, displayLanguage, umaMapById, skillMapByName } = useAppContext();
+    const { t } = useTranslation(['roster', 'common']);
+    const { getActiveProfile, dataDisplayLanguage, umaMapById, skillMapByName } = useAppContext();
     const goal = getActiveProfile()?.goal;
-    const displayNameProp = displayLanguage === 'jp' ? 'name_jp' : 'name_en';
+    const displayNameProp = dataDisplayLanguage === 'jp' ? 'name_jp' : 'name_en';
 
     const umaData = useMemo(() => umaMapById.get(parent.umaId), [umaMapById, parent.umaId]);
     const displayName = umaData ? umaData[displayNameProp] : parent.name;
@@ -29,10 +31,10 @@ const ParentCard = ({ parent, isTopParent = false, onEdit, onDelete }: ParentCar
 
         return parent.whiteSparks.map(spark => {
             const wishlistItem = goal.wishlist.find(w => w.name === spark.name);
-            const tier = wishlistItem ? `Rank ${wishlistItem.tier}` : 'Other';
+            const tier = wishlistItem ? `${t('parentCard.rank')} ${wishlistItem.tier}` : 'Other';
             return { ...spark, tier };
         });
-    }, [parent.whiteSparks, goal]);
+    }, [parent.whiteSparks, goal, t]);
 
     return (
         <div className={`parent-card ${isTopParent ? 'parent-card--top-pair' : ''}`}>
@@ -48,15 +50,15 @@ const ParentCard = ({ parent, isTopParent = false, onEdit, onDelete }: ParentCar
                     <div className="parent-card__header">
                         <div>
                             <h3 className="parent-card__name">
-                                {displayName} <span className="parent-card__gen">(Gen {parent.gen})</span>
+                                {displayName} <span className="parent-card__gen">({t('parentCard.gen')} {parent.gen})</span>
                             </h3>
                         </div>
                         <div className="parent-card__score-wrapper">
-                            <div className="parent-card__score">{parent.score} pts</div>
+                            <div className="parent-card__score">{parent.score} {t('parentCard.pts')}</div>
                             {!isTopParent && (
                                 <div className="parent-card__actions">
-                                    <button onClick={onEdit} className="parent-card__edit-btn">Edit</button>
-                                    <button onClick={onDelete} className="parent-card__delete-btn">Delete</button>
+                                    <button onClick={onEdit} className="parent-card__edit-btn">{t('common:edit')}</button>
+                                    <button onClick={onDelete} className="parent-card__delete-btn">{t('common:delete')}</button>
                                 </div>
                             )}
                         </div>
@@ -71,7 +73,7 @@ const ParentCard = ({ parent, isTopParent = false, onEdit, onDelete }: ParentCar
                             <div className="parent-card__spark-container mt-2">
                                 {parent.uniqueSparks.map(spark => {
                                     const wishlistItem = goal?.uniqueWishlist.find(w => w.name === spark.name);
-                                    const tier = wishlistItem ? `Rank ${wishlistItem.tier}` : 'Other';
+                                    const tier = wishlistItem ? `${t('parentCard.rank')} ${wishlistItem.tier}` : 'Other';
                                     return (
                                         <SparkTag key={spark.name} category="unique" type={getSparkDisplayName(spark)} stars={spark.stars}>
                                             <span className="parent-card__spark-tier">({tier})</span>
@@ -89,7 +91,7 @@ const ParentCard = ({ parent, isTopParent = false, onEdit, onDelete }: ParentCar
                                     </SparkTag>
                                 ))
                             ) : (
-                                <p className="parent-card__no-sparks-text">No white sparks.</p>
+                                <p className="parent-card__no-sparks-text">{t('parentCard.noWhiteSparks')}</p>
                             )}
                         </div>
                     </div>
