@@ -8,6 +8,7 @@ import AddFolderModal from './AddFolderModal';
 import ContextMenu, { MenuItem } from './common/ContextMenu';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBookmark, faGear, faChevronLeft, faChevronRight, faFolderPlus, faPlus, faThumbtack } from '@fortawesome/free-solid-svg-icons';
+import { useTranslation } from 'react-i18next';
 
 interface ContextMenuState {
     isOpen: boolean;
@@ -17,6 +18,7 @@ interface ContextMenuState {
 }
 
 const Tabs = () => {
+    const { t } = useTranslation(['tabs', 'common']);
     const { appData, switchProfile, addProfile, renameProfile, deleteProfile, togglePinProfile, togglePinFolder, reorderLayout, reorderProfileInFolder, moveProfileToFolder, addFolder, updateFolder, deleteFolder, toggleFolderCollapse } = useAppContext();
     const { profiles, folders, layout, activeProfileId } = appData;
 
@@ -54,15 +56,15 @@ const Tabs = () => {
         let menuItems: MenuItem[] = [];
         if ('profileIds' in item) { // It's a Folder
             menuItems = [
-                { label: 'Edit Folder', onClick: () => handleOpenFolderSettings(item) },
-                { label: item.isPinned ? 'Unpin Folder' : 'Pin Folder', onClick: () => togglePinFolder(item.id) },
-                { label: 'Delete Folder...', onClick: () => handleDeleteFolder(item), isDestructive: true, disabled: !!item.isPinned },
+                { label: t('context.editFolder'), onClick: () => handleOpenFolderSettings(item) },
+                { label: item.isPinned ? t('unpinFolder') : t('pinFolder'), onClick: () => togglePinFolder(item.id) },
+                { label: t('context.deleteFolder'), onClick: () => handleDeleteFolder(item), isDestructive: true, disabled: !!item.isPinned },
             ];
         } else { // It's a Profile
             menuItems = [
-                { label: 'Rename Project', onClick: () => { setSettingsModalProfile(item); setRenameValue(item.name); setRenameModalOpen(true); } },
-                { label: item.isPinned ? 'Unpin Project' : 'Pin Project', onClick: () => togglePinProfile(item.id) },
-                { label: 'Delete Project...', onClick: () => handleDelete(item), isDestructive: true, disabled: !!item.isPinned },
+                { label: t('context.renameProject'), onClick: () => { setSettingsModalProfile(item); setRenameValue(item.name); setRenameModalOpen(true); } },
+                { label: item.isPinned ? t('unpinProject') : t('pinProject'), onClick: () => togglePinProfile(item.id) },
+                { label: t('context.deleteProject'), onClick: () => handleDelete(item), isDestructive: true, disabled: !!item.isPinned },
             ];
         }
 
@@ -258,13 +260,13 @@ const Tabs = () => {
 
         if (profile.isPinned) {
             setSettingsModalProfile(null);
-            setAlertMessage('You cannot delete a pinned project. Please unpin it first.');
+            setAlertMessage(t('modals.cannotDeletePinnedProject'));
             return;
         }
         
         if (profiles.length <= 1) {
             setSettingsModalProfile(null);
-            setAlertMessage('You cannot delete the last project.');
+            setAlertMessage(t('modals.cannotDeleteLastProject'));
             return;
         }
         
@@ -296,13 +298,13 @@ const Tabs = () => {
     const handleDeleteFolder = (folder: Folder | null) => {
         if (folder) {
             if (folder.isPinned) {
-                setAlertMessage('You cannot delete a pinned folder. Please unpin it first.');
+                setAlertMessage(t('modals.cannotDeletePinnedFolder'));
                 return;
             }
 
             const hasPinnedProjects = folder.profileIds.some(pid => profilesById.get(pid)?.isPinned);
             if (hasPinnedProjects) {
-                setAlertMessage('This folder contains pinned projects. Please unpin them before deleting the folder.');
+                setAlertMessage(t('modals.folderContainsPinnedProjects'));
                 return;
             }
 
@@ -379,10 +381,10 @@ const Tabs = () => {
                 {profile.name}
             </button>
             <div className="tab__actions">
-                    <button className={`tab__pin-btn ${profile.isPinned ? 'tab__pin-btn--pinned' : ''}`} title={profile.isPinned ? 'Unpin Project' : 'Pin Project'} onClick={() => togglePinProfile(profile.id)}>
+                    <button className={`tab__pin-btn ${profile.isPinned ? 'tab__pin-btn--pinned' : ''}`} title={profile.isPinned ? t('unpinProject') : t('pinProject')} onClick={() => togglePinProfile(profile.id)}>
                         <FontAwesomeIcon icon={profile.isPinned ? faBookmark : faThumbtack} className="h-4 w-4" />
                 </button>
-                <button className="tab__settings-btn" title="Project Settings" onClick={() => openSettings(profile)}>
+                <button className="tab__settings-btn" title={t('projectSettingsTitle')} onClick={() => openSettings(profile)}>
                     <FontAwesomeIcon icon={faGear} className="h-4 w-4" />
                 </button>
             </div>
@@ -396,7 +398,7 @@ const Tabs = () => {
                     className="tabs__nav-btn" 
                     onClick={(e) => handleScroll(e, 'left')} 
                     disabled={!canScrollLeft}
-                    title="Scroll Left (Hold Shift for Start)"
+                    title={t('scrollLeft')}
                 >
                     <FontAwesomeIcon icon={faChevronLeft} className="h-5 w-5" />
                 </button>
@@ -436,15 +438,15 @@ const Tabs = () => {
                     className="tabs__nav-btn" 
                     onClick={(e) => handleScroll(e, 'right')} 
                     disabled={!canScrollRight}
-                    title="Scroll Right (Hold Shift for End)"
+                    title={t('scrollRight')}
                 >
                     <FontAwesomeIcon icon={faChevronRight} className="h-5 w-5" />
                 </button>
                 <div className="tabs__actions-group">
-                    <button className="tabs__add-btn" title="Add New Folder" onClick={() => { setFolderToEdit(null); setFolderModalOpen(true); }}>
+                    <button className="tabs__add-btn" title={t('addFolderBtn')} onClick={() => { setFolderToEdit(null); setFolderModalOpen(true); }}>
                         <FontAwesomeIcon icon={faFolderPlus} className="h-6 w-6" />
                     </button>
-                    <button className="tabs__add-btn" title="Add New Project" onClick={() => setAddModalOpen(true)}>
+                    <button className="tabs__add-btn" title={t('addProjectBtn')} onClick={() => setAddModalOpen(true)}>
                         <FontAwesomeIcon icon={faPlus} className="h-6 w-6" />
                     </button>
                 </div>
@@ -460,18 +462,18 @@ const Tabs = () => {
             {/* Modals */}
             <AddFolderModal isOpen={isFolderModalOpen} onClose={() => setFolderModalOpen(false)} onSave={handleFolderSave} folderToEdit={folderToEdit} />
 
-            <Modal isOpen={isFolderSettingsOpen} onClose={() => setFolderSettingsOpen(false)} title={`Settings for "${folderToEdit?.name}"`}>
-                 <div className="dialog-modal__message">What would you like to do?</div>
+            <Modal isOpen={isFolderSettingsOpen} onClose={() => setFolderSettingsOpen(false)} title={t('modals.folderSettingsTitle', { name: folderToEdit?.name })}>
+                 <div className="dialog-modal__message">{t('modals.folderSettingsMsg')}</div>
                 <div className="dialog-modal__footer">
-                    <button className="button button--neutral" onClick={() => setFolderSettingsOpen(false)}>Cancel</button>
-                    <button className="button button--secondary" onClick={() => { setFolderSettingsOpen(false); setFolderModalOpen(true); }}>Edit</button>
-                    <button className="button button--danger" onClick={() => handleDeleteFolder(folderToEdit)}>Delete</button>
+                    <button className="button button--neutral" onClick={() => setFolderSettingsOpen(false)}>{t('common:cancel')}</button>
+                    <button className="button button--secondary" onClick={() => { setFolderSettingsOpen(false); setFolderModalOpen(true); }}>{t('common:edit')}</button>
+                    <button className="button button--danger" onClick={() => handleDeleteFolder(folderToEdit)}>{t('common:delete')}</button>
                 </div>
             </Modal>
 
-            <Modal isOpen={isAddModalOpen} onClose={() => setAddModalOpen(false)} title="Add New Project">
+            <Modal isOpen={isAddModalOpen} onClose={() => setAddModalOpen(false)} title={t('modals.addProjectTitle')}>
                 <div className="my-4">
-                    <label htmlFor="new-profile-name" className="form__label">Project Name</label>
+                    <label htmlFor="new-profile-name" className="form__label">{t('modals.projectNameLabel')}</label>
                     <input
                         type="text"
                         id="new-profile-name"
@@ -482,23 +484,23 @@ const Tabs = () => {
                     />
                 </div>
                 <div className="dialog-modal__footer">
-                    <button className="button button--neutral" onClick={() => setAddModalOpen(false)}>Cancel</button>
-                    <button className="button button--primary" onClick={handleAddProfile}>Add Project</button>
+                    <button className="button button--neutral" onClick={() => setAddModalOpen(false)}>{t('common:cancel')}</button>
+                    <button className="button button--primary" onClick={handleAddProfile}>{t('modals.addProjectBtn')}</button>
                 </div>
             </Modal>
             
-            <Modal isOpen={!!settingsModalProfile} onClose={() => setSettingsModalProfile(null)} title={`Settings for "${settingsModalProfile?.name}"`}>
-                <div className="dialog-modal__message">What would you like to do?</div>
+            <Modal isOpen={!!settingsModalProfile} onClose={() => setSettingsModalProfile(null)} title={t('modals.projectSettingsTitle', { name: settingsModalProfile?.name })}>
+                <div className="dialog-modal__message">{t('modals.projectSettingsMsg')}</div>
                 <div className="dialog-modal__footer">
-                    <button className="button button--neutral" onClick={() => setSettingsModalProfile(null)}>Cancel</button>
-                    <button className="button button--secondary" onClick={() => { setRenameValue(settingsModalProfile?.name || ''); setRenameModalOpen(true); }}>Rename</button>
-                    <button className="button button--danger" onClick={() => handleDelete(settingsModalProfile)}>Delete</button>
+                    <button className="button button--neutral" onClick={() => setSettingsModalProfile(null)}>{t('common:cancel')}</button>
+                    <button className="button button--secondary" onClick={() => { setRenameValue(settingsModalProfile?.name || ''); setRenameModalOpen(true); }}>{t('modals.renameBtn')}</button>
+                    <button className="button button--danger" onClick={() => handleDelete(settingsModalProfile)}>{t('common:delete')}</button>
                 </div>
             </Modal>
             
-            <Modal isOpen={isRenameModalOpen} onClose={() => setRenameModalOpen(false)} title={`Rename "${settingsModalProfile?.name}"`}>
+            <Modal isOpen={isRenameModalOpen} onClose={() => setRenameModalOpen(false)} title={t('modals.renameTitle', { name: settingsModalProfile?.name })}>
                 <div className="my-4">
-                    <label htmlFor="rename-profile-name" className="form__label">New Project Name</label>
+                    <label htmlFor="rename-profile-name" className="form__label">{t('modals.newProjectNameLabel')}</label>
                     <input
                         type="text"
                         id="rename-profile-name"
@@ -509,44 +511,40 @@ const Tabs = () => {
                     />
                 </div>
                 <div className="dialog-modal__footer">
-                    <button className="button button--neutral" onClick={() => setRenameModalOpen(false)}>Cancel</button>
-                    <button className="button button--primary" onClick={handleRename}>Save</button>
+                    <button className="button button--neutral" onClick={() => setRenameModalOpen(false)}>{t('common:cancel')}</button>
+                    <button className="button button--primary" onClick={handleRename}>{t('common:save')}</button>
                 </div>
             </Modal>
 
-            <Modal isOpen={isDeleteConfirmOpen} onClose={() => setDeleteConfirmOpen(false)} title="Confirm Project Deletion">
-                <p className="dialog-modal__message">
-                    Are you sure you want to delete project "{settingsModalProfile?.name}"?
-                    <br />
-                    <strong>This cannot be undone.</strong>
-                </p>
+            <Modal isOpen={isDeleteConfirmOpen} onClose={() => setDeleteConfirmOpen(false)} title={t('modals.deleteProjectTitle')}>
+                <p className="dialog-modal__message" dangerouslySetInnerHTML={{ __html: t('modals.deleteProjectMsg', { name: settingsModalProfile?.name }) }} />
                 <div className="dialog-modal__footer">
-                    <button className="button button--neutral" onClick={() => setDeleteConfirmOpen(false)}>Cancel</button>
-                    <button className="button button--danger" onClick={handleConfirmDelete}>Delete Project</button>
+                    <button className="button button--neutral" onClick={() => setDeleteConfirmOpen(false)}>{t('common:cancel')}</button>
+                    <button className="button button--danger" onClick={handleConfirmDelete}>{t('modals.deleteProjectBtn')}</button>
                 </div>
             </Modal>
             
-             <Modal isOpen={isDeleteFolderConfirmOpen} onClose={() => setDeleteFolderConfirmOpen(false)} title={`Delete Folder "${folderToDelete?.name}"?`}>
+             <Modal isOpen={isDeleteFolderConfirmOpen} onClose={() => setDeleteFolderConfirmOpen(false)} title={t('modals.deleteFolderTitle', { name: folderToDelete?.name })}>
                 <p className="dialog-modal__message">
-                    What should be done with the projects inside this folder?
+                    {t('modals.deleteFolderMsg')}
                 </p>
                 <div className="my-4 space-y-3">
                     <button className="button button--secondary w-full justify-center" onClick={() => handleConfirmDeleteFolder(false)}>
-                        Move Projects to Top Level
+                        {t('modals.moveProjectsBtn')}
                     </button>
                     <button className="button button--danger w-full justify-center" onClick={() => handleConfirmDeleteFolder(true)}>
-                        Delete Folder and All Projects Inside
+                        {t('modals.deleteProjectsBtn')}
                     </button>
                 </div>
                 <div className="dialog-modal__footer">
-                    <button className="button button--neutral" onClick={() => setDeleteFolderConfirmOpen(false)}>Cancel</button>
+                    <button className="button button--neutral" onClick={() => setDeleteFolderConfirmOpen(false)}>{t('common:cancel')}</button>
                 </div>
             </Modal>
 
-            <Modal isOpen={!!alertMessage} onClose={() => setAlertMessage('')} title="Action Not Allowed">
+            <Modal isOpen={!!alertMessage} onClose={() => setAlertMessage('')} title={t('modals.notAllowedTitle')}>
                 <p className="dialog-modal__message">{alertMessage}</p>
                 <div className="dialog-modal__footer">
-                    <button className="button button--primary" onClick={() => setAlertMessage('')}>OK</button>
+                    <button className="button button--primary" onClick={() => setAlertMessage('')}>{t('common:ok')}</button>
                 </div>
             </Modal>
         </>
