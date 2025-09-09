@@ -105,16 +105,12 @@ def prepare_skills(skill_data, skill_meta, skill_names, translations):
         jp_name = name_list[0]
         name_en = name_list[1]
         is_global = name_list[2]
+        community_translation = translations.get('skills', {}).get(skill_id, {}).get('unofficialTranslation')
 
-        # Apply community translation if available and no official one exists
-        unofficial_translation = translations.get('skills', {}).get(skill_id, {}).get('unofficialTranslation')
-        if unofficial_translation and not is_global:
-            name_en = unofficial_translation
-                
         if '◎' in jp_name or '×' in jp_name:
             continue
 
-        all_possible_skills.append({
+        skill_entry = {
             'id': skill_id,
             'name_jp': jp_name,
             'name_en': name_en,
@@ -122,7 +118,12 @@ def prepare_skills(skill_data, skill_meta, skill_names, translations):
             'rarity': skill.get('rarity'),
             'groupId': skill_meta[base_id].get('groupId'),
             'isGlobal': is_global
-        })
+        }
+
+        if community_translation and not is_global:
+            skill_entry['name_en_community'] = community_translation
+        
+        all_possible_skills.append(skill_entry)
         
     # --- New Factor Processing Logic ---
     print("Processing race and scenario factors using factor-map...")
@@ -214,31 +215,34 @@ def prepare_umas(translations):
         gl_uma = gl_umas_data.get(char_id, {})
 
         char_name_jp = jp_uma.get('name', ['', ''])[0]
-        char_name_en = gl_uma.get('name', ['', ''])[1]
-        is_char_global = bool(char_name_en)
-
-        # Apply community translation if available
-        if not is_char_global:
-            char_name_en = translations.get('characters', {}).get(char_id, {}).get('unofficialTranslation') or char_name_jp
+        char_name_en_official = gl_uma.get('name', ['', ''])[1]
+        char_name_en_community = translations.get('characters', {}).get(char_id, {}).get('unofficialTranslation')
+        is_char_global = bool(char_name_en_official)
+        char_name_en_base = char_name_en_official or char_name_jp
 
         jp_outfits = jp_uma.get('outfits', {})
         gl_outfits = gl_uma.get('outfits', {})
         all_outfit_ids = set(jp_outfits.keys()) | set(gl_outfits.keys())
 
-        if not char_name_en: continue
+        if not char_name_en_base: continue
 
         for outfit_id in sorted(list(all_outfit_ids)):
             outfit_name_jp = jp_outfits.get(outfit_id)
-            outfit_name_en = gl_outfits.get(outfit_id)
-            is_outfit_global = bool(outfit_name_en)
-
-            if not is_outfit_global:
-                outfit_name_en = translations.get('outfits', {}).get(outfit_id, {}).get('unofficialTranslation')
+            outfit_name_en_official = gl_outfits.get(outfit_id)
+            outfit_name_en_community = translations.get('outfits', {}).get(outfit_id, {}).get('unofficialTranslation')
+            is_outfit_global = bool(outfit_name_en_official)
+            outfit_name_en_base = outfit_name_en_official or outfit_name_jp
 
             formatted_name_jp = f"{outfit_name_jp}{char_name_jp}" if outfit_name_jp else char_name_jp
             
-            outfit_prefix_en = outfit_name_en or outfit_name_jp
-            formatted_name_en = f"{outfit_prefix_en} {char_name_en}" if outfit_prefix_en else char_name_en
+            # Base EN name (Official > JP)
+            outfit_prefix_en = outfit_name_en_base
+            formatted_name_en = f"{outfit_prefix_en} {char_name_en_base}" if outfit_prefix_en else char_name_en_base
+
+            # Community EN name
+            final_char_name_comm = char_name_en_community if char_name_en_community and not is_char_global else char_name_en_base
+            final_outfit_name_comm = outfit_name_en_community if outfit_name_en_community and not is_outfit_global else outfit_name_en_base
+            formatted_name_en_community = f"{final_outfit_name_comm} {final_char_name_comm}" if final_outfit_name_comm else final_char_name_comm
 
             uma_entry = {
                 'id': outfit_id,
@@ -247,6 +251,9 @@ def prepare_umas(translations):
                 'name_en': formatted_name_en,
                 'isGlobal': is_char_global and is_outfit_global
             }
+            
+            if formatted_name_en_community != formatted_name_en:
+                 uma_entry['name_en_community'] = formatted_name_en_community
             
             if outfit_id in image_files:
                 image_path = image_files[outfit_id]
