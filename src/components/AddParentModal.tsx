@@ -30,7 +30,7 @@ const initialState: NewParentData = {
 };
 
 const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) => {
-    const { t } = useTranslation(['modals', 'common']);
+    const { t } = useTranslation(['modals', 'common', 'game']);
     const { masterUmaList, masterSkillList, addParent, updateParent, dataDisplayLanguage, umaMapById, skillMapByName } = useAppContext();
     
     const [formData, setFormData] = useState<NewParentData>(initialState);
@@ -158,7 +158,7 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
                             <div>
                                 <label className="form__label form__label--xs">{t('typeLabel')}</label>
                                 <select className="form__input" value={formData.blueSpark.type} onChange={e => handleSparkChange('blueSpark', 'type', e.target.value as BlueSpark['type'])}>
-                                    {BLUE_SPARK_TYPES.map(t => <option key={t}>{t}</option>)}
+                                    {BLUE_SPARK_TYPES.map(type => <option key={type} value={type}>{t(type, { ns: 'game' })}</option>)}
                                 </select>
                             </div>
                             <div>
@@ -176,7 +176,7 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
                             <div>
                                 <label className="form__label form__label--xs">{t('typeLabel')}</label>
                                 <select className="form__input" value={formData.pinkSpark.type} onChange={e => handleSparkChange('pinkSpark', 'type', e.target.value)}>
-                                    {PINK_SPARK_TYPES.map(t => <option key={t}>{t}</option>)}
+                                    {PINK_SPARK_TYPES.map(type => <option key={type} value={type}>{t(type, { ns: 'game' })}</option>)}
                                 </select>
                             </div>
                             <div>
