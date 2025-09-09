@@ -2,6 +2,7 @@ import json
 from pathlib import Path
 import argparse
 import re
+import hashlib
 
 # --- PATHS ---
 SCRIPT_DIR = Path(__file__).parent
@@ -115,7 +116,8 @@ def main():
     unmapped_jp_scenarios = jp_scenario_factors - processed_scenario_jp_names
     
     for factor_name in sorted(list(unmapped_jp_scenarios)):
-        factor_id = "scenario_" + re.sub(r'[^a-z0-9]+', '', factor_name.lower())
+        factor_hash = hashlib.md5(factor_name.encode('utf-8')).hexdigest()
+        factor_id = f"scenario_{factor_hash}"
         category = 'skills_misc'
         if factor_id not in translations[category]:
             translations[category][factor_id] = { "jp_text": factor_name, "unofficialTranslation": "" }
