@@ -68,7 +68,7 @@ const createNewProfile = (name: string): Profile => ({
 });
 
 const createDefaultState = (): AppData => {
-    const firstProfile = createNewProfile('My First Project');
+    const firstProfile = createNewProfile(i18n.t('app:newProjectName'));
     return {
         version: CURRENT_VERSION,
         activeProfileId: firstProfile.id,
