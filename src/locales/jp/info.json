@@ -1,0 +1,13 @@
+{
+  "title": "このアプリケーションについて",
+  "appTitle": "ウマ娘 因子研究ツール",
+  "meta": "バージョン {{version}} (開発中) • 作成者 Xiph",
+  "licenseTitle": "ライセンス",
+  "licenseText": "このアプリケーションはMITライセンスの下でライセンスされています。",
+  "licenseMutedText": "基になるスキル、キャラクター、ゲームデータは「uma-tools」プロジェクトから提供されており、これはGNU General Public License v3.0の下で配布されています。",
+  "creditsTitle": "データソースとクレジット",
+  "creditsText": "このツールは、Alpha123氏による素晴らしい成果である",
+  "creditsLink": "uma-tools",
+  "thanksTitle": "スペシャルサンクス",
+  "thanksText": "テストとフィードバックにご協力いただいた<em>Diabellstar</em>様と<em>Sloovy</em>様に感謝いたします。"
+}
