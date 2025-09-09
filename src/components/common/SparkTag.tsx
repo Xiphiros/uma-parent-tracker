@@ -6,14 +6,16 @@ type SparkCategory = 'blue' | 'pink' | 'unique' | 'white';
 
 interface SparkTagProps {
     category: SparkCategory;
-    type: string; // e.g., "Speed", "Turf", or the skill name for unique/white
+    type: string; // The translated name for display
     stars: number;
     children?: ReactNode; // To hold extra info like tier
+    originalType?: string; // The canonical, untranslated type for data attributes
 }
 
-const SparkTag = ({ category, type, stars, children }: SparkTagProps) => {
+const SparkTag = ({ category, type, stars, children, originalType }: SparkTagProps) => {
     // Sanitize type for data-attribute, e.g., "Front Runner" -> "front-runner"
-    const dataType = type.toLowerCase().replace(/ /g, '-');
+    // Use the original, untranslated type for a stable data-attribute for CSS.
+    const dataType = (originalType || type).toLowerCase().replace(/ /g, '-');
 
     return (
         <div 
