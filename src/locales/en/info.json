@@ -1,0 +1,13 @@
+{
+  "title": "About This Application",
+  "appTitle": "Umamusume Parent Tracker",
+  "meta": "Version {{version}} (In Development) • Created by Xiph",
+  "licenseTitle": "License",
+  "licenseText": "This application is licensed under the MIT License.",
+  "licenseMutedText": "The underlying skill, character, and game data is sourced from the 'uma-tools' project, which is distributed under the GNU General Public License v3.0.",
+  "creditsTitle": "Data Source & Credits",
+  "creditsText": "This tool would not be possible without the incredible work done by Alpha123 on the",
+  "creditsLink": "uma-tools",
+  "thanksTitle": "Special Thanks",
+  "thanksText": "Thank you to <em>Diabellstar</em> and <em>Sloovy</em> for their help with testing and feedback."
+}
