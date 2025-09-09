@@ -15,9 +15,6 @@
 }
 .button--primary {
     background-color: var(--color-button-primary-bg);
-    color: white;
-}
-html.dark .button--primary {
     color: var(--color-text-inverted);
 }
 .button--primary:hover:not(:disabled) {
@@ -25,10 +22,7 @@ html.dark .button--primary {
 }
 .button--secondary {
     background-color: var(--color-button-secondary-bg);
-    color: white;
-}
-html.dark .button--secondary {
-    color: #1e293b;
+    color: var(--color-text-inverted);
 }
 .button--secondary:hover:not(:disabled) {
     background-color: var(--color-button-secondary-hover);
@@ -46,7 +40,7 @@ html.dark .button--secondary {
 }
 .button--danger {
     background-color: var(--color-button-danger-bg);
-    color: white;
+    color: var(--color-text-inverted);
 }
 .button--danger:hover:not(:disabled) {
     background-color: var(--color-button-danger-hover);
