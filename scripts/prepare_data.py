@@ -24,7 +24,7 @@ OUTPUT_DATA_DIR = PROJECT_ROOT / 'src' / 'data'
 UMA_IMG_DIR = PROJECT_ROOT / 'public' / 'images' / 'umas'
 EXCLUSION_PATH = OUTPUT_DATA_DIR / 'skill-exclusions.json'
 FACTOR_MAP_PATH = RAW_DATA_DIR / 'factor-map.json'
-COMMUNITY_TRANSLATIONS_PATH = OUTPUT_DATA_DIR / 'community-translations.json'
+COMMUNITY_TRANSLATIONS_DIR = OUTPUT_DATA_DIR / 'community_translations'
 
 # --- DATA LOADING AND MERGING ---
 
@@ -34,6 +34,28 @@ def _load_json(path: Path):
             return json.load(f)
     print(f"Warning: {path} not found. Continuing with empty data.")
     return {}
+
+def load_all_translations(directory: Path) -> dict:
+    """Loads all JSON files from a directory and merges them by category."""
+    merged_translations = {
+        'characters': {}, 'outfits': {}, 'skills': {},
+    }
+    if not directory.exists():
+        print("Community translations directory not found. Skipping.")
+        return merged_translations
+
+    for file_path in directory.glob('*.json'):
+        category_data = _load_json(file_path)
+        if 'skills' in file_path.name:
+            merged_translations['skills'].update(category_data)
+        elif 'characters' in file_path.name:
+            merged_translations['characters'].update(category_data)
+        elif 'outfits' in file_path.name:
+            merged_translations['outfits'].update(category_data)
+            
+    print(f"Loaded {len(merged_translations['skills'])} skill, {len(merged_translations['characters'])} character, and {len(merged_translations['outfits'])} outfit community translations.")
+    return merged_translations
+
 
 def load_and_merge_skill_data():
     """Loads and merges JP and Global skill-related data sources."""
@@ -245,7 +267,7 @@ def prepare_umas(translations):
 
 if __name__ == "__main__":
     try:
-        translations = _load_json(COMMUNITY_TRANSLATIONS_PATH)
+        translations = load_all_translations(COMMUNITY_TRANSLATIONS_DIR)
         skill_data, skill_meta, skill_names = load_and_merge_skill_data()
         prepare_skills(skill_data, skill_meta, skill_names, translations)
         prepare_umas(translations)
