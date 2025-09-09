@@ -2,6 +2,7 @@ import { useState, useMemo, ChangeEvent, useRef, useEffect } from 'react';
 import { useClickOutside } from '../../hooks/useClickOutside';
 import { useScrollLock } from '../../hooks/useScrollLock';
 import './SearchableSelect.css';
+import { useTranslation } from 'react-i18next';
 
 interface SearchableItem {
   name_en: string;
@@ -20,6 +21,7 @@ interface SearchableSelectProps {
 }
 
 const SearchableSelect = ({ items, placeholder, onSelect, value, displayProp = 'name_en', disabled = false }: SearchableSelectProps) => {
+  const { t } = useTranslation('common');
   const [isOpen, setIsOpen] = useState(false);
   const [query, setQuery] = useState('');
   const [position, setPosition] = useState<'bottom' | 'top'>('bottom');
@@ -84,7 +86,7 @@ const SearchableSelect = ({ items, placeholder, onSelect, value, displayProp = '
           <input
             type="text"
             className="searchable-select__search-input form__input"
-            placeholder="Search..."
+            placeholder={t('searchPlaceholder')}
             value={query}
             onChange={(e: ChangeEvent<HTMLInputElement>) => setQuery(e.target.value)}
             autoFocus
@@ -97,7 +99,7 @@ const SearchableSelect = ({ items, placeholder, onSelect, value, displayProp = '
                 </li>
               ))
             ) : (
-              <li className="searchable-select__item--no-results">No results found.</li>
+              <li className="searchable-select__item--no-results">{t('noResults')}</li>
             )}
           </ul>
         </div>
