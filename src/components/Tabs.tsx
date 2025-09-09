@@ -18,12 +18,12 @@ interface ContextMenuState {
 }
 
 const Tabs = () => {
-    const { t } = useTranslation(['tabs', 'common']);
+    const { t } = useTranslation(['tabs', 'common', 'app']);
     const { appData, switchProfile, addProfile, renameProfile, deleteProfile, togglePinProfile, togglePinFolder, reorderLayout, reorderProfileInFolder, moveProfileToFolder, addFolder, updateFolder, deleteFolder, toggleFolderCollapse } = useAppContext();
     const { profiles, folders, layout, activeProfileId } = appData;
 
     const [isAddModalOpen, setAddModalOpen] = useState(false);
-    const [newProfileName, setNewProfileName] = useState('New Project');
+    const [newProfileName, setNewProfileName] = useState('');
     
     const [settingsModalProfile, setSettingsModalProfile] = useState<Profile | null>(null);
     const [isRenameModalOpen, setRenameModalOpen] = useState(false);
@@ -47,6 +47,12 @@ const Tabs = () => {
 
     const profilesById = useMemo(() => new Map(profiles.map(p => [p.id, p])), [profiles]);
     const foldersById = useMemo(() => new Map(folders.map(f => [f.id, f])), [folders]);
+
+    useEffect(() => {
+        if (isAddModalOpen) {
+            setNewProfileName(t('app:newProjectName'));
+        }
+    }, [isAddModalOpen, t]);
 
     // --- Context Menu ---
     const handleOpenContextMenu = (e: React.MouseEvent, item: Profile | Folder) => {
@@ -238,7 +244,7 @@ const Tabs = () => {
     const handleAddProfile = () => {
         if (newProfileName.trim()) {
             addProfile(newProfileName.trim());
-            setNewProfileName('New Project');
+            setNewProfileName(t('app:newProjectName'));
             setAddModalOpen(false);
         }
     };
