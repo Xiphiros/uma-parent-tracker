@@ -24,31 +24,31 @@ OUTPUT_DATA_DIR = PROJECT_ROOT / 'src' / 'data'
 UMA_IMG_DIR = PROJECT_ROOT / 'public' / 'images' / 'umas'
 EXCLUSION_PATH = OUTPUT_DATA_DIR / 'skill-exclusions.json'
 FACTOR_MAP_PATH = RAW_DATA_DIR / 'factor-map.json'
+COMMUNITY_TRANSLATIONS_PATH = OUTPUT_DATA_DIR / 'community-translations.json'
 
 # --- DATA LOADING AND MERGING ---
 
-def _load_json(version: str, filename: str):
-    file_path = RAW_DATA_DIR / version / filename
-    if file_path.exists():
-        with open(file_path, 'r', encoding='utf-8') as f:
+def _load_json(path: Path):
+    if path.exists():
+        with open(path, 'r', encoding='utf-8') as f:
             return json.load(f)
-    print(f"Warning: {file_path} not found. Continuing with empty data.")
+    print(f"Warning: {path} not found. Continuing with empty data.")
     return {}
 
 def load_and_merge_skill_data():
     """Loads and merges JP and Global skill-related data sources."""
     print("Loading and merging skill data...")
     
-    jp_skill_data = _load_json('jp', 'skill_data.json')
-    gl_skill_data = _load_json('global', 'skill_data.json')
+    jp_skill_data = _load_json(RAW_DATA_DIR / 'jp' / 'skill_data.json')
+    gl_skill_data = _load_json(RAW_DATA_DIR / 'global' / 'skill_data.json')
     skill_data = {**jp_skill_data, **gl_skill_data}
     
-    jp_skill_meta = _load_json('jp', 'skill_meta.json')
-    gl_skill_meta = _load_json('global', 'skill_meta.json')
+    jp_skill_meta = _load_json(RAW_DATA_DIR / 'jp' / 'skill_meta.json')
+    gl_skill_meta = _load_json(RAW_DATA_DIR / 'global' / 'skill_meta.json')
     skill_meta = {**jp_skill_meta, **gl_skill_meta}
 
-    jp_names = _load_json('jp', 'skillnames.json')
-    gl_names = _load_json('global', 'skillnames.json')
+    jp_names = _load_json(RAW_DATA_DIR / 'jp' / 'skillnames.json')
+    gl_names = _load_json(RAW_DATA_DIR / 'global' / 'skillnames.json')
     skill_names = {}
     all_skill_ids = set(jp_names.keys()) | set(gl_names.keys())
     for skill_id in all_skill_ids:
@@ -59,7 +59,7 @@ def load_and_merge_skill_data():
     print("Skill data merging complete.")
     return skill_data, skill_meta, skill_names
 
-def prepare_skills(skill_data, skill_meta, skill_names):
+def prepare_skills(skill_data, skill_meta, skill_names, translations):
     """Processes merged skill and race data into a format usable by the application."""
     print("Processing skills and factors...")
     
@@ -80,16 +80,21 @@ def prepare_skills(skill_data, skill_meta, skill_names):
             continue
             
         name_list = skill_names[skill_id]
-        name_jp = name_list[0]
+        jp_name = name_list[0]
         name_en = name_list[1]
         is_global = name_list[2]
+
+        # Apply community translation if available and no official one exists
+        unofficial_translation = translations.get('skills', {}).get(skill_id, {}).get('unofficialTranslation')
+        if unofficial_translation and not is_global:
+            name_en = unofficial_translation
                 
-        if '◎' in name_jp or '×' in name_jp:
+        if '◎' in jp_name or '×' in jp_name:
             continue
 
         all_possible_skills.append({
             'id': skill_id,
-            'name_jp': name_jp,
+            'name_jp': jp_name,
             'name_en': name_en,
             'type': 'unique' if is_inherited_unique else 'normal',
             'rarity': skill.get('rarity'),
@@ -101,13 +106,12 @@ def prepare_skills(skill_data, skill_meta, skill_names):
     print("Processing race and scenario factors using factor-map...")
 
     # 1. Load the canonical map and raw factor lists
-    with open(FACTOR_MAP_PATH, 'r', encoding='utf-8') as f:
-        factor_map = json.load(f)
+    factor_map = _load_json(FACTOR_MAP_PATH)
     
-    global_race_factors = set(_load_json('global', 'races.json'))
-    jp_race_factors = set(_load_json('jp', 'races.json'))
-    global_scenario_factors = set(_load_json('global', 'scenarios.json'))
-    jp_scenario_factors = set(_load_json('jp', 'scenarios.json'))
+    global_race_factors = set(_load_json(RAW_DATA_DIR / 'global' / 'races.json'))
+    jp_race_factors = set(_load_json(RAW_DATA_DIR / 'jp' / 'races.json'))
+    global_scenario_factors = set(_load_json(RAW_DATA_DIR / 'global' / 'scenarios.json'))
+    jp_scenario_factors = set(_load_json(RAW_DATA_DIR / 'jp' / 'scenarios.json'))
 
     processed_names = set()
 
@@ -145,7 +149,7 @@ def prepare_skills(skill_data, skill_meta, skill_names):
     for factor in sorted(list(unmapped_gl_scenarios)): add_unmapped_factor(factor, 'scenario_', True)
     for factor in sorted(list(unmapped_jp_scenarios)): add_unmapped_factor(factor, 'scenario_', False)
 
-    print(f"Processed {len(factor_map['races']) + len(factor_map['scenarios'])} mapped factors.")
+    print(f"Processed {len(factor_map.get('races', [])) + len(factor_map.get('scenarios', []))} mapped factors.")
     print(f"Processed {len(unmapped_gl_races | unmapped_jp_races)} unmapped race factors.")
     print(f"Processed {len(unmapped_gl_scenarios | unmapped_jp_scenarios)} unmapped scenario factors.")
 
@@ -156,15 +160,8 @@ def prepare_skills(skill_data, skill_meta, skill_names):
         json.dump(all_possible_skills, f, indent=2, ensure_ascii=False)
     print(f"Dev skill list saved to: {dev_output_path.relative_to(PROJECT_ROOT)}")
 
-    exclusions = set()
-    if EXCLUSION_PATH.exists():
-        with open(EXCLUSION_PATH, 'r', encoding='utf-8') as f:
-            exclusions = set(json.load(f))
-        print(f"Loaded {len(exclusions)} skill exclusions.")
-    else:
-        print("No skill-exclusions.json file found. Creating an empty one.")
-        with open(EXCLUSION_PATH, 'w', encoding='utf-8') as f:
-            json.dump([], f, indent=2)
+    exclusions = set(_load_json(EXCLUSION_PATH))
+    print(f"Loaded {len(exclusions)} skill exclusions.")
     
     inheritable_skills = [s for s in all_possible_skills if s['id'] not in exclusions]
 
@@ -175,11 +172,11 @@ def prepare_skills(skill_data, skill_meta, skill_names):
     print(f"Successfully processed {len(inheritable_skills)} skills and factors for production.")
     print(f"Skill output saved to: {output_path.relative_to(PROJECT_ROOT)}")
 
-def prepare_umas():
+def prepare_umas(translations):
     """Processes merged uma data and links it with available images."""
     print("\nProcessing umas...")
-    jp_umas_data = _load_json('jp', 'umas.json')
-    gl_umas_data = _load_json('global', 'umas.json')
+    jp_umas_data = _load_json(RAW_DATA_DIR / 'jp' / 'umas.json')
+    gl_umas_data = _load_json(RAW_DATA_DIR / 'global' / 'umas.json')
 
     output_path = OUTPUT_DATA_DIR / 'uma-list.json'
 
@@ -195,23 +192,29 @@ def prepare_umas():
         gl_uma = gl_umas_data.get(char_id, {})
 
         char_name_jp = jp_uma.get('name', ['', ''])[0]
-        char_name_en = gl_uma.get('name', ['', ''])[1] or char_name_jp
+        char_name_en = gl_uma.get('name', ['', ''])[1]
+        is_char_global = bool(char_name_en)
+
+        # Apply community translation if available
+        if not is_char_global:
+            char_name_en = translations.get('characters', {}).get(char_id, {}).get('unofficialTranslation') or char_name_jp
 
         jp_outfits = jp_uma.get('outfits', {})
         gl_outfits = gl_uma.get('outfits', {})
         all_outfit_ids = set(jp_outfits.keys()) | set(gl_outfits.keys())
 
-        if not char_name_en: continue # Skip if no English name for the character
+        if not char_name_en: continue
 
         for outfit_id in sorted(list(all_outfit_ids)):
             outfit_name_jp = jp_outfits.get(outfit_id)
             outfit_name_en = gl_outfits.get(outfit_id)
+            is_outfit_global = bool(outfit_name_en)
 
-            # Construct the full names
+            if not is_outfit_global:
+                outfit_name_en = translations.get('outfits', {}).get(outfit_id, {}).get('unofficialTranslation')
+
             formatted_name_jp = f"{outfit_name_jp}{char_name_jp}" if outfit_name_jp else char_name_jp
             
-            # Determine the best outfit prefix for the English name, preferring the global name,
-            # but falling back to the Japanese name if it exists.
             outfit_prefix_en = outfit_name_en or outfit_name_jp
             formatted_name_en = f"{outfit_prefix_en} {char_name_en}" if outfit_prefix_en else char_name_en
 
@@ -220,7 +223,7 @@ def prepare_umas():
                 'characterId': char_id,
                 'name_jp': formatted_name_jp,
                 'name_en': formatted_name_en,
-                'isGlobal': bool(gl_outfits.get(outfit_id)) and bool(gl_uma.get('name', ['', ''])[1])
+                'isGlobal': is_char_global and is_outfit_global
             }
             
             if outfit_id in image_files:
@@ -242,8 +245,9 @@ def prepare_umas():
 
 if __name__ == "__main__":
     try:
+        translations = _load_json(COMMUNITY_TRANSLATIONS_PATH)
         skill_data, skill_meta, skill_names = load_and_merge_skill_data()
-        prepare_skills(skill_data, skill_meta, skill_names)
-        prepare_umas()
+        prepare_skills(skill_data, skill_meta, skill_names, translations)
+        prepare_umas(translations)
     except Exception as e:
         print(f"\nAn error occurred during data preparation: {e}")
