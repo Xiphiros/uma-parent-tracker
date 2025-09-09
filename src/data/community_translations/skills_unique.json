@@ -1,0 +1,5718 @@
+{
+  "1000011": {
+    "jp_text": "カーニバルボーナス",
+    "unofficialTranslation": "Carnival Bonus"
+  },
+  "1000012": {
+    "jp_text": "カーニバルボーナス",
+    "unofficialTranslation": "Carnival Bonus"
+  },
+  "1000013": {
+    "jp_text": "カーニバルボーナス",
+    "unofficialTranslation": "Carnival Bonus"
+  },
+  "1000014": {
+    "jp_text": "カーニバルボーナス",
+    "unofficialTranslation": "Carnival Bonus"
+  },
+  "1000015": {
+    "jp_text": "カーニバルボーナス",
+    "unofficialTranslation": "Carnival Bonus"
+  },
+  "1000016": {
+    "jp_text": "カーニバルボーナス",
+    "unofficialTranslation": "Carnival Bonus"
+  },
+  "1000017": {
+    "jp_text": "カーニバルボーナス",
+    "unofficialTranslation": "Carnival Bonus"
+  },
+  "100101111": {
+    "jp_text": "はらぺこ大将",
+    "unofficialTranslation": "Hungry General"
+  },
+  "100101211": {
+    "jp_text": "夢叶える末脚",
+    "unofficialTranslation": "Dream-Fulfilling Final Leg"
+  },
+  "100102111": {
+    "jp_text": "真夏の思い切り",
+    "unofficialTranslation": "Midsummer's Full Send"
+  },
+  "100102211": {
+    "jp_text": "真夏の総大将",
+    "unofficialTranslation": "Midsummer's Great General"
+  },
+  "100103111": {
+    "jp_text": "怒涛の出陣",
+    "unofficialTranslation": "Raging Departure"
+  },
+  "100103211": {
+    "jp_text": "日之本一のド根性",
+    "unofficialTranslation": "Japan's #1 Guts"
+  },
+  "100191": {
+    "jp_text": "尊み☆ﾗｽﾄｽﾊﾟ—(ﾟ∀ﾟ)—ﾄ!",
+    "unofficialTranslation": "Precious☆LAAAST SPUUURT!"
+  },
+  "100201111": {
+    "jp_text": "最大集中",
+    "unofficialTranslation": "Maximum Focus"
+  },
+  "100201211": {
+    "jp_text": "異次元の逃亡者",
+    "unofficialTranslation": "Otherworldly Fugitive"
+  },
+  "100202111": {
+    "jp_text": "瑠璃色エスケイプ",
+    "unofficialTranslation": "Lapis Lazuli Escape"
+  },
+  "100202121": {
+    "jp_text": "滄海を越えしフーガ",
+    "unofficialTranslation": "Fugue Across the Blue Sea"
+  },
+  "100202211": {
+    "jp_text": "蒼天を駆けるラーファガ",
+    "unofficialTranslation": "Rafaga Across the Blue Sky"
+  },
+  "100211": {
+    "jp_text": "白い稲妻、見せたるで！",
+    "unofficialTranslation": "I'll Show You the White Lightning!"
+  },
+  "100221": {
+    "jp_text": "Fairy tale",
+    "unofficialTranslation": "Fairy tale"
+  },
+  "100251": {
+    "jp_text": "アナタヲ・オイカケテ",
+    "unofficialTranslation": "CHASING・YOU"
+  },
+  "100281": {
+    "jp_text": "I'M☆FULL☆SPEED!!",
+    "unofficialTranslation": "I'M☆FULL☆SPEED!!"
+  },
+  "100291": {
+    "jp_text": "ゆきあかり、おいかけて",
+    "unofficialTranslation": "Chasing the Snow Light"
+  },
+  "100301111": {
+    "jp_text": "天才的技巧",
+    "unofficialTranslation": "Genius Technique"
+  },
+  "100301211": {
+    "jp_text": "帝王ステップ",
+    "unofficialTranslation": "Emperor Step"
+  },
+  "100302111": {
+    "jp_text": "レースの天才",
+    "unofficialTranslation": "Racing Genius"
+  },
+  "100302211": {
+    "jp_text": "地平の彼方まで",
+    "unofficialTranslation": "To the Ends of the Horizon"
+  },
+  "100303111": {
+    "jp_text": "天賦の身ごなし",
+    "unofficialTranslation": "Natural-Born Agility"
+  },
+  "100303211": {
+    "jp_text": "盤楽遊嬉",
+    "unofficialTranslation": "Reveling in the Game"
+  },
+  "100303221": {
+    "jp_text": "朝腹、朝腹、かやすしや♪",
+    "unofficialTranslation": "Morning stretches, morning stretches, 'tis easy to do♪"
+  },
+  "100311": {
+    "jp_text": "チャージ完了！全速前進！",
+    "unofficialTranslation": "Charge Complete! Full Speed Ahead!"
+  },
+  "100331": {
+    "jp_text": "ディオスクロイの流星",
+    "unofficialTranslation": "Meteor of Dioscuri"
+  },
+  "100341": {
+    "jp_text": "快走かな、快走かな！",
+    "unofficialTranslation": "What a Fine Run, a Fine Run!"
+  },
+  "100361": {
+    "jp_text": "trigger:BEAT",
+    "unofficialTranslation": "trigger:BEAT"
+  },
+  "100391": {
+    "jp_text": "姫たるもの、勝利をこの手に",
+    "unofficialTranslation": "As a Princess, I Will Seize Victory"
+  },
+  "100401111": {
+    "jp_text": "かっ飛ばすわよ！",
+    "unofficialTranslation": "I'm Gonna Fly!"
+  },
+  "100401211": {
+    "jp_text": "紅蓮のオーバーレブ",
+    "unofficialTranslation": "Crimson Over-Rev"
+  },
+  "100402111": {
+    "jp_text": "ドキッ☆じゃじゃウマ娘！",
+    "unofficialTranslation": "Gasp☆Unruly Horse Girl!"
+  },
+  "100402211": {
+    "jp_text": "お立ち台の支配者",
+    "unofficialTranslation": "Ruler of the Winner's Podium"
+  },
+  "100403111": {
+    "jp_text": "天女の羽衣",
+    "unofficialTranslation": "Robe of a Celestial Maiden"
+  },
+  "100403211": {
+    "jp_text": "神薙ダンス",
+    "unofficialTranslation": "Divine Mowing Dance"
+  },
+  "100421": {
+    "jp_text": "『I'm possible』",
+    "unofficialTranslation": "『I'm possible』"
+  },
+  "100431": {
+    "jp_text": "Ding Dong Boo",
+    "unofficialTranslation": "Ding Dong Boo"
+  },
+  "100441": {
+    "jp_text": "いただき☆ストレリチア！",
+    "unofficialTranslation": "Got It☆Strelitzia!"
+  },
+  "100471": {
+    "jp_text": "掲げよ、己が魂の剣を！",
+    "unofficialTranslation": "Raise the Sword of Your Soul!"
+  },
+  "100481": {
+    "jp_text": "YEAH☆VIVID TIME!",
+    "unofficialTranslation": "YEAH☆VIVID TIME!"
+  },
+  "100491": {
+    "jp_text": "剣ヶ峰より、狂気に嗤え",
+    "unofficialTranslation": "From the Brink, Laugh at Madness"
+  },
+  "100501111": {
+    "jp_text": "輝くトップスタァ",
+    "unofficialTranslation": "Shining Top Star"
+  },
+  "100501211": {
+    "jp_text": "エンターテイナー",
+    "unofficialTranslation": "Entertainer"
+  },
+  "100501221": {
+    "jp_text": "煌めく“キセキ”を",
+    "unofficialTranslation": "A Sparkling \"Miracle\""
+  },
+  "100502111": {
+    "jp_text": "圧巻のトリック",
+    "unofficialTranslation": "Breathtaking Trick"
+  },
+  "100502121": {
+    "jp_text": "見惚れるコーナリング",
+    "unofficialTranslation": "Captivating Cornering"
+  },
+  "100502211": {
+    "jp_text": "煌めきのトップスタァ",
+    "unofficialTranslation": "Glittering Top Star"
+  },
+  "100511": {
+    "jp_text": "つぼみ、ほころぶ時",
+    "unofficialTranslation": "When the Flower Bud Blossoms"
+  },
+  "100531": {
+    "jp_text": "熱血！！風紀アタック",
+    "unofficialTranslation": "Hot-Blooded!! Moral Committee Attack"
+  },
+  "100541": {
+    "jp_text": "疾風爆走ペガサスダッシュ！",
+    "unofficialTranslation": "Gale-Force Pegasus Dash!"
+  },
+  "100551": {
+    "jp_text": "万彩☆マーベラス★世界",
+    "unofficialTranslation": "Kaleidoscopic☆Marvelous★World"
+  },
+  "100571": {
+    "jp_text": "叙情、旅路の果てに",
+    "unofficialTranslation": "Lyricism, at the Journey's End"
+  },
+  "100591": {
+    "jp_text": "彼方、その先へ…",
+    "unofficialTranslation": "To the Other Side, and Beyond..."
+  },
+  "100601111": {
+    "jp_text": "笠松の食いしん坊",
+    "unofficialTranslation": "The Glutton of Kasamatsu"
+  },
+  "100601121": {
+    "jp_text": "飢えた怪物",
+    "unofficialTranslation": "Starving Monster"
+  },
+  "100601211": {
+    "jp_text": "怪物的コーナリング",
+    "unofficialTranslation": "Monstrous Cornering"
+  },
+  "100602111": {
+    "jp_text": "ドカ食い養生",
+    "unofficialTranslation": "Binge-Eating for Health"
+  },
+  "100602211": {
+    "jp_text": "クリスマスの奇跡体験",
+    "unofficialTranslation": "A Christmas Miracle Experience"
+  },
+  "100621": {
+    "jp_text": "どんっ、パッ、むんっ",
+    "unofficialTranslation": "Don, Pa, Mun"
+  },
+  "100631": {
+    "jp_text": "百錬成鋼",
+    "unofficialTranslation": "Tempered Through a Hundred Trials"
+  },
+  "100641": {
+    "jp_text": "ぶっちぎりロード",
+    "unofficialTranslation": "Breakaway Road"
+  },
+  "100651": {
+    "jp_text": "アゲてアゲてぷちょへんざ！",
+    "unofficialTranslation": "Get Hyped, Get Hyped, Put Ya Hands Up!"
+  },
+  "100661": {
+    "jp_text": "エンジン全開！大噴射！",
+    "unofficialTranslation": "Engine at Full Throttle! Mega-Blast!"
+  },
+  "100671": {
+    "jp_text": "晦冥を照らせ永遠の耀き",
+    "unofficialTranslation": "Illuminate the Gloom, Eternal Radiance"
+  },
+  "100681": {
+    "jp_text": "勝ち鬨ワッショイ！",
+    "unofficialTranslation": "Victory Cry, Wasshoi!"
+  },
+  "100691": {
+    "jp_text": "憧れは桜を越える！",
+    "unofficialTranslation": "My Dream Will Surpass the Cherry Blossoms!"
+  },
+  "100701": {
+    "jp_text": "セイリオス（人気1～3番）",
+    "unofficialTranslation": "Sirius (Popularity 1-3)"
+  },
+  "100701-1": {
+    "jp_text": "セイリオス（人気4番以下）",
+    "unofficialTranslation": "Sirius (Popularity 4+)"
+  },
+  "100701111": {
+    "jp_text": "564アイズで視界クッキリ！",
+    "unofficialTranslation": "564 Eyes for a Clear View!"
+  },
+  "100701211": {
+    "jp_text": "エクストリーム下校術",
+    "unofficialTranslation": "Extreme Art of Going Home"
+  },
+  "100702111": {
+    "jp_text": "神秘体験！ゴルシワープ",
+    "unofficialTranslation": "Mystical Experience! Gorushi Warp"
+  },
+  "100702211": {
+    "jp_text": "イカ揚げ、いかがですか！？",
+    "unofficialTranslation": "How About Some Fried Squid!?"
+  },
+  "100702221": {
+    "jp_text": "高まってきたぜぇ！！",
+    "unofficialTranslation": "I'm Getting Fired Up!!"
+  },
+  "100703111": {
+    "jp_text": "押し寄せるジュテーム",
+    "unofficialTranslation": "Surging Je T'aime"
+  },
+  "100703211": {
+    "jp_text": "荒磯好みの黄金船",
+    "unofficialTranslation": "The Golden Ship that Loves the Rocky Shore"
+  },
+  "100711": {
+    "jp_text": "一期の夢、刹那の飛翔",
+    "unofficialTranslation": "A Fleeting Dream, a Moment's Flight"
+  },
+  "100721": {
+    "jp_text": "烈火繚乱、無敵之舞",
+    "unofficialTranslation": "Raging Fire, Invincible Dance"
+  },
+  "100731": {
+    "jp_text": "燃え盛るは絶対の意志",
+    "unofficialTranslation": "The Unwavering Will Burns Bright"
+  },
+  "100741": {
+    "jp_text": "麗しき花信風",
+    "unofficialTranslation": "The Beautiful Flower-Announcing Wind"
+  },
+  "100761": {
+    "jp_text": "花開き、世界",
+    "unofficialTranslation": "The World Blossoms"
+  },
+  "100771": {
+    "jp_text": "Road to Glory",
+    "unofficialTranslation": "Road to Glory"
+  },
+  "100781": {
+    "jp_text": "風光る",
+    "unofficialTranslation": "The Wind Shines"
+  },
+  "100791": {
+    "jp_text": "『船橋最強！』",
+    "unofficialTranslation": "『The Strongest in Funabashi!』"
+  },
+  "100801": {
+    "jp_text": "Info: Acquired",
+    "unofficialTranslation": "Info: Acquired"
+  },
+  "100801111": {
+    "jp_text": "スキットルブレイク",
+    "unofficialTranslation": "Skittle Break"
+  },
+  "100801211": {
+    "jp_text": "抜群の豪脚",
+    "unofficialTranslation": "Exceptional Power Legs"
+  },
+  "100802111": {
+    "jp_text": "ぶっ差してやるぜ！",
+    "unofficialTranslation": "Gonna Leave 'em in the Dust!"
+  },
+  "100802211": {
+    "jp_text": "最速のトップギア",
+    "unofficialTranslation": "The Fastest Top Gear"
+  },
+  "100821": {
+    "jp_text": "Shining Runway",
+    "unofficialTranslation": "Shining Runway"
+  },
+  "100831": {
+    "jp_text": "Mission: Triumph",
+    "unofficialTranslation": "Mission: Triumph"
+  },
+  "100841": {
+    "jp_text": "霹靂のアウフヘーベン",
+    "unofficialTranslation": "Aufheben of the Thunderclap"
+  },
+  "100851": {
+    "jp_text": "至上であれ",
+    "unofficialTranslation": "Be Supreme"
+  },
+  "100861": {
+    "jp_text": "愛と熔けよただ熔けよ",
+    "unofficialTranslation": "Melt with Love, Just Melt"
+  },
+  "100871": {
+    "jp_text": "Silent letter",
+    "unofficialTranslation": "Silent letter"
+  },
+  "100881": {
+    "jp_text": "Reversal Illusion",
+    "unofficialTranslation": "Reversal Illusion"
+  },
+  "100891": {
+    "jp_text": "Celeste Oath",
+    "unofficialTranslation": "Celeste Oath"
+  },
+  "100901": {
+    "jp_text": "Queen's Rebirth",
+    "unofficialTranslation": "Queen's Rebirth"
+  },
+  "100901111": {
+    "jp_text": "パーフェクトチューン",
+    "unofficialTranslation": "Perfect Tune"
+  },
+  "100901211": {
+    "jp_text": "アタシが勝つんだから！",
+    "unofficialTranslation": "Because I'm Gonna Win!"
+  },
+  "100902111": {
+    "jp_text": "おてんば女王",
+    "unofficialTranslation": "Tomboy Queen"
+  },
+  "100902121": {
+    "jp_text": "緋色の光となって",
+    "unofficialTranslation": "Becoming a Scarlet Light"
+  },
+  "100902211": {
+    "jp_text": "開かれる夢の扉",
+    "unofficialTranslation": "The Opening Door of Dreams"
+  },
+  "100911": {
+    "jp_text": "デラックス☆ファウンテン",
+    "unofficialTranslation": "Deluxe☆Fountain"
+  },
+  "100931": {
+    "jp_text": "幸せの青い光",
+    "unofficialTranslation": "The Blue Light of Happiness"
+  },
+  "100941": {
+    "jp_text": "Faith in the Feral",
+    "unofficialTranslation": "Faith in the Feral"
+  },
+  "100961": {
+    "jp_text": "知宵欺敵、百戦不殆",
+    "unofficialTranslation": "Deceive the Foe at Night, Win a Hundred Battles"
+  },
+  "100971": {
+    "jp_text": "スカーレットリリィの高揚",
+    "unofficialTranslation": "Exaltation of the Scarlet Lily"
+  },
+  "100981": {
+    "jp_text": "理運開かりて翔る",
+    "unofficialTranslation": "Soar as Fortune Opens the Way"
+  },
+  "100991": {
+    "jp_text": "かがやけ☆とまこまい",
+    "unofficialTranslation": "Shine☆Tomakomai"
+  },
+  "101001": {
+    "jp_text": "Never Say Never",
+    "unofficialTranslation": "Never Say Never"
+  },
+  "101001111": {
+    "jp_text": "狙い撃ちデス！",
+    "unofficialTranslation": "Time to Snipe!"
+  },
+  "101001211": {
+    "jp_text": "Frontier Spirit",
+    "unofficialTranslation": "Frontier Spirit"
+  },
+  "101002111": {
+    "jp_text": "アドベンチャーの先導者",
+    "unofficialTranslation": "Leader of the Adventure"
+  },
+  "101002211": {
+    "jp_text": "真剣勝負デス！",
+    "unofficialTranslation": "It's a Serious Match!"
+  },
+  "101021": {
+    "jp_text": "ヴィヴァーチェ・ヴォラーレ",
+    "unofficialTranslation": "Vivace Volare"
+  },
+  "101041": {
+    "jp_text": "暁の御旗『葛城栄主』！",
+    "unofficialTranslation": "Banner of Dawn, 『Katsuragi Eishu』!"
+  },
+  "101051": {
+    "jp_text": "アド・アストラ",
+    "unofficialTranslation": "Ad Astra"
+  },
+  "101061": {
+    "jp_text": "Bang☆ミラクるわせ！",
+    "unofficialTranslation": "Bang☆Make a Miracle!"
+  },
+  "101071": {
+    "jp_text": "Billions of stars",
+    "unofficialTranslation": "Billions of stars"
+  },
+  "101081": {
+    "jp_text": "羅刹、赤翼にて天上へ至らん",
+    "unofficialTranslation": "Rakshasa, Ascend to the Heavens on Crimson Wings"
+  },
+  "101091": {
+    "jp_text": "繋ぐ・繋がる×夢・未来",
+    "unofficialTranslation": "Connecting・Connected×Dream・Future"
+  },
+  "101101": {
+    "jp_text": "Guiding Sea",
+    "unofficialTranslation": "Guiding Sea"
+  },
+  "101101111": {
+    "jp_text": "大和撫子",
+    "unofficialTranslation": "Yamato Nadeshiko"
+  },
+  "101101211": {
+    "jp_text": "不退転の意思",
+    "unofficialTranslation": "Unyielding Will"
+  },
+  "101102111": {
+    "jp_text": "キュアリーヒール",
+    "unofficialTranslation": "Cure-ly Heal"
+  },
+  "101102211": {
+    "jp_text": "勇気の魔法",
+    "unofficialTranslation": "The Magic of Courage"
+  },
+  "101103111": {
+    "jp_text": "射貫く蒼",
+    "unofficialTranslation": "Piercing Blue"
+  },
+  "101103211": {
+    "jp_text": "勝機到来",
+    "unofficialTranslation": "Opportunity Arrives"
+  },
+  "101111": {
+    "jp_text": "辿る血脈、芽吹く未来",
+    "unofficialTranslation": "Following the Bloodline, a Budding Future"
+  },
+  "101131": {
+    "jp_text": "ホップステップ・ゲッチュ♡",
+    "unofficialTranslation": "Hop, Step, Get You♡"
+  },
+  "101151": {
+    "jp_text": "我が覇道、阻むものなし",
+    "unofficialTranslation": "Nothing Can Stop My Path to Supremacy"
+  },
+  "101161": {
+    "jp_text": "烈華の洗礼",
+    "unofficialTranslation": "Baptism of Raging Fire"
+  },
+  "101171": {
+    "jp_text": "鋭気のアレグロ",
+    "unofficialTranslation": "Allegro of Vigor"
+  },
+  "101191": {
+    "jp_text": "『それでは、よき旅を』",
+    "unofficialTranslation": "『Well Then, Have a Good Trip』"
+  },
+  "101201": {
+    "jp_text": "無二無三なる一条の路",
+    "unofficialTranslation": "The One and Only Single Path"
+  },
+  "101201111": {
+    "jp_text": "勝利への咆哮",
+    "unofficialTranslation": "Roar to Victory"
+  },
+  "101201121": {
+    "jp_text": "タイマンにかける執念",
+    "unofficialTranslation": "Obsession with One-on-Ones"
+  },
+  "101201211": {
+    "jp_text": "怒濤のポロロッカ",
+    "unofficialTranslation": "Raging Pororoca"
+  },
+  "101202111": {
+    "jp_text": "熱烈エンゲージ！",
+    "unofficialTranslation": "Passionate Engage!"
+  },
+  "101202211": {
+    "jp_text": "闘魂入刀！",
+    "unofficialTranslation": "Fighting Spirit Blade!"
+  },
+  "101202221": {
+    "jp_text": "誓いの一振り",
+    "unofficialTranslation": "A Swing of Vows"
+  },
+  "101211": {
+    "jp_text": "Lame de vent",
+    "unofficialTranslation": "Lame de vent"
+  },
+  "101241": {
+    "jp_text": "ふくらむ夢、先駆の途",
+    "unofficialTranslation": "A Swelling Dream, a Pioneering Path"
+  },
+  "101271": {
+    "jp_text": "対象捕捉！正義遂行！",
+    "unofficialTranslation": "Target Acquired! Enacting Justice!"
+  },
+  "101301111": {
+    "jp_text": "メジロの心得",
+    "unofficialTranslation": "The Mejiro Code"
+  },
+  "101301211": {
+    "jp_text": "名優の余裕",
+    "unofficialTranslation": "The Poise of a Great Actor"
+  },
+  "101302111": {
+    "jp_text": "アクティブレスト",
+    "unofficialTranslation": "Active Rest"
+  },
+  "101302211": {
+    "jp_text": "空の果てまで",
+    "unofficialTranslation": "To the Ends of the Sky"
+  },
+  "101303111": {
+    "jp_text": "夏の名優",
+    "unofficialTranslation": "Summer's Great Actor"
+  },
+  "101303211": {
+    "jp_text": "一意専心にリフレッシュ！",
+    "unofficialTranslation": "Refresh with Single-Minded Focus!"
+  },
+  "101311": {
+    "jp_text": "¡Qué alegría!",
+    "unofficialTranslation": "¡Qué alegría!"
+  },
+  "101321": {
+    "jp_text": "Circulating Love♡",
+    "unofficialTranslation": "Circulating Love♡"
+  },
+  "101331": {
+    "jp_text": "Weaving History",
+    "unofficialTranslation": "Weaving History"
+  },
+  "101401111": {
+    "jp_text": "鷹ノ目",
+    "unofficialTranslation": "Hawk's Eye"
+  },
+  "101401211": {
+    "jp_text": "余裕のパフォーマンス",
+    "unofficialTranslation": "A Leisurely Performance"
+  },
+  "101402111": {
+    "jp_text": "豪勇無双",
+    "unofficialTranslation": "Peerless Valor"
+  },
+  "101402121": {
+    "jp_text": "コンドル跳躍術",
+    "unofficialTranslation": "Condor's Leaping Art"
+  },
+  "101402211": {
+    "jp_text": "昇りコンドル",
+    "unofficialTranslation": "Rising Condor"
+  },
+  "101501111": {
+    "jp_text": "降臨！世紀末覇王！",
+    "unofficialTranslation": "Advent! End-of-Century Supreme King!"
+  },
+  "101501211": {
+    "jp_text": "歌劇王の行進",
+    "unofficialTranslation": "March of the Opera King"
+  },
+  "101502111": {
+    "jp_text": "円舞曲のマエストロ",
+    "unofficialTranslation": "Maestro of the Waltz"
+  },
+  "101502121": {
+    "jp_text": "コーナーに舞い降りし歌劇王",
+    "unofficialTranslation": "The Opera King Descending on the Corner"
+  },
+  "101502211": {
+    "jp_text": "ボクは遅れずにやってくる！",
+    "unofficialTranslation": "I Shall Arrive Without Delay!"
+  },
+  "101601111": {
+    "jp_text": "一刀両断",
+    "unofficialTranslation": "Cut in Two with One Stroke"
+  },
+  "101601211": {
+    "jp_text": "餓狼牙",
+    "unofficialTranslation": "Hungry Wolf Fang"
+  },
+  "101602111": {
+    "jp_text": "BLAZING WOLF",
+    "unofficialTranslation": "BLAZING WOLF"
+  },
+  "101602211": {
+    "jp_text": "渇望する怪物",
+    "unofficialTranslation": "The Craving Monster"
+  },
+  "101701111": {
+    "jp_text": "皇帝の眼差し",
+    "unofficialTranslation": "The Emperor's Gaze"
+  },
+  "101701211": {
+    "jp_text": "鎧袖一触",
+    "unofficialTranslation": "Effortless Victory"
+  },
+  "101702111": {
+    "jp_text": "神色自若",
+    "unofficialTranslation": "Perfect Composure"
+  },
+  "101702211": {
+    "jp_text": "風霜高潔",
+    "unofficialTranslation": "Noble and Incorruptible"
+  },
+  "101801111": {
+    "jp_text": "女帝の権謀",
+    "unofficialTranslation": "The Empress's Stratagem"
+  },
+  "101801211": {
+    "jp_text": "水月鏡花",
+    "unofficialTranslation": "Flower in the Mirror, Moon on the Water"
+  },
+  "101802111": {
+    "jp_text": "女帝の矜持",
+    "unofficialTranslation": "The Empress's Pride"
+  },
+  "101802211": {
+    "jp_text": "上弦のソムリエール",
+    "unofficialTranslation": "Sommelière of the Waxing Moon"
+  },
+  "101901111": {
+    "jp_text": "限界ウママニア",
+    "unofficialTranslation": "Extreme Uma-Maniac"
+  },
+  "101901211": {
+    "jp_text": "最前列は譲れない！",
+    "unofficialTranslation": "I Won't Give Up the Front Row!"
+  },
+  "101901221": {
+    "jp_text": "狙うは最前ドセンへの道！",
+    "unofficialTranslation": "Aiming for the Path to the Very Front and Center!"
+  },
+  "101902111": {
+    "jp_text": "超特急入稿！",
+    "unofficialTranslation": "Super-Express Submission!"
+  },
+  "101902121": {
+    "jp_text": "たぎってきたぁ～～っ！！",
+    "unofficialTranslation": "I'm getting pumped up~~!!"
+  },
+  "101902211": {
+    "jp_text": "尊みを求めてふっかーーつ！",
+    "unofficialTranslation": "Revived in search of preciousness!"
+  },
+  "102001111": {
+    "jp_text": "ファストリトリーブ",
+    "unofficialTranslation": "Fast Retrieve"
+  },
+  "102001121": {
+    "jp_text": "大物狙いの心得",
+    "unofficialTranslation": "The Art of Aiming for the Big Catch"
+  },
+  "102001211": {
+    "jp_text": "脱出大作戦",
+    "unofficialTranslation": "The Great Escape Plan"
+  },
+  "102002111": {
+    "jp_text": "逃げろ～♪",
+    "unofficialTranslation": "Run awaaay~♪"
+  },
+  "102002121": {
+    "jp_text": "サプライズ大成功～☆",
+    "unofficialTranslation": "Surprise was a huge success~☆"
+  },
+  "102002211": {
+    "jp_text": "レコードランナー",
+    "unofficialTranslation": "Record Runner"
+  },
+  "102101111": {
+    "jp_text": "雷騰雲奔",
+    "unofficialTranslation": "Thunder Soars, Clouds Gallop"
+  },
+  "102101121": {
+    "jp_text": "ちゃちゃっと始めんで！",
+    "unofficialTranslation": "Let's get this show on the road!"
+  },
+  "102101211": {
+    "jp_text": "尻尾の有頂天",
+    "unofficialTranslation": "Tail in Ecstasy"
+  },
+  "102102111": {
+    "jp_text": "先達に献ぐ祈りの頌",
+    "unofficialTranslation": "A Prayerful Ode to Our Forebears"
+  },
+  "102102211": {
+    "jp_text": "さあ、ウチとやろうや！",
+    "unofficialTranslation": "Come on, let's do this!"
+  },
+  "102102221": {
+    "jp_text": "ほな、行くで！",
+    "unofficialTranslation": "Well then, here I go!"
+  },
+  "102201111": {
+    "jp_text": "ロイヤルスター",
+    "unofficialTranslation": "Royal Star"
+  },
+  "102201121": {
+    "jp_text": "ディライトフルメモリー",
+    "unofficialTranslation": "Delightful Memory"
+  },
+  "102201211": {
+    "jp_text": "天空落とし",
+    "unofficialTranslation": "Sky Drop"
+  },
+  "102202111": {
+    "jp_text": "思い出を力に変えて",
+    "unofficialTranslation": "Turning Memories into Strength"
+  },
+  "102202211": {
+    "jp_text": "モリガンの矛戟",
+    "unofficialTranslation": "Morrigan's Halberd"
+  },
+  "102202221": {
+    "jp_text": "理想へ向かう覚悟",
+    "unofficialTranslation": "Resolve to Reach for Ideals"
+  },
+  "102301111": {
+    "jp_text": "想定通り、余裕十分",
+    "unofficialTranslation": "As Planned, Plenty of Leeway"
+  },
+  "102301211": {
+    "jp_text": "計画的クールダウン",
+    "unofficialTranslation": "Planned Cooldown"
+  },
+  "102302111": {
+    "jp_text": "VIPな後ろ姿",
+    "unofficialTranslation": "A View From a VIP's Back"
+  },
+  "102302211": {
+    "jp_text": "全力サンタクロース",
+    "unofficialTranslation": "Full-Power Santa Claus"
+  },
+  "102303111": {
+    "jp_text": "シミュレートグラス・オン",
+    "unofficialTranslation": "Simulate Glass, On"
+  },
+  "102303211": {
+    "jp_text": "ネオンの尾を引いて",
+    "unofficialTranslation": "Leaving a Neon Tail"
+  },
+  "102401111": {
+    "jp_text": "You copy?",
+    "unofficialTranslation": "You copy?"
+  },
+  "102401211": {
+    "jp_text": "I copy!",
+    "unofficialTranslation": "I copy!"
+  },
+  "102402111": {
+    "jp_text": "純白のささやき",
+    "unofficialTranslation": "Whisper of Pure White"
+  },
+  "102402211": {
+    "jp_text": "バレルロール",
+    "unofficialTranslation": "Barrel Roll"
+  },
+  "102403111": {
+    "jp_text": "お先に☆テールウィンド",
+    "unofficialTranslation": "Pardon me☆Tailwind"
+  },
+  "102403211": {
+    "jp_text": "コックピット・マジシャン",
+    "unofficialTranslation": "Cockpit Magician"
+  },
+  "102501111": {
+    "jp_text": "コーヒーブレイク",
+    "unofficialTranslation": "Coffee Break"
+  },
+  "102501211": {
+    "jp_text": "オイテイカナイデ",
+    "unofficialTranslation": "DON'T LEAVE ME BEHIND"
+  },
+  "102502111": {
+    "jp_text": "迫りくる宵闇",
+    "unofficialTranslation": "Approaching Twilight"
+  },
+  "102502211": {
+    "jp_text": "玄界領域",
+    "unofficialTranslation": "Profound Realm"
+  },
+  "102601111": {
+    "jp_text": "クロックアップ",
+    "unofficialTranslation": "Clock Up"
+  },
+  "102601211": {
+    "jp_text": "困難を乗り越える者",
+    "unofficialTranslation": "One Who Overcomes Hardship"
+  },
+  "102602111": {
+    "jp_text": "完璧なエラー対処術",
+    "unofficialTranslation": "Perfect Error Handling"
+  },
+  "102602121": {
+    "jp_text": "甘さ控えめエスケープ",
+    "unofficialTranslation": "Low-Sugar Escape"
+  },
+  "102602211": {
+    "jp_text": "パーフェクトブート",
+    "unofficialTranslation": "Perfect Boot"
+  },
+  "102701111": {
+    "jp_text": "マッスルアンセム",
+    "unofficialTranslation": "Muscle Anthem"
+  },
+  "102701211": {
+    "jp_text": "ライジングバルクアップ",
+    "unofficialTranslation": "Rising Bulk Up"
+  },
+  "102702111": {
+    "jp_text": "夢叶える決意を授けましょう",
+    "unofficialTranslation": "I Shall Grant You the Resolve to Fulfill Your Dreams"
+  },
+  "102702211": {
+    "jp_text": "至高の勝利を召し上がれ",
+    "unofficialTranslation": "Partake in the Supreme Victory"
+  },
+  "102702221": {
+    "jp_text": "踏み出す勇気をご覧あれ",
+    "unofficialTranslation": "Behold the Courage to Step Forward"
+  },
+  "102801111": {
+    "jp_text": "下ごしらえ万全！",
+    "unofficialTranslation": "Preparation is Perfect!"
+  },
+  "102801211": {
+    "jp_text": "ボーノな健啖家",
+    "unofficialTranslation": "A Buono Glutton"
+  },
+  "102801221": {
+    "jp_text": "はっけよい！",
+    "unofficialTranslation": "Hakkeyoi!"
+  },
+  "102901111": {
+    "jp_text": "憧れのシチーガール",
+    "unofficialTranslation": "The City Girl I Admire"
+  },
+  "102901211": {
+    "jp_text": "雪国仕込みの直滑降",
+    "unofficialTranslation": "Snow Country-Style Straight Downhill"
+  },
+  "102901221": {
+    "jp_text": "決意の根性娘",
+    "unofficialTranslation": "The Determined Gutsy Girl"
+  },
+  "102902111": {
+    "jp_text": "もうひとけっぱり！",
+    "unofficialTranslation": "One more push!"
+  },
+  "102902211": {
+    "jp_text": "曲線に舞う深雪",
+    "unofficialTranslation": "Deep Snow Dancing on the Curve"
+  },
+  "102902221": {
+    "jp_text": "下弦の雪月花",
+    "unofficialTranslation": "Waning Moon's Snow, Moon, and Flowers"
+  },
+  "103001111": {
+    "jp_text": "決意のヒーロー",
+    "unofficialTranslation": "The Determined Hero"
+  },
+  "103001211": {
+    "jp_text": "黒の刺客",
+    "unofficialTranslation": "The Black Assassin"
+  },
+  "103002111": {
+    "jp_text": "がんばるぞー…おー！",
+    "unofficialTranslation": "Let's do our best... yeah!"
+  },
+  "103002211": {
+    "jp_text": "トリック&トリート",
+    "unofficialTranslation": "Trick & Treat"
+  },
+  "103003111": {
+    "jp_text": "山頂でイタダキマス",
+    "unofficialTranslation": "Bon Appétit at the Summit"
+  },
+  "103003211": {
+    "jp_text": "淀の祝福",
+    "unofficialTranslation": "Blessing of Yodo"
+  },
+  "103101111": {
+    "jp_text": "じゃじゃウマお姉ちゃん",
+    "unofficialTranslation": "Unruly Big Sister"
+  },
+  "103101211": {
+    "jp_text": "荒ぶる風神",
+    "unofficialTranslation": "Raging Wind God"
+  },
+  "103102111": {
+    "jp_text": "オーダーはバッチリ！",
+    "unofficialTranslation": "The Order is Perfect!"
+  },
+  "103102211": {
+    "jp_text": "華麗なサーブ",
+    "unofficialTranslation": "A Splendid Serve"
+  },
+  "103103111": {
+    "jp_text": "一番眺めのいい場所へ！",
+    "unofficialTranslation": "To the Place with the Best View!"
+  },
+  "103103211": {
+    "jp_text": "青空の下で待ってるよ！",
+    "unofficialTranslation": "I'll be Waiting Under the Blue Sky!"
+  },
+  "103201111": {
+    "jp_text": "可能性の徒",
+    "unofficialTranslation": "Disciple of Possibility"
+  },
+  "103201211": {
+    "jp_text": "効率的休息法",
+    "unofficialTranslation": "Efficient Resting Method"
+  },
+  "103202111": {
+    "jp_text": "ラプラスの悪魔",
+    "unofficialTranslation": "Laplace's Demon"
+  },
+  "103202211": {
+    "jp_text": "眩耀のルクシオン",
+    "unofficialTranslation": "Dazzling Luxon"
+  },
+  "103203111": {
+    "jp_text": "光速を超える粒子",
+    "unofficialTranslation": "Particle Exceeding the Speed of Light"
+  },
+  "103203211": {
+    "jp_text": "被験体観察",
+    "unofficialTranslation": "Subject Observation"
+  },
+  "103301111": {
+    "jp_text": "静かな誓い",
+    "unofficialTranslation": "A Quiet Vow"
+  },
+  "103301211": {
+    "jp_text": "己身焦がすほうき星",
+    "unofficialTranslation": "A Self-Immolating Comet"
+  },
+  "103302111": {
+    "jp_text": "アル・ワーキを追いかけて",
+    "unofficialTranslation": "Chasing Al-Waqi"
+  },
+  "103302211": {
+    "jp_text": "氷星融解",
+    "unofficialTranslation": "Ice Star Meltdown"
+  },
+  "103401111": {
+    "jp_text": "火消の梯子登り",
+    "unofficialTranslation": "Fireman's Ladder Climb"
+  },
+  "103401211": {
+    "jp_text": "熟練の砂塵使い",
+    "unofficialTranslation": "Master of the Dust Cloud"
+  },
+  "103401221": {
+    "jp_text": "粋でいなせな達人技",
+    "unofficialTranslation": "A Chic and Dashing Master Technique"
+  },
+  "103402111": {
+    "jp_text": "扇ノ舞",
+    "unofficialTranslation": "Fan Dance"
+  },
+  "103402211": {
+    "jp_text": "大見得切り",
+    "unofficialTranslation": "Striking a Pose"
+  },
+  "103402221": {
+    "jp_text": "韋駄天ノ襲脚",
+    "unofficialTranslation": "Assaulting Legs of the Swift Runner"
+  },
+  "103501111": {
+    "jp_text": "たゆまぬ努力",
+    "unofficialTranslation": "Unrelenting Effort"
+  },
+  "103501211": {
+    "jp_text": "ウイニングロード",
+    "unofficialTranslation": "Winning Road"
+  },
+  "103502111": {
+    "jp_text": "千万バリキ！！！",
+    "unofficialTranslation": "Ten Million Horsepower!!!"
+  },
+  "103502211": {
+    "jp_text": "きっと飛べる！",
+    "unofficialTranslation": "I Know I Can Fly!"
+  },
+  "103503111": {
+    "jp_text": "全・力・ワク・ワク！！",
+    "unofficialTranslation": "Full・Power・Excite・ment!!"
+  },
+  "103503211": {
+    "jp_text": "Dreamer's Path",
+    "unofficialTranslation": "Dreamer's Path"
+  },
+  "103601111": {
+    "jp_text": "アップリフティング",
+    "unofficialTranslation": "Uplifting"
+  },
+  "103601211": {
+    "jp_text": "Lose Myself",
+    "unofficialTranslation": "Lose Myself"
+  },
+  "103602111": {
+    "jp_text": "Gluttony's Grip",
+    "unofficialTranslation": "Gluttony's Grip"
+  },
+  "103602121": {
+    "jp_text": "ノイズキャンセリング",
+    "unofficialTranslation": "Noise Cancelling"
+  },
+  "103602211": {
+    "jp_text": "刑苦",
+    "unofficialTranslation": "Punishment"
+  },
+  "103701111": {
+    "jp_text": "閃光のマギア",
+    "unofficialTranslation": "Magia of the Flash"
+  },
+  "103701211": {
+    "jp_text": "誇りを懸けて",
+    "unofficialTranslation": "With Pride on the Line"
+  },
+  "103702111": {
+    "jp_text": "勝利のレシピ",
+    "unofficialTranslation": "Recipe for Victory"
+  },
+  "103702121": {
+    "jp_text": "仕込みは完璧",
+    "unofficialTranslation": "Preparation is Perfect"
+  },
+  "103702211": {
+    "jp_text": "黒い閃光",
+    "unofficialTranslation": "The Black Flash"
+  },
+  "103703111": {
+    "jp_text": "Ritter von Fuchu",
+    "unofficialTranslation": "Ritter von Fuchu"
+  },
+  "103703211": {
+    "jp_text": "閃光の奔流",
+    "unofficialTranslation": "Torrent of Flashing Light"
+  },
+  "103801111": {
+    "jp_text": "#カワイイかく乱♪",
+    "unofficialTranslation": "#CuteDisturbance♪"
+  },
+  "103801211": {
+    "jp_text": "#夢中になっちゃえ♪",
+    "unofficialTranslation": "#GoCrazyForMe♪"
+  },
+  "103802111": {
+    "jp_text": "#カレンに染まってみる？",
+    "unofficialTranslation": "#WannaBeDyedInKaren?"
+  },
+  "103802121": {
+    "jp_text": "心奪われる閃光",
+    "unofficialTranslation": "A Heart-Stealing Flash"
+  },
+  "103802211": {
+    "jp_text": "#ビューティースプリント",
+    "unofficialTranslation": "#BeautySprint"
+  },
+  "103901111": {
+    "jp_text": "ノンストッププリンセス",
+    "unofficialTranslation": "Non-Stop Princess"
+  },
+  "103901211": {
+    "jp_text": "暴れ龍",
+    "unofficialTranslation": "Rampaging Dragon"
+  },
+  "103902111": {
+    "jp_text": "トップ・オブ・ザ・姫！",
+    "unofficialTranslation": "Top of the Princesses!"
+  },
+  "103902121": {
+    "jp_text": "最っっっ高のプリンセス",
+    "unofficialTranslation": "The beeeest Princess"
+  },
+  "103902211": {
+    "jp_text": "爆走猛姫☆急転直下！！",
+    "unofficialTranslation": "Reckless Princess☆Straight Down!!"
+  },
+  "104001111": {
+    "jp_text": "先見の明",
+    "unofficialTranslation": "Foresight"
+  },
+  "104001211": {
+    "jp_text": "ランウェイの主役",
+    "unofficialTranslation": "Star of the Runway"
+  },
+  "104001221": {
+    "jp_text": "フィナーレの先頭へ",
+    "unofficialTranslation": "To the Front of the Finale"
+  },
+  "104002111": {
+    "jp_text": "鮮やかな布陣",
+    "unofficialTranslation": "A Brilliant Formation"
+  },
+  "104002211": {
+    "jp_text": "虎視眈々",
+    "unofficialTranslation": "Watching Vigilantly"
+  },
+  "104003111": {
+    "jp_text": "Wild Runway",
+    "unofficialTranslation": "Wild Runway"
+  },
+  "104003211": {
+    "jp_text": "黄金の炎陽",
+    "unofficialTranslation": "Golden Blazing Sun"
+  },
+  "104101111": {
+    "jp_text": "バクシン的スプリント！",
+    "unofficialTranslation": "Bakushin-esque Sprint!"
+  },
+  "104101211": {
+    "jp_text": "バクシン的リード！",
+    "unofficialTranslation": "Bakushin-esque Lead!"
+  },
+  "104102111": {
+    "jp_text": "猪突猛進！バクシンロード！",
+    "unofficialTranslation": "Reckless Advance! Bakushin Road!"
+  },
+  "104102211": {
+    "jp_text": "驀進！爆進！バクシーン！",
+    "unofficialTranslation": "Dash! Blast! Bakushin!"
+  },
+  "104201111": {
+    "jp_text": "世界を貫く至高の輝き",
+    "unofficialTranslation": "Supreme Radiance that Pierces the World"
+  },
+  "104201211": {
+    "jp_text": "パール流ダンスバトル",
+    "unofficialTranslation": "Pearl-Style Dance Battle"
+  },
+  "104202111": {
+    "jp_text": "ミストラルに乗って",
+    "unofficialTranslation": "Riding the Mistral"
+  },
+  "104202211": {
+    "jp_text": "海の底からキラめいて…☆",
+    "unofficialTranslation": "Sparkling from the Bottom of the Sea...☆"
+  },
+  "104301111": {
+    "jp_text": "全速前進なのだ！",
+    "unofficialTranslation": "Full speed ahead!"
+  },
+  "104301211": {
+    "jp_text": "いたずらマイスター",
+    "unofficialTranslation": "Prank Meister"
+  },
+  "104301221": {
+    "jp_text": "泥んこ魔王様",
+    "unofficialTranslation": "The Mud-Covered Demon Lord"
+  },
+  "104401111": {
+    "jp_text": "放課後魔法少女",
+    "unofficialTranslation": "After-School Magical Girl"
+  },
+  "104401211": {
+    "jp_text": "チャームマジック",
+    "unofficialTranslation": "Charm Magic"
+  },
+  "104401221": {
+    "jp_text": "サルビア☆スプレンデンス",
+    "unofficialTranslation": "Salvia☆Splendens"
+  },
+  "104402111": {
+    "jp_text": "シルフィード・マギア",
+    "unofficialTranslation": "Sylphid Magia"
+  },
+  "104402121": {
+    "jp_text": "ノクス・ルミナ",
+    "unofficialTranslation": "Nox Lumina"
+  },
+  "104402211": {
+    "jp_text": "緊急魔力ブースト",
+    "unofficialTranslation": "Emergency Magic Boost"
+  },
+  "104501111": {
+    "jp_text": "あま～い幻惑",
+    "unofficialTranslation": "A Sweeet Illusion"
+  },
+  "104501211": {
+    "jp_text": "癒しのマエストロ",
+    "unofficialTranslation": "Maestro of Healing"
+  },
+  "104502111": {
+    "jp_text": "お世話のプロフェッショナル",
+    "unofficialTranslation": "The Caretaking Professional"
+  },
+  "104502211": {
+    "jp_text": "魅惑のマミーウィスパー",
+    "unofficialTranslation": "Enchanting Mommy Whisper"
+  },
+  "104503111": {
+    "jp_text": "流水流走",
+    "unofficialTranslation": "Flowing Water, Flowing Run"
+  },
+  "104503211": {
+    "jp_text": "神仙蝶変の術",
+    "unofficialTranslation": "Art of the Immortal Butterfly Transformation"
+  },
+  "104601111": {
+    "jp_text": "大注目のウマドル参上★",
+    "unofficialTranslation": "The Hottest Umadol Has Arrived★"
+  },
+  "104601121": {
+    "jp_text": "目を逸らしちゃダメだよ☆",
+    "unofficialTranslation": "Don't Look Away☆"
+  },
+  "104601211": {
+    "jp_text": "ウマドルパワー急上昇↑↑",
+    "unofficialTranslation": "Umadol Power Skyrocketing↑↑"
+  },
+  "104602111": {
+    "jp_text": "夢に向かって急上昇！",
+    "unofficialTranslation": "Soaring Towards My Dream!"
+  },
+  "104602121": {
+    "jp_text": "最高峰のステージに！",
+    "unofficialTranslation": "To the Greatest Stage!"
+  },
+  "104602211": {
+    "jp_text": "絶対的センター！",
+    "unofficialTranslation": "The Absolute Center!"
+  },
+  "104603111": {
+    "jp_text": "立ち位置ゼロ番！",
+    "unofficialTranslation": "Position Zero!"
+  },
+  "104603211": {
+    "jp_text": "爆レスあげちゃう☆",
+    "unofficialTranslation": "Giving You an Explosive Reaction☆"
+  },
+  "104701111": {
+    "jp_text": "英雄への道標",
+    "unofficialTranslation": "Signpost to a Hero"
+  },
+  "104701121": {
+    "jp_text": "物語を紡ぐ者",
+    "unofficialTranslation": "The One Who Weaves Stories"
+  },
+  "104701211": {
+    "jp_text": "光輝く剣",
+    "unofficialTranslation": "The Shining Sword"
+  },
+  "104702111": {
+    "jp_text": "勇躍閃々",
+    "unofficialTranslation": "Bravely Leaping and Glistening"
+  },
+  "104702211": {
+    "jp_text": "嵐纏いし英雄は往く",
+    "unofficialTranslation": "The Storm-Clad Hero Goes Forth"
+  },
+  "104801111": {
+    "jp_text": "ノってこ！",
+    "unofficialTranslation": "Get into it!"
+  },
+  "104801211": {
+    "jp_text": "トレンドプランナー",
+    "unofficialTranslation": "Trend Planner"
+  },
+  "104802111": {
+    "jp_text": "ワンチャンまくったる！",
+    "unofficialTranslation": "Gonna turn this around in one shot!"
+  },
+  "104802211": {
+    "jp_text": "あたししか勝たん！",
+    "unofficialTranslation": "No one wins but me!"
+  },
+  "104802221": {
+    "jp_text": "あたしサイコーじゃん！",
+    "unofficialTranslation": "Aren't I the best!"
+  },
+  "104901111": {
+    "jp_text": "乾坤一擲の大博打",
+    "unofficialTranslation": "An All-or-Nothing Gamble"
+  },
+  "104901211": {
+    "jp_text": "鉄火のギャンブラー",
+    "unofficialTranslation": "The Fiery Gambler"
+  },
+  "105001111": {
+    "jp_text": "鬼気森然",
+    "unofficialTranslation": "Ghastly and Menacing"
+  },
+  "105001211": {
+    "jp_text": "駆り立てる想い",
+    "unofficialTranslation": "Driving Passion"
+  },
+  "105002111": {
+    "jp_text": "見せつけてやる！",
+    "unofficialTranslation": "I'll show you what I've got!"
+  },
+  "105002211": {
+    "jp_text": "起死回生の出力",
+    "unofficialTranslation": "Comeback Output"
+  },
+  "105003111": {
+    "jp_text": "ゼロレイテンシ",
+    "unofficialTranslation": "Zero Latency"
+  },
+  "105003211": {
+    "jp_text": "不撓のLimit Breaker",
+    "unofficialTranslation": "Indomitable Limit Breaker"
+  },
+  "105101111": {
+    "jp_text": "風花疾走",
+    "unofficialTranslation": "Snow flurry Dash"
+  },
+  "105101121": {
+    "jp_text": "一輪の勇気",
+    "unofficialTranslation": "A Single Flower of Courage"
+  },
+  "105101211": {
+    "jp_text": "大輪の決意",
+    "unofficialTranslation": "A Great Flower of Determination"
+  },
+  "105102111": {
+    "jp_text": "祝福のフラワーガール",
+    "unofficialTranslation": "Flower Girl of Blessings"
+  },
+  "105102211": {
+    "jp_text": "ヴェール揺らす春疾風",
+    "unofficialTranslation": "A Spring Gale that Sways the Veil"
+  },
+  "105102221": {
+    "jp_text": "末永く、寄り添う花",
+    "unofficialTranslation": "The Flower That Stays by Your Side, Forever"
+  },
+  "105201111": {
+    "jp_text": "まだまだだよ！",
+    "unofficialTranslation": "Not done yet!"
+  },
+  "105201211": {
+    "jp_text": "まけないからね！",
+    "unofficialTranslation": "I'm not gonna lose!"
+  },
+  "105202111": {
+    "jp_text": "見てて見てて！",
+    "unofficialTranslation": "Watch me, watch me!"
+  },
+  "105202121": {
+    "jp_text": "勝ちたいんだもん！",
+    "unofficialTranslation": "Because I wanna win!"
+  },
+  "105202211": {
+    "jp_text": "がんばるもん！",
+    "unofficialTranslation": "I'll do my best!"
+  },
+  "105301111": {
+    "jp_text": "風紀の登龍門",
+    "unofficialTranslation": "Gateway to the Moral Committee"
+  },
+  "105301121": {
+    "jp_text": "龍虎相搏",
+    "unofficialTranslation": "Dragon and Tiger Clash"
+  },
+  "105301211": {
+    "jp_text": "押忍ッ！気合十分っス！",
+    "unofficialTranslation": "Osu! I'm all fired up!"
+  },
+  "105302111": {
+    "jp_text": "熱血進化ライディング！",
+    "unofficialTranslation": "Hot-Blooded Evolution Riding!"
+  },
+  "105302211": {
+    "jp_text": "必殺！爆速スプリント！",
+    "unofficialTranslation": "Finisher! Explosive Sprint!"
+  },
+  "105401111": {
+    "jp_text": "急行！ヒーロー参上！",
+    "unofficialTranslation": "Express! The Hero Arrives!"
+  },
+  "105401211": {
+    "jp_text": "必殺・雷電キーック！",
+    "unofficialTranslation": "Finisher: Raiden Kiiick!"
+  },
+  "10541": {
+    "jp_text": "ペガサスフルパワー！",
+    "unofficialTranslation": "Pegasus Full Power!"
+  },
+  "105501111": {
+    "jp_text": "ワクワク☆マーベラスゾーン",
+    "unofficialTranslation": "Exciting☆Marvelous Zone"
+  },
+  "105501121": {
+    "jp_text": "ギュンギュンのマーベラス☆",
+    "unofficialTranslation": "Zooming Marvelous☆"
+  },
+  "105501211": {
+    "jp_text": "進め！世界マーベラス計画☆",
+    "unofficialTranslation": "Advance! World Marvelous Project☆"
+  },
+  "105601111": {
+    "jp_text": "吉兆です！",
+    "unofficialTranslation": "It's a good omen!"
+  },
+  "105601211": {
+    "jp_text": "七福即生",
+    "unofficialTranslation": "Seven Fortunes Born at Once"
+  },
+  "105602111": {
+    "jp_text": "怒涛の超幸運パワー！",
+    "unofficialTranslation": "Raging Super Lucky Power!"
+  },
+  "105602211": {
+    "jp_text": "ばっちり開運体験！",
+    "unofficialTranslation": "A Perfect Good Fortune Experience!"
+  },
+  "105701111": {
+    "jp_text": "天翔る足取り",
+    "unofficialTranslation": "Soaring Steps"
+  },
+  "105701211": {
+    "jp_text": "弾む大地",
+    "unofficialTranslation": "The Bouncing Earth"
+  },
+  "105702111": {
+    "jp_text": "奪目の宙乗り",
+    "unofficialTranslation": "Eye-Catching Aerial Ride"
+  },
+  "105702211": {
+    "jp_text": "さァさ、お立ち合い！",
+    "unofficialTranslation": "Now, now, gather 'round!"
+  },
+  "105801111": {
+    "jp_text": "怒涛のスピード",
+    "unofficialTranslation": "Raging Speed"
+  },
+  "105801211": {
+    "jp_text": "諦めない、ですぅ～！",
+    "unofficialTranslation": "I won't give up, you know~!"
+  },
+  "105802111": {
+    "jp_text": "ライバルがいるから！",
+    "unofficialTranslation": "Because I have rivals!"
+  },
+  "105802121": {
+    "jp_text": "心に灯す闘志",
+    "unofficialTranslation": "A Fighting Spirit Lit in the Heart"
+  },
+  "105802211": {
+    "jp_text": "魂の導き手",
+    "unofficialTranslation": "Guiding Hand of the Soul"
+  },
+  "105901111": {
+    "jp_text": "クールな視線",
+    "unofficialTranslation": "A Cool Gaze"
+  },
+  "105901121": {
+    "jp_text": "栄光への羽ばたき",
+    "unofficialTranslation": "Taking Flight Towards Glory"
+  },
+  "105901211": {
+    "jp_text": "淀の女王",
+    "unofficialTranslation": "The Queen of Yodo"
+  },
+  "105902111": {
+    "jp_text": "もっと冒険してみたい！",
+    "unofficialTranslation": "I want to have more adventures!"
+  },
+  "105902121": {
+    "jp_text": "自信持って踏み出して",
+    "unofficialTranslation": "Step forward with confidence"
+  },
+  "105902211": {
+    "jp_text": "起死回生の一歩",
+    "unofficialTranslation": "A Step to Turn the Tides"
+  },
+  "106001111": {
+    "jp_text": "魅惑のシニカルガール",
+    "unofficialTranslation": "Alluring Cynical Girl"
+  },
+  "106001211": {
+    "jp_text": "目指せ！主人公！",
+    "unofficialTranslation": "Aim for it! The Main Character!"
+  },
+  "106002111": {
+    "jp_text": "頑張るしかないよね",
+    "unofficialTranslation": "Just gotta do my best, right?"
+  },
+  "106002211": {
+    "jp_text": "ノンストップエール",
+    "unofficialTranslation": "Non-Stop Ale"
+  },
+  "106003111": {
+    "jp_text": "いい味、出てるでしょ？",
+    "unofficialTranslation": "Got a nice flavor, right?"
+  },
+  "106003211": {
+    "jp_text": "大掃除上手",
+    "unofficialTranslation": "Good at Spring Cleaning"
+  },
+  "106003221": {
+    "jp_text": "盛り上げ上手",
+    "unofficialTranslation": "Good at Riling People Up"
+  },
+  "106101111": {
+    "jp_text": "電撃の撫で切り",
+    "unofficialTranslation": "Lightning-Fast Clean Sweep"
+  },
+  "106101211": {
+    "jp_text": "王の大局観",
+    "unofficialTranslation": "The King's Broad Perspective"
+  },
+  "106102111": {
+    "jp_text": "竜の雲を得る如し",
+    "unofficialTranslation": "Like a Dragon Obtaining Clouds"
+  },
+  "106102211": {
+    "jp_text": "春風吹きて、桜舞う",
+    "unofficialTranslation": "The Spring Wind Blows, and the Sakura Dance"
+  },
+  "106103111": {
+    "jp_text": "遮るものはない",
+    "unofficialTranslation": "Nothing Stands in My Way"
+  },
+  "106103211": {
+    "jp_text": "不屈の証明",
+    "unofficialTranslation": "Proof of Indomitability"
+  },
+  "106103221": {
+    "jp_text": "一流の在り方",
+    "unofficialTranslation": "The Way of the First-Class"
+  },
+  "106201111": {
+    "jp_text": "ゴーイングマイウェイ",
+    "unofficialTranslation": "Going My Way"
+  },
+  "106201211": {
+    "jp_text": "えい！えい！むん！",
+    "unofficialTranslation": "Ei! Ei! Mun!"
+  },
+  "106202111": {
+    "jp_text": "ポジティブスマイル",
+    "unofficialTranslation": "Positive Smile"
+  },
+  "106202211": {
+    "jp_text": "大どんでんがえし",
+    "unofficialTranslation": "A Grand Reversal"
+  },
+  "106202221": {
+    "jp_text": "やばしやばし！",
+    "unofficialTranslation": "This is bad, this is bad!"
+  },
+  "10621": {
+    "jp_text": "レディー、どんっ！",
+    "unofficialTranslation": "Ready, Don!"
+  },
+  "106301111": {
+    "jp_text": "徹底管理プラン",
+    "unofficialTranslation": "Thorough Management Plan"
+  },
+  "106301211": {
+    "jp_text": "鉄火花",
+    "unofficialTranslation": "Sparks of Iron"
+  },
+  "10631": {
+    "jp_text": "打ち、鍛えて",
+    "unofficialTranslation": "Hammering and Forging"
+  },
+  "106401111": {
+    "jp_text": "パないっしょ？",
+    "unofficialTranslation": "It's insane, right?"
+  },
+  "106401211": {
+    "jp_text": "神逃げの心得",
+    "unofficialTranslation": "The Art of the Godly Escape"
+  },
+  "106401221": {
+    "jp_text": "テンアゲスタイル",
+    "unofficialTranslation": "High-Tension Style"
+  },
+  "106402111": {
+    "jp_text": "北風一蹴",
+    "unofficialTranslation": "Kicking Away the North Wind"
+  },
+  "106402211": {
+    "jp_text": "メリ☆クリ↑パーリー",
+    "unofficialTranslation": "Merry☆Christ↑Party"
+  },
+  "106501111": {
+    "jp_text": "マジ爆上げっしょ！",
+    "unofficialTranslation": "Seriously hype, right!"
+  },
+  "106501211": {
+    "jp_text": "とりまやったれ～！",
+    "unofficialTranslation": "Let's just go for it~!"
+  },
+  "106502111": {
+    "jp_text": "トレンド先取り☆",
+    "unofficialTranslation": "Ahead of the Trend☆"
+  },
+  "106502211": {
+    "jp_text": "マイル神、爆☆誕",
+    "unofficialTranslation": "The Mile God is Born☆"
+  },
+  "106601111": {
+    "jp_text": "出力1000万%！！",
+    "unofficialTranslation": "Output 10,000,000%!!"
+  },
+  "106601211": {
+    "jp_text": "ターボについてこーい！",
+    "unofficialTranslation": "Keep up with Turbo!"
+  },
+  "10661": {
+    "jp_text": "エンジン点火！",
+    "unofficialTranslation": "Engine Ignition!"
+  },
+  "106701111": {
+    "jp_text": "金剛不壊",
+    "unofficialTranslation": "Indestructible Diamond"
+  },
+  "106701121": {
+    "jp_text": "隠せぬ輝き",
+    "unofficialTranslation": "Unconcealable Brilliance"
+  },
+  "106701211": {
+    "jp_text": "右回りの輪舞曲",
+    "unofficialTranslation": "Clockwise Rondo"
+  },
+  "106702111": {
+    "jp_text": "無我の境地",
+    "unofficialTranslation": "State of Selflessness"
+  },
+  "106702211": {
+    "jp_text": "明けぬ夜はない！",
+    "unofficialTranslation": "There is no night that doesn't dawn!"
+  },
+  "106703111": {
+    "jp_text": "蒼色革命",
+    "unofficialTranslation": "Blue Revolution"
+  },
+  "106703211": {
+    "jp_text": "ダンス・デ・レぺ",
+    "unofficialTranslation": "Danse de l'Épée"
+  },
+  "106801111": {
+    "jp_text": "祭りだワッショイ！",
+    "unofficialTranslation": "It's a Festival, Wasshoi!"
+  },
+  "106801211": {
+    "jp_text": "爆風一閃！",
+    "unofficialTranslation": "A Flash of Explosion!"
+  },
+  "106802111": {
+    "jp_text": "未来へ飛び立ちましょう！",
+    "unofficialTranslation": "Let's take flight into the future!"
+  },
+  "106802211": {
+    "jp_text": "必勝の前口上！",
+    "unofficialTranslation": "The Victory Speech!"
+  },
+  "106803111": {
+    "jp_text": "あっぱれ！臥竜勇往",
+    "unofficialTranslation": "Bravo! The Crouching Dragon Forges Ahead"
+  },
+  "106803211": {
+    "jp_text": "万里飛び越えソイヤッ！",
+    "unofficialTranslation": "Leaping a Myriad Leagues, Soiya!"
+  },
+  "106901111": {
+    "jp_text": "お花見当たり年！",
+    "unofficialTranslation": "A Great Year for Cherry Blossom Viewing!"
+  },
+  "106901121": {
+    "jp_text": "案ずるより走るが速し",
+    "unofficialTranslation": "Running is Faster than Worrying"
+  },
+  "106901211": {
+    "jp_text": "けふ九重に満開です",
+    "unofficialTranslation": "Today, in Full Bloom at the Palace"
+  },
+  "106902111": {
+    "jp_text": "桜花爛漫一直線",
+    "unofficialTranslation": "Cherry Blossoms in Full Bloom, Straight Ahead"
+  },
+  "106902211": {
+    "jp_text": "負けたくない！",
+    "unofficialTranslation": "I don't want to lose!"
+  },
+  "107001111": {
+    "jp_text": "揺るがぬアスター",
+    "unofficialTranslation": "Unwavering Aster"
+  },
+  "107001211": {
+    "jp_text": "一等星のアラベスク",
+    "unofficialTranslation": "Arabesque of a First-Magnitude Star"
+  },
+  "107001221": {
+    "jp_text": "追想のトロイメライ",
+    "unofficialTranslation": "Träumerei of Reminiscence"
+  },
+  "107002111": {
+    "jp_text": "悪路のほうが好みでね",
+    "unofficialTranslation": "I prefer the rougher path"
+  },
+  "107002211": {
+    "jp_text": "Beat the Stars",
+    "unofficialTranslation": "Beat the Stars"
+  },
+  "107101111": {
+    "jp_text": "永遠の輝き",
+    "unofficialTranslation": "Eternal Radiance"
+  },
+  "107101211": {
+    "jp_text": "刹那への覚悟",
+    "unofficialTranslation": "Resolve for the Moment"
+  },
+  "107102111": {
+    "jp_text": "美しき燐光",
+    "unofficialTranslation": "Beautiful Phosphorescence"
+  },
+  "107102121": {
+    "jp_text": "幽玄の灯火",
+    "unofficialTranslation": "The Subtle, Profound Light"
+  },
+  "107102211": {
+    "jp_text": "淡く儚い残照",
+    "unofficialTranslation": "A Faint and Fleeting Afterglow"
+  },
+  "107201111": {
+    "jp_text": "昂る焔",
+    "unofficialTranslation": "Surging Flame"
+  },
+  "107201211": {
+    "jp_text": "八重の向こう意気",
+    "unofficialTranslation": "Yaeno's Fighting Spirit"
+  },
+  "107201221": {
+    "jp_text": "勝利に焦がれる激情",
+    "unofficialTranslation": "A Passion that Yearns for Victory"
+  },
+  "107202111": {
+    "jp_text": "将の疾刃",
+    "unofficialTranslation": "The General's Swift Blade"
+  },
+  "107202211": {
+    "jp_text": "無双の追撃",
+    "unofficialTranslation": "Peerless Pursuit"
+  },
+  "107301111": {
+    "jp_text": "千辛万苦切り裂く刃",
+    "unofficialTranslation": "A Blade that Rends Countless Hardships"
+  },
+  "107301211": {
+    "jp_text": "迸る月流星",
+    "unofficialTranslation": "Gushing Moon-Meteor"
+  },
+  "10731": {
+    "jp_text": "心、強し！",
+    "unofficialTranslation": "A Strong Heart!"
+  },
+  "107401111": {
+    "jp_text": "不屈のお嬢様",
+    "unofficialTranslation": "The Indomitable Lady"
+  },
+  "107401211": {
+    "jp_text": "動かざること羊蹄山の若し",
+    "unofficialTranslation": "As Immovable as Mount Yōtei"
+  },
+  "107402111": {
+    "jp_text": "聖夜の天路",
+    "unofficialTranslation": "The Holy Night's Celestial Path"
+  },
+  "107402211": {
+    "jp_text": "雪華の追い上げ",
+    "unofficialTranslation": "Snowflake's Comeback"
+  },
+  "107601111": {
+    "jp_text": "桜前線進行中！",
+    "unofficialTranslation": "The Cherry Blossom Front is Advancing!"
+  },
+  "107601211": {
+    "jp_text": "一花咲かせましょう！",
+    "unofficialTranslation": "Let's make it bloom!"
+  },
+  "107701111": {
+    "jp_text": "ターフの主人公",
+    "unofficialTranslation": "The Hero of the Turf"
+  },
+  "107701211": {
+    "jp_text": "正道",
+    "unofficialTranslation": "The Rightful Path"
+  },
+  "107702111": {
+    "jp_text": "ひたむきサンタクロース",
+    "unofficialTranslation": "Earnest Santa Claus"
+  },
+  "107702211": {
+    "jp_text": "暗い夜道もお任せを！",
+    "unofficialTranslation": "Leave the Dark Night Road to Me!"
+  },
+  "107801111": {
+    "jp_text": "ウインドシアー",
+    "unofficialTranslation": "Wind Shear"
+  },
+  "107801211": {
+    "jp_text": "神渡し",
+    "unofficialTranslation": "God's Passage"
+  },
+  "107801221": {
+    "jp_text": "天つ風",
+    "unofficialTranslation": "Winds of Heaven"
+  },
+  "107802111": {
+    "jp_text": "塵旋風となりて",
+    "unofficialTranslation": "Becoming a Whirlwind of Dust"
+  },
+  "107802211": {
+    "jp_text": "シルフ・スピリット",
+    "unofficialTranslation": "Sylph Spirit"
+  },
+  "107901111": {
+    "jp_text": "潮風の導き",
+    "unofficialTranslation": "Guidance of the Sea Breeze"
+  },
+  "107901211": {
+    "jp_text": "勇船直往",
+    "unofficialTranslation": "Brave Ship, Straight Onward"
+  },
+  "108001111": {
+    "jp_text": "情報強者",
+    "unofficialTranslation": "Information Savant"
+  },
+  "108001211": {
+    "jp_text": "『未知』を求めて",
+    "unofficialTranslation": "In Search of the 『Unknown』"
+  },
+  "108201111": {
+    "jp_text": "ココロ、キラめくままに！",
+    "unofficialTranslation": "My Heart, Just as it Sparkles!"
+  },
+  "108201211": {
+    "jp_text": "Enjoy the Flight",
+    "unofficialTranslation": "Enjoy the Flight"
+  },
+  "108301111": {
+    "jp_text": "質実剛健",
+    "unofficialTranslation": "Simple and Sturdy"
+  },
+  "108301211": {
+    "jp_text": "革命をもたらす威容",
+    "unofficialTranslation": "A Dignified Figure that Brings Revolution"
+  },
+  "108302111": {
+    "jp_text": "Burn Down",
+    "unofficialTranslation": "Burn Down"
+  },
+  "108302211": {
+    "jp_text": "Service: Transit",
+    "unofficialTranslation": "Service: Transit"
+  },
+  "108401111": {
+    "jp_text": "嵐を呼ぶ破壊神",
+    "unofficialTranslation": "The Storm-Calling God of Destruction"
+  },
+  "108401211": {
+    "jp_text": "酔い痴れよ、世界",
+    "unofficialTranslation": "Be Intoxicated, O World"
+  },
+  "108402111": {
+    "jp_text": "アレスの進撃",
+    "unofficialTranslation": "Advance of Ares"
+  },
+  "108402211": {
+    "jp_text": "アルテミスの矢",
+    "unofficialTranslation": "Arrow of Artemis"
+  },
+  "108501111": {
+    "jp_text": "華麗であれ",
+    "unofficialTranslation": "Be Magnificent"
+  },
+  "108501211": {
+    "jp_text": "常に最たる輝きを",
+    "unofficialTranslation": "Always the Most Brilliant Shine"
+  },
+  "108502111": {
+    "jp_text": "霹靂閃電",
+    "unofficialTranslation": "A Clap of Thunder"
+  },
+  "108502211": {
+    "jp_text": "灰と化すまで",
+    "unofficialTranslation": "Until I Turn to Ash"
+  },
+  "108601111": {
+    "jp_text": "純愛",
+    "unofficialTranslation": "Pure Love"
+  },
+  "108601211": {
+    "jp_text": "高嶺の艶笑",
+    "unofficialTranslation": "The Alluring Smile of the Unattainable Flower"
+  },
+  "108602111": {
+    "jp_text": "Limitless Love",
+    "unofficialTranslation": "Limitless Love"
+  },
+  "108602211": {
+    "jp_text": "祝宴の征服者",
+    "unofficialTranslation": "Conqueror of the Banquet"
+  },
+  "108701111": {
+    "jp_text": "必勝のピッチアップ",
+    "unofficialTranslation": "Victorious Pitch-Up"
+  },
+  "108701211": {
+    "jp_text": "記憶に刻む足取り",
+    "unofficialTranslation": "Footsteps Engraved in Memory"
+  },
+  "108702111": {
+    "jp_text": "辻映りの妙技",
+    "unofficialTranslation": "The Exquisite Skill of a Street Reflection"
+  },
+  "108702211": {
+    "jp_text": "覚えていてくださいね？",
+    "unofficialTranslation": "You'll remember me, won't you?"
+  },
+  "108801111": {
+    "jp_text": "アンビシャスカード",
+    "unofficialTranslation": "Ambitious Card"
+  },
+  "108801211": {
+    "jp_text": "ミリオンカード",
+    "unofficialTranslation": "Million Card"
+  },
+  "108802111": {
+    "jp_text": "煌めきのイリュージョン",
+    "unofficialTranslation": "Glittering Illusion"
+  },
+  "108802211": {
+    "jp_text": "波上のラストトリック",
+    "unofficialTranslation": "The Last Trick on the Waves"
+  },
+  "108901111": {
+    "jp_text": "偉大なる踏破",
+    "unofficialTranslation": "The Great Traverse"
+  },
+  "108901211": {
+    "jp_text": "全力投球",
+    "unofficialTranslation": "Giving It My All"
+  },
+  "108902111": {
+    "jp_text": "マリンブルー・ライナー",
+    "unofficialTranslation": "Marine Blue Liner"
+  },
+  "108902211": {
+    "jp_text": "いつもの僕じゃないから！",
+    "unofficialTranslation": "Because this isn't the usual me!"
+  },
+  "109001111": {
+    "jp_text": "不撓不屈の女王",
+    "unofficialTranslation": "The Indomitable Queen"
+  },
+  "109001211": {
+    "jp_text": "『お姉ちゃん、だもの』",
+    "unofficialTranslation": "『Because I'm the big sister』"
+  },
+  "109101111": {
+    "jp_text": "天来のリトルシスター",
+    "unofficialTranslation": "Heaven-Sent Little Sister"
+  },
+  "109101211": {
+    "jp_text": "ハイソ・メンタリティ！",
+    "unofficialTranslation": "High-So Mentality!"
+  },
+  "109102111": {
+    "jp_text": "デザートジュエルに魅せられ",
+    "unofficialTranslation": "Charmed by the Desert Jewel"
+  },
+  "109102211": {
+    "jp_text": "いざ征かん！マリンロード",
+    "unofficialTranslation": "Let's go! Marine Road"
+  },
+  "109301111": {
+    "jp_text": "K.Speed",
+    "unofficialTranslation": "K.Speed"
+  },
+  "109301211": {
+    "jp_text": "命の火花",
+    "unofficialTranslation": "Spark of Life"
+  },
+  "109302111": {
+    "jp_text": "『見ていて、くださいね』",
+    "unofficialTranslation": "『Please, watch me』"
+  },
+  "109302211": {
+    "jp_text": "彗星色の羽搏き",
+    "unofficialTranslation": "Comet-Colored Wingbeats"
+  },
+  "109401111": {
+    "jp_text": "猛襲の牙",
+    "unofficialTranslation": "Fangs of Fierce Assault"
+  },
+  "109401211": {
+    "jp_text": "闘叫の鬼",
+    "unofficialTranslation": "The War-Crying Ogre"
+  },
+  "109401221": {
+    "jp_text": "天上天下唯我爆走",
+    "unofficialTranslation": "Throughout Heaven and Earth, I Alone Run Wildly"
+  },
+  "109601111": {
+    "jp_text": "侵掠如火",
+    "unofficialTranslation": "Invade Like Fire"
+  },
+  "109601211": {
+    "jp_text": "天下分け目",
+    "unofficialTranslation": "The Decisive Battle"
+  },
+  "109701111": {
+    "jp_text": "赫き胎動",
+    "unofficialTranslation": "The Crimson Quickening"
+  },
+  "109701211": {
+    "jp_text": "誰にも告げぬ誓い",
+    "unofficialTranslation": "An Unspoken Vow"
+  },
+  "109701221": {
+    "jp_text": "呼び覚まされし願い",
+    "unofficialTranslation": "The Awakened Wish"
+  },
+  "109801111": {
+    "jp_text": "コパッと開運！",
+    "unofficialTranslation": "Good Fortune with a Kopa!"
+  },
+  "109801211": {
+    "jp_text": "龍脈の波濤",
+    "unofficialTranslation": "Surging Waves of the Dragon Vein"
+  },
+  "109802111": {
+    "jp_text": "黄龍、天へと昇る",
+    "unofficialTranslation": "The Yellow Dragon Ascends to the Heavens"
+  },
+  "109802211": {
+    "jp_text": "走る縁起物",
+    "unofficialTranslation": "The Running Good Luck Charm"
+  },
+  "109901111": {
+    "jp_text": "苫小牧グルメで舌鼓！",
+    "unofficialTranslation": "Savoring the Delicacies of Tomakomai!"
+  },
+  "109901211": {
+    "jp_text": "観光大使の面目躍如！",
+    "unofficialTranslation": "The Tourism Ambassador Shines!"
+  },
+  "109901221": {
+    "jp_text": "ひた走れ！苫小牧の星",
+    "unofficialTranslation": "Run on! Star of Tomakomai"
+  },
+  "109902111": {
+    "jp_text": "感謝のふるさとメドレー",
+    "unofficialTranslation": "A Hometown Medley of Gratitude"
+  },
+  "109902211": {
+    "jp_text": "突き進め北の海",
+    "unofficialTranslation": "Forge Ahead, North Sea"
+  },
+  "1100011": {
+    "jp_text": "超遊び癖",
+    "unofficialTranslation": "Super Playful Habit"
+  },
+  "110001111": {
+    "jp_text": "闘魂注入",
+    "unofficialTranslation": "Fighting Spirit Injection"
+  },
+  "110001121": {
+    "jp_text": "いぶし銀の闘志",
+    "unofficialTranslation": "A Veteran's Fighting Spirit"
+  },
+  "110001211": {
+    "jp_text": "女神の砂浴び",
+    "unofficialTranslation": "The Goddess's Sand Bath"
+  },
+  "110021": {
+    "jp_text": "水平線のその先へ",
+    "unofficialTranslation": "Beyond the Horizon"
+  },
+  "110051": {
+    "jp_text": "Ravissant",
+    "unofficialTranslation": "Ravissant"
+  },
+  "110061": {
+    "jp_text": "聖夜のミラクルラン！",
+    "unofficialTranslation": "Holy Night's Miracle Run!"
+  },
+  "110071": {
+    "jp_text": "Adventure of 564",
+    "unofficialTranslation": "Adventure of 564"
+  },
+  "110081": {
+    "jp_text": "Into High Gear!",
+    "unofficialTranslation": "Into High Gear!"
+  },
+  "110091": {
+    "jp_text": "Queen's Lumination",
+    "unofficialTranslation": "Queen's Lumination"
+  },
+  "110101": {
+    "jp_text": "Joyful Voyage!",
+    "unofficialTranslation": "Joyful Voyage!"
+  },
+  "110121": {
+    "jp_text": "大盛り！ファーストバイト！",
+    "unofficialTranslation": "A Big Serving! First Bite!"
+  },
+  "110151": {
+    "jp_text": "恵福バルカローレ",
+    "unofficialTranslation": "Barcarolle of Blessed Fortune"
+  },
+  "110161": {
+    "jp_text": "灰色の臨界点",
+    "unofficialTranslation": "The Gray Critical Point"
+  },
+  "110171": {
+    "jp_text": "翳り退く、さざめきの矢",
+    "unofficialTranslation": "The Shadows Retreat, an Arrow of Rustling"
+  },
+  "110191": {
+    "jp_text": "萌到讓我活過來了！",
+    "unofficialTranslation": "So cute it brings me back to life!"
+  },
+  "110201": {
+    "jp_text": "Do Ya Breakin!",
+    "unofficialTranslation": "Do Ya Breakin!"
+  },
+  "110201111": {
+    "jp_text": "カエスーラ",
+    "unofficialTranslation": "Caesura"
+  },
+  "110201211": {
+    "jp_text": "トライアンフ",
+    "unofficialTranslation": "Triumph"
+  },
+  "110201221": {
+    "jp_text": "エスプロズィオーネ",
+    "unofficialTranslation": "Esplosione"
+  },
+  "110211": {
+    "jp_text": "火神鳴",
+    "unofficialTranslation": "Blazing Thunder God"
+  },
+  "110221": {
+    "jp_text": "Best day ever",
+    "unofficialTranslation": "Best day ever"
+  },
+  "110231": {
+    "jp_text": "Presents from X",
+    "unofficialTranslation": "Presents from X"
+  },
+  "110251": {
+    "jp_text": "心からのおもてにゃし",
+    "unofficialTranslation": "Hospitality from the Heart"
+  },
+  "110261": {
+    "jp_text": "オペレーション・Cacao",
+    "unofficialTranslation": "Operation: Cacao"
+  },
+  "110271": {
+    "jp_text": "あなたに捧げるフリーポア",
+    "unofficialTranslation": "A Free Pour Dedicated to You"
+  },
+  "110291": {
+    "jp_text": "いっぱいおあげんしぇ！",
+    "unofficialTranslation": "Here's a whole bunch!"
+  },
+  "110301": {
+    "jp_text": "Drain for rose",
+    "unofficialTranslation": "Drain for rose"
+  },
+  "110311": {
+    "jp_text": "フレッシュ☆パーラー",
+    "unofficialTranslation": "Fresh☆Parlor"
+  },
+  "110321": {
+    "jp_text": "夏空ハレーション",
+    "unofficialTranslation": "Summer Sky Halation"
+  },
+  "110331": {
+    "jp_text": "Crystal Mist",
+    "unofficialTranslation": "Crystal Mist"
+  },
+  "110341": {
+    "jp_text": "灯穂",
+    "unofficialTranslation": "Torchlight"
+  },
+  "110351": {
+    "jp_text": "夢の先へ、届け！",
+    "unofficialTranslation": "Reach Beyond the Dream!"
+  },
+  "110361": {
+    "jp_text": "...found you.",
+    "unofficialTranslation": "...found you."
+  },
+  "110371": {
+    "jp_text": "Guten Appetit♪",
+    "unofficialTranslation": "Guten Appetit♪"
+  },
+  "110381": {
+    "jp_text": "One True Color",
+    "unofficialTranslation": "One True Color"
+  },
+  "110391": {
+    "jp_text": "快なる剛力",
+    "unofficialTranslation": "Pleasant Strength"
+  },
+  "110401": {
+    "jp_text": "GET DOWN",
+    "unofficialTranslation": "GET DOWN"
+  },
+  "110401111": {
+    "jp_text": "してやったり！",
+    "unofficialTranslation": "Nailed it!"
+  },
+  "110401211": {
+    "jp_text": "逃げっ切りの1人旅",
+    "unofficialTranslation": "A Solo Trip to the Finish Line"
+  },
+  "110402111": {
+    "jp_text": "伏竜は目覚めて",
+    "unofficialTranslation": "The Crouching Dragon Awakens"
+  },
+  "110402211": {
+    "jp_text": "暁光背負いて",
+    "unofficialTranslation": "Bearing the Light of Dawn"
+  },
+  "110411": {
+    "jp_text": "CHERRY☆スクランブル",
+    "unofficialTranslation": "CHERRY☆Scramble"
+  },
+  "110421": {
+    "jp_text": "Oh!bento-magic☆",
+    "unofficialTranslation": "Oh!bento-magic☆"
+  },
+  "110441": {
+    "jp_text": "とっておきmaterialize",
+    "unofficialTranslation": "My Special Materialize"
+  },
+  "110451": {
+    "jp_text": "ぐるぐるマミートリック♡",
+    "unofficialTranslation": "Twirly-Whirly Mommy Trick♡"
+  },
+  "110461": {
+    "jp_text": "α-star*",
+    "unofficialTranslation": "α-star*"
+  },
+  "110471": {
+    "jp_text": "未知との遭遇、即ち物語",
+    "unofficialTranslation": "Encounter with the Unknown, That Is a Story"
+  },
+  "110481": {
+    "jp_text": "GALmem.ふぉーえば♪",
+    "unofficialTranslation": "GALmem.4eva♪"
+  },
+  "110501": {
+    "jp_text": "Hephaistos",
+    "unofficialTranslation": "Hephaistos"
+  },
+  "110501111": {
+    "jp_text": "銀河のその先へ、あなたと",
+    "unofficialTranslation": "To Beyond the Galaxy, With You"
+  },
+  "110501211": {
+    "jp_text": "星の海を駆けて",
+    "unofficialTranslation": "Galloping Across the Sea of Stars"
+  },
+  "110502111": {
+    "jp_text": "ルミナス・スペクトラム",
+    "unofficialTranslation": "Luminous Spectrum"
+  },
+  "110502211": {
+    "jp_text": "“METI”レゾナンス",
+    "unofficialTranslation": "“METI” Resonance"
+  },
+  "110511": {
+    "jp_text": "Flowering Dreams",
+    "unofficialTranslation": "Flowering Dreams"
+  },
+  "110521": {
+    "jp_text": "113転び114起き",
+    "unofficialTranslation": "Fall 113 Times, Get Up 114"
+  },
+  "110531": {
+    "jp_text": "奥義・常夏バーニング！！",
+    "unofficialTranslation": "Secret Art: Everlasting Summer Burning!!"
+  },
+  "110571": {
+    "jp_text": "爛然闊歩",
+    "unofficialTranslation": "Striding Brilliantly"
+  },
+  "110581": {
+    "jp_text": "Spooky-Scary-Happy",
+    "unofficialTranslation": "Spooky-Scary-Happy"
+  },
+  "110591": {
+    "jp_text": "ときめきが呼ぶほうへ",
+    "unofficialTranslation": "Towards Where My Heart Pounds"
+  },
+  "110601": {
+    "jp_text": "Go☆Go☆for it!",
+    "unofficialTranslation": "Go☆Go☆for it!"
+  },
+  "110601111": {
+    "jp_text": "焦らず、気負わず",
+    "unofficialTranslation": "Don't Rush, Don't Stress"
+  },
+  "110601121": {
+    "jp_text": "できる範囲でがんばろ～！",
+    "unofficialTranslation": "Let's do our best within our limits~!"
+  },
+  "110601211": {
+    "jp_text": "ちょっといいこと、集めて",
+    "unofficialTranslation": "Gathering a Few Good Things"
+  },
+  "110602111": {
+    "jp_text": "お邪魔しま～す♪",
+    "unofficialTranslation": "Coming through~♪"
+  },
+  "110602211": {
+    "jp_text": "まさかここから大逆転！？",
+    "unofficialTranslation": "A huge comeback from here!?"
+  },
+  "110611": {
+    "jp_text": "轟！トレセン応援団！！",
+    "unofficialTranslation": "Roar! Tracen Academy Cheer Squad!!"
+  },
+  "110621": {
+    "jp_text": "ごろりん！？パワードライブ",
+    "unofficialTranslation": "Rollin'!? Power Drive"
+  },
+  "110641": {
+    "jp_text": "jingle all the way",
+    "unofficialTranslation": "jingle all the way"
+  },
+  "110651": {
+    "jp_text": "ノッてけ、マッシュアップ！",
+    "unofficialTranslation": "Get on with it, Mashup!"
+  },
+  "110671": {
+    "jp_text": "玄雲散らす、黄金甲矢",
+    "unofficialTranslation": "The Golden Arrow that Scatters the Dark Clouds"
+  },
+  "110681": {
+    "jp_text": "あっぱれ大盤振る舞い！",
+    "unofficialTranslation": "A Splendid, Lavish Display!"
+  },
+  "110691": {
+    "jp_text": "咲け咲け！私！",
+    "unofficialTranslation": "Bloom, bloom! Me!"
+  },
+  "110701": {
+    "jp_text": "駆るは光、狩るは星々",
+    "unofficialTranslation": "Ride the Light, Hunt the Stars"
+  },
+  "110701111": {
+    "jp_text": "Breakaway Star",
+    "unofficialTranslation": "Breakaway Star"
+  },
+  "110701211": {
+    "jp_text": "Smooth Sailing!",
+    "unofficialTranslation": "Smooth Sailing!"
+  },
+  "110702111": {
+    "jp_text": "True Wire-to-Wire!",
+    "unofficialTranslation": "True Wire-to-Wire!"
+  },
+  "110702211": {
+    "jp_text": "大航海、飄々と",
+    "unofficialTranslation": "The Great Voyage, Drifting Along"
+  },
+  "110711": {
+    "jp_text": "Danser le présent",
+    "unofficialTranslation": "Danser le présent"
+  },
+  "110721": {
+    "jp_text": "剛勇果断、烈火之刀",
+    "unofficialTranslation": "Valorous and Decisive, a Blade of Raging Fire"
+  },
+  "110741": {
+    "jp_text": "Illuminate you",
+    "unofficialTranslation": "Illuminate you"
+  },
+  "110771": {
+    "jp_text": "Joy to the World",
+    "unofficialTranslation": "Joy to the World"
+  },
+  "110781": {
+    "jp_text": "Breezy Treat",
+    "unofficialTranslation": "Breezy Treat"
+  },
+  "110801111": {
+    "jp_text": "磨穿鉄硯",
+    "unofficialTranslation": "Wear Through an Iron Inkstone"
+  },
+  "110801211": {
+    "jp_text": "赫焉",
+    "unofficialTranslation": "Blazing"
+  },
+  "110831": {
+    "jp_text": "Immortal Work",
+    "unofficialTranslation": "Immortal Work"
+  },
+  "110841": {
+    "jp_text": "深淵のテルプシコラー",
+    "unofficialTranslation": "Terpsichore of the Abyss"
+  },
+  "110851": {
+    "jp_text": "蒼炎",
+    "unofficialTranslation": "Blue Flame"
+  },
+  "110861": {
+    "jp_text": "解けぬ結い目",
+    "unofficialTranslation": "The Unbreakable Knot"
+  },
+  "110871": {
+    "jp_text": "ふわもこアワー",
+    "unofficialTranslation": "Fluffy-Moco Hour"
+  },
+  "110881": {
+    "jp_text": "夏雷カスケード！",
+    "unofficialTranslation": "Summer Thunder Cascade!"
+  },
+  "110891": {
+    "jp_text": "Tidebreaker",
+    "unofficialTranslation": "Tidebreaker"
+  },
+  "110901111": {
+    "jp_text": "未来を拓け！",
+    "unofficialTranslation": "Open up the Future!"
+  },
+  "110901211": {
+    "jp_text": "ぜーったい負けられない！",
+    "unofficialTranslation": "I absolutely can't lose!"
+  },
+  "110902111": {
+    "jp_text": "希望は巡る、何度でも",
+    "unofficialTranslation": "Hope Comes Around, Again and Again"
+  },
+  "110902211": {
+    "jp_text": "ティアラ・ダイブ！",
+    "unofficialTranslation": "Tiara Dive!"
+  },
+  "110911": {
+    "jp_text": "ジュ・テーム☆バカンス！",
+    "unofficialTranslation": "Je t'aime☆Vacances!"
+  },
+  "110931": {
+    "jp_text": "きせき・おもい・かなで",
+    "unofficialTranslation": "Miracle・Feelings・Melody"
+  },
+  "110981": {
+    "jp_text": "五獣挙りて彩光奏づ",
+    "unofficialTranslation": "The Five Beasts Rise and Play a Colorful Light"
+  },
+  "110991": {
+    "jp_text": "とびだせ☆ポッピングシェル",
+    "unofficialTranslation": "Jump out☆Popping Shell"
+  },
+  "111001111": {
+    "jp_text": "礎たれ",
+    "unofficialTranslation": "Be the Foundation"
+  },
+  "111001211": {
+    "jp_text": "麗しき転身",
+    "unofficialTranslation": "A Graceful Turn"
+  },
+  "111002111": {
+    "jp_text": "栄華の歩み、誰ぞ遮る",
+    "unofficialTranslation": "Who can block the path of glory?"
+  },
+  "111002211": {
+    "jp_text": "白妙の約定",
+    "unofficialTranslation": "The White Promise"
+  },
+  "111041": {
+    "jp_text": "決意一筆",
+    "unofficialTranslation": "A Stroke of Determination"
+  },
+  "111051": {
+    "jp_text": "Encounter with U",
+    "unofficialTranslation": "Encounter with U"
+  },
+  "111061": {
+    "jp_text": "小さな奇跡、フォーユー♪",
+    "unofficialTranslation": "A Small Miracle, For You♪"
+  },
+  "111071": {
+    "jp_text": "Romantic Horizon",
+    "unofficialTranslation": "Romantic Horizon"
+  },
+  "111091": {
+    "jp_text": "ずっとずっと輝いて",
+    "unofficialTranslation": "Shining Forever and Ever"
+  },
+  "111101": {
+    "jp_text": "時かけるせせらぎ",
+    "unofficialTranslation": "The Babbling Brook that Leaps Through Time"
+  },
+  "111101111": {
+    "jp_text": "母の面影を追って",
+    "unofficialTranslation": "Chasing the Image of My Mother"
+  },
+  "111101211": {
+    "jp_text": "堅実なる秘策",
+    "unofficialTranslation": "A Solid Secret Plan"
+  },
+  "111301111": {
+    "jp_text": "ラブミー☆パレード",
+    "unofficialTranslation": "Love Me☆Parade"
+  },
+  "111301211": {
+    "jp_text": "ぜーったい譲って♡",
+    "unofficialTranslation": "Absolutely give in to me♡"
+  },
+  "111501111": {
+    "jp_text": "我が意、即ち天の理なり",
+    "unofficialTranslation": "My Will is the Law of the Heavens"
+  },
+  "111501211": {
+    "jp_text": "王威絢爛",
+    "unofficialTranslation": "Splendor of the King's Majesty"
+  },
+  "111501221": {
+    "jp_text": "――畏れよ、然して拝跪せよ",
+    "unofficialTranslation": "—Tremble, and then prostrate yourselves"
+  },
+  "111601111": {
+    "jp_text": "――お退きなさい",
+    "unofficialTranslation": "—Step aside"
+  },
+  "111601211": {
+    "jp_text": "Power Am I",
+    "unofficialTranslation": "Power Am I"
+  },
+  "111601221": {
+    "jp_text": "淑女の独擅場",
+    "unofficialTranslation": "The Lady's Unrivaled Stage"
+  },
+  "111701111": {
+    "jp_text": "グラン・ジュッテ",
+    "unofficialTranslation": "Grand Jeté"
+  },
+  "111701211": {
+    "jp_text": "邁進アン・レール",
+    "unofficialTranslation": "Pressing on En L'air"
+  },
+  "111901111": {
+    "jp_text": "果てへの面舵",
+    "unofficialTranslation": "Starboard to the Horizon"
+  },
+  "111901211": {
+    "jp_text": "夢見心地",
+    "unofficialTranslation": "Dreamy Feeling"
+  },
+  "112001111": {
+    "jp_text": "閃光一走！",
+    "unofficialTranslation": "A Flash of a Run!"
+  },
+  "112001211": {
+    "jp_text": "突風一駆！",
+    "unofficialTranslation": "A Gust of a Gallop!"
+  },
+  "112101111": {
+    "jp_text": "忠心のヴェイヤンティフ",
+    "unofficialTranslation": "The Loyal Veillantif"
+  },
+  "112101211": {
+    "jp_text": "オリファントの轟雷",
+    "unofficialTranslation": "The Roaring Thunder of Olifant"
+  },
+  "112401111": {
+    "jp_text": "俊傑の悠",
+    "unofficialTranslation": "Grace of a Prodigy"
+  },
+  "112401211": {
+    "jp_text": "嚆矢の花道",
+    "unofficialTranslation": "The Resounding Arrow's Path of Glory"
+  },
+  "112701111": {
+    "jp_text": "あんぱんと牛乳",
+    "unofficialTranslation": "Anpan and Milk"
+  },
+  "112701211": {
+    "jp_text": "猛き獣は太陽に吼える",
+    "unofficialTranslation": "The Fierce Beast Roars at the Sun"
+  },
+  "113101111": {
+    "jp_text": "推してまいる！！",
+    "unofficialTranslation": "Here I come to cheer!!"
+  },
+  "113101211": {
+    "jp_text": "万哩へ響け大歓声",
+    "unofficialTranslation": "Let the Cheers Echo for a Myriad Miles"
+  },
+  "113201111": {
+    "jp_text": "ストリーミング♡ラッシュ",
+    "unofficialTranslation": "Streaming♡Rush"
+  },
+  "113201211": {
+    "jp_text": "応援コメントよろしく！",
+    "unofficialTranslation": "Leave a supportive comment!"
+  },
+  "113301111": {
+    "jp_text": "永永無窮",
+    "unofficialTranslation": "Eternal and Everlasting"
+  },
+  "113301211": {
+    "jp_text": "創世の一頁",
+    "unofficialTranslation": "A Page of Genesis"
+  },
+  "1200011": {
+    "jp_text": "中距離レースへの想い",
+    "unofficialTranslation": "Passion for Mid-Range Races"
+  },
+  "1200021": {
+    "jp_text": "長距離レースへの想い",
+    "unofficialTranslation": "Passion for Long-Range Races"
+  },
+  "1200031": {
+    "jp_text": "マイルレースへの想い",
+    "unofficialTranslation": "Passion for Mile Races"
+  },
+  "1200041": {
+    "jp_text": "短距離レースへの想い",
+    "unofficialTranslation": "Passion for Short-Range Races"
+  },
+  "1200051": {
+    "jp_text": "ダートレースへの想い",
+    "unofficialTranslation": "Passion for Dirt Races"
+  },
+  "120011": {
+    "jp_text": "威風堂々、夢錦！",
+    "unofficialTranslation": "Majestic and Grand, a Dream Brocade!"
+  },
+  "120031": {
+    "jp_text": "歌舞歓楽や、ああをかし",
+    "unofficialTranslation": "Song, Dance, and Merriment, Oh How Charming"
+  },
+  "120041": {
+    "jp_text": "霊験灼然チョベリグ神託",
+    "unofficialTranslation": "The Miraculously Awesome Oracle"
+  },
+  "120071": {
+    "jp_text": "Vive la GOLD",
+    "unofficialTranslation": "Vive la GOLD"
+  },
+  "120111": {
+    "jp_text": "演舞・撫子大薙刀",
+    "unofficialTranslation": "Demonstration Dance - Nadeshiko Great Naginata"
+  },
+  "120131": {
+    "jp_text": "きらめくは海、まばゆきは君",
+    "unofficialTranslation": "The Sparkling Sea, the Dazzling You"
+  },
+  "120231": {
+    "jp_text": "勝利ヘ至ル累積",
+    "unofficialTranslation": "The Accumulation Leading to Victory"
+  },
+  "120241": {
+    "jp_text": "HOP STEP♪LOCK ON!",
+    "unofficialTranslation": "HOP STEP♪LOCK ON!"
+  },
+  "120301": {
+    "jp_text": "あおぞらクッキング♪",
+    "unofficialTranslation": "Blue Sky Cooking♪"
+  },
+  "120311": {
+    "jp_text": "全力全開！サイクロン",
+    "unofficialTranslation": "Full Power! Cyclone"
+  },
+  "120321": {
+    "jp_text": "超光速微粒子の可能性",
+    "unofficialTranslation": "The Possibility of Superluminal Microparticles"
+  },
+  "120351": {
+    "jp_text": "GO! Full-send",
+    "unofficialTranslation": "GO! Full-send"
+  },
+  "120371": {
+    "jp_text": "潮風のGeschenk",
+    "unofficialTranslation": "Geschenk of the Sea Breeze"
+  },
+  "120401": {
+    "jp_text": "Silent Sunset Gold",
+    "unofficialTranslation": "Silent Sunset Gold"
+  },
+  "120451": {
+    "jp_text": "忍法・ほほえみ心結の印",
+    "unofficialTranslation": "Ninjutsu: The Seal of a Smiling, Heartfelt Bond"
+  },
+  "120461": {
+    "jp_text": "Forward March!",
+    "unofficialTranslation": "Forward March!"
+  },
+  "120501": {
+    "jp_text": "Overdrive Speed",
+    "unofficialTranslation": "Overdrive Speed"
+  },
+  "120601": {
+    "jp_text": "もちっと・ハレハレ",
+    "unofficialTranslation": "A Bit Chewy・Bright and Sunny"
+  },
+  "120611": {
+    "jp_text": "理想へのwinding road",
+    "unofficialTranslation": "The winding road to my ideals"
+  },
+  "120671": {
+    "jp_text": "ポンテ・デ・ディアマン",
+    "unofficialTranslation": "Ponte de Diamant"
+  },
+  "120681": {
+    "jp_text": "ミンナノアタシへ！",
+    "unofficialTranslation": "To the Me that Belongs to Everyone!"
+  },
+  "1300011": {
+    "jp_text": "ボルテージヒーロー",
+    "unofficialTranslation": "Voltage Hero"
+  },
+  "1300021": {
+    "jp_text": "サンライズヒーロー",
+    "unofficialTranslation": "Sunrise Hero"
+  },
+  "1300031": {
+    "jp_text": "レイニーヒーロー",
+    "unofficialTranslation": "Rainy Hero"
+  },
+  "1300041": {
+    "jp_text": "インサイドヒーロー",
+    "unofficialTranslation": "Inside Hero"
+  },
+  "1300051": {
+    "jp_text": "アウトサイドヒーロー",
+    "unofficialTranslation": "Outside Hero"
+  },
+  "1300061": {
+    "jp_text": "リンケージヒーロー",
+    "unofficialTranslation": "Linkage Hero"
+  },
+  "1300071": {
+    "jp_text": "スパートヒーロー",
+    "unofficialTranslation": "Spurt Hero"
+  },
+  "1400011": {
+    "jp_text": "マスターズドライブ",
+    "unofficialTranslation": "Masters Drive"
+  },
+  "1400021": {
+    "jp_text": "レジェンダリーアクセル",
+    "unofficialTranslation": "Legendary Accel"
+  },
+  "9000011": {
+    "jp_text": "カーニバルボーナス（継承）",
+    "unofficialTranslation": "Carnival Bonus (Inherited)"
+  },
+  "9000012": {
+    "jp_text": "カーニバルボーナス（継承）",
+    "unofficialTranslation": "Carnival Bonus (Inherited)"
+  },
+  "9000013": {
+    "jp_text": "カーニバルボーナス（継承）",
+    "unofficialTranslation": "Carnival Bonus (Inherited)"
+  },
+  "9000014": {
+    "jp_text": "カーニバルボーナス（継承）",
+    "unofficialTranslation": "Carnival Bonus (Inherited)"
+  },
+  "9000015": {
+    "jp_text": "カーニバルボーナス（継承）",
+    "unofficialTranslation": "Carnival Bonus (Inherited)"
+  },
+  "9000016": {
+    "jp_text": "カーニバルボーナス（継承）",
+    "unofficialTranslation": "Carnival Bonus (Inherited)"
+  },
+  "9000017": {
+    "jp_text": "カーニバルボーナス（継承）",
+    "unofficialTranslation": "Carnival Bonus (Inherited)"
+  },
+  "900101111": {
+    "jp_text": "はらぺこ大将（継承）",
+    "unofficialTranslation": "Hungry General (Inherited)"
+  },
+  "900101211": {
+    "jp_text": "夢叶える末脚（継承）",
+    "unofficialTranslation": "Dream-Fulfilling Final Leg (Inherited)"
+  },
+  "900102111": {
+    "jp_text": "真夏の思い切り（継承）",
+    "unofficialTranslation": "Midsummer's Full Send (Inherited)"
+  },
+  "900102211": {
+    "jp_text": "真夏の総大将（継承）",
+    "unofficialTranslation": "Midsummer's Great General (Inherited)"
+  },
+  "900103111": {
+    "jp_text": "怒涛の出陣（継承）",
+    "unofficialTranslation": "Raging Departure (Inherited)"
+  },
+  "900103211": {
+    "jp_text": "日之本一のド根性（継承）",
+    "unofficialTranslation": "Japan's #1 Guts (Inherited)"
+  },
+  "900191": {
+    "jp_text": "尊み☆ﾗｽﾄｽﾊﾟ—(ﾟ∀ﾟ)—ﾄ!",
+    "unofficialTranslation": "Precious☆LAAAST SPUUURT!"
+  },
+  "900201111": {
+    "jp_text": "最大集中（継承）",
+    "unofficialTranslation": "Maximum Focus (Inherited)"
+  },
+  "900201211": {
+    "jp_text": "異次元の逃亡者（継承）",
+    "unofficialTranslation": "Otherworldly Fugitive (Inherited)"
+  },
+  "900202111": {
+    "jp_text": "瑠璃色エスケイプ（継承）",
+    "unofficialTranslation": "Lapis Lazuli Escape (Inherited)"
+  },
+  "900202121": {
+    "jp_text": "滄海を越えしフーガ（継承）",
+    "unofficialTranslation": "Fugue Across the Blue Sea (Inherited)"
+  },
+  "900202211": {
+    "jp_text": "蒼天を駆けるラーファガ（継承）",
+    "unofficialTranslation": "Rafaga Across the Blue Sky (Inherited)"
+  },
+  "900211": {
+    "jp_text": "白い稲妻、見せたるで！",
+    "unofficialTranslation": "I'll Show You the White Lightning!"
+  },
+  "900221": {
+    "jp_text": "Fairy tale",
+    "unofficialTranslation": "Fairy tale"
+  },
+  "900251": {
+    "jp_text": "アナタヲ・オイカケテ",
+    "unofficialTranslation": "CHASING・YOU"
+  },
+  "900281": {
+    "jp_text": "I'M☆FULL☆SPEED!!",
+    "unofficialTranslation": "I'M☆FULL☆SPEED!!"
+  },
+  "900291": {
+    "jp_text": "ゆきあかり、おいかけて",
+    "unofficialTranslation": "Chasing the Snow Light"
+  },
+  "900301111": {
+    "jp_text": "天才的技巧（継承）",
+    "unofficialTranslation": "Genius Technique (Inherited)"
+  },
+  "900301211": {
+    "jp_text": "帝王ステップ（継承）",
+    "unofficialTranslation": "Emperor Step (Inherited)"
+  },
+  "900302111": {
+    "jp_text": "レースの天才（継承）",
+    "unofficialTranslation": "Racing Genius (Inherited)"
+  },
+  "900302211": {
+    "jp_text": "地平の彼方まで（継承）",
+    "unofficialTranslation": "To the Ends of the Horizon (Inherited)"
+  },
+  "900303111": {
+    "jp_text": "天賦の身ごなし（継承）",
+    "unofficialTranslation": "Natural-Born Agility (Inherited)"
+  },
+  "900303211": {
+    "jp_text": "盤楽遊嬉（継承）",
+    "unofficialTranslation": "Reveling in the Game (Inherited)"
+  },
+  "900303221": {
+    "jp_text": "朝腹、朝腹、かやすしや♪（継承）",
+    "unofficialTranslation": "Morning stretches, morning stretches, 'tis easy to do♪ (Inherited)"
+  },
+  "900311": {
+    "jp_text": "チャージ完了！全速前進！",
+    "unofficialTranslation": "Charge Complete! Full Speed Ahead!"
+  },
+  "900331": {
+    "jp_text": "ディオスクロイの流星",
+    "unofficialTranslation": "Meteor of Dioscuri"
+  },
+  "900341": {
+    "jp_text": "快走かな、快走かな！",
+    "unofficialTranslation": "What a Fine Run, a Fine Run!"
+  },
+  "900361": {
+    "jp_text": "trigger:BEAT",
+    "unofficialTranslation": "trigger:BEAT"
+  },
+  "900391": {
+    "jp_text": "姫たるもの、勝利をこの手に",
+    "unofficialTranslation": "As a Princess, I Will Seize Victory"
+  },
+  "900401111": {
+    "jp_text": "かっ飛ばすわよ！（継承）",
+    "unofficialTranslation": "I'm Gonna Fly! (Inherited)"
+  },
+  "900401211": {
+    "jp_text": "紅蓮のオーバーレブ（継承）",
+    "unofficialTranslation": "Crimson Over-Rev (Inherited)"
+  },
+  "900402111": {
+    "jp_text": "ドキッ☆じゃじゃウマ娘！（継承）",
+    "unofficialTranslation": "Gasp☆Unruly Horse Girl! (Inherited)"
+  },
+  "900402211": {
+    "jp_text": "お立ち台の支配者（継承）",
+    "unofficialTranslation": "Ruler of the Winner's Podium (Inherited)"
+  },
+  "900403111": {
+    "jp_text": "天女の羽衣（継承）",
+    "unofficialTranslation": "Robe of a Celestial Maiden (Inherited)"
+  },
+  "900403211": {
+    "jp_text": "神薙ダンス（継承）",
+    "unofficialTranslation": "Divine Mowing Dance (Inherited)"
+  },
+  "900421": {
+    "jp_text": "『I'm possible』",
+    "unofficialTranslation": "『I'm possible』"
+  },
+  "900431": {
+    "jp_text": "Ding Dong Boo",
+    "unofficialTranslation": "Ding Dong Boo"
+  },
+  "900441": {
+    "jp_text": "いただき☆ストレリチア！",
+    "unofficialTranslation": "Got It☆Strelitzia!"
+  },
+  "900471": {
+    "jp_text": "掲げよ、己が魂の剣を！",
+    "unofficialTranslation": "Raise the Sword of Your Soul!"
+  },
+  "900481": {
+    "jp_text": "YEAH☆VIVID TIME!",
+    "unofficialTranslation": "YEAH☆VIVID TIME!"
+  },
+  "900491": {
+    "jp_text": "剣ヶ峰より、狂気に嗤え",
+    "unofficialTranslation": "From the Brink, Laugh at Madness"
+  },
+  "900501111": {
+    "jp_text": "輝くトップスタァ（継承）",
+    "unofficialTranslation": "Shining Top Star (Inherited)"
+  },
+  "900501211": {
+    "jp_text": "エンターテイナー（継承）",
+    "unofficialTranslation": "Entertainer (Inherited)"
+  },
+  "900501221": {
+    "jp_text": "煌めく“キセキ”を（継承）",
+    "unofficialTranslation": "A Sparkling \"Miracle\" (Inherited)"
+  },
+  "900502111": {
+    "jp_text": "圧巻のトリック（継承）",
+    "unofficialTranslation": "Breathtaking Trick (Inherited)"
+  },
+  "900502121": {
+    "jp_text": "見惚れるコーナリング（継承）",
+    "unofficialTranslation": "Captivating Cornering (Inherited)"
+  },
+  "900502211": {
+    "jp_text": "煌めきのトップスタァ（継承）",
+    "unofficialTranslation": "Glittering Top Star (Inherited)"
+  },
+  "900511": {
+    "jp_text": "つぼみ、ほころぶ時",
+    "unofficialTranslation": "When the Flower Bud Blossoms"
+  },
+  "900531": {
+    "jp_text": "熱血！！風紀アタック",
+    "unofficialTranslation": "Hot-Blooded!! Moral Committee Attack"
+  },
+  "900541": {
+    "jp_text": "疾風爆走ペガサスダッシュ！",
+    "unofficialTranslation": "Gale-Force Pegasus Dash!"
+  },
+  "900551": {
+    "jp_text": "万彩☆マーベラス★世界",
+    "unofficialTranslation": "Kaleidoscopic☆Marvelous★World"
+  },
+  "900571": {
+    "jp_text": "叙情、旅路の果てに",
+    "unofficialTranslation": "Lyricism, at the Journey's End"
+  },
+  "900591": {
+    "jp_text": "彼方、その先へ…",
+    "unofficialTranslation": "To the Other Side, and Beyond..."
+  },
+  "900601111": {
+    "jp_text": "笠松の食いしん坊（継承）",
+    "unofficialTranslation": "The Glutton of Kasamatsu (Inherited)"
+  },
+  "900601121": {
+    "jp_text": "飢えた怪物（継承）",
+    "unofficialTranslation": "Starving Monster (Inherited)"
+  },
+  "900601211": {
+    "jp_text": "怪物的コーナリング（継承）",
+    "unofficialTranslation": "Monstrous Cornering (Inherited)"
+  },
+  "900602111": {
+    "jp_text": "ドカ食い養生（継承）",
+    "unofficialTranslation": "Binge-Eating for Health (Inherited)"
+  },
+  "900602211": {
+    "jp_text": "クリスマスの奇跡体験（継承）",
+    "unofficialTranslation": "A Christmas Miracle Experience (Inherited)"
+  },
+  "900621": {
+    "jp_text": "どんっ、パッ、むんっ",
+    "unofficialTranslation": "Don, Pa, Mun"
+  },
+  "900631": {
+    "jp_text": "百錬成鋼",
+    "unofficialTranslation": "Tempered Through a Hundred Trials"
+  },
+  "900641": {
+    "jp_text": "ぶっちぎりロード",
+    "unofficialTranslation": "Breakaway Road"
+  },
+  "900651": {
+    "jp_text": "アゲてアゲてぷちょへんざ！",
+    "unofficialTranslation": "Get Hyped, Get Hyped, Put Ya Hands Up!"
+  },
+  "900661": {
+    "jp_text": "エンジン全開！大噴射！",
+    "unofficialTranslation": "Engine at Full Throttle! Mega-Blast!"
+  },
+  "900671": {
+    "jp_text": "晦冥を照らせ永遠の耀き",
+    "unofficialTranslation": "Illuminate the Gloom, Eternal Radiance"
+  },
+  "900681": {
+    "jp_text": "勝ち鬨ワッショイ！",
+    "unofficialTranslation": "Victory Cry, Wasshoi!"
+  },
+  "900691": {
+    "jp_text": "憧れは桜を越える！",
+    "unofficialTranslation": "My Dream Will Surpass the Cherry Blossoms!"
+  },
+  "900701": {
+    "jp_text": "セイリオス（人気1～3番）（継承）",
+    "unofficialTranslation": "Sirius (Popularity 1-3) (Inherited)"
+  },
+  "900701-1": {
+    "jp_text": "セイリオス（人気4番以下）（継承）",
+    "unofficialTranslation": "Sirius (Popularity 4+) (Inherited)"
+  },
+  "900701111": {
+    "jp_text": "564アイズで視界クッキリ！（継承）",
+    "unofficialTranslation": "564 Eyes for a Clear View! (Inherited)"
+  },
+  "900701211": {
+    "jp_text": "エクストリーム下校術（継承）",
+    "unofficialTranslation": "Extreme Art of Going Home (Inherited)"
+  },
+  "900702111": {
+    "jp_text": "神秘体験！ゴルシワープ（継承）",
+    "unofficialTranslation": "Mystical Experience! Gorushi Warp (Inherited)"
+  },
+  "900702211": {
+    "jp_text": "イカ揚げ、いかがですか！？（継承）",
+    "unofficialTranslation": "How About Some Fried Squid!? (Inherited)"
+  },
+  "900702221": {
+    "jp_text": "高まってきたぜぇ！！（継承）",
+    "unofficialTranslation": "I'm Getting Fired Up!! (Inherited)"
+  },
+  "900703111": {
+    "jp_text": "押し寄せるジュテーム（継承）",
+    "unofficialTranslation": "Surging Je T'aime (Inherited)"
+  },
+  "900703211": {
+    "jp_text": "荒磯好みの黄金船（継承）",
+    "unofficialTranslation": "The Golden Ship that Loves the Rocky Shore (Inherited)"
+  },
+  "900711": {
+    "jp_text": "一期の夢、刹那の飛翔",
+    "unofficialTranslation": "A Fleeting Dream, a Moment's Flight"
+  },
+  "900721": {
+    "jp_text": "烈火繚乱、無敵之舞",
+    "unofficialTranslation": "Raging Fire, Invincible Dance"
+  },
+  "900731": {
+    "jp_text": "燃え盛るは絶対の意志",
+    "unofficialTranslation": "The Unwavering Will Burns Bright"
+  },
+  "900741": {
+    "jp_text": "麗しき花信風",
+    "unofficialTranslation": "The Beautiful Flower-Announcing Wind"
+  },
+  "900761": {
+    "jp_text": "花開き、世界",
+    "unofficialTranslation": "The World Blossoms"
+  },
+  "900771": {
+    "jp_text": "Road to Glory",
+    "unofficialTranslation": "Road to Glory"
+  },
+  "900781": {
+    "jp_text": "風光る",
+    "unofficialTranslation": "The Wind Shines"
+  },
+  "900791": {
+    "jp_text": "『船橋最強！』",
+    "unofficialTranslation": "『The Strongest in Funabashi!』"
+  },
+  "900801": {
+    "jp_text": "Info: Acquired",
+    "unofficialTranslation": "Info: Acquired"
+  },
+  "900801111": {
+    "jp_text": "スキットルブレイク（継承）",
+    "unofficialTranslation": "Skittle Break (Inherited)"
+  },
+  "900801211": {
+    "jp_text": "抜群の豪脚（継承）",
+    "unofficialTranslation": "Exceptional Power Legs (Inherited)"
+  },
+  "900802111": {
+    "jp_text": "ぶっ差してやるぜ！（継承）",
+    "unofficialTranslation": "Gonna Leave 'em in the Dust! (Inherited)"
+  },
+  "900802211": {
+    "jp_text": "最速のトップギア（継承）",
+    "unofficialTranslation": "The Fastest Top Gear (Inherited)"
+  },
+  "900821": {
+    "jp_text": "Shining Runway",
+    "unofficialTranslation": "Shining Runway"
+  },
+  "900831": {
+    "jp_text": "Mission: Triumph",
+    "unofficialTranslation": "Mission: Triumph"
+  },
+  "900841": {
+    "jp_text": "霹靂のアウフヘーベン",
+    "unofficialTranslation": "Aufheben of the Thunderclap"
+  },
+  "900851": {
+    "jp_text": "至上であれ",
+    "unofficialTranslation": "Be Supreme"
+  },
+  "900861": {
+    "jp_text": "愛と熔けよただ熔けよ",
+    "unofficialTranslation": "Melt with Love, Just Melt"
+  },
+  "900871": {
+    "jp_text": "Silent letter",
+    "unofficialTranslation": "Silent letter"
+  },
+  "900881": {
+    "jp_text": "Reversal Illusion",
+    "unofficialTranslation": "Reversal Illusion"
+  },
+  "900891": {
+    "jp_text": "Celeste Oath",
+    "unofficialTranslation": "Celeste Oath"
+  },
+  "900901": {
+    "jp_text": "Queen's Rebirth",
+    "unofficialTranslation": "Queen's Rebirth"
+  },
+  "900901111": {
+    "jp_text": "パーフェクトチューン（継承）",
+    "unofficialTranslation": "Perfect Tune (Inherited)"
+  },
+  "900901211": {
+    "jp_text": "アタシが勝つんだから！（継承）",
+    "unofficialTranslation": "Because I'm Gonna Win! (Inherited)"
+  },
+  "900902111": {
+    "jp_text": "おてんば女王（継承）",
+    "unofficialTranslation": "Tomboy Queen (Inherited)"
+  },
+  "900902121": {
+    "jp_text": "緋色の光となって（継承）",
+    "unofficialTranslation": "Becoming a Scarlet Light (Inherited)"
+  },
+  "900902211": {
+    "jp_text": "開かれる夢の扉（継承）",
+    "unofficialTranslation": "The Opening Door of Dreams (Inherited)"
+  },
+  "900911": {
+    "jp_text": "デラックス☆ファウンテン",
+    "unofficialTranslation": "Deluxe☆Fountain"
+  },
+  "900931": {
+    "jp_text": "幸せの青い光",
+    "unofficialTranslation": "The Blue Light of Happiness"
+  },
+  "900941": {
+    "jp_text": "Faith in the Feral",
+    "unofficialTranslation": "Faith in the Feral"
+  },
+  "900961": {
+    "jp_text": "知宵欺敵、百戦不殆",
+    "unofficialTranslation": "Deceive the Foe at Night, Win a Hundred Battles"
+  },
+  "900971": {
+    "jp_text": "スカーレットリリィの高揚",
+    "unofficialTranslation": "Exaltation of the Scarlet Lily"
+  },
+  "900981": {
+    "jp_text": "理運開かりて翔る",
+    "unofficialTranslation": "Soar as Fortune Opens the Way"
+  },
+  "900991": {
+    "jp_text": "かがやけ☆とまこまい",
+    "unofficialTranslation": "Shine☆Tomakomai"
+  },
+  "901001": {
+    "jp_text": "Never Say Never",
+    "unofficialTranslation": "Never Say Never"
+  },
+  "901001111": {
+    "jp_text": "狙い撃ちデス！（継承）",
+    "unofficialTranslation": "Time to Snipe! (Inherited)"
+  },
+  "901001211": {
+    "jp_text": "Frontier Spirit（継承）",
+    "unofficialTranslation": "Frontier Spirit (Inherited)"
+  },
+  "901002111": {
+    "jp_text": "アドベンチャーの先導者（継承）",
+    "unofficialTranslation": "Leader of the Adventure (Inherited)"
+  },
+  "901002211": {
+    "jp_text": "真剣勝負デス！（継承）",
+    "unofficialTranslation": "It's a Serious Match! (Inherited)"
+  },
+  "901021": {
+    "jp_text": "ヴィヴァーチェ・ヴォラーレ",
+    "unofficialTranslation": "Vivace Volare"
+  },
+  "901041": {
+    "jp_text": "暁の御旗『葛城栄主』！",
+    "unofficialTranslation": "Banner of Dawn, 『Katsuragi Eishu』!"
+  },
+  "901051": {
+    "jp_text": "アド・アストラ",
+    "unofficialTranslation": "Ad Astra"
+  },
+  "901061": {
+    "jp_text": "Bang☆ミラクるわせ！",
+    "unofficialTranslation": "Bang☆Make a Miracle!"
+  },
+  "901071": {
+    "jp_text": "Billions of stars",
+    "unofficialTranslation": "Billions of stars"
+  },
+  "901081": {
+    "jp_text": "羅刹、赤翼にて天上へ至らん",
+    "unofficialTranslation": "Rakshasa, Ascend to the Heavens on Crimson Wings"
+  },
+  "901091": {
+    "jp_text": "繋ぐ・繋がる×夢・未来",
+    "unofficialTranslation": "Connecting・Connected×Dream・Future"
+  },
+  "901101": {
+    "jp_text": "Guiding Sea",
+    "unofficialTranslation": "Guiding Sea"
+  },
+  "901101111": {
+    "jp_text": "大和撫子（継承）",
+    "unofficialTranslation": "Yamato Nadeshiko (Inherited)"
+  },
+  "901101211": {
+    "jp_text": "不退転の意思（継承）",
+    "unofficialTranslation": "Unyielding Will (Inherited)"
+  },
+  "901102111": {
+    "jp_text": "キュアリーヒール（継承）",
+    "unofficialTranslation": "Cure-ly Heal (Inherited)"
+  },
+  "901102211": {
+    "jp_text": "勇気の魔法（継承）",
+    "unofficialTranslation": "The Magic of Courage (Inherited)"
+  },
+  "901103111": {
+    "jp_text": "射貫く蒼（継承）",
+    "unofficialTranslation": "Piercing Blue (Inherited)"
+  },
+  "901103211": {
+    "jp_text": "勝機到来（継承）",
+    "unofficialTranslation": "Opportunity Arrives (Inherited)"
+  },
+  "901111": {
+    "jp_text": "辿る血脈、芽吹く未来",
+    "unofficialTranslation": "Following the Bloodline, a Budding Future"
+  },
+  "901131": {
+    "jp_text": "ホップステップ・ゲッチュ♡",
+    "unofficialTranslation": "Hop, Step, Get You♡"
+  },
+  "901151": {
+    "jp_text": "我が覇道、阻むものなし",
+    "unofficialTranslation": "Nothing Can Stop My Path to Supremacy"
+  },
+  "901161": {
+    "jp_text": "烈華の洗礼",
+    "unofficialTranslation": "Baptism of Raging Fire"
+  },
+  "901171": {
+    "jp_text": "鋭気のアレグロ",
+    "unofficialTranslation": "Allegro of Vigor"
+  },
+  "901191": {
+    "jp_text": "『それでは、よき旅を』",
+    "unofficialTranslation": "『Well Then, Have a Good Trip』"
+  },
+  "901201": {
+    "jp_text": "無二無三なる一条の路",
+    "unofficialTranslation": "The One and Only Single Path"
+  },
+  "901201111": {
+    "jp_text": "勝利への咆哮（継承）",
+    "unofficialTranslation": "Roar to Victory (Inherited)"
+  },
+  "901201121": {
+    "jp_text": "タイマンにかける執念（継承）",
+    "unofficialTranslation": "Obsession with One-on-Ones (Inherited)"
+  },
+  "901201211": {
+    "jp_text": "怒濤のポロロッカ（継承）",
+    "unofficialTranslation": "Raging Pororoca (Inherited)"
+  },
+  "901202111": {
+    "jp_text": "熱烈エンゲージ！（継承）",
+    "unofficialTranslation": "Passionate Engage! (Inherited)"
+  },
+  "901202211": {
+    "jp_text": "闘魂入刀！（継承）",
+    "unofficialTranslation": "Fighting Spirit Blade! (Inherited)"
+  },
+  "901202221": {
+    "jp_text": "誓いの一振り（継承）",
+    "unofficialTranslation": "A Swing of Vows (Inherited)"
+  },
+  "901211": {
+    "jp_text": "Lame de vent",
+    "unofficialTranslation": "Lame de vent"
+  },
+  "901241": {
+    "jp_text": "ふくらむ夢、先駆の途",
+    "unofficialTranslation": "A Swelling Dream, a Pioneering Path"
+  },
+  "901271": {
+    "jp_text": "対象捕捉！正義遂行！",
+    "unofficialTranslation": "Target Acquired! Enacting Justice!"
+  },
+  "901301111": {
+    "jp_text": "メジロの心得（継承）",
+    "unofficialTranslation": "The Mejiro Code (Inherited)"
+  },
+  "901301211": {
+    "jp_text": "名優の余裕（継承）",
+    "unofficialTranslation": "The Poise of a Great Actor (Inherited)"
+  },
+  "901302111": {
+    "jp_text": "アクティブレスト（継承）",
+    "unofficialTranslation": "Active Rest (Inherited)"
+  },
+  "901302211": {
+    "jp_text": "空の果てまで（継承）",
+    "unofficialTranslation": "To the Ends of the Sky (Inherited)"
+  },
+  "901303111": {
+    "jp_text": "夏の名優（継承）",
+    "unofficialTranslation": "Summer's Great Actor (Inherited)"
+  },
+  "901303211": {
+    "jp_text": "一意専心にリフレッシュ！（継承）",
+    "unofficialTranslation": "Refresh with Single-Minded Focus! (Inherited)"
+  },
+  "901311": {
+    "jp_text": "¡Qué alegría!",
+    "unofficialTranslation": "¡Qué alegría!"
+  },
+  "901321": {
+    "jp_text": "Circulating Love♡",
+    "unofficialTranslation": "Circulating Love♡"
+  },
+  "901331": {
+    "jp_text": "Weaving History",
+    "unofficialTranslation": "Weaving History"
+  },
+  "901401111": {
+    "jp_text": "鷹ノ目（継承）",
+    "unofficialTranslation": "Hawk's Eye (Inherited)"
+  },
+  "901401211": {
+    "jp_text": "余裕のパフォーマンス（継承）",
+    "unofficialTranslation": "A Leisurely Performance (Inherited)"
+  },
+  "901402111": {
+    "jp_text": "豪勇無双（継承）",
+    "unofficialTranslation": "Peerless Valor (Inherited)"
+  },
+  "901402121": {
+    "jp_text": "コンドル跳躍術（継承）",
+    "unofficialTranslation": "Condor's Leaping Art (Inherited)"
+  },
+  "901402211": {
+    "jp_text": "昇りコンドル（継承）",
+    "unofficialTranslation": "Rising Condor (Inherited)"
+  },
+  "901501111": {
+    "jp_text": "降臨！世紀末覇王！（継承）",
+    "unofficialTranslation": "Advent! End-of-Century Supreme King! (Inherited)"
+  },
+  "901501211": {
+    "jp_text": "歌劇王の行進（継承）",
+    "unofficialTranslation": "March of the Opera King (Inherited)"
+  },
+  "901502111": {
+    "jp_text": "円舞曲のマエストロ（継承）",
+    "unofficialTranslation": "Maestro of the Waltz (Inherited)"
+  },
+  "901502121": {
+    "jp_text": "コーナーに舞い降りし歌劇王（継承）",
+    "unofficialTranslation": "The Opera King Descending on the Corner (Inherited)"
+  },
+  "901502211": {
+    "jp_text": "ボクは遅れずにやってくる！（継承）",
+    "unofficialTranslation": "I Shall Arrive Without Delay! (Inherited)"
+  },
+  "901601111": {
+    "jp_text": "一刀両断（継承）",
+    "unofficialTranslation": "Cut in Two with One Stroke (Inherited)"
+  },
+  "901601211": {
+    "jp_text": "餓狼牙（継承）",
+    "unofficialTranslation": "Hungry Wolf Fang (Inherited)"
+  },
+  "901602111": {
+    "jp_text": "BLAZING WOLF（継承）",
+    "unofficialTranslation": "BLAZING WOLF (Inherited)"
+  },
+  "901602211": {
+    "jp_text": "渇望する怪物（継承）",
+    "unofficialTranslation": "The Craving Monster (Inherited)"
+  },
+  "901701111": {
+    "jp_text": "皇帝の眼差し（継承）",
+    "unofficialTranslation": "The Emperor's Gaze (Inherited)"
+  },
+  "901701211": {
+    "jp_text": "鎧袖一触（継承）",
+    "unofficialTranslation": "Effortless Victory (Inherited)"
+  },
+  "901702111": {
+    "jp_text": "神色自若（継承）",
+    "unofficialTranslation": "Perfect Composure (Inherited)"
+  },
+  "901702211": {
+    "jp_text": "風霜高潔（継承）",
+    "unofficialTranslation": "Noble and Incorruptible (Inherited)"
+  },
+  "901801111": {
+    "jp_text": "女帝の権謀（継承）",
+    "unofficialTranslation": "The Empress's Stratagem (Inherited)"
+  },
+  "901801211": {
+    "jp_text": "水月鏡花（継承）",
+    "unofficialTranslation": "Flower in the Mirror, Moon on the Water (Inherited)"
+  },
+  "901802111": {
+    "jp_text": "女帝の矜持（継承）",
+    "unofficialTranslation": "The Empress's Pride (Inherited)"
+  },
+  "901802211": {
+    "jp_text": "上弦のソムリエール（継承）",
+    "unofficialTranslation": "Sommelière of the Waxing Moon (Inherited)"
+  },
+  "901901111": {
+    "jp_text": "限界ウママニア（継承）",
+    "unofficialTranslation": "Extreme Uma-Maniac (Inherited)"
+  },
+  "901901211": {
+    "jp_text": "最前列は譲れない！（継承）",
+    "unofficialTranslation": "I Won't Give Up the Front Row! (Inherited)"
+  },
+  "901901221": {
+    "jp_text": "狙うは最前ドセンへの道！（継承）",
+    "unofficialTranslation": "Aiming for the Path to the Very Front and Center! (Inherited)"
+  },
+  "901902111": {
+    "jp_text": "超特急入稿！（継承）",
+    "unofficialTranslation": "Super-Express Submission! (Inherited)"
+  },
+  "901902121": {
+    "jp_text": "たぎってきたぁ～～っ！！（継承）",
+    "unofficialTranslation": "I'm getting pumped up~~!! (Inherited)"
+  },
+  "901902211": {
+    "jp_text": "尊みを求めてふっかーーつ！（継承）",
+    "unofficialTranslation": "Revived in search of preciousness! (Inherited)"
+  },
+  "902001111": {
+    "jp_text": "ファストリトリーブ（継承）",
+    "unofficialTranslation": "Fast Retrieve (Inherited)"
+  },
+  "902001121": {
+    "jp_text": "大物狙いの心得（継承）",
+    "unofficialTranslation": "The Art of Aiming for the Big Catch (Inherited)"
+  },
+  "902001211": {
+    "jp_text": "脱出大作戦（継承）",
+    "unofficialTranslation": "The Great Escape Plan (Inherited)"
+  },
+  "902002111": {
+    "jp_text": "逃げろ～♪（継承）",
+    "unofficialTranslation": "Run awaaay~♪ (Inherited)"
+  },
+  "902002121": {
+    "jp_text": "サプライズ大成功～☆（継承）",
+    "unofficialTranslation": "Surprise was a huge success~☆ (Inherited)"
+  },
+  "902002211": {
+    "jp_text": "レコードランナー（継承）",
+    "unofficialTranslation": "Record Runner (Inherited)"
+  },
+  "902101111": {
+    "jp_text": "雷騰雲奔（継承）",
+    "unofficialTranslation": "Thunder Soars, Clouds Gallop (Inherited)"
+  },
+  "902101121": {
+    "jp_text": "ちゃちゃっと始めんで！（継承）",
+    "unofficialTranslation": "Let's get this show on the road! (Inherited)"
+  },
+  "902101211": {
+    "jp_text": "尻尾の有頂天（継承）",
+    "unofficialTranslation": "Tail in Ecstasy (Inherited)"
+  },
+  "902102111": {
+    "jp_text": "先達に献ぐ祈りの頌（継承）",
+    "unofficialTranslation": "A Prayerful Ode to Our Forebears (Inherited)"
+  },
+  "902102211": {
+    "jp_text": "さあ、ウチとやろうや！（継承）",
+    "unofficialTranslation": "Come on, let's do this! (Inherited)"
+  },
+  "902102221": {
+    "jp_text": "ほな、行くで！（継承）",
+    "unofficialTranslation": "Well then, here I go! (Inherited)"
+  },
+  "902201111": {
+    "jp_text": "ロイヤルスター（継承）",
+    "unofficialTranslation": "Royal Star (Inherited)"
+  },
+  "902201121": {
+    "jp_text": "ディライトフルメモリー（継承）",
+    "unofficialTranslation": "Delightful Memory (Inherited)"
+  },
+  "902201211": {
+    "jp_text": "天空落とし（継承）",
+    "unofficialTranslation": "Sky Drop (Inherited)"
+  },
+  "902202111": {
+    "jp_text": "思い出を力に変えて（継承）",
+    "unofficialTranslation": "Turning Memories into Strength (Inherited)"
+  },
+  "902202211": {
+    "jp_text": "モリガンの矛戟（継承）",
+    "unofficialTranslation": "Morrigan's Halberd (Inherited)"
+  },
+  "902202221": {
+    "jp_text": "理想へ向かう覚悟（継承）",
+    "unofficialTranslation": "Resolve to Reach for Ideals (Inherited)"
+  },
+  "902301111": {
+    "jp_text": "想定通り、余裕十分（継承）",
+    "unofficialTranslation": "As Planned, Plenty of Leeway (Inherited)"
+  },
+  "902301211": {
+    "jp_text": "計画的クールダウン（継承）",
+    "unofficialTranslation": "Planned Cooldown (Inherited)"
+  },
+  "902302111": {
+    "jp_text": "VIPな後ろ姿（継承）",
+    "unofficialTranslation": "A View From a VIP's Back (Inherited)"
+  },
+  "902302211": {
+    "jp_text": "全力サンタクロース（継承）",
+    "unofficialTranslation": "Full-Power Santa Claus (Inherited)"
+  },
+  "902303111": {
+    "jp_text": "シミュレートグラス・オン（継承）",
+    "unofficialTranslation": "Simulate Glass, On (Inherited)"
+  },
+  "902303211": {
+    "jp_text": "ネオンの尾を引いて（継承）",
+    "unofficialTranslation": "Leaving a Neon Tail (Inherited)"
+  },
+  "902401111": {
+    "jp_text": "You copy?（継承）",
+    "unofficialTranslation": "You copy? (Inherited)"
+  },
+  "902401211": {
+    "jp_text": "I copy!（継承）",
+    "unofficialTranslation": "I copy! (Inherited)"
+  },
+  "902402111": {
+    "jp_text": "純白のささやき（継承）",
+    "unofficialTranslation": "Whisper of Pure White (Inherited)"
+  },
+  "902402211": {
+    "jp_text": "バレルロール（継承）",
+    "unofficialTranslation": "Barrel Roll (Inherited)"
+  },
+  "902403111": {
+    "jp_text": "お先に☆テールウィンド（継承）",
+    "unofficialTranslation": "Pardon me☆Tailwind (Inherited)"
+  },
+  "902403211": {
+    "jp_text": "コックピット・マジシャン（継承）",
+    "unofficialTranslation": "Cockpit Magician (Inherited)"
+  },
+  "902501111": {
+    "jp_text": "コーヒーブレイク（継承）",
+    "unofficialTranslation": "Coffee Break (Inherited)"
+  },
+  "902501211": {
+    "jp_text": "オイテイカナイデ（継承）",
+    "unofficialTranslation": "DON'T LEAVE ME BEHIND (Inherited)"
+  },
+  "902502111": {
+    "jp_text": "迫りくる宵闇（継承）",
+    "unofficialTranslation": "Approaching Twilight (Inherited)"
+  },
+  "902502211": {
+    "jp_text": "玄界領域（継承）",
+    "unofficialTranslation": "Profound Realm (Inherited)"
+  },
+  "902601111": {
+    "jp_text": "クロックアップ（継承）",
+    "unofficialTranslation": "Clock Up (Inherited)"
+  },
+  "902601211": {
+    "jp_text": "困難を乗り越える者（継承）",
+    "unofficialTranslation": "One Who Overcomes Hardship (Inherited)"
+  },
+  "902602111": {
+    "jp_text": "完璧なエラー対処術（継承）",
+    "unofficialTranslation": "Perfect Error Handling (Inherited)"
+  },
+  "902602121": {
+    "jp_text": "甘さ控えめエスケープ（継承）",
+    "unofficialTranslation": "Low-Sugar Escape (Inherited)"
+  },
+  "902602211": {
+    "jp_text": "パーフェクトブート（継承）",
+    "unofficialTranslation": "Perfect Boot (Inherited)"
+  },
+  "902701111": {
+    "jp_text": "マッスルアンセム（継承）",
+    "unofficialTranslation": "Muscle Anthem (Inherited)"
+  },
+  "902701211": {
+    "jp_text": "ライジングバルクアップ（継承）",
+    "unofficialTranslation": "Rising Bulk Up (Inherited)"
+  },
+  "902702111": {
+    "jp_text": "夢叶える決意を授けましょう（継承）",
+    "unofficialTranslation": "I Shall Grant You the Resolve to Fulfill Your Dreams (Inherited)"
+  },
+  "902702211": {
+    "jp_text": "至高の勝利を召し上がれ（継承）",
+    "unofficialTranslation": "Partake in the Supreme Victory (Inherited)"
+  },
+  "902702221": {
+    "jp_text": "踏み出す勇気をご覧あれ（継承）",
+    "unofficialTranslation": "Behold the Courage to Step Forward (Inherited)"
+  },
+  "902801111": {
+    "jp_text": "下ごしらえ万全！（継承）",
+    "unofficialTranslation": "Preparation is Perfect! (Inherited)"
+  },
+  "902801211": {
+    "jp_text": "ボーノな健啖家（継承）",
+    "unofficialTranslation": "A Buono Glutton (Inherited)"
+  },
+  "902801221": {
+    "jp_text": "はっけよい！（継承）",
+    "unofficialTranslation": "Hakkeyoi! (Inherited)"
+  },
+  "902901111": {
+    "jp_text": "憧れのシチーガール（継承）",
+    "unofficialTranslation": "The City Girl I Admire (Inherited)"
+  },
+  "902901211": {
+    "jp_text": "雪国仕込みの直滑降（継承）",
+    "unofficialTranslation": "Snow Country-Style Straight Downhill (Inherited)"
+  },
+  "902901221": {
+    "jp_text": "決意の根性娘（継承）",
+    "unofficialTranslation": "The Determined Gutsy Girl (Inherited)"
+  },
+  "902902111": {
+    "jp_text": "もうひとけっぱり！（継承）",
+    "unofficialTranslation": "One more push! (Inherited)"
+  },
+  "902902211": {
+    "jp_text": "曲線に舞う深雪（継承）",
+    "unofficialTranslation": "Deep Snow Dancing on the Curve (Inherited)"
+  },
+  "902902221": {
+    "jp_text": "下弦の雪月花（継承）",
+    "unofficialTranslation": "Waning Moon's Snow, Moon, and Flowers (Inherited)"
+  },
+  "903001111": {
+    "jp_text": "決意のヒーロー（継承）",
+    "unofficialTranslation": "The Determined Hero (Inherited)"
+  },
+  "903001211": {
+    "jp_text": "黒の刺客（継承）",
+    "unofficialTranslation": "The Black Assassin (Inherited)"
+  },
+  "903002111": {
+    "jp_text": "がんばるぞー…おー！（継承）",
+    "unofficialTranslation": "Let's do our best... yeah! (Inherited)"
+  },
+  "903002211": {
+    "jp_text": "トリック&トリート（継承）",
+    "unofficialTranslation": "Trick & Treat (Inherited)"
+  },
+  "903003111": {
+    "jp_text": "山頂でイタダキマス（継承）",
+    "unofficialTranslation": "Bon Appétit at the Summit (Inherited)"
+  },
+  "903003211": {
+    "jp_text": "淀の祝福（継承）",
+    "unofficialTranslation": "Blessing of Yodo (Inherited)"
+  },
+  "903101111": {
+    "jp_text": "じゃじゃウマお姉ちゃん（継承）",
+    "unofficialTranslation": "Unruly Big Sister (Inherited)"
+  },
+  "903101211": {
+    "jp_text": "荒ぶる風神（継承）",
+    "unofficialTranslation": "Raging Wind God (Inherited)"
+  },
+  "903102111": {
+    "jp_text": "オーダーはバッチリ！（継承）",
+    "unofficialTranslation": "The Order is Perfect! (Inherited)"
+  },
+  "903102211": {
+    "jp_text": "華麗なサーブ（継承）",
+    "unofficialTranslation": "A Splendid Serve (Inherited)"
+  },
+  "903103111": {
+    "jp_text": "一番眺めのいい場所へ！（継承）",
+    "unofficialTranslation": "To the Place with the Best View! (Inherited)"
+  },
+  "903103211": {
+    "jp_text": "青空の下で待ってるよ！（継承）",
+    "unofficialTranslation": "I'll be Waiting Under the Blue Sky! (Inherited)"
+  },
+  "903201111": {
+    "jp_text": "可能性の徒（継承）",
+    "unofficialTranslation": "Disciple of Possibility (Inherited)"
+  },
+  "903201211": {
+    "jp_text": "効率的休息法（継承）",
+    "unofficialTranslation": "Efficient Resting Method (Inherited)"
+  },
+  "903202111": {
+    "jp_text": "ラプラスの悪魔（継承）",
+    "unofficialTranslation": "Laplace's Demon (Inherited)"
+  },
+  "903202211": {
+    "jp_text": "眩耀のルクシオン（継承）",
+    "unofficialTranslation": "Dazzling Luxon (Inherited)"
+  },
+  "903203111": {
+    "jp_text": "光速を超える粒子（継承）",
+    "unofficialTranslation": "Particle Exceeding the Speed of Light (Inherited)"
+  },
+  "903203211": {
+    "jp_text": "被験体観察（継承）",
+    "unofficialTranslation": "Subject Observation (Inherited)"
+  },
+  "903301111": {
+    "jp_text": "静かな誓い（継承）",
+    "unofficialTranslation": "A Quiet Vow (Inherited)"
+  },
+  "903301211": {
+    "jp_text": "己身焦がすほうき星（継承）",
+    "unofficialTranslation": "A Self-Immolating Comet (Inherited)"
+  },
+  "903302111": {
+    "jp_text": "アル・ワーキを追いかけて（継承）",
+    "unofficialTranslation": "Chasing Al-Waqi (Inherited)"
+  },
+  "903302211": {
+    "jp_text": "氷星融解（継承）",
+    "unofficialTranslation": "Ice Star Meltdown (Inherited)"
+  },
+  "903401111": {
+    "jp_text": "火消の梯子登り（継承）",
+    "unofficialTranslation": "Fireman's Ladder Climb (Inherited)"
+  },
+  "903401211": {
+    "jp_text": "熟練の砂塵使い（継承）",
+    "unofficialTranslation": "Master of the Dust Cloud (Inherited)"
+  },
+  "903401221": {
+    "jp_text": "粋でいなせな達人技（継承）",
+    "unofficialTranslation": "A Chic and Dashing Master Technique (Inherited)"
+  },
+  "903402111": {
+    "jp_text": "扇ノ舞（継承）",
+    "unofficialTranslation": "Fan Dance (Inherited)"
+  },
+  "903402211": {
+    "jp_text": "大見得切り（継承）",
+    "unofficialTranslation": "Striking a Pose (Inherited)"
+  },
+  "903402221": {
+    "jp_text": "韋駄天ノ襲脚（継承）",
+    "unofficialTranslation": "Assaulting Legs of the Swift Runner (Inherited)"
+  },
+  "903501111": {
+    "jp_text": "たゆまぬ努力（継承）",
+    "unofficialTranslation": "Unrelenting Effort (Inherited)"
+  },
+  "903501211": {
+    "jp_text": "ウイニングロード（継承）",
+    "unofficialTranslation": "Winning Road (Inherited)"
+  },
+  "903502111": {
+    "jp_text": "千万バリキ！！！（継承）",
+    "unofficialTranslation": "Ten Million Horsepower!!! (Inherited)"
+  },
+  "903502211": {
+    "jp_text": "きっと飛べる！（継承）",
+    "unofficialTranslation": "I Know I Can Fly! (Inherited)"
+  },
+  "903503111": {
+    "jp_text": "全・力・ワク・ワク！！（継承）",
+    "unofficialTranslation": "Full・Power・Excite・ment!! (Inherited)"
+  },
+  "903503211": {
+    "jp_text": "Dreamer's Path（継承）",
+    "unofficialTranslation": "Dreamer's Path (Inherited)"
+  },
+  "903601111": {
+    "jp_text": "アップリフティング（継承）",
+    "unofficialTranslation": "Uplifting (Inherited)"
+  },
+  "903601211": {
+    "jp_text": "Lose Myself（継承）",
+    "unofficialTranslation": "Lose Myself (Inherited)"
+  },
+  "903602111": {
+    "jp_text": "Gluttony's Grip（継承）",
+    "unofficialTranslation": "Gluttony's Grip (Inherited)"
+  },
+  "903602121": {
+    "jp_text": "ノイズキャンセリング（継承）",
+    "unofficialTranslation": "Noise Cancelling (Inherited)"
+  },
+  "903602211": {
+    "jp_text": "刑苦（継承）",
+    "unofficialTranslation": "Punishment (Inherited)"
+  },
+  "903701111": {
+    "jp_text": "閃光のマギア（継承）",
+    "unofficialTranslation": "Magia of the Flash (Inherited)"
+  },
+  "903701211": {
+    "jp_text": "誇りを懸けて（継承）",
+    "unofficialTranslation": "With Pride on the Line (Inherited)"
+  },
+  "903702111": {
+    "jp_text": "勝利のレシピ（継承）",
+    "unofficialTranslation": "Recipe for Victory (Inherited)"
+  },
+  "903702121": {
+    "jp_text": "仕込みは完璧（継承）",
+    "unofficialTranslation": "Preparation is Perfect (Inherited)"
+  },
+  "903702211": {
+    "jp_text": "黒い閃光（継承）",
+    "unofficialTranslation": "The Black Flash (Inherited)"
+  },
+  "903703111": {
+    "jp_text": "Ritter von Fuchu（継承）",
+    "unofficialTranslation": "Ritter von Fuchu (Inherited)"
+  },
+  "903703211": {
+    "jp_text": "閃光の奔流（継承）",
+    "unofficialTranslation": "Torrent of Flashing Light (Inherited)"
+  },
+  "903801111": {
+    "jp_text": "#カワイイかく乱♪（継承）",
+    "unofficialTranslation": "#CuteDisturbance♪ (Inherited)"
+  },
+  "903801211": {
+    "jp_text": "#夢中になっちゃえ♪（継承）",
+    "unofficialTranslation": "#GoCrazyForMe♪ (Inherited)"
+  },
+  "903802111": {
+    "jp_text": "#カレンに染まってみる？（継承）",
+    "unofficialTranslation": "#WannaBeDyedInKaren? (Inherited)"
+  },
+  "903802121": {
+    "jp_text": "心奪われる閃光（継承）",
+    "unofficialTranslation": "A Heart-Stealing Flash (Inherited)"
+  },
+  "903802211": {
+    "jp_text": "#ビューティースプリント（継承）",
+    "unofficialTranslation": "#BeautySprint (Inherited)"
+  },
+  "903901111": {
+    "jp_text": "ノンストッププリンセス（継承）",
+    "unofficialTranslation": "Non-Stop Princess (Inherited)"
+  },
+  "903901211": {
+    "jp_text": "暴れ龍（継承）",
+    "unofficialTranslation": "Rampaging Dragon (Inherited)"
+  },
+  "903902111": {
+    "jp_text": "トップ・オブ・ザ・姫！（継承）",
+    "unofficialTranslation": "Top of the Princesses! (Inherited)"
+  },
+  "903902121": {
+    "jp_text": "最っっっ高のプリンセス（継承）",
+    "unofficialTranslation": "The beeeest Princess (Inherited)"
+  },
+  "903902211": {
+    "jp_text": "爆走猛姫☆急転直下！！（継承）",
+    "unofficialTranslation": "Reckless Princess☆Straight Down!! (Inherited)"
+  },
+  "904001111": {
+    "jp_text": "先見の明（継承）",
+    "unofficialTranslation": "Foresight (Inherited)"
+  },
+  "904001211": {
+    "jp_text": "ランウェイの主役（継承）",
+    "unofficialTranslation": "Star of the Runway (Inherited)"
+  },
+  "904001221": {
+    "jp_text": "フィナーレの先頭へ（継承）",
+    "unofficialTranslation": "To the Front of the Finale (Inherited)"
+  },
+  "904002111": {
+    "jp_text": "鮮やかな布陣（継承）",
+    "unofficialTranslation": "A Brilliant Formation (Inherited)"
+  },
+  "904002211": {
+    "jp_text": "虎視眈々（継承）",
+    "unofficialTranslation": "Watching Vigilantly (Inherited)"
+  },
+  "904003111": {
+    "jp_text": "Wild Runway（継承）",
+    "unofficialTranslation": "Wild Runway (Inherited)"
+  },
+  "904003211": {
+    "jp_text": "黄金の炎陽（継承）",
+    "unofficialTranslation": "Golden Blazing Sun (Inherited)"
+  },
+  "904101111": {
+    "jp_text": "バクシン的スプリント！（継承）",
+    "unofficialTranslation": "Bakushin-esque Sprint! (Inherited)"
+  },
+  "904101211": {
+    "jp_text": "バクシン的リード！（継承）",
+    "unofficialTranslation": "Bakushin-esque Lead! (Inherited)"
+  },
+  "904102111": {
+    "jp_text": "猪突猛進！バクシンロード！（継承）",
+    "unofficialTranslation": "Reckless Advance! Bakushin Road! (Inherited)"
+  },
+  "904102211": {
+    "jp_text": "驀進！爆進！バクシーン！（継承）",
+    "unofficialTranslation": "Dash! Blast! Bakushin! (Inherited)"
+  },
+  "904201111": {
+    "jp_text": "世界を貫く至高の輝き（継承）",
+    "unofficialTranslation": "Supreme Radiance that Pierces the World (Inherited)"
+  },
+  "904201211": {
+    "jp_text": "パール流ダンスバトル（継承）",
+    "unofficialTranslation": "Pearl-Style Dance Battle (Inherited)"
+  },
+  "904202111": {
+    "jp_text": "ミストラルに乗って（継承）",
+    "unofficialTranslation": "Riding the Mistral (Inherited)"
+  },
+  "904202211": {
+    "jp_text": "海の底からキラめいて…☆（継承）",
+    "unofficialTranslation": "Sparkling from the Bottom of the Sea...☆ (Inherited)"
+  },
+  "904301111": {
+    "jp_text": "全速前進なのだ！（継承）",
+    "unofficialTranslation": "Full speed ahead! (Inherited)"
+  },
+  "904301211": {
+    "jp_text": "いたずらマイスター（継承）",
+    "unofficialTranslation": "Prank Meister (Inherited)"
+  },
+  "904301221": {
+    "jp_text": "泥んこ魔王様（継承）",
+    "unofficialTranslation": "The Mud-Covered Demon Lord (Inherited)"
+  },
+  "904401111": {
+    "jp_text": "放課後魔法少女（継承）",
+    "unofficialTranslation": "After-School Magical Girl (Inherited)"
+  },
+  "904401211": {
+    "jp_text": "チャームマジック（継承）",
+    "unofficialTranslation": "Charm Magic (Inherited)"
+  },
+  "904401221": {
+    "jp_text": "サルビア☆スプレンデンス（継承）",
+    "unofficialTranslation": "Salvia☆Splendens (Inherited)"
+  },
+  "904402111": {
+    "jp_text": "シルフィード・マギア（継承）",
+    "unofficialTranslation": "Sylphid Magia (Inherited)"
+  },
+  "904402121": {
+    "jp_text": "ノクス・ルミナ（継承）",
+    "unofficialTranslation": "Nox Lumina (Inherited)"
+  },
+  "904402211": {
+    "jp_text": "緊急魔力ブースト（継承）",
+    "unofficialTranslation": "Emergency Magic Boost (Inherited)"
+  },
+  "904501111": {
+    "jp_text": "あま～い幻惑（継承）",
+    "unofficialTranslation": "A Sweeet Illusion (Inherited)"
+  },
+  "904501211": {
+    "jp_text": "癒しのマエストロ（継承）",
+    "unofficialTranslation": "Maestro of Healing (Inherited)"
+  },
+  "904502111": {
+    "jp_text": "お世話のプロフェッショナル（継承）",
+    "unofficialTranslation": "The Caretaking Professional (Inherited)"
+  },
+  "904502211": {
+    "jp_text": "魅惑のマミーウィスパー（継承）",
+    "unofficialTranslation": "Enchanting Mommy Whisper (Inherited)"
+  },
+  "904503111": {
+    "jp_text": "流水流走（継承）",
+    "unofficialTranslation": "Flowing Water, Flowing Run (Inherited)"
+  },
+  "904503211": {
+    "jp_text": "神仙蝶変の術（継承）",
+    "unofficialTranslation": "Art of the Immortal Butterfly Transformation (Inherited)"
+  },
+  "904601111": {
+    "jp_text": "大注目のウマドル参上★（継承）",
+    "unofficialTranslation": "The Hottest Umadol Has Arrived★ (Inherited)"
+  },
+  "904601121": {
+    "jp_text": "目を逸らしちゃダメだよ☆（継承）",
+    "unofficialTranslation": "Don't Look Away☆ (Inherited)"
+  },
+  "904601211": {
+    "jp_text": "ウマドルパワー急上昇↑↑（継承）",
+    "unofficialTranslation": "Umadol Power Skyrocketing↑↑ (Inherited)"
+  },
+  "904602111": {
+    "jp_text": "夢に向かって急上昇！（継承）",
+    "unofficialTranslation": "Soaring Towards My Dream! (Inherited)"
+  },
+  "904602121": {
+    "jp_text": "最高峰のステージに！（継承）",
+    "unofficialTranslation": "To the Greatest Stage! (Inherited)"
+  },
+  "904602211": {
+    "jp_text": "絶対的センター！（継承）",
+    "unofficialTranslation": "The Absolute Center! (Inherited)"
+  },
+  "904603111": {
+    "jp_text": "立ち位置ゼロ番！（継承）",
+    "unofficialTranslation": "Position Zero! (Inherited)"
+  },
+  "904603211": {
+    "jp_text": "爆レスあげちゃう☆（継承）",
+    "unofficialTranslation": "Giving You an Explosive Reaction☆ (Inherited)"
+  },
+  "904701111": {
+    "jp_text": "英雄への道標（継承）",
+    "unofficialTranslation": "Signpost to a Hero (Inherited)"
+  },
+  "904701121": {
+    "jp_text": "物語を紡ぐ者（継承）",
+    "unofficialTranslation": "The One Who Weaves Stories (Inherited)"
+  },
+  "904701211": {
+    "jp_text": "光輝く剣（継承）",
+    "unofficialTranslation": "The Shining Sword (Inherited)"
+  },
+  "904702111": {
+    "jp_text": "勇躍閃々（継承）",
+    "unofficialTranslation": "Bravely Leaping and Glistening (Inherited)"
+  },
+  "904702211": {
+    "jp_text": "嵐纏いし英雄は往く（継承）",
+    "unofficialTranslation": "The Storm-Clad Hero Goes Forth (Inherited)"
+  },
+  "904801111": {
+    "jp_text": "ノってこ！（継承）",
+    "unofficialTranslation": "Get into it! (Inherited)"
+  },
+  "904801211": {
+    "jp_text": "トレンドプランナー（継承）",
+    "unofficialTranslation": "Trend Planner (Inherited)"
+  },
+  "904802111": {
+    "jp_text": "ワンチャンまくったる！（継承）",
+    "unofficialTranslation": "Gonna turn this around in one shot! (Inherited)"
+  },
+  "904802211": {
+    "jp_text": "あたししか勝たん！（継承）",
+    "unofficialTranslation": "No one wins but me! (Inherited)"
+  },
+  "904802221": {
+    "jp_text": "あたしサイコーじゃん！（継承）",
+    "unofficialTranslation": "Aren't I the best! (Inherited)"
+  },
+  "904901111": {
+    "jp_text": "乾坤一擲の大博打（継承）",
+    "unofficialTranslation": "An All-or-Nothing Gamble (Inherited)"
+  },
+  "904901211": {
+    "jp_text": "鉄火のギャンブラー（継承）",
+    "unofficialTranslation": "The Fiery Gambler (Inherited)"
+  },
+  "905001111": {
+    "jp_text": "鬼気森然（継承）",
+    "unofficialTranslation": "Ghastly and Menacing (Inherited)"
+  },
+  "905001211": {
+    "jp_text": "駆り立てる想い（継承）",
+    "unofficialTranslation": "Driving Passion (Inherited)"
+  },
+  "905002111": {
+    "jp_text": "見せつけてやる！（継承）",
+    "unofficialTranslation": "I'll show you what I've got! (Inherited)"
+  },
+  "905002211": {
+    "jp_text": "起死回生の出力（継承）",
+    "unofficialTranslation": "Comeback Output (Inherited)"
+  },
+  "905003111": {
+    "jp_text": "ゼロレイテンシ（継承）",
+    "unofficialTranslation": "Zero Latency (Inherited)"
+  },
+  "905003211": {
+    "jp_text": "不撓のLimit Breaker（継承）",
+    "unofficialTranslation": "Indomitable Limit Breaker (Inherited)"
+  },
+  "905101111": {
+    "jp_text": "風花疾走（継承）",
+    "unofficialTranslation": "Snow flurry Dash (Inherited)"
+  },
+  "905101121": {
+    "jp_text": "一輪の勇気（継承）",
+    "unofficialTranslation": "A Single Flower of Courage (Inherited)"
+  },
+  "905101211": {
+    "jp_text": "大輪の決意（継承）",
+    "unofficialTranslation": "A Great Flower of Determination (Inherited)"
+  },
+  "905102111": {
+    "jp_text": "祝福のフラワーガール（継承）",
+    "unofficialTranslation": "Flower Girl of Blessings (Inherited)"
+  },
+  "905102211": {
+    "jp_text": "ヴェール揺らす春疾風（継承）",
+    "unofficialTranslation": "A Spring Gale that Sways the Veil (Inherited)"
+  },
+  "905102221": {
+    "jp_text": "末永く、寄り添う花（継承）",
+    "unofficialTranslation": "The Flower That Stays by Your Side, Forever (Inherited)"
+  },
+  "905201111": {
+    "jp_text": "まだまだだよ！（継承）",
+    "unofficialTranslation": "Not done yet! (Inherited)"
+  },
+  "905201211": {
+    "jp_text": "まけないからね！（継承）",
+    "unofficialTranslation": "I'm not gonna lose! (Inherited)"
+  },
+  "905202111": {
+    "jp_text": "見てて見てて！（継承）",
+    "unofficialTranslation": "Watch me, watch me! (Inherited)"
+  },
+  "905202121": {
+    "jp_text": "勝ちたいんだもん！（継承）",
+    "unofficialTranslation": "Because I wanna win! (Inherited)"
+  },
+  "905202211": {
+    "jp_text": "がんばるもん！（継承）",
+    "unofficialTranslation": "I'll do my best! (Inherited)"
+  },
+  "905301111": {
+    "jp_text": "風紀の登龍門（継承）",
+    "unofficialTranslation": "Gateway to the Moral Committee (Inherited)"
+  },
+  "905301121": {
+    "jp_text": "龍虎相搏（継承）",
+    "unofficialTranslation": "Dragon and Tiger Clash (Inherited)"
+  },
+  "905301211": {
+    "jp_text": "押忍ッ！気合十分っス！（継承）",
+    "unofficialTranslation": "Osu! I'm all fired up! (Inherited)"
+  },
+  "905302111": {
+    "jp_text": "熱血進化ライディング！（継承）",
+    "unofficialTranslation": "Hot-Blooded Evolution Riding! (Inherited)"
+  },
+  "905302211": {
+    "jp_text": "必殺！爆速スプリント！（継承）",
+    "unofficialTranslation": "Finisher! Explosive Sprint! (Inherited)"
+  },
+  "905401111": {
+    "jp_text": "急行！ヒーロー参上！（継承）",
+    "unofficialTranslation": "Express! The Hero Arrives! (Inherited)"
+  },
+  "905401211": {
+    "jp_text": "必殺・雷電キーック！（継承）",
+    "unofficialTranslation": "Finisher: Raiden Kiiick! (Inherited)"
+  },
+  "90541": {
+    "jp_text": "ペガサスフルパワー！（継承）",
+    "unofficialTranslation": "Pegasus Full Power! (Inherited)"
+  },
+  "905501111": {
+    "jp_text": "ワクワク☆マーベラスゾーン（継承）",
+    "unofficialTranslation": "Exciting☆Marvelous Zone (Inherited)"
+  },
+  "905501121": {
+    "jp_text": "ギュンギュンのマーベラス☆（継承）",
+    "unofficialTranslation": "Zooming Marvelous☆ (Inherited)"
+  },
+  "905501211": {
+    "jp_text": "進め！世界マーベラス計画☆（継承）",
+    "unofficialTranslation": "Advance! World Marvelous Project☆ (Inherited)"
+  },
+  "905601111": {
+    "jp_text": "吉兆です！（継承）",
+    "unofficialTranslation": "It's a good omen! (Inherited)"
+  },
+  "905601211": {
+    "jp_text": "七福即生（継承）",
+    "unofficialTranslation": "Seven Fortunes Born at Once (Inherited)"
+  },
+  "905602111": {
+    "jp_text": "怒涛の超幸運パワー！（継承）",
+    "unofficialTranslation": "Raging Super Lucky Power! (Inherited)"
+  },
+  "905602211": {
+    "jp_text": "ばっちり開運体験！（継承）",
+    "unofficialTranslation": "A Perfect Good Fortune Experience! (Inherited)"
+  },
+  "905701111": {
+    "jp_text": "天翔る足取り（継承）",
+    "unofficialTranslation": "Soaring Steps (Inherited)"
+  },
+  "905701211": {
+    "jp_text": "弾む大地（継承）",
+    "unofficialTranslation": "The Bouncing Earth (Inherited)"
+  },
+  "905702111": {
+    "jp_text": "奪目の宙乗り（継承）",
+    "unofficialTranslation": "Eye-Catching Aerial Ride (Inherited)"
+  },
+  "905702211": {
+    "jp_text": "さァさ、お立ち合い！（継承）",
+    "unofficialTranslation": "Now, now, gather 'round! (Inherited)"
+  },
+  "905801111": {
+    "jp_text": "怒涛のスピード（継承）",
+    "unofficialTranslation": "Raging Speed (Inherited)"
+  },
+  "905801211": {
+    "jp_text": "諦めない、ですぅ～！（継承）",
+    "unofficialTranslation": "I won't give up, you know~! (Inherited)"
+  },
+  "905802111": {
+    "jp_text": "ライバルがいるから！（継承）",
+    "unofficialTranslation": "Because I have rivals! (Inherited)"
+  },
+  "905802121": {
+    "jp_text": "心に灯す闘志（継承）",
+    "unofficialTranslation": "A Fighting Spirit Lit in the Heart (Inherited)"
+  },
+  "905802211": {
+    "jp_text": "魂の導き手（継承）",
+    "unofficialTranslation": "Guiding Hand of the Soul (Inherited)"
+  },
+  "905901111": {
+    "jp_text": "クールな視線（継承）",
+    "unofficialTranslation": "A Cool Gaze (Inherited)"
+  },
+  "905901121": {
+    "jp_text": "栄光への羽ばたき（継承）",
+    "unofficialTranslation": "Taking Flight Towards Glory (Inherited)"
+  },
+  "905901211": {
+    "jp_text": "淀の女王（継承）",
+    "unofficialTranslation": "The Queen of Yodo (Inherited)"
+  },
+  "905902111": {
+    "jp_text": "もっと冒険してみたい！（継承）",
+    "unofficialTranslation": "I want to have more adventures! (Inherited)"
+  },
+  "905902121": {
+    "jp_text": "自信持って踏み出して（継承）",
+    "unofficialTranslation": "Step forward with confidence (Inherited)"
+  },
+  "905902211": {
+    "jp_text": "起死回生の一歩（継承）",
+    "unofficialTranslation": "A Step to Turn the Tides (Inherited)"
+  },
+  "906001111": {
+    "jp_text": "魅惑のシニカルガール（継承）",
+    "unofficialTranslation": "Alluring Cynical Girl (Inherited)"
+  },
+  "906001211": {
+    "jp_text": "目指せ！主人公！（継承）",
+    "unofficialTranslation": "Aim for it! The Main Character! (Inherited)"
+  },
+  "906002111": {
+    "jp_text": "頑張るしかないよね（継承）",
+    "unofficialTranslation": "Just gotta do my best, right? (Inherited)"
+  },
+  "906002211": {
+    "jp_text": "ノンストップエール（継承）",
+    "unofficialTranslation": "Non-Stop Ale (Inherited)"
+  },
+  "906003111": {
+    "jp_text": "いい味、出てるでしょ？（継承）",
+    "unofficialTranslation": "Got a nice flavor, right? (Inherited)"
+  },
+  "906003211": {
+    "jp_text": "大掃除上手（継承）",
+    "unofficialTranslation": "Good at Spring Cleaning (Inherited)"
+  },
+  "906003221": {
+    "jp_text": "盛り上げ上手（継承）",
+    "unofficialTranslation": "Good at Riling People Up (Inherited)"
+  },
+  "906101111": {
+    "jp_text": "電撃の撫で切り（継承）",
+    "unofficialTranslation": "Lightning-Fast Clean Sweep (Inherited)"
+  },
+  "906101211": {
+    "jp_text": "王の大局観（継承）",
+    "unofficialTranslation": "The King's Broad Perspective (Inherited)"
+  },
+  "906102111": {
+    "jp_text": "竜の雲を得る如し（継承）",
+    "unofficialTranslation": "Like a Dragon Obtaining Clouds (Inherited)"
+  },
+  "906102211": {
+    "jp_text": "春風吹きて、桜舞う（継承）",
+    "unofficialTranslation": "The Spring Wind Blows, and the Sakura Dance (Inherited)"
+  },
+  "906103111": {
+    "jp_text": "遮るものはない（継承）",
+    "unofficialTranslation": "Nothing Stands in My Way (Inherited)"
+  },
+  "906103211": {
+    "jp_text": "不屈の証明（継承）",
+    "unofficialTranslation": "Proof of Indomitability (Inherited)"
+  },
+  "906103221": {
+    "jp_text": "一流の在り方（継承）",
+    "unofficialTranslation": "The Way of the First-Class (Inherited)"
+  },
+  "906201111": {
+    "jp_text": "ゴーイングマイウェイ（継承）",
+    "unofficialTranslation": "Going My Way (Inherited)"
+  },
+  "906201211": {
+    "jp_text": "えい！えい！むん！（継承）",
+    "unofficialTranslation": "Ei! Ei! Mun! (Inherited)"
+  },
+  "906202111": {
+    "jp_text": "ポジティブスマイル（継承）",
+    "unofficialTranslation": "Positive Smile (Inherited)"
+  },
+  "906202211": {
+    "jp_text": "大どんでんがえし（継承）",
+    "unofficialTranslation": "A Grand Reversal (Inherited)"
+  },
+  "906202221": {
+    "jp_text": "やばしやばし！（継承）",
+    "unofficialTranslation": "This is bad, this is bad! (Inherited)"
+  },
+  "90621": {
+    "jp_text": "レディー、どんっ！（継承）",
+    "unofficialTranslation": "Ready, Don! (Inherited)"
+  },
+  "906301111": {
+    "jp_text": "徹底管理プラン（継承）",
+    "unofficialTranslation": "Thorough Management Plan (Inherited)"
+  },
+  "906301211": {
+    "jp_text": "鉄火花（継承）",
+    "unofficialTranslation": "Sparks of Iron (Inherited)"
+  },
+  "90631": {
+    "jp_text": "打ち、鍛えて（継承）",
+    "unofficialTranslation": "Hammering and Forging (Inherited)"
+  },
+  "906401111": {
+    "jp_text": "パないっしょ？（継承）",
+    "unofficialTranslation": "It's insane, right? (Inherited)"
+  },
+  "906401211": {
+    "jp_text": "神逃げの心得（継承）",
+    "unofficialTranslation": "The Art of the Godly Escape (Inherited)"
+  },
+  "906401221": {
+    "jp_text": "テンアゲスタイル（継承）",
+    "unofficialTranslation": "High-Tension Style (Inherited)"
+  },
+  "906402111": {
+    "jp_text": "北風一蹴（継承）",
+    "unofficialTranslation": "Kicking Away the North Wind (Inherited)"
+  },
+  "906402211": {
+    "jp_text": "メリ☆クリ↑パーリー（継承）",
+    "unofficialTranslation": "Merry☆Christ↑Party (Inherited)"
+  },
+  "906501111": {
+    "jp_text": "マジ爆上げっしょ！（継承）",
+    "unofficialTranslation": "Seriously hype, right! (Inherited)"
+  },
+  "906501211": {
+    "jp_text": "とりまやったれ～！（継承）",
+    "unofficialTranslation": "Let's just go for it~! (Inherited)"
+  },
+  "906502111": {
+    "jp_text": "トレンド先取り☆（継承）",
+    "unofficialTranslation": "Ahead of the Trend☆ (Inherited)"
+  },
+  "906502211": {
+    "jp_text": "マイル神、爆☆誕（継承）",
+    "unofficialTranslation": "The Mile God is Born☆ (Inherited)"
+  },
+  "906601111": {
+    "jp_text": "出力1000万%！！（継承）",
+    "unofficialTranslation": "Output 10,000,000%!! (Inherited)"
+  },
+  "906601211": {
+    "jp_text": "ターボについてこーい！（継承）",
+    "unofficialTranslation": "Keep up with Turbo! (Inherited)"
+  },
+  "90661": {
+    "jp_text": "エンジン点火！（継承）",
+    "unofficialTranslation": "Engine Ignition! (Inherited)"
+  },
+  "906701111": {
+    "jp_text": "金剛不壊（継承）",
+    "unofficialTranslation": "Indestructible Diamond (Inherited)"
+  },
+  "906701121": {
+    "jp_text": "隠せぬ輝き（継承）",
+    "unofficialTranslation": "Unconcealable Brilliance (Inherited)"
+  },
+  "906701211": {
+    "jp_text": "右回りの輪舞曲（継承）",
+    "unofficialTranslation": "Clockwise Rondo (Inherited)"
+  },
+  "906702111": {
+    "jp_text": "無我の境地（継承）",
+    "unofficialTranslation": "State of Selflessness (Inherited)"
+  },
+  "906702211": {
+    "jp_text": "明けぬ夜はない！（継承）",
+    "unofficialTranslation": "There is no night that doesn't dawn! (Inherited)"
+  },
+  "906703111": {
+    "jp_text": "蒼色革命（継承）",
+    "unofficialTranslation": "Blue Revolution (Inherited)"
+  },
+  "906703211": {
+    "jp_text": "ダンス・デ・レぺ（継承）",
+    "unofficialTranslation": "Danse de l'Épée (Inherited)"
+  },
+  "906801111": {
+    "jp_text": "祭りだワッショイ！（継承）",
+    "unofficialTranslation": "It's a Festival, Wasshoi! (Inherited)"
+  },
+  "906801211": {
+    "jp_text": "爆風一閃！（継承）",
+    "unofficialTranslation": "A Flash of Explosion! (Inherited)"
+  },
+  "906802111": {
+    "jp_text": "未来へ飛び立ちましょう！（継承）",
+    "unofficialTranslation": "Let's take flight into the future! (Inherited)"
+  },
+  "906802211": {
+    "jp_text": "必勝の前口上！（継承）",
+    "unofficialTranslation": "The Victory Speech! (Inherited)"
+  },
+  "906803111": {
+    "jp_text": "あっぱれ！臥竜勇往（継承）",
+    "unofficialTranslation": "Bravo! The Crouching Dragon Forges Ahead (Inherited)"
+  },
+  "906803211": {
+    "jp_text": "万里飛び越えソイヤッ！（継承）",
+    "unofficialTranslation": "Leaping a Myriad Leagues, Soiya! (Inherited)"
+  },
+  "906901111": {
+    "jp_text": "お花見当たり年！（継承）",
+    "unofficialTranslation": "A Great Year for Cherry Blossom Viewing! (Inherited)"
+  },
+  "906901121": {
+    "jp_text": "案ずるより走るが速し（継承）",
+    "unofficialTranslation": "Running is Faster than Worrying (Inherited)"
+  },
+  "906901211": {
+    "jp_text": "けふ九重に満開です（継承）",
+    "unofficialTranslation": "Today, in Full Bloom at the Palace (Inherited)"
+  },
+  "906902111": {
+    "jp_text": "桜花爛漫一直線（継承）",
+    "unofficialTranslation": "Cherry Blossoms in Full Bloom, Straight Ahead (Inherited)"
+  },
+  "906902211": {
+    "jp_text": "負けたくない！（継承）",
+    "unofficialTranslation": "I don't want to lose! (Inherited)"
+  },
+  "907001111": {
+    "jp_text": "揺るがぬアスター（継承）",
+    "unofficialTranslation": "Unwavering Aster (Inherited)"
+  },
+  "907001211": {
+    "jp_text": "一等星のアラベスク（継承）",
+    "unofficialTranslation": "Arabesque of a First-Magnitude Star (Inherited)"
+  },
+  "907001221": {
+    "jp_text": "追想のトロイメライ（継承）",
+    "unofficialTranslation": "Träumerei of Reminiscence (Inherited)"
+  },
+  "907002111": {
+    "jp_text": "悪路のほうが好みでね（継承）",
+    "unofficialTranslation": "I prefer the rougher path (Inherited)"
+  },
+  "907002211": {
+    "jp_text": "Beat the Stars（継承）",
+    "unofficialTranslation": "Beat the Stars (Inherited)"
+  },
+  "907101111": {
+    "jp_text": "永遠の輝き（継承）",
+    "unofficialTranslation": "Eternal Radiance (Inherited)"
+  },
+  "907101211": {
+    "jp_text": "刹那への覚悟（継承）",
+    "unofficialTranslation": "Resolve for the Moment (Inherited)"
+  },
+  "907102111": {
+    "jp_text": "美しき燐光（継承）",
+    "unofficialTranslation": "Beautiful Phosphorescence (Inherited)"
+  },
+  "907102121": {
+    "jp_text": "幽玄の灯火（継承）",
+    "unofficialTranslation": "The Subtle, Profound Light (Inherited)"
+  },
+  "907102211": {
+    "jp_text": "淡く儚い残照（継承）",
+    "unofficialTranslation": "A Faint and Fleeting Afterglow (Inherited)"
+  },
+  "907201111": {
+    "jp_text": "昂る焔（継承）",
+    "unofficialTranslation": "Surging Flame (Inherited)"
+  },
+  "907201211": {
+    "jp_text": "八重の向こう意気（継承）",
+    "unofficialTranslation": "Yaeno's Fighting Spirit (Inherited)"
+  },
+  "907201221": {
+    "jp_text": "勝利に焦がれる激情（継承）",
+    "unofficialTranslation": "A Passion that Yearns for Victory (Inherited)"
+  },
+  "907202111": {
+    "jp_text": "将の疾刃（継承）",
+    "unofficialTranslation": "The General's Swift Blade (Inherited)"
+  },
+  "907202211": {
+    "jp_text": "無双の追撃（継承）",
+    "unofficialTranslation": "Peerless Pursuit (Inherited)"
+  },
+  "907301111": {
+    "jp_text": "千辛万苦切り裂く刃（継承）",
+    "unofficialTranslation": "A Blade that Rends Countless Hardships (Inherited)"
+  },
+  "907301211": {
+    "jp_text": "迸る月流星（継承）",
+    "unofficialTranslation": "Gushing Moon-Meteor (Inherited)"
+  },
+  "90731": {
+    "jp_text": "心、強し！（継承）",
+    "unofficialTranslation": "A Strong Heart! (Inherited)"
+  },
+  "907401111": {
+    "jp_text": "不屈のお嬢様（継承）",
+    "unofficialTranslation": "The Indomitable Lady (Inherited)"
+  },
+  "907401211": {
+    "jp_text": "動かざること羊蹄山の若し（継承）",
+    "unofficialTranslation": "As Immovable as Mount Yōtei (Inherited)"
+  },
+  "907402111": {
+    "jp_text": "聖夜の天路（継承）",
+    "unofficialTranslation": "The Holy Night's Celestial Path (Inherited)"
+  },
+  "907402211": {
+    "jp_text": "雪華の追い上げ（継承）",
+    "unofficialTranslation": "Snowflake's Comeback (Inherited)"
+  },
+  "907601111": {
+    "jp_text": "桜前線進行中！（継承）",
+    "unofficialTranslation": "The Cherry Blossom Front is Advancing! (Inherited)"
+  },
+  "907601211": {
+    "jp_text": "一花咲かせましょう！（継承）",
+    "unofficialTranslation": "Let's make it bloom! (Inherited)"
+  },
+  "907701111": {
+    "jp_text": "ターフの主人公（継承）",
+    "unofficialTranslation": "The Hero of the Turf (Inherited)"
+  },
+  "907701211": {
+    "jp_text": "正道（継承）",
+    "unofficialTranslation": "The Rightful Path (Inherited)"
+  },
+  "907702111": {
+    "jp_text": "ひたむきサンタクロース（継承）",
+    "unofficialTranslation": "Earnest Santa Claus (Inherited)"
+  },
+  "907702211": {
+    "jp_text": "暗い夜道もお任せを！（継承）",
+    "unofficialTranslation": "Leave the Dark Night Road to Me! (Inherited)"
+  },
+  "907801111": {
+    "jp_text": "ウインドシアー（継承）",
+    "unofficialTranslation": "Wind Shear (Inherited)"
+  },
+  "907801211": {
+    "jp_text": "神渡し（継承）",
+    "unofficialTranslation": "God's Passage (Inherited)"
+  },
+  "907801221": {
+    "jp_text": "天つ風（継承）",
+    "unofficialTranslation": "Winds of Heaven (Inherited)"
+  },
+  "907802111": {
+    "jp_text": "塵旋風となりて（継承）",
+    "unofficialTranslation": "Becoming a Whirlwind of Dust (Inherited)"
+  },
+  "907802211": {
+    "jp_text": "シルフ・スピリット（継承）",
+    "unofficialTranslation": "Sylph Spirit (Inherited)"
+  },
+  "907901111": {
+    "jp_text": "潮風の導き（継承）",
+    "unofficialTranslation": "Guidance of the Sea Breeze (Inherited)"
+  },
+  "907901211": {
+    "jp_text": "勇船直往（継承）",
+    "unofficialTranslation": "Brave Ship, Straight Onward (Inherited)"
+  },
+  "908001111": {
+    "jp_text": "情報強者（継承）",
+    "unofficialTranslation": "Information Savant (Inherited)"
+  },
+  "908001211": {
+    "jp_text": "『未知』を求めて（継承）",
+    "unofficialTranslation": "In Search of the 『Unknown』 (Inherited)"
+  },
+  "908201111": {
+    "jp_text": "ココロ、キラめくままに！（継承）",
+    "unofficialTranslation": "My Heart, Just as it Sparkles! (Inherited)"
+  },
+  "908201211": {
+    "jp_text": "Enjoy the Flight（継承）",
+    "unofficialTranslation": "Enjoy the Flight (Inherited)"
+  },
+  "908301111": {
+    "jp_text": "質実剛健（継承）",
+    "unofficialTranslation": "Simple and Sturdy (Inherited)"
+  },
+  "908301211": {
+    "jp_text": "革命をもたらす威容（継承）",
+    "unofficialTranslation": "A Dignified Figure that Brings Revolution (Inherited)"
+  },
+  "908302111": {
+    "jp_text": "Burn Down（継承）",
+    "unofficialTranslation": "Burn Down (Inherited)"
+  },
+  "908302211": {
+    "jp_text": "Service: Transit（継承）",
+    "unofficialTranslation": "Service: Transit (Inherited)"
+  },
+  "908401111": {
+    "jp_text": "嵐を呼ぶ破壊神（継承）",
+    "unofficialTranslation": "The Storm-Calling God of Destruction (Inherited)"
+  },
+  "908401211": {
+    "jp_text": "酔い痴れよ、世界（継承）",
+    "unofficialTranslation": "Be Intoxicated, O World (Inherited)"
+  },
+  "908402111": {
+    "jp_text": "アレスの進撃（継承）",
+    "unofficialTranslation": "Advance of Ares (Inherited)"
+  },
+  "908402211": {
+    "jp_text": "アルテミスの矢（継承）",
+    "unofficialTranslation": "Arrow of Artemis (Inherited)"
+  },
+  "908501111": {
+    "jp_text": "華麗であれ（継承）",
+    "unofficialTranslation": "Be Magnificent (Inherited)"
+  },
+  "908501211": {
+    "jp_text": "常に最たる輝きを（継承）",
+    "unofficialTranslation": "Always the Most Brilliant Shine (Inherited)"
+  },
+  "908502111": {
+    "jp_text": "霹靂閃電（継承）",
+    "unofficialTranslation": "A Clap of Thunder (Inherited)"
+  },
+  "908502211": {
+    "jp_text": "灰と化すまで（継承）",
+    "unofficialTranslation": "Until I Turn to Ash (Inherited)"
+  },
+  "908601111": {
+    "jp_text": "純愛（継承）",
+    "unofficialTranslation": "Pure Love (Inherited)"
+  },
+  "908601211": {
+    "jp_text": "高嶺の艶笑（継承）",
+    "unofficialTranslation": "The Alluring Smile of the Unattainable Flower (Inherited)"
+  },
+  "908602111": {
+    "jp_text": "Limitless Love（継承）",
+    "unofficialTranslation": "Limitless Love (Inherited)"
+  },
+  "908602211": {
+    "jp_text": "祝宴の征服者（継承）",
+    "unofficialTranslation": "Conqueror of the Banquet (Inherited)"
+  },
+  "908701111": {
+    "jp_text": "必勝のピッチアップ（継承）",
+    "unofficialTranslation": "Victorious Pitch-Up (Inherited)"
+  },
+  "908701211": {
+    "jp_text": "記憶に刻む足取り（継承）",
+    "unofficialTranslation": "Footsteps Engraved in Memory (Inherited)"
+  },
+  "908702111": {
+    "jp_text": "辻映りの妙技（継承）",
+    "unofficialTranslation": "The Exquisite Skill of a Street Reflection (Inherited)"
+  },
+  "908702211": {
+    "jp_text": "覚えていてくださいね？（継承）",
+    "unofficialTranslation": "You'll remember me, won't you? (Inherited)"
+  },
+  "908801111": {
+    "jp_text": "アンビシャスカード（継承）",
+    "unofficialTranslation": "Ambitious Card (Inherited)"
+  },
+  "908801211": {
+    "jp_text": "ミリオンカード（継承）",
+    "unofficialTranslation": "Million Card (Inherited)"
+  },
+  "908802111": {
+    "jp_text": "煌めきのイリュージョン（継承）",
+    "unofficialTranslation": "Glittering Illusion (Inherited)"
+  },
+  "908802211": {
+    "jp_text": "波上のラストトリック（継承）",
+    "unofficialTranslation": "The Last Trick on the Waves (Inherited)"
+  },
+  "908901111": {
+    "jp_text": "偉大なる踏破（継承）",
+    "unofficialTranslation": "The Great Traverse (Inherited)"
+  },
+  "908901211": {
+    "jp_text": "全力投球（継承）",
+    "unofficialTranslation": "Giving It My All (Inherited)"
+  },
+  "908902111": {
+    "jp_text": "マリンブルー・ライナー（継承）",
+    "unofficialTranslation": "Marine Blue Liner (Inherited)"
+  },
+  "908902211": {
+    "jp_text": "いつもの僕じゃないから！（継承）",
+    "unofficialTranslation": "Because this isn't the usual me! (Inherited)"
+  },
+  "909001111": {
+    "jp_text": "不撓不屈の女王（継承）",
+    "unofficialTranslation": "The Indomitable Queen (Inherited)"
+  },
+  "909001211": {
+    "jp_text": "『お姉ちゃん、だもの』（継承）",
+    "unofficialTranslation": "『Because I'm the big sister』 (Inherited)"
+  },
+  "909101111": {
+    "jp_text": "天来のリトルシスター（継承）",
+    "unofficialTranslation": "Heaven-Sent Little Sister (Inherited)"
+  },
+  "909101211": {
+    "jp_text": "ハイソ・メンタリティ！（継承）",
+    "unofficialTranslation": "High-So Mentality! (Inherited)"
+  },
+  "909102111": {
+    "jp_text": "デザートジュエルに魅せられ（継承）",
+    "unofficialTranslation": "Charmed by the Desert Jewel (Inherited)"
+  },
+  "909102211": {
+    "jp_text": "いざ征かん！マリンロード（継承）",
+    "unofficialTranslation": "Let's go! Marine Road (Inherited)"
+  },
+  "909301111": {
+    "jp_text": "K.Speed（継承）",
+    "unofficialTranslation": "K.Speed (Inherited)"
+  },
+  "909301211": {
+    "jp_text": "命の火花（継承）",
+    "unofficialTranslation": "Spark of Life (Inherited)"
+  },
+  "909302111": {
+    "jp_text": "『見ていて、くださいね』（継承）",
+    "unofficialTranslation": "『Please, watch me』 (Inherited)"
+  },
+  "909302211": {
+    "jp_text": "彗星色の羽搏き（継承）",
+    "unofficialTranslation": "Comet-Colored Wingbeats (Inherited)"
+  },
+  "909401111": {
+    "jp_text": "猛襲の牙（継承）",
+    "unofficialTranslation": "Fangs of Fierce Assault (Inherited)"
+  },
+  "909401211": {
+    "jp_text": "闘叫の鬼（継承）",
+    "unofficialTranslation": "The War-Crying Ogre (Inherited)"
+  },
+  "909401221": {
+    "jp_text": "天上天下唯我爆走（継承）",
+    "unofficialTranslation": "Throughout Heaven and Earth, I Alone Run Wildly (Inherited)"
+  },
+  "909601111": {
+    "jp_text": "侵掠如火（継承）",
+    "unofficialTranslation": "Invade Like Fire (Inherited)"
+  },
+  "909601211": {
+    "jp_text": "天下分け目（継承）",
+    "unofficialTranslation": "The Decisive Battle (Inherited)"
+  },
+  "909701111": {
+    "jp_text": "赫き胎動（継承）",
+    "unofficialTranslation": "The Crimson Quickening (Inherited)"
+  },
+  "909701211": {
+    "jp_text": "誰にも告げぬ誓い（継承）",
+    "unofficialTranslation": "An Unspoken Vow (Inherited)"
+  },
+  "909701221": {
+    "jp_text": "呼び覚まされし願い（継承）",
+    "unofficialTranslation": "The Awakened Wish (Inherited)"
+  },
+  "909801111": {
+    "jp_text": "コパッと開運！（継承）",
+    "unofficialTranslation": "Good Fortune with a Kopa! (Inherited)"
+  },
+  "909801211": {
+    "jp_text": "龍脈の波濤（継承）",
+    "unofficialTranslation": "Surging Waves of the Dragon Vein (Inherited)"
+  },
+  "909802111": {
+    "jp_text": "黄龍、天へと昇る（継承）",
+    "unofficialTranslation": "The Yellow Dragon Ascends to the Heavens (Inherited)"
+  },
+  "909802211": {
+    "jp_text": "走る縁起物（継承）",
+    "unofficialTranslation": "The Running Good Luck Charm (Inherited)"
+  },
+  "909901111": {
+    "jp_text": "苫小牧グルメで舌鼓！（継承）",
+    "unofficialTranslation": "Savoring the Delicacies of Tomakomai! (Inherited)"
+  },
+  "909901211": {
+    "jp_text": "観光大使の面目躍如！（継承）",
+    "unofficialTranslation": "The Tourism Ambassador Shines! (Inherited)"
+  },
+  "909901221": {
+    "jp_text": "ひた走れ！苫小牧の星（継承）",
+    "unofficialTranslation": "Run on! Star of Tomakomai (Inherited)"
+  },
+  "909902111": {
+    "jp_text": "感謝のふるさとメドレー（継承）",
+    "unofficialTranslation": "A Hometown Medley of Gratitude (Inherited)"
+  },
+  "909902211": {
+    "jp_text": "突き進め北の海（継承）",
+    "unofficialTranslation": "Forge Ahead, North Sea (Inherited)"
+  },
+  "9100011": {
+    "jp_text": "超遊び癖（継承）",
+    "unofficialTranslation": "Super Playful Habit (Inherited)"
+  },
+  "910001111": {
+    "jp_text": "闘魂注入（継承）",
+    "unofficialTranslation": "Fighting Spirit Injection (Inherited)"
+  },
+  "910001121": {
+    "jp_text": "いぶし銀の闘志（継承）",
+    "unofficialTranslation": "A Veteran's Fighting Spirit (Inherited)"
+  },
+  "910001211": {
+    "jp_text": "女神の砂浴び（継承）",
+    "unofficialTranslation": "The Goddess's Sand Bath (Inherited)"
+  },
+  "910021": {
+    "jp_text": "水平線のその先へ",
+    "unofficialTranslation": "Beyond the Horizon"
+  },
+  "910051": {
+    "jp_text": "Ravissant",
+    "unofficialTranslation": "Ravissant"
+  },
+  "910061": {
+    "jp_text": "聖夜のミラクルラン！",
+    "unofficialTranslation": "Holy Night's Miracle Run!"
+  },
+  "910071": {
+    "jp_text": "Adventure of 564",
+    "unofficialTranslation": "Adventure of 564"
+  },
+  "910081": {
+    "jp_text": "Into High Gear!",
+    "unofficialTranslation": "Into High Gear!"
+  },
+  "910091": {
+    "jp_text": "Queen's Lumination",
+    "unofficialTranslation": "Queen's Lumination"
+  },
+  "910101": {
+    "jp_text": "Joyful Voyage!",
+    "unofficialTranslation": "Joyful Voyage!"
+  },
+  "910121": {
+    "jp_text": "大盛り！ファーストバイト！",
+    "unofficialTranslation": "A Big Serving! First Bite!"
+  },
+  "910151": {
+    "jp_text": "恵福バルカローレ",
+    "unofficialTranslation": "Barcarolle of Blessed Fortune"
+  },
+  "910161": {
+    "jp_text": "灰色の臨界点",
+    "unofficialTranslation": "The Gray Critical Point"
+  },
+  "910171": {
+    "jp_text": "翳り退く、さざめきの矢",
+    "unofficialTranslation": "The Shadows Retreat, an Arrow of Rustling"
+  },
+  "910191": {
+    "jp_text": "萌到讓我活過來了！",
+    "unofficialTranslation": "So cute it brings me back to life!"
+  },
+  "910201": {
+    "jp_text": "Do Ya Breakin!",
+    "unofficialTranslation": "Do Ya Breakin!"
+  },
+  "910201111": {
+    "jp_text": "カエスーラ（継承）",
+    "unofficialTranslation": "Caesura (Inherited)"
+  },
+  "910201211": {
+    "jp_text": "トライアンフ（継承）",
+    "unofficialTranslation": "Triumph (Inherited)"
+  },
+  "910201221": {
+    "jp_text": "エスプロズィオーネ（継承）",
+    "unofficialTranslation": "Esplosione (Inherited)"
+  },
+  "910211": {
+    "jp_text": "火神鳴",
+    "unofficialTranslation": "Blazing Thunder God"
+  },
+  "910221": {
+    "jp_text": "Best day ever",
+    "unofficialTranslation": "Best day ever"
+  },
+  "910231": {
+    "jp_text": "Presents from X",
+    "unofficialTranslation": "Presents from X"
+  },
+  "910251": {
+    "jp_text": "心からのおもてにゃし",
+    "unofficialTranslation": "Hospitality from the Heart"
+  },
+  "910261": {
+    "jp_text": "オペレーション・Cacao",
+    "unofficialTranslation": "Operation: Cacao"
+  },
+  "910271": {
+    "jp_text": "あなたに捧げるフリーポア",
+    "unofficialTranslation": "A Free Pour Dedicated to You"
+  },
+  "910291": {
+    "jp_text": "いっぱいおあげんしぇ！",
+    "unofficialTranslation": "Here's a whole bunch!"
+  },
+  "910301": {
+    "jp_text": "Drain for rose",
+    "unofficialTranslation": "Drain for rose"
+  },
+  "910311": {
+    "jp_text": "フレッシュ☆パーラー",
+    "unofficialTranslation": "Fresh☆Parlor"
+  },
+  "910321": {
+    "jp_text": "夏空ハレーション",
+    "unofficialTranslation": "Summer Sky Halation"
+  },
+  "910331": {
+    "jp_text": "Crystal Mist",
+    "unofficialTranslation": "Crystal Mist"
+  },
+  "910341": {
+    "jp_text": "灯穂",
+    "unofficialTranslation": "Torchlight"
+  },
+  "910351": {
+    "jp_text": "夢の先へ、届け！",
+    "unofficialTranslation": "Reach Beyond the Dream!"
+  },
+  "910361": {
+    "jp_text": "...found you.",
+    "unofficialTranslation": "...found you."
+  },
+  "910371": {
+    "jp_text": "Guten Appetit♪",
+    "unofficialTranslation": "Guten Appetit♪"
+  },
+  "910381": {
+    "jp_text": "One True Color",
+    "unofficialTranslation": "One True Color"
+  },
+  "910391": {
+    "jp_text": "快なる剛力",
+    "unofficialTranslation": "Pleasant Strength"
+  },
+  "910401": {
+    "jp_text": "GET DOWN",
+    "unofficialTranslation": "GET DOWN"
+  },
+  "910401111": {
+    "jp_text": "してやったり！（継承）",
+    "unofficialTranslation": "Nailed it! (Inherited)"
+  },
+  "910401211": {
+    "jp_text": "逃げっ切りの1人旅（継承）",
+    "unofficialTranslation": "A Solo Trip to the Finish Line (Inherited)"
+  },
+  "910402111": {
+    "jp_text": "伏竜は目覚めて（継承）",
+    "unofficialTranslation": "The Crouching Dragon Awakens (Inherited)"
+  },
+  "910402211": {
+    "jp_text": "暁光背負いて（継承）",
+    "unofficialTranslation": "Bearing the Light of Dawn (Inherited)"
+  },
+  "910411": {
+    "jp_text": "CHERRY☆スクランブル",
+    "unofficialTranslation": "CHERRY☆Scramble"
+  },
+  "910421": {
+    "jp_text": "Oh!bento-magic☆",
+    "unofficialTranslation": "Oh!bento-magic☆"
+  },
+  "910441": {
+    "jp_text": "とっておきmaterialize",
+    "unofficialTranslation": "My Special Materialize"
+  },
+  "910451": {
+    "jp_text": "ぐるぐるマミートリック♡",
+    "unofficialTranslation": "Twirly-Whirly Mommy Trick♡"
+  },
+  "910461": {
+    "jp_text": "α-star*",
+    "unofficialTranslation": "α-star*"
+  },
+  "910471": {
+    "jp_text": "未知との遭遇、即ち物語",
+    "unofficialTranslation": "Encounter with the Unknown, That Is a Story"
+  },
+  "910481": {
+    "jp_text": "GALmem.ふぉーえば♪",
+    "unofficialTranslation": "GALmem.4eva♪"
+  },
+  "910501": {
+    "jp_text": "Hephaistos",
+    "unofficialTranslation": "Hephaistos"
+  },
+  "910501111": {
+    "jp_text": "銀河のその先へ、あなたと（継承）",
+    "unofficialTranslation": "To Beyond the Galaxy, With You (Inherited)"
+  },
+  "910501211": {
+    "jp_text": "星の海を駆けて（継承）",
+    "unofficialTranslation": "Galloping Across the Sea of Stars (Inherited)"
+  },
+  "910502111": {
+    "jp_text": "ルミナス・スペクトラム（継承）",
+    "unofficialTranslation": "Luminous Spectrum (Inherited)"
+  },
+  "910502211": {
+    "jp_text": "“METI”レゾナンス（継承）",
+    "unofficialTranslation": "“METI” Resonance (Inherited)"
+  },
+  "910511": {
+    "jp_text": "Flowering Dreams",
+    "unofficialTranslation": "Flowering Dreams"
+  },
+  "910521": {
+    "jp_text": "113転び114起き",
+    "unofficialTranslation": "Fall 113 Times, Get Up 114"
+  },
+  "910531": {
+    "jp_text": "奥義・常夏バーニング！！",
+    "unofficialTranslation": "Secret Art: Everlasting Summer Burning!!"
+  },
+  "910571": {
+    "jp_text": "爛然闊歩",
+    "unofficialTranslation": "Striding Brilliantly"
+  },
+  "910581": {
+    "jp_text": "Spooky-Scary-Happy",
+    "unofficialTranslation": "Spooky-Scary-Happy"
+  },
+  "910591": {
+    "jp_text": "ときめきが呼ぶほうへ",
+    "unofficialTranslation": "Towards Where My Heart Pounds"
+  },
+  "910601": {
+    "jp_text": "Go☆Go☆for it!",
+    "unofficialTranslation": "Go☆Go☆for it!"
+  },
+  "910601111": {
+    "jp_text": "焦らず、気負わず（継承）",
+    "unofficialTranslation": "Don't Rush, Don't Stress (Inherited)"
+  },
+  "910601121": {
+    "jp_text": "できる範囲でがんばろ～！（継承）",
+    "unofficialTranslation": "Let's do our best within our limits~! (Inherited)"
+  },
+  "910601211": {
+    "jp_text": "ちょっといいこと、集めて（継承）",
+    "unofficialTranslation": "Gathering a Few Good Things (Inherited)"
+  },
+  "910602111": {
+    "jp_text": "お邪魔しま～す♪（継承）",
+    "unofficialTranslation": "Coming through~♪ (Inherited)"
+  },
+  "910602211": {
+    "jp_text": "まさかここから大逆転！？（継承）",
+    "unofficialTranslation": "A huge comeback from here!? (Inherited)"
+  },
+  "910611": {
+    "jp_text": "轟！トレセン応援団！！",
+    "unofficialTranslation": "Roar! Tracen Academy Cheer Squad!!"
+  },
+  "910621": {
+    "jp_text": "ごろりん！？パワードライブ",
+    "unofficialTranslation": "Rollin'!? Power Drive"
+  },
+  "910641": {
+    "jp_text": "jingle all the way",
+    "unofficialTranslation": "jingle all the way"
+  },
+  "910651": {
+    "jp_text": "ノッてけ、マッシュアップ！",
+    "unofficialTranslation": "Get on with it, Mashup!"
+  },
+  "910671": {
+    "jp_text": "玄雲散らす、黄金甲矢",
+    "unofficialTranslation": "The Golden Arrow that Scatters the Dark Clouds"
+  },
+  "910681": {
+    "jp_text": "あっぱれ大盤振る舞い！",
+    "unofficialTranslation": "A Splendid, Lavish Display!"
+  },
+  "910691": {
+    "jp_text": "咲け咲け！私！",
+    "unofficialTranslation": "Bloom, bloom! Me!"
+  },
+  "910701": {
+    "jp_text": "駆るは光、狩るは星々",
+    "unofficialTranslation": "Ride the Light, Hunt the Stars"
+  },
+  "910701111": {
+    "jp_text": "Breakaway Star（継承）",
+    "unofficialTranslation": "Breakaway Star (Inherited)"
+  },
+  "910701211": {
+    "jp_text": "Smooth Sailing!（継承）",
+    "unofficialTranslation": "Smooth Sailing! (Inherited)"
+  },
+  "910702111": {
+    "jp_text": "True Wire-to-Wire!（継承）",
+    "unofficialTranslation": "True Wire-to-Wire! (Inherited)"
+  },
+  "910702211": {
+    "jp_text": "大航海、飄々と（継承）",
+    "unofficialTranslation": "The Great Voyage, Drifting Along (Inherited)"
+  },
+  "910711": {
+    "jp_text": "Danser le présent",
+    "unofficialTranslation": "Danser le présent"
+  },
+  "910721": {
+    "jp_text": "剛勇果断、烈火之刀",
+    "unofficialTranslation": "Valorous and Decisive, a Blade of Raging Fire"
+  },
+  "910741": {
+    "jp_text": "Illuminate you",
+    "unofficialTranslation": "Illuminate you"
+  },
+  "910771": {
+    "jp_text": "Joy to the World",
+    "unofficialTranslation": "Joy to the World"
+  },
+  "910781": {
+    "jp_text": "Breezy Treat",
+    "unofficialTranslation": "Breezy Treat"
+  },
+  "910801111": {
+    "jp_text": "磨穿鉄硯（継承）",
+    "unofficialTranslation": "Wear Through an Iron Inkstone (Inherited)"
+  },
+  "910801211": {
+    "jp_text": "赫焉（継承）",
+    "unofficialTranslation": "Blazing (Inherited)"
+  },
+  "910831": {
+    "jp_text": "Immortal Work",
+    "unofficialTranslation": "Immortal Work"
+  },
+  "910841": {
+    "jp_text": "深淵のテルプシコラー",
+    "unofficialTranslation": "Terpsichore of the Abyss"
+  },
+  "910851": {
+    "jp_text": "蒼炎",
+    "unofficialTranslation": "Blue Flame"
+  },
+  "910861": {
+    "jp_text": "解けぬ結い目",
+    "unofficialTranslation": "The Unbreakable Knot"
+  },
+  "910871": {
+    "jp_text": "ふわもこアワー",
+    "unofficialTranslation": "Fluffy-Moco Hour"
+  },
+  "910881": {
+    "jp_text": "夏雷カスケード！",
+    "unofficialTranslation": "Summer Thunder Cascade!"
+  },
+  "910891": {
+    "jp_text": "Tidebreaker",
+    "unofficialTranslation": "Tidebreaker"
+  },
+  "910901111": {
+    "jp_text": "未来を拓け！（継承）",
+    "unofficialTranslation": "Open up the Future! (Inherited)"
+  },
+  "910901211": {
+    "jp_text": "ぜーったい負けられない！（継承）",
+    "unofficialTranslation": "I absolutely can't lose! (Inherited)"
+  },
+  "910902111": {
+    "jp_text": "希望は巡る、何度でも（継承）",
+    "unofficialTranslation": "Hope Comes Around, Again and Again (Inherited)"
+  },
+  "910902211": {
+    "jp_text": "ティアラ・ダイブ！（継承）",
+    "unofficialTranslation": "Tiara Dive! (Inherited)"
+  },
+  "910911": {
+    "jp_text": "ジュ・テーム☆バカンス！",
+    "unofficialTranslation": "Je t'aime☆Vacances!"
+  },
+  "910931": {
+    "jp_text": "きせき・おもい・かなで",
+    "unofficialTranslation": "Miracle・Feelings・Melody"
+  },
+  "910981": {
+    "jp_text": "五獣挙りて彩光奏づ",
+    "unofficialTranslation": "The Five Beasts Rise and Play a Colorful Light"
+  },
+  "910991": {
+    "jp_text": "とびだせ☆ポッピングシェル",
+    "unofficialTranslation": "Jump out☆Popping Shell"
+  },
+  "911001111": {
+    "jp_text": "礎たれ（継承）",
+    "unofficialTranslation": "Be the Foundation (Inherited)"
+  },
+  "911001211": {
+    "jp_text": "麗しき転身（継承）",
+    "unofficialTranslation": "A Graceful Turn (Inherited)"
+  },
+  "911002111": {
+    "jp_text": "栄華の歩み、誰ぞ遮る（継承）",
+    "unofficialTranslation": "Who can block the path of glory? (Inherited)"
+  },
+  "911002211": {
+    "jp_text": "白妙の約定（継承）",
+    "unofficialTranslation": "The White Promise (Inherited)"
+  },
+  "911041": {
+    "jp_text": "決意一筆",
+    "unofficialTranslation": "A Stroke of Determination"
+  },
+  "911051": {
+    "jp_text": "Encounter with U",
+    "unofficialTranslation": "Encounter with U"
+  },
+  "911061": {
+    "jp_text": "小さな奇跡、フォーユー♪",
+    "unofficialTranslation": "A Small Miracle, For You♪"
+  },
+  "911071": {
+    "jp_text": "Romantic Horizon",
+    "unofficialTranslation": "Romantic Horizon"
+  },
+  "911091": {
+    "jp_text": "ずっとずっと輝いて",
+    "unofficialTranslation": "Shining Forever and Ever"
+  },
+  "911101": {
+    "jp_text": "時かけるせせらぎ",
+    "unofficialTranslation": "The Babbling Brook that Leaps Through Time"
+  },
+  "911101111": {
+    "jp_text": "母の面影を追って（継承）",
+    "unofficialTranslation": "Chasing the Image of My Mother (Inherited)"
+  },
+  "911101211": {
+    "jp_text": "堅実なる秘策（継承）",
+    "unofficialTranslation": "A Solid Secret Plan (Inherited)"
+  },
+  "911301111": {
+    "jp_text": "ラブミー☆パレード（継承）",
+    "unofficialTranslation": "Love Me☆Parade (Inherited)"
+  },
+  "911301211": {
+    "jp_text": "ぜーったい譲って♡（継承）",
+    "unofficialTranslation": "Absolutely give in to me♡ (Inherited)"
+  },
+  "911501111": {
+    "jp_text": "我が意、即ち天の理なり（継承）",
+    "unofficialTranslation": "My Will is the Law of the Heavens (Inherited)"
+  },
+  "911501211": {
+    "jp_text": "王威絢爛（継承）",
+    "unofficialTranslation": "Splendor of the King's Majesty (Inherited)"
+  },
+  "911501221": {
+    "jp_text": "――畏れよ、然して拝跪せよ（継承）",
+    "unofficialTranslation": "—Tremble, and then prostrate yourselves (Inherited)"
+  },
+  "911601111": {
+    "jp_text": "――お退きなさい（継承）",
+    "unofficialTranslation": "—Step aside (Inherited)"
+  },
+  "911601211": {
+    "jp_text": "Power Am I（継承）",
+    "unofficialTranslation": "Power Am I (Inherited)"
+  },
+  "911601221": {
+    "jp_text": "淑女の独擅場（継承）",
+    "unofficialTranslation": "The Lady's Unrivaled Stage (Inherited)"
+  },
+  "911701111": {
+    "jp_text": "グラン・ジュッテ（継承）",
+    "unofficialTranslation": "Grand Jeté (Inherited)"
+  },
+  "911701211": {
+    "jp_text": "邁進アン・レール（継承）",
+    "unofficialTranslation": "Pressing on En L'air (Inherited)"
+  },
+  "911901111": {
+    "jp_text": "果てへの面舵（継承）",
+    "unofficialTranslation": "Starboard to the Horizon (Inherited)"
+  },
+  "911901211": {
+    "jp_text": "夢見心地（継承）",
+    "unofficialTranslation": "Dreamy Feeling (Inherited)"
+  },
+  "912001111": {
+    "jp_text": "閃光一走！（継承）",
+    "unofficialTranslation": "A Flash of a Run! (Inherited)"
+  },
+  "912001211": {
+    "jp_text": "突風一駆！（継承）",
+    "unofficialTranslation": "A Gust of a Gallop! (Inherited)"
+  },
+  "912101111": {
+    "jp_text": "忠心のヴェイヤンティフ（継承）",
+    "unofficialTranslation": "The Loyal Veillantif (Inherited)"
+  },
+  "912101211": {
+    "jp_text": "オリファントの轟雷（継承）",
+    "unofficialTranslation": "The Roaring Thunder of Olifant (Inherited)"
+  },
+  "912401111": {
+    "jp_text": "俊傑の悠（継承）",
+    "unofficialTranslation": "Grace of a Prodigy (Inherited)"
+  },
+  "912401211": {
+    "jp_text": "嚆矢の花道（継承）",
+    "unofficialTranslation": "The Resounding Arrow's Path of Glory (Inherited)"
+  },
+  "912701111": {
+    "jp_text": "あんぱんと牛乳（継承）",
+    "unofficialTranslation": "Anpan and Milk (Inherited)"
+  },
+  "912701211": {
+    "jp_text": "猛き獣は太陽に吼える（継承）",
+    "unofficialTranslation": "The Fierce Beast Roars at the Sun (Inherited)"
+  },
+  "913101111": {
+    "jp_text": "推してまいる！！（継承）",
+    "unofficialTranslation": "Here I come to cheer!! (Inherited)"
+  },
+  "913101211": {
+    "jp_text": "万哩へ響け大歓声（継承）",
+    "unofficialTranslation": "Let the Cheers Echo for a Myriad Miles (Inherited)"
+  },
+  "913201111": {
+    "jp_text": "ストリーミング♡ラッシュ（継承）",
+    "unofficialTranslation": "Streaming♡Rush (Inherited)"
+  },
+  "913201211": {
+    "jp_text": "応援コメントよろしく！（継承）",
+    "unofficialTranslation": "Leave a supportive comment! (Inherited)"
+  },
+  "913301111": {
+    "jp_text": "永永無窮（継承）",
+    "unofficialTranslation": "Eternal and Everlasting (Inherited)"
+  },
+  "913301211": {
+    "jp_text": "創世の一頁（継承）",
+    "unofficialTranslation": "A Page of Genesis (Inherited)"
+  },
+  "9200011": {
+    "jp_text": "中距離レースへの想い（継承）",
+    "unofficialTranslation": "Passion for Mid-Range Races (Inherited)"
+  },
+  "9200021": {
+    "jp_text": "長距離レースへの想い（継承）",
+    "unofficialTranslation": "Passion for Long-Range Races (Inherited)"
+  },
+  "9200031": {
+    "jp_text": "マイルレースへの想い（継承）",
+    "unofficialTranslation": "Passion for Mile Races (Inherited)"
+  },
+  "9200041": {
+    "jp_text": "短距離レースへの想い（継承）",
+    "unofficialTranslation": "Passion for Short-Range Races (Inherited)"
+  },
+  "9200051": {
+    "jp_text": "ダートレースへの想い（継承）",
+    "unofficialTranslation": "Passion for Dirt Races (Inherited)"
+  },
+  "920011": {
+    "jp_text": "威風堂々、夢錦！",
+    "unofficialTranslation": "Majestic and Grand, a Dream Brocade!"
+  },
+  "920031": {
+    "jp_text": "歌舞歓楽や、ああをかし",
+    "unofficialTranslation": "Song, Dance, and Merriment, Oh How Charming"
+  },
+  "920041": {
+    "jp_text": "霊験灼然チョベリグ神託",
+    "unofficialTranslation": "The Miraculously Awesome Oracle"
+  },
+  "920071": {
+    "jp_text": "Vive la GOLD",
+    "unofficialTranslation": "Vive la GOLD"
+  },
+  "920111": {
+    "jp_text": "演舞・撫子大薙刀",
+    "unofficialTranslation": "Demonstration Dance - Nadeshiko Great Naginata"
+  },
+  "920131": {
+    "jp_text": "きらめくは海、まばゆきは君",
+    "unofficialTranslation": "The Sparkling Sea, the Dazzling You"
+  },
+  "920231": {
+    "jp_text": "勝利ヘ至ル累積",
+    "unofficialTranslation": "The Accumulation Leading to Victory"
+  },
+  "920241": {
+    "jp_text": "HOP STEP♪LOCK ON!",
+    "unofficialTranslation": "HOP STEP♪LOCK ON!"
+  },
+  "920301": {
+    "jp_text": "あおぞらクッキング♪",
+    "unofficialTranslation": "Blue Sky Cooking♪"
+  },
+  "920311": {
+    "jp_text": "全力全開！サイクロン",
+    "unofficialTranslation": "Full Power! Cyclone"
+  },
+  "920321": {
+    "jp_text": "超光速微粒子の可能性",
+    "unofficialTranslation": "The Possibility of Superluminal Microparticles"
+  },
+  "920351": {
+    "jp_text": "GO! Full-send",
+    "unofficialTranslation": "GO! Full-send"
+  },
+  "920371": {
+    "jp_text": "潮風のGeschenk",
+    "unofficialTranslation": "Geschenk of the Sea Breeze"
+  },
+  "920401": {
+    "jp_text": "Silent Sunset Gold",
+    "unofficialTranslation": "Silent Sunset Gold"
+  },
+  "920451": {
+    "jp_text": "忍法・ほほえみ心結の印",
+    "unofficialTranslation": "Ninjutsu: The Seal of a Smiling, Heartfelt Bond"
+  },
+  "920461": {
+    "jp_text": "Forward March!",
+    "unofficialTranslation": "Forward March!"
+  },
+  "920501": {
+    "jp_text": "Overdrive Speed",
+    "unofficialTranslation": "Overdrive Speed"
+  },
+  "920601": {
+    "jp_text": "もちっと・ハレハレ",
+    "unofficialTranslation": "A Bit Chewy・Bright and Sunny"
+  },
+  "920611": {
+    "jp_text": "理想へのwinding road",
+    "unofficialTranslation": "The winding road to my ideals"
+  },
+  "920671": {
+    "jp_text": "ポンテ・デ・ディアマン",
+    "unofficialTranslation": "Ponte de Diamant"
+  },
+  "920681": {
+    "jp_text": "ミンナノアタシへ！",
+    "unofficialTranslation": "To the Me that Belongs to Everyone!"
+  },
+  "92111091": {
+    "jp_text": "ずっとずっと輝いて",
+    "unofficialTranslation": "Shining Forever and Ever"
+  },
+  "9300011": {
+    "jp_text": "ボルテージヒーロー（継承）",
+    "unofficialTranslation": "Voltage Hero (Inherited)"
+  },
+  "9300021": {
+    "jp_text": "サンライズヒーロー（継承）",
+    "unofficialTranslation": "Sunrise Hero (Inherited)"
+  },
+  "9300031": {
+    "jp_text": "レイニーヒーロー（継承）",
+    "unofficialTranslation": "Rainy Hero (Inherited)"
+  },
+  "9300041": {
+    "jp_text": "インサイドヒーロー（継承）",
+    "unofficialTranslation": "Inside Hero (Inherited)"
+  },
+  "9300051": {
+    "jp_text": "アウトサイドヒーロー（継承）",
+    "unofficialTranslation": "Outside Hero (Inherited)"
+  },
+  "9300061": {
+    "jp_text": "リンケージヒーロー（継承）",
+    "unofficialTranslation": "Linkage Hero (Inherited)"
+  },
+  "9300071": {
+    "jp_text": "スパートヒーロー（継承）",
+    "unofficialTranslation": "Spurt Hero (Inherited)"
+  },
+  "9400011": {
+    "jp_text": "マスターズドライブ（継承）",
+    "unofficialTranslation": "Masters Drive (Inherited)"
+  },
+  "9400021": {
+    "jp_text": "レジェンダリーアクセル（継承）",
+    "unofficialTranslation": "Legendary Accel (Inherited)"
+  }
+}

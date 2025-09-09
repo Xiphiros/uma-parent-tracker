@@ -1,0 +1,706 @@
+{
+  "100103": {
+    "jp_text": "[日之本一の総大将]",
+    "unofficialTranslation": "[The Greatest General of Japan]"
+  },
+  "100202": {
+    "jp_text": "[波間のエメラルド]",
+    "unofficialTranslation": "[Emerald Between the Waves]"
+  },
+  "100303": {
+    "jp_text": "[紫雲の夢見取り]",
+    "unofficialTranslation": "[Dream-Seer of the Purple Clouds]"
+  },
+  "100403": {
+    "jp_text": "[祝ひ寿ぐ神速天女]",
+    "unofficialTranslation": "[The God-Speed Celestial Maiden of Celebration]"
+  },
+  "100502": {
+    "jp_text": "[シュクセ・エトワーレ]",
+    "unofficialTranslation": "[Succès Étoilé]"
+  },
+  "100602": {
+    "jp_text": "[キセキの白星]",
+    "unofficialTranslation": "[Miraculous Victory]"
+  },
+  "100702": {
+    "jp_text": "[RUN！乱！ランチャー！！]",
+    "unofficialTranslation": "[RUN! Riot! Launcher!!]"
+  },
+  "100703": {
+    "jp_text": "[La mode 564]",
+    "unofficialTranslation": "[La mode 564]"
+  },
+  "100802": {
+    "jp_text": "[不凍のアクア・ウィタエ]",
+    "unofficialTranslation": "[Unfrozen Aqua Vitae]"
+  },
+  "100902": {
+    "jp_text": "[緋色のニュイ・エトワレ]",
+    "unofficialTranslation": "[Crimson Nuit Étoilée]"
+  },
+  "101002": {
+    "jp_text": "[Bubblegum☆Memories]",
+    "unofficialTranslation": "[Bubblegum☆Memories]"
+  },
+  "101103": {
+    "jp_text": "[蒼炎の誉]",
+    "unofficialTranslation": "[Honor of the Blue Flame]"
+  },
+  "101202": {
+    "jp_text": "[Hungry Veil]",
+    "unofficialTranslation": "[Hungry Veil]"
+  },
+  "101303": {
+    "jp_text": "[さざ波フェアレディ]",
+    "unofficialTranslation": "[Rippling Fairlady]"
+  },
+  "101502": {
+    "jp_text": "[初晴・青き絢爛]",
+    "unofficialTranslation": "[First Clear Sky - Blue Splendor]"
+  },
+  "101602": {
+    "jp_text": "[餓狼]",
+    "unofficialTranslation": "[Hungry Wolf]"
+  },
+  "101702": {
+    "jp_text": "[皓月の弓取り]",
+    "unofficialTranslation": "[The White Moon's Archer]"
+  },
+  "101901": {
+    "jp_text": "[超特急！フルカラー特殊PP]",
+    "unofficialTranslation": "[Super Express! Full-Color Special PP]"
+  },
+  "101902": {
+    "jp_text": "[愛麗♡キョンシー]",
+    "unofficialTranslation": "[Lovely♡Jiangshi]"
+  },
+  "102002": {
+    "jp_text": "[ソワレ・ド・シャトン]",
+    "unofficialTranslation": "[Soirée de Chaton]"
+  },
+  "102101": {
+    "jp_text": "[疾風迅雷]",
+    "unofficialTranslation": "[Lightning Fast]"
+  },
+  "102102": {
+    "jp_text": "[猛ル鳴神]",
+    "unofficialTranslation": "[Raging Thunder God]"
+  },
+  "102201": {
+    "jp_text": "[Noble Seamair]",
+    "unofficialTranslation": "[Noble Seamair]"
+  },
+  "102202": {
+    "jp_text": "[Titania]",
+    "unofficialTranslation": "[Titania]"
+  },
+  "102302": {
+    "jp_text": "[ノエルージュ・キャロル]",
+    "unofficialTranslation": "[Noël Rouge Carol]"
+  },
+  "102303": {
+    "jp_text": "[Engineered Victory]",
+    "unofficialTranslation": "[Engineered Victory]"
+  },
+  "102403": {
+    "jp_text": "[ろっきん☆MewMeow]",
+    "unofficialTranslation": "[Rockin'☆MewMeow]"
+  },
+  "102501": {
+    "jp_text": "[Creeping Black]",
+    "unofficialTranslation": "[Creeping Black]"
+  },
+  "102502": {
+    "jp_text": "[柳緑小夜]",
+    "unofficialTranslation": "[Willow-Green Night]"
+  },
+  "102602": {
+    "jp_text": "[CODE：グラサージュ]",
+    "unofficialTranslation": "[CODE: Glaçage]"
+  },
+  "102702": {
+    "jp_text": "[マーガレット・ラッテ]",
+    "unofficialTranslation": "[Margaret Latte]"
+  },
+  "102801": {
+    "jp_text": "[ボーノ☆アラモーダ]",
+    "unofficialTranslation": "[Buono☆A La Moda]"
+  },
+  "102901": {
+    "jp_text": "[めんこいめんこいむつのはな]",
+    "unofficialTranslation": "[Cute, Cute Flower of Mutsu]"
+  },
+  "102902": {
+    "jp_text": "[茶の子雪ん子]",
+    "unofficialTranslation": "[Easy Peasy Snow-Child]"
+  },
+  "103002": {
+    "jp_text": "[Make up Vampire!]",
+    "unofficialTranslation": "[Make up Vampire!]"
+  },
+  "103003": {
+    "jp_text": "[Yummy Dreamy Fairy]",
+    "unofficialTranslation": "[Yummy Dreamy Fairy]"
+  },
+  "103101": {
+    "jp_text": "[オールタイム・フィーバー]",
+    "unofficialTranslation": "[All-Time Fever]"
+  },
+  "103102": {
+    "jp_text": "[MELTY GIFT]",
+    "unofficialTranslation": "[MELTY GIFT]"
+  },
+  "103103": {
+    "jp_text": "[Hello Hello Island]",
+    "unofficialTranslation": "[Hello Hello Island]"
+  },
+  "103202": {
+    "jp_text": "[Lunatic Lab]",
+    "unofficialTranslation": "[Lunatic Lab]"
+  },
+  "103203": {
+    "jp_text": "[Σ Experiment]",
+    "unofficialTranslation": "[Σ Experiment]"
+  },
+  "103301": {
+    "jp_text": "[Starry Nocturne]",
+    "unofficialTranslation": "[Starry Nocturne]"
+  },
+  "103302": {
+    "jp_text": "[Glacialis Vega]",
+    "unofficialTranslation": "[Glacialis Vega]"
+  },
+  "103401": {
+    "jp_text": "[稲荷所縁江戸紫]",
+    "unofficialTranslation": "[Inari-Connected Edo Purple]"
+  },
+  "103402": {
+    "jp_text": "[夢ノ金原]",
+    "unofficialTranslation": "[Golden Field of Dreams]"
+  },
+  "103502": {
+    "jp_text": "[Dream Deliverer]",
+    "unofficialTranslation": "[Dream Deliverer]"
+  },
+  "103503": {
+    "jp_text": "[Glorious Coat]",
+    "unofficialTranslation": "[Glorious Coat]"
+  },
+  "103601": {
+    "jp_text": "[unsigned]",
+    "unofficialTranslation": "[unsigned]"
+  },
+  "103602": {
+    "jp_text": "[Belphegor's Prime]",
+    "unofficialTranslation": "[Belphegor's Prime]"
+  },
+  "103702": {
+    "jp_text": "[コレクト・ショコラティエ]",
+    "unofficialTranslation": "[Collect Chocolatier]"
+  },
+  "103703": {
+    "jp_text": "[Reines Plätschern]",
+    "unofficialTranslation": "[Pure Splashing]"
+  },
+  "103802": {
+    "jp_text": "[朔月のマ・シェリ]",
+    "unofficialTranslation": "[New Moon's Ma Chérie]"
+  },
+  "103901": {
+    "jp_text": "[プリンセス・オブ・ピンク]",
+    "unofficialTranslation": "[Princess of Pink]"
+  },
+  "103902": {
+    "jp_text": "[水干撫子]",
+    "unofficialTranslation": "[Suikan Nadeshiko]"
+  },
+  "104002": {
+    "jp_text": "[秋桜ダンツァトリーチェ]",
+    "unofficialTranslation": "[Cosmos Danzatrice]"
+  },
+  "104003": {
+    "jp_text": "[Boho Flare]",
+    "unofficialTranslation": "[Boho Flare]"
+  },
+  "104102": {
+    "jp_text": "[レッドホット☆リーダー]",
+    "unofficialTranslation": "[Red-Hot☆Leader]"
+  },
+  "104201": {
+    "jp_text": "[Rocket☆Star]",
+    "unofficialTranslation": "[Rocket☆Star]"
+  },
+  "104202": {
+    "jp_text": "[Be♪Witched]",
+    "unofficialTranslation": "[Be♪Witched]"
+  },
+  "104301": {
+    "jp_text": "[Wicked Punk]",
+    "unofficialTranslation": "[Wicked Punk]"
+  },
+  "104401": {
+    "jp_text": "[プラタナス・ウィッチ]",
+    "unofficialTranslation": "[Platanus Witch]"
+  },
+  "104402": {
+    "jp_text": "[リアライズ・ルーン]",
+    "unofficialTranslation": "[Realize Rune]"
+  },
+  "104502": {
+    "jp_text": "[シフォンリボンマミー]",
+    "unofficialTranslation": "[Chiffon Ribbon Mummy]"
+  },
+  "104503": {
+    "jp_text": "[慈雨華影]",
+    "unofficialTranslation": "[Merciful Rain, Flowery Shadow]"
+  },
+  "104602": {
+    "jp_text": "[黄昏トライアンフ]",
+    "unofficialTranslation": "[Twilight Triumph]"
+  },
+  "104603": {
+    "jp_text": "[ルミナス☆トワラー]",
+    "unofficialTranslation": "[Luminous☆Twirler]"
+  },
+  "104701": {
+    "jp_text": "[Heroic Author]",
+    "unofficialTranslation": "[Heroic Author]"
+  },
+  "104702": {
+    "jp_text": "[Inlaid Stories]",
+    "unofficialTranslation": "[Inlaid Stories]"
+  },
+  "104801": {
+    "jp_text": "[ポップス☆ジョーカー]",
+    "unofficialTranslation": "[Pops☆Joker]"
+  },
+  "104802": {
+    "jp_text": "[Aurore☆Vacances]",
+    "unofficialTranslation": "[Aurore☆Vacances]"
+  },
+  "104901": {
+    "jp_text": "[死中求活]",
+    "unofficialTranslation": "[Seeking Life in Death's Grasp]"
+  },
+  "105002": {
+    "jp_text": "[ディファレンス・エンジニア]",
+    "unofficialTranslation": "[Difference Engineer]"
+  },
+  "105003": {
+    "jp_text": "[迷光オーヴァライド]",
+    "unofficialTranslation": "[Straylight Override]"
+  },
+  "105101": {
+    "jp_text": "[ティアード・ペタル]",
+    "unofficialTranslation": "[Tiered Petal]"
+  },
+  "105102": {
+    "jp_text": "[Sweet Juneberry]",
+    "unofficialTranslation": "[Sweet Juneberry]"
+  },
+  "105202": {
+    "jp_text": "[初うらら♪さくさくら]",
+    "unofficialTranslation": "[First Lovely♪Blooming Cherry]"
+  },
+  "105301": {
+    "jp_text": "[黒鉄の大志]",
+    "unofficialTranslation": "[Ambition of Black Iron]"
+  },
+  "105302": {
+    "jp_text": "[Ultra☆Marine]",
+    "unofficialTranslation": "[Ultra☆Marine]"
+  },
+  "105401": {
+    "jp_text": "[疾風ペガサス・零式]",
+    "unofficialTranslation": "[Gale Pegasus - Type Zero]"
+  },
+  "105501": {
+    "jp_text": "[☆キラ★ドキ☆ワク∞マベ∞]",
+    "unofficialTranslation": "[☆Sparkle★Thump☆Excited∞Marvelous∞]"
+  },
+  "105701": {
+    "jp_text": "[Clear Bliss]",
+    "unofficialTranslation": "[Clear Bliss]"
+  },
+  "105702": {
+    "jp_text": "[絢爛花道歌舞く君]",
+    "unofficialTranslation": "[You Who Performs on the Dazzling Hanamichi]"
+  },
+  "105802": {
+    "jp_text": "[Dot-o'-Lantern]",
+    "unofficialTranslation": "[Dot-o'-Lantern]"
+  },
+  "105901": {
+    "jp_text": "[ツイステッド・ライン]",
+    "unofficialTranslation": "[Twisted Line]"
+  },
+  "105902": {
+    "jp_text": "[バカンス・サフィール]",
+    "unofficialTranslation": "[Vacances Saphir]"
+  },
+  "106002": {
+    "jp_text": "[RUN＆WIN]",
+    "unofficialTranslation": "[RUN＆WIN]"
+  },
+  "106003": {
+    "jp_text": "[ネガイノカサネ]",
+    "unofficialTranslation": "[Layers of Wishes]"
+  },
+  "106102": {
+    "jp_text": "[白く気高き激励の装]",
+    "unofficialTranslation": "[The White and Noble Garb of Encouragement]"
+  },
+  "106103": {
+    "jp_text": "[Evergreen Identity]",
+    "unofficialTranslation": "[Evergreen Identity]"
+  },
+  "106201": {
+    "jp_text": "[ぱんぱかティルトット]",
+    "unofficialTranslation": "[Fanfare Tilt-Trot]"
+  },
+  "106202": {
+    "jp_text": "[ブルー・タービュランス]",
+    "unofficialTranslation": "[Blue Turbulence]"
+  },
+  "106301": {
+    "jp_text": "[Mantle of Steel]",
+    "unofficialTranslation": "[Mantle of Steel]"
+  },
+  "106401": {
+    "jp_text": "[Line Breakthrough]",
+    "unofficialTranslation": "[Line Breakthrough]"
+  },
+  "106402": {
+    "jp_text": "[赤心のトナカイさん]",
+    "unofficialTranslation": "[Mr. Sincere Reindeer]"
+  },
+  "106501": {
+    "jp_text": "[Fun☆Fun☆ぱりない]",
+    "unofficialTranslation": "[Fun☆Fun☆Party Night]"
+  },
+  "106502": {
+    "jp_text": "[Joyful Jamboree!]",
+    "unofficialTranslation": "[Joyful Jamboree!]"
+  },
+  "106601": {
+    "jp_text": "[爆走！ターボエンジン]",
+    "unofficialTranslation": "[Explosive Running! Turbo Engine]"
+  },
+  "106701": {
+    "jp_text": "[Natural Brilliance]",
+    "unofficialTranslation": "[Natural Brilliance]"
+  },
+  "106702": {
+    "jp_text": "[花形・弥栄之翠]",
+    "unofficialTranslation": "[Flower Shape - Prosperity's Green]"
+  },
+  "106703": {
+    "jp_text": "[シュヴァリエ・ブル]",
+    "unofficialTranslation": "[Chevalier Bleu]"
+  },
+  "106801": {
+    "jp_text": "[錦上・大判御輿]",
+    "unofficialTranslation": "[Brocade Top - Great Palanquin]"
+  },
+  "106802": {
+    "jp_text": "[真打・慶鶴之志]",
+    "unofficialTranslation": "[Headliner - Vow of the Auspicious Crane]"
+  },
+  "106803": {
+    "jp_text": "[結願のしまい華]",
+    "unofficialTranslation": "[The Final Bloom of Fulfillment]"
+  },
+  "106901": {
+    "jp_text": "[日下開山・花あかり]",
+    "unofficialTranslation": "[Unrivaled Champion - Flower Lantern]"
+  },
+  "106902": {
+    "jp_text": "[Fleur Enneigée]",
+    "unofficialTranslation": "[Fleur Enneigée]"
+  },
+  "107001": {
+    "jp_text": "[Féroce]",
+    "unofficialTranslation": "[Féroce]"
+  },
+  "107002": {
+    "jp_text": "[Louve stellaire]",
+    "unofficialTranslation": "[Louve stellaire]"
+  },
+  "107101": {
+    "jp_text": "[クリノクロア・ライン]",
+    "unofficialTranslation": "[Clinochlore Line]"
+  },
+  "107102": {
+    "jp_text": "[Neige Émeraude]",
+    "unofficialTranslation": "[Neige Émeraude]"
+  },
+  "107201": {
+    "jp_text": "[四白流星の襲]",
+    "unofficialTranslation": "[Layered Garb of Four White Meteors]"
+  },
+  "107202": {
+    "jp_text": "[黒将Zen]",
+    "unofficialTranslation": "[Black General Zen]"
+  },
+  "107301": {
+    "jp_text": "[志、高し、強し！]",
+    "unofficialTranslation": "[High Aspirations, Strong Will!]"
+  },
+  "107401": {
+    "jp_text": "[ブリュニサージュ・ライン]",
+    "unofficialTranslation": "[Brunissage Line]"
+  },
+  "107402": {
+    "jp_text": "[清らに星澄むスノーロリィタ]",
+    "unofficialTranslation": "[Purely Star-Clear Snow Lolita]"
+  },
+  "107601": {
+    "jp_text": "[Saisir le rêve]",
+    "unofficialTranslation": "[Saisir le rêve]"
+  },
+  "107701": {
+    "jp_text": "[The Proud Road]",
+    "unofficialTranslation": "[The Proud Road]"
+  },
+  "107702": {
+    "jp_text": "[Celestial Road]",
+    "unofficialTranslation": "[Celestial Road]"
+  },
+  "107801": {
+    "jp_text": "[Fluttertail Spirit]",
+    "unofficialTranslation": "[Fluttertail Spirit]"
+  },
+  "107802": {
+    "jp_text": "[Sugary Wind]",
+    "unofficialTranslation": "[Sugary Wind]"
+  },
+  "107901": {
+    "jp_text": "[衣錦還郷の瑞星]",
+    "unofficialTranslation": "[Auspicious Star of the Triumphant Return]"
+  },
+  "108001": {
+    "jp_text": "[ZOKU-ZOKU GIZMO]",
+    "unofficialTranslation": "[ZOKU-ZOKU GIZMO]"
+  },
+  "108201": {
+    "jp_text": "[Looking Fly!]",
+    "unofficialTranslation": "[Looking Fly!]"
+  },
+  "108301": {
+    "jp_text": "[Onyx Soldier]",
+    "unofficialTranslation": "[Onyx Soldier]"
+  },
+  "108302": {
+    "jp_text": "[Jetblack Automaton]",
+    "unofficialTranslation": "[Jetblack Automaton]"
+  },
+  "108401": {
+    "jp_text": "[身に纏うケラヴノス]",
+    "unofficialTranslation": "[Clad in Keraunos]"
+  },
+  "108402": {
+    "jp_text": "[With a Twist]",
+    "unofficialTranslation": "[With a Twist]"
+  },
+  "108501": {
+    "jp_text": "[華麗なる紅玉]",
+    "unofficialTranslation": "[The Splendid Ruby]"
+  },
+  "108502": {
+    "jp_text": "[Flowing Blue]",
+    "unofficialTranslation": "[Flowing Blue]"
+  },
+  "108601": {
+    "jp_text": "[オニキス・ライン]",
+    "unofficialTranslation": "[Onyx Line]"
+  },
+  "108602": {
+    "jp_text": "[Untouchable Eden]",
+    "unofficialTranslation": "[Untouchable Eden]"
+  },
+  "108701": {
+    "jp_text": "[Flare]",
+    "unofficialTranslation": "[Flare]"
+  },
+  "108702": {
+    "jp_text": "[溶けない砂糖菓子]",
+    "unofficialTranslation": "[Unmelting Sugar Candy]"
+  },
+  "108801": {
+    "jp_text": "[黒翠千里行]",
+    "unofficialTranslation": "[Black Jade's Thousand-League Journey]"
+  },
+  "108802": {
+    "jp_text": "[晴島花麗]",
+    "unofficialTranslation": "[Clear Island's Splendid Flower]"
+  },
+  "108901": {
+    "jp_text": "[Grand itinéraire]",
+    "unofficialTranslation": "[Grand itinéraire]"
+  },
+  "108902": {
+    "jp_text": "[夏凪ネイビードロップ]",
+    "unofficialTranslation": "[Summer Calm Navy Drop]"
+  },
+  "109001": {
+    "jp_text": "[Le beau sommet]",
+    "unofficialTranslation": "[Le beau sommet]"
+  },
+  "109101": {
+    "jp_text": "[Voyage étincelant]",
+    "unofficialTranslation": "[Voyage étincelant]"
+  },
+  "109102": {
+    "jp_text": "[Éclat d'été]",
+    "unofficialTranslation": "[Éclat d'été]"
+  },
+  "109301": {
+    "jp_text": "[Prism]",
+    "unofficialTranslation": "[Prism]"
+  },
+  "109302": {
+    "jp_text": "[秋日色アンダンテ]",
+    "unofficialTranslation": "[Autumn-Colored Andante]"
+  },
+  "109401": {
+    "jp_text": "[王者の喊声]",
+    "unofficialTranslation": "[The Champion's War Cry]"
+  },
+  "109601": {
+    "jp_text": "[紅色塗早駆具足]",
+    "unofficialTranslation": "[Crimson-Lacquered Armor of Swiftness]"
+  },
+  "109701": {
+    "jp_text": "[緋想の誓衣]",
+    "unofficialTranslation": "[Sacred Garb of Scarlet Vows]"
+  },
+  "109801": {
+    "jp_text": "[陰陽八卦☆開運衣]",
+    "unofficialTranslation": "[Yin-Yang Bagua☆Good Fortune Garb]"
+  },
+  "109802": {
+    "jp_text": "[光彩陸離☆招福衣]",
+    "unofficialTranslation": "[Dazzling Radiance☆Luck-Inviting Garb]"
+  },
+  "109901": {
+    "jp_text": "[スター・ライト・シップ]",
+    "unofficialTranslation": "[Star Light Ship]"
+  },
+  "109902": {
+    "jp_text": "[パステルマリン・ロコドル]",
+    "unofficialTranslation": "[Pastel Marine Locodol]"
+  },
+  "110001": {
+    "jp_text": "[Butterfly Sting]",
+    "unofficialTranslation": "[Butterfly Sting]"
+  },
+  "110201": {
+    "jp_text": "[リトモ・デッラ・テッラ]",
+    "unofficialTranslation": "[Ritmo della Terra]"
+  },
+  "110401": {
+    "jp_text": "[登竜之頂]",
+    "unofficialTranslation": "[Peak of the Rising Dragon]"
+  },
+  "110402": {
+    "jp_text": "[雅号・墨龍]",
+    "unofficialTranslation": "[Art-Name - Ink Dragon]"
+  },
+  "110501": {
+    "jp_text": "[Universe-Naut]",
+    "unofficialTranslation": "[Universe-Naut]"
+  },
+  "110502": {
+    "jp_text": "[Like “ZEER”]",
+    "unofficialTranslation": "[Like “ZEER”]"
+  },
+  "110601": {
+    "jp_text": "[みらくるめーくあっぷ！]",
+    "unofficialTranslation": "[Miracle Make-Up!]"
+  },
+  "110602": {
+    "jp_text": "[ハッピー・リトル・ノーツ]",
+    "unofficialTranslation": "[Happy Little Notes]"
+  },
+  "110701": {
+    "jp_text": "[GLITTER!]",
+    "unofficialTranslation": "[GLITTER!]"
+  },
+  "110702": {
+    "jp_text": "[Tap! Tap! Tap!]",
+    "unofficialTranslation": "[Tap! Tap! Tap!]"
+  },
+  "110801": {
+    "jp_text": "[Red in Black]",
+    "unofficialTranslation": "[Red in Black]"
+  },
+  "110901": {
+    "jp_text": "[Dream Successor]",
+    "unofficialTranslation": "[Dream Successor]"
+  },
+  "110902": {
+    "jp_text": "[Eternal Fairytale]",
+    "unofficialTranslation": "[Eternal Fairytale]"
+  },
+  "111001": {
+    "jp_text": "[Future Weaver]",
+    "unofficialTranslation": "[Future Weaver]"
+  },
+  "111002": {
+    "jp_text": "[Twinbell Queen]",
+    "unofficialTranslation": "[Twinbell Queen]"
+  },
+  "111101": {
+    "jp_text": "[Inherited Hope]",
+    "unofficialTranslation": "[Inherited Hope]"
+  },
+  "111301": {
+    "jp_text": "[Assorted Cuteness♡]",
+    "unofficialTranslation": "[Assorted Cuteness♡]"
+  },
+  "111501": {
+    "jp_text": "[総攬]",
+    "unofficialTranslation": "[General Command]"
+  },
+  "111601": {
+    "jp_text": "[Regina dei fiori]",
+    "unofficialTranslation": "[Regina dei fiori]"
+  },
+  "111701": {
+    "jp_text": "[ドラマティック・チュチュ]",
+    "unofficialTranslation": "[Dramatic Tutu]"
+  },
+  "111901": {
+    "jp_text": "[夢路のよすが]",
+    "unofficialTranslation": "[Reliance on a Dream Path]"
+  },
+  "112001": {
+    "jp_text": "[真実一路]",
+    "unofficialTranslation": "[The Path of Truth]"
+  },
+  "112101": {
+    "jp_text": "[Chevalier fidèle]",
+    "unofficialTranslation": "[Chevalier fidèle]"
+  },
+  "112401": {
+    "jp_text": "[POPPING!]",
+    "unofficialTranslation": "[POPPING!]"
+  },
+  "112701": {
+    "jp_text": "[義心の黒焔]",
+    "unofficialTranslation": "[Black Flame of Righteousness]"
+  },
+  "113101": {
+    "jp_text": "[すまいる・まい・うぇい！]",
+    "unofficialTranslation": "[Smile My Way!]"
+  },
+  "113201": {
+    "jp_text": "[9927 Wishes]",
+    "unofficialTranslation": "[9927 Wishes]"
+  },
+  "113301": {
+    "jp_text": "[陸離の編纂者]",
+    "unofficialTranslation": "[Compiler of Splendor]"
+  }
+}
