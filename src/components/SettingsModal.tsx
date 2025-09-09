@@ -2,6 +2,7 @@ import { useState, useRef, ChangeEvent } from 'react';
 import { useAppContext } from '../context/AppContext';
 import Modal from './common/Modal';
 import './SettingsModal.css';
+import { useTranslation } from 'react-i18next';
 
 interface SettingsModalProps {
   isOpen: boolean;
@@ -9,7 +10,8 @@ interface SettingsModalProps {
 }
 
 const SettingsModal = ({ isOpen, onClose }: SettingsModalProps) => {
-    const { exportData, importData, deleteAllData, dataMode, setDataMode, displayLanguage, setDisplayLanguage } = useAppContext();
+    const { t, i18n } = useTranslation(['settings', 'common']);
+    const { exportData, importData, deleteAllData, dataMode, setDataMode, dataDisplayLanguage, setDataDisplayLanguage, changeUiLanguage } = useAppContext();
     
     const [isImportConfirmOpen, setImportConfirmOpen] = useState(false);
     const [isDeleteConfirmOpen, setDeleteConfirmOpen] = useState(false);
@@ -31,7 +33,8 @@ const SettingsModal = ({ isOpen, onClose }: SettingsModalProps) => {
                 await importData(fileToImport);
                 onClose(); // Close main settings modal on success
             } catch (e) {
-                setErrorMessage(`Error importing file: ${e instanceof Error ? e.message : 'Unknown error'}`);
+                const message = e instanceof Error ? e.message : 'Unknown error';
+                setErrorMessage(t('importErrorMsg', { message }));
             } finally {
                 setImportConfirmOpen(false);
                 setFileToImport(null);
@@ -58,58 +61,79 @@ const SettingsModal = ({ isOpen, onClose }: SettingsModalProps) => {
 
     return (
         <>
-            <Modal isOpen={isOpen} onClose={onClose} title="Settings & Data Management">
+            <Modal isOpen={isOpen} onClose={onClose} title={t('title')}>
                 <div className="space-y-4 my-4">
                     <div className="form__section !border-t-0 !pt-0">
-                        <h4 className="form__section-title mb-2">Data Source</h4>
-                        <p className="text-sm text-stone-500 dark:text-stone-400 mb-3">Select which server's dataset to use for skills and characters.</p>
+                        <h4 className="form__section-title mb-2">{t('dataSourceTitle')}</h4>
+                        <p className="text-sm text-stone-500 dark:text-stone-400 mb-3">{t('dataSourceDesc')}</p>
                         <div className="space-y-2">
                             <label className={`settings-modal__option ${dataMode === 'jp' ? 'settings-modal__option--selected' : ''}`}>
                                 <input type="radio" value="jp" checked={dataMode === 'jp'} onChange={() => setDataMode('jp')} className="settings-modal__option-radio" />
                                 <div>
-                                    <span className="settings-modal__option-label">Japanese (All Data)</span>
-                                    <p className="settings-modal__option-description">Includes all characters and skills, with Japanese names as fallbacks.</p>
+                                    <span className="settings-modal__option-label">{t('jpDataLabel')}</span>
+                                    <p className="settings-modal__option-description">{t('jpDataDesc')}</p>
                                 </div>
                             </label>
                              <label className={`settings-modal__option ${dataMode === 'global' ? 'settings-modal__option--selected' : ''}`}>
                                 <input type="radio" value="global" checked={dataMode === 'global'} onChange={() => setDataMode('global')} className="settings-modal__option-radio" />
                                 <div>
-                                    <span className="settings-modal__option-label">Global (Translated Only)</span>
-                                    <p className="settings-modal__option-description">Only shows characters and skills that have an official English translation.</p>
+                                    <span className="settings-modal__option-label">{t('globalDataLabel')}</span>
+                                    <p className="settings-modal__option-description">{t('globalDataDesc')}</p>
                                 </div>
                             </label>
                         </div>
                     </div>
 
                      <div className="form__section">
-                        <h4 className="form__section-title mb-2">Display Language</h4>
-                        <p className="text-sm text-stone-500 dark:text-stone-400 mb-3">Choose the language for displaying names of Umas and skills.</p>
+                        <h4 className="form__section-title mb-2">{t('dataDisplayLangTitle')}</h4>
+                        <p className="text-sm text-stone-500 dark:text-stone-400 mb-3">{t('dataDisplayLangDesc')}</p>
                         <div className="space-y-2">
-                            <label className={`settings-modal__option ${displayLanguage === 'en' ? 'settings-modal__option--selected' : ''}`}>
-                                <input type="radio" value="en" checked={displayLanguage === 'en'} onChange={() => setDisplayLanguage('en')} className="settings-modal__option-radio" />
+                            <label className={`settings-modal__option ${dataDisplayLanguage === 'en' ? 'settings-modal__option--selected' : ''}`}>
+                                <input type="radio" value="en" checked={dataDisplayLanguage === 'en'} onChange={() => setDataDisplayLanguage('en')} className="settings-modal__option-radio" />
                                 <div>
-                                    <span className="settings-modal__option-label">English</span>
-                                    <p className="settings-modal__option-description">Display names in English, falling back to Japanese if no translation exists.</p>
+                                    <span className="settings-modal__option-label">{t('enDisplayLabel')}</span>
+                                    <p className="settings-modal__option-description">{t('enDisplayDesc')}</p>
                                 </div>
                             </label>
-                             <label className={`settings-modal__option ${displayLanguage === 'jp' ? 'settings-modal__option--selected' : ''}`}>
-                                <input type="radio" value="jp" checked={displayLanguage === 'jp'} onChange={() => setDisplayLanguage('jp')} className="settings-modal__option-radio" />
+                             <label className={`settings-modal__option ${dataDisplayLanguage === 'jp' ? 'settings-modal__option--selected' : ''}`}>
+                                <input type="radio" value="jp" checked={dataDisplayLanguage === 'jp'} onChange={() => setDataDisplayLanguage('jp')} className="settings-modal__option-radio" />
                                 <div>
-                                    <span className="settings-modal__option-label">Japanese</span>
-                                    <p className="settings-modal__option-description">Display all names in Japanese (日本語).</p>
+                                    <span className="settings-modal__option-label">{t('jpDisplayLabel')}</span>
+                                    <p className="settings-modal__option-description">{t('jpDisplayDesc')}</p>
                                 </div>
                             </label>
                         </div>
                     </div>
 
                     <div className="form__section">
-                        <h4 className="form__section-title mb-2">Manage Data</h4>
+                        <h4 className="form__section-title mb-2">{t('uiLangTitle')}</h4>
+                        <p className="text-sm text-stone-500 dark:text-stone-400 mb-3">{t('uiLangDesc')}</p>
+                        <div className="space-y-2">
+                            <label className={`settings-modal__option ${i18n.language === 'en' ? 'settings-modal__option--selected' : ''}`}>
+                                <input type="radio" value="en" checked={i18n.language === 'en'} onChange={() => changeUiLanguage('en')} className="settings-modal__option-radio" />
+                                <div>
+                                    <span className="settings-modal__option-label">{t('enDisplayLabel')}</span>
+                                    <p className="settings-modal__option-description">Change the application's menus and labels to English.</p>
+                                </div>
+                            </label>
+                             <label className={`settings-modal__option ${i18n.language === 'jp' ? 'settings-modal__option--selected' : ''}`}>
+                                <input type="radio" value="jp" checked={i18n.language === 'jp'} onChange={() => changeUiLanguage('jp')} className="settings-modal__option-radio" />
+                                <div>
+                                    <span className="settings-modal__option-label">{t('jpDisplayLabel')}</span>
+                                    <p className="settings-modal__option-description">アプリケーションのメニューやラベルを日本語に変更します。</p>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div className="form__section">
+                        <h4 className="form__section-title mb-2">{t('manageDataTitle')}</h4>
                          <button id="export-btn" className="button button--secondary w-full" onClick={exportData}>
-                            Export All Data
+                            {t('exportBtn')}
                         </button>
                         
                         <label htmlFor="import-file" className="button button--neutral w-full mt-2">
-                            Import Data
+                            {t('importBtn')}
                         </label>
                         <input
                             type="file"
@@ -123,7 +147,7 @@ const SettingsModal = ({ isOpen, onClose }: SettingsModalProps) => {
                     
                     <div className="border-t pt-4">
                         <button className="button button--danger w-full" onClick={() => setDeleteConfirmOpen(true)}>
-                            Delete All Data
+                            {t('deleteAllBtn')}
                         </button>
                     </div>
                 </div>
@@ -132,45 +156,35 @@ const SettingsModal = ({ isOpen, onClose }: SettingsModalProps) => {
             <Modal
                 isOpen={isImportConfirmOpen}
                 onClose={handleImportCancel}
-                title="Confirm Import"
+                title={t('importConfirmTitle')}
             >
-                <p className="dialog-modal__message">
-                    Are you sure you want to import this file?
-                    <br />
-                    <strong>This will overwrite all current projects and data.</strong>
-                </p>
+                <p className="dialog-modal__message" dangerouslySetInnerHTML={{ __html: t('importConfirmMsg') }} />
                 <div className="dialog-modal__footer">
-                    <button className="button button--neutral" onClick={handleImportCancel}>Cancel</button>
-                    <button className="button button--primary" onClick={handleImportConfirm}>Confirm</button>
+                    <button className="button button--neutral" onClick={handleImportCancel}>{t('common:cancel')}</button>
+                    <button className="button button--primary" onClick={handleImportConfirm}>{t('common:confirm')}</button>
                 </div>
             </Modal>
             
             <Modal
                 isOpen={isDeleteConfirmOpen}
                 onClose={() => setDeleteConfirmOpen(false)}
-                title="Confirm Deletion"
+                title={t('deleteConfirmTitle')}
             >
-                <p className="dialog-modal__message">
-                    Are you sure you want to delete all data?
-                    <br />
-                    <strong>This action is irreversible.</strong>
-                    <br /><br />
-                    It is highly recommended to export your data first as a backup.
-                </p>
+                <p className="dialog-modal__message" dangerouslySetInnerHTML={{ __html: t('deleteConfirmMsg') }} />
                 <div className="dialog-modal__footer">
-                    <button className="button button--neutral" onClick={() => setDeleteConfirmOpen(false)}>Cancel</button>
-                    <button className="button button--danger" onClick={handleDeleteConfirm}>Delete Everything</button>
+                    <button className="button button--neutral" onClick={() => setDeleteConfirmOpen(false)}>{t('common:cancel')}</button>
+                    <button className="button button--danger" onClick={handleDeleteConfirm}>{t('deleteConfirmBtn')}</button>
                 </div>
             </Modal>
 
             <Modal
                 isOpen={!!errorMessage}
                 onClose={() => setErrorMessage('')}
-                title="Import Error"
+                title={t('importErrorTitle')}
             >
                 <p className="dialog-modal__message">{errorMessage}</p>
                 <div className="dialog-modal__footer">
-                    <button className="button button--primary" onClick={() => setErrorMessage('')}>OK</button>
+                    <button className="button button--primary" onClick={() => setErrorMessage('')}>{t('common:ok')}</button>
                 </div>
             </Modal>
         </>
