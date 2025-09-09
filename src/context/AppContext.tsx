@@ -3,21 +3,23 @@ import { AppData, Profile, Skill, Uma, Goal, Parent, NewParentData, WishlistItem
 import masterSkillListJson from '../data/skill-list.json';
 import masterUmaListJson from '../data/uma-list.json';
 import { calculateScore } from '../utils/scoring';
+import i18n from '../i18n';
 
 const DB_KEY = 'umaTrackerData_v2';
 const PREFS_KEY = 'umaTrackerPrefs_v1';
 const CURRENT_VERSION = 3;
 
 type DataMode = 'jp' | 'global';
-type DisplayLanguage = 'en' | 'jp';
+type DataDisplayLanguage = 'en' | 'jp';
 
 interface AppContextType {
   loading: boolean;
   appData: AppData;
   dataMode: DataMode;
   setDataMode: (mode: DataMode) => void;
-  displayLanguage: DisplayLanguage;
-  setDisplayLanguage: (lang: DisplayLanguage) => void;
+  dataDisplayLanguage: DataDisplayLanguage;
+  setDataDisplayLanguage: (lang: DataDisplayLanguage) => void;
+  changeUiLanguage: (lang: 'en' | 'jp') => void;
   masterSkillList: Skill[];
   masterUmaList: Uma[];
   skillMapByName: Map<string, Skill>;
@@ -117,7 +119,7 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
   const [fullMasterSkillList] = useState<Skill[]>(masterSkillListJson as Skill[]);
   const [fullMasterUmaList] = useState<Uma[]>(masterUmaListJson as Uma[]);
   const [dataMode, setDataModeState] = useState<DataMode>('jp');
-  const [displayLanguage, setDisplayLanguageState] = useState<DisplayLanguage>('en');
+  const [dataDisplayLanguage, setDataDisplayLanguageState] = useState<DataDisplayLanguage>('en');
   const [appData, setAppData] = useState<AppData>({
     version: CURRENT_VERSION,
     activeProfileId: null,
@@ -153,7 +155,7 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
         try {
             const prefs = JSON.parse(savedPrefs);
             if (prefs.dataMode) setDataModeState(prefs.dataMode);
-            if (prefs.displayLanguage) setDisplayLanguageState(prefs.displayLanguage);
+            if (prefs.dataDisplayLanguage) setDataDisplayLanguageState(prefs.dataDisplayLanguage);
         } catch (e) {
             console.error("Failed to parse user preferences", e);
         }
@@ -185,10 +187,14 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
       savePrefs('dataMode', mode);
   };
 
-  const setDisplayLanguage = (lang: DisplayLanguage) => {
-    setDisplayLanguageState(lang);
-    savePrefs('displayLanguage', lang);
+  const setDataDisplayLanguage = (lang: DataDisplayLanguage) => {
+    setDataDisplayLanguageState(lang);
+    savePrefs('dataDisplayLanguage', lang);
   }
+
+  const changeUiLanguage = (lang: 'en' | 'jp') => {
+    i18n.changeLanguage(lang);
+  };
 
   const masterSkillList = useMemo(() => {
       if (dataMode === 'global') {
@@ -629,8 +635,9 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
     appData,
     dataMode,
     setDataMode,
-    displayLanguage,
-    setDisplayLanguage,
+    dataDisplayLanguage,
+    setDataDisplayLanguage,
+    changeUiLanguage,
     masterSkillList,
     masterUmaList,
     skillMapByName,
