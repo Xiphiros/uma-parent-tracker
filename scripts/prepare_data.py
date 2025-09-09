@@ -23,6 +23,7 @@ RAW_DATA_DIR = PROJECT_ROOT / 'raw_data'
 OUTPUT_DATA_DIR = PROJECT_ROOT / 'src' / 'data'
 UMA_IMG_DIR = PROJECT_ROOT / 'public' / 'images' / 'umas'
 EXCLUSION_PATH = OUTPUT_DATA_DIR / 'skill-exclusions.json'
+FACTOR_MAP_PATH = RAW_DATA_DIR / 'factor-map.json'
 
 # --- DATA LOADING AND MERGING ---
 
@@ -96,51 +97,59 @@ def prepare_skills(skill_data, skill_meta, skill_names):
             'isGlobal': is_global
         })
         
-    # Process and add race and scenario factors, tracking their source
-    global_race_factors = set()
-    jp_race_factors = set()
-    gl_race_file = RAW_DATA_DIR / 'global' / 'races.json'
-    if gl_race_file.exists():
-         with open(gl_race_file, 'r', encoding='utf-8') as f:
-            global_race_factors.update(json.load(f))
-    jp_race_file = RAW_DATA_DIR / 'jp' / 'races.json'
-    if jp_race_file.exists():
-        with open(jp_race_file, 'r', encoding='utf-8') as f:
-            jp_race_factors.update(json.load(f))
+    # --- New Factor Processing Logic ---
+    print("Processing race and scenario factors using factor-map...")
 
-    global_scenario_factors = set()
-    jp_scenario_factors = set()
-    gl_scenario_file = RAW_DATA_DIR / 'global' / 'scenarios.json'
-    if gl_scenario_file.exists():
-        with open(gl_scenario_file, 'r', encoding='utf-8') as f:
-            global_scenario_factors.update(json.load(f))
-    jp_scenario_file = RAW_DATA_DIR / 'jp' / 'scenarios.json'
-    if jp_scenario_file.exists():
-        with open(jp_scenario_file, 'r', encoding='utf-8') as f:
-            jp_scenario_factors.update(json.load(f))
+    # 1. Load the canonical map and raw factor lists
+    with open(FACTOR_MAP_PATH, 'r', encoding='utf-8') as f:
+        factor_map = json.load(f)
+    
+    global_race_factors = set(_load_json('global', 'races.json'))
+    jp_race_factors = set(_load_json('jp', 'races.json'))
+    global_scenario_factors = set(_load_json('global', 'scenarios.json'))
+    jp_scenario_factors = set(_load_json('jp', 'scenarios.json'))
 
-    all_unique_race_factors = sorted(list(global_race_factors | jp_race_factors))
-    all_unique_scenario_factors = sorted(list(global_scenario_factors | jp_scenario_factors))
+    processed_names = set()
 
-    def add_factor_to_list(name: str, prefix: str, is_global: bool):
+    # 2. Process all mapped factors first, creating unified entries
+    for factor_type, factors in factor_map.items():
+        prefix = "race_" if factor_type == "races" else "scenario_"
+        for factor_id, names in factors.items():
+            all_possible_skills.append({
+                'id': factor_id,
+                'name_en': names['en'],
+                'name_jp': names['jp'],
+                'type': 'normal', 'rarity': 1, 'groupId': None,
+                'isGlobal': True  # Mapped factors are always considered global
+            })
+            processed_names.add(names['en'])
+            processed_names.add(names['jp'])
+
+    # 3. Process unmapped factors (version-exclusive)
+    unmapped_gl_races = global_race_factors - processed_names
+    unmapped_jp_races = jp_race_factors - processed_names
+    unmapped_gl_scenarios = global_scenario_factors - processed_names
+    unmapped_jp_scenarios = jp_scenario_factors - processed_names
+    
+    def add_unmapped_factor(name: str, prefix: str, is_global: bool):
         factor_id = prefix + re.sub(r'[^a-z0-9]+', '', name.lower())
         all_possible_skills.append({
             'id': factor_id,
-            'name_jp': name,
-            'name_en': name,
-            'type': 'normal',
-            'rarity': 1,
-            'groupId': None,
+            'name_jp': name, 'name_en': name,
+            'type': 'normal', 'rarity': 1, 'groupId': None,
             'isGlobal': is_global
         })
-    
-    print(f"Loaded {len(all_unique_race_factors)} unique race factors ({len(global_race_factors)} global).")
-    for factor in all_unique_race_factors:
-        add_factor_to_list(factor, 'race_', factor in global_race_factors)
-        
-    print(f"Loaded {len(all_unique_scenario_factors)} unique scenario factors ({len(global_scenario_factors)} global).")
-    for factor in all_unique_scenario_factors:
-        add_factor_to_list(factor, 'scenario_', factor in global_scenario_factors)
+
+    for factor in sorted(list(unmapped_gl_races)): add_unmapped_factor(factor, 'race_', True)
+    for factor in sorted(list(unmapped_jp_races)): add_unmapped_factor(factor, 'race_', False)
+    for factor in sorted(list(unmapped_gl_scenarios)): add_unmapped_factor(factor, 'scenario_', True)
+    for factor in sorted(list(unmapped_jp_scenarios)): add_unmapped_factor(factor, 'scenario_', False)
+
+    print(f"Processed {len(factor_map['races']) + len(factor_map['scenarios'])} mapped factors.")
+    print(f"Processed {len(unmapped_gl_races | unmapped_jp_races)} unmapped race factors.")
+    print(f"Processed {len(unmapped_gl_scenarios | unmapped_jp_scenarios)} unmapped scenario factors.")
+
+    # --- End of New Factor Logic ---
 
     all_possible_skills.sort(key=lambda x: x['name_en'])
     with open(dev_output_path, 'w', encoding='utf-8') as f:
