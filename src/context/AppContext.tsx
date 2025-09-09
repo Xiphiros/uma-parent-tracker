@@ -205,38 +205,43 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
     i18n.changeLanguage(lang);
   };
 
-  const communityTranslatedSkillList = useMemo(() => {
-    if (!useCommunityTranslations) return fullMasterSkillList;
-    return fullMasterSkillList.map(skill => (
-        skill.name_en_community
-            ? { ...skill, name_en: skill.name_en_community }
-            : skill
-    ));
-  }, [fullMasterSkillList, useCommunityTranslations]);
+  const getBestEnglishName = (item: Skill | Uma) => {
+    if (item.isGlobal) return item.name_en; // Official EN is highest priority
+    if (useCommunityTranslations && item.name_en_community) return item.name_en_community; // Community EN is next
+    return item.name_jp; // Fallback to JP if no English is available
+  };
 
-  const communityTranslatedUmaList = useMemo(() => {
-      if (!useCommunityTranslations) return fullMasterUmaList;
-      return fullMasterUmaList.map(uma => (
-          uma.name_en_community
-              ? { ...uma, name_en: uma.name_en_community }
-              : uma
-      ));
+  // Create a processed list that components will use for display.
+  // The `name_en` field is intelligently populated based on settings.
+  const processedMasterSkillList = useMemo(() => {
+    return fullMasterSkillList.map(skill => ({
+      ...skill,
+      name_en: getBestEnglishName(skill),
+    }));
+  }, [fullMasterSkillList, useCommunityTranslations]);
+  
+  const processedMasterUmaList = useMemo(() => {
+    return fullMasterUmaList.map(uma => ({
+      ...uma,
+      name_en: getBestEnglishName(uma),
+    }));
   }, [fullMasterUmaList, useCommunityTranslations]);
 
   const masterSkillList = useMemo(() => {
       if (dataMode === 'global') {
-          return communityTranslatedSkillList.filter(s => s.isGlobal);
+          return processedMasterSkillList.filter(s => s.isGlobal);
       }
-      return communityTranslatedSkillList;
-  }, [dataMode, communityTranslatedSkillList]);
+      return processedMasterSkillList;
+  }, [dataMode, processedMasterSkillList]);
 
   const masterUmaList = useMemo(() => {
       if (dataMode === 'global') {
-          return communityTranslatedUmaList.filter(u => u.isGlobal);
+          return processedMasterUmaList.filter(u => u.isGlobal);
       }
-      return communityTranslatedUmaList;
-  }, [dataMode, communityTranslatedUmaList]);
+      return processedMasterUmaList;
+  }, [dataMode, processedMasterUmaList]);
 
+  // These maps are for internal lookup and should always use the canonical names from the raw data files.
   const skillMapByName = useMemo(() => new Map(fullMasterSkillList.map(skill => [skill.name_en, skill])), [fullMasterSkillList]);
   const umaMapById = useMemo(() => new Map(fullMasterUmaList.map(uma => [uma.id, uma])), [fullMasterUmaList]);
 
