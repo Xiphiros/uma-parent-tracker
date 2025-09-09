@@ -1,4 +1,24 @@
 /* Settings Modal Block */
+.settings-modal__layout {
+    display: grid;
+    grid-template-columns: 1fr; /* Default to single column on small screens */
+    gap: 1rem 2rem; /* Vertical and horizontal gap */
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+@media (min-width: 768px) { /* md breakpoint */
+    .settings-modal__layout {
+        grid-template-columns: repeat(2, minmax(0, 1fr)); /* Two columns on larger screens */
+    }
+}
+
+.settings-modal__column {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
 .settings-modal__option {
     display: flex;
     align-items: flex-start;
