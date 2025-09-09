@@ -3,12 +3,15 @@ from pathlib import Path
 import re
 
 # --- INSTRUCTIONS ---
-# 1. Ensure you have run `scripts/prepare_raw_data_jp.py` and `scripts/prepare_raw_data_gl.py`
-#    to generate the necessary JSON files in `raw_data/jp/` and `raw_data/global/`.
-# 2. (Optional) Update `raw_data/races.json` with a list of race names.
-# 3. (Optional) Update `src/data/skill-exclusions.json` to exclude skills from the final list.
-# 4. Run this script from your project root: `python scripts/prepare_data.py`
-# 5. This will merge the JP and Global data and generate the final production files:
+# To generate all production data, run the scripts in the following order from the project root:
+# 1. `python scripts/prepare_raw_data_gl.py path/to/global/master.mdb`
+# 2. `python scripts/prepare_raw_data_jp.py path/to/jp/master.mdb`
+# 3. `python scripts/prepare_data.py` (This script)
+#
+# Note: Factor data for races and scenarios must be manually placed in raw_data/
+# from the appropriate sources before running this script.
+#
+# This pipeline will generate the final production files:
 #    - `src/data/skill-list.json`
 #    - `src/data/uma-list.json`
 #    - `src/data/skill-list-dev.json` (an unfiltered list for dev tools)
@@ -57,9 +60,8 @@ def load_and_merge_skill_data():
 
 def prepare_skills(skill_data, skill_meta, skill_names):
     """Processes merged skill and race data into a format usable by the application."""
-    print("Processing skills and races...")
+    print("Processing skills and factors...")
     
-    races_path = RAW_DATA_DIR / 'races.json'
     output_path = OUTPUT_DATA_DIR / 'skill-list.json'
     dev_output_path = OUTPUT_DATA_DIR / 'skill-list-dev.json'
 
@@ -94,24 +96,41 @@ def prepare_skills(skill_data, skill_meta, skill_names):
             'isGlobal': is_global
         })
         
-    # Process and add races
-    if races_path.exists():
-        with open(races_path, 'r', encoding='utf-8') as f:
-            races = json.load(f)
-        print(f"Loaded {len(races)} races.")
-        for race_name in races:
-            race_id = "race_" + re.sub(r'[^a-z0-9]+', '', race_name.lower())
-            all_possible_skills.append({
-                'id': race_id,
-                'name_jp': race_name,
-                'name_en': race_name,
-                'type': 'normal',
-                'rarity': 1,
-                'groupId': None,
-                'isGlobal': True # Races are considered global by default
-            })
-    else:
-        print("Warning: races.json not found in raw_data/. No races will be added.")
+    # Process and add race and scenario factors
+    race_factors = set()
+    for ver in ['jp', 'global']:
+        race_file = RAW_DATA_DIR / ver / 'races.json'
+        if race_file.exists():
+            with open(race_file, 'r', encoding='utf-8') as f:
+                race_factors.update(json.load(f))
+    
+    scenario_factors = set()
+    for ver in ['jp', 'global']:
+        scenario_file = RAW_DATA_DIR / ver / 'scenarios.json'
+        if scenario_file.exists():
+            with open(scenario_file, 'r', encoding='utf-8') as f:
+                scenario_factors.update(json.load(f))
+
+    all_race_factors = sorted(list(race_factors))
+    all_scenario_factors = sorted(list(scenario_factors))
+
+    def add_factor_to_list(name: str, prefix: str):
+        factor_id = prefix + re.sub(r'[^a-z0-9]+', '', name.lower())
+        all_possible_skills.append({
+            'id': factor_id,
+            'name_jp': name,
+            'name_en': name,
+            'type': 'normal',
+            'rarity': 1,
+            'groupId': None,
+            'isGlobal': True # Assume global by default for simplicity
+        })
+    
+    print(f"Loaded {len(all_race_factors)} unique race factors.")
+    for factor in all_race_factors: add_factor_to_list(factor, 'race_')
+        
+    print(f"Loaded {len(all_scenario_factors)} unique scenario factors.")
+    for factor in all_scenario_factors: add_factor_to_list(factor, 'scenario_')
 
     all_possible_skills.sort(key=lambda x: x['name_en'])
     with open(dev_output_path, 'w', encoding='utf-8') as f:
@@ -134,7 +153,7 @@ def prepare_skills(skill_data, skill_meta, skill_names):
     with open(output_path, 'w', encoding='utf-8') as f:
         json.dump(inheritable_skills, f, indent=2, ensure_ascii=False)
         
-    print(f"Successfully processed {len(inheritable_skills)} skills and races for production.")
+    print(f"Successfully processed {len(inheritable_skills)} skills and factors for production.")
     print(f"Skill output saved to: {output_path.relative_to(PROJECT_ROOT)}")
 
 def prepare_umas():
