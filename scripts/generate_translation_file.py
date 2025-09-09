@@ -1,12 +1,14 @@
 import json
 from pathlib import Path
 import argparse
+import re
 
 # --- PATHS ---
 SCRIPT_DIR = Path(__file__).parent
 PROJECT_ROOT = SCRIPT_DIR.parent
 RAW_DATA_DIR = PROJECT_ROOT / 'raw_data'
 TRANSLATIONS_DIR = PROJECT_ROOT / 'src' / 'data' / 'community_translations'
+FACTOR_MAP_PATH = RAW_DATA_DIR / 'factor-map.json'
 
 # --- Category Definitions ---
 CATEGORIES = {
@@ -21,6 +23,13 @@ def _load_raw_json(version: str, filename: str):
     file_path = RAW_DATA_DIR / version / filename
     try:
         with open(file_path, 'r', encoding='utf-8') as f:
+            return json.load(f)
+    except FileNotFoundError:
+        return {}
+        
+def _load_root_json(filepath: Path):
+    try:
+        with open(filepath, 'r', encoding='utf-8') as f:
             return json.load(f)
     except FileNotFoundError:
         return {}
@@ -64,6 +73,8 @@ def main():
     gl_skill_names = _load_raw_json('global', 'skillnames.json')
     jp_umas = _load_raw_json('jp', 'umas.json')
     gl_umas = _load_raw_json('global', 'umas.json')
+    factor_map = _load_root_json(FACTOR_MAP_PATH)
+    jp_scenario_factors = set(_load_raw_json('jp', 'scenarios.json'))
 
     new_entries_count = 0
 
@@ -98,6 +109,17 @@ def main():
             if jp_outfit_name and not gl_outfit_name and outfit_id not in translations["outfits"]:
                  translations["outfits"][outfit_id] = { "jp_text": jp_outfit_name, "unofficialTranslation": "" }
                  new_entries_count += 1
+
+    # Process unmapped JP Scenario Factors
+    processed_scenario_jp_names = {names['jp'] for names in factor_map.get('scenarios', {}).values()}
+    unmapped_jp_scenarios = jp_scenario_factors - processed_scenario_jp_names
+    
+    for factor_name in sorted(list(unmapped_jp_scenarios)):
+        factor_id = "scenario_" + re.sub(r'[^a-z0-9]+', '', factor_name.lower())
+        category = 'skills_misc'
+        if factor_id not in translations[category]:
+            translations[category][factor_id] = { "jp_text": factor_name, "unofficialTranslation": "" }
+            new_entries_count += 1
 
     save_translations(translations)
     
