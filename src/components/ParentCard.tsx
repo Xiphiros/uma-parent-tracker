@@ -13,7 +13,7 @@ interface ParentCardProps {
 }
 
 const ParentCard = ({ parent, isTopParent = false, onEdit, onDelete }: ParentCardProps) => {
-    const { t } = useTranslation(['roster', 'common']);
+    const { t } = useTranslation(['roster', 'common', 'game']);
     const { getActiveProfile, dataDisplayLanguage, umaMapById, skillMapByName } = useAppContext();
     const goal = getActiveProfile()?.goal;
     const displayNameProp = dataDisplayLanguage === 'jp' ? 'name_jp' : 'name_en';
@@ -65,8 +65,8 @@ const ParentCard = ({ parent, isTopParent = false, onEdit, onDelete }: ParentCar
                     </div>
                     <div className="parent-card__body">
                         <div className="parent-card__spark-container">
-                            <SparkTag category="blue" type={parent.blueSpark.type} stars={parent.blueSpark.stars} />
-                            <SparkTag category="pink" type={parent.pinkSpark.type} stars={parent.pinkSpark.stars} />
+                            <SparkTag category="blue" type={t(parent.blueSpark.type, { ns: 'game' })} stars={parent.blueSpark.stars} originalType={parent.blueSpark.type} />
+                            <SparkTag category="pink" type={t(parent.pinkSpark.type, { ns: 'game' })} stars={parent.pinkSpark.stars} originalType={parent.pinkSpark.type} />
                         </div>
 
                         {parent.uniqueSparks.length > 0 && (
