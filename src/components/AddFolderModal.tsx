@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Folder, IconName } from '../types';
 import Modal from './common/Modal';
 import { FOLDER_COLORS, FOLDER_ICONS } from './Icons';
+import { useTranslation } from 'react-i18next';
 
 interface AddFolderModalProps {
   isOpen: boolean;
@@ -11,6 +12,7 @@ interface AddFolderModalProps {
 }
 
 const AddFolderModal = ({ isOpen, onClose, onSave, folderToEdit }: AddFolderModalProps) => {
+    const { t } = useTranslation(['tabs', 'common']);
     const [name, setName] = useState('');
     const [color, setColor] = useState(FOLDER_COLORS[8]);
     const [icon, setIcon] = useState<IconName>('default');
@@ -37,10 +39,10 @@ const AddFolderModal = ({ isOpen, onClose, onSave, folderToEdit }: AddFolderModa
     };
 
     return (
-        <Modal isOpen={isOpen} onClose={onClose} title={folderToEdit ? 'Edit Folder' : 'Add New Folder'}>
+        <Modal isOpen={isOpen} onClose={onClose} title={folderToEdit ? t('modals.editFolderTitle') : t('modals.addFolderTitle')}>
             <div className="my-4 space-y-4">
                 <div>
-                    <label htmlFor="folder-name" className="form__label">Folder Name</label>
+                    <label htmlFor="folder-name" className="form__label">{t('modals.folderNameLabel')}</label>
                     <input
                         type="text"
                         id="folder-name"
@@ -51,7 +53,7 @@ const AddFolderModal = ({ isOpen, onClose, onSave, folderToEdit }: AddFolderModa
                     />
                 </div>
                 <div>
-                    <label className="form__label">Color</label>
+                    <label className="form__label">{t('modals.colorLabel')}</label>
                     <div className="grid grid-cols-6 gap-2">
                         {FOLDER_COLORS.map(c => (
                             <button
@@ -64,7 +66,7 @@ const AddFolderModal = ({ isOpen, onClose, onSave, folderToEdit }: AddFolderModa
                     </div>
                 </div>
                 <div>
-                    <label className="form__label">Icon</label>
+                    <label className="form__label">{t('modals.iconLabel')}</label>
                      <div className="grid grid-cols-6 gap-2">
                         {FOLDER_ICONS.map(i => (
                             <button
@@ -79,8 +81,8 @@ const AddFolderModal = ({ isOpen, onClose, onSave, folderToEdit }: AddFolderModa
                 </div>
             </div>
             <div className="dialog-modal__footer">
-                <button className="button button--neutral" onClick={onClose}>Cancel</button>
-                <button className="button button--primary" onClick={handleSave}>Save Folder</button>
+                <button className="button button--neutral" onClick={onClose}>{t('common:cancel')}</button>
+                <button className="button button--primary" onClick={handleSave}>{t('modals.saveFolderBtn')}</button>
             </div>
         </Modal>
     );
