@@ -1,0 +1,18 @@
+{
+  "addParentTitle": "新しい親を追加",
+  "editParentTitle": "親を編集",
+  "umaNameLabel": "ウマ娘名",
+  "selectUmaPlaceholder": "ウマ娘を選択...",
+  "blueSparkSection": "青因子",
+  "pinkSparkSection": "赤因子",
+  "typeLabel": "種類",
+  "starsLabel": "星数",
+  "uniqueSparksSection": "固有スキル因子",
+  "searchUniqueSkill": "固有スキルを検索...",
+  "whiteSparksSection": "白因子",
+  "searchSkill": "スキルを検索...",
+  "updateParentBtn": "親を更新",
+  "calculateScoreBtn": "スコア計算 & 保存",
+  "inputRequiredTitle": "入力が必要です",
+  "selectUmaAlert": "ウマ娘名を選択してください。"
+}
