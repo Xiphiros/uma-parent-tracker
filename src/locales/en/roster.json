@@ -1,0 +1,16 @@
+{
+  "rosterTitle": "Roster",
+  "addParentBtn": "Add Parent",
+  "placeholder": "Your roster is empty. Add a parent to get started!",
+  "topPairTitle": "Top Breeding Pair",
+  "topPairPlaceholder": "Add parents to your roster to see the top pair here.",
+  "topPairPlaceholderSingle": "Add one more parent to complete the pair.",
+  "deleteConfirmTitle": "Confirm Deletion",
+  "deleteConfirmMsg": "Are you sure you want to delete \"{{name}}\"?",
+  "parentCard": {
+    "gen": "Gen",
+    "pts": "pts",
+    "noWhiteSparks": "No white sparks.",
+    "rank": "Rank"
+  }
+}
