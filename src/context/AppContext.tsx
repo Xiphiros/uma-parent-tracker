@@ -19,6 +19,8 @@ interface AppContextType {
   setDataMode: (mode: DataMode) => void;
   dataDisplayLanguage: DataDisplayLanguage;
   setDataDisplayLanguage: (lang: DataDisplayLanguage) => void;
+  useCommunityTranslations: boolean;
+  setUseCommunityTranslations: (enabled: boolean) => void;
   changeUiLanguage: (lang: 'en' | 'jp') => void;
   masterSkillList: Skill[];
   masterUmaList: Uma[];
@@ -120,6 +122,7 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
   const [fullMasterUmaList] = useState<Uma[]>(masterUmaListJson as Uma[]);
   const [dataMode, setDataModeState] = useState<DataMode>('jp');
   const [dataDisplayLanguage, setDataDisplayLanguageState] = useState<DataDisplayLanguage>('en');
+  const [useCommunityTranslations, setUseCommunityTranslationsState] = useState<boolean>(false);
   const [appData, setAppData] = useState<AppData>({
     version: CURRENT_VERSION,
     activeProfileId: null,
@@ -156,6 +159,7 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
             const prefs = JSON.parse(savedPrefs);
             if (prefs.dataMode) setDataModeState(prefs.dataMode);
             if (prefs.dataDisplayLanguage) setDataDisplayLanguageState(prefs.dataDisplayLanguage);
+            if (prefs.useCommunityTranslations) setUseCommunityTranslationsState(prefs.useCommunityTranslations);
         } catch (e) {
             console.error("Failed to parse user preferences", e);
         }
@@ -190,25 +194,48 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
   const setDataDisplayLanguage = (lang: DataDisplayLanguage) => {
     setDataDisplayLanguageState(lang);
     savePrefs('dataDisplayLanguage', lang);
-  }
+  };
+
+  const setUseCommunityTranslations = (enabled: boolean) => {
+    setUseCommunityTranslationsState(enabled);
+    savePrefs('useCommunityTranslations', enabled);
+  };
 
   const changeUiLanguage = (lang: 'en' | 'jp') => {
     i18n.changeLanguage(lang);
   };
 
+  const communityTranslatedSkillList = useMemo(() => {
+    if (!useCommunityTranslations) return fullMasterSkillList;
+    return fullMasterSkillList.map(skill => (
+        skill.name_en_community
+            ? { ...skill, name_en: skill.name_en_community }
+            : skill
+    ));
+  }, [fullMasterSkillList, useCommunityTranslations]);
+
+  const communityTranslatedUmaList = useMemo(() => {
+      if (!useCommunityTranslations) return fullMasterUmaList;
+      return fullMasterUmaList.map(uma => (
+          uma.name_en_community
+              ? { ...uma, name_en: uma.name_en_community }
+              : uma
+      ));
+  }, [fullMasterUmaList, useCommunityTranslations]);
+
   const masterSkillList = useMemo(() => {
       if (dataMode === 'global') {
-          return fullMasterSkillList.filter(s => s.isGlobal);
+          return communityTranslatedSkillList.filter(s => s.isGlobal);
       }
-      return fullMasterSkillList;
-  }, [dataMode, fullMasterSkillList]);
+      return communityTranslatedSkillList;
+  }, [dataMode, communityTranslatedSkillList]);
 
   const masterUmaList = useMemo(() => {
       if (dataMode === 'global') {
-          return fullMasterUmaList.filter(u => u.isGlobal);
+          return communityTranslatedUmaList.filter(u => u.isGlobal);
       }
-      return fullMasterUmaList;
-  }, [dataMode, fullMasterUmaList]);
+      return communityTranslatedUmaList;
+  }, [dataMode, communityTranslatedUmaList]);
 
   const skillMapByName = useMemo(() => new Map(fullMasterSkillList.map(skill => [skill.name_en, skill])), [fullMasterSkillList]);
   const umaMapById = useMemo(() => new Map(fullMasterUmaList.map(uma => [uma.id, uma])), [fullMasterUmaList]);
@@ -637,6 +664,8 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
     setDataMode,
     dataDisplayLanguage,
     setDataDisplayLanguage,
+    useCommunityTranslations,
+    setUseCommunityTranslations,
     changeUiLanguage,
     masterSkillList,
     masterUmaList,
