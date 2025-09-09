@@ -1,6 +1,7 @@
 import json
 from pathlib import Path
 import re
+import hashlib
 
 # --- INSTRUCTIONS ---
 # To generate all production data, run the scripts in the following order from the project root:
@@ -159,13 +160,21 @@ def prepare_skills(skill_data, skill_meta, skill_names, translations):
     unmapped_jp_scenarios = jp_scenario_factors - processed_names
     
     def add_unmapped_factor(name: str, prefix: str, is_global: bool):
-        factor_id = prefix + re.sub(r'[^a-z0-9]+', '', name.lower())
-        all_possible_skills.append({
+        factor_hash = hashlib.md5(name.encode('utf-8')).hexdigest()
+        factor_id = prefix + factor_hash
+        
+        skill_entry = {
             'id': factor_id,
             'name_jp': name, 'name_en': name,
             'type': 'normal', 'rarity': 1, 'groupId': None,
             'isGlobal': is_global
-        })
+        }
+        
+        community_translation = translations.get('skills', {}).get(factor_id, {}).get('unofficialTranslation')
+        if community_translation and not is_global:
+            skill_entry['name_en_community'] = community_translation
+            
+        all_possible_skills.append(skill_entry)
 
     for factor in sorted(list(unmapped_gl_races)): add_unmapped_factor(factor, 'race_', True)
     for factor in sorted(list(unmapped_jp_races)): add_unmapped_factor(factor, 'race_', False)
