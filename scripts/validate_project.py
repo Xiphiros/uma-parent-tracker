@@ -2,13 +2,14 @@ import argparse
 import re
 import json
 from pathlib import Path
-from typing import List, Tuple, Set
+from typing import List, Tuple, Set, Dict, Any
 
 # --- Constants ---
 SCRIPT_DIR = Path(__file__).parent
 PROJECT_ROOT = SCRIPT_DIR.parent
 SRC_DIR = PROJECT_ROOT / 'src'
 PUBLIC_DIR = PROJECT_ROOT / 'public'
+WCAG_AA_RATIO = 4.5
 
 # --- Regular Expressions for Checks ---
 INLINE_STYLE_RE = re.compile(r'style=\{\{')
@@ -23,12 +24,90 @@ COLOR_FUNCS = f'(?:{RGB_RE}|{RGBA_RE}|{HSLA_RE})'
 HARDCODED_VALUE = f'(?:{HEX_RE}|{COLOR_FUNCS})'
 HARDCODED_COLOR_RE = re.compile(fr':\s*(?!var\(--|color-mix)[\s"\']*{HARDCODED_VALUE}')
 COLOR_KEYWORDS_RE = re.compile(r':\s*(red|blue|green|yellow|purple|orange|black|white)\s*;')
-# Refined BEM check to be less aggressive and avoid false positives.
-# It looks for triple underscores or hyphens, which are invalid.
 INVALID_BEM_RE = re.compile(r'(___|---)')
+CSS_VAR_RE = re.compile(r'(--[\w-]+):\s*(#[\da-fA-F]{3,6});')
+
+
+# --- Color Contrast Calculation Helpers ---
+
+def hex_to_rgb(hex_color: str) -> Tuple[int, int, int]:
+    """Converts a hex color string to an (R, G, B) tuple."""
+    hex_color = hex_color.lstrip('#')
+    if len(hex_color) == 3:
+        return tuple(int(c * 2, 16) for c in hex_color)
+    return tuple(int(hex_color[i:i+2], 16) for i in (0, 2, 4))
+
+def get_relative_luminance(rgb: Tuple[int, int, int]) -> float:
+    """Calculates the relative luminance of an RGB color."""
+    r, g, b = rgb
+    srgb = [x / 255.0 for x in (r, g, b)]
+    linear = [c / 12.92 if c <= 0.03928 else ((c + 0.055) / 1.055) ** 2.4 for c in srgb]
+    return 0.2126 * linear[0] + 0.7152 * linear[1] + 0.0722 * linear[2]
+
+def get_contrast_ratio(lum1: float, lum2: float) -> float:
+    """Calculates the contrast ratio between two luminance values."""
+    lighter = max(lum1, lum2)
+    darker = min(lum1, lum2)
+    return (lighter + 0.05) / (darker + 0.05)
+
+
+# --- Validation Functions ---
+
+def parse_css_variables(file_path: Path) -> Dict[str, Dict[str, str]]:
+    """Parses a CSS file and extracts color variables for light and dark themes."""
+    themes = {'light': {}, 'dark': {}}
+    try:
+        content = file_path.read_text(encoding='utf-8')
+        # Simple parsing based on `html` and `html.dark` blocks
+        light_theme_match = re.search(r'html\s*\{([^}]+)\}', content, re.DOTALL)
+        dark_theme_match = re.search(r'html\.dark\s*\{([^}]+)\}', content, re.DOTALL)
+
+        if light_theme_match:
+            themes['light'] = {var: val for var, val in CSS_VAR_RE.findall(light_theme_match.group(1))}
+        if dark_theme_match:
+            themes['dark'] = {var: val for var, val in CSS_VAR_RE.findall(dark_theme_match.group(1))}
+    except Exception as e:
+        print(f"Error parsing CSS variables from {file_path}: {e}")
+    return themes
+
+def check_color_contrast(css_variables: Dict[str, Dict[str, str]]) -> List[Dict[str, Any]]:
+    """Checks predefined color pairs for WCAG AA contrast compliance."""
+    violations = []
+    pairs_to_test = [
+        # Main text on backgrounds
+        ('--color-text-primary', '--color-bg'),
+        ('--color-text-secondary', '--color-bg'),
+        ('--color-text-primary', '--color-card-bg'),
+        ('--color-text-secondary', '--color-card-bg'),
+        ('--color-text-header', '--color-card-bg'),
+        # Button text on button backgrounds
+        ('--color-text-inverted', '--color-button-primary-bg'),
+        ('--color-text-inverted', '--color-button-secondary-bg'),
+        ('--color-text-inverted', '--color-button-danger-bg'),
+        # Links
+        ('--color-text-link', '--color-card-bg'),
+    ]
+    for theme_name, variables in css_variables.items():
+        for fg_var, bg_var in pairs_to_test:
+            fg_hex = variables.get(fg_var)
+            bg_hex = variables.get(bg_var)
+
+            if not fg_hex or not bg_hex: continue
+
+            fg_lum = get_relative_luminance(hex_to_rgb(fg_hex))
+            bg_lum = get_relative_luminance(hex_to_rgb(bg_hex))
+            ratio = get_contrast_ratio(fg_lum, bg_lum)
+
+            if ratio < WCAG_AA_RATIO:
+                violations.append({
+                    'theme': theme_name,
+                    'fg_var': fg_var, 'fg_hex': fg_hex,
+                    'bg_var': bg_var, 'bg_hex': bg_hex,
+                    'ratio': ratio
+                })
+    return violations
 
 def find_files(directory: Path, extension: str) -> List[Path]:
-    """Finds all files with a given extension in a directory."""
     return list(directory.rglob(f'*{extension}'))
 
 def check_inline_styles(file_path: Path) -> List[Tuple[int, str]]:
@@ -59,9 +138,8 @@ def check_id_selectors(file_path: Path) -> List[Tuple[int, str]]:
     return violations
 
 def check_default_export(file_path: Path) -> bool:
-    EXCLUDED_FILES = {'icons.tsx', 'Icons.tsx'}
-    if file_path.name in EXCLUDED_FILES:
-        return True
+    EXCLUDED_FILES = {'Icons.tsx'}
+    if file_path.name in EXCLUDED_FILES: return True
     try:
         content = file_path.read_text(encoding='utf-8')
         return bool(DEFAULT_EXPORT_RE.search(content))
@@ -78,7 +156,6 @@ def check_hardcoded_colors(file_path: Path) -> List[Tuple[int, str]]:
                 if '/*' in line: in_comment_block = True
                 if '*/' in line: in_comment_block = False
                 if in_comment_block or line.strip().startswith('--'): continue
-                
                 if HARDCODED_COLOR_RE.search(line) or COLOR_KEYWORDS_RE.search(line):
                     violations.append((i, line.strip()))
     except Exception as e:
@@ -90,9 +167,7 @@ def check_bem_syntax(file_path: Path) -> List[Tuple[int, str]]:
     try:
         with open(file_path, 'r', encoding='utf-8') as f:
             for i, line in enumerate(f, 1):
-                # Ignore CSS variable definitions and chained modifiers
-                if line.strip().startswith('--') or re.search(r'\.\S+--\S+\.\S+--\S+', line):
-                    continue
+                if line.strip().startswith('--') or re.search(r'\.\S+--\S+\.\S+--\S+', line): continue
                 if INVALID_BEM_RE.search(line):
                     violations.append((i, line.strip()))
     except Exception as e:
@@ -104,10 +179,8 @@ def check_css_imports(css_files: List[Path]) -> List[str]:
     try:
         index_css_path = SRC_DIR / 'index.css'
         index_css_content = index_css_path.read_text(encoding='utf-8')
-        
         for file in css_files:
             if 'components' not in str(file): continue
-            
             import_pattern = re.compile(f'@import ".*{re.escape(file.name)}";')
             if not import_pattern.search(index_css_content):
                 unimported_files.append(str(file.relative_to(PROJECT_ROOT)))
@@ -117,7 +190,7 @@ def check_css_imports(css_files: List[Path]) -> List[str]:
 
 def check_pascalcase_filenames(tsx_files: List[Path]) -> List[str]:
     violations = []
-    EXCLUDED_FILES = {'icons.tsx', 'Icons.tsx'}
+    EXCLUDED_FILES = {'Icons.tsx'}
     for file in tsx_files:
         if file.name in EXCLUDED_FILES: continue
         if 'components' in str(file) and not file.stem[0].isupper():
@@ -142,14 +215,10 @@ def check_unused_assets() -> List[str]:
         uma_list_path = SRC_DIR / 'data' / 'uma-list.json'
         with open(uma_list_path, 'r', encoding='utf-8') as f:
             uma_data = json.load(f)
-        
         used_images: Set[str] = {uma.get('image') for uma in uma_data if uma.get('image')}
-        
         asset_dir = PUBLIC_DIR / 'images' / 'umas'
         if not asset_dir.exists(): return []
-            
         all_assets = [p for p in asset_dir.iterdir() if p.is_file() and p.name != '.gitkeep']
-        
         for asset in all_assets:
             expected_path = f"/images/umas/{asset.name}"
             if expected_path not in used_images:
@@ -175,12 +244,10 @@ def main():
     console_log_violations = check_console_logs(tsx_files)
     component_files = [f for f in tsx_files if 'components' in str(f) and f.name != 'App.tsx']
     missing_export_violations = [f for f in component_files if not check_default_export(f)]
-
     inline_style_errors = sum(len(v) for v in inline_style_violations.values())
     pascal_case_errors = len(pascal_case_violations)
     console_log_errors = len(console_log_violations)
     missing_export_errors = len(missing_export_violations)
-
     if inline_style_errors == 0: print("  \033[92mPASS:\033[0m No forbidden inline styles found.")
     else:
         print(f"  \033[91mFAIL:\033[0m Found {inline_style_errors} instance(s) of inline styles.")
@@ -189,25 +256,21 @@ def main():
                 if violations:
                     print(f"    - {file.relative_to(PROJECT_ROOT)}:")
                     for line_num, line_content in violations: print(f"      - Line {line_num}: {line_content}")
-    
     if pascal_case_errors == 0: print("  \033[92mPASS:\033[0m All component filenames use PascalCase.")
     else:
         print(f"  \033[91mFAIL:\033[0m Found {pascal_case_errors} component(s) not using PascalCase.")
         if args.verbose:
             for file in pascal_case_violations: print(f"    - {file}")
-
     if console_log_errors == 0: print("  \033[92mPASS:\033[0m No console.log statements found.")
     else:
         print(f"  \033[91mFAIL:\033[0m Found {console_log_errors} console.log statement(s).")
         if args.verbose:
             for file, line_num, line_content in console_log_violations: print(f"    - {file} (Line {line_num}): {line_content}")
-
     if missing_export_errors == 0: print("  \033[92mPASS:\033[0m All components have a default export.")
     else:
         print(f"  \033[91mFAIL:\033[0m Found {missing_export_errors} component(s) missing a default export.")
         if args.verbose:
             for file in missing_export_violations: print(f"    - {file.relative_to(PROJECT_ROOT)}")
-
     total_errors += inline_style_errors + pascal_case_errors + console_log_errors + missing_export_errors
 
     # --- Group 2: CSS Checks ---
@@ -216,12 +279,10 @@ def main():
     hardcoded_color_violations = {f: check_hardcoded_colors(f) for f in css_files}
     bem_syntax_violations = {f: check_bem_syntax(f) for f in css_files}
     unimported_css_violations = check_css_imports(css_files)
-
     id_selector_errors = sum(len(v) for v in id_selector_violations.values())
     hardcoded_color_errors = sum(len(v) for v in hardcoded_color_violations.values())
     bem_syntax_errors = sum(len(v) for v in bem_syntax_violations.values())
     unimported_css_errors = len(unimported_css_violations)
-
     if id_selector_errors == 0: print("  \033[92mPASS:\033[0m No ID selectors found.")
     else:
         print(f"  \033[91mFAIL:\033[0m Found {id_selector_errors} ID selector(s).")
@@ -230,7 +291,6 @@ def main():
                 if violations:
                     print(f"    - {file.relative_to(PROJECT_ROOT)}:")
                     for line_num, line_content in violations: print(f"      - Line {line_num}: {line_content}")
-
     if hardcoded_color_errors == 0: print("  \033[92mPASS:\033[0m No hardcoded colors found.")
     else:
         print(f"  \033[91mFAIL:\033[0m Found {hardcoded_color_errors} hardcoded color(s).")
@@ -239,7 +299,6 @@ def main():
                 if violations:
                     print(f"    - {file.relative_to(PROJECT_ROOT)}:")
                     for line_num, line_content in violations: print(f"      - Line {line_num}: {line_content}")
-
     if bem_syntax_errors == 0: print("  \033[92mPASS:\033[0m No BEM syntax violations found.")
     else:
         print(f"  \033[91mFAIL:\033[0m Found {bem_syntax_errors} BEM syntax violation(s).")
@@ -248,13 +307,11 @@ def main():
                 if violations:
                     print(f"    - {file.relative_to(PROJECT_ROOT)}:")
                     for line_num, line_content in violations: print(f"      - Line {line_num}: {line_content}")
-
     if unimported_css_errors == 0: print("  \033[92mPASS:\033[0m All component CSS files are imported.")
     else:
         print(f"  \033[91mFAIL:\033[0m Found {unimported_css_errors} unimported component CSS file(s).")
         if args.verbose:
             for file in unimported_css_violations: print(f"    - {file}")
-
     total_errors += id_selector_errors + hardcoded_color_errors + bem_syntax_errors + unimported_css_errors
 
     # --- Group 3: Project Health ---
@@ -267,6 +324,20 @@ def main():
         if args.verbose:
             for file in unused_asset_violations: print(f"    - {file}")
     total_errors += unused_asset_errors
+
+    # --- Group 4: Accessibility Checks ---
+    print("\n[4] Checking Accessibility...")
+    css_vars = parse_css_variables(SRC_DIR / 'css' / 'main.css')
+    contrast_violations = check_color_contrast(css_vars)
+    contrast_errors = len(contrast_violations)
+    if contrast_errors == 0:
+        print(f"  \033[92mPASS:\033[0m All color pairs meet WCAG AA contrast ratio ({WCAG_AA_RATIO}:1).")
+    else:
+        print(f"  \033[91mFAIL:\033[0m Found {contrast_errors} color pair(s) that fail WCAG AA contrast ratio.")
+        if args.verbose:
+            for v in contrast_violations:
+                print(f"    - [{v['theme'].upper()}] {v['fg_var']} on {v['bg_var']} has a ratio of {v['ratio']:.2f}:1.")
+    total_errors += contrast_errors
 
     # --- Summary ---
     print("\n--- Validation Summary ---")
