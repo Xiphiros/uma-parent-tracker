@@ -1,303 +1,56 @@
 [
   {
-    "id": "103202",
-    "characterId": "1032",
-    "name_jp": "[Lunatic Lab]アグネスタキオン",
-    "name_en": "Agnes Tachyon"
+    "id": "113201",
+    "characterId": "1132",
+    "name_jp": "[9927 Wishes]ラヴズオンリーユー",
+    "name_en": "[9927 Wishes] ラヴズオンリーユー",
+    "isGlobal": false,
+    "name_en_community": "[9927 Wishes] Loves Only You"
   },
   {
-    "id": "103203",
-    "characterId": "1032",
-    "name_jp": "[Σ Experiment]アグネスタキオン",
-    "name_en": "Agnes Tachyon"
+    "id": "111301",
+    "characterId": "1113",
+    "name_jp": "[Assorted Cuteness♡]フサイチパンドラ",
+    "name_en": "[Assorted Cuteness♡] フサイチパンドラ",
+    "isGlobal": false,
+    "name_en_community": "[Assorted Cuteness♡] Fusaichi Pandora"
   },
   {
-    "id": "102302",
-    "characterId": "1023",
-    "name_jp": "[ノエルージュ・キャロル]ビワハヤヒデ",
-    "name_en": "Biwa Hayahide"
-  },
-  {
-    "id": "102303",
-    "characterId": "1023",
-    "name_jp": "[Engineered Victory]ビワハヤヒデ",
-    "name_en": "Biwa Hayahide"
-  },
-  {
-    "id": "103802",
-    "characterId": "1038",
-    "name_jp": "[朔月のマ・シェリ]カレンチャン",
-    "name_en": "Curren Chan"
-  },
-  {
-    "id": "100902",
-    "characterId": "1009",
-    "name_jp": "[緋色のニュイ・エトワレ]ダイワスカーレット",
-    "name_en": "Daiwa Scarlet"
-  },
-  {
-    "id": "103702",
-    "characterId": "1037",
-    "name_jp": "[コレクト・ショコラティエ]エイシンフラッシュ",
-    "name_en": "Eishin Flash"
-  },
-  {
-    "id": "103703",
-    "characterId": "1037",
-    "name_jp": "[Reines Plätschern]エイシンフラッシュ",
-    "name_en": "Eishin Flash"
-  },
-  {
-    "id": "100502",
-    "characterId": "1005",
-    "name_jp": "[シュクセ・エトワーレ]フジキセキ",
-    "name_en": "Fuji Kiseki"
-  },
-  {
-    "id": "104002",
-    "characterId": "1040",
-    "name_jp": "[秋桜ダンツァトリーチェ]ゴールドシチー",
-    "name_en": "Gold City"
-  },
-  {
-    "id": "104003",
-    "characterId": "1040",
-    "name_jp": "[Boho Flare]ゴールドシチー",
-    "name_en": "Gold City"
-  },
-  {
-    "id": "100702",
-    "characterId": "1007",
-    "name_jp": "[RUN！乱！ランチャー！！]ゴールドシップ",
-    "name_en": "Gold Ship"
-  },
-  {
-    "id": "100703",
-    "characterId": "1007",
-    "name_jp": "[La mode 564]ゴールドシップ",
-    "name_en": "Gold Ship"
-  },
-  {
-    "id": "101103",
-    "characterId": "1011",
-    "name_jp": "[蒼炎の誉]グラスワンダー",
-    "name_en": "Grass Wonder"
-  },
-  {
-    "id": "105202",
-    "characterId": "1052",
-    "name_jp": "[初うらら♪さくさくら]ハルウララ",
-    "name_en": "Haru Urara"
-  },
-  {
-    "id": "101202",
-    "characterId": "1012",
-    "name_jp": "[Hungry Veil]ヒシアマゾン",
-    "name_en": "Hishi Amazon"
-  },
-  {
-    "id": "106102",
-    "characterId": "1061",
-    "name_jp": "[白く気高き激励の装]キングヘイロー",
-    "name_en": "King Halo"
-  },
-  {
-    "id": "106103",
-    "characterId": "1061",
-    "name_jp": "[Evergreen Identity]キングヘイロー",
-    "name_en": "King Halo"
-  },
-  {
-    "id": "100403",
-    "characterId": "1004",
-    "name_jp": "[祝ひ寿ぐ神速天女]マルゼンスキー",
-    "name_en": "Maruzensky"
-  },
-  {
-    "id": "102403",
-    "characterId": "1024",
-    "name_jp": "[ろっきん☆MewMeow]マヤノトップガン",
-    "name_en": "Mayano Top Gun"
-  },
-  {
-    "id": "105802",
-    "characterId": "1058",
-    "name_jp": "[Dot-o'-Lantern]メイショウドトウ",
-    "name_en": "Meisho Doto"
-  },
-  {
-    "id": "101303",
-    "characterId": "1013",
-    "name_jp": "[さざ波フェアレディ]メジロマックイーン",
-    "name_en": "Mejiro McQueen"
-  },
-  {
-    "id": "102702",
-    "characterId": "1027",
-    "name_jp": "[マーガレット・ラッテ]メジロライアン",
-    "name_en": "Mejiro Ryan"
-  },
-  {
-    "id": "102602",
-    "characterId": "1026",
-    "name_jp": "[CODE：グラサージュ]ミホノブルボン",
-    "name_en": "Mihono Bourbon"
-  },
-  {
-    "id": "101602",
-    "characterId": "1016",
-    "name_jp": "[餓狼]ナリタブライアン",
-    "name_en": "Narita Brian"
-  },
-  {
-    "id": "105002",
-    "characterId": "1050",
-    "name_jp": "[ディファレンス・エンジニア]ナリタタイシン",
-    "name_en": "Narita Taishin"
-  },
-  {
-    "id": "105003",
-    "characterId": "1050",
-    "name_jp": "[迷光オーヴァライド]ナリタタイシン",
-    "name_en": "Narita Taishin"
-  },
-  {
-    "id": "106002",
-    "characterId": "1060",
-    "name_jp": "[RUN＆WIN]ナイスネイチャ",
-    "name_en": "Nice Nature"
-  },
-  {
-    "id": "106003",
-    "characterId": "1060",
-    "name_jp": "[ネガイノカサネ]ナイスネイチャ",
-    "name_en": "Nice Nature"
-  },
-  {
-    "id": "100602",
-    "characterId": "1006",
-    "name_jp": "[キセキの白星]オグリキャップ",
-    "name_en": "Oguri Cap"
-  },
-  {
-    "id": "103002",
-    "characterId": "1030",
-    "name_jp": "[Make up Vampire!]ライスシャワー",
-    "name_en": "Rice Shower"
-  },
-  {
-    "id": "103003",
-    "characterId": "1030",
-    "name_jp": "[Yummy Dreamy Fairy]ライスシャワー",
-    "name_en": "Rice Shower"
-  },
-  {
-    "id": "104102",
-    "characterId": "1041",
-    "name_jp": "[レッドホット☆リーダー]サクラバクシンオー",
-    "name_en": "Sakura Bakushin O"
-  },
-  {
-    "id": "102002",
-    "characterId": "1020",
-    "name_jp": "[ソワレ・ド・シャトン]セイウンスカイ",
-    "name_en": "Seiun Sky"
-  },
-  {
-    "id": "100202",
-    "characterId": "1002",
-    "name_jp": "[波間のエメラルド]サイレンススズカ",
-    "name_en": "Silence Suzuka"
-  },
-  {
-    "id": "104602",
-    "characterId": "1046",
-    "name_jp": "[黄昏トライアンフ]スマートファルコン",
-    "name_en": "Smart Falcon"
-  },
-  {
-    "id": "104603",
-    "characterId": "1046",
-    "name_jp": "[ルミナス☆トワラー]スマートファルコン",
-    "name_en": "Smart Falcon"
-  },
-  {
-    "id": "100103",
-    "characterId": "1001",
-    "name_jp": "[日之本一の総大将]スペシャルウィーク",
-    "name_en": "Special Week"
-  },
-  {
-    "id": "104502",
-    "characterId": "1045",
-    "name_jp": "[シフォンリボンマミー]スーパークリーク",
-    "name_en": "Super Creek"
-  },
-  {
-    "id": "104503",
-    "characterId": "1045",
-    "name_jp": "[慈雨華影]スーパークリーク",
-    "name_en": "Super Creek"
-  },
-  {
-    "id": "101702",
-    "characterId": "1017",
-    "name_jp": "[皓月の弓取り]シンボリルドルフ",
-    "name_en": "Symboli Rudolf"
-  },
-  {
-    "id": "101502",
-    "characterId": "1015",
-    "name_jp": "[初晴・青き絢爛]テイエムオペラオー",
-    "name_en": "T.M. Opera O"
-  },
-  {
-    "id": "101002",
-    "characterId": "1010",
-    "name_jp": "[Bubblegum☆Memories]タイキシャトル",
-    "name_en": "Taiki Shuttle"
-  },
-  {
-    "id": "100303",
-    "characterId": "1003",
-    "name_jp": "[紫雲の夢見取り]トウカイテイオー",
-    "name_en": "Tokai Teio"
-  },
-  {
-    "id": "100802",
-    "characterId": "1008",
-    "name_jp": "[不凍のアクア・ウィタエ]ウオッカ",
-    "name_en": "Vodka"
-  },
-  {
-    "id": "103502",
-    "characterId": "1035",
-    "name_jp": "[Dream Deliverer]ウイニングチケット",
-    "name_en": "Winning Ticket"
-  },
-  {
-    "id": "103503",
-    "characterId": "1035",
-    "name_jp": "[Glorious Coat]ウイニングチケット",
-    "name_en": "Winning Ticket"
+    "id": "104802",
+    "characterId": "1048",
+    "name_jp": "[Aurore☆Vacances]トーセンジョーダン",
+    "name_en": "[Aurore☆Vacances] トーセンジョーダン",
+    "isGlobal": false,
+    "name_en_community": "[Aurore☆Vacances] Tosen Jordan"
   },
   {
     "id": "104001",
     "characterId": "1040",
     "name_jp": "[オーセンティック/1928]ゴールドシチー",
-    "name_en": "[Authentic / 1928] Gold City"
+    "name_en": "[Authentic / 1928] Gold City",
+    "isGlobal": true
   },
   {
     "id": "101201",
     "characterId": "1012",
     "name_jp": "[アマゾネス・ラピス]ヒシアマゾン",
-    "name_en": "[Azure Amazon] Hishi Amazon"
+    "name_en": "[Azure Amazon] Hishi Amazon",
+    "isGlobal": true
+  },
+  {
+    "id": "103602",
+    "characterId": "1036",
+    "name_jp": "[Belphegor's Prime]エアシャカール",
+    "name_en": "[Belphegor's Prime] エアシャカール",
+    "isGlobal": false,
+    "name_en_community": "[Belphegor's Prime] Air Shakur"
   },
   {
     "id": "105201",
     "characterId": "1052",
     "name_jp": "[うららん一等賞♪]ハルウララ",
     "name_en": "[Bestest Prize ♪] Haru Urara",
+    "isGlobal": true,
     "image": "/images/umas/105201.png"
   },
   {
@@ -305,27 +58,123 @@
     "characterId": "1003",
     "name_jp": "[ビヨンド・ザ・ホライズン]トウカイテイオー",
     "name_en": "[Beyond the Horizon] Tokai Teio",
+    "isGlobal": true,
     "image": "/images/umas/100302.png"
+  },
+  {
+    "id": "104202",
+    "characterId": "1042",
+    "name_jp": "[Be♪Witched]シーキングザパール",
+    "name_en": "[Be♪Witched] シーキングザパール",
+    "isGlobal": false,
+    "name_en_community": "[Be♪Witched] Seeking the Pearl"
   },
   {
     "id": "104101",
     "characterId": "1041",
     "name_jp": "[サクラ、すすめ！]サクラバクシンオー",
     "name_en": "[Blossom in Learning] Sakura Bakushin O",
+    "isGlobal": true,
     "image": "/images/umas/104101.png"
+  },
+  {
+    "id": "104003",
+    "characterId": "1040",
+    "name_jp": "[Boho Flare]ゴールドシチー",
+    "name_en": "[Boho Flare] Gold City",
+    "isGlobal": false
+  },
+  {
+    "id": "101002",
+    "characterId": "1010",
+    "name_jp": "[Bubblegum☆Memories]タイキシャトル",
+    "name_en": "[Bubblegum☆Memories] Taiki Shuttle",
+    "isGlobal": false
+  },
+  {
+    "id": "110001",
+    "characterId": "1100",
+    "name_jp": "[Butterfly Sting]ワンダーアキュート",
+    "name_en": "[Butterfly Sting] ワンダーアキュート",
+    "isGlobal": false,
+    "name_en_community": "[Butterfly Sting] Wonder Acute"
+  },
+  {
+    "id": "102602",
+    "characterId": "1026",
+    "name_jp": "[CODE：グラサージュ]ミホノブルボン",
+    "name_en": "[CODE：グラサージュ] Mihono Bourbon",
+    "isGlobal": false,
+    "name_en_community": "[CODE: Glaçage] Mihono Bourbon"
+  },
+  {
+    "id": "107702",
+    "characterId": "1077",
+    "name_jp": "[Celestial Road]ナリタトップロード",
+    "name_en": "[Celestial Road] ナリタトップロード",
+    "isGlobal": false,
+    "name_en_community": "[Celestial Road] Narita Top Road"
+  },
+  {
+    "id": "112101",
+    "characterId": "1121",
+    "name_jp": "[Chevalier fidèle]デュランダル",
+    "name_en": "[Chevalier fidèle] デュランダル",
+    "isGlobal": false,
+    "name_en_community": "[Chevalier fidèle] Durandal"
+  },
+  {
+    "id": "105701",
+    "characterId": "1057",
+    "name_jp": "[Clear Bliss]ミスターシービー",
+    "name_en": "[Clear Bliss] ミスターシービー",
+    "isGlobal": false,
+    "name_en_community": "[Clear Bliss] Mr. C.B."
+  },
+  {
+    "id": "102501",
+    "characterId": "1025",
+    "name_jp": "[Creeping Black]マンハッタンカフェ",
+    "name_en": "[Creeping Black] マンハッタンカフェ",
+    "isGlobal": false,
+    "name_en_community": "[Creeping Black] Manhattan Cafe"
+  },
+  {
+    "id": "105802",
+    "characterId": "1058",
+    "name_jp": "[Dot-o'-Lantern]メイショウドトウ",
+    "name_en": "[Dot-o'-Lantern] Meisho Doto",
+    "isGlobal": false
   },
   {
     "id": "102701",
     "characterId": "1027",
     "name_jp": "[ストレート・ライン]メジロライアン",
     "name_en": "[Down the Line] Mejiro Ryan",
+    "isGlobal": true,
     "image": "/images/umas/102701.png"
+  },
+  {
+    "id": "103502",
+    "characterId": "1035",
+    "name_jp": "[Dream Deliverer]ウイニングチケット",
+    "name_en": "[Dream Deliverer] Winning Ticket",
+    "isGlobal": false
+  },
+  {
+    "id": "110901",
+    "characterId": "1109",
+    "name_jp": "[Dream Successor]ラインクラフト",
+    "name_en": "[Dream Successor] ラインクラフト",
+    "isGlobal": false,
+    "name_en_community": "[Dream Successor] Rhein Kraft"
   },
   {
     "id": "101401",
     "characterId": "1014",
     "name_jp": "[エル☆Número 1]エルコンドルパサー",
     "name_en": "[El☆Número 1] El Condor Pasa",
+    "isGlobal": true,
     "image": "/images/umas/101401.png"
   },
   {
@@ -333,6 +182,7 @@
     "characterId": "1017",
     "name_jp": "[ロード・オブ・エンペラー]シンボリルドルフ",
     "name_en": "[Emperor's Path] Symboli Rudolf",
+    "isGlobal": true,
     "image": "/images/umas/101701.png"
   },
   {
@@ -340,6 +190,7 @@
     "characterId": "1018",
     "name_jp": "[エンプレスロード]エアグルーヴ",
     "name_en": "[Empress Road] Air Groove",
+    "isGlobal": true,
     "image": "/images/umas/101801.png"
   },
   {
@@ -347,127 +198,427 @@
     "characterId": "1013",
     "name_jp": "[エンド・オブ・スカイ]メジロマックイーン",
     "name_en": "[End of the Skies] Mejiro McQueen",
+    "isGlobal": true,
     "image": "/images/umas/101302.png"
+  },
+  {
+    "id": "102303",
+    "characterId": "1023",
+    "name_jp": "[Engineered Victory]ビワハヤヒデ",
+    "name_en": "[Engineered Victory] Biwa Hayahide",
+    "isGlobal": false
+  },
+  {
+    "id": "110902",
+    "characterId": "1109",
+    "name_jp": "[Eternal Fairytale]ラインクラフト",
+    "name_en": "[Eternal Fairytale] ラインクラフト",
+    "isGlobal": false,
+    "name_en_community": "[Eternal Fairytale] Rhein Kraft"
+  },
+  {
+    "id": "106103",
+    "characterId": "1061",
+    "name_jp": "[Evergreen Identity]キングヘイロー",
+    "name_en": "[Evergreen Identity] King Halo",
+    "isGlobal": false
   },
   {
     "id": "103801",
     "characterId": "1038",
     "name_jp": "[フィーユ・エクレール]カレンチャン",
     "name_en": "[Fille Éclair] Curren Chan",
+    "isGlobal": true,
     "image": "/images/umas/103801.png"
+  },
+  {
+    "id": "108701",
+    "characterId": "1087",
+    "name_jp": "[Flare]アストンマーチャン",
+    "name_en": "[Flare] アストンマーチャン",
+    "isGlobal": false,
+    "name_en_community": "[Flare] Aston Machan"
+  },
+  {
+    "id": "106902",
+    "characterId": "1069",
+    "name_jp": "[Fleur Enneigée]サクラチヨノオー",
+    "name_en": "[Fleur Enneigée] サクラチヨノオー",
+    "isGlobal": false,
+    "name_en_community": "[Fleur Enneigée] Sakura Chiyono O"
+  },
+  {
+    "id": "108502",
+    "characterId": "1085",
+    "name_jp": "[Flowing Blue]ダイイチルビー",
+    "name_en": "[Flowing Blue] ダイイチルビー",
+    "isGlobal": false,
+    "name_en_community": "[Flowing Blue] Daiichi Ruby"
+  },
+  {
+    "id": "107801",
+    "characterId": "1078",
+    "name_jp": "[Fluttertail Spirit]ヤマニンゼファー",
+    "name_en": "[Fluttertail Spirit] ヤマニンゼファー",
+    "isGlobal": false,
+    "name_en_community": "[Fluttertail Spirit] Yamanin Zephyr"
   },
   {
     "id": "100401",
     "characterId": "1004",
     "name_jp": "[フォーミュラオブルージュ]マルゼンスキー",
     "name_en": "[Formula R] Maruzensky",
+    "isGlobal": true,
     "image": "/images/umas/100401.png"
   },
   {
     "id": "105602",
     "characterId": "1056",
     "name_jp": "[吉兆・初あらし]マチカネフクキタル",
-    "name_en": "[Fortune in the Fall Air] Matikanefukukitaru"
+    "name_en": "[Fortune in the Fall Air] Matikanefukukitaru",
+    "isGlobal": true
   },
   {
     "id": "101301",
     "characterId": "1013",
     "name_jp": "[エレガンス・ライン]メジロマックイーン",
     "name_en": "[Frontline Elegance] Mejiro McQueen",
+    "isGlobal": true,
     "image": "/images/umas/101301.png"
+  },
+  {
+    "id": "106501",
+    "characterId": "1065",
+    "name_jp": "[Fun☆Fun☆ぱりない]ダイタクヘリオス",
+    "name_en": "[Fun☆Fun☆ぱりない] ダイタクヘリオス",
+    "isGlobal": false,
+    "name_en_community": "[Fun☆Fun☆Party Night] Daitaku Helios"
+  },
+  {
+    "id": "111001",
+    "characterId": "1110",
+    "name_jp": "[Future Weaver]シーザリオ",
+    "name_en": "[Future Weaver] シーザリオ",
+    "isGlobal": false,
+    "name_en_community": "[Future Weaver] Cesario"
+  },
+  {
+    "id": "107001",
+    "characterId": "1070",
+    "name_jp": "[Féroce]シリウスシンボリ",
+    "name_en": "[Féroce] シリウスシンボリ",
+    "isGlobal": false,
+    "name_en_community": "[Féroce] Sirius Symboli"
+  },
+  {
+    "id": "110701",
+    "characterId": "1107",
+    "name_jp": "[GLITTER!]タップダンスシチー",
+    "name_en": "[GLITTER!] タップダンスシチー",
+    "isGlobal": false,
+    "name_en_community": "[GLITTER!] Tap Dance City"
   },
   {
     "id": "103501",
     "characterId": "1035",
     "name_jp": "[Go To Winning!]ウイニングチケット",
     "name_en": "[Get to Winning!] Winning Ticket",
+    "isGlobal": true,
     "image": "/images/umas/103501.png"
+  },
+  {
+    "id": "103302",
+    "characterId": "1033",
+    "name_jp": "[Glacialis Vega]アドマイヤベガ",
+    "name_en": "[Glacialis Vega] アドマイヤベガ",
+    "isGlobal": false,
+    "name_en_community": "[Glacialis Vega] Admire Vega"
+  },
+  {
+    "id": "103503",
+    "characterId": "1035",
+    "name_jp": "[Glorious Coat]ウイニングチケット",
+    "name_en": "[Glorious Coat] Winning Ticket",
+    "isGlobal": false
+  },
+  {
+    "id": "108901",
+    "characterId": "1089",
+    "name_jp": "[Grand itinéraire]シュヴァルグラン",
+    "name_en": "[Grand itinéraire] シュヴァルグラン",
+    "isGlobal": false,
+    "name_en_community": "[Grand itinéraire] Cheval Grand"
+  },
+  {
+    "id": "103103",
+    "characterId": "1031",
+    "name_jp": "[Hello Hello Island]アイネスフウジン",
+    "name_en": "[Hello Hello Island] アイネスフウジン",
+    "isGlobal": false,
+    "name_en_community": "[Hello Hello Island] Ines Fujin"
+  },
+  {
+    "id": "104701",
+    "characterId": "1047",
+    "name_jp": "[Heroic Author]ゼンノロブロイ",
+    "name_en": "[Heroic Author] ゼンノロブロイ",
+    "isGlobal": false,
+    "name_en_community": "[Heroic Author] Zenno Rob Roy"
   },
   {
     "id": "100102",
     "characterId": "1001",
     "name_jp": "[ほっぴん♪ビタミンハート]スペシャルウィーク",
-    "name_en": "[Hopp'n♪Happy Heart] Special Week"
+    "name_en": "[Hopp'n♪Happy Heart] Special Week",
+    "isGlobal": true
   },
   {
     "id": "100402",
     "characterId": "1004",
     "name_jp": "[ぶっとび☆さまーナイト]マルゼンスキー",
-    "name_en": "[Hot☆Summer Night] Maruzensky"
+    "name_en": "[Hot☆Summer Night] Maruzensky",
+    "isGlobal": true
+  },
+  {
+    "id": "101202",
+    "characterId": "1012",
+    "name_jp": "[Hungry Veil]ヒシアマゾン",
+    "name_en": "[Hungry Veil] Hishi Amazon",
+    "isGlobal": false
+  },
+  {
+    "id": "111101",
+    "characterId": "1111",
+    "name_jp": "[Inherited Hope]エアメサイア",
+    "name_en": "[Inherited Hope] エアメサイア",
+    "isGlobal": false,
+    "name_en_community": "[Inherited Hope] Air Messiah"
+  },
+  {
+    "id": "104702",
+    "characterId": "1047",
+    "name_jp": "[Inlaid Stories]ゼンノロブロイ",
+    "name_en": "[Inlaid Stories] ゼンノロブロイ",
+    "isGlobal": false,
+    "name_en_community": "[Inlaid Stories] Zenno Rob Roy"
   },
   {
     "id": "100201",
     "characterId": "1002",
     "name_jp": "[サイレントイノセンス]サイレンススズカ",
     "name_en": "[Innocent Silence] Silence Suzuka",
+    "isGlobal": true,
     "image": "/images/umas/100201.png"
+  },
+  {
+    "id": "108302",
+    "characterId": "1083",
+    "name_jp": "[Jetblack Automaton]シンボリクリスエス",
+    "name_en": "[Jetblack Automaton] シンボリクリスエス",
+    "isGlobal": false,
+    "name_en_community": "[Jetblack Automaton] Symboli Kris S"
+  },
+  {
+    "id": "106502",
+    "characterId": "1065",
+    "name_jp": "[Joyful Jamboree!]ダイタクヘリオス",
+    "name_en": "[Joyful Jamboree!] ダイタクヘリオス",
+    "isGlobal": false,
+    "name_en_community": "[Joyful Jamboree!] Daitaku Helios"
   },
   {
     "id": "106101",
     "characterId": "1061",
     "name_jp": "[キング・オブ・エメラルド]キングヘイロー",
     "name_en": "[King of Emeralds] King Halo",
+    "isGlobal": true,
     "image": "/images/umas/106101.png"
   },
   {
     "id": "101402",
     "characterId": "1014",
     "name_jp": "[ククルカン・モンク]エルコンドルパサー",
-    "name_en": "[Kukulkan Warrior] El Condor Pasa"
+    "name_en": "[Kukulkan Warrior] El Condor Pasa",
+    "isGlobal": true
   },
   {
     "id": "104601",
     "characterId": "1046",
     "name_jp": "[あぶそりゅーと☆LOVE]スマートファルコン",
     "name_en": "[LOVE☆4EVER] Smart Falcon",
+    "isGlobal": true,
     "image": "/images/umas/104601.png"
+  },
+  {
+    "id": "100703",
+    "characterId": "1007",
+    "name_jp": "[La mode 564]ゴールドシップ",
+    "name_en": "[La mode 564] Gold Ship",
+    "isGlobal": false
+  },
+  {
+    "id": "109001",
+    "characterId": "1090",
+    "name_jp": "[Le beau sommet]ヴィルシーナ",
+    "name_en": "[Le beau sommet] ヴィルシーナ",
+    "isGlobal": false,
+    "name_en_community": "[Le beau sommet] Verxina"
+  },
+  {
+    "id": "110502",
+    "characterId": "1105",
+    "name_jp": "[Like “ZEER”]ネオユニヴァース",
+    "name_en": "[Like “ZEER”] ネオユニヴァース",
+    "isGlobal": false,
+    "name_en_community": "[Like “ZEER”] Neo Universe"
+  },
+  {
+    "id": "106401",
+    "characterId": "1064",
+    "name_jp": "[Line Breakthrough]メジロパーマー",
+    "name_en": "[Line Breakthrough] メジロパーマー",
+    "isGlobal": false,
+    "name_en_community": "[Line Breakthrough] Mejiro Palmer"
+  },
+  {
+    "id": "108201",
+    "characterId": "1082",
+    "name_jp": "[Looking Fly!]ノースフライト",
+    "name_en": "[Looking Fly!] ノースフライト",
+    "isGlobal": false,
+    "name_en_community": "[Looking Fly!] North Flight"
+  },
+  {
+    "id": "107002",
+    "characterId": "1070",
+    "name_jp": "[Louve stellaire]シリウスシンボリ",
+    "name_en": "[Louve stellaire] シリウスシンボリ",
+    "isGlobal": false,
+    "name_en_community": "[Louve stellaire] Sirius Symboli"
+  },
+  {
+    "id": "103202",
+    "characterId": "1032",
+    "name_jp": "[Lunatic Lab]アグネスタキオン",
+    "name_en": "[Lunatic Lab] Agnes Tachyon",
+    "isGlobal": false
   },
   {
     "id": "102601",
     "characterId": "1026",
     "name_jp": "[MB-19890425]ミホノブルボン",
     "name_en": "[MB-19890425] Mihono Bourbon",
+    "isGlobal": true,
     "image": "/images/umas/102601.png"
+  },
+  {
+    "id": "103102",
+    "characterId": "1031",
+    "name_jp": "[MELTY GIFT]アイネスフウジン",
+    "name_en": "[MELTY GIFT] アイネスフウジン",
+    "isGlobal": false,
+    "name_en_community": "[MELTY GIFT] Ines Fujin"
+  },
+  {
+    "id": "103002",
+    "characterId": "1030",
+    "name_jp": "[Make up Vampire!]ライスシャワー",
+    "name_en": "[Make up Vampire!] Rice Shower",
+    "isGlobal": false
+  },
+  {
+    "id": "106301",
+    "characterId": "1063",
+    "name_jp": "[Mantle of Steel]イクノディクタス",
+    "name_en": "[Mantle of Steel] イクノディクタス",
+    "isGlobal": false,
+    "name_en_community": "[Mantle of Steel] Ikuno Dictus"
   },
   {
     "id": "101601",
     "characterId": "1016",
     "name_jp": "[Maverick]ナリタブライアン",
     "name_en": "[Maverick] Narita Brian",
+    "isGlobal": true,
     "image": "/images/umas/101601.png"
   },
   {
     "id": "103701",
     "characterId": "1037",
     "name_jp": "[Meisterschaft]エイシンフラッシュ",
-    "name_en": "[Meisterschaft] Eishin Flash"
+    "name_en": "[Meisterschaft] Eishin Flash",
+    "isGlobal": true
   },
   {
     "id": "104501",
     "characterId": "1045",
     "name_jp": "[マーマリングストリーム]スーパークリーク",
     "name_en": "[Murmuring Stream] Super Creek",
+    "isGlobal": true,
     "image": "/images/umas/104501.png"
+  },
+  {
+    "id": "106701",
+    "characterId": "1067",
+    "name_jp": "[Natural Brilliance]サトノダイヤモンド",
+    "name_en": "[Natural Brilliance] サトノダイヤモンド",
+    "isGlobal": false,
+    "name_en_community": "[Natural Brilliance] Satono Diamond"
+  },
+  {
+    "id": "107102",
+    "characterId": "1071",
+    "name_jp": "[Neige Émeraude]メジロアルダン",
+    "name_en": "[Neige Émeraude] メジロアルダン",
+    "isGlobal": false,
+    "name_en_community": "[Neige Émeraude] Mejiro Ardan"
   },
   {
     "id": "105001",
     "characterId": "1050",
     "name_jp": "[Nevertheless]ナリタタイシン",
     "name_en": "[Nevertheless] Narita Taishin",
+    "isGlobal": true,
     "image": "/images/umas/105001.png"
+  },
+  {
+    "id": "102201",
+    "characterId": "1022",
+    "name_jp": "[Noble Seamair]ファインモーション",
+    "name_en": "[Noble Seamair] ファインモーション",
+    "isGlobal": false,
+    "name_en_community": "[Noble Seamair] Fine Motion"
   },
   {
     "id": "101501",
     "characterId": "1015",
     "name_jp": "[オー・ソレ・スーオ！]テイエムオペラオー",
     "name_en": "[O Sole Suo!] T.M. Opera O",
+    "isGlobal": true,
     "image": "/images/umas/101501.png"
+  },
+  {
+    "id": "108301",
+    "characterId": "1083",
+    "name_jp": "[Onyx Soldier]シンボリクリスエス",
+    "name_en": "[Onyx Soldier] シンボリクリスエス",
+    "isGlobal": false,
+    "name_en_community": "[Onyx Soldier] Symboli Kris S"
+  },
+  {
+    "id": "112401",
+    "characterId": "1124",
+    "name_jp": "[POPPING!]バブルガムフェロー",
+    "name_en": "[POPPING!] バブルガムフェロー",
+    "isGlobal": false,
+    "name_en_community": "[POPPING!] Bubble Gum Fellow"
   },
   {
     "id": "100901",
     "characterId": "1009",
     "name_jp": "[トップ・オブ・ブルー]ダイワスカーレット",
     "name_en": "[Peak Blue] Daiwa Scarlet",
+    "isGlobal": true,
     "image": "/images/umas/100901.png"
   },
   {
@@ -475,6 +626,7 @@
     "characterId": "1003",
     "name_jp": "[トップ・オブ・ジョイフル]トウカイテイオー",
     "name_en": "[Peak Joy] Tokai Teio",
+    "isGlobal": true,
     "image": "/images/umas/100301.png"
   },
   {
@@ -482,67 +634,140 @@
     "characterId": "1060",
     "name_jp": "[ポインセチア・リボン]ナイスネイチャ",
     "name_en": "[Poinsettia Ribbon] Nice Nature",
+    "isGlobal": true,
     "image": "/images/umas/106001.png"
+  },
+  {
+    "id": "109301",
+    "characterId": "1093",
+    "name_jp": "[Prism]ケイエスミラクル",
+    "name_en": "[Prism] ケイエスミラクル",
+    "isGlobal": false,
+    "name_en_community": "[Prism] K.S.Miracle"
   },
   {
     "id": "101802",
     "characterId": "1018",
     "name_jp": "[クエルクス・キウィーリス]エアグルーヴ",
     "name_en": "[Quercus Civilis] Air Groove",
+    "isGlobal": true,
     "image": "/images/umas/101802.png"
+  },
+  {
+    "id": "100702",
+    "characterId": "1007",
+    "name_jp": "[RUN！乱！ランチャー！！]ゴールドシップ",
+    "name_en": "[RUN！乱！ランチャー！！] Gold Ship",
+    "isGlobal": false,
+    "name_en_community": "[RUN! Riot! Launcher!!] Gold Ship"
+  },
+  {
+    "id": "106002",
+    "characterId": "1060",
+    "name_jp": "[RUN＆WIN]ナイスネイチャ",
+    "name_en": "[RUN＆WIN] Nice Nature",
+    "isGlobal": false
   },
   {
     "id": "100701",
     "characterId": "1007",
     "name_jp": "[レッドストライフ]ゴールドシップ",
     "name_en": "[Red Strife] Gold Ship",
+    "isGlobal": true,
     "image": "/images/umas/100701.png"
+  },
+  {
+    "id": "110801",
+    "characterId": "1108",
+    "name_jp": "[Red in Black]ドゥラメンテ",
+    "name_en": "[Red in Black] ドゥラメンテ",
+    "isGlobal": false,
+    "name_en_community": "[Red in Black] Duramente"
   },
   {
     "id": "102001",
     "characterId": "1020",
     "name_jp": "[あおぐもサミング]セイウンスカイ",
     "name_en": "[Reeling in the Big One] Seiun Sky",
+    "isGlobal": true,
     "image": "/images/umas/102001.png"
+  },
+  {
+    "id": "111601",
+    "characterId": "1116",
+    "name_jp": "[Regina dei fiori]ジェンティルドンナ",
+    "name_en": "[Regina dei fiori] ジェンティルドンナ",
+    "isGlobal": false,
+    "name_en_community": "[Regina dei fiori] Gentildonna"
+  },
+  {
+    "id": "103703",
+    "characterId": "1037",
+    "name_jp": "[Reines Plätschern]エイシンフラッシュ",
+    "name_en": "[Reines Plätschern] Eishin Flash",
+    "isGlobal": false,
+    "name_en_community": "[Pure Splashing] Eishin Flash"
   },
   {
     "id": "105601",
     "characterId": "1056",
     "name_jp": "[運気上昇☆幸福万来]マチカネフクキタル",
     "name_en": "[Rising☆Fortune] Matikanefukukitaru",
+    "isGlobal": true,
     "image": "/images/umas/105601.png"
+  },
+  {
+    "id": "104201",
+    "characterId": "1042",
+    "name_jp": "[Rocket☆Star]シーキングザパール",
+    "name_en": "[Rocket☆Star] シーキングザパール",
+    "isGlobal": false,
+    "name_en_community": "[Rocket☆Star] Seeking the Pearl"
   },
   {
     "id": "103001",
     "characterId": "1030",
     "name_jp": "[ローゼスドリーム]ライスシャワー",
     "name_en": "[Rosy Dreams] Rice Shower",
+    "isGlobal": true,
     "image": "/images/umas/103001.png"
   },
   {
     "id": "101102",
     "characterId": "1011",
     "name_jp": "[セイントジェード・ヒーラー]グラスワンダー",
-    "name_en": "[Saintly Jade Cleric ] Grass Wonder"
+    "name_en": "[Saintly Jade Cleric ] Grass Wonder",
+    "isGlobal": true
+  },
+  {
+    "id": "107601",
+    "characterId": "1076",
+    "name_jp": "[Saisir le rêve]サクラローレル",
+    "name_en": "[Saisir le rêve] サクラローレル",
+    "isGlobal": false,
+    "name_en_community": "[Saisir le rêve] Sakura Laurel"
   },
   {
     "id": "102401",
     "characterId": "1024",
     "name_jp": "[すくらんぶる☆ゾーン]マヤノトップガン",
     "name_en": "[Scramble☆Zone] Mayano Top Gun",
+    "isGlobal": true,
     "image": "/images/umas/102401.png"
   },
   {
     "id": "100501",
     "characterId": "1005",
     "name_jp": "[シューティンスタァ・ルヴュ]フジキセキ",
-    "name_en": "[Shooting Star Revue] Fuji Kiseki"
+    "name_en": "[Shooting Star Revue] Fuji Kiseki",
+    "isGlobal": true
   },
   {
     "id": "100101",
     "characterId": "1001",
     "name_jp": "[スペシャルドリーマー]スペシャルウィーク",
     "name_en": "[Special Dreamer] Special Week",
+    "isGlobal": true,
     "image": "/images/umas/100101.png"
   },
   {
@@ -550,33 +775,134 @@
     "characterId": "1006",
     "name_jp": "[スターライトビート]オグリキャップ",
     "name_en": "[Starlight Beat] Oguri Cap",
+    "isGlobal": true,
     "image": "/images/umas/100601.png"
+  },
+  {
+    "id": "103301",
+    "characterId": "1033",
+    "name_jp": "[Starry Nocturne]アドマイヤベガ",
+    "name_en": "[Starry Nocturne] アドマイヤベガ",
+    "isGlobal": false,
+    "name_en_community": "[Starry Nocturne] Admire Vega"
   },
   {
     "id": "101101",
     "characterId": "1011",
     "name_jp": "[岩穿つ青]グラスワンダー",
     "name_en": "[Stone-Piercing Blue] Grass Wonder",
+    "isGlobal": true,
     "image": "/images/umas/101101.png"
+  },
+  {
+    "id": "107802",
+    "characterId": "1078",
+    "name_jp": "[Sugary Wind]ヤマニンゼファー",
+    "name_en": "[Sugary Wind] ヤマニンゼファー",
+    "isGlobal": false,
+    "name_en_community": "[Sugary Wind] Yamanin Zephyr"
   },
   {
     "id": "102402",
     "characterId": "1024",
     "name_jp": "[サンライト・ブーケ]マヤノトップガン",
     "name_en": "[Sunlight Bouquet] Mayano Top Gun",
+    "isGlobal": true,
     "image": "/images/umas/102402.png"
+  },
+  {
+    "id": "105102",
+    "characterId": "1051",
+    "name_jp": "[Sweet Juneberry]ニシノフラワー",
+    "name_en": "[Sweet Juneberry] ニシノフラワー",
+    "isGlobal": false,
+    "name_en_community": "[Sweet Juneberry] Nishino Flower"
+  },
+  {
+    "id": "110702",
+    "characterId": "1107",
+    "name_jp": "[Tap! Tap! Tap!]タップダンスシチー",
+    "name_en": "[Tap! Tap! Tap!] タップダンスシチー",
+    "isGlobal": false,
+    "name_en_community": "[Tap! Tap! Tap!] Tap Dance City"
+  },
+  {
+    "id": "107701",
+    "characterId": "1077",
+    "name_jp": "[The Proud Road]ナリタトップロード",
+    "name_en": "[The Proud Road] ナリタトップロード",
+    "isGlobal": false,
+    "name_en_community": "[The Proud Road] Narita Top Road"
+  },
+  {
+    "id": "102202",
+    "characterId": "1022",
+    "name_jp": "[Titania]ファインモーション",
+    "name_en": "[Titania] ファインモーション",
+    "isGlobal": false,
+    "name_en_community": "[Titania] Fine Motion"
   },
   {
     "id": "105801",
     "characterId": "1058",
     "name_jp": "[ブルー/レイジング]メイショウドトウ",
-    "name_en": "[Turbulent Blue] Meisho Doto"
+    "name_en": "[Turbulent Blue] Meisho Doto",
+    "isGlobal": true
+  },
+  {
+    "id": "111002",
+    "characterId": "1110",
+    "name_jp": "[Twinbell Queen]シーザリオ",
+    "name_en": "[Twinbell Queen] シーザリオ",
+    "isGlobal": false,
+    "name_en_community": "[Twinbell Queen] Cesario"
+  },
+  {
+    "id": "105302",
+    "characterId": "1053",
+    "name_jp": "[Ultra☆Marine]バンブーメモリー",
+    "name_en": "[Ultra☆Marine] バンブーメモリー",
+    "isGlobal": false,
+    "name_en_community": "[Ultra☆Marine] Bamboo Memory"
+  },
+  {
+    "id": "110501",
+    "characterId": "1105",
+    "name_jp": "[Universe-Naut]ネオユニヴァース",
+    "name_en": "[Universe-Naut] ネオユニヴァース",
+    "isGlobal": false,
+    "name_en_community": "[Universe-Naut] Neo Universe"
+  },
+  {
+    "id": "108602",
+    "characterId": "1086",
+    "name_jp": "[Untouchable Eden]メジロラモーヌ",
+    "name_en": "[Untouchable Eden] メジロラモーヌ",
+    "isGlobal": false,
+    "name_en_community": "[Untouchable Eden] Mejiro Ramonu"
+  },
+  {
+    "id": "109101",
+    "characterId": "1091",
+    "name_jp": "[Voyage étincelant]ヴィブロス",
+    "name_en": "[Voyage étincelant] ヴィブロス",
+    "isGlobal": false,
+    "name_en_community": "[Voyage étincelant] Viblos"
+  },
+  {
+    "id": "104301",
+    "characterId": "1043",
+    "name_jp": "[Wicked Punk]シンコウウインディ",
+    "name_en": "[Wicked Punk] シンコウウインディ",
+    "isGlobal": false,
+    "name_en_community": "[Wicked Punk] Shinko Windy"
   },
   {
     "id": "101001",
     "characterId": "1010",
     "name_jp": "[ワイルド・フロンティア]タイキシャトル",
     "name_en": "[Wild Frontier] Taiki Shuttle",
+    "isGlobal": true,
     "image": "/images/umas/101001.png"
   },
   {
@@ -584,13 +910,38 @@
     "characterId": "1008",
     "name_jp": "[ワイルドトップギア]ウオッカ",
     "name_en": "[Wild Top Gear] Vodka",
+    "isGlobal": true,
     "image": "/images/umas/100801.png"
+  },
+  {
+    "id": "108402",
+    "characterId": "1084",
+    "name_jp": "[With a Twist]タニノギムレット",
+    "name_en": "[With a Twist] タニノギムレット",
+    "isGlobal": false,
+    "name_en_community": "[With a Twist] Tanino Gimlet"
+  },
+  {
+    "id": "103003",
+    "characterId": "1030",
+    "name_jp": "[Yummy Dreamy Fairy]ライスシャワー",
+    "name_en": "[Yummy Dreamy Fairy] Rice Shower",
+    "isGlobal": false
+  },
+  {
+    "id": "108001",
+    "characterId": "1080",
+    "name_jp": "[ZOKU-ZOKU GIZMO]トランセンド",
+    "name_en": "[ZOKU-ZOKU GIZMO] トランセンド",
+    "isGlobal": false,
+    "name_en_community": "[ZOKU-ZOKU GIZMO] Transcend"
   },
   {
     "id": "102301",
     "characterId": "1023",
     "name_jp": "[pf.Victory formula...]ビワハヤヒデ",
     "name_en": "[pf. Winning Equation...] Biwa Hayahide",
+    "isGlobal": true,
     "image": "/images/umas/102301.png"
   },
   {
@@ -598,780 +949,814 @@
     "characterId": "1032",
     "name_jp": "[tach-nology]アグネスタキオン",
     "name_en": "[tach-nology] Agnes Tachyon",
+    "isGlobal": true,
     "image": "/images/umas/103201.png"
-  },
-  {
-    "id": "103101",
-    "characterId": "1031",
-    "name_jp": "[オールタイム・フィーバー]アイネスフウジン",
-    "name_en": "アイネスフウジン"
-  },
-  {
-    "id": "103102",
-    "characterId": "1031",
-    "name_jp": "[MELTY GIFT]アイネスフウジン",
-    "name_en": "アイネスフウジン"
-  },
-  {
-    "id": "103103",
-    "characterId": "1031",
-    "name_jp": "[Hello Hello Island]アイネスフウジン",
-    "name_en": "アイネスフウジン"
-  },
-  {
-    "id": "101901",
-    "characterId": "1019",
-    "name_jp": "[超特急！フルカラー特殊PP]アグネスデジタル",
-    "name_en": "アグネスデジタル"
-  },
-  {
-    "id": "101902",
-    "characterId": "1019",
-    "name_jp": "[愛麗♡キョンシー]アグネスデジタル",
-    "name_en": "アグネスデジタル"
-  },
-  {
-    "id": "108701",
-    "characterId": "1087",
-    "name_jp": "[Flare]アストンマーチャン",
-    "name_en": "アストンマーチャン"
-  },
-  {
-    "id": "108702",
-    "characterId": "1087",
-    "name_jp": "[溶けない砂糖菓子]アストンマーチャン",
-    "name_en": "アストンマーチャン"
-  },
-  {
-    "id": "103301",
-    "characterId": "1033",
-    "name_jp": "[Starry Nocturne]アドマイヤベガ",
-    "name_en": "アドマイヤベガ"
-  },
-  {
-    "id": "103302",
-    "characterId": "1033",
-    "name_jp": "[Glacialis Vega]アドマイヤベガ",
-    "name_en": "アドマイヤベガ"
-  },
-  {
-    "id": "106301",
-    "characterId": "1063",
-    "name_jp": "[Mantle of Steel]イクノディクタス",
-    "name_en": "イクノディクタス"
-  },
-  {
-    "id": "103401",
-    "characterId": "1034",
-    "name_jp": "[稲荷所縁江戸紫]イナリワン",
-    "name_en": "イナリワン"
-  },
-  {
-    "id": "103402",
-    "characterId": "1034",
-    "name_jp": "[夢ノ金原]イナリワン",
-    "name_en": "イナリワン"
-  },
-  {
-    "id": "111701",
-    "characterId": "1117",
-    "name_jp": "[ドラマティック・チュチュ]ウインバリアシオン",
-    "name_en": "ウインバリアシオン"
   },
   {
     "id": "103601",
     "characterId": "1036",
     "name_jp": "[unsigned]エアシャカール",
-    "name_en": "エアシャカール"
-  },
-  {
-    "id": "103602",
-    "characterId": "1036",
-    "name_jp": "[Belphegor's Prime]エアシャカール",
-    "name_en": "エアシャカール"
-  },
-  {
-    "id": "111101",
-    "characterId": "1111",
-    "name_jp": "[Inherited Hope]エアメサイア",
-    "name_en": "エアメサイア"
-  },
-  {
-    "id": "111501",
-    "characterId": "1115",
-    "name_jp": "[総攬]オルフェーヴル",
-    "name_en": "オルフェーヴル"
-  },
-  {
-    "id": "110401",
-    "characterId": "1104",
-    "name_jp": "[登竜之頂]カツラギエース",
-    "name_en": "カツラギエース"
-  },
-  {
-    "id": "110402",
-    "characterId": "1104",
-    "name_jp": "[雅号・墨龍]カツラギエース",
-    "name_en": "カツラギエース"
-  },
-  {
-    "id": "112001",
-    "characterId": "1120",
-    "name_jp": "[真実一路]カルストンライトオ",
-    "name_en": "カルストンライトオ"
-  },
-  {
-    "id": "103901",
-    "characterId": "1039",
-    "name_jp": "[プリンセス・オブ・ピンク]カワカミプリンセス",
-    "name_en": "カワカミプリンセス"
-  },
-  {
-    "id": "103902",
-    "characterId": "1039",
-    "name_jp": "[水干撫子]カワカミプリンセス",
-    "name_en": "カワカミプリンセス"
-  },
-  {
-    "id": "106801",
-    "characterId": "1068",
-    "name_jp": "[錦上・大判御輿]キタサンブラック",
-    "name_en": "キタサンブラック"
-  },
-  {
-    "id": "106802",
-    "characterId": "1068",
-    "name_jp": "[真打・慶鶴之志]キタサンブラック",
-    "name_en": "キタサンブラック"
-  },
-  {
-    "id": "106803",
-    "characterId": "1068",
-    "name_jp": "[結願のしまい華]キタサンブラック",
-    "name_en": "キタサンブラック"
-  },
-  {
-    "id": "113301",
-    "characterId": "1133",
-    "name_jp": "[陸離の編纂者]クロノジェネシス",
-    "name_en": "クロノジェネシス"
-  },
-  {
-    "id": "113101",
-    "characterId": "1131",
-    "name_jp": "[すまいる・まい・うぇい！]グランアレグリア",
-    "name_en": "グランアレグリア"
-  },
-  {
-    "id": "109301",
-    "characterId": "1093",
-    "name_jp": "[Prism]ケイエスミラクル",
-    "name_en": "ケイエスミラクル"
-  },
-  {
-    "id": "109302",
-    "characterId": "1093",
-    "name_jp": "[秋日色アンダンテ]ケイエスミラクル",
-    "name_en": "ケイエスミラクル"
-  },
-  {
-    "id": "109801",
-    "characterId": "1098",
-    "name_jp": "[陰陽八卦☆開運衣]コパノリッキー",
-    "name_en": "コパノリッキー"
-  },
-  {
-    "id": "109802",
-    "characterId": "1098",
-    "name_jp": "[光彩陸離☆招福衣]コパノリッキー",
-    "name_en": "コパノリッキー"
-  },
-  {
-    "id": "110201",
-    "characterId": "1102",
-    "name_jp": "[リトモ・デッラ・テッラ]サウンズオブアース",
-    "name_en": "サウンズオブアース"
-  },
-  {
-    "id": "106901",
-    "characterId": "1069",
-    "name_jp": "[日下開山・花あかり]サクラチヨノオー",
-    "name_en": "サクラチヨノオー"
-  },
-  {
-    "id": "106902",
-    "characterId": "1069",
-    "name_jp": "[Fleur Enneigée]サクラチヨノオー",
-    "name_en": "サクラチヨノオー"
-  },
-  {
-    "id": "107601",
-    "characterId": "1076",
-    "name_jp": "[Saisir le rêve]サクラローレル",
-    "name_en": "サクラローレル"
-  },
-  {
-    "id": "108801",
-    "characterId": "1088",
-    "name_jp": "[黒翠千里行]サトノクラウン",
-    "name_en": "サトノクラウン"
-  },
-  {
-    "id": "108802",
-    "characterId": "1088",
-    "name_jp": "[晴島花麗]サトノクラウン",
-    "name_en": "サトノクラウン"
-  },
-  {
-    "id": "106701",
-    "characterId": "1067",
-    "name_jp": "[Natural Brilliance]サトノダイヤモンド",
-    "name_en": "サトノダイヤモンド"
-  },
-  {
-    "id": "106702",
-    "characterId": "1067",
-    "name_jp": "[花形・弥栄之翠]サトノダイヤモンド",
-    "name_en": "サトノダイヤモンド"
-  },
-  {
-    "id": "106703",
-    "characterId": "1067",
-    "name_jp": "[シュヴァリエ・ブル]サトノダイヤモンド",
-    "name_en": "サトノダイヤモンド"
-  },
-  {
-    "id": "108901",
-    "characterId": "1089",
-    "name_jp": "[Grand itinéraire]シュヴァルグラン",
-    "name_en": "シュヴァルグラン"
-  },
-  {
-    "id": "108902",
-    "characterId": "1089",
-    "name_jp": "[夏凪ネイビードロップ]シュヴァルグラン",
-    "name_en": "シュヴァルグラン"
-  },
-  {
-    "id": "107001",
-    "characterId": "1070",
-    "name_jp": "[Féroce]シリウスシンボリ",
-    "name_en": "シリウスシンボリ"
-  },
-  {
-    "id": "107002",
-    "characterId": "1070",
-    "name_jp": "[Louve stellaire]シリウスシンボリ",
-    "name_en": "シリウスシンボリ"
-  },
-  {
-    "id": "104301",
-    "characterId": "1043",
-    "name_jp": "[Wicked Punk]シンコウウインディ",
-    "name_en": "シンコウウインディ"
-  },
-  {
-    "id": "108301",
-    "characterId": "1083",
-    "name_jp": "[Onyx Soldier]シンボリクリスエス",
-    "name_en": "シンボリクリスエス"
-  },
-  {
-    "id": "108302",
-    "characterId": "1083",
-    "name_jp": "[Jetblack Automaton]シンボリクリスエス",
-    "name_en": "シンボリクリスエス"
-  },
-  {
-    "id": "104201",
-    "characterId": "1042",
-    "name_jp": "[Rocket☆Star]シーキングザパール",
-    "name_en": "シーキングザパール"
-  },
-  {
-    "id": "104202",
-    "characterId": "1042",
-    "name_jp": "[Be♪Witched]シーキングザパール",
-    "name_en": "シーキングザパール"
-  },
-  {
-    "id": "111001",
-    "characterId": "1110",
-    "name_jp": "[Future Weaver]シーザリオ",
-    "name_en": "シーザリオ"
-  },
-  {
-    "id": "111002",
-    "characterId": "1110",
-    "name_jp": "[Twinbell Queen]シーザリオ",
-    "name_en": "シーザリオ"
-  },
-  {
-    "id": "111601",
-    "characterId": "1116",
-    "name_jp": "[Regina dei fiori]ジェンティルドンナ",
-    "name_en": "ジェンティルドンナ"
-  },
-  {
-    "id": "109401",
-    "characterId": "1094",
-    "name_jp": "[王者の喊声]ジャングルポケット",
-    "name_en": "ジャングルポケット"
-  },
-  {
-    "id": "104401",
-    "characterId": "1044",
-    "name_jp": "[プラタナス・ウィッチ]スイープトウショウ",
-    "name_en": "スイープトウショウ"
-  },
-  {
-    "id": "104402",
-    "characterId": "1044",
-    "name_jp": "[リアライズ・ルーン]スイープトウショウ",
-    "name_en": "スイープトウショウ"
-  },
-  {
-    "id": "109701",
-    "characterId": "1097",
-    "name_jp": "[緋想の誓衣]スティルインラブ",
-    "name_en": "スティルインラブ"
-  },
-  {
-    "id": "104701",
-    "characterId": "1047",
-    "name_jp": "[Heroic Author]ゼンノロブロイ",
-    "name_en": "ゼンノロブロイ"
-  },
-  {
-    "id": "104702",
-    "characterId": "1047",
-    "name_jp": "[Inlaid Stories]ゼンノロブロイ",
-    "name_en": "ゼンノロブロイ"
-  },
-  {
-    "id": "110701",
-    "characterId": "1107",
-    "name_jp": "[GLITTER!]タップダンスシチー",
-    "name_en": "タップダンスシチー"
-  },
-  {
-    "id": "110702",
-    "characterId": "1107",
-    "name_jp": "[Tap! Tap! Tap!]タップダンスシチー",
-    "name_en": "タップダンスシチー"
-  },
-  {
-    "id": "108401",
-    "characterId": "1084",
-    "name_jp": "[身に纏うケラヴノス]タニノギムレット",
-    "name_en": "タニノギムレット"
-  },
-  {
-    "id": "108402",
-    "characterId": "1084",
-    "name_jp": "[With a Twist]タニノギムレット",
-    "name_en": "タニノギムレット"
-  },
-  {
-    "id": "102101",
-    "characterId": "1021",
-    "name_jp": "[疾風迅雷]タマモクロス",
-    "name_en": "タマモクロス"
-  },
-  {
-    "id": "102102",
-    "characterId": "1021",
-    "name_jp": "[猛ル鳴神]タマモクロス",
-    "name_en": "タマモクロス"
-  },
-  {
-    "id": "108501",
-    "characterId": "1085",
-    "name_jp": "[華麗なる紅玉]ダイイチルビー",
-    "name_en": "ダイイチルビー"
-  },
-  {
-    "id": "108502",
-    "characterId": "1085",
-    "name_jp": "[Flowing Blue]ダイイチルビー",
-    "name_en": "ダイイチルビー"
-  },
-  {
-    "id": "106501",
-    "characterId": "1065",
-    "name_jp": "[Fun☆Fun☆ぱりない]ダイタクヘリオス",
-    "name_en": "ダイタクヘリオス"
-  },
-  {
-    "id": "106502",
-    "characterId": "1065",
-    "name_jp": "[Joyful Jamboree!]ダイタクヘリオス",
-    "name_en": "ダイタクヘリオス"
-  },
-  {
-    "id": "106601",
-    "characterId": "1066",
-    "name_jp": "[爆走！ターボエンジン]ツインターボ",
-    "name_en": "ツインターボ"
-  },
-  {
-    "id": "107301",
-    "characterId": "1073",
-    "name_jp": "[志、高し、強し！]ツルマルツヨシ",
-    "name_en": "ツルマルツヨシ"
-  },
-  {
-    "id": "112101",
-    "characterId": "1121",
-    "name_jp": "[Chevalier fidèle]デュランダル",
-    "name_en": "デュランダル"
-  },
-  {
-    "id": "108001",
-    "characterId": "1080",
-    "name_jp": "[ZOKU-ZOKU GIZMO]トランセンド",
-    "name_en": "トランセンド"
-  },
-  {
-    "id": "104801",
-    "characterId": "1048",
-    "name_jp": "[ポップス☆ジョーカー]トーセンジョーダン",
-    "name_en": "トーセンジョーダン"
-  },
-  {
-    "id": "104802",
-    "characterId": "1048",
-    "name_jp": "[Aurore☆Vacances]トーセンジョーダン",
-    "name_en": "トーセンジョーダン"
-  },
-  {
-    "id": "110801",
-    "characterId": "1108",
-    "name_jp": "[Red in Black]ドゥラメンテ",
-    "name_en": "ドゥラメンテ"
-  },
-  {
-    "id": "111901",
-    "characterId": "1119",
-    "name_jp": "[夢路のよすが]ドリームジャーニー",
-    "name_en": "ドリームジャーニー"
-  },
-  {
-    "id": "104901",
-    "characterId": "1049",
-    "name_jp": "[死中求活]ナカヤマフェスタ",
-    "name_en": "ナカヤマフェスタ"
-  },
-  {
-    "id": "107701",
-    "characterId": "1077",
-    "name_jp": "[The Proud Road]ナリタトップロード",
-    "name_en": "ナリタトップロード"
-  },
-  {
-    "id": "107702",
-    "characterId": "1077",
-    "name_jp": "[Celestial Road]ナリタトップロード",
-    "name_en": "ナリタトップロード"
-  },
-  {
-    "id": "105101",
-    "characterId": "1051",
-    "name_jp": "[ティアード・ペタル]ニシノフラワー",
-    "name_en": "ニシノフラワー"
-  },
-  {
-    "id": "105102",
-    "characterId": "1051",
-    "name_jp": "[Sweet Juneberry]ニシノフラワー",
-    "name_en": "ニシノフラワー"
-  },
-  {
-    "id": "110501",
-    "characterId": "1105",
-    "name_jp": "[Universe-Naut]ネオユニヴァース",
-    "name_en": "ネオユニヴァース"
-  },
-  {
-    "id": "110502",
-    "characterId": "1105",
-    "name_jp": "[Like “ZEER”]ネオユニヴァース",
-    "name_en": "ネオユニヴァース"
-  },
-  {
-    "id": "108201",
-    "characterId": "1082",
-    "name_jp": "[Looking Fly!]ノースフライト",
-    "name_en": "ノースフライト"
-  },
-  {
-    "id": "109601",
-    "characterId": "1096",
-    "name_jp": "[紅色塗早駆具足]ノーリーズン",
-    "name_en": "ノーリーズン"
-  },
-  {
-    "id": "112401",
-    "characterId": "1124",
-    "name_jp": "[POPPING!]バブルガムフェロー",
-    "name_en": "バブルガムフェロー"
-  },
-  {
-    "id": "105301",
-    "characterId": "1053",
-    "name_jp": "[黒鉄の大志]バンブーメモリー",
-    "name_en": "バンブーメモリー"
-  },
-  {
-    "id": "105302",
-    "characterId": "1053",
-    "name_jp": "[Ultra☆Marine]バンブーメモリー",
-    "name_en": "バンブーメモリー"
-  },
-  {
-    "id": "102801",
-    "characterId": "1028",
-    "name_jp": "[ボーノ☆アラモーダ]ヒシアケボノ",
-    "name_en": "ヒシアケボノ"
-  },
-  {
-    "id": "110601",
-    "characterId": "1106",
-    "name_jp": "[みらくるめーくあっぷ！]ヒシミラクル",
-    "name_en": "ヒシミラクル"
-  },
-  {
-    "id": "110602",
-    "characterId": "1106",
-    "name_jp": "[ハッピー・リトル・ノーツ]ヒシミラクル",
-    "name_en": "ヒシミラクル"
-  },
-  {
-    "id": "105401",
-    "characterId": "1054",
-    "name_jp": "[疾風ペガサス・零式]ビコーペガサス",
-    "name_en": "ビコーペガサス"
-  },
-  {
-    "id": "102201",
-    "characterId": "1022",
-    "name_jp": "[Noble Seamair]ファインモーション",
-    "name_en": "ファインモーション"
-  },
-  {
-    "id": "102202",
-    "characterId": "1022",
-    "name_jp": "[Titania]ファインモーション",
-    "name_en": "ファインモーション"
-  },
-  {
-    "id": "112701",
-    "characterId": "1127",
-    "name_jp": "[義心の黒焔]フェノーメノ",
-    "name_en": "フェノーメノ"
-  },
-  {
-    "id": "111301",
-    "characterId": "1113",
-    "name_jp": "[Assorted Cuteness♡]フサイチパンドラ",
-    "name_en": "フサイチパンドラ"
-  },
-  {
-    "id": "107901",
-    "characterId": "1079",
-    "name_jp": "[衣錦還郷の瑞星]フリオーソ",
-    "name_en": "フリオーソ"
-  },
-  {
-    "id": "109901",
-    "characterId": "1099",
-    "name_jp": "[スター・ライト・シップ]ホッコータルマエ",
-    "name_en": "ホッコータルマエ"
-  },
-  {
-    "id": "109902",
-    "characterId": "1099",
-    "name_jp": "[パステルマリン・ロコドル]ホッコータルマエ",
-    "name_en": "ホッコータルマエ"
-  },
-  {
-    "id": "106201",
-    "characterId": "1062",
-    "name_jp": "[ぱんぱかティルトット]マチカネタンホイザ",
-    "name_en": "マチカネタンホイザ"
-  },
-  {
-    "id": "106202",
-    "characterId": "1062",
-    "name_jp": "[ブルー・タービュランス]マチカネタンホイザ",
-    "name_en": "マチカネタンホイザ"
-  },
-  {
-    "id": "102501",
-    "characterId": "1025",
-    "name_jp": "[Creeping Black]マンハッタンカフェ",
-    "name_en": "マンハッタンカフェ"
-  },
-  {
-    "id": "102502",
-    "characterId": "1025",
-    "name_jp": "[柳緑小夜]マンハッタンカフェ",
-    "name_en": "マンハッタンカフェ"
-  },
-  {
-    "id": "105501",
-    "characterId": "1055",
-    "name_jp": "[☆キラ★ドキ☆ワク∞マベ∞]マーベラスサンデー",
-    "name_en": "マーベラスサンデー"
-  },
-  {
-    "id": "105701",
-    "characterId": "1057",
-    "name_jp": "[Clear Bliss]ミスターシービー",
-    "name_en": "ミスターシービー"
-  },
-  {
-    "id": "105702",
-    "characterId": "1057",
-    "name_jp": "[絢爛花道歌舞く君]ミスターシービー",
-    "name_en": "ミスターシービー"
-  },
-  {
-    "id": "107101",
-    "characterId": "1071",
-    "name_jp": "[クリノクロア・ライン]メジロアルダン",
-    "name_en": "メジロアルダン"
-  },
-  {
-    "id": "107102",
-    "characterId": "1071",
-    "name_jp": "[Neige Émeraude]メジロアルダン",
-    "name_en": "メジロアルダン"
-  },
-  {
-    "id": "105901",
-    "characterId": "1059",
-    "name_jp": "[ツイステッド・ライン]メジロドーベル",
-    "name_en": "メジロドーベル"
-  },
-  {
-    "id": "105902",
-    "characterId": "1059",
-    "name_jp": "[バカンス・サフィール]メジロドーベル",
-    "name_en": "メジロドーベル"
-  },
-  {
-    "id": "106401",
-    "characterId": "1064",
-    "name_jp": "[Line Breakthrough]メジロパーマー",
-    "name_en": "メジロパーマー"
-  },
-  {
-    "id": "106402",
-    "characterId": "1064",
-    "name_jp": "[赤心のトナカイさん]メジロパーマー",
-    "name_en": "メジロパーマー"
-  },
-  {
-    "id": "107401",
-    "characterId": "1074",
-    "name_jp": "[ブリュニサージュ・ライン]メジロブライト",
-    "name_en": "メジロブライト"
-  },
-  {
-    "id": "107402",
-    "characterId": "1074",
-    "name_jp": "[清らに星澄むスノーロリィタ]メジロブライト",
-    "name_en": "メジロブライト"
-  },
-  {
-    "id": "108601",
-    "characterId": "1086",
-    "name_jp": "[オニキス・ライン]メジロラモーヌ",
-    "name_en": "メジロラモーヌ"
-  },
-  {
-    "id": "108602",
-    "characterId": "1086",
-    "name_jp": "[Untouchable Eden]メジロラモーヌ",
-    "name_en": "メジロラモーヌ"
-  },
-  {
-    "id": "107201",
-    "characterId": "1072",
-    "name_jp": "[四白流星の襲]ヤエノムテキ",
-    "name_en": "ヤエノムテキ"
-  },
-  {
-    "id": "107202",
-    "characterId": "1072",
-    "name_jp": "[黒将Zen]ヤエノムテキ",
-    "name_en": "ヤエノムテキ"
-  },
-  {
-    "id": "107801",
-    "characterId": "1078",
-    "name_jp": "[Fluttertail Spirit]ヤマニンゼファー",
-    "name_en": "ヤマニンゼファー"
-  },
-  {
-    "id": "107802",
-    "characterId": "1078",
-    "name_jp": "[Sugary Wind]ヤマニンゼファー",
-    "name_en": "ヤマニンゼファー"
-  },
-  {
-    "id": "102901",
-    "characterId": "1029",
-    "name_jp": "[めんこいめんこいむつのはな]ユキノビジン",
-    "name_en": "ユキノビジン"
-  },
-  {
-    "id": "102902",
-    "characterId": "1029",
-    "name_jp": "[茶の子雪ん子]ユキノビジン",
-    "name_en": "ユキノビジン"
-  },
-  {
-    "id": "110901",
-    "characterId": "1109",
-    "name_jp": "[Dream Successor]ラインクラフト",
-    "name_en": "ラインクラフト"
-  },
-  {
-    "id": "110902",
-    "characterId": "1109",
-    "name_jp": "[Eternal Fairytale]ラインクラフト",
-    "name_en": "ラインクラフト"
-  },
-  {
-    "id": "113201",
-    "characterId": "1132",
-    "name_jp": "[9927 Wishes]ラヴズオンリーユー",
-    "name_en": "ラヴズオンリーユー"
-  },
-  {
-    "id": "110001",
-    "characterId": "1100",
-    "name_jp": "[Butterfly Sting]ワンダーアキュート",
-    "name_en": "ワンダーアキュート"
-  },
-  {
-    "id": "109101",
-    "characterId": "1091",
-    "name_jp": "[Voyage étincelant]ヴィブロス",
-    "name_en": "ヴィブロス"
+    "name_en": "[unsigned] エアシャカール",
+    "isGlobal": false,
+    "name_en_community": "[unsigned] Air Shakur"
   },
   {
     "id": "109102",
     "characterId": "1091",
     "name_jp": "[Éclat d'été]ヴィブロス",
-    "name_en": "ヴィブロス"
+    "name_en": "[Éclat d'été] ヴィブロス",
+    "isGlobal": false,
+    "name_en_community": "[Éclat d'été] Viblos"
   },
   {
-    "id": "109001",
-    "characterId": "1090",
-    "name_jp": "[Le beau sommet]ヴィルシーナ",
-    "name_en": "ヴィルシーナ"
+    "id": "103203",
+    "characterId": "1032",
+    "name_jp": "[Σ Experiment]アグネスタキオン",
+    "name_en": "[Σ Experiment] Agnes Tachyon",
+    "isGlobal": false
+  },
+  {
+    "id": "105501",
+    "characterId": "1055",
+    "name_jp": "[☆キラ★ドキ☆ワク∞マベ∞]マーベラスサンデー",
+    "name_en": "[☆キラ★ドキ☆ワク∞マベ∞] マーベラスサンデー",
+    "isGlobal": false,
+    "name_en_community": "[☆Sparkle★Thump☆Excited∞Marvelous∞] Marvelous Sunday"
+  },
+  {
+    "id": "101303",
+    "characterId": "1013",
+    "name_jp": "[さざ波フェアレディ]メジロマックイーン",
+    "name_en": "[さざ波フェアレディ] Mejiro McQueen",
+    "isGlobal": false,
+    "name_en_community": "[Rippling Fairlady] Mejiro McQueen"
+  },
+  {
+    "id": "113101",
+    "characterId": "1131",
+    "name_jp": "[すまいる・まい・うぇい！]グランアレグリア",
+    "name_en": "[すまいる・まい・うぇい！] グランアレグリア",
+    "isGlobal": false,
+    "name_en_community": "[Smile My Way!] Gran Alegria"
+  },
+  {
+    "id": "106201",
+    "characterId": "1062",
+    "name_jp": "[ぱんぱかティルトット]マチカネタンホイザ",
+    "name_en": "[ぱんぱかティルトット] マチカネタンホイザ",
+    "isGlobal": false,
+    "name_en_community": "[Fanfare Tilt-Trot] Matikanetannhauser"
+  },
+  {
+    "id": "110601",
+    "characterId": "1106",
+    "name_jp": "[みらくるめーくあっぷ！]ヒシミラクル",
+    "name_en": "[みらくるめーくあっぷ！] ヒシミラクル",
+    "isGlobal": false,
+    "name_en_community": "[Miracle Make-Up!] Hishi Miracle"
+  },
+  {
+    "id": "102901",
+    "characterId": "1029",
+    "name_jp": "[めんこいめんこいむつのはな]ユキノビジン",
+    "name_en": "[めんこいめんこいむつのはな] ユキノビジン",
+    "isGlobal": false,
+    "name_en_community": "[Cute, Cute Flower of Mutsu] Yukino Bijin"
+  },
+  {
+    "id": "102403",
+    "characterId": "1024",
+    "name_jp": "[ろっきん☆MewMeow]マヤノトップガン",
+    "name_en": "[ろっきん☆MewMeow] Mayano Top Gun",
+    "isGlobal": false,
+    "name_en_community": "[Rockin'☆MewMeow] Mayano Top Gun"
+  },
+  {
+    "id": "108601",
+    "characterId": "1086",
+    "name_jp": "[オニキス・ライン]メジロラモーヌ",
+    "name_en": "[オニキス・ライン] メジロラモーヌ",
+    "isGlobal": false,
+    "name_en_community": "[Onyx Line] Mejiro Ramonu"
+  },
+  {
+    "id": "103101",
+    "characterId": "1031",
+    "name_jp": "[オールタイム・フィーバー]アイネスフウジン",
+    "name_en": "[オールタイム・フィーバー] アイネスフウジン",
+    "isGlobal": false,
+    "name_en_community": "[All-Time Fever] Ines Fujin"
+  },
+  {
+    "id": "100602",
+    "characterId": "1006",
+    "name_jp": "[キセキの白星]オグリキャップ",
+    "name_en": "[キセキの白星] Oguri Cap",
+    "isGlobal": false,
+    "name_en_community": "[Miraculous Victory] Oguri Cap"
+  },
+  {
+    "id": "107101",
+    "characterId": "1071",
+    "name_jp": "[クリノクロア・ライン]メジロアルダン",
+    "name_en": "[クリノクロア・ライン] メジロアルダン",
+    "isGlobal": false,
+    "name_en_community": "[Clinochlore Line] Mejiro Ardan"
+  },
+  {
+    "id": "103702",
+    "characterId": "1037",
+    "name_jp": "[コレクト・ショコラティエ]エイシンフラッシュ",
+    "name_en": "[コレクト・ショコラティエ] Eishin Flash",
+    "isGlobal": false,
+    "name_en_community": "[Collect Chocolatier] Eishin Flash"
+  },
+  {
+    "id": "104502",
+    "characterId": "1045",
+    "name_jp": "[シフォンリボンマミー]スーパークリーク",
+    "name_en": "[シフォンリボンマミー] Super Creek",
+    "isGlobal": false,
+    "name_en_community": "[Chiffon Ribbon Mummy] Super Creek"
+  },
+  {
+    "id": "100502",
+    "characterId": "1005",
+    "name_jp": "[シュクセ・エトワーレ]フジキセキ",
+    "name_en": "[シュクセ・エトワーレ] Fuji Kiseki",
+    "isGlobal": false,
+    "name_en_community": "[Succès Étoilé] Fuji Kiseki"
+  },
+  {
+    "id": "106703",
+    "characterId": "1067",
+    "name_jp": "[シュヴァリエ・ブル]サトノダイヤモンド",
+    "name_en": "[シュヴァリエ・ブル] サトノダイヤモンド",
+    "isGlobal": false,
+    "name_en_community": "[Chevalier Bleu] Satono Diamond"
+  },
+  {
+    "id": "109901",
+    "characterId": "1099",
+    "name_jp": "[スター・ライト・シップ]ホッコータルマエ",
+    "name_en": "[スター・ライト・シップ] ホッコータルマエ",
+    "isGlobal": false,
+    "name_en_community": "[Star Light Ship] Hokko Tarumae"
+  },
+  {
+    "id": "102002",
+    "characterId": "1020",
+    "name_jp": "[ソワレ・ド・シャトン]セイウンスカイ",
+    "name_en": "[ソワレ・ド・シャトン] Seiun Sky",
+    "isGlobal": false,
+    "name_en_community": "[Soirée de Chaton] Seiun Sky"
+  },
+  {
+    "id": "105901",
+    "characterId": "1059",
+    "name_jp": "[ツイステッド・ライン]メジロドーベル",
+    "name_en": "[ツイステッド・ライン] メジロドーベル",
+    "isGlobal": false,
+    "name_en_community": "[Twisted Line] Mejiro Dober"
+  },
+  {
+    "id": "105101",
+    "characterId": "1051",
+    "name_jp": "[ティアード・ペタル]ニシノフラワー",
+    "name_en": "[ティアード・ペタル] ニシノフラワー",
+    "isGlobal": false,
+    "name_en_community": "[Tiered Petal] Nishino Flower"
+  },
+  {
+    "id": "105002",
+    "characterId": "1050",
+    "name_jp": "[ディファレンス・エンジニア]ナリタタイシン",
+    "name_en": "[ディファレンス・エンジニア] Narita Taishin",
+    "isGlobal": false,
+    "name_en_community": "[Difference Engineer] Narita Taishin"
+  },
+  {
+    "id": "111701",
+    "characterId": "1117",
+    "name_jp": "[ドラマティック・チュチュ]ウインバリアシオン",
+    "name_en": "[ドラマティック・チュチュ] ウインバリアシオン",
+    "isGlobal": false,
+    "name_en_community": "[Dramatic Tutu] Win Variation"
+  },
+  {
+    "id": "106003",
+    "characterId": "1060",
+    "name_jp": "[ネガイノカサネ]ナイスネイチャ",
+    "name_en": "[ネガイノカサネ] Nice Nature",
+    "isGlobal": false,
+    "name_en_community": "[Layers of Wishes] Nice Nature"
+  },
+  {
+    "id": "102302",
+    "characterId": "1023",
+    "name_jp": "[ノエルージュ・キャロル]ビワハヤヒデ",
+    "name_en": "[ノエルージュ・キャロル] Biwa Hayahide",
+    "isGlobal": false,
+    "name_en_community": "[Noël Rouge Carol] Biwa Hayahide"
+  },
+  {
+    "id": "110602",
+    "characterId": "1106",
+    "name_jp": "[ハッピー・リトル・ノーツ]ヒシミラクル",
+    "name_en": "[ハッピー・リトル・ノーツ] ヒシミラクル",
+    "isGlobal": false,
+    "name_en_community": "[Happy Little Notes] Hishi Miracle"
+  },
+  {
+    "id": "105902",
+    "characterId": "1059",
+    "name_jp": "[バカンス・サフィール]メジロドーベル",
+    "name_en": "[バカンス・サフィール] メジロドーベル",
+    "isGlobal": false,
+    "name_en_community": "[Vacances Saphir] Mejiro Dober"
+  },
+  {
+    "id": "109902",
+    "characterId": "1099",
+    "name_jp": "[パステルマリン・ロコドル]ホッコータルマエ",
+    "name_en": "[パステルマリン・ロコドル] ホッコータルマエ",
+    "isGlobal": false,
+    "name_en_community": "[Pastel Marine Locodol] Hokko Tarumae"
+  },
+  {
+    "id": "107401",
+    "characterId": "1074",
+    "name_jp": "[ブリュニサージュ・ライン]メジロブライト",
+    "name_en": "[ブリュニサージュ・ライン] メジロブライト",
+    "isGlobal": false,
+    "name_en_community": "[Brunissage Line] Mejiro Bright"
+  },
+  {
+    "id": "106202",
+    "characterId": "1062",
+    "name_jp": "[ブルー・タービュランス]マチカネタンホイザ",
+    "name_en": "[ブルー・タービュランス] マチカネタンホイザ",
+    "isGlobal": false,
+    "name_en_community": "[Blue Turbulence] Matikanetannhauser"
+  },
+  {
+    "id": "104401",
+    "characterId": "1044",
+    "name_jp": "[プラタナス・ウィッチ]スイープトウショウ",
+    "name_en": "[プラタナス・ウィッチ] スイープトウショウ",
+    "isGlobal": false,
+    "name_en_community": "[Platanus Witch] Sweep Tosho"
+  },
+  {
+    "id": "103901",
+    "characterId": "1039",
+    "name_jp": "[プリンセス・オブ・ピンク]カワカミプリンセス",
+    "name_en": "[プリンセス・オブ・ピンク] カワカミプリンセス",
+    "isGlobal": false,
+    "name_en_community": "[Princess of Pink] Kawakami Princess"
+  },
+  {
+    "id": "102801",
+    "characterId": "1028",
+    "name_jp": "[ボーノ☆アラモーダ]ヒシアケボノ",
+    "name_en": "[ボーノ☆アラモーダ] ヒシアケボノ",
+    "isGlobal": false,
+    "name_en_community": "[Buono☆A La Moda] Hishi Akebono"
+  },
+  {
+    "id": "104801",
+    "characterId": "1048",
+    "name_jp": "[ポップス☆ジョーカー]トーセンジョーダン",
+    "name_en": "[ポップス☆ジョーカー] トーセンジョーダン",
+    "isGlobal": false,
+    "name_en_community": "[Pops☆Joker] Tosen Jordan"
+  },
+  {
+    "id": "102702",
+    "characterId": "1027",
+    "name_jp": "[マーガレット・ラッテ]メジロライアン",
+    "name_en": "[マーガレット・ラッテ] Mejiro Ryan",
+    "isGlobal": false,
+    "name_en_community": "[Margaret Latte] Mejiro Ryan"
+  },
+  {
+    "id": "104402",
+    "characterId": "1044",
+    "name_jp": "[リアライズ・ルーン]スイープトウショウ",
+    "name_en": "[リアライズ・ルーン] スイープトウショウ",
+    "isGlobal": false,
+    "name_en_community": "[Realize Rune] Sweep Tosho"
+  },
+  {
+    "id": "110201",
+    "characterId": "1102",
+    "name_jp": "[リトモ・デッラ・テッラ]サウンズオブアース",
+    "name_en": "[リトモ・デッラ・テッラ] サウンズオブアース",
+    "isGlobal": false,
+    "name_en_community": "[Ritmo della Terra] Sounds of Earth"
+  },
+  {
+    "id": "104603",
+    "characterId": "1046",
+    "name_jp": "[ルミナス☆トワラー]スマートファルコン",
+    "name_en": "[ルミナス☆トワラー] Smart Falcon",
+    "isGlobal": false,
+    "name_en_community": "[Luminous☆Twirler] Smart Falcon"
+  },
+  {
+    "id": "104102",
+    "characterId": "1041",
+    "name_jp": "[レッドホット☆リーダー]サクラバクシンオー",
+    "name_en": "[レッドホット☆リーダー] Sakura Bakushin O",
+    "isGlobal": false,
+    "name_en_community": "[Red-Hot☆Leader] Sakura Bakushin O"
+  },
+  {
+    "id": "100802",
+    "characterId": "1008",
+    "name_jp": "[不凍のアクア・ウィタエ]ウオッカ",
+    "name_en": "[不凍のアクア・ウィタエ] Vodka",
+    "isGlobal": false,
+    "name_en_community": "[Unfrozen Aqua Vitae] Vodka"
+  },
+  {
+    "id": "109802",
+    "characterId": "1098",
+    "name_jp": "[光彩陸離☆招福衣]コパノリッキー",
+    "name_en": "[光彩陸離☆招福衣] コパノリッキー",
+    "isGlobal": false,
+    "name_en_community": "[Dazzling Radiance☆Luck-Inviting Garb] Copano Rickey"
+  },
+  {
+    "id": "105202",
+    "characterId": "1052",
+    "name_jp": "[初うらら♪さくさくら]ハルウララ",
+    "name_en": "[初うらら♪さくさくら] Haru Urara",
+    "isGlobal": false,
+    "name_en_community": "[First Lovely♪Blooming Cherry] Haru Urara"
+  },
+  {
+    "id": "101502",
+    "characterId": "1015",
+    "name_jp": "[初晴・青き絢爛]テイエムオペラオー",
+    "name_en": "[初晴・青き絢爛] T.M. Opera O",
+    "isGlobal": false,
+    "name_en_community": "[First Clear Sky - Blue Splendor] T.M. Opera O"
+  },
+  {
+    "id": "107201",
+    "characterId": "1072",
+    "name_jp": "[四白流星の襲]ヤエノムテキ",
+    "name_en": "[四白流星の襲] ヤエノムテキ",
+    "isGlobal": false,
+    "name_en_community": "[Layered Garb of Four White Meteors] Yaeno Muteki"
+  },
+  {
+    "id": "108902",
+    "characterId": "1089",
+    "name_jp": "[夏凪ネイビードロップ]シュヴァルグラン",
+    "name_en": "[夏凪ネイビードロップ] シュヴァルグラン",
+    "isGlobal": false,
+    "name_en_community": "[Summer Calm Navy Drop] Cheval Grand"
+  },
+  {
+    "id": "103402",
+    "characterId": "1034",
+    "name_jp": "[夢ノ金原]イナリワン",
+    "name_en": "[夢ノ金原] イナリワン",
+    "isGlobal": false,
+    "name_en_community": "[Golden Field of Dreams] Inari One"
+  },
+  {
+    "id": "111901",
+    "characterId": "1119",
+    "name_jp": "[夢路のよすが]ドリームジャーニー",
+    "name_en": "[夢路のよすが] ドリームジャーニー",
+    "isGlobal": false,
+    "name_en_community": "[Reliance on a Dream Path] Dream Journey"
+  },
+  {
+    "id": "107301",
+    "characterId": "1073",
+    "name_jp": "[志、高し、強し！]ツルマルツヨシ",
+    "name_en": "[志、高し、強し！] ツルマルツヨシ",
+    "isGlobal": false,
+    "name_en_community": "[High Aspirations, Strong Will!] Tsurumaru Tsuyoshi"
+  },
+  {
+    "id": "101902",
+    "characterId": "1019",
+    "name_jp": "[愛麗♡キョンシー]アグネスデジタル",
+    "name_en": "[愛麗♡キョンシー] アグネスデジタル",
+    "isGlobal": false,
+    "name_en_community": "[Lovely♡Jiangshi] Agnes Digital"
+  },
+  {
+    "id": "104503",
+    "characterId": "1045",
+    "name_jp": "[慈雨華影]スーパークリーク",
+    "name_en": "[慈雨華影] Super Creek",
+    "isGlobal": false,
+    "name_en_community": "[Merciful Rain, Flowery Shadow] Super Creek"
+  },
+  {
+    "id": "106901",
+    "characterId": "1069",
+    "name_jp": "[日下開山・花あかり]サクラチヨノオー",
+    "name_en": "[日下開山・花あかり] サクラチヨノオー",
+    "isGlobal": false,
+    "name_en_community": "[Unrivaled Champion - Flower Lantern] Sakura Chiyono O"
+  },
+  {
+    "id": "100103",
+    "characterId": "1001",
+    "name_jp": "[日之本一の総大将]スペシャルウィーク",
+    "name_en": "[日之本一の総大将] Special Week",
+    "isGlobal": false,
+    "name_en_community": "[The Greatest General of Japan] Special Week"
+  },
+  {
+    "id": "108802",
+    "characterId": "1088",
+    "name_jp": "[晴島花麗]サトノクラウン",
+    "name_en": "[晴島花麗] サトノクラウン",
+    "isGlobal": false,
+    "name_en_community": "[Clear Island's Splendid Flower] Satono Crown"
+  },
+  {
+    "id": "103802",
+    "characterId": "1038",
+    "name_jp": "[朔月のマ・シェリ]カレンチャン",
+    "name_en": "[朔月のマ・シェリ] Curren Chan",
+    "isGlobal": false,
+    "name_en_community": "[New Moon's Ma Chérie] Curren Chan"
+  },
+  {
+    "id": "102502",
+    "characterId": "1025",
+    "name_jp": "[柳緑小夜]マンハッタンカフェ",
+    "name_en": "[柳緑小夜] マンハッタンカフェ",
+    "isGlobal": false,
+    "name_en_community": "[Willow-Green Night] Manhattan Cafe"
+  },
+  {
+    "id": "104901",
+    "characterId": "1049",
+    "name_jp": "[死中求活]ナカヤマフェスタ",
+    "name_en": "[死中求活] ナカヤマフェスタ",
+    "isGlobal": false,
+    "name_en_community": "[Seeking Life in Death's Grasp] Nakayama Festa"
+  },
+  {
+    "id": "103902",
+    "characterId": "1039",
+    "name_jp": "[水干撫子]カワカミプリンセス",
+    "name_en": "[水干撫子] カワカミプリンセス",
+    "isGlobal": false,
+    "name_en_community": "[Suikan Nadeshiko] Kawakami Princess"
+  },
+  {
+    "id": "100202",
+    "characterId": "1002",
+    "name_jp": "[波間のエメラルド]サイレンススズカ",
+    "name_en": "[波間のエメラルド] Silence Suzuka",
+    "isGlobal": false,
+    "name_en_community": "[Emerald Between the Waves] Silence Suzuka"
+  },
+  {
+    "id": "107402",
+    "characterId": "1074",
+    "name_jp": "[清らに星澄むスノーロリィタ]メジロブライト",
+    "name_en": "[清らに星澄むスノーロリィタ] メジロブライト",
+    "isGlobal": false,
+    "name_en_community": "[Purely Star-Clear Snow Lolita] Mejiro Bright"
+  },
+  {
+    "id": "108702",
+    "characterId": "1087",
+    "name_jp": "[溶けない砂糖菓子]アストンマーチャン",
+    "name_en": "[溶けない砂糖菓子] アストンマーチャン",
+    "isGlobal": false,
+    "name_en_community": "[Unmelting Sugar Candy] Aston Machan"
+  },
+  {
+    "id": "106601",
+    "characterId": "1066",
+    "name_jp": "[爆走！ターボエンジン]ツインターボ",
+    "name_en": "[爆走！ターボエンジン] ツインターボ",
+    "isGlobal": false,
+    "name_en_community": "[Explosive Running! Turbo Engine] Twin Turbo"
+  },
+  {
+    "id": "102102",
+    "characterId": "1021",
+    "name_jp": "[猛ル鳴神]タマモクロス",
+    "name_en": "[猛ル鳴神] タマモクロス",
+    "isGlobal": false,
+    "name_en_community": "[Raging Thunder God] Tamamo Cross"
+  },
+  {
+    "id": "109401",
+    "characterId": "1094",
+    "name_jp": "[王者の喊声]ジャングルポケット",
+    "name_en": "[王者の喊声] ジャングルポケット",
+    "isGlobal": false,
+    "name_en_community": "[The Champion's War Cry] Jungle Pocket"
+  },
+  {
+    "id": "105401",
+    "characterId": "1054",
+    "name_jp": "[疾風ペガサス・零式]ビコーペガサス",
+    "name_en": "[疾風ペガサス・零式] ビコーペガサス",
+    "isGlobal": false,
+    "name_en_community": "[Gale Pegasus - Type Zero] Biko Pegasus"
+  },
+  {
+    "id": "102101",
+    "characterId": "1021",
+    "name_jp": "[疾風迅雷]タマモクロス",
+    "name_en": "[疾風迅雷] タマモクロス",
+    "isGlobal": false,
+    "name_en_community": "[Lightning Fast] Tamamo Cross"
+  },
+  {
+    "id": "110401",
+    "characterId": "1104",
+    "name_jp": "[登竜之頂]カツラギエース",
+    "name_en": "[登竜之頂] カツラギエース",
+    "isGlobal": false,
+    "name_en_community": "[Peak of the Rising Dragon] Katsuragi Ace"
+  },
+  {
+    "id": "106102",
+    "characterId": "1061",
+    "name_jp": "[白く気高き激励の装]キングヘイロー",
+    "name_en": "[白く気高き激励の装] King Halo",
+    "isGlobal": false,
+    "name_en_community": "[The White and Noble Garb of Encouragement] King Halo"
+  },
+  {
+    "id": "101702",
+    "characterId": "1017",
+    "name_jp": "[皓月の弓取り]シンボリルドルフ",
+    "name_en": "[皓月の弓取り] Symboli Rudolf",
+    "isGlobal": false,
+    "name_en_community": "[The White Moon's Archer] Symboli Rudolf"
+  },
+  {
+    "id": "112001",
+    "characterId": "1120",
+    "name_jp": "[真実一路]カルストンライトオ",
+    "name_en": "[真実一路] カルストンライトオ",
+    "isGlobal": false,
+    "name_en_community": "[The Path of Truth] Calstone Light O"
+  },
+  {
+    "id": "106802",
+    "characterId": "1068",
+    "name_jp": "[真打・慶鶴之志]キタサンブラック",
+    "name_en": "[真打・慶鶴之志] キタサンブラック",
+    "isGlobal": false,
+    "name_en_community": "[Headliner - Vow of the Auspicious Crane] Kitasan Black"
+  },
+  {
+    "id": "100403",
+    "characterId": "1004",
+    "name_jp": "[祝ひ寿ぐ神速天女]マルゼンスキー",
+    "name_en": "[祝ひ寿ぐ神速天女] Maruzensky",
+    "isGlobal": false,
+    "name_en_community": "[The God-Speed Celestial Maiden of Celebration] Maruzensky"
+  },
+  {
+    "id": "109302",
+    "characterId": "1093",
+    "name_jp": "[秋日色アンダンテ]ケイエスミラクル",
+    "name_en": "[秋日色アンダンテ] ケイエスミラクル",
+    "isGlobal": false,
+    "name_en_community": "[Autumn-Colored Andante] K.S.Miracle"
+  },
+  {
+    "id": "104002",
+    "characterId": "1040",
+    "name_jp": "[秋桜ダンツァトリーチェ]ゴールドシチー",
+    "name_en": "[秋桜ダンツァトリーチェ] Gold City",
+    "isGlobal": false,
+    "name_en_community": "[Cosmos Danzatrice] Gold City"
+  },
+  {
+    "id": "103401",
+    "characterId": "1034",
+    "name_jp": "[稲荷所縁江戸紫]イナリワン",
+    "name_en": "[稲荷所縁江戸紫] イナリワン",
+    "isGlobal": false,
+    "name_en_community": "[Inari-Connected Edo Purple] Inari One"
+  },
+  {
+    "id": "109601",
+    "characterId": "1096",
+    "name_jp": "[紅色塗早駆具足]ノーリーズン",
+    "name_en": "[紅色塗早駆具足] ノーリーズン",
+    "isGlobal": false,
+    "name_en_community": "[Crimson-Lacquered Armor of Swiftness] No Reason"
+  },
+  {
+    "id": "100303",
+    "characterId": "1003",
+    "name_jp": "[紫雲の夢見取り]トウカイテイオー",
+    "name_en": "[紫雲の夢見取り] Tokai Teio",
+    "isGlobal": false,
+    "name_en_community": "[Dream-Seer of the Purple Clouds] Tokai Teio"
+  },
+  {
+    "id": "106803",
+    "characterId": "1068",
+    "name_jp": "[結願のしまい華]キタサンブラック",
+    "name_en": "[結願のしまい華] キタサンブラック",
+    "isGlobal": false,
+    "name_en_community": "[The Final Bloom of Fulfillment] Kitasan Black"
+  },
+  {
+    "id": "105702",
+    "characterId": "1057",
+    "name_jp": "[絢爛花道歌舞く君]ミスターシービー",
+    "name_en": "[絢爛花道歌舞く君] ミスターシービー",
+    "isGlobal": false,
+    "name_en_community": "[You Who Performs on the Dazzling Hanamichi] Mr. C.B."
+  },
+  {
+    "id": "109701",
+    "characterId": "1097",
+    "name_jp": "[緋想の誓衣]スティルインラブ",
+    "name_en": "[緋想の誓衣] スティルインラブ",
+    "isGlobal": false,
+    "name_en_community": "[Sacred Garb of Scarlet Vows] Still in Love"
+  },
+  {
+    "id": "100902",
+    "characterId": "1009",
+    "name_jp": "[緋色のニュイ・エトワレ]ダイワスカーレット",
+    "name_en": "[緋色のニュイ・エトワレ] Daiwa Scarlet",
+    "isGlobal": false,
+    "name_en_community": "[Crimson Nuit Étoilée] Daiwa Scarlet"
+  },
+  {
+    "id": "111501",
+    "characterId": "1115",
+    "name_jp": "[総攬]オルフェーヴル",
+    "name_en": "[総攬] オルフェーヴル",
+    "isGlobal": false,
+    "name_en_community": "[General Command] Orfevre"
+  },
+  {
+    "id": "112701",
+    "characterId": "1127",
+    "name_jp": "[義心の黒焔]フェノーメノ",
+    "name_en": "[義心の黒焔] フェノーメノ",
+    "isGlobal": false,
+    "name_en_community": "[Black Flame of Righteousness] Fenomeno"
+  },
+  {
+    "id": "106702",
+    "characterId": "1067",
+    "name_jp": "[花形・弥栄之翠]サトノダイヤモンド",
+    "name_en": "[花形・弥栄之翠] サトノダイヤモンド",
+    "isGlobal": false,
+    "name_en_community": "[Flower Shape - Prosperity's Green] Satono Diamond"
+  },
+  {
+    "id": "102902",
+    "characterId": "1029",
+    "name_jp": "[茶の子雪ん子]ユキノビジン",
+    "name_en": "[茶の子雪ん子] ユキノビジン",
+    "isGlobal": false,
+    "name_en_community": "[Easy Peasy Snow-Child] Yukino Bijin"
+  },
+  {
+    "id": "108501",
+    "characterId": "1085",
+    "name_jp": "[華麗なる紅玉]ダイイチルビー",
+    "name_en": "[華麗なる紅玉] ダイイチルビー",
+    "isGlobal": false,
+    "name_en_community": "[The Splendid Ruby] Daiichi Ruby"
+  },
+  {
+    "id": "101103",
+    "characterId": "1011",
+    "name_jp": "[蒼炎の誉]グラスワンダー",
+    "name_en": "[蒼炎の誉] Grass Wonder",
+    "isGlobal": false,
+    "name_en_community": "[Honor of the Blue Flame] Grass Wonder"
+  },
+  {
+    "id": "107901",
+    "characterId": "1079",
+    "name_jp": "[衣錦還郷の瑞星]フリオーソ",
+    "name_en": "[衣錦還郷の瑞星] フリオーソ",
+    "isGlobal": false,
+    "name_en_community": "[Auspicious Star of the Triumphant Return] Furioso"
+  },
+  {
+    "id": "106402",
+    "characterId": "1064",
+    "name_jp": "[赤心のトナカイさん]メジロパーマー",
+    "name_en": "[赤心のトナカイさん] メジロパーマー",
+    "isGlobal": false,
+    "name_en_community": "[Mr. Sincere Reindeer] Mejiro Palmer"
+  },
+  {
+    "id": "101901",
+    "characterId": "1019",
+    "name_jp": "[超特急！フルカラー特殊PP]アグネスデジタル",
+    "name_en": "[超特急！フルカラー特殊PP] アグネスデジタル",
+    "isGlobal": false,
+    "name_en_community": "[Super Express! Full-Color Special PP] Agnes Digital"
+  },
+  {
+    "id": "108401",
+    "characterId": "1084",
+    "name_jp": "[身に纏うケラヴノス]タニノギムレット",
+    "name_en": "[身に纏うケラヴノス] タニノギムレット",
+    "isGlobal": false,
+    "name_en_community": "[Clad in Keraunos] Tanino Gimlet"
+  },
+  {
+    "id": "105003",
+    "characterId": "1050",
+    "name_jp": "[迷光オーヴァライド]ナリタタイシン",
+    "name_en": "[迷光オーヴァライド] Narita Taishin",
+    "isGlobal": false,
+    "name_en_community": "[Straylight Override] Narita Taishin"
+  },
+  {
+    "id": "106801",
+    "characterId": "1068",
+    "name_jp": "[錦上・大判御輿]キタサンブラック",
+    "name_en": "[錦上・大判御輿] キタサンブラック",
+    "isGlobal": false,
+    "name_en_community": "[Brocade Top - Great Palanquin] Kitasan Black"
+  },
+  {
+    "id": "109801",
+    "characterId": "1098",
+    "name_jp": "[陰陽八卦☆開運衣]コパノリッキー",
+    "name_en": "[陰陽八卦☆開運衣] コパノリッキー",
+    "isGlobal": false,
+    "name_en_community": "[Yin-Yang Bagua☆Good Fortune Garb] Copano Rickey"
+  },
+  {
+    "id": "113301",
+    "characterId": "1133",
+    "name_jp": "[陸離の編纂者]クロノジェネシス",
+    "name_en": "[陸離の編纂者] クロノジェネシス",
+    "isGlobal": false,
+    "name_en_community": "[Compiler of Splendor] Chrono Genesis"
+  },
+  {
+    "id": "110402",
+    "characterId": "1104",
+    "name_jp": "[雅号・墨龍]カツラギエース",
+    "name_en": "[雅号・墨龍] カツラギエース",
+    "isGlobal": false,
+    "name_en_community": "[Art-Name - Ink Dragon] Katsuragi Ace"
+  },
+  {
+    "id": "101602",
+    "characterId": "1016",
+    "name_jp": "[餓狼]ナリタブライアン",
+    "name_en": "[餓狼] Narita Brian",
+    "isGlobal": false,
+    "name_en_community": "[Hungry Wolf] Narita Brian"
+  },
+  {
+    "id": "104602",
+    "characterId": "1046",
+    "name_jp": "[黄昏トライアンフ]スマートファルコン",
+    "name_en": "[黄昏トライアンフ] Smart Falcon",
+    "isGlobal": false,
+    "name_en_community": "[Twilight Triumph] Smart Falcon"
+  },
+  {
+    "id": "107202",
+    "characterId": "1072",
+    "name_jp": "[黒将Zen]ヤエノムテキ",
+    "name_en": "[黒将Zen] ヤエノムテキ",
+    "isGlobal": false,
+    "name_en_community": "[Black General Zen] Yaeno Muteki"
+  },
+  {
+    "id": "108801",
+    "characterId": "1088",
+    "name_jp": "[黒翠千里行]サトノクラウン",
+    "name_en": "[黒翠千里行] サトノクラウン",
+    "isGlobal": false,
+    "name_en_community": "[Black Jade's Thousand-League Journey] Satono Crown"
+  },
+  {
+    "id": "105301",
+    "characterId": "1053",
+    "name_jp": "[黒鉄の大志]バンブーメモリー",
+    "name_en": "[黒鉄の大志] バンブーメモリー",
+    "isGlobal": false,
+    "name_en_community": "[Ambition of Black Iron] Bamboo Memory"
   }
 ]
