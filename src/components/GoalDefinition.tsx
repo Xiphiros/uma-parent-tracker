@@ -12,7 +12,7 @@ const PINK_SPARK_OPTIONS = [
 ];
 
 const GoalDefinition = () => {
-    const { t } = useTranslation('goal');
+    const { t } = useTranslation(['goal', 'game']);
     const { getActiveProfile, updateGoal, masterSkillList, updateWishlistItem } = useAppContext();
     const activeProfile = getActiveProfile();
     const goal = activeProfile?.goal;
@@ -76,6 +76,11 @@ const GoalDefinition = () => {
         updateWishlistItem(listName, oldName, newItem);
     };
 
+    const translatedOptions = (options: string[]) => options.map(opt => ({
+        value: opt,
+        label: t(opt, { ns: 'game' })
+    }));
+
     return (
         <section id="goal-definition" className="card">
             <h2 className="card__title">
@@ -86,7 +91,7 @@ const GoalDefinition = () => {
                 <div>
                     <h3 className="form__section-title mb-2">{t('primaryBlue')}</h3>
                     <MultiSelect
-                        options={BLUE_SPARK_OPTIONS}
+                        options={translatedOptions(BLUE_SPARK_OPTIONS)}
                         selectedValues={goal.primaryBlue}
                         onChange={(selected) => handleGoalChange({ primaryBlue: selected })}
                     />
@@ -94,7 +99,7 @@ const GoalDefinition = () => {
                 <div className="border-t pt-4">
                     <h3 className="form__section-title mb-2">{t('primaryPink')}</h3>
                     <MultiSelect
-                        options={PINK_SPARK_OPTIONS}
+                        options={translatedOptions(PINK_SPARK_OPTIONS)}
                         selectedValues={goal.primaryPink}
                         onChange={(selected) => handleGoalChange({ primaryPink: selected })}
                     />
