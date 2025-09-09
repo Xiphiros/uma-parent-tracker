@@ -7,8 +7,10 @@ import { useScrollLock } from '../hooks/useScrollLock';
 import Modal from './common/Modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBoxArchive, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { useTranslation } from 'react-i18next';
 
 const Roster = () => {
+    const { t } = useTranslation(['roster', 'common']);
     const { getActiveProfile, deleteParent } = useAppContext();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [parentToEdit, setParentToEdit] = useState<Parent | null>(null);
@@ -80,11 +82,11 @@ const Roster = () => {
                 <div className="card__header">
                     <h2 className="card__title">
                         <FontAwesomeIcon icon={faBoxArchive} className="h-6 w-6 mr-2 text-teal-500" />
-                        Roster
+                        {t('rosterTitle')}
                     </h2>
                     <button id="add-parent-btn" className="button button--secondary" onClick={handleOpenAddModal}>
                         <FontAwesomeIcon icon={faPlus} className="h-5 w-5 mr-1" />
-                        Add Parent
+                        {t('addParentBtn')}
                     </button>
                 </div>
                 <div id="roster-container" className="roster space-y-4 overflow-y-auto pr-2 flex-1 min-h-0" ref={rosterContainerRef}>
@@ -98,7 +100,7 @@ const Roster = () => {
                             />
                         ))
                     ) : (
-                        <p className="card__placeholder-text text-center py-8">Your roster is empty. Add a parent to get started!</p>
+                        <p className="card__placeholder-text text-center py-8">{t('placeholder')}</p>
                     )}
                 </div>
             </section>
@@ -112,14 +114,14 @@ const Roster = () => {
             <Modal
                 isOpen={isDeleteConfirmOpen}
                 onClose={() => setDeleteConfirmOpen(false)}
-                title="Confirm Deletion"
+                title={t('deleteConfirmTitle')}
             >
                 <p className="dialog-modal__message">
-                    Are you sure you want to delete "{parentToDelete?.name}"?
+                    {t('deleteConfirmMsg', { name: parentToDelete?.name })}
                 </p>
                 <div className="dialog-modal__footer">
-                    <button className="button button--neutral" onClick={() => setDeleteConfirmOpen(false)}>Cancel</button>
-                    <button className="button button--danger" onClick={handleConfirmDelete}>Delete</button>
+                    <button className="button button--neutral" onClick={() => setDeleteConfirmOpen(false)}>{t('common:cancel')}</button>
+                    <button className="button button--danger" onClick={handleConfirmDelete}>{t('common:delete')}</button>
                 </div>
             </Modal>
         </>
