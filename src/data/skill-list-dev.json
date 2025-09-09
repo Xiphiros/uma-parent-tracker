@@ -1648,94 +1648,104 @@
     "isGlobal": true
   },
   {
-    "id": "scenario_larc",
+    "id": "scenario_92ce28082d071b44ea3d767df54f07e3",
     "name_jp": "L'Arcの希望",
     "name_en": "L'Arcの希望",
     "type": "normal",
     "rarity": 1,
     "groupId": null,
-    "isGlobal": false
+    "isGlobal": false,
+    "name_en_community": "Hope of L'Arc"
   },
   {
-    "id": "scenario_larc",
+    "id": "scenario_e4dcf9e5937156d34a0ff0e69069df2f",
     "name_jp": "L'Arcシナリオ",
     "name_en": "L'Arcシナリオ",
     "type": "normal",
     "rarity": 1,
     "groupId": null,
-    "isGlobal": false
+    "isGlobal": false,
+    "name_en_community": "L'Arc Scenario"
   },
   {
-    "id": "scenario_larc",
+    "id": "scenario_fcc4d798384dc5ed98f9392a26b85dfe",
     "name_jp": "L'Arc・フランス語力",
     "name_en": "L'Arc・フランス語力",
     "type": "normal",
     "rarity": 1,
     "groupId": null,
-    "isGlobal": false
+    "isGlobal": false,
+    "name_en_community": "L'Arc - French Language Skill"
   },
   {
-    "id": "scenario_larc",
+    "id": "scenario_a0feba1fcdbcfd62cd8171e3906677b6",
     "name_jp": "L'Arc・ロンシャン適性",
     "name_en": "L'Arc・ロンシャン適性",
     "type": "normal",
     "rarity": 1,
     "groupId": null,
-    "isGlobal": false
+    "isGlobal": false,
+    "name_en_community": "L'Arc - Longchamp Aptitude"
   },
   {
-    "id": "scenario_larc",
+    "id": "scenario_58f5756f3a600d8fa941f0c3b085f7a7",
     "name_jp": "L'Arc・強心臓",
     "name_en": "L'Arc・強心臓",
     "type": "normal",
     "rarity": 1,
     "groupId": null,
-    "isGlobal": false
+    "isGlobal": false,
+    "name_en_community": "L'Arc - Strong Heart"
   },
   {
-    "id": "scenario_larc",
+    "id": "scenario_09afa2ddef8eafa253c72bbc77be1a24",
     "name_jp": "L'Arc・栄養管理",
     "name_en": "L'Arc・栄養管理",
     "type": "normal",
     "rarity": 1,
     "groupId": null,
-    "isGlobal": false
+    "isGlobal": false,
+    "name_en_community": "L'Arc - Nutrition Management"
   },
   {
-    "id": "scenario_larc",
+    "id": "scenario_751152e432858c296896ef66f832c702",
     "name_jp": "L'Arc・海外洋芝適性",
     "name_en": "L'Arc・海外洋芝適性",
     "type": "normal",
     "rarity": 1,
     "groupId": null,
-    "isGlobal": false
+    "isGlobal": false,
+    "name_en_community": "L'Arc - Overseas European Turf Aptitude"
   },
   {
-    "id": "scenario_larc",
+    "id": "scenario_fab1c1c7a8b0e3d1f8e69b5189df57e5",
     "name_jp": "L'Arc・海外遠征",
     "name_en": "L'Arc・海外遠征",
     "type": "normal",
     "rarity": 1,
     "groupId": null,
-    "isGlobal": false
+    "isGlobal": false,
+    "name_en_community": "L'Arc - Overseas Expedition"
   },
   {
-    "id": "scenario_larc",
+    "id": "scenario_130fd008870fd764a5a7a3c27ef7ab04",
     "name_jp": "L'Arc・生活リズム",
     "name_en": "L'Arc・生活リズム",
     "type": "normal",
     "rarity": 1,
     "groupId": null,
-    "isGlobal": false
+    "isGlobal": false,
+    "name_en_community": "L'Arc - Lifestyle Rhythm"
   },
   {
-    "id": "scenario_larc",
+    "id": "scenario_ef7c2d12df67beac4a2d8c194d10e256",
     "name_jp": "L'Arc・精神力",
     "name_en": "L'Arc・精神力",
     "type": "normal",
     "rarity": 1,
     "groupId": null,
-    "isGlobal": false
+    "isGlobal": false,
+    "name_en_community": "L'Arc - Spirit"
   },
   {
     "id": "901211",
@@ -1820,13 +1830,14 @@
     "isGlobal": true
   },
   {
-    "id": "scenario_legends",
+    "id": "scenario_ea4f208d8161b6306b248895d864efcb",
     "name_jp": "Legendsシナリオ",
     "name_en": "Legendsシナリオ",
     "type": "normal",
     "rarity": 1,
     "groupId": null,
-    "isGlobal": false
+    "isGlobal": false,
+    "name_en_community": "Legends Scenario"
   },
   {
     "id": "900271",
@@ -3448,31 +3459,34 @@
     "isGlobal": true
   },
   {
-    "id": "scenario_uaf",
+    "id": "scenario_320020cd40071747188e034cde5e0674",
     "name_jp": "U.A.F.シナリオ・スフィア",
     "name_en": "U.A.F.シナリオ・スフィア",
     "type": "normal",
     "rarity": 1,
     "groupId": null,
-    "isGlobal": false
+    "isGlobal": false,
+    "name_en_community": "U.A.F. Scenario - Sphere"
   },
   {
-    "id": "scenario_uaf",
+    "id": "scenario_4e710da0ab9cbb398ba5c1e288bd988a",
     "name_jp": "U.A.F.シナリオ・ファイト",
     "name_en": "U.A.F.シナリオ・ファイト",
     "type": "normal",
     "rarity": 1,
     "groupId": null,
-    "isGlobal": false
+    "isGlobal": false,
+    "name_en_community": "U.A.F. Scenario - Fight"
   },
   {
-    "id": "scenario_uaf",
+    "id": "scenario_cf9241ba1b3dd8c31f93fa83948bd0f5",
     "name_jp": "U.A.F.シナリオ・フリー",
     "name_en": "U.A.F.シナリオ・フリー",
     "type": "normal",
     "rarity": 1,
     "groupId": null,
-    "isGlobal": false
+    "isGlobal": false,
+    "name_en_community": "U.A.F. Scenario - Free"
   },
   {
     "id": "900321",
@@ -3903,7 +3917,7 @@
     "name_en_community": "Shine☆Tomakomai"
   },
   {
-    "id": "race_",
+    "id": "race_7711d01393276cfe037b8528ea09d8ab",
     "name_jp": "かしわ記念",
     "name_en": "かしわ記念",
     "type": "normal",
@@ -4212,13 +4226,14 @@
     "name_en_community": "Chasing the Snow Light"
   },
   {
-    "id": "scenario_",
+    "id": "scenario_a30b632b4bcd4e2221c48dc8944125f7",
     "name_jp": "アオハル杯シナリオ",
     "name_en": "アオハル杯シナリオ",
     "type": "normal",
     "rarity": 1,
     "groupId": null,
-    "isGlobal": false
+    "isGlobal": false,
+    "name_en_community": "Aoharu Cup Scenario"
   },
   {
     "id": "203222",
@@ -4371,31 +4386,34 @@
     "name_en_community": "Sharp Legs"
   },
   {
-    "id": "scenario_",
+    "id": "scenario_d6dac5b9ac5ec957e34f14281f769a94",
     "name_jp": "クライマックスシナリオ",
     "name_en": "クライマックスシナリオ",
     "type": "normal",
     "rarity": 1,
     "groupId": null,
-    "isGlobal": false
+    "isGlobal": false,
+    "name_en_community": "Climax Scenario"
   },
   {
-    "id": "scenario_",
+    "id": "scenario_588a108b393ed725faa961bae394ddf3",
     "name_jp": "グランドマスターズシナリオ",
     "name_en": "グランドマスターズシナリオ",
     "type": "normal",
     "rarity": 1,
     "groupId": null,
-    "isGlobal": false
+    "isGlobal": false,
+    "name_en_community": "Grand Masters Scenario"
   },
   {
-    "id": "scenario_",
+    "id": "scenario_47f298a5e6f7d9029333e39095cbe7b2",
     "name_jp": "グランドライブシナリオ",
     "name_en": "グランドライブシナリオ",
     "type": "normal",
     "rarity": 1,
     "groupId": null,
-    "isGlobal": false
+    "isGlobal": false,
+    "name_en_community": "Grand Live Scenario"
   },
   {
     "id": "201632",
@@ -4768,7 +4786,7 @@
     "name_en_community": "My Pace"
   },
   {
-    "id": "race_cs",
+    "id": "race_5e778df682bbbcbf92c6b2bd22b7b709",
     "name_jp": "マイルCS南部杯",
     "name_en": "マイルCS南部杯",
     "type": "normal",
@@ -4787,49 +4805,54 @@
     "name_en_community": "To the Me that Belongs to Everyone!"
   },
   {
-    "id": "scenario_guts",
+    "id": "scenario_7891f544b275f97d9f76fca5c774df6e",
     "name_jp": "メカウマ娘シナリオ・GUTS",
     "name_en": "メカウマ娘シナリオ・GUTS",
     "type": "normal",
     "rarity": 1,
     "groupId": null,
-    "isGlobal": false
+    "isGlobal": false,
+    "name_en_community": "Mecha Musume Scenario - GUTS"
   },
   {
-    "id": "scenario_pow",
+    "id": "scenario_a9ea8003a431db6245e1d682882572a9",
     "name_jp": "メカウマ娘シナリオ・POW",
     "name_en": "メカウマ娘シナリオ・POW",
     "type": "normal",
     "rarity": 1,
     "groupId": null,
-    "isGlobal": false
+    "isGlobal": false,
+    "name_en_community": "Mecha Musume Scenario - POW"
   },
   {
-    "id": "scenario_spd",
+    "id": "scenario_f029b92eed0ad67f0fcbeb0dba440fbf",
     "name_jp": "メカウマ娘シナリオ・SPD",
     "name_en": "メカウマ娘シナリオ・SPD",
     "type": "normal",
     "rarity": 1,
     "groupId": null,
-    "isGlobal": false
+    "isGlobal": false,
+    "name_en_community": "Mecha Musume Scenario - SPD"
   },
   {
-    "id": "scenario_stm",
+    "id": "scenario_9562eb545bd7da0db70567f088ad6e3d",
     "name_jp": "メカウマ娘シナリオ・STM",
     "name_en": "メカウマ娘シナリオ・STM",
     "type": "normal",
     "rarity": 1,
     "groupId": null,
-    "isGlobal": false
+    "isGlobal": false,
+    "name_en_community": "Mecha Musume Scenario - STM"
   },
   {
-    "id": "scenario_wit",
+    "id": "scenario_1f333439b8e5d491192ce0e1d34b76c7",
     "name_jp": "メカウマ娘シナリオ・WIT",
     "name_en": "メカウマ娘シナリオ・WIT",
     "type": "normal",
     "rarity": 1,
     "groupId": null,
-    "isGlobal": false
+    "isGlobal": false,
+    "name_en_community": "Mecha Musume Scenario - WIT"
   },
   {
     "id": "202601",
@@ -5332,7 +5355,7 @@
     "name_en_community": "Full Power! Cyclone"
   },
   {
-    "id": "race_",
+    "id": "race_aff484730edec37a57dc0537fe86f484",
     "name_jp": "全日本ジュニア優駿",
     "name_en": "全日本ジュニア優駿",
     "type": "normal",
@@ -5381,7 +5404,7 @@
     "name_en_community": "Icy Wind"
   },
   {
-    "id": "race_",
+    "id": "race_95ddf0fa094cf0ac4b51ba938f6338f4",
     "name_jp": "凱旋門賞",
     "name_en": "凱旋門賞",
     "type": "normal",
@@ -5390,13 +5413,14 @@
     "isGlobal": false
   },
   {
-    "id": "scenario_",
+    "id": "scenario_73d8edaebd78e3c86753f8820a1f7ce3",
     "name_jp": "凱旋門賞連覇の夢",
     "name_en": "凱旋門賞連覇の夢",
     "type": "normal",
     "rarity": 1,
     "groupId": null,
-    "isGlobal": false
+    "isGlobal": false,
+    "name_en_community": "Dream of Back-to-Back Arc Wins"
   },
   {
     "id": "201801",
@@ -6209,7 +6233,7 @@
     "name_en_community": "Kawasaki Racetrack ○"
   },
   {
-    "id": "race_",
+    "id": "race_8fa380754105990e9667277a51e91b6d",
     "name_jp": "川崎記念",
     "name_en": "川崎記念",
     "type": "normal",
@@ -7518,13 +7542,14 @@
     "name_en_community": "The One and Only Single Path"
   },
   {
-    "id": "scenario_",
+    "id": "scenario_82a3e565ca85f0b45057e3ad94b4a722",
     "name_jp": "無人島シナリオ",
     "name_en": "無人島シナリオ",
     "type": "normal",
     "rarity": 1,
     "groupId": null,
-    "isGlobal": false
+    "isGlobal": false,
+    "name_en_community": "Deserted Island Scenario"
   },
   {
     "id": "203281",
@@ -8497,49 +8522,54 @@
     "name_en_community": "An Unyielding Step"
   },
   {
-    "id": "scenario_",
+    "id": "scenario_9d0d0190f56cbc005e075c48a26cd408",
     "name_jp": "豊食祭シナリオ・いちご",
     "name_en": "豊食祭シナリオ・いちご",
     "type": "normal",
     "rarity": 1,
     "groupId": null,
-    "isGlobal": false
+    "isGlobal": false,
+    "name_en_community": "Harvest Festival Scenario - Strawberry"
   },
   {
-    "id": "scenario_",
+    "id": "scenario_7d29fac384357f62b074eb2534f63b15",
     "name_jp": "豊食祭シナリオ・じゃがいも",
     "name_en": "豊食祭シナリオ・じゃがいも",
     "type": "normal",
     "rarity": 1,
     "groupId": null,
-    "isGlobal": false
+    "isGlobal": false,
+    "name_en_community": "Harvest Festival Scenario - Potato"
   },
   {
-    "id": "scenario_",
+    "id": "scenario_89bc7d1f75a29a56e94120d9629bbcf0",
     "name_jp": "豊食祭シナリオ・にんじん",
     "name_en": "豊食祭シナリオ・にんじん",
     "type": "normal",
     "rarity": 1,
     "groupId": null,
-    "isGlobal": false
+    "isGlobal": false,
+    "name_en_community": "Harvest Festival Scenario - Carrot"
   },
   {
-    "id": "scenario_",
+    "id": "scenario_566b3cdec446974b60c037e13080de9d",
     "name_jp": "豊食祭シナリオ・にんにく",
     "name_en": "豊食祭シナリオ・にんにく",
     "type": "normal",
     "rarity": 1,
     "groupId": null,
-    "isGlobal": false
+    "isGlobal": false,
+    "name_en_community": "Harvest Festival Scenario - Garlic"
   },
   {
-    "id": "scenario_",
+    "id": "scenario_07602b51d2eb05dc37e3e584ede31927",
     "name_jp": "豊食祭シナリオ・唐辛子",
     "name_en": "豊食祭シナリオ・唐辛子",
     "type": "normal",
     "rarity": 1,
     "groupId": null,
-    "isGlobal": false
+    "isGlobal": false,
+    "name_en_community": "Harvest Festival Scenario - Chili Pepper"
   },
   {
     "id": "203161",
