@@ -1,0 +1,14 @@
+{
+  "title": "Define Goal Parent",
+  "primaryBlue": "Primary Blue Sparks",
+  "primaryPink": "Primary Pink Sparks",
+  "uniqueWishlist": "Unique Spark Wishlist",
+  "whiteWishlist": "White Spark Wishlist",
+  "wishlist": {
+    "noItems": "No wishlist items yet.",
+    "selectSkill": "Select skill...",
+    "rank": "Rank",
+    "save": "Save",
+    "cancel": "Cancel"
+  }
+}
