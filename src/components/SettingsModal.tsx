@@ -11,7 +11,7 @@ interface SettingsModalProps {
 
 const SettingsModal = ({ isOpen, onClose }: SettingsModalProps) => {
     const { t, i18n } = useTranslation(['settings', 'common']);
-    const { exportData, importData, deleteAllData, dataMode, setDataMode, dataDisplayLanguage, setDataDisplayLanguage, changeUiLanguage } = useAppContext();
+    const { exportData, importData, deleteAllData, dataMode, setDataMode, dataDisplayLanguage, setDataDisplayLanguage, useCommunityTranslations, setUseCommunityTranslations, changeUiLanguage } = useAppContext();
     
     const [isImportConfirmOpen, setImportConfirmOpen] = useState(false);
     const [isDeleteConfirmOpen, setDeleteConfirmOpen] = useState(false);
@@ -105,6 +105,18 @@ const SettingsModal = ({ isOpen, onClose }: SettingsModalProps) => {
                                     </div>
                                 </label>
                             </div>
+                        </div>
+
+                         <div className="form__section">
+                            <h4 className="form__section-title mb-2">{t('communityTranslationsTitle')}</h4>
+                            <p className="text-sm text-stone-500 dark:text-stone-400 mb-3">{t('communityTranslationsDesc')}</p>
+                            <label className={`settings-modal__option ${useCommunityTranslations ? 'settings-modal__option--selected' : ''}`}>
+                                <input type="checkbox" checked={useCommunityTranslations} onChange={(e) => setUseCommunityTranslations(e.target.checked)} className="settings-modal__option-radio" />
+                                <div>
+                                    <span className="settings-modal__option-label">{t('communityTranslationsLabel')}</span>
+                                    <p className="settings-modal__option-description">{t('communityTranslationsDisclaimer')}</p>
+                                </div>
+                            </label>
                         </div>
                     </div>
                     {/* Right Column: UI & Data Management */}
