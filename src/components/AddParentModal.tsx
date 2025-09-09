@@ -29,7 +29,7 @@ const initialState: NewParentData = {
 };
 
 const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) => {
-    const { masterUmaList, masterSkillList, addParent, updateParent } = useAppContext();
+    const { masterUmaList, masterSkillList, addParent, updateParent, displayLanguage, umaMapById, skillMapByName } = useAppContext();
     
     const [formData, setFormData] = useState<NewParentData>(initialState);
     const [currentUniqueSkill, setCurrentUniqueSkill] = useState<any>(null);
@@ -37,6 +37,8 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
     const [currentWhiteSkill, setCurrentWhiteSkill] = useState<any>(null);
     const [currentWhiteStars, setCurrentWhiteStars] = useState<1 | 2 | 3>(3);
     const [alertMessage, setAlertMessage] = useState('');
+
+    const displayNameProp = displayLanguage === 'jp' ? 'name_jp' : 'name_en';
 
     const uniqueSkills = useMemo(() => masterSkillList.filter(s => s.type === 'unique'), [masterSkillList]);
     const normalSkills = useMemo(() => masterSkillList.filter(s => s.type !== 'unique' && s.rarity === 1), [masterSkillList]);
@@ -124,6 +126,14 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
         }
         onClose();
     };
+    
+    const getDisplayName = (name: string, type: 'uma' | 'skill'): string => {
+        if (type === 'skill') {
+            const skill = skillMapByName.get(name);
+            return skill ? skill[displayNameProp] : name;
+        }
+        return name; // Uma name display is handled by the SearchableSelect value prop
+    };
 
     return (
         <>
@@ -134,8 +144,9 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
                         <SearchableSelect 
                             items={masterUmaList}
                             placeholder="Select uma name..."
-                            value={formData.name || null}
+                            value={formData.umaId ? umaMapById.get(formData.umaId)?.[displayNameProp] || null : null}
                             onSelect={(item) => handleUmaSelect(item as Uma)}
+                            displayProp={displayNameProp}
                         />
                     </div>
 
@@ -180,7 +191,7 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
                         <div className="form__obtained-sparks-container">
                             {formData.uniqueSparks.map(spark => (
                                 <div key={spark.name} className="spark-tag obtained-spark" data-spark-category="unique">
-                                    {spark.name} {formatStars(spark.stars)}
+                                    {getDisplayName(spark.name, 'skill')} {formatStars(spark.stars)}
                                     <button type="button" onClick={() => removeObtainedSpark('uniqueSparks', spark.name)} className="obtained-spark__remove-btn">&times;</button>
                                 </div>
                             ))}
@@ -189,8 +200,9 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
                             <SearchableSelect
                                 items={uniqueSkills}
                                 placeholder="Search unique skill..."
-                                value={currentUniqueSkill?.name_en || null}
+                                value={currentUniqueSkill?.[displayNameProp] || null}
                                 onSelect={setCurrentUniqueSkill}
+                                displayProp={displayNameProp}
                                 disabled={isUniqueSparkSelected}
                             />
                             <select
@@ -217,13 +229,13 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
                         <div className="form__obtained-sparks-container">
                             {formData.whiteSparks.map(spark => (
                                 <div key={spark.name} className="spark-tag obtained-spark" data-spark-category="white">
-                                    {spark.name} {formatStars(spark.stars)}
+                                    {getDisplayName(spark.name, 'skill')} {formatStars(spark.stars)}
                                     <button type="button" onClick={() => removeObtainedSpark('whiteSparks', spark.name)} className="obtained-spark__remove-btn">&times;</button>
                                 </div>
                             ))}
                         </div>
                         <div className="form__input-group">
-                            <SearchableSelect items={availableNormalSkills} placeholder="Search skill..." value={currentWhiteSkill?.name_en || null} onSelect={setCurrentWhiteSkill} />
+                            <SearchableSelect items={availableNormalSkills} placeholder="Search skill..." value={currentWhiteSkill?.[displayNameProp] || null} onSelect={setCurrentWhiteSkill} displayProp={displayNameProp} />
                             <select className="form__input w-24" value={currentWhiteStars} onChange={e => setCurrentWhiteStars(Number(e.target.value) as 1|2|3)}>
                                 {STAR_OPTIONS.map(s => <option key={s}>{s}</option>)}
                             </select>

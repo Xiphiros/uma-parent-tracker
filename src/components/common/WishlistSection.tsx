@@ -3,6 +3,7 @@ import { WishlistItem, Skill } from '../../types';
 import SearchableSelect from './SearchableSelect';
 import { useScrollLock } from '../../hooks/useScrollLock';
 import './WishlistSection.css';
+import { useAppContext } from '../../context/AppContext';
 
 interface WishlistSectionProps {
   title: string;
@@ -18,6 +19,9 @@ const WISH_RANK_ORDER: { [key: string]: number } = { S: 0, A: 1, B: 2, C: 3 };
 const TIER_OPTIONS: WishlistItem['tier'][] = ['S', 'A', 'B', 'C'];
 
 const WishlistSection = ({ title, wishlist, skillList, onAdd, onRemove, onUpdate, disableAdd = false }: WishlistSectionProps) => {
+  const { displayLanguage, skillMapByName } = useAppContext();
+  const displayNameProp = displayLanguage === 'jp' ? 'name_jp' : 'name_en';
+  
   const [selectedSkill, setSelectedSkill] = useState<Skill | null>(null);
   const [selectedTier, setSelectedTier] = useState<WishlistItem['tier']>('S');
   const wishlistContainerRef = useRef<HTMLDivElement>(null);
@@ -57,6 +61,11 @@ const WishlistSection = ({ title, wishlist, skillList, onAdd, onRemove, onUpdate
     if (rankOrderA > rankOrderB) return 1;
     return a.name.localeCompare(b.name);
   });
+  
+  const getDisplayName = (name_en: string) => {
+      const skill = skillMapByName.get(name_en);
+      return skill ? skill[displayNameProp] : name_en;
+  };
 
   return (
     <div className="border-t pt-4">
@@ -67,7 +76,7 @@ const WishlistSection = ({ title, wishlist, skillList, onAdd, onRemove, onUpdate
             <div key={item.name} className="wishlist-manage__item">
               {editingItemName === item.name ? (
                 <form className="wishlist-manage__edit-form" onSubmit={handleSaveEdit}>
-                  <span className="wishlist-manage__item-info flex-grow">{item.name}</span>
+                  <span className="wishlist-manage__item-info flex-grow">{getDisplayName(item.name)}</span>
                   <select 
                     className="form__input w-28"
                     value={editingTier}
@@ -83,7 +92,7 @@ const WishlistSection = ({ title, wishlist, skillList, onAdd, onRemove, onUpdate
               ) : (
                 <>
                   <div className="wishlist-manage__item-info">
-                    <span>{item.name}</span>
+                    <span>{getDisplayName(item.name)}</span>
                     <span className="wishlist-manage__item-rank">Rank {item.tier}</span>
                   </div>
                   <div className="wishlist-manage__item-actions">
@@ -102,8 +111,9 @@ const WishlistSection = ({ title, wishlist, skillList, onAdd, onRemove, onUpdate
         <SearchableSelect
           items={skillList}
           placeholder="Select skill..."
-          value={selectedSkill?.name_en || null}
+          value={selectedSkill?.[displayNameProp] || null}
           onSelect={(item) => setSelectedSkill(item as Skill)}
+          displayProp={displayNameProp}
           disabled={disableAdd}
         />
         <div className="flex justify-between items-center">

@@ -9,14 +9,19 @@ const PREFS_KEY = 'umaTrackerPrefs_v1';
 const CURRENT_VERSION = 3;
 
 type DataMode = 'jp' | 'global';
+type DisplayLanguage = 'en' | 'jp';
 
 interface AppContextType {
   loading: boolean;
   appData: AppData;
   dataMode: DataMode;
   setDataMode: (mode: DataMode) => void;
+  displayLanguage: DisplayLanguage;
+  setDisplayLanguage: (lang: DisplayLanguage) => void;
   masterSkillList: Skill[];
   masterUmaList: Uma[];
+  skillMapByName: Map<string, Skill>;
+  umaMapById: Map<string, Uma>;
   getActiveProfile: () => Profile | undefined;
   saveState: (newData: AppData) => void;
   exportData: () => void;
@@ -112,6 +117,7 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
   const [fullMasterSkillList] = useState<Skill[]>(masterSkillListJson as Skill[]);
   const [fullMasterUmaList] = useState<Uma[]>(masterUmaListJson as Uma[]);
   const [dataMode, setDataModeState] = useState<DataMode>('jp');
+  const [displayLanguage, setDisplayLanguageState] = useState<DisplayLanguage>('en');
   const [appData, setAppData] = useState<AppData>({
     version: CURRENT_VERSION,
     activeProfileId: null,
@@ -147,6 +153,7 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
         try {
             const prefs = JSON.parse(savedPrefs);
             if (prefs.dataMode) setDataModeState(prefs.dataMode);
+            if (prefs.displayLanguage) setDisplayLanguageState(prefs.displayLanguage);
         } catch (e) {
             console.error("Failed to parse user preferences", e);
         }
@@ -163,16 +170,25 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
     localStorage.setItem(DB_KEY, JSON.stringify(appData));
   }, [appData]);
 
+  const savePrefs = (key: string, value: any) => {
+    try {
+        const prefs = JSON.parse(localStorage.getItem(PREFS_KEY) || '{}');
+        prefs[key] = value;
+        localStorage.setItem(PREFS_KEY, JSON.stringify(prefs));
+    } catch (e) {
+        console.error(`Could not save preference: ${key}`, e);
+    }
+  };
+
   const setDataMode = (mode: DataMode) => {
       setDataModeState(mode);
-      try {
-          const prefs = JSON.parse(localStorage.getItem(PREFS_KEY) || '{}');
-          prefs.dataMode = mode;
-          localStorage.setItem(PREFS_KEY, JSON.stringify(prefs));
-      } catch (e) {
-          console.error("Could not save data mode preference", e);
-      }
+      savePrefs('dataMode', mode);
   };
+
+  const setDisplayLanguage = (lang: DisplayLanguage) => {
+    setDisplayLanguageState(lang);
+    savePrefs('displayLanguage', lang);
+  }
 
   const masterSkillList = useMemo(() => {
       if (dataMode === 'global') {
@@ -187,6 +203,9 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
       }
       return fullMasterUmaList;
   }, [dataMode, fullMasterUmaList]);
+
+  const skillMapByName = useMemo(() => new Map(fullMasterSkillList.map(skill => [skill.name_en, skill])), [fullMasterSkillList]);
+  const umaMapById = useMemo(() => new Map(fullMasterUmaList.map(uma => [uma.id, uma])), [fullMasterUmaList]);
 
   const saveState = (newData: AppData) => {
     setAppData(newData);
@@ -610,8 +629,12 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
     appData,
     dataMode,
     setDataMode,
+    displayLanguage,
+    setDisplayLanguage,
     masterSkillList,
     masterUmaList,
+    skillMapByName,
+    umaMapById,
     getActiveProfile,
     saveState,
     exportData,
