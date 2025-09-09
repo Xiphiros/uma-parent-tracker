@@ -12,6 +12,9 @@ dist
 dist-ssr
 *.local
 
+# Local development tools folder
+tools/
+
 # Raw data sources for the data pipeline
 raw_data/
 
