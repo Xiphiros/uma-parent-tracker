@@ -2,6 +2,7 @@ export interface Skill {
   id: string;
   name_jp: string;
   name_en: string;
+  name_en_community?: string;
   type: 'unique' | 'normal';
   rarity?: number;
   groupId?: number;
@@ -13,6 +14,7 @@ export interface Uma {
   characterId: string; // This will be the base character ID, e.g., "1001"
   name_jp: string;
   name_en: string;
+  name_en_community?: string;
   image?: string;
   isGlobal: boolean;
 }
