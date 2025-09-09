@@ -4,6 +4,7 @@ import { useAppContext } from '../context/AppContext';
 import Modal from './common/Modal';
 import SearchableSelect from './common/SearchableSelect';
 import { formatStars } from '../utils/ui';
+import { useTranslation } from 'react-i18next';
 
 interface AddParentModalProps {
   isOpen: boolean;
@@ -29,7 +30,8 @@ const initialState: NewParentData = {
 };
 
 const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) => {
-    const { masterUmaList, masterSkillList, addParent, updateParent, displayLanguage, umaMapById, skillMapByName } = useAppContext();
+    const { t } = useTranslation(['modals', 'common']);
+    const { masterUmaList, masterSkillList, addParent, updateParent, dataDisplayLanguage, umaMapById, skillMapByName } = useAppContext();
     
     const [formData, setFormData] = useState<NewParentData>(initialState);
     const [currentUniqueSkill, setCurrentUniqueSkill] = useState<any>(null);
@@ -38,7 +40,7 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
     const [currentWhiteStars, setCurrentWhiteStars] = useState<1 | 2 | 3>(3);
     const [alertMessage, setAlertMessage] = useState('');
 
-    const displayNameProp = displayLanguage === 'jp' ? 'name_jp' : 'name_en';
+    const displayNameProp = dataDisplayLanguage === 'jp' ? 'name_jp' : 'name_en';
 
     const uniqueSkills = useMemo(() => masterSkillList.filter(s => s.type === 'unique'), [masterSkillList]);
     const normalSkills = useMemo(() => masterSkillList.filter(s => s.type !== 'unique' && s.rarity === 1), [masterSkillList]);
@@ -115,7 +117,7 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         if (!formData.name || !formData.umaId) {
-            setAlertMessage('Please select an Uma Name.');
+            setAlertMessage(t('selectUmaAlert'));
             return;
         }
 
@@ -137,13 +139,13 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
 
     return (
         <>
-            <Modal isOpen={isOpen} onClose={onClose} title={parentToEdit ? 'Edit Parent' : 'Add New Parent'} size="lg">
+            <Modal isOpen={isOpen} onClose={onClose} title={parentToEdit ? t('editParentTitle') : t('addParentTitle')} size="lg">
                 <form onSubmit={handleSubmit} className="form space-y-4">
                     <div>
-                        <label className="form__label form__label--xs">Uma Name</label>
+                        <label className="form__label form__label--xs">{t('umaNameLabel')}</label>
                         <SearchableSelect 
                             items={masterUmaList}
-                            placeholder="Select uma name..."
+                            placeholder={t('selectUmaPlaceholder')}
                             value={formData.umaId ? umaMapById.get(formData.umaId)?.[displayNameProp] || null : null}
                             onSelect={(item) => handleUmaSelect(item as Uma)}
                             displayProp={displayNameProp}
@@ -151,16 +153,16 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
                     </div>
 
                     <div className="form__section">
-                        <h4 className="form__section-title">Blue Spark</h4>
+                        <h4 className="form__section-title">{t('blueSparkSection')}</h4>
                         <div className="grid grid-cols-2 gap-4">
                             <div>
-                                <label className="form__label form__label--xs">Type</label>
+                                <label className="form__label form__label--xs">{t('typeLabel')}</label>
                                 <select className="form__input" value={formData.blueSpark.type} onChange={e => handleSparkChange('blueSpark', 'type', e.target.value as BlueSpark['type'])}>
                                     {BLUE_SPARK_TYPES.map(t => <option key={t}>{t}</option>)}
                                 </select>
                             </div>
                             <div>
-                                <label className="form__label form__label--xs">Stars</label>
+                                <label className="form__label form__label--xs">{t('starsLabel')}</label>
                                 <select className="form__input" value={formData.blueSpark.stars} onChange={e => handleSparkChange('blueSpark', 'stars', Number(e.target.value) as 1|2|3)}>
                                     {STAR_OPTIONS.map(s => <option key={s}>{s}</option>)}
                                 </select>
@@ -169,16 +171,16 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
                     </div>
 
                     <div className="form__section">
-                        <h4 className="form__section-title">Pink Spark</h4>
+                        <h4 className="form__section-title">{t('pinkSparkSection')}</h4>
                         <div className="grid grid-cols-2 gap-4">
                             <div>
-                                <label className="form__label form__label--xs">Type</label>
+                                <label className="form__label form__label--xs">{t('typeLabel')}</label>
                                 <select className="form__input" value={formData.pinkSpark.type} onChange={e => handleSparkChange('pinkSpark', 'type', e.target.value)}>
                                     {PINK_SPARK_TYPES.map(t => <option key={t}>{t}</option>)}
                                 </select>
                             </div>
                             <div>
-                                <label className="form__label form__label--xs">Stars</label>
+                                <label className="form__label form__label--xs">{t('starsLabel')}</label>
                                 <select className="form__input" value={formData.pinkSpark.stars} onChange={e => handleSparkChange('pinkSpark', 'stars', Number(e.target.value) as 1|2|3)}>
                                     {STAR_OPTIONS.map(s => <option key={s}>{s}</option>)}
                                 </select>
@@ -187,7 +189,7 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
                     </div>
 
                     <div className="form__section">
-                        <h4 className="form__section-title">Obtained Unique Sparks</h4>
+                        <h4 className="form__section-title">{t('uniqueSparksSection')}</h4>
                         <div className="form__obtained-sparks-container">
                             {formData.uniqueSparks.map(spark => (
                                 <div key={spark.name} className="spark-tag obtained-spark" data-spark-category="unique">
@@ -199,7 +201,7 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
                         <div className="form__input-group">
                             <SearchableSelect
                                 items={uniqueSkills}
-                                placeholder="Search unique skill..."
+                                placeholder={t('searchUniqueSkill')}
                                 value={currentUniqueSkill?.[displayNameProp] || null}
                                 onSelect={setCurrentUniqueSkill}
                                 displayProp={displayNameProp}
@@ -219,13 +221,13 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
                                 onClick={() => addObtainedSpark('uniqueSparks', currentUniqueSkill, currentUniqueStars)}
                                 disabled={isUniqueSparkSelected || !currentUniqueSkill}
                             >
-                                Add
+                                {t('common:add')}
                             </button>
                         </div>
                     </div>
 
                     <div className="form__section">
-                        <h4 className="form__section-title">Obtained White Sparks</h4>
+                        <h4 className="form__section-title">{t('whiteSparksSection')}</h4>
                         <div className="form__obtained-sparks-container">
                             {formData.whiteSparks.map(spark => (
                                 <div key={spark.name} className="spark-tag obtained-spark" data-spark-category="white">
@@ -235,7 +237,7 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
                             ))}
                         </div>
                         <div className="form__input-group">
-                            <SearchableSelect items={availableNormalSkills} placeholder="Search skill..." value={currentWhiteSkill?.[displayNameProp] || null} onSelect={setCurrentWhiteSkill} displayProp={displayNameProp} />
+                            <SearchableSelect items={availableNormalSkills} placeholder={t('searchSkill')} value={currentWhiteSkill?.[displayNameProp] || null} onSelect={setCurrentWhiteSkill} displayProp={displayNameProp} />
                             <select className="form__input w-24" value={currentWhiteStars} onChange={e => setCurrentWhiteStars(Number(e.target.value) as 1|2|3)}>
                                 {STAR_OPTIONS.map(s => <option key={s}>{s}</option>)}
                             </select>
@@ -245,15 +247,15 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
                                 onClick={() => addObtainedSpark('whiteSparks', currentWhiteSkill, currentWhiteStars)}
                                 disabled={!currentWhiteSkill}
                             >
-                                Add
+                                {t('common:add')}
                             </button>
                         </div>
                     </div>
 
                     <div className="dialog-modal__footer">
-                        <button type="button" className="button button--neutral" onClick={onClose}>Cancel</button>
+                        <button type="button" className="button button--neutral" onClick={onClose}>{t('common:cancel')}</button>
                         <button type="submit" className="button button--primary">
-                            {parentToEdit ? 'Update Parent' : 'Calculate Score & Save'}
+                            {parentToEdit ? t('updateParentBtn') : t('calculateScoreBtn')}
                         </button>
                     </div>
                 </form>
@@ -262,11 +264,11 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
             <Modal
                 isOpen={!!alertMessage}
                 onClose={() => setAlertMessage('')}
-                title="Input Required"
+                title={t('inputRequiredTitle')}
             >
                 <p className="dialog-modal__message">{alertMessage}</p>
                 <div className="dialog-modal__footer">
-                    <button className="button button--primary" onClick={() => setAlertMessage('')}>OK</button>
+                    <button className="button button--primary" onClick={() => setAlertMessage('')}>{t('common:ok')}</button>
                 </div>
             </Modal>
         </>
