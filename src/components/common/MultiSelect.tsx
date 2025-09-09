@@ -2,15 +2,22 @@ import { useClickOutside } from '../../hooks/useClickOutside';
 import { useState, useRef } from 'react';
 import { useScrollLock } from '../../hooks/useScrollLock';
 import './MultiSelect.css';
+import { useTranslation } from 'react-i18next';
+
+interface Option {
+    value: string;
+    label: string;
+}
 
 interface MultiSelectProps {
-  options: string[];
+  options: Option[];
   selectedValues: string[];
   onChange: (selected: string[]) => void;
   placeholder?: string;
 }
 
-const MultiSelect = ({ options, selectedValues, onChange, placeholder = "Select..." }: MultiSelectProps) => {
+const MultiSelect = ({ options, selectedValues, onChange, placeholder }: MultiSelectProps) => {
+  const { t } = useTranslation('common');
   const [isOpen, setIsOpen] = useState(false);
 
   const dropdownRef = useClickOutside<HTMLDivElement>(() => {
@@ -19,12 +26,12 @@ const MultiSelect = ({ options, selectedValues, onChange, placeholder = "Select.
   const listRef = useRef<HTMLDivElement>(null);
   useScrollLock(listRef, isOpen);
 
-  const handleSelect = (option: string) => {
+  const handleSelect = (optionValue: string) => {
     let newSelected: string[];
-    if (selectedValues.includes(option)) {
-      newSelected = selectedValues.filter(v => v !== option);
+    if (selectedValues.includes(optionValue)) {
+      newSelected = selectedValues.filter(v => v !== optionValue);
     } else {
-      newSelected = [...selectedValues, option];
+      newSelected = [...selectedValues, optionValue];
     }
     onChange(newSelected);
   };
@@ -32,35 +39,37 @@ const MultiSelect = ({ options, selectedValues, onChange, placeholder = "Select.
   const removeValue = (value: string) => {
     onChange(selectedValues.filter(v => v !== value));
   };
+  
+  const selectedOptions = options.filter(opt => selectedValues.includes(opt.value));
 
   return (
     <div className="multi-select" ref={dropdownRef}>
       <div className="multi-select__input" onClick={() => setIsOpen(!isOpen)}>
-        {selectedValues.map(value => (
-          <div key={value} className="multi-select__chip">
-            {value}
+        {selectedOptions.map(option => (
+          <div key={option.value} className="multi-select__chip">
+            {option.label}
             <span 
               className="multi-select__chip-remove"
-              onClick={(e) => { e.stopPropagation(); removeValue(value); }}
+              onClick={(e) => { e.stopPropagation(); removeValue(option.value); }}
             >
               &times;
             </span>
           </div>
         ))}
-        {selectedValues.length === 0 && <span className="text-gray-400 ml-2">{placeholder}</span>}
+        {selectedValues.length === 0 && <span className="text-gray-400 ml-2">{placeholder || t('selectPlaceholder')}</span>}
       </div>
       {isOpen && (
         <div className="multi-select__dropdown" ref={listRef}>
           {options.map(option => (
-            <label key={option} className="multi-select__dropdown-item">
+            <label key={option.value} className="multi-select__dropdown-item">
               <input
                 type="checkbox"
                 className="mr-2"
-                value={option}
-                checked={selectedValues.includes(option)}
-                onChange={() => handleSelect(option)}
+                value={option.value}
+                checked={selectedValues.includes(option.value)}
+                onChange={() => handleSelect(option.value)}
               />
-              {option}
+              {option.label}
             </label>
           ))}
         </div>
