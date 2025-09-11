@@ -93,13 +93,25 @@ def prepare_skills(skill_data, skill_meta, skill_names, translations):
     all_possible_skills = []
     INHERITABLE_RARITIES = {1, 2}
     
-    for skill_id, skill in skill_data.items():
+    for skill_id in skill_names.keys():
         base_id = skill_id.split('-')[0]
         is_inherited_unique = base_id.startswith('9')
+        
+        source_skill_id = base_id
+        if is_inherited_unique:
+            # Inherited skill data comes from the base unique skill
+            source_skill_id = '1' + base_id[1:]
+        
+        skill = skill_data.get(source_skill_id)
+        meta = skill_meta.get(source_skill_id)
 
-        if skill.get('rarity') not in INHERITABLE_RARITIES and not is_inherited_unique:
+        # Skip if we can't find base data for this skill name
+        if not skill or not meta:
             continue
-        if skill_id not in skill_names or not skill_names[skill_id] or base_id not in skill_meta:
+
+        # Filter out skills that aren't inheritable sparks
+        # (i.e., base uniques, skills with rarity > 2, etc.)
+        if skill.get('rarity') not in INHERITABLE_RARITIES and not is_inherited_unique:
             continue
             
         name_list = skill_names[skill_id]
@@ -117,7 +129,7 @@ def prepare_skills(skill_data, skill_meta, skill_names, translations):
             'name_en': name_en,
             'type': 'unique' if is_inherited_unique else 'normal',
             'rarity': skill.get('rarity'),
-            'groupId': skill_meta[base_id].get('groupId'),
+            'groupId': meta.get('groupId'),
             'isGlobal': is_global
         }
 
@@ -142,13 +154,14 @@ def prepare_skills(skill_data, skill_meta, skill_names, translations):
     # 2. Process all mapped factors first, creating unified entries
     for factor_type, factors in factor_map.items():
         prefix = "race_" if factor_type == "races" else "scenario_"
+        global_factors = global_race_factors if factor_type == "races" else global_scenario_factors
         for factor_id, names in factors.items():
             all_possible_skills.append({
                 'id': factor_id,
                 'name_en': names['en'],
                 'name_jp': names['jp'],
                 'type': 'normal', 'rarity': 1, 'groupId': None,
-                'isGlobal': True  # Mapped factors are always considered global
+                'isGlobal': names['en'] in global_factors
             })
             processed_names.add(names['en'])
             processed_names.add(names['jp'])
