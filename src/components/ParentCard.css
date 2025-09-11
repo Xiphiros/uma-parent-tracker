@@ -1,5 +1,7 @@
 /* Parent Card Block */
 .parent-card {
+    display: flex;
+    flex-direction: column;
     padding: 1rem;
     border-radius: 0.5rem;
     border: 1px solid var(--color-border);
@@ -12,6 +14,7 @@
 .parent-card__main-content {
     display: flex;
     gap: 1rem;
+    flex-grow: 1;
 }
 .parent-card__image-container {
     flex-shrink: 0;
@@ -94,4 +97,23 @@
 .parent-card__no-sparks-text {
     font-size: 0.75rem;
     color: var(--color-text-placeholder);
+}
+
+/* New Footer for Inventory View */
+.parent-card__footer {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--color-border);
+}
+.parent-card__assigned-projects {
+    flex-grow: 1;
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
