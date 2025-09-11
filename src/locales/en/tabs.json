@@ -26,6 +26,8 @@
     "saveFolderBtn": "Save Folder",
     "folderSettingsTitle": "Settings for \"{{name}}\"",
     "folderSettingsMsg": "What would you like to do?",
+    "copyBtn": "Copy to {{server}}",
+    "moveBtn": "Move to {{server}}",
     "addProjectTitle": "Add New Project",
     "projectNameLabel": "Project Name",
     "addProjectBtn": "Add Project",
@@ -44,7 +46,16 @@
     "notAllowedTitle": "Action Not Allowed",
     "cannotDeletePinnedProject": "You cannot delete a pinned project. Please unpin it first.",
     "cannotDeleteLastProject": "You cannot delete the last project.",
+    "cannotMoveLastProject": "You cannot move the last project from a server.",
     "cannotDeletePinnedFolder": "You cannot delete a pinned folder. Please unpin it first.",
-    "folderContainsPinnedProjects": "This folder contains pinned projects. Please unpin them before deleting the folder."
+    "folderContainsPinnedProjects": "This folder contains pinned projects. Please unpin them before deleting the folder.",
+    "transferValidation": {
+      "copyTitle": "Copy Project to {{server}}",
+      "moveTitle": "Move Project to {{server}}",
+      "successCopy": "This project and its roster are fully compatible. A new copy named \"{{name}} (Copy)\" will be created on the {{server}} server.",
+      "successMove": "This project and its roster are fully compatible and can be moved to the {{server}} server.",
+      "errorTitle": "Incompatible Project",
+      "errorMsg": "This project cannot be moved or copied because the following items do not exist on the {{server}} server:"
+    }
   }
 }
