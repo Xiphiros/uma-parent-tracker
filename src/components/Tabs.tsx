@@ -20,7 +20,8 @@ interface ContextMenuState {
 const Tabs = () => {
     const { t } = useTranslation(['tabs', 'common', 'app']);
     const { appData, switchProfile, addProfile, renameProfile, deleteProfile, togglePinProfile, togglePinFolder, reorderLayout, reorderProfileInFolder, moveProfileToFolder, addFolder, updateFolder, deleteFolder, toggleFolderCollapse } = useAppContext();
-    const { profiles, folders, layout, activeProfileId } = appData;
+    
+    const { profiles, folders, layout, activeProfileId } = appData.serverData[appData.activeServer];
 
     const [isAddModalOpen, setAddModalOpen] = useState(false);
     const [newProfileName, setNewProfileName] = useState('');
@@ -100,7 +101,7 @@ const Tabs = () => {
             resizeObserver.disconnect();
             tabList.removeEventListener('scroll', checkScrollState);
         };
-    }, [profiles, layout, folders]);
+    }, [profiles, layout, folders, appData.activeServer]);
 
     const handleScroll = (event: React.MouseEvent, direction: 'left' | 'right') => {
         const el = tabListRef.current;
