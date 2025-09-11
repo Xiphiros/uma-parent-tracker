@@ -40,8 +40,7 @@ def prepare_skill_data(conn: sqlite3.Connection, output_dir: Path):
             ability_type_2_1, float_ability_value_2_1, target_type_2_1,
             ability_type_2_2, float_ability_value_2_2, target_type_2_2,
             ability_type_2_3, float_ability_value_2_3, target_type_2_3
-        FROM skill_data
-        WHERE is_general_skill = 1 OR rarity >= 3;
+        FROM skill_data;
     """)
     
     skills = {}
@@ -101,8 +100,7 @@ def prepare_skill_meta(conn: sqlite3.Connection, output_dir: Path):
     cursor.execute("""
         SELECT s.id, s.group_id, s.icon_id, COALESCE(sp.need_skill_point, 0) as sp_cost, s.disp_order
         FROM skill_data s
-        LEFT JOIN single_mode_skill_need_point sp ON s.id = sp.id
-        WHERE s.is_general_skill = 1 OR s.rarity >= 3;
+        LEFT JOIN single_mode_skill_need_point sp ON s.id = sp.id;
     """)
     
     skill_meta = {str(row['id']): {
