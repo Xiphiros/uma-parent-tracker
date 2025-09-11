@@ -876,7 +876,7 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
   const executeMoveProject = (profileId: number) => {
       setAppData(prev => {
           const sourceServer = prev.activeServer;
-          const destServer = sourceServer === 'jp' ? 'global' : 'jp';
+          const destServer: 'jp' | 'global' = sourceServer === 'jp' ? 'global' : 'jp';
           
           const sourceData = { ...prev.serverData[sourceServer] };
           const destData = { ...prev.serverData[destServer] };
@@ -887,7 +887,7 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
           const parentIdsToMove = new Set(profileToMove.roster);
 
           // 1. Update inventory
-          const newInventory = prev.inventory.map(parent => {
+          const newInventory = prev.inventory.map((parent): Parent => {
               if (parentIdsToMove.has(parent.id)) {
                   return { ...parent, server: destServer };
               }
