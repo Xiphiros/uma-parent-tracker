@@ -1,5 +1,6 @@
 import { defineConfig, Plugin } from 'vite'
 import react from '@vitejs/plugin-react'
+import { VitePWA } from 'vite-plugin-pwa'
 import tailwindcss from '@tailwindcss/vite'
 import fs from 'fs'
 import path from 'path'
@@ -96,6 +97,47 @@ export default defineConfig(({ mode }) => {
     plugins: [
         react(), 
         tailwindcss(),
+        VitePWA({
+            registerType: 'autoUpdate',
+            includeAssets: ['favicon.ico', 'apple-touch-icon.png'],
+            manifest: {
+                name: 'Umamusume Parent Tracker',
+                short_name: 'UmaTracker',
+                description: 'A point-based system for progressive parent farming.',
+                theme_color: '#fafaf9',
+                icons: [
+                    {
+                        src: 'icons/pwa-192x192.png',
+                        sizes: '192x192',
+                        type: 'image/png'
+                    },
+                    {
+                        src: 'icons/pwa-512x512.png',
+                        sizes: '512x512',
+                        type: 'image/png'
+                    }
+                ]
+            },
+            workbox: {
+                runtimeCaching: [
+                    {
+                        // Match any request that starts with /uma-parent-tracker/images/umas/
+                        urlPattern: ({ url }) => url.pathname.startsWith('/uma-parent-tracker/images/umas/'),
+                        handler: 'CacheFirst',
+                        options: {
+                            cacheName: 'uma-image-cache',
+                            expiration: {
+                                maxEntries: 200, // Cache up to 200 images
+                                maxAgeSeconds: 60 * 60 * 24 * 30 // 30 Days
+                            },
+                            cacheableResponse: {
+                                statuses: [0, 200] // Cache opaque responses (for cross-origin requests if needed)
+                            }
+                        }
+                    }
+                ]
+            }
+        }),
         mode === 'development' ? devServerEndpoints() : undefined,
     ].filter(Boolean),
     base: "/uma-parent-tracker/",
