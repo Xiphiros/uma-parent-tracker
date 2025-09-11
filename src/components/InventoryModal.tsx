@@ -13,13 +13,19 @@ interface InventoryModalProps {
   onClose: () => void;
 }
 
+interface MoveState {
+    parent: Parent | null;
+    errors: string[];
+}
+
 const InventoryModal = ({ isOpen, onClose }: InventoryModalProps) => {
-    const { t } = useTranslation('roster');
-    const { appData, activeServer, deleteParent, addParentToProfile, removeParentFromProfile } = useAppContext();
+    const { t } = useTranslation(['roster', 'modals']);
+    const { appData, activeServer, deleteParent, addParentToProfile, removeParentFromProfile, moveParentToServer } = useAppContext();
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
     const [parentToEdit, setParentToEdit] = useState<Parent | null>(null);
     const [isDeleteConfirmOpen, setDeleteConfirmOpen] = useState(false);
     const [parentToDelete, setParentToDelete] = useState<Parent | null>(null);
+    const [moveState, setMoveState] = useState<MoveState | null>(null);
     const [contextMenu, setContextMenu] = useState<{ isOpen: boolean; x: number; y: number; items: MenuItem[]; parent: Parent | null }>({ isOpen: false, x: 0, y: 0, items: [], parent: null });
 
     const { inventory, profiles } = useMemo(() => {
@@ -27,8 +33,8 @@ const InventoryModal = ({ isOpen, onClose }: InventoryModalProps) => {
             .filter(p => p.server === activeServer)
             .sort((a, b) => a.name.localeCompare(b.name));
         
-        return { inventory: currentServerInventory, profiles: appData.profiles };
-    }, [appData.inventory, appData.profiles, activeServer]);
+        return { inventory: currentServerInventory, profiles: appData.serverData[activeServer].profiles };
+    }, [appData.inventory, appData.serverData, activeServer]);
 
     const handleOpenAddModal = () => {
         setParentToEdit(null);
@@ -51,6 +57,11 @@ const InventoryModal = ({ isOpen, onClose }: InventoryModalProps) => {
         }
         setParentToDelete(null);
         setDeleteConfirmOpen(false);
+    };
+    
+    const handleMoveParent = (parent: Parent) => {
+        const result = moveParentToServer(parent.id);
+        setMoveState({ parent, errors: result.errors });
     };
 
     const handleOpenAssignmentMenu = (e: React.MouseEvent, parent: Parent) => {
@@ -96,6 +107,7 @@ const InventoryModal = ({ isOpen, onClose }: InventoryModalProps) => {
                                 displayScore={false}
                                 onEdit={() => handleOpenEditModal(parent)}
                                 onDelete={() => handleDeleteParent(parent)}
+                                onMove={() => handleMoveParent(parent)}
                                 onAssign={(e) => handleOpenAssignmentMenu(e, parent)}
                                 assignedProjects={parentToProfileMap.get(parent.id)}
                             />
@@ -126,16 +138,38 @@ const InventoryModal = ({ isOpen, onClose }: InventoryModalProps) => {
             <Modal
                 isOpen={isDeleteConfirmOpen}
                 onClose={() => setDeleteConfirmOpen(false)}
-                title={t('deleteConfirmTitle')}
+                title={t('modals:deleteConfirmTitle')}
             >
                 <p className="dialog-modal__message">
-                    {t('deleteConfirmMsg', { name: parentToDelete?.name })}
+                    {t('modals:deleteConfirmMsg', { name: parentToDelete?.name })}
                 </p>
                 <div className="dialog-modal__footer">
                     <button className="button button--neutral" onClick={() => setDeleteConfirmOpen(false)}>{t('common:cancel')}</button>
                     <button className="button button--danger" onClick={handleConfirmDelete}>{t('common:delete')}</button>
                 </div>
             </Modal>
+
+            {moveState && (
+                <Modal
+                    isOpen={!!moveState}
+                    onClose={() => setMoveState(null)}
+                    title={moveState.errors.length > 0 ? t('modals:moveErrorTitle') : t('modals:moveSuccessTitle')}
+                >
+                    {moveState.errors.length > 0 ? (
+                        <div>
+                            <p className="dialog-modal__message">{t('modals:moveErrorMsg', { name: moveState.parent?.name })}</p>
+                            <ul className="list-disc list-inside text-sm text-red-500 bg-red-500/10 p-2 rounded">
+                                {moveState.errors.map((err, i) => <li key={i}>{err}</li>)}
+                            </ul>
+                        </div>
+                    ) : (
+                        <p className="dialog-modal__message">{t('modals:moveSuccessMsg', { name: moveState.parent?.name })}</p>
+                    )}
+                    <div className="dialog-modal__footer">
+                        <button className="button button--primary" onClick={() => setMoveState(null)}>{t('common:ok')}</button>
+                    </div>
+                </Modal>
+            )}
         </>
     );
 };
