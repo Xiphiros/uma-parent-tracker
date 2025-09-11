@@ -14,10 +14,11 @@ interface ParentCardProps {
     onEdit?: () => void;
     onDelete?: () => void;
     onAssign?: (event: React.MouseEvent) => void;
+    onMove?: () => void;
     assignedProjects?: string[];
 }
 
-const ParentCard = ({ parent, isTopParent = false, displayScore = true, onEdit, onDelete, onAssign, assignedProjects }: ParentCardProps) => {
+const ParentCard = ({ parent, isTopParent = false, displayScore = true, onEdit, onDelete, onAssign, onMove, assignedProjects }: ParentCardProps) => {
     const { t } = useTranslation(['roster', 'common', 'game']);
     const { getActiveProfile, dataDisplayLanguage, umaMapById, skillMapByName } = useAppContext();
     const goal = getActiveProfile()?.goal;
@@ -60,12 +61,11 @@ const ParentCard = ({ parent, isTopParent = false, displayScore = true, onEdit, 
                         </div>
                         <div className="parent-card__score-wrapper">
                             {displayScore && <div className="parent-card__score">{parent.score} {t('parentCard.pts')}</div>}
-                            {!isTopParent && (
-                                <div className="parent-card__actions">
-                                    <button onClick={onEdit} className="parent-card__edit-btn">{t('common:edit')}</button>
-                                    <button onClick={onDelete} className="parent-card__delete-btn">{t('common:delete')}</button>
-                                </div>
-                            )}
+                            <div className="parent-card__actions">
+                                {onMove && <button onClick={onMove} className="parent-card__edit-btn">{t('common:move')}</button>}
+                                {onEdit && <button onClick={onEdit} className="parent-card__edit-btn">{t('common:edit')}</button>}
+                                {onDelete && <button onClick={onDelete} className="parent-card__delete-btn">{t('common:delete')}</button>}
+                            </div>
                         </div>
                     </div>
                     <div className="parent-card__body">
