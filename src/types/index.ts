@@ -61,15 +61,16 @@ export interface Parent {
   uniqueSparks: UniqueSpark[];
   whiteSparks: WhiteSpark[];
   score: number;
+  server: 'jp' | 'global';
 }
 
-export type NewParentData = Omit<Parent, 'id' | 'score' | 'gen'>;
+export type NewParentData = Omit<Parent, 'id' | 'score' | 'gen' | 'server'>;
 
 export interface Profile {
   id: number;
   name: string;
   goal: Goal;
-  roster: Parent[];
+  // roster: Parent[]; // This is now removed
   isPinned?: boolean;
 }
 
@@ -86,9 +87,11 @@ export interface Folder {
 }
 
 export interface AppData {
-  version: 3;
+  version: 4;
   activeProfileId: number | null;
+  activeServer: 'jp' | 'global';
   profiles: Profile[];
+  inventory: Parent[];
   folders: Folder[];
   layout: (string | number)[]; // string for folderId, number for profileId
 }
