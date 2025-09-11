@@ -14,5 +14,11 @@
   "updateParentBtn": "親を更新",
   "calculateScoreBtn": "スコア計算 & 保存",
   "inputRequiredTitle": "入力が必要です",
-  "selectUmaAlert": "ウマ娘名を選択してください。"
+  "selectUmaAlert": "ウマ娘名を選択してください。",
+  "deleteConfirmTitle": "削除の確認",
+  "deleteConfirmMsg": "「{{name}}」を所持ウマ娘から完全に削除しますか？",
+  "moveSuccessTitle": "移動成功",
+  "moveSuccessMsg": "「{{name}}」を別サーバーの所持ウマ娘一覧に正常に移動しました。",
+  "moveErrorTitle": "移動失敗",
+  "moveErrorMsg": "「{{name}}」を移動できませんでした。移動先のサーバーに以下のデータが存在しません："
 }
