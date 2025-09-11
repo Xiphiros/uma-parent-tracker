@@ -7,6 +7,11 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 
+export interface FolderIcon {
+    name: IconName;
+    component: () => React.ReactElement;
+}
+
 const iconMap: Record<IconName, IconDefinition> = {
     default: faFolder,
     runner: faPersonRunning,
@@ -24,7 +29,7 @@ const iconMap: Record<IconName, IconDefinition> = {
 
 const createIconComponent = (icon: IconDefinition) => () => <FontAwesomeIcon icon={icon} />;
 
-export const FOLDER_ICONS: { name: IconName, component: () => React.ReactElement }[] = [
+export const FOLDER_ICONS: FolderIcon[] = [
     { name: 'default', component: createIconComponent(iconMap.default) },
     { name: 'runner', component: createIconComponent(iconMap.runner) },
     { name: 'trophy', component: createIconComponent(iconMap.trophy) },
