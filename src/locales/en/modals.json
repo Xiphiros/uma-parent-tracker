@@ -14,5 +14,11 @@
   "updateParentBtn": "Update Parent",
   "calculateScoreBtn": "Calculate Score & Save",
   "inputRequiredTitle": "Input Required",
-  "selectUmaAlert": "Please select an Uma Name."
+  "selectUmaAlert": "Please select an Uma Name.",
+  "deleteConfirmTitle": "Confirm Deletion",
+  "deleteConfirmMsg": "Are you sure you want to permanently delete \"{{name}}\" from your inventory?",
+  "moveSuccessTitle": "Move Successful",
+  "moveSuccessMsg": "Successfully moved \"{{name}}\" to the other server's inventory.",
+  "moveErrorTitle": "Move Failed",
+  "moveErrorMsg": "Could not move \"{{name}}\". The following data is missing on the destination server:"
 }
