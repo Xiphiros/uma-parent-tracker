@@ -5,8 +5,8 @@ import { useTranslation } from 'react-i18next';
 
 const TopBreedingPair = () => {
     const { t } = useTranslation('roster');
-    const { getActiveProfile } = useAppContext();
-    const roster = getActiveProfile()?.roster ?? [];
+    const { getScoredInventory } = useAppContext();
+    const roster = getScoredInventory();
 
     const topTwoParents = useMemo(() => {
         return [...roster].sort((a, b) => b.score - a.score).slice(0, 2);
