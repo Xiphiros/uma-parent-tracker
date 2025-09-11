@@ -86,12 +86,19 @@ export interface Folder {
   isPinned?: boolean;
 }
 
-export interface AppData {
-  version: 4;
+export interface ServerSpecificData {
   activeProfileId: number | null;
-  activeServer: 'jp' | 'global';
   profiles: Profile[];
-  inventory: Parent[];
   folders: Folder[];
-  layout: (string | number)[]; // string for folderId, number for profileId
+  layout: (string | number)[];
+}
+
+export interface AppData {
+  version: 5;
+  activeServer: 'jp' | 'global';
+  inventory: Parent[];
+  serverData: {
+    jp: ServerSpecificData;
+    global: ServerSpecificData;
+  };
 }
