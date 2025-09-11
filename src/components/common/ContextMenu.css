@@ -44,3 +44,9 @@
     background-color: transparent;
     color: var(--color-text-muted);
 }
+
+.context-menu__checkbox-space {
+    width: 1.5rem; /* ~w-6 */
+    text-align: left;
+    color: var(--color-accent-primary);
+}
