@@ -1,16 +1,22 @@
 {
-  "rosterTitle": "育成ウマ娘一覧",
+  "rosterTitle": "「{{projectName}}」のスコア付きウマ娘一覧",
   "addParentBtn": "親を追加",
-  "placeholder": "ウマ娘がいません。親を追加して始めましょう！",
+  "placeholder": "アクティブなサーバーの所持ウマ娘がいません。親を追加して始めましょう！",
   "topPairTitle": "継承相性上位ペア",
-  "topPairPlaceholder": "ウマ娘を追加すると、ここに上位のペアが表示されます。",
+  "topPairPlaceholder": "所持ウマ娘を追加すると、ここに上位のペアが表示されます。",
   "topPairPlaceholderSingle": "もう1人親を追加してペアを完成させましょう。",
   "deleteConfirmTitle": "削除の確認",
-  "deleteConfirmMsg": "「{{name}}」を本当に削除しますか？",
+  "deleteConfirmMsg": "「{{name}}」を所持ウマ娘から本当に削除しますか？",
   "parentCard": {
     "gen": "世代",
     "pts": "pt",
     "noWhiteSparks": "白因子がありません。",
     "rank": "ランク"
+  },
+  "inventory": {
+    "title": "所持ウマ娘一覧",
+    "manageBtn": "所持ウマ娘を管理",
+    "placeholder": "このサーバーにはウマ娘がいません。",
+    "count": "{{count}} 人のウマ娘"
   }
 }
