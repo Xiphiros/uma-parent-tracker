@@ -1,7 +1,7 @@
 import React, { useState, useMemo, useRef, useEffect } from 'react';
 import { useAppContext } from '../context/AppContext';
 import Modal from './common/Modal';
-import { Profile, Folder, IconName } from '../types';
+import { Profile, Folder, IconName, ValidationResult } from '../types';
 import './Tabs.css';
 import FolderTab from './FolderTab';
 import AddFolderModal from './AddFolderModal';
@@ -17,9 +17,15 @@ interface ContextMenuState {
     items: MenuItem[];
 }
 
+interface TransferState {
+    profile: Profile;
+    action: 'copy' | 'move';
+    result: ValidationResult;
+}
+
 const Tabs = () => {
     const { t } = useTranslation(['tabs', 'common', 'app']);
-    const { appData, switchProfile, addProfile, renameProfile, deleteProfile, togglePinProfile, togglePinFolder, reorderLayout, reorderProfileInFolder, moveProfileToFolder, addFolder, updateFolder, deleteFolder, toggleFolderCollapse } = useAppContext();
+    const { appData, switchProfile, addProfile, renameProfile, deleteProfile, togglePinProfile, togglePinFolder, reorderLayout, reorderProfileInFolder, moveProfileToFolder, addFolder, updateFolder, deleteFolder, toggleFolderCollapse, validateProjectForServer, executeCopyProject, executeMoveProject } = useAppContext();
     
     const { profiles, folders, layout, activeProfileId } = appData.serverData[appData.activeServer];
 
@@ -38,6 +44,7 @@ const Tabs = () => {
     const [isDeleteFolderConfirmOpen, setDeleteFolderConfirmOpen] = useState(false);
     const [isFolderSettingsOpen, setFolderSettingsOpen] = useState(false);
 
+    const [transferState, setTransferState] = useState<TransferState | null>(null);
     const [contextMenu, setContextMenu] = useState<ContextMenuState>({ isOpen: false, x: 0, y: 0, items: [] });
     const [dragOverFolderId, setDragOverFolderId] = useState<string | null>(null);
     const [isDraggingOverList, setIsDraggingOverList] = useState(false);
@@ -54,6 +61,26 @@ const Tabs = () => {
             setNewProfileName(t('app:newProjectName'));
         }
     }, [isAddModalOpen, t]);
+
+    const handleTransfer = (profile: Profile, action: 'copy' | 'move') => {
+        setSettingsModalProfile(null);
+        if (action === 'move' && profiles.length <= 1) {
+            setAlertMessage(t('modals.cannotMoveLastProject'));
+            return;
+        }
+        const result = validateProjectForServer(profile.id);
+        setTransferState({ profile, action, result });
+    };
+
+    const handleConfirmTransfer = () => {
+        if (!transferState) return;
+        if (transferState.action === 'copy') {
+            executeCopyProject(transferState.profile.id);
+        } else {
+            executeMoveProject(transferState.profile.id);
+        }
+        setTransferState(null);
+    };
 
     // --- Context Menu ---
     const handleOpenContextMenu = (e: React.MouseEvent, item: Profile | Folder) => {
@@ -398,6 +425,8 @@ const Tabs = () => {
         </li>
     );
 
+    const destServer = appData.activeServer === 'jp' ? 'Global' : 'JP';
+
     return (
         <>
             <nav className="tabs__container">
@@ -498,6 +527,18 @@ const Tabs = () => {
             
             <Modal isOpen={!!settingsModalProfile} onClose={() => setSettingsModalProfile(null)} title={t('modals.projectSettingsTitle', { name: settingsModalProfile?.name })}>
                 <div className="dialog-modal__message">{t('modals.projectSettingsMsg')}</div>
+                <div className="my-4 space-y-2">
+                    <button className="button button--secondary w-full justify-center" onClick={() => handleTransfer(settingsModalProfile!, 'copy')}>
+                        {t('modals.copyBtn', { server: destServer })}
+                    </button>
+                    <button 
+                        className="button button--secondary w-full justify-center" 
+                        onClick={() => handleTransfer(settingsModalProfile!, 'move')}
+                        disabled={profiles.length <= 1}
+                    >
+                        {t('modals.moveBtn', { server: destServer })}
+                    </button>
+                </div>
                 <div className="dialog-modal__footer">
                     <button className="button button--neutral" onClick={() => setSettingsModalProfile(null)}>{t('common:cancel')}</button>
                     <button className="button button--secondary" onClick={() => { setRenameValue(settingsModalProfile?.name || ''); setRenameModalOpen(true); }}>{t('modals.renameBtn')}</button>
@@ -547,6 +588,37 @@ const Tabs = () => {
                     <button className="button button--neutral" onClick={() => setDeleteFolderConfirmOpen(false)}>{t('common:cancel')}</button>
                 </div>
             </Modal>
+
+            {transferState && (
+                <Modal 
+                    isOpen={!!transferState} 
+                    onClose={() => setTransferState(null)} 
+                    title={
+                        transferState.result.errors.length > 0 
+                        ? t('modals.transferValidation.errorTitle')
+                        : t(transferState.action === 'copy' ? 'modals.transferValidation.copyTitle' : 'modals.transferValidation.moveTitle', { server: destServer })
+                    }
+                >
+                    {transferState.result.errors.length > 0 ? (
+                        <div>
+                            <p className="dialog-modal__message">{t('modals.transferValidation.errorMsg', { server: destServer })}</p>
+                            <ul className="list-disc list-inside text-sm text-red-500 bg-red-500/10 p-2 rounded max-h-48 overflow-y-auto">
+                                {transferState.result.errors.map((err, i) => <li key={i}>{err}</li>)}
+                            </ul>
+                        </div>
+                    ) : (
+                        <p className="dialog-modal__message">
+                            {t(transferState.action === 'copy' ? 'modals.transferValidation.successCopy' : 'modals.transferValidation.successMove', { name: transferState.profile.name, server: destServer })}
+                        </p>
+                    )}
+                    <div className="dialog-modal__footer">
+                        <button className="button button--neutral" onClick={() => setTransferState(null)}>{t('common:cancel')}</button>
+                        {transferState.result.errors.length === 0 && (
+                             <button className="button button--primary" onClick={handleConfirmTransfer}>{t('common:confirm')}</button>
+                        )}
+                    </div>
+                </Modal>
+            )}
 
             <Modal isOpen={!!alertMessage} onClose={() => setAlertMessage('')} title={t('modals.notAllowedTitle')}>
                 <p className="dialog-modal__message">{alertMessage}</p>
