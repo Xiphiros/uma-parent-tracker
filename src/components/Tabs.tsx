@@ -258,13 +258,19 @@ const Tabs = () => {
         dragItem.current = null;
     };
     
-    const handleDragEnd = (e: React.DragEvent<HTMLElement>) => {
-        e.currentTarget.classList.remove('tab--dragging');
+    const handleDragEnd = () => {
+        // This function is the final cleanup for any drag operation.
+        // It's called on the source element after drag ends, even if no drop occurred.
         setDragOverFolderId(null);
-        
-        // Force cleanup for any target elements that were hovered
-        document.querySelectorAll('.tab--drag-over').forEach(el => {
-            el.classList.remove('tab--drag-over');
+        setIsDraggingOverList(false);
+        dragItem.current = null;
+
+        // Force cleanup of all visual indicators from all possible drag targets.
+        // This is more robust than querying for just '.tab--drag-over' because it
+        // ensures a clean state even if a 'dragleave' event was missed.
+        const draggableItems = tabListRef.current?.querySelectorAll('.tab, .folder-group');
+        draggableItems?.forEach(el => {
+            el.classList.remove('tab--dragging', 'tab--drag-over');
         });
     };
 
