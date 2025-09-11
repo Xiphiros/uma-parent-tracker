@@ -103,7 +103,15 @@ const InventoryModal = ({ isOpen, onClose }: InventoryModalProps) => {
     }, [profiles]);
 
     const destServer = activeServer === 'jp' ? 'Global' : 'JP';
-    const parentDisplayName = moveConfirmState ? (umaMapById.get(moveConfirmState.parent.umaId)?.[dataDisplayLanguage] ?? moveConfirmState.parent.name) : '';
+    
+    const getParentDisplayName = (parent: Parent | null): string => {
+        if (!parent) return '';
+        const uma = umaMapById.get(parent.umaId);
+        if (!uma) return parent.name;
+        return dataDisplayLanguage === 'jp' ? uma.name_jp : uma.name_en;
+    };
+    
+    const parentDisplayName = getParentDisplayName(moveConfirmState?.parent || null);
 
     return (
         <>
