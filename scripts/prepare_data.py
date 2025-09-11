@@ -120,7 +120,7 @@ def prepare_skills(skill_data, skill_meta, skill_names, translations):
         is_global = name_list[2]
         community_translation = translations.get('skills', {}).get(skill_id, {}).get('unofficialTranslation')
 
-        if '◎' in jp_name or '×' in jp_name:
+        if '◎' in jp_name or jp_name.endswith('×'):
             continue
 
         skill_entry = {
