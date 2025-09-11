@@ -2,12 +2,16 @@ import { useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { useClickOutside } from '../../hooks/useClickOutside';
 import './ContextMenu.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCheck } from '@fortawesome/free-solid-svg-icons';
 
 export interface MenuItem {
     label: string;
     onClick: () => void;
     isDestructive?: boolean;
     disabled?: boolean;
+    type?: 'button' | 'checkbox';
+    checked?: boolean;
 }
 
 interface ContextMenuProps {
@@ -54,9 +58,14 @@ const ContextMenu = ({ isOpen, position, items, onClose }: ContextMenuProps) => 
                     onClick={() => {
                         if (item.disabled) return;
                         item.onClick();
-                        onClose();
+                        if (item.type !== 'checkbox') {
+                           onClose();
+                        }
                     }}
                 >
+                    <span className="context-menu__checkbox-space">
+                        {item.type === 'checkbox' && item.checked && <FontAwesomeIcon icon={faCheck} />}
+                    </span>
                     {item.label}
                 </div>
             ))}
