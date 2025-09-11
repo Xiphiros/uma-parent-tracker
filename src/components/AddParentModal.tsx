@@ -31,7 +31,7 @@ const initialState: NewParentData = {
 
 const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) => {
     const { t } = useTranslation(['modals', 'common', 'game']);
-    const { masterUmaList, masterSkillList, addParent, updateParent, dataDisplayLanguage, umaMapById, skillMapByName } = useAppContext();
+    const { getActiveProfile, masterUmaList, masterSkillList, addParent, updateParent, dataDisplayLanguage, umaMapById, skillMapByName } = useAppContext();
     
     const [formData, setFormData] = useState<NewParentData>(initialState);
     const [currentUniqueSkill, setCurrentUniqueSkill] = useState<any>(null);
@@ -124,7 +124,8 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
         if (parentToEdit) {
             updateParent({ ...parentToEdit, ...formData });
         } else {
-            addParent(formData);
+            const activeProfile = getActiveProfile();
+            addParent(formData, activeProfile?.id);
         }
         onClose();
     };
