@@ -26,6 +26,8 @@
     "saveFolderBtn": "フォルダーを保存",
     "folderSettingsTitle": "「{{name}}」の設定",
     "folderSettingsMsg": "何をしますか？",
+    "copyBtn": "{{server}}へコピー",
+    "moveBtn": "{{server}}へ移動",
     "addProjectTitle": "新しいプロジェクトを追加",
     "projectNameLabel": "プロジェクト名",
     "addProjectBtn": "プロジェクトを追加",
@@ -44,7 +46,16 @@
     "notAllowedTitle": "許可されていない操作",
     "cannotDeletePinnedProject": "ピン留めされたプロジェクトは削除できません。まずピンを外してください。",
     "cannotDeleteLastProject": "最後のプロジェクトは削除できません。",
+    "cannotMoveLastProject": "サーバーから最後のプロジェクトを移動することはできません。",
     "cannotDeletePinnedFolder": "ピン留めされたフォルダーは削除できません。まずピンを外してください。",
-    "folderContainsPinnedProjects": "このフォルダーにはピン留めされたプロジェクトが含まれています。フォルダーを削除する前に、それらのピンを外してください。"
+    "folderContainsPinnedProjects": "このフォルダーにはピン留めされたプロジェクトが含まれています。フォルダーを削除する前に、それらのピンを外してください。",
+    "transferValidation": {
+      "copyTitle": "プロジェクトを{{server}}へコピー",
+      "moveTitle": "プロジェクトを{{server}}へ移動",
+      "successCopy": "このプロジェクトとウマ娘一覧は完全に互換性があります。「{{name}} (コピー)」という名前の新しいコピーが{{server}}サーバーに作成されます。",
+      "successMove": "このプロジェクトとウマ娘一覧は完全に互換性があり、{{server}}サーバーに移動できます。",
+      "errorTitle": "互換性のないプロジェクト",
+      "errorMsg": "このプロジェクトは移動またはコピーできません。以下のアイテムが移動先の{{server}}サーバーに存在しません："
+    }
   }
 }
