@@ -58,9 +58,7 @@ const ContextMenu = ({ isOpen, position, items, onClose }: ContextMenuProps) => 
                     onClick={() => {
                         if (item.disabled) return;
                         item.onClick();
-                        if (item.type !== 'checkbox') {
-                           onClose();
-                        }
+                        onClose();
                     }}
                 >
                     <span className="context-menu__checkbox-space">
