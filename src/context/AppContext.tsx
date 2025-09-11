@@ -872,12 +872,13 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
           destData.profiles = [...destData.profiles, { ...profileToMove, isPinned: false }];
           destData.layout = [...destData.layout, profileToMove.id];
 
+          const newServerData = { ...prev.serverData };
+          newServerData[sourceServer] = sourceData;
+          newServerData[destServer] = destData;
+          
           return {
               ...prev,
-              serverData: {
-                  [sourceServer]: sourceData,
-                  [destServer]: destData,
-              }
+              serverData: newServerData,
           };
       });
   };
