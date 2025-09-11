@@ -1,12 +1,13 @@
 {
   "rosterTitle": "「{{projectName}}」のスコア付きウマ娘一覧",
-  "addParentBtn": "親を追加",
+  "addParentBtn": "新しい親を追加",
   "placeholder": "アクティブなサーバーの所持ウマ娘がいません。親を追加して始めましょう！",
+  "placeholderRoster": "このプロジェクトのウマ娘一覧は空です。所持ウマ娘から追加するか、新しく作成してください。",
   "topPairTitle": "継承相性上位ペア",
-  "topPairPlaceholder": "所持ウマ娘を追加すると、ここに上位のペアが表示されます。",
-  "topPairPlaceholderSingle": "もう1人親を追加してペアを完成させましょう。",
+  "topPairPlaceholder": "このプロジェクトのウマ娘一覧に親を追加すると、ここに上位のペアが表示されます。",
+  "topPairPlaceholderSingle": "もう1人親をこのプロジェクトに追加してペアを完成させましょう。",
   "deleteConfirmTitle": "削除の確認",
-  "deleteConfirmMsg": "「{{name}}」を所持ウマ娘から本当に削除しますか？",
+  "deleteConfirmMsg": "「{{name}}」を所持ウマ娘から完全に削除しますか？",
   "parentCard": {
     "gen": "世代",
     "pts": "pt",
@@ -18,5 +19,10 @@
     "manageBtn": "所持ウマ娘を管理",
     "placeholder": "このサーバーにはウマ娘がいません。",
     "count": "{{count}} 人のウマ娘"
+  },
+  "placeholderCard": {
+    "title": "このウマ娘一覧は空です",
+    "messageInventoryEmpty": "このサーバーの所持ウマ娘がいません。最初の親を追加しましょう！",
+    "messageRosterEmpty": "所持ウマ娘の中からこのプロジェクトにウマ娘を割り当ててください。"
   }
 }
