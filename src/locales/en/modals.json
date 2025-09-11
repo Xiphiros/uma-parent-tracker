@@ -17,8 +17,8 @@
   "selectUmaAlert": "Please select an Uma Name.",
   "deleteConfirmTitle": "Confirm Deletion",
   "deleteConfirmMsg": "Are you sure you want to permanently delete \"{{name}}\" from your inventory?",
-  "moveSuccessTitle": "Move Successful",
-  "moveSuccessMsg": "Successfully moved \"{{name}}\" to the other server's inventory.",
-  "moveErrorTitle": "Move Failed",
-  "moveErrorMsg": "Could not move \"{{name}}\". The following data is missing on the destination server:"
+  "moveParentConfirmTitle": "Confirm Parent Move",
+  "moveParentConfirmMsg": "Are you sure you want to move \"{{name}}\" to the {{server}} server? This parent is fully compatible.",
+  "moveParentWarningTitle": "Compatibility Warning",
+  "moveParentWarningMsg": "Cannot move \"{{name}}\" to the {{server}} server. The following incompatibilities were found:"
 }
