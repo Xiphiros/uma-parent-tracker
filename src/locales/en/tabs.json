@@ -55,7 +55,10 @@
       "successCopy": "This project and its roster are fully compatible. A new copy named \"{{name}} (Copy)\" will be created on the {{server}} server.",
       "successMove": "This project and its roster are fully compatible and can be moved to the {{server}} server.",
       "errorTitle": "Incompatible Project",
-      "errorMsg": "This project cannot be moved or copied because the following items do not exist on the {{server}} server:"
+      "errorMsg": "This project cannot be moved or copied because the following items do not exist on the {{server}} server:",
+      "errorParentUma": "Parent [{{parentName}}]: Character does not exist on destination server.",
+      "errorParentSkill": "Parent [{{parentName}}]: Skill \"{{skillName}}\" does not exist on destination server.",
+      "errorGoalSkill": "Goal: Skill \"{{skillName}}\" does not exist on destination server."
     }
   }
 }
