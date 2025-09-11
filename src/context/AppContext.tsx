@@ -6,7 +6,7 @@ import { calculateScore } from '../utils/scoring';
 import i18n from '../i18n';
 
 const DB_KEY = 'umaTrackerData_v2';
-const PREFS_KEY = 'umaTrackerPrefs_v1';
+const USER_PREFERENCES_KEY = 'umaTrackerPrefs_v1';
 const CURRENT_VERSION = 5;
 
 type DataDisplayLanguage = 'en' | 'jp';
@@ -128,8 +128,8 @@ const migrateData = (data: any): AppData => {
     if (migrated.version < 4) {
         migrated.version = 4;
         migrated.inventory = [];
-        const oldPrefs = JSON.parse(localStorage.getItem(PREFS_KEY) || '{}');
-        const serverContext = oldPrefs.dataMode || 'jp';
+        const oldPreferences = JSON.parse(localStorage.getItem(USER_PREFERENCES_KEY) || '{}');
+        const serverContext = oldPreferences.dataMode || 'jp';
         migrated.activeServer = serverContext;
 
         const newProfiles: Profile[] = [];
@@ -226,10 +226,10 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
     }
     setAppData(data);
 
-    const savedPrefs = localStorage.getItem(PREFS_KEY);
-    if (savedPrefs) {
+    const savedPreferences = localStorage.getItem(USER_PREFERENCES_KEY);
+    if (savedPreferences) {
         try {
-            const prefs = JSON.parse(savedPrefs);
+            const prefs = JSON.parse(savedPreferences);
             if (data && prefs.activeServer) {
                 setAppData(d => ({ ...d, activeServer: prefs.activeServer }));
             }
@@ -251,11 +251,11 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
     localStorage.setItem(DB_KEY, JSON.stringify(appData));
   }, [appData]);
 
-  const savePrefs = (key: string, value: any) => {
+  const savePreferences = (key: string, value: any) => {
     try {
-        const prefs = JSON.parse(localStorage.getItem(PREFS_KEY) || '{}');
+        const prefs = JSON.parse(localStorage.getItem(USER_PREFERENCES_KEY) || '{}');
         prefs[key] = value;
-        localStorage.setItem(PREFS_KEY, JSON.stringify(prefs));
+        localStorage.setItem(USER_PREFERENCES_KEY, JSON.stringify(prefs));
     } catch (e) {
         console.error(`Could not save preference: ${key}`, e);
     }
@@ -263,17 +263,17 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
 
   const setActiveServer = (server: 'jp' | 'global') => {
       setAppData(prev => ({...prev, activeServer: server}));
-      savePrefs('activeServer', server);
+      savePreferences('activeServer', server);
   };
 
   const setDataDisplayLanguage = (lang: DataDisplayLanguage) => {
     setDataDisplayLanguageState(lang);
-    savePrefs('dataDisplayLanguage', lang);
+    savePreferences('dataDisplayLanguage', lang);
   };
 
   const setUseCommunityTranslations = (enabled: boolean) => {
     setUseCommunityTranslationsState(enabled);
-    savePrefs('useCommunityTranslations', enabled);
+    savePreferences('useCommunityTranslations', enabled);
   };
 
   const changeUiLanguage = (lang: 'en' | 'jp') => {
@@ -751,13 +751,15 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
     const destSkillMap = new Map(destSkillList.map(s => [s.name_en, s]));
 
     if (!destUmaMap.has(parent.umaId)) {
-        const umaName = umaMapById.get(parent.umaId)?.[dataDisplayLanguage] ?? parent.name;
+        const uma = umaMapById.get(parent.umaId);
+        const umaName = uma ? (dataDisplayLanguage === 'jp' ? uma.name_jp : uma.name_en) : parent.name;
         errors.push(`Character/Outfit: ${umaName}`);
     }
 
     [...parent.uniqueSparks, ...parent.whiteSparks].forEach(spark => {
         if (!destSkillMap.has(spark.name)) {
-            const skillName = skillMapByName.get(spark.name)?.[dataDisplayLanguage] ?? spark.name;
+            const skill = skillMapByName.get(spark.name);
+            const skillName = skill ? (dataDisplayLanguage === 'jp' ? skill.name_jp : skill.name_en) : spark.name;
             errors.push(`Skill: ${skillName}`);
         }
     });
@@ -768,11 +770,11 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
   const moveParentToServer = (parentId: number) => {
       const parent = appData.inventory.find(p => p.id === parentId);
       if (!parent) return;
-      const destServer = parent.server === 'jp' ? 'global' : 'jp';
+      const destServer: 'jp' | 'global' = parent.server === 'jp' ? 'global' : 'jp';
 
       setAppData(prev => ({
           ...prev,
-          inventory: prev.inventory.map(p => p.id === parentId ? { ...p, server: destServer } : p)
+          inventory: prev.inventory.map((p): Parent => p.id === parentId ? { ...p, server: destServer } : p)
       }));
   };
   
@@ -795,12 +797,14 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
 
       // Validate roster
       parentsInRoster.forEach(parent => {
-          const parentDisplayName = umaMapById.get(parent.umaId)?.[dataDisplayLanguage] ?? parent.name;
+          const uma = umaMapById.get(parent.umaId);
+          const parentDisplayName = uma ? (dataDisplayLanguage === 'jp' ? uma.name_jp : uma.name_en) : parent.name;
           if (!destUmaMap.has(parent.umaId)) {
               errors.push(t('tabs:modals.transferValidation.errorParentUma', { parentName: parentDisplayName }));
           }
           [...parent.uniqueSparks, ...parent.whiteSparks].forEach(spark => {
-              const skillDisplayName = skillMapByName.get(spark.name)?.[dataDisplayLanguage] ?? spark.name;
+              const skill = skillMapByName.get(spark.name);
+              const skillDisplayName = skill ? (dataDisplayLanguage === 'jp' ? skill.name_jp : skill.name_en) : spark.name;
               if (!destSkillMap.has(spark.name)) {
                   errors.push(t('tabs:modals.transferValidation.errorParentSkill', { parentName: parentDisplayName, skillName: skillDisplayName }));
               }
@@ -809,7 +813,8 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
 
       // Validate goal
       [...profile.goal.uniqueWishlist, ...profile.goal.wishlist].forEach(item => {
-          const skillDisplayName = skillMapByName.get(item.name)?.[dataDisplayLanguage] ?? item.name;
+          const skill = skillMapByName.get(item.name);
+          const skillDisplayName = skill ? (dataDisplayLanguage === 'jp' ? skill.name_jp : skill.name_en) : item.name;
           if (!destSkillMap.has(item.name)) {
               errors.push(t('tabs:modals.transferValidation.errorGoalSkill', { skillName: skillDisplayName }));
           }
