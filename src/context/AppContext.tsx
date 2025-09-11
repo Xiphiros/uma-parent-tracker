@@ -7,16 +7,15 @@ import i18n from '../i18n';
 
 const DB_KEY = 'umaTrackerData_v2';
 const PREFS_KEY = 'umaTrackerPrefs_v1';
-const CURRENT_VERSION = 3;
+const CURRENT_VERSION = 4;
 
-type DataMode = 'jp' | 'global';
 type DataDisplayLanguage = 'en' | 'jp';
 
 interface AppContextType {
   loading: boolean;
   appData: AppData;
-  dataMode: DataMode;
-  setDataMode: (mode: DataMode) => void;
+  activeServer: 'jp' | 'global';
+  setActiveServer: (server: 'jp' | 'global') => void;
   dataDisplayLanguage: DataDisplayLanguage;
   setDataDisplayLanguage: (lang: DataDisplayLanguage) => void;
   useCommunityTranslations: boolean;
@@ -27,6 +26,7 @@ interface AppContextType {
   skillMapByName: Map<string, Skill>;
   umaMapById: Map<string, Uma>;
   getActiveProfile: () => Profile | undefined;
+  getScoredInventory: () => Parent[];
   saveState: (newData: AppData) => void;
   exportData: () => void;
   importData: (file: File) => Promise<void>;
@@ -65,7 +65,6 @@ const createNewProfile = (name: string): Profile => ({
   id: Date.now(),
   name,
   goal: { primaryBlue: [], primaryPink: [], uniqueWishlist: [], wishlist: [] },
-  roster: [],
   isPinned: false,
 });
 
@@ -74,45 +73,73 @@ const createDefaultState = (): AppData => {
     return {
         version: CURRENT_VERSION,
         activeProfileId: firstProfile.id,
+        activeServer: 'jp',
         profiles: [firstProfile],
+        inventory: [],
         folders: [],
         layout: [firstProfile.id],
     };
 };
 
 const migrateData = (data: any): AppData => {
+    let migrated = data;
     // V1 -> V2: Single project structure to multi-project
-    if (!data.version || data.version < 2) {
-        const singleProfile = createNewProfile('Imported Project');
-        singleProfile.goal = data.goal || { primaryBlue: [], primaryPink: [], uniqueWishlist: [], wishlist: [] };
-        singleProfile.roster = data.roster || [];
-        data = {
+    if (!migrated.version || migrated.version < 2) {
+        const singleProfile: Profile = {
+            id: Date.now(),
+            name: 'Imported Project',
+            goal: migrated.goal || { primaryBlue: [], primaryPink: [], uniqueWishlist: [], wishlist: [] },
+            isPinned: false,
+        };
+        migrated = {
             version: 2,
             activeProfileId: singleProfile.id,
             profiles: [singleProfile],
+            roster: migrated.roster || [], // Temporarily hold roster at top level
         };
     }
     
     // V2 -> V3: Add folders and layout
-    if (data.version < 3) {
-        data.version = 3;
-        data.folders = [];
-        data.layout = data.profiles.map((p: Profile) => p.id);
+    if (migrated.version < 3) {
+        migrated.version = 3;
+        migrated.folders = [];
+        migrated.layout = migrated.profiles.map((p: Profile) => p.id);
+    }
+
+    // V3 -> V4: Global inventory and server context
+    if (migrated.version < 4) {
+        migrated.version = 4;
+        migrated.inventory = [];
+        // Use old `dataMode` pref to guess server, default to 'jp'
+        const oldPrefs = JSON.parse(localStorage.getItem(PREFS_KEY) || '{}');
+        const serverContext = oldPrefs.dataMode || 'jp';
+
+        migrated.profiles.forEach((p: Profile & { roster?: Parent[] }) => {
+            if (p.roster) {
+                p.roster.forEach(parent => {
+                    migrated.inventory.push({ ...parent, server: serverContext });
+                });
+                delete p.roster; // Remove roster from profile
+            }
+        });
+        migrated.activeServer = serverContext;
     }
     
     // Universal sanity checks for all versions
-    data.profiles.forEach((p: Profile) => {
+    migrated.profiles.forEach((p: Profile) => {
+        if (!p.goal) p.goal = { primaryBlue: [], primaryPink: [], uniqueWishlist: [], wishlist: [] };
         if (!p.goal.uniqueWishlist) p.goal.uniqueWishlist = [];
         if (p.isPinned === undefined) p.isPinned = false;
-        p.roster.forEach(parent => {
-            if (!parent.uniqueSparks) parent.uniqueSparks = [];
-        });
     });
-    data.folders.forEach((f: Folder) => {
+    migrated.folders.forEach((f: Folder) => {
         if (f.isPinned === undefined) f.isPinned = false;
     });
+    migrated.inventory.forEach((p: Parent) => {
+        if (!p.uniqueSparks) p.uniqueSparks = [];
+        if (!p.server) p.server = 'jp'; // Default for any stray parents
+    });
 
-    return data as AppData;
+    return migrated as AppData;
 };
 
 
@@ -120,21 +147,14 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
   const [loading, setLoading] = useState(true);
   const [fullMasterSkillList] = useState<Skill[]>(masterSkillListJson as Skill[]);
   const [fullMasterUmaList] = useState<Uma[]>(masterUmaListJson as Uma[]);
-  const [dataMode, setDataModeState] = useState<DataMode>('jp');
+  const [activeServer, setActiveServerState] = useState<'jp' | 'global'>('jp');
   const [dataDisplayLanguage, setDataDisplayLanguageState] = useState<DataDisplayLanguage>('en');
   const [useCommunityTranslations, setUseCommunityTranslationsState] = useState<boolean>(false);
-  const [appData, setAppData] = useState<AppData>({
-    version: CURRENT_VERSION,
-    activeProfileId: null,
-    profiles: [],
-    folders: [],
-    layout: [],
-  });
+  const [appData, setAppData] = useState<AppData>(createDefaultState());
 
   const isInitialLoad = useRef(true);
 
   useEffect(() => {
-    // Load main app data
     let data: AppData | null = null;
     const savedData = localStorage.getItem(DB_KEY);
 
@@ -157,7 +177,7 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
     if (savedPrefs) {
         try {
             const prefs = JSON.parse(savedPrefs);
-            if (prefs.dataMode) setDataModeState(prefs.dataMode);
+            if (prefs.activeServer) setActiveServerState(prefs.activeServer);
             if (prefs.dataDisplayLanguage) setDataDisplayLanguageState(prefs.dataDisplayLanguage);
             if (prefs.useCommunityTranslations) setUseCommunityTranslationsState(prefs.useCommunityTranslations);
         } catch (e) {
@@ -186,9 +206,9 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
-  const setDataMode = (mode: DataMode) => {
-      setDataModeState(mode);
-      savePrefs('dataMode', mode);
+  const setActiveServer = (server: 'jp' | 'global') => {
+      setActiveServerState(server);
+      savePrefs('activeServer', server);
   };
 
   const setDataDisplayLanguage = (lang: DataDisplayLanguage) => {
@@ -211,8 +231,6 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
     return item.name_jp; // Fallback to JP if no English is available
   };
 
-  // Create a processed list that components will use for display.
-  // The `name_en` field is intelligently populated based on settings.
   const processedMasterSkillList = useMemo(() => {
     return fullMasterSkillList.map(skill => ({
       ...skill,
@@ -228,20 +246,19 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
   }, [fullMasterUmaList, useCommunityTranslations]);
 
   const masterSkillList = useMemo(() => {
-      if (dataMode === 'global') {
+      if (activeServer === 'global') {
           return processedMasterSkillList.filter(s => s.isGlobal);
       }
       return processedMasterSkillList;
-  }, [dataMode, processedMasterSkillList]);
+  }, [activeServer, processedMasterSkillList]);
 
   const masterUmaList = useMemo(() => {
-      if (dataMode === 'global') {
+      if (activeServer === 'global') {
           return processedMasterUmaList.filter(u => u.isGlobal);
       }
       return processedMasterUmaList;
-  }, [dataMode, processedMasterUmaList]);
+  }, [activeServer, processedMasterUmaList]);
 
-  // These maps are for internal lookup and should always use the canonical names from the raw data files.
   const skillMapByName = useMemo(() => new Map(fullMasterSkillList.map(skill => [skill.name_en, skill])), [fullMasterSkillList]);
   const umaMapById = useMemo(() => new Map(fullMasterUmaList.map(uma => [uma.id, uma])), [fullMasterUmaList]);
 
@@ -252,6 +269,18 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
   const getActiveProfile = () => {
     return appData.profiles.find(p => p.id === appData.activeProfileId);
   };
+
+  const getScoredInventory = useMemo(() => () => {
+    const profile = getActiveProfile();
+    if (!profile) return [];
+    
+    return appData.inventory
+      .filter(p => p.server === activeServer)
+      .map(p => ({
+        ...p,
+        score: calculateScore(p, profile.goal)
+      }));
+  }, [appData.inventory, appData.activeProfileId, appData.profiles, activeServer]);
 
   const exportData = () => {
     const jsonString = JSON.stringify(appData, null, 2);
@@ -275,6 +304,7 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
           const rawData = JSON.parse(e.target?.result as string);
           const migratedData = migrateData(rawData);
           setAppData(migratedData);
+          setActiveServer(migratedData.activeServer || 'jp');
           resolve();
         } catch (error) {
           console.error("Import Error:", error);
@@ -394,19 +424,12 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
         const folderPinMap = new Map(prevData.folders.map(f => [f.id, f.isPinned ?? false]));
         const isPinned = (id: string | number) => typeof id === 'string' ? folderPinMap.get(id) : profilePinMap.get(id);
 
-        // A pinned item cannot be the source of a move.
-        if (isPinned(layoutCopy[sourceIndex])) {
-            return prevData;
-        }
+        if (isPinned(layoutCopy[sourceIndex])) return prevData;
 
-        // Find the boundary of the pinned items.
         const firstUnpinnedIndex = layoutCopy.findIndex(id => !isPinned(id));
         const pinnedZoneEnd = firstUnpinnedIndex === -1 ? layoutCopy.length : firstUnpinnedIndex;
 
-        // If the destination is in the pinned zone, block the move.
-        if (destinationIndex < pinnedZoneEnd) {
-            return prevData;
-        }
+        if (destinationIndex < pinnedZoneEnd) return prevData;
 
         const [removed] = layoutCopy.splice(sourceIndex, 1);
         layoutCopy.splice(destinationIndex, 0, removed);
@@ -423,19 +446,12 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
       if (!folder) return prevData;
 
       const profileIds = folder.profileIds;
-      
-      // A pinned item cannot be the source of a move.
-      if (isPinned(profileIds[sourceIndex])) {
-          return prevData;
-      }
+      if (isPinned(profileIds[sourceIndex])) return prevData;
 
       const firstUnpinnedIndex = profileIds.findIndex(id => !isPinned(id));
       const pinnedZoneEnd = firstUnpinnedIndex === -1 ? profileIds.length : firstUnpinnedIndex;
 
-      // If the destination is in the pinned zone, block the move.
-      if (destIndex < pinnedZoneEnd) {
-          return prevData;
-      }
+      if (destIndex < pinnedZoneEnd) return prevData;
 
       const foldersCopy = prevData.folders.map(f => {
         if (f.id === folderId) {
@@ -454,24 +470,18 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
   const moveProfileToFolder = (profileId: number, folderId: string | null, destIndex: number = -1) => {
       setAppData(prevData => {
           let newData = { ...prevData };
-          // 1. Remove from old location (either layout or another folder)
           newData.layout = newData.layout.filter(item => item !== profileId);
           newData.folders = newData.folders.map(f => ({
               ...f,
               profileIds: f.profileIds.filter(pId => pId !== profileId)
           }));
 
-          // 2. Add to new location
           if (folderId) {
               newData.folders = newData.folders.map(f => {
                   if (f.id === folderId) {
                       let newProfileIds = [...f.profileIds];
-                      if (destIndex > -1) {
-                          newProfileIds.splice(destIndex, 0, profileId);
-                      } else {
-                          newProfileIds.push(profileId);
-                      }
-                      // Always re-sort the folder's contents by pin status after a move.
+                      if (destIndex > -1) newProfileIds.splice(destIndex, 0, profileId);
+                      else newProfileIds.push(profileId);
                       const sortedIds = sortProfileIdsByPin(newProfileIds, newData.profiles);
                       return { ...f, profileIds: sortedIds };
                   }
@@ -481,21 +491,12 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
               const newLayout = [...newData.layout];
               const profilesMap = new Map(newData.profiles.map(p => [p.id, p]));
               const foldersMap = new Map(newData.folders.map(f => [f.id, f]));
-
-              // Find the index of the first unpinned item in the layout
               let firstUnpinnedIndex = newLayout.findIndex(id => {
                   const item = typeof id === 'string' ? foldersMap.get(id) : profilesMap.get(id);
                   return !item?.isPinned;
               });
-
-              // If all items are pinned, or layout is empty, append to the end
-              if (firstUnpinnedIndex === -1) {
-                  firstUnpinnedIndex = newLayout.length;
-              }
-
-              // An unpinned item can't be dropped before the first unpinned item
+              if (firstUnpinnedIndex === -1) firstUnpinnedIndex = newLayout.length;
               const finalIndex = destIndex > -1 ? Math.max(firstUnpinnedIndex, destIndex) : firstUnpinnedIndex;
-              
               newLayout.splice(finalIndex, 0, profileId);
               newData.layout = newLayout;
           }
@@ -505,13 +506,8 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
 
   const addFolder = (name: string, color: string, icon: IconName) => {
       const newFolder: Folder = {
-          id: `f${Date.now()}`,
-          name,
-          color,
-          icon,
-          isCollapsed: false,
-          profileIds: [],
-          isPinned: false,
+          id: `f${Date.now()}`, name, color, icon,
+          isCollapsed: false, profileIds: [], isPinned: false,
       };
       setAppData(prevData => ({
           ...prevData,
@@ -540,7 +536,6 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
               const idsToDelete = new Set(folderToDelete.profileIds);
               newProfiles = newProfiles.filter(p => !idsToDelete.has(p.id));
           } else {
-              // Move profiles to top-level layout
               newLayout = [...newLayout, ...folderToDelete.profileIds];
           }
           
@@ -558,16 +553,9 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
   const updateGoal = (goal: Goal) => {
     setAppData(prevData => ({
       ...prevData,
-      profiles: prevData.profiles.map(p => {
-        if (p.id === prevData.activeProfileId) {
-          const updatedRoster = p.roster.map(parent => ({
-            ...parent,
-            score: calculateScore(parent, goal)
-          }));
-          return { ...p, goal, roster: updatedRoster };
-        }
-        return p;
-      })
+      profiles: prevData.profiles.map(p => 
+        p.id === prevData.activeProfileId ? { ...p, goal } : p
+      )
     }));
   };
 
@@ -580,26 +568,8 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
           const list = newGoal[listName] as WishlistItem[];
           const itemIndex = list.findIndex(i => i.name === oldName);
           if (itemIndex === -1) return p;
-
           list[itemIndex] = newItem;
-
-          let newRoster = p.roster;
-          if (oldName !== newItem.name) {
-            const sparkListName = listName === 'wishlist' ? 'whiteSparks' : 'uniqueSparks';
-            newRoster = p.roster.map(parent => ({
-              ...parent,
-              [sparkListName]: parent[sparkListName].map(spark => 
-                spark.name === oldName ? { ...spark, name: newItem.name } : spark
-              )
-            }));
-          }
-
-          newRoster = newRoster.map(parent => ({
-            ...parent,
-            score: calculateScore(parent, newGoal)
-          }));
-
-          return { ...p, goal: newGoal, roster: newRoster };
+          return { ...p, goal: newGoal };
         }
         return p;
       })
@@ -607,8 +577,8 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const getNextGenNumber = (): number => {
-    const roster = getActiveProfile()?.roster ?? [];
-    return roster.length > 0 ? Math.max(...roster.map(p => p.gen)) + 1 : 1;
+    const inventory = appData.inventory.filter(p => p.server === activeServer);
+    return inventory.length > 0 ? Math.max(...inventory.map(p => p.gen)) + 1 : 1;
   };
 
   const addParent = (parentData: NewParentData) => {
@@ -620,15 +590,12 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
       id: Date.now(),
       gen: getNextGenNumber(),
       score: calculateScore(parentData, activeProfile.goal),
+      server: activeServer,
     };
 
     setAppData(prevData => ({
       ...prevData,
-      profiles: prevData.profiles.map(p => 
-        p.id === prevData.activeProfileId 
-        ? { ...p, roster: [...p.roster, newParent] } 
-        : p
-      )
+      inventory: [...prevData.inventory, newParent]
     }));
   };
 
@@ -643,30 +610,22 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
 
     setAppData(prevData => ({
       ...prevData,
-      profiles: prevData.profiles.map(p => 
-        p.id === prevData.activeProfileId 
-        ? { ...p, roster: p.roster.map(r => r.id === parent.id ? updatedParent : r) } 
-        : p
-      )
+      inventory: prevData.inventory.map(p => p.id === parent.id ? updatedParent : p)
     }));
   };
 
   const deleteParent = (parentId: number) => {
     setAppData(prevData => ({
       ...prevData,
-      profiles: prevData.profiles.map(p => 
-        p.id === prevData.activeProfileId 
-        ? { ...p, roster: p.roster.filter(r => r.id !== parentId) } 
-        : p
-      )
+      inventory: prevData.inventory.filter(p => p.id !== parentId)
     }));
   };
   
   const value = {
     loading,
     appData,
-    dataMode,
-    setDataMode,
+    activeServer,
+    setActiveServer,
     dataDisplayLanguage,
     setDataDisplayLanguage,
     useCommunityTranslations,
@@ -677,6 +636,7 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
     skillMapByName,
     umaMapById,
     getActiveProfile,
+    getScoredInventory,
     saveState,
     exportData,
     importData,
