@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import React, { useState, useMemo } from 'react';
 import { Parent } from '../types';
 import Modal from './common/Modal';
 import ParentCard from './ParentCard';
@@ -7,8 +7,6 @@ import ContextMenu, { MenuItem } from './common/ContextMenu';
 import { useAppContext } from '../context/AppContext';
 import './InventoryModal.css';
 import { useTranslation } from 'react-i18next';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 interface InventoryModalProps {
   isOpen: boolean;
@@ -29,16 +27,8 @@ const InventoryModal = ({ isOpen, onClose }: InventoryModalProps) => {
             .filter(p => p.server === activeServer)
             .sort((a, b) => a.name.localeCompare(b.name));
         
-        const allProfiles = [...appData.profiles];
-        appData.folders.forEach(f => {
-            f.profileIds.forEach(pid => {
-                const profile = appData.profiles.find(p => p.id === pid);
-                if (profile) allProfiles.push(profile);
-            });
-        });
-        
         return { inventory: currentServerInventory, profiles: appData.profiles };
-    }, [appData.inventory, appData.profiles, appData.folders, activeServer]);
+    }, [appData.inventory, appData.profiles, activeServer]);
 
     const handleOpenAddModal = () => {
         setParentToEdit(null);
@@ -100,25 +90,15 @@ const InventoryModal = ({ isOpen, onClose }: InventoryModalProps) => {
                 <div className="inventory-modal__grid">
                     {inventory.length > 0 ? (
                         inventory.map(parent => (
-                            <div key={parent.id} className="relative">
-                                <ParentCard 
-                                    parent={parent} 
-                                    displayScore={false}
-                                    onEdit={() => handleOpenEditModal(parent)}
-                                    onDelete={() => handleDeleteParent(parent)}
-                                />
-                                <div className="absolute bottom-2 right-2 flex items-center gap-2">
-                                    <div className="text-xs text-stone-400 truncate max-w-[120px]">
-                                        {parentToProfileMap.get(parent.id)?.join(', ')}
-                                    </div>
-                                    <button 
-                                        className="button button--secondary button--small"
-                                        onClick={(e) => handleOpenAssignmentMenu(e, parent)}
-                                    >
-                                        <FontAwesomeIcon icon={faPlus} />
-                                    </button>
-                                </div>
-                            </div>
+                            <ParentCard 
+                                key={parent.id} 
+                                parent={parent} 
+                                displayScore={false}
+                                onEdit={() => handleOpenEditModal(parent)}
+                                onDelete={() => handleDeleteParent(parent)}
+                                onAssign={(e) => handleOpenAssignmentMenu(e, parent)}
+                                assignedProjects={parentToProfileMap.get(parent.id)}
+                            />
                         ))
                     ) : (
                         <p className="card__placeholder-text text-center py-8 col-span-full">{t('inventory.placeholder')}</p>
