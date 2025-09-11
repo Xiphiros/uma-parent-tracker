@@ -1,6 +1,6 @@
 import React from 'react';
 import { Folder, Profile } from "../types";
-import { getIcon } from "./Icons";
+import { getIcon } from "./Icons.tsx";
 import './FolderTab.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGear, faChevronDown, faBookmark, faThumbtack } from '@fortawesome/free-solid-svg-icons';
