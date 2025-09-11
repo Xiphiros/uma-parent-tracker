@@ -9,6 +9,7 @@ SCRIPT_DIR = Path(__file__).parent
 PROJECT_ROOT = SCRIPT_DIR.parent
 SRC_DIR = PROJECT_ROOT / 'src'
 PUBLIC_DIR = PROJECT_ROOT / 'public'
+LOCALES_DIR = SRC_DIR / 'locales'
 WCAG_AA_RATIO = 4.5
 
 # --- Regular Expressions for Checks ---
@@ -227,6 +228,50 @@ def check_unused_assets() -> List[str]:
         print(f"Error checking for unused assets: {e}")
     return violations
 
+def _get_nested_keys(data: Dict[str, Any], prefix: str = '') -> Set[str]:
+    """Recursively flattens a dictionary and returns a set of its keys."""
+    keys = set()
+    for key, value in data.items():
+        new_key = f"{prefix}.{key}" if prefix else key
+        if isinstance(value, dict):
+            keys.update(_get_nested_keys(value, new_key))
+        else:
+            keys.add(new_key)
+    return keys
+
+def check_translations() -> List[str]:
+    """Checks for missing translation keys across all supported languages."""
+    violations = []
+    base_lang = 'en'
+    other_langs = [d.name for d in LOCALES_DIR.iterdir() if d.is_dir() and d.name != base_lang]
+    
+    base_files = find_files(LOCALES_DIR / base_lang, '.json')
+    
+    for base_file in base_files:
+        try:
+            with open(base_file, 'r', encoding='utf-8') as f:
+                base_data = json.load(f)
+            base_keys = _get_nested_keys(base_data)
+            
+            for lang in other_langs:
+                other_file = LOCALES_DIR / lang / base_file.name
+                if not other_file.exists():
+                    violations.append(f"File missing: {other_file.relative_to(PROJECT_ROOT)}")
+                    continue
+                
+                with open(other_file, 'r', encoding='utf-8') as f:
+                    other_data = json.load(f)
+                other_keys = _get_nested_keys(other_data)
+                
+                missing_keys = base_keys - other_keys
+                for key in sorted(list(missing_keys)):
+                    violations.append(f"Missing key '{key}' in {other_file.relative_to(PROJECT_ROOT)}")
+
+        except Exception as e:
+            violations.append(f"Error processing file {base_file.relative_to(PROJECT_ROOT)}: {e}")
+            
+    return violations
+
 def main():
     parser = argparse.ArgumentParser(description="Validates project files against the style guide conventions.")
     parser.add_argument("-v", "--verbose", action="store_true", help="Print detailed information for each violation.")
@@ -338,6 +383,19 @@ def main():
             for v in contrast_violations:
                 print(f"    - [{v['theme'].upper()}] {v['fg_var']} on {v['bg_var']} has a ratio of {v['ratio']:.2f}:1.")
     total_errors += contrast_errors
+
+    # --- Group 5: Localization Checks ---
+    print("\n[5] Checking Localization files...")
+    translation_violations = check_translations()
+    translation_errors = len(translation_violations)
+    if translation_errors == 0:
+        print("  \033[92mPASS:\033[0m All translation keys are consistent across languages.")
+    else:
+        print(f"  \033[91mFAIL:\033[0m Found {translation_errors} missing translation key(s).")
+        if args.verbose:
+            for violation in translation_violations:
+                print(f"    - {violation}")
+    total_errors += translation_errors
 
     # --- Summary ---
     print("\n--- Validation Summary ---")
