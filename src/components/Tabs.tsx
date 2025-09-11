@@ -259,14 +259,12 @@ const Tabs = () => {
     };
     
     const handleDragEnd = () => {
-        // This function is the final cleanup for any drag operation.
-        // It's called on the source element after drag ends, even if no drop occurred.
+        // This function provides final cleanup for any drag operation's visual state.
         setDragOverFolderId(null);
         setIsDraggingOverList(false);
-        dragItem.current = null;
-
+    
         // Force cleanup of all visual indicators from all possible drag targets.
-        // This is more robust than querying for just '.tab--drag-over' because it
+        // This is more robust than just acting on the current target because it
         // ensures a clean state even if a 'dragleave' event was missed.
         const draggableItems = tabListRef.current?.querySelectorAll('.tab, .folder-group');
         draggableItems?.forEach(el => {
