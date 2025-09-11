@@ -51,7 +51,8 @@ interface AppContextType {
   deleteParent: (parentId: number) => void;
   addParentToProfile: (parentId: number, profileId: number) => void;
   removeParentFromProfile: (parentId: number, profileId: number) => void;
-  moveParentToServer: (parentId: number) => { success: boolean; errors: string[] };
+  moveParentToServer: (parentId: number) => void;
+  validateParentForServer: (parentId: number) => ValidationResult;
   validateProjectForServer: (profileId: number) => ValidationResult;
   executeCopyProject: (profileId: number) => void;
   executeMoveProject: (profileId: number) => void;
@@ -735,9 +736,9 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
     });
   };
   
-  const moveParentToServer = (parentId: number) => {
+  const validateParentForServer = (parentId: number): ValidationResult => {
     const parent = appData.inventory.find(p => p.id === parentId);
-    if (!parent) return { success: false, errors: ["Parent not found."] };
+    if (!parent) return { errors: ["Parent not found."] };
 
     const sourceServer = parent.server;
     const destServer = sourceServer === 'jp' ? 'global' : 'jp';
@@ -750,31 +751,29 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
     const destSkillMap = new Map(destSkillList.map(s => [s.name_en, s]));
 
     if (!destUmaMap.has(parent.umaId)) {
-        errors.push(`Character/Outfit: ${parent.name}`);
+        const umaName = umaMapById.get(parent.umaId)?.[dataDisplayLanguage] ?? parent.name;
+        errors.push(`Character/Outfit: ${umaName}`);
     }
 
-    parent.uniqueSparks.forEach(spark => {
+    [...parent.uniqueSparks, ...parent.whiteSparks].forEach(spark => {
         if (!destSkillMap.has(spark.name)) {
-            errors.push(`Unique Skill: ${spark.name}`);
+            const skillName = skillMapByName.get(spark.name)?.[dataDisplayLanguage] ?? spark.name;
+            errors.push(`Skill: ${skillName}`);
         }
     });
 
-    parent.whiteSparks.forEach(spark => {
-        if (!destSkillMap.has(spark.name)) {
-            errors.push(`Skill: ${spark.name}`);
-        }
-    });
+    return { errors };
+  };
+  
+  const moveParentToServer = (parentId: number) => {
+      const parent = appData.inventory.find(p => p.id === parentId);
+      if (!parent) return;
+      const destServer = parent.server === 'jp' ? 'global' : 'jp';
 
-    if (errors.length > 0) {
-        return { success: false, errors };
-    }
-
-    setAppData(prev => ({
-        ...prev,
-        inventory: prev.inventory.map(p => p.id === parentId ? { ...p, server: destServer } : p)
-    }));
-
-    return { success: true, errors: [] };
+      setAppData(prev => ({
+          ...prev,
+          inventory: prev.inventory.map(p => p.id === parentId ? { ...p, server: destServer } : p)
+      }));
   };
   
   const validateProjectForServer = (profileId: number): ValidationResult => {
@@ -796,20 +795,23 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
 
       // Validate roster
       parentsInRoster.forEach(parent => {
+          const parentDisplayName = umaMapById.get(parent.umaId)?.[dataDisplayLanguage] ?? parent.name;
           if (!destUmaMap.has(parent.umaId)) {
-              errors.push(t('tabs:modals.transferValidation.errorParentUma', { parentName: parent.name }));
+              errors.push(t('tabs:modals.transferValidation.errorParentUma', { parentName: parentDisplayName }));
           }
           [...parent.uniqueSparks, ...parent.whiteSparks].forEach(spark => {
+              const skillDisplayName = skillMapByName.get(spark.name)?.[dataDisplayLanguage] ?? spark.name;
               if (!destSkillMap.has(spark.name)) {
-                  errors.push(t('tabs:modals.transferValidation.errorParentSkill', { parentName: parent.name, skillName: spark.name }));
+                  errors.push(t('tabs:modals.transferValidation.errorParentSkill', { parentName: parentDisplayName, skillName: skillDisplayName }));
               }
           });
       });
 
       // Validate goal
       [...profile.goal.uniqueWishlist, ...profile.goal.wishlist].forEach(item => {
+          const skillDisplayName = skillMapByName.get(item.name)?.[dataDisplayLanguage] ?? item.name;
           if (!destSkillMap.has(item.name)) {
-              errors.push(t('tabs:modals.transferValidation.errorGoalSkill', { skillName: item.name }));
+              errors.push(t('tabs:modals.transferValidation.errorGoalSkill', { skillName: skillDisplayName }));
           }
       });
 
@@ -824,12 +826,31 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
           
           const profileToCopy = sourceData.profiles.find(p => p.id === profileId);
           if (!profileToCopy) return prev;
+          
+          const parentsToCopy = profileToCopy.roster
+              .map(id => prev.inventory.find(p => p.id === id))
+              .filter((p): p is Parent => !!p);
 
+          let newInventory = [...prev.inventory];
+          const idMapping = new Map<number, number>();
+          let timestamp = Date.now();
+
+          parentsToCopy.forEach((parent, index) => {
+              const newParent = {
+                  ...JSON.parse(JSON.stringify(parent)),
+                  id: timestamp + index, // Create new unique ID
+                  server: destServer,
+              };
+              newInventory.push(newParent);
+              idMapping.set(parent.id, newParent.id);
+          });
+          
           const newProfile: Profile = {
-              ...JSON.parse(JSON.stringify(profileToCopy)), // Deep copy
-              id: Date.now(),
+              ...JSON.parse(JSON.stringify(profileToCopy)),
+              id: timestamp + parentsToCopy.length, // Ensure unique ID
               name: `${profileToCopy.name} (Copy)`,
-              isPinned: false, // Copies are never pinned by default
+              isPinned: false,
+              roster: profileToCopy.roster.map(oldId => idMapping.get(oldId) || oldId), // Use new parent IDs
           };
 
           const destData = { ...prev.serverData[destServer] };
@@ -838,6 +859,7 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
           
           return {
               ...prev,
+              inventory: newInventory,
               serverData: {
                   ...prev.serverData,
                   [destServer]: destData
@@ -856,8 +878,18 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
 
           const profileToMove = sourceData.profiles.find(p => p.id === profileId);
           if (!profileToMove) return prev;
+          
+          const parentIdsToMove = new Set(profileToMove.roster);
 
-          // Remove from source
+          // 1. Update inventory
+          const newInventory = prev.inventory.map(parent => {
+              if (parentIdsToMove.has(parent.id)) {
+                  return { ...parent, server: destServer };
+              }
+              return parent;
+          });
+
+          // 2. Remove from source
           sourceData.profiles = sourceData.profiles.filter(p => p.id !== profileId);
           sourceData.layout = sourceData.layout.filter(id => id !== profileId);
           sourceData.folders = sourceData.folders.map(f => ({
@@ -869,7 +901,7 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
               sourceData.activeProfileId = sourceData.profiles[0]?.id || null;
           }
 
-          // Add to destination
+          // 3. Add to destination
           destData.profiles = [...destData.profiles, { ...profileToMove, isPinned: false }];
           destData.layout = [...destData.layout, profileToMove.id];
 
@@ -879,6 +911,7 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
           
           return {
               ...prev,
+              inventory: newInventory,
               serverData: newServerData,
           };
       });
@@ -925,6 +958,7 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
     addParentToProfile,
     removeParentFromProfile,
     moveParentToServer,
+    validateParentForServer,
     validateProjectForServer,
     executeCopyProject,
     executeMoveProject,
