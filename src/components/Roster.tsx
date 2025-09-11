@@ -12,23 +12,21 @@ import { useTranslation } from 'react-i18next';
 
 const Roster = () => {
     const { t } = useTranslation(['roster', 'common']);
-    const { getActiveProfile, getScoredInventory, deleteParent } = useAppContext();
+    const { getActiveProfile, getScoredRoster, removeParentFromProfile } = useAppContext();
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
     const [isInventoryModalOpen, setIsInventoryModalOpen] = useState(false);
     const [parentToEdit, setParentToEdit] = useState<Parent | null>(null);
-    const [isDeleteConfirmOpen, setDeleteConfirmOpen] = useState(false);
-    const [parentToDelete, setParentToDelete] = useState<Parent | null>(null);
     const rosterContainerRef = useRef<HTMLDivElement>(null);
     
     const [isRosterScrollable, setIsRosterScrollable] = useState(false);
     useScrollLock(rosterContainerRef, isRosterScrollable);
     
     const activeProfile = getActiveProfile();
-    const scoredInventory = getScoredInventory();
+    const scoredRoster = getScoredRoster();
 
     const sortedRoster = useMemo(() => {
-        return [...scoredInventory].sort((a, b) => b.score - a.score);
-    }, [scoredInventory]);
+        return [...scoredRoster].sort((a, b) => b.score - a.score);
+    }, [scoredRoster]);
 
     useEffect(() => {
         const checkScroll = () => {
@@ -64,17 +62,10 @@ const Roster = () => {
         setIsAddModalOpen(true);
     };
 
-    const handleDeleteParent = (parent: Parent) => {
-        setParentToDelete(parent);
-        setDeleteConfirmOpen(true);
-    };
-
-    const handleConfirmDelete = () => {
-        if (parentToDelete) {
-            deleteParent(parentToDelete.id);
+    const handleRemoveFromRoster = (parent: Parent) => {
+        if (activeProfile) {
+            removeParentFromProfile(parent.id, activeProfile.id);
         }
-        setParentToDelete(null);
-        setDeleteConfirmOpen(false);
     };
     
     return (
@@ -102,11 +93,11 @@ const Roster = () => {
                                 key={parent.id} 
                                 parent={parent} 
                                 onEdit={() => handleOpenEditModal(parent)}
-                                onDelete={() => handleDeleteParent(parent)}
+                                onDelete={() => handleRemoveFromRoster(parent)}
                             />
                         ))
                     ) : (
-                        <p className="card__placeholder-text text-center py-8">{t('placeholder')}</p>
+                        <p className="card__placeholder-text text-center py-8">{t('placeholderRoster')}</p>
                     )}
                 </div>
             </section>
@@ -121,20 +112,6 @@ const Roster = () => {
                 isOpen={isInventoryModalOpen}
                 onClose={() => setIsInventoryModalOpen(false)}
             />
-
-            <Modal
-                isOpen={isDeleteConfirmOpen}
-                onClose={() => setDeleteConfirmOpen(false)}
-                title={t('deleteConfirmTitle')}
-            >
-                <p className="dialog-modal__message">
-                    {t('deleteConfirmMsg', { name: parentToDelete?.name })}
-                </p>
-                <div className="dialog-modal__footer">
-                    <button className="button button--neutral" onClick={() => setDeleteConfirmOpen(false)}>{t('common:cancel')}</button>
-                    <button className="button button--danger" onClick={handleConfirmDelete}>{t('common:delete')}</button>
-                </div>
-            </Modal>
         </>
     );
 };
