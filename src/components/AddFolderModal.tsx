@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Folder, IconName } from '../types';
 import Modal from './common/Modal';
-import { FOLDER_COLORS, FOLDER_ICONS } from './Icons';
+import { FOLDER_COLORS, FOLDER_ICONS, FolderIcon } from './Icons.tsx';
 import { useTranslation } from 'react-i18next';
 
 interface AddFolderModalProps {
@@ -55,7 +55,7 @@ const AddFolderModal = ({ isOpen, onClose, onSave, folderToEdit }: AddFolderModa
                 <div>
                     <label className="form__label">{t('modals.colorLabel')}</label>
                     <div className="grid grid-cols-6 gap-2">
-                        {FOLDER_COLORS.map(c => (
+                        {FOLDER_COLORS.map((c: string) => (
                             <button
                                 key={c}
                                 className={`h-8 w-8 rounded-full border-2 transition ${color === c ? 'border-indigo-500' : 'border-transparent hover:border-gray-400'}`}
@@ -68,7 +68,7 @@ const AddFolderModal = ({ isOpen, onClose, onSave, folderToEdit }: AddFolderModa
                 <div>
                     <label className="form__label">{t('modals.iconLabel')}</label>
                      <div className="grid grid-cols-6 gap-2">
-                        {FOLDER_ICONS.map(i => (
+                        {FOLDER_ICONS.map((i: FolderIcon) => (
                             <button
                                 key={i.name}
                                 className={`flex items-center justify-center h-8 w-8 rounded-full transition ${icon === i.name ? 'bg-indigo-500 text-white' : 'bg-stone-200 text-stone-600 hover:bg-stone-300 dark:bg-stone-700 dark:text-stone-300 dark:hover:bg-stone-600'}`}
