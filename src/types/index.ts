@@ -102,3 +102,7 @@ export interface AppData {
     global: ServerSpecificData;
   };
 }
+
+export interface ValidationResult {
+    errors: string[];
+}
