@@ -17,8 +17,8 @@
   "selectUmaAlert": "ウマ娘名を選択してください。",
   "deleteConfirmTitle": "削除の確認",
   "deleteConfirmMsg": "「{{name}}」を所持ウマ娘から完全に削除しますか？",
-  "moveSuccessTitle": "移動成功",
-  "moveSuccessMsg": "「{{name}}」を別サーバーの所持ウマ娘一覧に正常に移動しました。",
-  "moveErrorTitle": "移動失敗",
-  "moveErrorMsg": "「{{name}}」を移動できませんでした。移動先のサーバーに以下のデータが存在しません："
+  "moveParentConfirmTitle": "親の移動の確認",
+  "moveParentConfirmMsg": "「{{name}}」を{{server}}サーバーに移動してもよろしいですか？この親は完全に互換性があります。",
+  "moveParentWarningTitle": "互換性の警告",
+  "moveParentWarningMsg": "「{{name}}」を{{server}}サーバーに移動できません。以下の非互換性が見つかりました："
 }
