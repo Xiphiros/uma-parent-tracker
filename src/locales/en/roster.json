@@ -1,16 +1,22 @@
 {
-  "rosterTitle": "Roster",
+  "rosterTitle": "Scored Roster for \"{{projectName}}\"",
   "addParentBtn": "Add Parent",
-  "placeholder": "Your roster is empty. Add a parent to get started!",
+  "placeholder": "Your active server's inventory is empty. Add a parent to get started!",
   "topPairTitle": "Top Breeding Pair",
-  "topPairPlaceholder": "Add parents to your roster to see the top pair here.",
+  "topPairPlaceholder": "Add parents to your inventory to see the top pair here.",
   "topPairPlaceholderSingle": "Add one more parent to complete the pair.",
   "deleteConfirmTitle": "Confirm Deletion",
-  "deleteConfirmMsg": "Are you sure you want to delete \"{{name}}\"?",
+  "deleteConfirmMsg": "Are you sure you want to delete \"{{name}}\" from your inventory?",
   "parentCard": {
     "gen": "Gen",
     "pts": "pts",
     "noWhiteSparks": "No white sparks.",
     "rank": "Rank"
+  },
+  "inventory": {
+    "title": "Parent Inventory",
+    "manageBtn": "Manage Inventory",
+    "placeholder": "This server's inventory is empty.",
+    "count": "{{count}} Parents"
   }
 }
