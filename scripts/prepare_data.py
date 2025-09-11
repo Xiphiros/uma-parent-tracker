@@ -72,12 +72,27 @@ def load_and_merge_skill_data():
 
     jp_names = _load_json(RAW_DATA_DIR / 'jp' / 'skillnames.json')
     gl_names = _load_json(RAW_DATA_DIR / 'global' / 'skillnames.json')
+
+    # A skill is global ONLY if its data exists in the global skill_data file.
+    # The name might be present for future content, but the data is what matters.
+    global_skill_ids = set(gl_skill_data.keys())
+
     skill_names = {}
     all_skill_ids = set(jp_names.keys()) | set(gl_names.keys())
     for skill_id in all_skill_ids:
         jp_name = jp_names.get(skill_id, ["", ""])[0]
         gl_name = gl_names.get(skill_id, ["", ""])[1]
-        skill_names[skill_id] = [jp_name, gl_name or jp_name, bool(gl_name)] # [jp, en, isGlobal]
+
+        # Determine isGlobal status. For uniques, we need to check the base skill ID.
+        base_id = skill_id.split('-')[0]
+        is_inherited_unique = base_id.startswith('9')
+        source_skill_id = base_id
+        if is_inherited_unique:
+            source_skill_id = '1' + base_id[1:]
+        
+        is_global = source_skill_id in global_skill_ids
+
+        skill_names[skill_id] = [jp_name, gl_name or jp_name, is_global] # [jp, en, isGlobal]
 
     print("Skill data merging complete.")
     return skill_data, skill_meta, skill_names
