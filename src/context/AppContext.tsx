@@ -781,6 +781,7 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
       const sourceServer = activeServer;
       const destServer = sourceServer === 'jp' ? 'global' : 'jp';
       const errors: string[] = [];
+      const { t } = i18n;
 
       const profile = appData.serverData[sourceServer].profiles.find(p => p.id === profileId);
       if (!profile) return { errors: ["Project not found."] };
@@ -796,11 +797,11 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
       // Validate roster
       parentsInRoster.forEach(parent => {
           if (!destUmaMap.has(parent.umaId)) {
-              errors.push(`Parent [${parent.name}]: Character does not exist on destination server.`);
+              errors.push(t('tabs:modals.transferValidation.errorParentUma', { parentName: parent.name }));
           }
           [...parent.uniqueSparks, ...parent.whiteSparks].forEach(spark => {
               if (!destSkillMap.has(spark.name)) {
-                  errors.push(`Parent [${parent.name}]: Skill "${spark.name}" does not exist on destination server.`);
+                  errors.push(t('tabs:modals.transferValidation.errorParentSkill', { parentName: parent.name, skillName: spark.name }));
               }
           });
       });
@@ -808,7 +809,7 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
       // Validate goal
       [...profile.goal.uniqueWishlist, ...profile.goal.wishlist].forEach(item => {
           if (!destSkillMap.has(item.name)) {
-              errors.push(`Goal: Skill "${item.name}" does not exist on destination server.`);
+              errors.push(t('tabs:modals.transferValidation.errorGoalSkill', { skillName: item.name }));
           }
       });
 
