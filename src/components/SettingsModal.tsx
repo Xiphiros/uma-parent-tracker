@@ -11,7 +11,7 @@ interface SettingsModalProps {
 
 const SettingsModal = ({ isOpen, onClose }: SettingsModalProps) => {
     const { t, i18n } = useTranslation(['settings', 'common']);
-    const { exportData, importData, deleteAllData, dataMode, setDataMode, dataDisplayLanguage, setDataDisplayLanguage, useCommunityTranslations, setUseCommunityTranslations, changeUiLanguage } = useAppContext();
+    const { exportData, importData, deleteAllData, activeServer, setActiveServer, dataDisplayLanguage, setDataDisplayLanguage, useCommunityTranslations, setUseCommunityTranslations, changeUiLanguage } = useAppContext();
     
     const [isImportConfirmOpen, setImportConfirmOpen] = useState(false);
     const [isDeleteConfirmOpen, setDeleteConfirmOpen] = useState(false);
@@ -66,21 +66,21 @@ const SettingsModal = ({ isOpen, onClose }: SettingsModalProps) => {
                     {/* Left Column: Preferences */}
                     <div className="settings-modal__column">
                         <div className="form__section !border-t-0 !pt-0">
-                            <h4 className="form__section-title mb-2">{t('dataSourceTitle')}</h4>
-                            <p className="text-sm text-stone-500 dark:text-stone-400 mb-3">{t('dataSourceDesc')}</p>
+                            <h4 className="form__section-title mb-2">{t('activeServerTitle')}</h4>
+                            <p className="text-sm text-stone-500 dark:text-stone-400 mb-3">{t('activeServerDesc')}</p>
                             <div className="space-y-2">
-                                <label className={`settings-modal__option ${dataMode === 'jp' ? 'settings-modal__option--selected' : ''}`}>
-                                    <input type="radio" value="jp" checked={dataMode === 'jp'} onChange={() => setDataMode('jp')} className="settings-modal__option-radio" />
+                                <label className={`settings-modal__option ${activeServer === 'jp' ? 'settings-modal__option--selected' : ''}`}>
+                                    <input type="radio" value="jp" checked={activeServer === 'jp'} onChange={() => setActiveServer('jp')} className="settings-modal__option-radio" />
                                     <div>
-                                        <span className="settings-modal__option-label">{t('jpDataLabel')}</span>
-                                        <p className="settings-modal__option-description">{t('jpDataDesc')}</p>
+                                        <span className="settings-modal__option-label">{t('jpServerLabel')}</span>
+                                        <p className="settings-modal__option-description">{t('jpServerDesc')}</p>
                                     </div>
                                 </label>
-                                <label className={`settings-modal__option ${dataMode === 'global' ? 'settings-modal__option--selected' : ''}`}>
-                                    <input type="radio" value="global" checked={dataMode === 'global'} onChange={() => setDataMode('global')} className="settings-modal__option-radio" />
+                                <label className={`settings-modal__option ${activeServer === 'global' ? 'settings-modal__option--selected' : ''}`}>
+                                    <input type="radio" value="global" checked={activeServer === 'global'} onChange={() => setActiveServer('global')} className="settings-modal__option-radio" />
                                     <div>
-                                        <span className="settings-modal__option-label">{t('globalDataLabel')}</span>
-                                        <p className="settings-modal__option-description">{t('globalDataDesc')}</p>
+                                        <span className="settings-modal__option-label">{t('globalServerLabel')}</span>
+                                        <p className="settings-modal__option-description">{t('globalServerDesc')}</p>
                                     </div>
                                 </label>
                             </div>
