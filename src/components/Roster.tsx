@@ -5,7 +5,6 @@ import AddParentModal from './AddParentModal';
 import InventoryModal from './InventoryModal';
 import { Parent } from '../types';
 import { useScrollLock } from '../hooks/useScrollLock';
-import Modal from './common/Modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUsers, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { useTranslation } from 'react-i18next';

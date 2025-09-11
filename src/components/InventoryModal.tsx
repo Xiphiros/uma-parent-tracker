@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import { Parent, Profile } from '../types';
+import { Parent } from '../types';
 import Modal from './common/Modal';
 import ParentCard from './ParentCard';
 import AddParentModal from './AddParentModal';
