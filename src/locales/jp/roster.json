@@ -18,7 +18,8 @@
     "title": "所持ウマ娘一覧",
     "manageBtn": "所持ウマ娘を管理",
     "placeholder": "このサーバーにはウマ娘がいません。",
-    "count": "{{count}} 人のウマ娘"
+    "count": "{{count}} 人のウマ娘",
+    "unassigned": "未割り当て"
   },
   "placeholderCard": {
     "title": "このウマ娘一覧は空です",
