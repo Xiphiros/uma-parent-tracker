@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { Parent } from '../types';
+import { Parent, ValidationResult } from '../types';
 import Modal from './common/Modal';
 import ParentCard from './ParentCard';
 import AddParentModal from './AddParentModal';
@@ -13,19 +13,19 @@ interface InventoryModalProps {
   onClose: () => void;
 }
 
-interface MoveState {
-    parent: Parent | null;
-    errors: string[];
+interface MoveConfirmState {
+    parent: Parent;
+    result: ValidationResult;
 }
 
 const InventoryModal = ({ isOpen, onClose }: InventoryModalProps) => {
-    const { t } = useTranslation(['roster', 'modals']);
-    const { appData, activeServer, deleteParent, addParentToProfile, removeParentFromProfile, moveParentToServer } = useAppContext();
+    const { t } = useTranslation(['roster', 'modals', 'common']);
+    const { appData, activeServer, deleteParent, addParentToProfile, removeParentFromProfile, moveParentToServer, validateParentForServer, umaMapById, dataDisplayLanguage } = useAppContext();
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
     const [parentToEdit, setParentToEdit] = useState<Parent | null>(null);
     const [isDeleteConfirmOpen, setDeleteConfirmOpen] = useState(false);
     const [parentToDelete, setParentToDelete] = useState<Parent | null>(null);
-    const [moveState, setMoveState] = useState<MoveState | null>(null);
+    const [moveConfirmState, setMoveConfirmState] = useState<MoveConfirmState | null>(null);
     const [contextMenu, setContextMenu] = useState<{ isOpen: boolean; x: number; y: number; items: MenuItem[]; parent: Parent | null }>({ isOpen: false, x: 0, y: 0, items: [], parent: null });
 
     const { inventory, profiles } = useMemo(() => {
@@ -60,8 +60,15 @@ const InventoryModal = ({ isOpen, onClose }: InventoryModalProps) => {
     };
     
     const handleMoveParent = (parent: Parent) => {
-        const result = moveParentToServer(parent.id);
-        setMoveState({ parent, errors: result.errors });
+        const result = validateParentForServer(parent.id);
+        setMoveConfirmState({ parent, result });
+    };
+
+    const handleConfirmMove = () => {
+        if (moveConfirmState) {
+            moveParentToServer(moveConfirmState.parent.id);
+            setMoveConfirmState(null);
+        }
     };
 
     const handleOpenAssignmentMenu = (e: React.MouseEvent, parent: Parent) => {
@@ -94,6 +101,9 @@ const InventoryModal = ({ isOpen, onClose }: InventoryModalProps) => {
         });
         return map;
     }, [profiles]);
+
+    const destServer = activeServer === 'jp' ? 'Global' : 'JP';
+    const parentDisplayName = moveConfirmState ? (umaMapById.get(moveConfirmState.parent.umaId)?.[dataDisplayLanguage] ?? moveConfirmState.parent.name) : '';
 
     return (
         <>
@@ -149,24 +159,31 @@ const InventoryModal = ({ isOpen, onClose }: InventoryModalProps) => {
                 </div>
             </Modal>
 
-            {moveState && (
+            {moveConfirmState && (
                 <Modal
-                    isOpen={!!moveState}
-                    onClose={() => setMoveState(null)}
-                    title={moveState.errors.length > 0 ? t('modals:moveErrorTitle') : t('modals:moveSuccessTitle')}
+                    isOpen={!!moveConfirmState}
+                    onClose={() => setMoveConfirmState(null)}
+                    title={moveConfirmState.result.errors.length > 0 ? t('modals:moveParentWarningTitle') : t('modals:moveParentConfirmTitle')}
                 >
-                    {moveState.errors.length > 0 ? (
+                    {moveConfirmState.result.errors.length > 0 ? (
                         <div>
-                            <p className="dialog-modal__message">{t('modals:moveErrorMsg', { name: moveState.parent?.name })}</p>
+                            <p className="dialog-modal__message">{t('modals:moveParentWarningMsg', { name: parentDisplayName, server: destServer })}</p>
                             <ul className="list-disc list-inside text-sm text-red-500 bg-red-500/10 p-2 rounded">
-                                {moveState.errors.map((err, i) => <li key={i}>{err}</li>)}
+                                {moveConfirmState.result.errors.map((err, i) => <li key={i}>{err}</li>)}
                             </ul>
                         </div>
                     ) : (
-                        <p className="dialog-modal__message">{t('modals:moveSuccessMsg', { name: moveState.parent?.name })}</p>
+                        <p className="dialog-modal__message">{t('modals:moveParentConfirmMsg', { name: parentDisplayName, server: destServer })}</p>
                     )}
                     <div className="dialog-modal__footer">
-                        <button className="button button--primary" onClick={() => setMoveState(null)}>{t('common:ok')}</button>
+                        <button className="button button--neutral" onClick={() => setMoveConfirmState(null)}>{t('common:cancel')}</button>
+                        <button 
+                            className="button button--primary" 
+                            onClick={handleConfirmMove}
+                            disabled={moveConfirmState.result.errors.length > 0}
+                        >
+                            {t('common:confirm')}
+                        </button>
                     </div>
                 </Modal>
             )}
