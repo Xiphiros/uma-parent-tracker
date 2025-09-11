@@ -2,9 +2,52 @@
 
 This document outlines the structure of the exported JSON data for this application. As features are added, the schema may evolve. The `version` key at the root of the JSON file helps in handling data migrations.
 
-## Version 3 (Current)
+## Version 4 (Current)
 
-Version 3 introduces **Folders** to group projects in the tab bar.
+Version 4 represents a major architectural shift to a global inventory system.
+
+*   A top-level `inventory` array is added to store all `Parent` objects.
+*   A `server` property (`'jp' | 'global'`) is added to each `Parent` object.
+*   The `roster` array within each `Profile` object is changed from an array of `Parent` objects to an array of `number`s, which are the IDs of parents in the global `inventory`.
+*   A top-level `activeServer` property is added to track the user's current server context.
+*   The `version` key is set to `4`.
+
+```json
+{
+  "version": 4,
+  "activeProfileId": 1725612458123,
+  "activeServer": "jp",
+  "profiles": [
+    {
+      "id": 1725612458123,
+      "name": "Super Creek Project",
+      "isPinned": false,
+      "goal": { "...": "..." },
+      "roster": [ 1725612900123 ]
+    }
+  ],
+  "inventory": [
+    {
+      "id": 1725612900123,
+      "umaId": "100401",
+      "name": "Super Creek",
+      "gen": 1,
+      "blueSpark": { "type": "Stamina", "stars": 3 },
+      "pinkSpark": { "type": "Long", "stars": 3 },
+      "uniqueSparks": [],
+      "whiteSparks": [],
+      "score": 0,
+      "server": "jp"
+    }
+  ],
+  "folders": [],
+  "layout": [ 1725612458123 ]
+}
+```
+
+## Version 3
+
+Version 3 introduced **Folders** to group projects in the tab bar.
 
 *   A top-level `folders` array is added to store folder definitions.
 *   A top-level `layout` array is introduced to define the order and nesting of tabs. It contains folder IDs (strings) and top-level profile IDs (numbers).
