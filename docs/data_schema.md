@@ -2,7 +2,69 @@
 
 This document outlines the structure of the exported JSON data for this application. As features are added, the schema may evolve. The `version` key at the root of the JSON file helps in handling data migrations.
 
-## Version 4 (Current)
+## Version 5 (Current)
+
+Version 5 introduces **server-specific workspaces**, allowing users to maintain separate sets of projects, folders, and layouts for the JP and Global game servers while sharing a single global inventory of parents.
+
+*   A top-level `serverData` object is added. It contains two keys, `jp` and `global`.
+*   Each key within `serverData` holds an object containing the server-specific `activeProfileId`, `profiles`, `folders`, and `layout`.
+*   The `inventory` and `activeServer` properties remain at the top level.
+*   The `version` key is set to `5`.
+
+```json
+{
+  "version": 5,
+  "activeServer": "jp",
+  "inventory": [
+    {
+      "id": 1725612900123,
+      "umaId": "100401",
+      "name": "Super Creek",
+      "server": "jp",
+      "...": "..."
+    },
+    {
+      "id": 1725612900456,
+      "umaId": "100101",
+      "name": "Special Week",
+      "server": "global",
+      "...": "..."
+    }
+  ],
+  "serverData": {
+    "jp": {
+      "activeProfileId": 1725612458123,
+      "profiles": [
+        {
+          "id": 1725612458123,
+          "name": "Super Creek Project (JP)",
+          "isPinned": false,
+          "goal": { "...": "..." },
+          "roster": [ 1725612900123 ]
+        }
+      ],
+      "folders": [],
+      "layout": [ 1725612458123 ]
+    },
+    "global": {
+      "activeProfileId": 1725613000000,
+      "profiles": [
+         {
+          "id": 1725613000000,
+          "name": "Special Week Project (Global)",
+          "isPinned": false,
+          "goal": { "...": "..." },
+          "roster": [ 1725612900456 ]
+        }
+      ],
+      "folders": [],
+      "layout": [ 1725613000000 ]
+    }
+  }
+}
+```
+
+## Version 4
 
 Version 4 represents a major architectural shift to a global inventory system.
 
