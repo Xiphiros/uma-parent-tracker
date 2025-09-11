@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect, ReactNode, useRef, useMemo } from 'react';
-import { AppData, Profile, Skill, Uma, Goal, Parent, NewParentData, WishlistItem, Folder, IconName, ServerSpecificData } from '../types';
+import { AppData, Profile, Skill, Uma, Goal, Parent, NewParentData, WishlistItem, Folder, IconName, ServerSpecificData, ValidationResult } from '../types';
 import masterSkillListJson from '../data/skill-list.json';
 import masterUmaListJson from '../data/uma-list.json';
 import { calculateScore } from '../utils/scoring';
@@ -52,6 +52,9 @@ interface AppContextType {
   addParentToProfile: (parentId: number, profileId: number) => void;
   removeParentFromProfile: (parentId: number, profileId: number) => void;
   moveParentToServer: (parentId: number) => { success: boolean; errors: string[] };
+  validateProjectForServer: (profileId: number) => ValidationResult;
+  executeCopyProject: (profileId: number) => void;
+  executeMoveProject: (profileId: number) => void;
 }
 
 const AppContext = createContext<AppContextType | null>(null);
@@ -774,6 +777,111 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
     return { success: true, errors: [] };
   };
   
+  const validateProjectForServer = (profileId: number): ValidationResult => {
+      const sourceServer = activeServer;
+      const destServer = sourceServer === 'jp' ? 'global' : 'jp';
+      const errors: string[] = [];
+
+      const profile = appData.serverData[sourceServer].profiles.find(p => p.id === profileId);
+      if (!profile) return { errors: ["Project not found."] };
+
+      const inventoryMap = new Map(appData.inventory.map(p => [p.id, p]));
+      const parentsInRoster = profile.roster.map(id => inventoryMap.get(id)).filter(Boolean) as Parent[];
+
+      const destUmaList = processedMasterUmaList.filter(u => destServer === 'global' ? u.isGlobal : true);
+      const destSkillList = processedMasterSkillList.filter(s => destServer === 'global' ? s.isGlobal : true);
+      const destUmaMap = new Map(destUmaList.map(u => [u.id, u]));
+      const destSkillMap = new Map(destSkillList.map(s => [s.name_en, s]));
+
+      // Validate roster
+      parentsInRoster.forEach(parent => {
+          if (!destUmaMap.has(parent.umaId)) {
+              errors.push(`Parent [${parent.name}]: Character does not exist on destination server.`);
+          }
+          [...parent.uniqueSparks, ...parent.whiteSparks].forEach(spark => {
+              if (!destSkillMap.has(spark.name)) {
+                  errors.push(`Parent [${parent.name}]: Skill "${spark.name}" does not exist on destination server.`);
+              }
+          });
+      });
+
+      // Validate goal
+      [...profile.goal.uniqueWishlist, ...profile.goal.wishlist].forEach(item => {
+          if (!destSkillMap.has(item.name)) {
+              errors.push(`Goal: Skill "${item.name}" does not exist on destination server.`);
+          }
+      });
+
+      return { errors: [...new Set(errors)] }; // Return unique errors
+  };
+
+  const executeCopyProject = (profileId: number) => {
+      setAppData(prev => {
+          const sourceServer = prev.activeServer;
+          const destServer = sourceServer === 'jp' ? 'global' : 'jp';
+          const sourceData = prev.serverData[sourceServer];
+          
+          const profileToCopy = sourceData.profiles.find(p => p.id === profileId);
+          if (!profileToCopy) return prev;
+
+          const newProfile: Profile = {
+              ...JSON.parse(JSON.stringify(profileToCopy)), // Deep copy
+              id: Date.now(),
+              name: `${profileToCopy.name} (Copy)`,
+              isPinned: false, // Copies are never pinned by default
+          };
+
+          const destData = { ...prev.serverData[destServer] };
+          destData.profiles = [...destData.profiles, newProfile];
+          destData.layout = [...destData.layout, newProfile.id];
+          
+          return {
+              ...prev,
+              serverData: {
+                  ...prev.serverData,
+                  [destServer]: destData
+              }
+          };
+      });
+  };
+
+  const executeMoveProject = (profileId: number) => {
+      setAppData(prev => {
+          const sourceServer = prev.activeServer;
+          const destServer = sourceServer === 'jp' ? 'global' : 'jp';
+          
+          const sourceData = { ...prev.serverData[sourceServer] };
+          const destData = { ...prev.serverData[destServer] };
+
+          const profileToMove = sourceData.profiles.find(p => p.id === profileId);
+          if (!profileToMove) return prev;
+
+          // Remove from source
+          sourceData.profiles = sourceData.profiles.filter(p => p.id !== profileId);
+          sourceData.layout = sourceData.layout.filter(id => id !== profileId);
+          sourceData.folders = sourceData.folders.map(f => ({
+              ...f,
+              profileIds: f.profileIds.filter(id => id !== profileId)
+          }));
+
+          if (sourceData.activeProfileId === profileId) {
+              sourceData.activeProfileId = sourceData.profiles[0]?.id || null;
+          }
+
+          // Add to destination
+          destData.profiles = [...destData.profiles, { ...profileToMove, isPinned: false }];
+          destData.layout = [...destData.layout, profileToMove.id];
+
+          return {
+              ...prev,
+              serverData: {
+                  [sourceServer]: sourceData,
+                  [destServer]: destData,
+              }
+          };
+      });
+  };
+  
   const value = {
     loading,
     appData,
@@ -815,6 +923,9 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
     addParentToProfile,
     removeParentFromProfile,
     moveParentToServer,
+    validateProjectForServer,
+    executeCopyProject,
+    executeMoveProject,
   };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
