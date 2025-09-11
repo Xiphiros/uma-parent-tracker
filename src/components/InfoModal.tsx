@@ -7,7 +7,7 @@ interface InfoModalProps {
     onClose: () => void;
 }
 
-const APP_VERSION = '0.6.2';
+const APP_VERSION = '0.7.0';
 
 const InfoModal = ({ isOpen, onClose }: InfoModalProps) => {
     const { t } = useTranslation(['info', 'common']);
