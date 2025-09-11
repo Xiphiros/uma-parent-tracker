@@ -259,8 +259,9 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
       return processedMasterUmaList;
   }, [activeServer, processedMasterUmaList]);
 
-  const skillMapByName = useMemo(() => new Map(fullMasterSkillList.map(skill => [skill.name_en, skill])), [fullMasterSkillList]);
-  const umaMapById = useMemo(() => new Map(fullMasterUmaList.map(uma => [uma.id, uma])), [fullMasterUmaList]);
+  // These maps are for internal lookup and should be built from the processed lists.
+  const skillMapByName = useMemo(() => new Map(processedMasterSkillList.map(skill => [skill.name_en, skill])), [processedMasterSkillList]);
+  const umaMapById = useMemo(() => new Map(processedMasterUmaList.map(uma => [uma.id, uma])), [processedMasterUmaList]);
 
   const saveState = (newData: AppData) => {
     setAppData(newData);
