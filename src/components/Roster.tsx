@@ -2,17 +2,19 @@ import { useMemo, useState, useRef, useEffect } from 'react';
 import { useAppContext } from '../context/AppContext';
 import ParentCard from './ParentCard';
 import AddParentModal from './AddParentModal';
+import InventoryModal from './InventoryModal';
 import { Parent } from '../types';
 import { useScrollLock } from '../hooks/useScrollLock';
 import Modal from './common/Modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBoxArchive, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faUsers, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { useTranslation } from 'react-i18next';
 
 const Roster = () => {
     const { t } = useTranslation(['roster', 'common']);
-    const { getActiveProfile, deleteParent } = useAppContext();
-    const [isModalOpen, setIsModalOpen] = useState(false);
+    const { getActiveProfile, getScoredInventory, deleteParent } = useAppContext();
+    const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+    const [isInventoryModalOpen, setIsInventoryModalOpen] = useState(false);
     const [parentToEdit, setParentToEdit] = useState<Parent | null>(null);
     const [isDeleteConfirmOpen, setDeleteConfirmOpen] = useState(false);
     const [parentToDelete, setParentToDelete] = useState<Parent | null>(null);
@@ -22,11 +24,11 @@ const Roster = () => {
     useScrollLock(rosterContainerRef, isRosterScrollable);
     
     const activeProfile = getActiveProfile();
-    const roster = activeProfile?.roster ?? [];
+    const scoredInventory = getScoredInventory();
 
     const sortedRoster = useMemo(() => {
-        return [...roster].sort((a, b) => b.score - a.score);
-    }, [roster]);
+        return [...scoredInventory].sort((a, b) => b.score - a.score);
+    }, [scoredInventory]);
 
     useEffect(() => {
         const checkScroll = () => {
@@ -37,8 +39,7 @@ const Roster = () => {
             }
         };
 
-        checkScroll(); // Check on initial render and when roster changes
-
+        checkScroll();
         const resizeObserver = new ResizeObserver(checkScroll);
         const element = rosterContainerRef.current;
         if (element) {
@@ -55,12 +56,12 @@ const Roster = () => {
 
     const handleOpenAddModal = () => {
         setParentToEdit(null);
-        setIsModalOpen(true);
+        setIsAddModalOpen(true);
     };
 
     const handleOpenEditModal = (parent: Parent) => {
         setParentToEdit(parent);
-        setIsModalOpen(true);
+        setIsAddModalOpen(true);
     };
 
     const handleDeleteParent = (parent: Parent) => {
@@ -81,13 +82,18 @@ const Roster = () => {
             <section className="lg:col-span-2 card flex flex-col">
                 <div className="card__header">
                     <h2 className="card__title">
-                        <FontAwesomeIcon icon={faBoxArchive} className="h-6 w-6 mr-2 text-teal-500" />
-                        {t('rosterTitle')}
+                        {t('rosterTitle', { projectName: activeProfile?.name })}
                     </h2>
-                    <button id="add-parent-btn" className="button button--secondary" onClick={handleOpenAddModal}>
-                        <FontAwesomeIcon icon={faPlus} className="h-5 w-5 mr-1" />
-                        {t('addParentBtn')}
-                    </button>
+                    <div className="flex items-center gap-2">
+                        <button className="button button--neutral" onClick={() => setIsInventoryModalOpen(true)}>
+                            <FontAwesomeIcon icon={faUsers} className="h-5 w-5 mr-1" />
+                            {t('inventory.manageBtn')}
+                        </button>
+                        <button id="add-parent-btn" className="button button--secondary" onClick={handleOpenAddModal}>
+                            <FontAwesomeIcon icon={faPlus} className="h-5 w-5 mr-1" />
+                            {t('addParentBtn')}
+                        </button>
+                    </div>
                 </div>
                 <div id="roster-container" className="roster space-y-4 overflow-y-auto pr-2 flex-1 min-h-0" ref={rosterContainerRef}>
                     {sortedRoster.length > 0 ? (
@@ -106,9 +112,14 @@ const Roster = () => {
             </section>
             
             <AddParentModal 
-                isOpen={isModalOpen}
-                onClose={() => setIsModalOpen(false)}
+                isOpen={isAddModalOpen}
+                onClose={() => setIsAddModalOpen(false)}
                 parentToEdit={parentToEdit}
+            />
+
+            <InventoryModal
+                isOpen={isInventoryModalOpen}
+                onClose={() => setIsInventoryModalOpen(false)}
             />
 
             <Modal
