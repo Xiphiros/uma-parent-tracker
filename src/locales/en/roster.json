@@ -18,7 +18,8 @@
     "title": "Parent Inventory",
     "manageBtn": "Manage Inventory",
     "placeholder": "This server's inventory is empty.",
-    "count": "{{count}} Parents"
+    "count": "{{count}} Parents",
+    "unassigned": "Unassigned"
   },
   "placeholderCard": {
     "title": "This Roster is Empty",
