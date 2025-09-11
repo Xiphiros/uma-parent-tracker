@@ -8,11 +8,12 @@ import { useTranslation } from 'react-i18next';
 interface ParentCardProps {
     parent: Parent;
     isTopParent?: boolean;
+    displayScore?: boolean;
     onEdit?: () => void;
     onDelete?: () => void;
 }
 
-const ParentCard = ({ parent, isTopParent = false, onEdit, onDelete }: ParentCardProps) => {
+const ParentCard = ({ parent, isTopParent = false, displayScore = true, onEdit, onDelete }: ParentCardProps) => {
     const { t } = useTranslation(['roster', 'common', 'game']);
     const { getActiveProfile, dataDisplayLanguage, umaMapById, skillMapByName } = useAppContext();
     const goal = getActiveProfile()?.goal;
@@ -54,7 +55,7 @@ const ParentCard = ({ parent, isTopParent = false, onEdit, onDelete }: ParentCar
                             </h3>
                         </div>
                         <div className="parent-card__score-wrapper">
-                            <div className="parent-card__score">{parent.score} {t('parentCard.pts')}</div>
+                            {displayScore && <div className="parent-card__score">{parent.score} {t('parentCard.pts')}</div>}
                             {!isTopParent && (
                                 <div className="parent-card__actions">
                                     <button onClick={onEdit} className="parent-card__edit-btn">{t('common:edit')}</button>
