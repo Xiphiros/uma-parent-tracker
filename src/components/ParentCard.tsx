@@ -1,9 +1,11 @@
-import { useMemo } from 'react';
+import React, { useMemo } from 'react';
 import { useAppContext } from '../context/AppContext';
 import { Parent, UniqueSpark, WhiteSpark } from '../types';
 import SparkTag from './common/SparkTag';
 import './ParentCard.css';
 import { useTranslation } from 'react-i18next';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 interface ParentCardProps {
     parent: Parent;
@@ -11,9 +13,11 @@ interface ParentCardProps {
     displayScore?: boolean;
     onEdit?: () => void;
     onDelete?: () => void;
+    onAssign?: (event: React.MouseEvent) => void;
+    assignedProjects?: string[];
 }
 
-const ParentCard = ({ parent, isTopParent = false, displayScore = true, onEdit, onDelete }: ParentCardProps) => {
+const ParentCard = ({ parent, isTopParent = false, displayScore = true, onEdit, onDelete, onAssign, assignedProjects }: ParentCardProps) => {
     const { t } = useTranslation(['roster', 'common', 'game']);
     const { getActiveProfile, dataDisplayLanguage, umaMapById, skillMapByName } = useAppContext();
     const goal = getActiveProfile()?.goal;
@@ -98,6 +102,16 @@ const ParentCard = ({ parent, isTopParent = false, displayScore = true, onEdit, 
                     </div>
                 </div>
             </div>
+            {onAssign && (
+                <div className="parent-card__footer">
+                    <span className="parent-card__assigned-projects" title={assignedProjects?.join(', ')}>
+                        {assignedProjects && assignedProjects.length > 0 ? assignedProjects.join(', ') : t('inventory.unassigned')}
+                    </span>
+                    <button className="button button--secondary button--small" onClick={onAssign}>
+                        <FontAwesomeIcon icon={faPlus} />
+                    </button>
+                </div>
+            )}
         </div>
     );
 };
