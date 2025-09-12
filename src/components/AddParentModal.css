@@ -1,0 +1,36 @@
+/* AddParentModal Styles */
+.gp-selector__toggle {
+    display: flex;
+    background-color: var(--color-card-bg-hover);
+    border-radius: 0.375rem;
+    padding: 0.25rem;
+    margin-bottom: 0.75rem;
+}
+
+.gp-selector__toggle-btn {
+    flex: 1;
+    padding: 0.375rem 0.5rem;
+    border-radius: 0.25rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.gp-selector__toggle-btn--active {
+    background-color: var(--color-card-bg);
+    color: var(--color-text-primary);
+    box-shadow: var(--color-shadow);
+}
+
+.gp-selector__manual-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    border: 1px solid var(--color-border);
+    border-radius: 0.375rem;
+    background-color: var(--color-bg);
+}
