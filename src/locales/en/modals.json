@@ -25,7 +25,7 @@
   "grandparent1": "Parent 1",
   "grandparent2": "Parent 2",
   "selectFromInventory": "Inventory",
-  "enterManually": "Manual (Borrowed)",
+  "enterManuallyBorrowed": "Manual (Borrowed)",
   "selectParentPlaceholder": "Select a parent...",
   "selectGrandparentTitle": "Select Grandparent",
   "notSelected": "Not Selected",
