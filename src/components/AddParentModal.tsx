@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from 'react';
-import { Parent, NewParentData, BlueSpark, WhiteSpark, UniqueSpark, Uma, Grandparent, ManualParentData } from '../types';
+import { Parent, NewParentData, BlueSpark, WhiteSpark, UniqueSpark, Uma, ManualParentData } from '../types';
 import { useAppContext } from '../context/AppContext';
 import Modal from './common/Modal';
 import SearchableSelect from './common/SearchableSelect';
@@ -42,7 +42,7 @@ type GrandparentType = 'none' | 'inventory' | 'manual';
 
 const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) => {
     const { t } = useTranslation(['modals', 'common', 'game']);
-    const { getActiveProfile, masterUmaList, masterSkillList, addParent, updateParent, dataDisplayLanguage, umaMapById, skillMapByName, appData, activeServer } = useAppContext();
+    const { getActiveProfile, masterSkillList, addParent, updateParent, dataDisplayLanguage, umaMapById, skillMapByName, appData, activeServer } = useAppContext();
     
     const [formData, setFormData] = useState<NewParentData>(initialState);
     const [currentUniqueSkill, setCurrentUniqueSkill] = useState<any>(null);
@@ -93,7 +93,6 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
 
     useEffect(() => {
         if (parentToEdit) {
-            // ... (omitted for brevity, parent editing logic remains complex)
             setFormData({ ...initialState, ...parentToEdit });
         } else {
             setFormData(initialState);
@@ -155,13 +154,14 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
         onClose();
     };
     
-    const getDisplayName = (name: string, type: 'uma' | 'skill'): string => {
+    const getDisplayName = (idOrName: string, type: 'uma' | 'skill'): string => {
         if (type === 'skill') {
-            const skill = skillMapByName.get(name);
-            return skill ? skill[displayNameProp] : name;
+            const skill = skillMapByName.get(idOrName);
+            return skill ? skill[displayNameProp] : idOrName;
         }
-        const uma = umaMapById.get(name); // Here name is actually umaId
-        return uma?.[displayNameProp] || name;
+        // For uma, we expect the outfit ID
+        const uma = umaMapById.get(idOrName);
+        return uma?.[displayNameProp] || idOrName;
     };
 
     const handleGpTypeChange = (slot: GrandparentSlot, type: GrandparentType) => {
@@ -187,15 +187,15 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
             setManualData(prev => ({...prev, uniqueSparks: skill ? [{name: skill.name_en, stars: 3}] : []}));
         };
 
-        const inventoryOptions = inventory.map(p => ({...p, name_en: getDisplayName(p.umaId, 'uma') + ` (G${p.gen})` }));
+        const inventoryOptions = inventory.map(p => ({...p, name_en: getDisplayName(p.umaId, 'uma') + ` (G${p.gen})`, name_jp: getDisplayName(p.umaId, 'uma') + ` (G${p.gen})` }));
         
         return (
             <div>
                 <h5 className="form__label mb-2">{t(slot)}</h5>
                 <div className="flex gap-4 mb-2">
-                    <label><input type="radio" name={slot} checked={type === 'none'} onChange={() => setType('none')} className="mr-1" /> None</label>
-                    <label><input type="radio" name={slot} checked={type === 'inventory'} onChange={() => setType('inventory')} className="mr-1" /> {t('selectFromInventory')}</label>
-                    <label><input type="radio" name={slot} checked={type === 'manual'} onChange={() => setType('manual')} className="mr-1" /> {t('enterManually')}</label>
+                    <label><input type="radio" name={slot} checked={type === 'none'} onChange={() => handleGpTypeChange(slot, 'none')} className="mr-1" /> None</label>
+                    <label><input type="radio" name={slot} checked={type === 'inventory'} onChange={() => handleGpTypeChange(slot, 'inventory')} className="mr-1" /> {t('selectFromInventory')}</label>
+                    <label><input type="radio" name={slot} checked={type === 'manual'} onChange={() => handleGpTypeChange(slot, 'manual')} className="mr-1" /> {t('enterManually')}</label>
                 </div>
                 {type === 'inventory' && (
                     <SearchableSelect 
@@ -227,8 +227,117 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
         <>
             <Modal isOpen={isOpen} onClose={onClose} title={parentToEdit ? t('editParentTitle') : t('addParentTitle')} size="lg">
                 <form onSubmit={handleSubmit} className="form space-y-4">
-                    {/* ... Omitted existing sections for brevity ... */}
-                     <div>...</div>
+                    <div>
+                        <label className="form__label form__label--xs">{t('umaNameLabel')}</label>
+                        <SearchableSelect 
+                            items={masterUmaList}
+                            placeholder={t('selectUmaPlaceholder')}
+                            value={formData.umaId ? umaMapById.get(formData.umaId)?.[displayNameProp] || null : null}
+                            onSelect={(item) => handleUmaSelect(item as Uma)}
+                            displayProp={displayNameProp}
+                        />
+                    </div>
+
+                    <div className="form__section">
+                        <h4 className="form__section-title">{t('blueSparkSection')}</h4>
+                        <div className="grid grid-cols-2 gap-4">
+                            <div>
+                                <label className="form__label form__label--xs">{t('typeLabel')}</label>
+                                <select className="form__input" value={formData.blueSpark.type} onChange={e => handleSparkChange('blueSpark', 'type', e.target.value as BlueSpark['type'])}>
+                                    {BLUE_SPARK_TYPES.map(type => <option key={type} value={type}>{t(type, { ns: 'game' })}</option>)}
+                                </select>
+                            </div>
+                            <div>
+                                <label className="form__label form__label--xs">{t('starsLabel')}</label>
+                                <select className="form__input" value={formData.blueSpark.stars} onChange={e => handleSparkChange('blueSpark', 'stars', Number(e.target.value) as 1|2|3)}>
+                                    {STAR_OPTIONS.map(s => <option key={s}>{s}</option>)}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="form__section">
+                        <h4 className="form__section-title">{t('pinkSparkSection')}</h4>
+                        <div className="grid grid-cols-2 gap-4">
+                            <div>
+                                <label className="form__label form__label--xs">{t('typeLabel')}</label>
+                                <select className="form__input" value={formData.pinkSpark.type} onChange={e => handleSparkChange('pinkSpark', 'type', e.target.value)}>
+                                    {PINK_SPARK_TYPES.map(type => <option key={type} value={type}>{t(type, { ns: 'game' })}</option>)}
+                                </select>
+                            </div>
+                            <div>
+                                <label className="form__label form__label--xs">{t('starsLabel')}</label>
+                                <select className="form__input" value={formData.pinkSpark.stars} onChange={e => handleSparkChange('pinkSpark', 'stars', Number(e.target.value) as 1|2|3)}>
+                                    {STAR_OPTIONS.map(s => <option key={s}>{s}</option>)}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="form__section">
+                        <h4 className="form__section-title">{t('uniqueSparksSection')}</h4>
+                        <div className="form__obtained-sparks-container">
+                            {formData.uniqueSparks.map(spark => (
+                                <div key={spark.name} className="spark-tag obtained-spark" data-spark-category="unique">
+                                    {getDisplayName(spark.name, 'skill')} {formatStars(spark.stars)}
+                                    <button type="button" onClick={() => removeObtainedSpark('uniqueSparks', spark.name)} className="obtained-spark__remove-btn">&times;</button>
+                                </div>
+                            ))}
+                        </div>
+                        <div className="form__input-group">
+                            <SearchableSelect
+                                items={uniqueSkills}
+                                placeholder={t('searchUniqueSkill')}
+                                value={currentUniqueSkill?.[displayNameProp] || null}
+                                onSelect={setCurrentUniqueSkill}
+                                displayProp={displayNameProp}
+                                disabled={isUniqueSparkSelected}
+                            />
+                            <select
+                                className="form__input w-24"
+                                value={currentUniqueStars}
+                                onChange={e => setCurrentUniqueStars(Number(e.target.value) as 1|2|3)}
+                                disabled={isUniqueSparkSelected}
+                            >
+                                {STAR_OPTIONS.map(s => <option key={s}>{s}</option>)}
+                            </select>
+                            <button
+                                type="button"
+                                className="button button--secondary flex-shrink-0"
+                                onClick={() => addObtainedSpark('uniqueSparks', currentUniqueSkill, currentUniqueStars)}
+                                disabled={isUniqueSparkSelected || !currentUniqueSkill}
+                            >
+                                {t('common:add')}
+                            </button>
+                        </div>
+                    </div>
+
+                    <div className="form__section">
+                        <h4 className="form__section-title">{t('whiteSparksSection')}</h4>
+                        <div className="form__obtained-sparks-container">
+                            {formData.whiteSparks.map(spark => (
+                                <div key={spark.name} className="spark-tag obtained-spark" data-spark-category="white">
+                                    {getDisplayName(spark.name, 'skill')} {formatStars(spark.stars)}
+                                    <button type="button" onClick={() => removeObtainedSpark('whiteSparks', spark.name)} className="obtained-spark__remove-btn">&times;</button>
+                                </div>
+                            ))}
+                        </div>
+                        <div className="form__input-group">
+                            <SearchableSelect items={availableNormalSkills} placeholder={t('searchSkill')} value={currentWhiteSkill?.[displayNameProp] || null} onSelect={setCurrentWhiteSkill} displayProp={displayNameProp} />
+                            <select className="form__input w-24" value={currentWhiteStars} onChange={e => setCurrentWhiteStars(Number(e.target.value) as 1|2|3)}>
+                                {STAR_OPTIONS.map(s => <option key={s}>{s}</option>)}
+                            </select>
+                            <button
+                                type="button"
+                                className="button button--secondary flex-shrink-0"
+                                onClick={() => addObtainedSpark('whiteSparks', currentWhiteSkill, currentWhiteStars)}
+                                disabled={!currentWhiteSkill}
+                            >
+                                {t('common:add')}
+                            </button>
+                        </div>
+                    </div>
+                    
                     <div className="form__section">
                         <h4 className="form__section-title">{t('legacyOriginSection')}</h4>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -236,8 +345,6 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
                            {renderGrandparentSelector('grandparent2')}
                         </div>
                     </div>
-                    {/* ... Omitted existing sections for brevity ... */}
-                    <div>...</div>
 
                     <div className="dialog-modal__footer">
                         <button type="button" className="button button--neutral" onClick={onClose}>{t('common:cancel')}</button>
@@ -248,7 +355,11 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
                 </form>
             </Modal>
             
-            <Modal isOpen={!!alertMessage} onClose={() => setAlertMessage('')} title={t('inputRequiredTitle')}>
+            <Modal
+                isOpen={!!alertMessage}
+                onClose={() => setAlertMessage('')}
+                title={t('inputRequiredTitle')}
+            >
                 <p className="dialog-modal__message">{alertMessage}</p>
                 <div className="dialog-modal__footer">
                     <button className="button button--primary" onClick={() => setAlertMessage('')}>{t('common:ok')}</button>
