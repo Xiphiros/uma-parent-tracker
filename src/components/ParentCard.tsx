@@ -16,6 +16,8 @@ interface ParentCardProps {
     onAssign?: (event: React.MouseEvent) => void;
     onMove?: () => void;
     assignedProjects?: string[];
+    isSelectionMode?: boolean;
+    onSelect?: (parent: Parent) => void;
 }
 
 const GrandparentDisplay = ({ grandparent }: { grandparent: Grandparent }) => {
@@ -54,7 +56,7 @@ const GrandparentDisplay = ({ grandparent }: { grandparent: Grandparent }) => {
     );
 };
 
-const ParentCard = ({ parent, isTopParent = false, displayScore = true, onEdit, onDelete, onAssign, onMove, assignedProjects }: ParentCardProps) => {
+const ParentCard = ({ parent, isTopParent = false, displayScore = true, onEdit, onDelete, onAssign, onMove, assignedProjects, isSelectionMode = false, onSelect }: ParentCardProps) => {
     const { t } = useTranslation(['roster', 'common', 'game']);
     const { getActiveProfile, dataDisplayLanguage, umaMapById, skillMapByName } = useAppContext();
     const [isLineageVisible, setIsLineageVisible] = useState(false);
@@ -100,11 +102,15 @@ const ParentCard = ({ parent, isTopParent = false, displayScore = true, onEdit, 
                         </div>
                         <div className="parent-card__score-wrapper">
                             {displayScore && <div className="parent-card__score">{parent.score} {t('parentCard.pts')}</div>}
-                            <div className="parent-card__actions">
-                                {onMove && <button onClick={onMove} className="parent-card__edit-btn">{t('common:move')}</button>}
-                                {onEdit && <button onClick={onEdit} className="parent-card__edit-btn">{t('common:edit')}</button>}
-                                {onDelete && <button onClick={onDelete} className="parent-card__delete-btn">{t('common:delete')}</button>}
-                            </div>
+                            {isSelectionMode && onSelect ? (
+                                <button onClick={() => onSelect(parent)} className="button button--primary button--small mt-1">{t('common:select')}</button>
+                            ) : (
+                                <div className="parent-card__actions">
+                                    {onMove && <button onClick={onMove} className="parent-card__edit-btn">{t('common:move')}</button>}
+                                    {onEdit && <button onClick={onEdit} className="parent-card__edit-btn">{t('common:edit')}</button>}
+                                    {onDelete && <button onClick={onDelete} className="parent-card__delete-btn">{t('common:delete')}</button>}
+                                </div>
+                            )}
                         </div>
                     </div>
                     <div className="parent-card__body">
@@ -141,7 +147,7 @@ const ParentCard = ({ parent, isTopParent = false, displayScore = true, onEdit, 
                     </div>
                 </div>
             </div>
-            {(onAssign || hasGrandparents) && (
+            {(onAssign || hasGrandparents) && !isSelectionMode && (
                 <div className="parent-card__footer">
                     {hasGrandparents && (
                          <button className="parent-card__lineage-toggle" onClick={() => setIsLineageVisible(!isLineageVisible)}>
