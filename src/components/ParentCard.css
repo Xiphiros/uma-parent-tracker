@@ -99,6 +99,48 @@
     color: var(--color-text-placeholder);
 }
 
+/* New Aggregated Spark Display */
+.parent-card__spark-grid {
+    display: grid;
+    grid-template-columns: 50px 1fr; /* Icon column and content column */
+    gap: 0.5rem;
+}
+.parent-card__spark-section-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 9999px;
+    margin-top: 0.25rem;
+}
+.parent-card__spark-section-icon--blue { background-color: var(--color-spark-speed); }
+.parent-card__spark-section-icon--pink { background-color: var(--color-spark-apt-dist); }
+.parent-card__spark-section-icon--unique { background-color: var(--color-score); }
+.parent-card__spark-section-icon--white { background-color: var(--color-text-muted); }
+
+.lineage-spark {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-weight: 500;
+    font-size: 0.8rem;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+    background-color: var(--color-bg);
+    color: var(--color-text-secondary);
+    border-left: 3px solid transparent;
+}
+.lineage-spark__gp-icon {
+    color: var(--color-text-muted);
+    margin: 0 0.25rem;
+}
+.lineage-spark__parent-contrib {
+    color: var(--color-text-muted);
+    font-size: 0.9em;
+}
+
 /* New Footer for Inventory View */
 .parent-card__footer {
     display: flex;
