@@ -12,7 +12,11 @@
     "gen": "世代",
     "pts": "pt",
     "noWhiteSparks": "白因子がありません。",
-    "rank": "ランク"
+    "rank": "ランク",
+    "lineage": "血統",
+    "legacyOrigin": "継承元",
+    "borrowedParent": "レンタルウマ娘",
+    "noGpData": "継承元のデータが見つかりません。"
   },
   "inventory": {
     "title": "所持ウマ娘一覧",
