@@ -56,6 +56,7 @@ export interface Goal {
  * White sparks are omitted as their influence is considered "baked into" the resulting child's white sparks.
  */
 export interface ManualParentData {
+  umaId?: string;
   blueSpark: BlueSpark;
   pinkSpark: PinkSpark;
   uniqueSparks: UniqueSpark[];
