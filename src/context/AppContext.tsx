@@ -339,7 +339,7 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
       .filter((p): p is Parent => !!p && p.server === activeServer)
       .map(p => ({
         ...p,
-        score: calculateScore(p, profile.goal)
+        score: calculateScore(p, profile.goal, appData.inventory)
       }));
   }, [appData.inventory, appData.serverData, activeServer]);
 
@@ -653,8 +653,6 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
   const getNextGenNumberForCharacter = (umaId: string): number => {
     const targetUma = umaMapById.get(umaId);
     if (!targetUma) {
-      // Fallback for safety, though this case should be rare.
-      // It will calculate gen based on the specific outfit ID.
       const inventoryForUma = appData.inventory.filter(p => p.server === activeServer && p.umaId === umaId);
       return inventoryForUma.length > 0 ? Math.max(...inventoryForUma.map(p => p.gen)) + 1 : 1;
     }
