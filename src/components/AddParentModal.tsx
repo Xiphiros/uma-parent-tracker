@@ -148,7 +148,7 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
             <div>
                 <h5 className="form__label mb-2">{t(slot)}</h5>
                 <div className="form__static-display">
-                    <span className="text-sm text-stone-600 dark:text-stone-300">{name}</span>
+                    <span className={`form__static-display-text ${!gp ? 'form__static-display-text--placeholder' : ''}`}>{name}</span>
                     <button type="button" className="button button--secondary button--small" onClick={() => handleOpenGpModal(slot)}>
                         {gp ? t('changeBtn') : t('selectBtn')}
                     </button>
