@@ -12,7 +12,11 @@
     "gen": "Gen",
     "pts": "pts",
     "noWhiteSparks": "No white sparks.",
-    "rank": "Rank"
+    "rank": "Rank",
+    "lineage": "Lineage",
+    "legacyOrigin": "Legacy Origin",
+    "borrowedParent": "Borrowed Parent",
+    "noGpData": "Grandparent data not found."
   },
   "inventory": {
     "title": "Parent Inventory",
