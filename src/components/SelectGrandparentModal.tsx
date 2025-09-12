@@ -1,5 +1,5 @@
 import { useState, useMemo, useEffect } from 'react';
-import { Parent, Uma, ManualParentData, BlueSpark, Grandparent, Skill, WhiteSpark, UniqueSpark } from '../types';
+import { Parent, Uma, ManualParentData, BlueSpark, Grandparent, Skill } from '../types';
 import { useAppContext } from '../context/AppContext';
 import Modal from './common/Modal';
 import SearchableSelect from './common/SearchableSelect';
@@ -71,7 +71,7 @@ const SelectGrandparentModal = ({ isOpen, onClose, onSave, title, grandparentToE
                     setManualData(initialManualGpState);
                 } else {
                     setSelectionType('manual');
-                    setManualData({ whiteSparks: [], ...grandparentToEdit });
+                    setManualData({ ...initialManualGpState, ...grandparentToEdit });
                     if (grandparentToEdit.uniqueSparks.length > 0) {
                         const uSpark = grandparentToEdit.uniqueSparks[0];
                         const skill = masterSkillList.find(s => s.name_en === uSpark.name);
