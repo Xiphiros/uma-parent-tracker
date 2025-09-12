@@ -1,6 +1,6 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import { useAppContext } from '../context/AppContext';
-import { Grandparent, ManualParentData, Parent, BlueSpark, PinkSpark } from '../types';
+import { Grandparent, ManualParentData, Parent, UniqueSpark, BlueSpark, PinkSpark } from '../types';
 import SparkTag from './common/SparkTag';
 import './ParentCard.css';
 import { useTranslation } from 'react-i18next';
@@ -166,7 +166,7 @@ const ParentCard = ({ parent, isTopParent = false, displayScore = true, onEdit, 
                                 {Object.entries(aggregatedSparks.blue).map(([type, data]) => (
                                     <div key={type} className="lineage-spark" data-spark-type={type.toLowerCase()}>
                                         {data.total}★ {t(type, { ns: 'game' })}
-                                        {data.total > data.parent && <FontAwesomeIcon icon={faUser} className="lineage-spark__gp-icon" />}
+                                        {data.parent > 0 && <FontAwesomeIcon icon={faUser} className="lineage-spark__gp-icon" />}
                                         <span className="lineage-spark__parent-contrib">({data.parent}★)</span>
                                     </div>
                                 ))}
@@ -175,7 +175,7 @@ const ParentCard = ({ parent, isTopParent = false, displayScore = true, onEdit, 
                                 {Object.entries(aggregatedSparks.pink).map(([type, data]) => (
                                     <div key={type} className="lineage-spark" data-spark-type={type.toLowerCase().replace(/ /g, '-')}>
                                         {data.total}★ {t(type, { ns: 'game' })}
-                                        {data.total > data.parent && <FontAwesomeIcon icon={faUser} className="lineage-spark__gp-icon" />}
+                                        {data.parent > 0 && <FontAwesomeIcon icon={faUser} className="lineage-spark__gp-icon" />}
                                         <span className="lineage-spark__parent-contrib">({data.parent}★)</span>
                                     </div>
                                 ))}
@@ -185,7 +185,7 @@ const ParentCard = ({ parent, isTopParent = false, displayScore = true, onEdit, 
                                     {aggregatedSparks.unique.map(spark => (
                                         <div key={spark.name} className="lineage-spark" data-spark-category="unique">
                                             {getSparkDisplayName(spark.name)}
-                                            {!spark.fromParent && <FontAwesomeIcon icon={faUser} className="lineage-spark__gp-icon" />}
+                                            {spark.fromParent && <FontAwesomeIcon icon={faUser} className="lineage-spark__gp-icon" />}
                                             <span className="lineage-spark__parent-contrib">({spark.stars}★)</span>
                                         </div>
                                     ))}
