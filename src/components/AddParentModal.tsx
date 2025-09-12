@@ -141,7 +141,7 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
             } else if (gp.umaId) {
                 name = getDisplayName(gp.umaId, 'uma');
             } else {
-                name = t('enterManually');
+                name = t('enterManuallyBorrowed');
             }
         }
         return (
@@ -294,6 +294,7 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
                     onClose={() => setIsGpModalOpen(false)}
                     onSave={handleSaveGrandparent}
                     title={t('selectGrandparentTitle')}
+                    grandparentToEdit={activeGpSlot ? formData[activeGpSlot] : null}
                 />
             )}
 
