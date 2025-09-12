@@ -3,6 +3,7 @@
 @import "./css/elements/Button.css";
 @import "./css/elements/Card.css";
 @import "./css/elements/Form.css";
+@import "./components/AddParentModal.css";
 @import "./components/common/DualListBox.css";
 @import "./components/FolderTab.css";
 @import "./components/common/ContextMenu.css";
