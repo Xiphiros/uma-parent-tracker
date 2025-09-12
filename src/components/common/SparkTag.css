@@ -2,7 +2,7 @@
 .spark-tag {
     display: inline-flex;
     align-items: center;
-    padding: 0.25rem 0.5rem 0.25rem 0.5rem;
+    padding: 0.25rem 0.75rem;
     border-radius: 9999px;
     font-weight: 500;
     font-size: 0.8rem;
@@ -10,17 +10,12 @@
     margin-bottom: 0.5rem;
     background-color: var(--color-card-bg-hover);
     color: var(--color-text-secondary);
-    border-left: 3px solid transparent;
+    border-bottom: 3px solid transparent;
     transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
-/* Light Theme Spark BORDER Colors */
-.spark-tag[data-spark-type="speed"] { border-left-color: var(--color-spark-speed); }
-.spark-tag[data-spark-type="stamina"] { border-left-color: var(--color-spark-stamina); }
-.spark-tag[data-spark-type="power"] { border-left-color: var(--color-spark-power); }
-.spark-tag[data-spark-type="guts"] { border-left-color: var(--color-spark-guts); }
-.spark-tag[data-spark-type="wit"] { border-left-color: var(--color-spark-wit); }
-.spark-tag[data-spark-type="turf"], .spark-tag[data-spark-type="dirt"] { border-left-color: var(--color-spark-apt-ground); }
-.spark-tag[data-spark-type="sprint"], .spark-tag[data-spark-type="mile"], .spark-tag[data-spark-type="medium"], .spark-tag[data-spark-type="long"] { border-left-color: var(--color-spark-apt-dist); }
-.spark-tag[data-spark-type="front-runner"], .spark-tag[data-spark-type="pace-chaser"], .spark-tag[data-spark-type="late-surger"], .spark-tag[data-spark-type="end-closer"] { border-left-color: var(--color-spark-apt-strat); }
-.spark-tag[data-spark-category="unique"] { border-left-color: var(--color-score); }
-.spark-tag[data-spark-category="white"] { border-left-color: var(--color-text-muted); }
+
+/* Spark BORDER Colors (applies to any element with these data attributes) */
+[data-spark-category="blue"] { border-bottom-color: var(--color-spark-blue); }
+[data-spark-category="pink"] { border-bottom-color: var(--color-spark-pink); }
+[data-spark-category="unique"] { border-bottom-color: var(--color-spark-unique); }
+[data-spark-category="white"] { border-bottom-color: var(--color-text-muted); }
