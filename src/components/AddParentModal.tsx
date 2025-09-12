@@ -164,12 +164,6 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
         const uma = umaMapById.get(idOrName);
         return uma?.[displayNameProp] || idOrName;
     };
-
-    const handleGpTypeChange = (slot: GrandparentSlot, type: GrandparentType | null) => {
-        if (slot === 'grandparent1') setGp1Type(type);
-        if (slot === 'grandparent2') setGp2Type(type);
-        setFormData(prev => ({ ...prev, [slot]: undefined }));
-    };
     
     const renderGrandparentSelector = (slot: GrandparentSlot) => {
         const type = slot === 'grandparent1' ? gp1Type : gp2Type;
