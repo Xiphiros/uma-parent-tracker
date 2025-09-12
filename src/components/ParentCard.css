@@ -106,7 +106,8 @@
     margin-bottom: 0.5rem;
     background-color: var(--color-bg);
     color: var(--color-text-secondary);
-    border-left: 3px solid transparent;
+    border-top: 2px solid transparent;
+    border-bottom: 2px solid transparent;
 }
 .lineage-spark__gp-icon {
     color: var(--color-text-muted);

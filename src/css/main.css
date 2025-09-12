@@ -36,14 +36,9 @@ html {
     --color-scrollbar-thumb: #a8a29e; /* stone-400 */
     --color-scrollbar-thumb-hover: #78716c; /* stone-500 */
 
-    --color-spark-speed: #60a5fa;
-    --color-spark-stamina: #facc15;
-    --color-spark-power: #f87171;
-    --color-spark-guts: #fb923c;
-    --color-spark-wit: #4ade80;
-    --color-spark-apt-ground: #c084fc;
-    --color-spark-apt-dist: #f472b6;
-    --color-spark-apt-strat: #818cf8;
+    --color-spark-blue: #3b82f6; /* blue-500 */
+    --color-spark-pink: #ec4899; /* pink-500 */
+    --color-spark-unique: #22c55e; /* green-500 */
 
     --color-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.07), 0 2px 4px -2px rgb(0 0 0 / 0.07);
     --color-modal-overlay: rgba(28, 25, 23, 0.5); /* stone-900 w/ alpha */

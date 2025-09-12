@@ -170,7 +170,7 @@ const ParentCard = ({ parent, isTopParent = false, displayScore = true, onEdit, 
                         <div className="parent-card__spark-grid">
                             <div className="parent-card__spark-container">
                                 {Object.entries(aggregatedSparks.blue).map(([type, data]) => (
-                                    <div key={type} className="lineage-spark" data-spark-type={type.toLowerCase()}>
+                                    <div key={type} className="lineage-spark" data-spark-category="blue" data-spark-type={type.toLowerCase()}>
                                         {data.total}★ {t(type, { ns: 'game' })}
                                         {data.parent > 0 && (
                                             <>
@@ -183,7 +183,7 @@ const ParentCard = ({ parent, isTopParent = false, displayScore = true, onEdit, 
                             </div>
                             <div className="parent-card__spark-container">
                                 {Object.entries(aggregatedSparks.pink).map(([type, data]) => (
-                                    <div key={type} className="lineage-spark" data-spark-type={type.toLowerCase().replace(/ /g, '-')}>
+                                    <div key={type} className="lineage-spark" data-spark-category="pink" data-spark-type={type.toLowerCase().replace(/ /g, '-')}>
                                         {data.total}★ {t(type, { ns: 'game' })}
                                         {data.parent > 0 && (
                                             <>
