@@ -8,6 +8,7 @@
     border-radius: 0.5rem;
     margin-bottom: 1rem;
     min-height: 96px; /* h-24 */
+    border: 1px solid var(--color-border);
 }
 
 .gp-modal__preview-image {
