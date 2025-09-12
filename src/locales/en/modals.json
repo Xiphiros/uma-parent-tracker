@@ -24,7 +24,12 @@
   "legacyOriginSection": "Legacy Origin",
   "grandparent1": "Parent 1",
   "grandparent2": "Parent 2",
-  "selectFromInventory": "Select from Inventory",
-  "enterManually": "Enter Manually (Borrowed)",
-  "selectParentPlaceholder": "Select a parent..."
+  "selectFromInventory": "Inventory",
+  "enterManually": "Manual (Borrowed)",
+  "selectParentPlaceholder": "Select a parent...",
+  "selectGrandparentTitle": "Select Grandparent",
+  "notSelected": "Not Selected",
+  "selectBtn": "Select",
+  "changeBtn": "Change",
+  "confirmSelectionBtn": "Confirm Selection"
 }
