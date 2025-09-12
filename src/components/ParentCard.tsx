@@ -20,7 +20,7 @@ interface ParentCardProps {
 
 const GrandparentDisplay = ({ grandparent }: { grandparent: Grandparent }) => {
     const { t } = useTranslation(['roster', 'common', 'game']);
-    const { appData, dataDisplayLanguage, umaMapById, skillMapByName } = useAppContext();
+    const { appData, dataDisplayLanguage, umaMapById, skillMapByName } from useAppContext();
     const displayNameProp = dataDisplayLanguage === 'jp' ? 'name_jp' : 'name_en';
 
     const getSparkDisplayName = (spark: UniqueSpark) => {
@@ -36,7 +36,8 @@ const GrandparentDisplay = ({ grandparent }: { grandparent: Grandparent }) => {
             gpData = { ...ownedParent, name: uma ? uma[displayNameProp] : ownedParent.name };
         }
     } else {
-        gpData = { ...grandparent, name: t('parentCard.borrowedParent') };
+        const manualUma = grandparent.umaId ? umaMapById.get(grandparent.umaId) : null;
+        gpData = { ...grandparent, name: manualUma ? manualUma[displayNameProp] : t('parentCard.borrowedParent') };
     }
 
     if (!gpData) return <p className="parent-card__no-sparks-text">{t('parentCard.noGpData')}</p>;
