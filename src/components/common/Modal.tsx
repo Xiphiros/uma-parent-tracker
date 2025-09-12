@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactNode, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import './Modal.css';
 
@@ -10,7 +10,29 @@ interface ModalProps {
   size?: 'sm' | 'lg' | 'xl';
 }
 
+// Module-level counter to handle nested modals
+let openModalCount = 0;
+
 const Modal = ({ isOpen, onClose, title, children, size = 'sm' }: ModalProps) => {
+  useEffect(() => {
+    if (isOpen) {
+      if (openModalCount === 0) {
+        document.body.style.overflow = 'hidden';
+      }
+      openModalCount++;
+    }
+
+    return () => {
+      // This cleanup function runs when the modal that was open is closing or unmounting
+      if (isOpen) {
+        openModalCount--;
+        if (openModalCount === 0) {
+          document.body.style.overflow = 'auto';
+        }
+      }
+    };
+  }, [isOpen]);
+
   if (!isOpen) return null;
 
   const modalRoot = document.getElementById('modal-root');
