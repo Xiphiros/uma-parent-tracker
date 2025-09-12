@@ -20,7 +20,7 @@ interface ParentCardProps {
 
 const GrandparentDisplay = ({ grandparent }: { grandparent: Grandparent }) => {
     const { t } = useTranslation(['roster', 'common', 'game']);
-    const { appData, dataDisplayLanguage, umaMapById, skillMapByName } from useAppContext();
+    const { appData, dataDisplayLanguage, umaMapById, skillMapByName } = useAppContext();
     const displayNameProp = dataDisplayLanguage === 'jp' ? 'name_jp' : 'name_en';
 
     const getSparkDisplayName = (spark: UniqueSpark) => {
