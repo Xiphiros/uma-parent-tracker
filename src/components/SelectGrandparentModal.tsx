@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { Parent, Uma, ManualParentData, BlueSpark, Grandparent, Skill } from '../types';
 import { useAppContext } from '../context/AppContext';
 import Modal from './common/Modal';
@@ -23,11 +23,12 @@ interface SelectGrandparentModalProps {
     onClose: () => void;
     onSave: (data: Grandparent) => void;
     title: string;
+    grandparentToEdit?: Grandparent | null;
 }
 
-const SelectGrandparentModal = ({ isOpen, onClose, onSave, title }: SelectGrandparentModalProps) => {
+const SelectGrandparentModal = ({ isOpen, onClose, onSave, title, grandparentToEdit }: SelectGrandparentModalProps) => {
     const { t } = useTranslation(['modals', 'game', 'roster']);
-    const { masterUmaList, masterSkillList, dataDisplayLanguage, umaMapById } = useAppContext();
+    const { masterUmaList, masterSkillList, dataDisplayLanguage, umaMapById, appData } = useAppContext();
     const displayNameProp = dataDisplayLanguage === 'jp' ? 'name_jp' : 'name_en';
 
     const [selectionType, setSelectionType] = useState<'inventory' | 'manual'>('inventory');
@@ -38,6 +39,39 @@ const SelectGrandparentModal = ({ isOpen, onClose, onSave, title }: SelectGrandp
 
     const uniqueSkills = useMemo(() => masterSkillList.filter(s => s.type === 'unique'), [masterSkillList]);
 
+    useEffect(() => {
+        if (isOpen) {
+            if (grandparentToEdit) {
+                if (typeof grandparentToEdit === 'number') {
+                    // Inventory parent
+                    setSelectionType('inventory');
+                    const parent = appData.inventory.find(p => p.id === grandparentToEdit);
+                    setSelectedInventoryParent(parent || null);
+                    setManualData(initialManualGpState);
+                    setManualUnique(null);
+                } else {
+                    // Manual data
+                    setSelectionType('manual');
+                    setManualData(grandparentToEdit);
+                    if (grandparentToEdit.uniqueSparks.length > 0) {
+                        const uniqueSkillName = grandparentToEdit.uniqueSparks[0].name;
+                        const skill = masterSkillList.find(s => s.name_en === uniqueSkillName);
+                        setManualUnique(skill || null);
+                    } else {
+                        setManualUnique(null);
+                    }
+                    setSelectedInventoryParent(null);
+                }
+            } else {
+                // Reset to default if no grandparent is passed
+                setSelectionType('inventory');
+                setSelectedInventoryParent(null);
+                setManualData(initialManualGpState);
+                setManualUnique(null);
+            }
+        }
+    }, [isOpen, grandparentToEdit, appData.inventory, masterSkillList]);
+
     const getDisplayName = (id: string) => umaMapById.get(id)?.[displayNameProp] || id;
 
     const previewData = useMemo(() => {
@@ -47,7 +81,7 @@ const SelectGrandparentModal = ({ isOpen, onClose, onSave, title }: SelectGrandp
         }
         if (selectionType === 'manual' && manualData.umaId) {
             const uma = umaMapById.get(manualData.umaId);
-            return { image: uma?.image, name: getDisplayName(manualData.umaId), type: t('enterManually') };
+            return { image: uma?.image, name: getDisplayName(manualData.umaId), type: t('enterManuallyBorrowed') };
         }
         return null;
     }, [selectionType, selectedInventoryParent, manualData, umaMapById, getDisplayName, t]);
@@ -85,7 +119,7 @@ const SelectGrandparentModal = ({ isOpen, onClose, onSave, title }: SelectGrandp
 
                 <div className="gp-selector__toggle">
                     <button type="button" className={`gp-selector__toggle-btn ${selectionType === 'inventory' ? 'gp-selector__toggle-btn--active' : ''}`} onClick={() => setSelectionType('inventory')}>{t('selectFromInventory')}</button>
-                    <button type="button" className={`gp-selector__toggle-btn ${selectionType === 'manual' ? 'gp-selector__toggle-btn--active' : ''}`} onClick={() => setSelectionType('manual')}>{t('enterManually')}</button>
+                    <button type="button" className={`gp-selector__toggle-btn ${selectionType === 'manual' ? 'gp-selector__toggle-btn--active' : ''}`} onClick={() => setSelectionType('manual')}>{t('enterManuallyBorrowed')}</button>
                 </div>
 
                 {selectionType === 'inventory' ? (
