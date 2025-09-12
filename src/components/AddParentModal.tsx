@@ -5,6 +5,7 @@ import Modal from './common/Modal';
 import SearchableSelect from './common/SearchableSelect';
 import { formatStars } from '../utils/ui';
 import { useTranslation } from 'react-i18next';
+import './AddParentModal.css';
 
 interface AddParentModalProps {
   isOpen: boolean;
@@ -32,13 +33,14 @@ const initialState: NewParentData = {
 };
 
 const initialManualGpState: ManualParentData = {
+    umaId: undefined,
     blueSpark: { type: 'Speed', stars: 1 },
     pinkSpark: { type: 'Turf', stars: 1 },
     uniqueSparks: [],
 };
 
 type GrandparentSlot = 'grandparent1' | 'grandparent2';
-type GrandparentType = 'none' | 'inventory' | 'manual';
+type GrandparentType = 'inventory' | 'manual';
 
 const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) => {
     const { t } = useTranslation(['modals', 'common', 'game']);
@@ -54,8 +56,8 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
     const displayNameProp = dataDisplayLanguage === 'jp' ? 'name_jp' : 'name_en';
 
     // Grandparent state
-    const [gp1Type, setGp1Type] = useState<GrandparentType>('none');
-    const [gp2Type, setGp2Type] = useState<GrandparentType>('none');
+    const [gp1Type, setGp1Type] = useState<GrandparentType | null>(null);
+    const [gp2Type, setGp2Type] = useState<GrandparentType | null>(null);
     const [gp1ManualData, setGp1ManualData] = useState<ManualParentData>(initialManualGpState);
     const [gp2ManualData, setGp2ManualData] = useState<ManualParentData>(initialManualGpState);
     const [gp1ManualUnique, setGp1ManualUnique] = useState<any>(null);
@@ -96,8 +98,8 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
             setFormData({ ...initialState, ...parentToEdit });
         } else {
             setFormData(initialState);
-            setGp1Type('none');
-            setGp2Type('none');
+            setGp1Type(null);
+            setGp2Type(null);
         }
     }, [parentToEdit, isOpen]);
 
@@ -159,12 +161,11 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
             const skill = skillMapByName.get(idOrName);
             return skill ? skill[displayNameProp] : idOrName;
         }
-        // For uma, we expect the outfit ID
         const uma = umaMapById.get(idOrName);
         return uma?.[displayNameProp] || idOrName;
     };
 
-    const handleGpTypeChange = (slot: GrandparentSlot, type: GrandparentType) => {
+    const handleGpTypeChange = (slot: GrandparentSlot, type: GrandparentType | null) => {
         if (slot === 'grandparent1') setGp1Type(type);
         if (slot === 'grandparent2') setGp2Type(type);
         setFormData(prev => ({ ...prev, [slot]: undefined }));
@@ -172,6 +173,7 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
     
     const renderGrandparentSelector = (slot: GrandparentSlot) => {
         const type = slot === 'grandparent1' ? gp1Type : gp2Type;
+        const setType = slot === 'grandparent1' ? setGp1Type : setGp2Type;
         const manualData = slot === 'grandparent1' ? gp1ManualData : gp2ManualData;
         const setManualData = slot === 'grandparent1' ? setGp1ManualData : setGp2ManualData;
         const manualUnique = slot === 'grandparent1' ? gp1ManualUnique : gp2ManualUnique;
@@ -189,12 +191,11 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
         const inventoryOptions = inventory.map(p => ({...p, name_en: getDisplayName(p.umaId, 'uma') + ` (G${p.gen})`, name_jp: getDisplayName(p.umaId, 'uma') + ` (G${p.gen})` }));
         
         return (
-            <div>
+            <div className="gp-selector">
                 <h5 className="form__label mb-2">{t(slot)}</h5>
-                <div className="flex gap-4 mb-2">
-                    <label><input type="radio" name={slot} checked={type === 'none'} onChange={() => handleGpTypeChange(slot, 'none')} className="mr-1" /> None</label>
-                    <label><input type="radio" name={slot} checked={type === 'inventory'} onChange={() => handleGpTypeChange(slot, 'inventory')} className="mr-1" /> {t('selectFromInventory')}</label>
-                    <label><input type="radio" name={slot} checked={type === 'manual'} onChange={() => handleGpTypeChange(slot, 'manual')} className="mr-1" /> {t('enterManually')}</label>
+                <div className="gp-selector__toggle">
+                    <button type="button" className={`gp-selector__toggle-btn ${type === 'inventory' ? 'gp-selector__toggle-btn--active' : ''}`} onClick={() => setType('inventory')}>{t('selectFromInventory')}</button>
+                    <button type="button" className={`gp-selector__toggle-btn ${type === 'manual' ? 'gp-selector__toggle-btn--active' : ''}`} onClick={() => setType('manual')}>{t('enterManually')}</button>
                 </div>
                 {type === 'inventory' && (
                     <SearchableSelect 
@@ -206,7 +207,8 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
                     />
                 )}
                 {type === 'manual' && (
-                    <div className="space-y-2 p-2 border rounded bg-stone-50 dark:bg-stone-900/50">
+                    <div className="gp-selector__manual-card">
+                        <SearchableSelect items={masterUmaList} placeholder={t('selectUmaPlaceholder')} value={manualData.umaId ? getDisplayName(manualData.umaId, 'uma') : null} onSelect={(item) => setManualData(p => ({...p, umaId: (item as Uma).id}))} displayProp={displayNameProp} />
                         <div className="grid grid-cols-2 gap-2">
                             <select className="form__input" value={manualData.blueSpark.type} onChange={e => handleManualSparkChange('blueSpark', 'type', e.target.value)}>
                                 {BLUE_SPARK_TYPES.map(t => <option key={t} value={t}>{t}</option>)}
