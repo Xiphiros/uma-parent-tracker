@@ -25,7 +25,7 @@
   "grandparent1": "親1",
   "grandparent2": "親2",
   "selectFromInventory": "所持ウマ娘",
-  "enterManually": "手動入力",
+  "enterManuallyBorrowed": "手動入力 (レンタル)",
   "selectParentPlaceholder": "親を選択...",
   "selectGrandparentTitle": "継承元の親を選択",
   "notSelected": "未選択",
