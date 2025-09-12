@@ -11,6 +11,8 @@ import { useTranslation } from 'react-i18next';
 interface InventoryModalProps {
   isOpen: boolean;
   onClose: () => void;
+  isSelectionMode?: boolean;
+  onSelectParent?: (parent: Parent) => void;
 }
 
 interface MoveConfirmState {
@@ -18,7 +20,7 @@ interface MoveConfirmState {
     result: ValidationResult;
 }
 
-const InventoryModal = ({ isOpen, onClose }: InventoryModalProps) => {
+const InventoryModal = ({ isOpen, onClose, isSelectionMode = false, onSelectParent }: InventoryModalProps) => {
     const { t } = useTranslation(['roster', 'modals', 'common']);
     const { appData, activeServer, deleteParent, addParentToProfile, removeParentFromProfile, moveParentToServer, validateParentForServer, umaMapById, dataDisplayLanguage } = useAppContext();
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
@@ -113,9 +115,11 @@ const InventoryModal = ({ isOpen, onClose }: InventoryModalProps) => {
     
     const parentDisplayName = getParentDisplayName(moveConfirmState?.parent || null);
 
+    const modalTitle = isSelectionMode ? t('modals:selectGrandparentTitle') : t('inventory.title');
+
     return (
         <>
-            <Modal isOpen={isOpen} onClose={onClose} title={t('inventory.title')} size="xl">
+            <Modal isOpen={isOpen} onClose={onClose} title={modalTitle} size="xl">
                 <div className="inventory-modal__grid">
                     {inventory.length > 0 ? (
                         inventory.map(parent => (
@@ -128,6 +132,8 @@ const InventoryModal = ({ isOpen, onClose }: InventoryModalProps) => {
                                 onMove={() => handleMoveParent(parent)}
                                 onAssign={(e) => handleOpenAssignmentMenu(e, parent)}
                                 assignedProjects={parentToProfileMap.get(parent.id)}
+                                isSelectionMode={isSelectionMode}
+                                onSelect={onSelectParent}
                             />
                         ))
                     ) : (
@@ -136,7 +142,11 @@ const InventoryModal = ({ isOpen, onClose }: InventoryModalProps) => {
                 </div>
                 <div className="inventory-modal__footer">
                     <span className="inventory-modal__count">{t('inventory.count', { count: inventory.length })}</span>
-                    <button className="button button--primary" onClick={handleOpenAddModal}>{t('addParentBtn')}</button>
+                    {isSelectionMode ? (
+                        <button className="button button--neutral" onClick={onClose}>{t('common:close')}</button>
+                    ) : (
+                        <button className="button button--primary" onClick={handleOpenAddModal}>{t('addParentBtn')}</button>
+                    )}
                 </div>
             </Modal>
 
