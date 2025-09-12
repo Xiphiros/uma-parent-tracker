@@ -3,7 +3,7 @@ import { Parent, NewParentData, BlueSpark, WhiteSpark, UniqueSpark, Uma, ManualP
 import { useAppContext } from '../context/AppContext';
 import Modal from './common/Modal';
 import SearchableSelect from './common/SearchableSelect';
-import { formatStars } from '../utils/ui.ts';
+import { formatStars } from '../utils/ui';
 import { useTranslation } from 'react-i18next';
 
 interface AddParentModalProps {
@@ -172,7 +172,6 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
     
     const renderGrandparentSelector = (slot: GrandparentSlot) => {
         const type = slot === 'grandparent1' ? gp1Type : gp2Type;
-        const setType = slot === 'grandparent1' ? setGp1Type : setGp2Type;
         const manualData = slot === 'grandparent1' ? gp1ManualData : gp2ManualData;
         const setManualData = slot === 'grandparent1' ? setGp1ManualData : setGp2ManualData;
         const manualUnique = slot === 'grandparent1' ? gp1ManualUnique : gp2ManualUnique;
