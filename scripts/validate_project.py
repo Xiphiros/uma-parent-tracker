@@ -27,6 +27,7 @@ HARDCODED_COLOR_RE = re.compile(fr':\s*(?!var\(--|color-mix)[\s"\']*{HARDCODED_V
 COLOR_KEYWORDS_RE = re.compile(r':\s*(red|blue|green|yellow|purple|orange|black|white)\s*;')
 INVALID_BEM_RE = re.compile(r'(___|---)')
 CSS_VAR_RE = re.compile(r'(--[\w-]+):\s*(#[\da-fA-F]{3,6});')
+I18N_KEY_RE = re.compile(r"""t\(\s*['"]([\w:.-]+)['"]\s*[,)]""")
 
 
 # --- Color Contrast Calculation Helpers ---
@@ -272,6 +273,41 @@ def check_translations() -> List[str]:
             
     return violations
 
+def check_source_code_keys(tsx_files: List[Path]) -> List[str]:
+    """Checks for translation keys used in source code but not defined in 'en' locales."""
+    # 1. Get all keys defined in the base 'en' locale files.
+    defined_keys: Set[str] = set()
+    en_locale_dir = LOCALES_DIR / 'en'
+    en_files = find_files(en_locale_dir, '.json')
+    for en_file in en_files:
+        namespace = en_file.stem
+        try:
+            with open(en_file, 'r', encoding='utf-8') as f:
+                data = json.load(f)
+            flattened_keys = _get_nested_keys(data)
+            for key in flattened_keys:
+                defined_keys.add(key)  # For use with useTranslation(['ns1', 'ns2'])
+                defined_keys.add(f"{namespace}:{key}")  # For use with t('ns1:key')
+        except Exception as e:
+            return [f"Error parsing {en_file.relative_to(PROJECT_ROOT)}: {e}"]
+
+    # 2. Get all keys used in the source code.
+    used_keys: Set[str] = set()
+    for tsx_file in tsx_files:
+        try:
+            content = tsx_file.read_text(encoding='utf-8')
+            matches = I18N_KEY_RE.findall(content)
+            for key in matches:
+                used_keys.add(key)
+        except Exception:
+            continue
+
+    # 3. Find the difference.
+    missing_keys = used_keys - defined_keys
+    
+    return sorted(list(missing_keys))
+
+
 def main():
     parser = argparse.ArgumentParser(description="Validates project files against the style guide conventions.")
     parser.add_argument("-v", "--verbose", action="store_true", help="Print detailed information for each violation.")
@@ -396,6 +432,18 @@ def main():
             for violation in translation_violations:
                 print(f"    - {violation}")
     total_errors += translation_errors
+    
+    source_key_violations = check_source_code_keys(tsx_files)
+    source_key_errors = len(source_key_violations)
+    if source_key_errors == 0:
+        print("  \033[92mPASS:\033[0m All translation keys used in source code are defined.")
+    else:
+        print(f"  \033[91mFAIL:\033[0m Found {source_key_errors} undefined key(s) used in source code.")
+        if args.verbose:
+            for key in source_key_violations:
+                print(f"    - Missing key definition for: '{key}'")
+    total_errors += source_key_errors
+
 
     # --- Summary ---
     print("\n--- Validation Summary ---")
