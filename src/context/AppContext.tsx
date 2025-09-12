@@ -650,9 +650,24 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
     }));
   };
 
-  const getNextGenNumber = (): number => {
-    const inventory = appData.inventory.filter(p => p.server === activeServer);
-    return inventory.length > 0 ? Math.max(...inventory.map(p => p.gen)) + 1 : 1;
+  const getNextGenNumberForCharacter = (umaId: string): number => {
+    const targetUma = umaMapById.get(umaId);
+    if (!targetUma) {
+      // Fallback for safety, though this case should be rare.
+      // It will calculate gen based on the specific outfit ID.
+      const inventoryForUma = appData.inventory.filter(p => p.server === activeServer && p.umaId === umaId);
+      return inventoryForUma.length > 0 ? Math.max(...inventoryForUma.map(p => p.gen)) + 1 : 1;
+    }
+
+    const targetCharacterId = targetUma.characterId;
+
+    const inventoryForCharacter = appData.inventory.filter(p => {
+        if (p.server !== activeServer) return false;
+        const parentUma = umaMapById.get(p.umaId);
+        return parentUma?.characterId === targetCharacterId;
+    });
+
+    return inventoryForCharacter.length > 0 ? Math.max(...inventoryForCharacter.map(p => p.gen)) + 1 : 1;
   };
 
   const addParentToProfile = (parentId: number, profileId: number) => {
@@ -682,7 +697,7 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
     const newParent: Parent = {
       ...parentData,
       id: Date.now(),
-      gen: getNextGenNumber(),
+      gen: getNextGenNumberForCharacter(parentData.umaId),
       score: 0, // Score is always calculated on the fly
       server: activeServer,
     };
