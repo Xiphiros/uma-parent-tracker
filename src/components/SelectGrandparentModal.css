@@ -1,0 +1,41 @@
+/* SelectGrandparentModal Styles */
+.gp-modal__preview {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background-color: var(--color-bg);
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+    min-height: 96px; /* h-24 */
+}
+
+.gp-modal__preview-image {
+    width: 64px; /* w-16 */
+    height: 64px; /* h-16 */
+    object-fit: cover;
+    border-radius: 9999px;
+    border: 2px solid var(--color-avatar-border);
+}
+
+.gp-modal__preview-placeholder {
+    width: 64px;
+    height: 64px;
+    border-radius: 9999px;
+    background-color: var(--color-card-bg-hover);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text-muted);
+}
+
+.gp-modal__preview-name {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+}
+
+.gp-modal__preview-type {
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+}
