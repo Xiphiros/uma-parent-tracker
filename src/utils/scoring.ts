@@ -1,4 +1,4 @@
-import { Goal, Parent, WhiteSpark, UniqueSpark } from '../types';
+import { Goal, Parent, WhiteSpark, UniqueSpark, ManualParentData } from '../types';
 
 const points = {
     blue: { primary: [0, 2, 6, 10], secondary: [0, 1, 4, 8], other: [0, 1, 2, 3] },
@@ -8,12 +8,12 @@ const points = {
 };
 
 type ScoreCategory = 'blue' | 'pink' | 'unique' | 'white';
+type ScorableParent = Pick<Parent, 'blueSpark' | 'pinkSpark' | 'uniqueSparks' | 'whiteSparks'>;
 
 function getScore(category: ScoreCategory, type: string, stars: 1 | 2 | 3, goal: Goal): number {
     if (category === 'blue') {
         const primaryBlueLower = goal.primaryBlue.map(s => s.toLowerCase());
         if (primaryBlueLower.includes(type.toLowerCase())) return points.blue.primary[stars];
-        // In the methodology, only Speed is a "secondary" blue spark.
         if (type.toLowerCase() === 'speed') return points.blue.secondary[stars];
         return points.blue.other[stars];
     }
@@ -31,40 +31,73 @@ function getScore(category: ScoreCategory, type: string, stars: 1 | 2 | 3, goal:
     }
     
     if (category === 'white') {
-        // For white sparks, the 'type' is the tier itself.
         return points.white[type as keyof typeof points.white]?.[stars] ?? 0;
     }
 
     return 0;
 }
 
-// This type precisely defines only the data needed for scoring.
-type ScorableParent = Pick<Parent, 'blueSpark' | 'pinkSpark' | 'uniqueSparks' | 'whiteSparks'>;
 
-export function calculateScore(parent: ScorableParent, goal: Goal): number {
+/**
+ * Calculates the score for a single entity (parent or grandparent) based on its sparks.
+ * @param parent The parent data to score. Can be a full Parent or limited ManualParentData.
+ * @param goal The user's defined goal.
+ * @returns The base score for that entity.
+ */
+function calculateBaseScore(parent: ScorableParent | ManualParentData, goal: Goal): number {
     let totalScore = 0;
 
-    // Blue Spark Score
     totalScore += getScore('blue', parent.blueSpark.type, parent.blueSpark.stars, goal);
-    
-    // Pink Spark Score
     totalScore += getScore('pink', parent.pinkSpark.type, parent.pinkSpark.stars, goal);
-
-    // Unique Sparks Score
     parent.uniqueSparks.forEach((spark: UniqueSpark) => {
         totalScore += getScore('unique', spark.name, spark.stars, goal);
     });
 
-    // White Sparks Score
-    parent.whiteSparks.forEach((spark: WhiteSpark) => {
-        const wishlistItem = goal.wishlist.find(w => w.name === spark.name);
-        if (wishlistItem) {
-            totalScore += getScore('white', wishlistItem.tier, spark.stars, goal);
-        } else {
-            // If the spark is not on the wishlist, give it a baseline "OTHER" score.
-            totalScore += getScore('white', 'OTHER', spark.stars, goal);
-        }
-    });
-
+    // Manually entered grandparents (ManualParentData) do not include white sparks.
+    if ('whiteSparks' in parent) {
+        parent.whiteSparks.forEach((spark: WhiteSpark) => {
+            const wishlistItem = goal.wishlist.find(w => w.name === spark.name);
+            if (wishlistItem) {
+                totalScore += getScore('white', wishlistItem.tier, spark.stars, goal);
+            } else {
+                totalScore += getScore('white', 'OTHER', spark.stars, goal);
+            }
+        });
+    }
+    
     return totalScore;
+}
+
+
+/**
+ * Calculates the final score for a parent, including bonuses from its grandparents.
+ * @param parent The parent to score.
+ * @param goal The user's defined goal.
+ * @param inventory The full inventory list to look up owned grandparents by ID.
+ * @returns The final, rounded score.
+ */
+export function calculateScore(parent: Parent, goal: Goal, inventory: Parent[]): number {
+    let totalScore = calculateBaseScore(parent, goal);
+    const GRANDPARENT_MULTIPLIER = 0.5;
+
+    const inventoryMap = new Map(inventory.map(p => [p.id, p]));
+    const grandparents = [parent.grandparent1, parent.grandparent2];
+
+    for (const gp of grandparents) {
+        if (!gp) continue;
+
+        let gpData: ScorableParent | ManualParentData | undefined;
+        if (typeof gp === 'number') {
+            gpData = inventoryMap.get(gp);
+        } else {
+            gpData = gp;
+        }
+
+        if (gpData) {
+            const grandparentBonus = calculateBaseScore(gpData, goal) * GRANDPARENT_MULTIPLIER;
+            totalScore += grandparentBonus;
+        }
+    }
+
+    return Math.round(totalScore);
 }
