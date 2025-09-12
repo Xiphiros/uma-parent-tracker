@@ -20,5 +20,11 @@
   "moveParentConfirmTitle": "Confirm Parent Move",
   "moveParentConfirmMsg": "Are you sure you want to move \"{{name}}\" to the {{server}} server? This parent is fully compatible.",
   "moveParentWarningTitle": "Compatibility Warning",
-  "moveParentWarningMsg": "Cannot move \"{{name}}\" to the {{server}} server. The following incompatibilities were found:"
+  "moveParentWarningMsg": "Cannot move \"{{name}}\" to the {{server}} server. The following incompatibilities were found:",
+  "legacyOriginSection": "Legacy Origin",
+  "grandparent1": "Parent 1",
+  "grandparent2": "Parent 2",
+  "selectFromInventory": "Select from Inventory",
+  "enterManually": "Enter Manually (Borrowed)",
+  "selectParentPlaceholder": "Select a parent..."
 }
