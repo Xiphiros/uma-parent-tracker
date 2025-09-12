@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import { Parent, Uma, ManualParentData, BlueSpark, UniqueSpark, Grandparent, Skill } from '../types';
+import { Parent, Uma, ManualParentData, BlueSpark, Grandparent, Skill } from '../types';
 import { useAppContext } from '../context/AppContext';
 import Modal from './common/Modal';
 import SearchableSelect from './common/SearchableSelect';
