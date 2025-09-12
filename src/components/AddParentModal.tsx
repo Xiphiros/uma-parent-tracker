@@ -161,8 +161,117 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
         <>
             <Modal isOpen={isOpen} onClose={onClose} title={parentToEdit ? t('editParentTitle') : t('addParentTitle')} size="lg">
                 <form onSubmit={handleSubmit} className="form space-y-4">
-                    {/* Uma Name, Blue, Pink, Unique, White Spark sections are unchanged and omitted for brevity */}
-                    <div>...</div>
+                    <div>
+                        <label className="form__label form__label--xs">{t('umaNameLabel')}</label>
+                        <SearchableSelect 
+                            items={masterUmaList}
+                            placeholder={t('selectUmaPlaceholder')}
+                            value={formData.umaId ? umaMapById.get(formData.umaId)?.[displayNameProp] || null : null}
+                            onSelect={(item) => handleUmaSelect(item as Uma)}
+                            displayProp={displayNameProp}
+                        />
+                    </div>
+
+                    <div className="form__section">
+                        <h4 className="form__section-title">{t('blueSparkSection')}</h4>
+                        <div className="grid grid-cols-2 gap-4">
+                            <div>
+                                <label className="form__label form__label--xs">{t('typeLabel')}</label>
+                                <select className="form__input" value={formData.blueSpark.type} onChange={e => handleSparkChange('blueSpark', 'type', e.target.value as BlueSpark['type'])}>
+                                    {BLUE_SPARK_TYPES.map(type => <option key={type} value={type}>{t(type, { ns: 'game' })}</option>)}
+                                </select>
+                            </div>
+                            <div>
+                                <label className="form__label form__label--xs">{t('starsLabel')}</label>
+                                <select className="form__input" value={formData.blueSpark.stars} onChange={e => handleSparkChange('blueSpark', 'stars', Number(e.target.value) as 1|2|3)}>
+                                    {STAR_OPTIONS.map(s => <option key={s}>{s}</option>)}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="form__section">
+                        <h4 className="form__section-title">{t('pinkSparkSection')}</h4>
+                        <div className="grid grid-cols-2 gap-4">
+                            <div>
+                                <label className="form__label form__label--xs">{t('typeLabel')}</label>
+                                <select className="form__input" value={formData.pinkSpark.type} onChange={e => handleSparkChange('pinkSpark', 'type', e.target.value)}>
+                                    {PINK_SPARK_TYPES.map(type => <option key={type} value={type}>{t(type, { ns: 'game' })}</option>)}
+                                </select>
+                            </div>
+                            <div>
+                                <label className="form__label form__label--xs">{t('starsLabel')}</label>
+                                <select className="form__input" value={formData.pinkSpark.stars} onChange={e => handleSparkChange('pinkSpark', 'stars', Number(e.target.value) as 1|2|3)}>
+                                    {STAR_OPTIONS.map(s => <option key={s}>{s}</option>)}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="form__section">
+                        <h4 className="form__section-title">{t('uniqueSparksSection')}</h4>
+                        <div className="form__obtained-sparks-container">
+                            {formData.uniqueSparks.map(spark => (
+                                <div key={spark.name} className="spark-tag obtained-spark" data-spark-category="unique">
+                                    {getDisplayName(spark.name, 'skill')} {formatStars(spark.stars)}
+                                    <button type="button" onClick={() => removeObtainedSpark('uniqueSparks', spark.name)} className="obtained-spark__remove-btn">&times;</button>
+                                </div>
+                            ))}
+                        </div>
+                        <div className="form__input-group">
+                            <SearchableSelect
+                                items={uniqueSkills}
+                                placeholder={t('searchUniqueSkill')}
+                                value={currentUniqueSkill?.[displayNameProp] || null}
+                                onSelect={setCurrentUniqueSkill}
+                                displayProp={displayNameProp}
+                                disabled={isUniqueSparkSelected}
+                            />
+                            <select
+                                className="form__input w-24"
+                                value={currentUniqueStars}
+                                onChange={e => setCurrentUniqueStars(Number(e.target.value) as 1|2|3)}
+                                disabled={isUniqueSparkSelected}
+                            >
+                                {STAR_OPTIONS.map(s => <option key={s}>{s}</option>)}
+                            </select>
+                            <button
+                                type="button"
+                                className="button button--secondary flex-shrink-0"
+                                onClick={() => addObtainedSpark('uniqueSparks', currentUniqueSkill, currentUniqueStars)}
+                                disabled={isUniqueSparkSelected || !currentUniqueSkill}
+                            >
+                                {t('common:add')}
+                            </button>
+                        </div>
+                    </div>
+
+                    <div className="form__section">
+                        <h4 className="form__section-title">{t('whiteSparksSection')}</h4>
+                        <div className="form__obtained-sparks-container">
+                            {formData.whiteSparks.map(spark => (
+                                <div key={spark.name} className="spark-tag obtained-spark" data-spark-category="white">
+                                    {getDisplayName(spark.name, 'skill')} {formatStars(spark.stars)}
+                                    <button type="button" onClick={() => removeObtainedSpark('whiteSparks', spark.name)} className="obtained-spark__remove-btn">&times;</button>
+                                </div>
+                            ))}
+                        </div>
+                        <div className="form__input-group">
+                            <SearchableSelect items={availableNormalSkills} placeholder={t('searchSkill')} value={currentWhiteSkill?.[displayNameProp] || null} onSelect={setCurrentWhiteSkill} displayProp={displayNameProp} />
+                            <select className="form__input w-24" value={currentWhiteStars} onChange={e => setCurrentWhiteStars(Number(e.target.value) as 1|2|3)}>
+                                {STAR_OPTIONS.map(s => <option key={s}>{s}</option>)}
+                            </select>
+                            <button
+                                type="button"
+                                className="button button--secondary flex-shrink-0"
+                                onClick={() => addObtainedSpark('whiteSparks', currentWhiteSkill, currentWhiteStars)}
+                                disabled={!currentWhiteSkill}
+                            >
+                                {t('common:add')}
+                            </button>
+                        </div>
+                    </div>
+
                     <div className="form__section">
                         <h4 className="form__section-title">{t('legacyOriginSection')}</h4>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
