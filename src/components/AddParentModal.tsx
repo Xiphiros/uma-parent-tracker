@@ -147,7 +147,7 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
         return (
             <div>
                 <h5 className="form__label mb-2">{t(slot)}</h5>
-                <div className="flex items-center justify-between p-2 border rounded bg-stone-50 dark:bg-stone-900/50">
+                <div className="form__static-display">
                     <span className="text-sm text-stone-600 dark:text-stone-300">{name}</span>
                     <button type="button" className="button button--secondary button--small" onClick={() => handleOpenGpModal(slot)}>
                         {gp ? t('changeBtn') : t('selectBtn')}
