@@ -51,6 +51,20 @@ export interface Goal {
   wishlist: WishlistItem[];
 }
 
+/**
+ * Represents the essential, scorable data of a parent that is not in the inventory (e.g., a rental).
+ * White sparks are omitted as their influence is considered "baked into" the resulting child's white sparks.
+ */
+export interface ManualParentData {
+  blueSpark: BlueSpark;
+  pinkSpark: PinkSpark;
+  uniqueSparks: UniqueSpark[];
+}
+
+/** A parent used for breeding can be an owned parent (referenced by ID) or a manually-entered one. */
+export type Grandparent = number | ManualParentData;
+
+
 export interface Parent {
   id: number;
   umaId: string; // The outfit ID, e.g., "100101"
@@ -62,6 +76,8 @@ export interface Parent {
   whiteSparks: WhiteSpark[];
   score: number;
   server: 'jp' | 'global';
+  grandparent1?: Grandparent;
+  grandparent2?: Grandparent;
 }
 
 export type NewParentData = Omit<Parent, 'id' | 'score' | 'gen' | 'server'>;
