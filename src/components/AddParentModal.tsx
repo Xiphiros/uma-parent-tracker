@@ -3,7 +3,7 @@ import { Parent, NewParentData, BlueSpark, WhiteSpark, UniqueSpark, Uma, ManualP
 import { useAppContext } from '../context/AppContext';
 import Modal from './common/Modal';
 import SearchableSelect from './common/SearchableSelect';
-import { formatStars } from '../utils/ui';
+import { formatStars } from '../utils/ui.ts';
 import { useTranslation } from 'react-i18next';
 
 interface AddParentModalProps {
@@ -42,7 +42,7 @@ type GrandparentType = 'none' | 'inventory' | 'manual';
 
 const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) => {
     const { t } = useTranslation(['modals', 'common', 'game']);
-    const { getActiveProfile, masterSkillList, addParent, updateParent, dataDisplayLanguage, umaMapById, skillMapByName, appData, activeServer } = useAppContext();
+    const { getActiveProfile, masterUmaList, masterSkillList, addParent, updateParent, dataDisplayLanguage, umaMapById, skillMapByName, appData, activeServer } = useAppContext();
     
     const [formData, setFormData] = useState<NewParentData>(initialState);
     const [currentUniqueSkill, setCurrentUniqueSkill] = useState<any>(null);
@@ -202,7 +202,7 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
                         items={inventoryOptions}
                         placeholder={t('selectParentPlaceholder')}
                         value={formData[slot] ? getDisplayName(inventory.find(p=>p.id === formData[slot])!.umaId, 'uma') : null}
-                        onSelect={(item) => setFormData(prev => ({...prev, [slot]: (item as Parent).id}))}
+                        onSelect={(item) => setFormData(prev => ({...prev, [slot]: (item as unknown as Parent).id}))}
                         displayProp={displayNameProp}
                     />
                 )}
