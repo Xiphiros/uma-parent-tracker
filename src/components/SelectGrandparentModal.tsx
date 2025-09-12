@@ -10,6 +10,7 @@ import { faUser } from '@fortawesome/free-solid-svg-icons';
 
 const BLUE_SPARK_TYPES: BlueSpark['type'][] = ['Speed', 'Stamina', 'Power', 'Guts', 'Wit'];
 const PINK_SPARK_TYPES = ['Turf', 'Dirt', 'Sprint', 'Mile', 'Medium', 'Long', 'Front Runner', 'Pace Chaser', 'Late Surger', 'End Closer'];
+const STAR_OPTIONS: (1 | 2 | 3)[] = [1, 2, 3];
 
 const initialManualGpState: ManualParentData = {
     umaId: undefined, blueSpark: { type: 'Speed', stars: 1 },
@@ -89,8 +90,16 @@ const SelectGrandparentModal = ({ isOpen, onClose, onSave, title }: SelectGrandp
                         <select className="form__input" value={manualData.blueSpark.type} onChange={e => setManualData(p => ({...p, blueSpark: {...p.blueSpark, type: e.target.value as BlueSpark['type']}}))}>
                             {BLUE_SPARK_TYPES.map(type => <option key={type} value={type}>{t(type, { ns: 'game' })}</option>)}
                         </select>
+                         <select className="form__input" value={manualData.blueSpark.stars} onChange={e => setManualData(p => ({...p, blueSpark: {...p.blueSpark, stars: Number(e.target.value) as 1|2|3}}))}>
+                            {STAR_OPTIONS.map(s => <option key={s}>{s}</option>)}
+                        </select>
+                    </div>
+                     <div className="grid grid-cols-2 gap-2">
                         <select className="form__input" value={manualData.pinkSpark.type} onChange={e => setManualData(p => ({...p, pinkSpark: {...p.pinkSpark, type: e.target.value}}))}>
                             {PINK_SPARK_TYPES.map(type => <option key={type} value={type}>{t(type, { ns: 'game' })}</option>)}
+                        </select>
+                         <select className="form__input" value={manualData.pinkSpark.stars} onChange={e => setManualData(p => ({...p, pinkSpark: {...p.pinkSpark, stars: Number(e.target.value) as 1|2|3}}))}>
+                            {STAR_OPTIONS.map(s => <option key={s}>{s}</option>)}
                         </select>
                     </div>
                     <SearchableSelect items={uniqueSkills} placeholder={t('searchUniqueSkill')} value={manualUnique?.[displayNameProp] || null} onSelect={(item) => { const skill = item as Skill; setManualUnique(skill); setManualData(p => ({...p, uniqueSparks: skill ? [{name: skill.name_en, stars: 3}] : []})); }} displayProp={displayNameProp} />
