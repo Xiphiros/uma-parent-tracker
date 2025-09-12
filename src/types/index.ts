@@ -53,13 +53,13 @@ export interface Goal {
 
 /**
  * Represents the essential, scorable data of a parent that is not in the inventory (e.g., a rental).
- * White sparks are omitted as their influence is considered "baked into" the resulting child's white sparks.
  */
 export interface ManualParentData {
   umaId?: string;
   blueSpark: BlueSpark;
   pinkSpark: PinkSpark;
   uniqueSparks: UniqueSpark[];
+  whiteSparks: WhiteSpark[];
 }
 
 /** A parent used for breeding can be an owned parent (referenced by ID) or a manually-entered one. */
