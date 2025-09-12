@@ -1,12 +1,11 @@
 import React, { useMemo, useState } from 'react';
 import { useAppContext } from '../context/AppContext';
-import { Grandparent, ManualParentData, Parent, UniqueSpark, WhiteSpark, BlueSpark, PinkSpark } from '../types';
+import { Grandparent, ManualParentData, Parent, UniqueSpark, BlueSpark, PinkSpark } from '../types';
 import SparkTag from './common/SparkTag';
 import './ParentCard.css';
 import { useTranslation } from 'react-i18next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus, faChevronDown, faUser, faStar } from '@fortawesome/free-solid-svg-icons';
-import { FaRunning, FaPaintBrush } from 'react-icons/fa'; // Using react-icons for variety
+import { faPlus, faChevronDown, faUser, faStar, faRunning, faPalette } from '@fortawesome/free-solid-svg-icons';
 
 interface ParentCardProps {
     parent: Parent;
@@ -69,7 +68,6 @@ const ParentCard = ({ parent, isTopParent = false, displayScore = true, onEdit, 
 
     const aggregatedSparks = useMemo(() => {
         const inventoryMap = new Map(appData.inventory.map(p => [p.id, p]));
-        const lineage: (Parent | ManualParentData)[] = [parent];
 
         const resolveGrandparent = (gp: Grandparent) => {
             if (typeof gp === 'number') return inventoryMap.get(gp);
@@ -101,7 +99,7 @@ const ParentCard = ({ parent, isTopParent = false, displayScore = true, onEdit, 
         const unique: { name: string, stars: number, fromParent: boolean }[] = parent.uniqueSparks.map(s => ({ ...s, fromParent: true }));
         const parentUniqueNames = new Set(parent.uniqueSparks.map(s => s.name));
         
-        const addGrandparentUniques = (gp: Parent | ManualParentData | null) => {
+        const addGrandparentUniques = (gp: Parent | ManualParentData | null | undefined) => {
             if (!gp) return;
             gp.uniqueSparks.forEach(spark => {
                 if (!parentUniqueNames.has(spark.name)) {
@@ -165,7 +163,7 @@ const ParentCard = ({ parent, isTopParent = false, displayScore = true, onEdit, 
                     <div className="parent-card__body">
                         <div className="parent-card__spark-grid">
                             {/* Blue Sparks */}
-                            <div className="parent-card__spark-section-icon parent-card__spark-section-icon--blue text-white"><FaRunning /></div>
+                            <div className="parent-card__spark-section-icon parent-card__spark-section-icon--blue text-white"><FontAwesomeIcon icon={faRunning} /></div>
                             <div className="parent-card__spark-container">
                                 {Object.entries(aggregatedSparks.blue).map(([type, data]) => (
                                     <div key={type} className="lineage-spark" data-spark-type={type.toLowerCase()}>
@@ -177,7 +175,7 @@ const ParentCard = ({ parent, isTopParent = false, displayScore = true, onEdit, 
                             </div>
 
                             {/* Pink Sparks */}
-                            <div className="parent-card__spark-section-icon parent-card__spark-section-icon--pink text-white"><FaPaintBrush /></div>
+                            <div className="parent-card__spark-section-icon parent-card__spark-section-icon--pink text-white"><FontAwesomeIcon icon={faPalette} /></div>
                             <div className="parent-card__spark-container">
                                 {Object.entries(aggregatedSparks.pink).map(([type, data]) => (
                                     <div key={type} className="lineage-spark" data-spark-type={type.toLowerCase().replace(/ /g, '-')}>
