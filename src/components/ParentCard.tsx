@@ -1,11 +1,11 @@
-import React, { useMemo, useState } from 'react';
+import React, { useMemo } from 'react';
 import { useAppContext } from '../context/AppContext';
-import { Grandparent, ManualParentData, Parent, UniqueSpark, BlueSpark, PinkSpark } from '../types';
+import { Grandparent, ManualParentData, Parent, BlueSpark, PinkSpark } from '../types';
 import SparkTag from './common/SparkTag';
 import './ParentCard.css';
 import { useTranslation } from 'react-i18next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus, faChevronDown, faUser, faStar, faRunning, faPalette } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faUser } from '@fortawesome/free-solid-svg-icons';
 
 interface ParentCardProps {
     parent: Parent;
@@ -20,38 +20,48 @@ interface ParentCardProps {
     onSelect?: (parent: Parent) => void;
 }
 
-const GrandparentDisplay = ({ grandparent }: { grandparent: Grandparent }) => {
-    const { t } = useTranslation(['roster', 'common', 'game']);
-    const { appData, dataDisplayLanguage, umaMapById, skillMapByName } = useAppContext();
-    const displayNameProp = dataDisplayLanguage === 'jp' ? 'name_jp' : 'name_en';
+const LineageTree = ({ parent }: { parent: Parent }) => {
+    const { appData, umaMapById } = useAppContext();
 
-    const getSparkDisplayName = (spark: UniqueSpark) => {
-        const skill = skillMapByName.get(spark.name);
-        return skill ? skill[displayNameProp] : spark.name;
-    };
-    
-    let gpData: (ManualParentData & { name?: string }) | null = null;
-    if (typeof grandparent === 'number') {
-        const ownedParent = appData.inventory.find(p => p.id === grandparent);
-        if (ownedParent) {
-            const uma = umaMapById.get(ownedParent.umaId);
-            gpData = { ...ownedParent, name: uma ? uma[displayNameProp] : ownedParent.name };
+    const getAvatar = (gp: Grandparent | Parent): string | null => {
+        let umaId: string | undefined;
+        if (typeof gp === 'number') {
+            const ownedParent = appData.inventory.find(p => p.id === gp);
+            umaId = ownedParent?.umaId;
+        } else if ('umaId' in gp) {
+            umaId = gp.umaId;
         }
-    } else {
-        const manualUma = grandparent.umaId ? umaMapById.get(grandparent.umaId) : null;
-        gpData = { ...grandparent, name: manualUma ? manualUma[displayNameProp] : t('parentCard.borrowedParent') };
-    }
+        
+        if (umaId) {
+            const umaData = umaMapById.get(umaId);
+            return umaData?.image ? `${import.meta.env.BASE_URL}${umaData.image}` : null;
+        }
+        return null;
+    };
 
-    if (!gpData) return <p className="parent-card__no-sparks-text">{t('parentCard.noGpData')}</p>;
+    const parentAvatar = getAvatar(parent);
+    const gp1Avatar = parent.grandparent1 ? getAvatar(parent.grandparent1) : null;
+    const gp2Avatar = parent.grandparent2 ? getAvatar(parent.grandparent2) : null;
+    
+    const renderAvatar = (src: string | null, size: 'parent' | 'grandparent') => (
+        <img
+            src={src || 'https://via.placeholder.com/80'}
+            className={`lineage-tree__avatar lineage-tree__avatar--${size}`}
+            alt=""
+        />
+    );
 
     return (
-        <div className="parent-card__lineage-gp">
-            <h5 className="parent-card__lineage-gp-name">{gpData.name}</h5>
-            <div className="parent-card__spark-container">
-                <SparkTag category="blue" type={t(gpData.blueSpark.type, { ns: 'game' })} stars={gpData.blueSpark.stars} originalType={gpData.blueSpark.type} />
-                <SparkTag category="pink" type={t(gpData.pinkSpark.type, { ns: 'game' })} stars={gpData.pinkSpark.stars} originalType={gpData.pinkSpark.type} />
-                {gpData.uniqueSparks.map(s => <SparkTag key={s.name} category="unique" type={getSparkDisplayName(s)} stars={s.stars} />)}
+        <div className="lineage-tree">
+            <div className="lineage-tree__parent">
+                {renderAvatar(parentAvatar, 'parent')}
             </div>
+            {(gp1Avatar || gp2Avatar) && (
+                <div className="lineage-tree__grandparents">
+                    {renderAvatar(gp1Avatar, 'grandparent')}
+                    {renderAvatar(gp2Avatar, 'grandparent')}
+                </div>
+            )}
         </div>
     );
 };
@@ -59,7 +69,6 @@ const GrandparentDisplay = ({ grandparent }: { grandparent: Grandparent }) => {
 const ParentCard = ({ parent, isTopParent = false, displayScore = true, onEdit, onDelete, onAssign, onMove, assignedProjects, isSelectionMode = false, onSelect }: ParentCardProps) => {
     const { t } = useTranslation(['roster', 'common', 'game']);
     const { getActiveProfile, dataDisplayLanguage, umaMapById, skillMapByName, appData } = useAppContext();
-    const [isLineageVisible, setIsLineageVisible] = useState(false);
     const goal = getActiveProfile()?.goal;
     const displayNameProp = dataDisplayLanguage === 'jp' ? 'name_jp' : 'name_en';
 
@@ -126,20 +135,11 @@ const ParentCard = ({ parent, isTopParent = false, displayScore = true, onEdit, 
             return { ...spark, tier };
         });
     }, [parent.whiteSparks, goal, t]);
-    
-    const hasGrandparents = parent.grandparent1 || parent.grandparent2;
-    const hasLineageSparks = Object.keys(aggregatedSparks.blue).length > 1 || Object.keys(aggregatedSparks.pink).length > 1 || aggregatedSparks.unique.length > parent.uniqueSparks.length;
 
     return (
         <div className={`parent-card ${isTopParent ? 'parent-card--top-pair' : ''}`}>
             <div className="parent-card__main-content">
-                <div className="parent-card__image-container">
-                    <img
-                        src={umaData?.image ? `${import.meta.env.BASE_URL}${umaData.image}` : 'https://via.placeholder.com/80'}
-                        alt={parent.name}
-                        className="parent-card__image"
-                    />
-                </div>
+                <LineageTree parent={parent} />
                 <div className="parent-card__details">
                     <div className="parent-card__header">
                         <div>
@@ -162,8 +162,6 @@ const ParentCard = ({ parent, isTopParent = false, displayScore = true, onEdit, 
                     </div>
                     <div className="parent-card__body">
                         <div className="parent-card__spark-grid">
-                            {/* Blue Sparks */}
-                            <div className="parent-card__spark-section-icon parent-card__spark-section-icon--blue text-white"><FontAwesomeIcon icon={faRunning} /></div>
                             <div className="parent-card__spark-container">
                                 {Object.entries(aggregatedSparks.blue).map(([type, data]) => (
                                     <div key={type} className="lineage-spark" data-spark-type={type.toLowerCase()}>
@@ -173,9 +171,6 @@ const ParentCard = ({ parent, isTopParent = false, displayScore = true, onEdit, 
                                     </div>
                                 ))}
                             </div>
-
-                            {/* Pink Sparks */}
-                            <div className="parent-card__spark-section-icon parent-card__spark-section-icon--pink text-white"><FontAwesomeIcon icon={faPalette} /></div>
                             <div className="parent-card__spark-container">
                                 {Object.entries(aggregatedSparks.pink).map(([type, data]) => (
                                     <div key={type} className="lineage-spark" data-spark-type={type.toLowerCase().replace(/ /g, '-')}>
@@ -185,21 +180,16 @@ const ParentCard = ({ parent, isTopParent = false, displayScore = true, onEdit, 
                                     </div>
                                 ))}
                             </div>
-                            
-                            {/* Unique Sparks */}
                             {aggregatedSparks.unique.length > 0 && (
-                                <>
-                                    <div className="parent-card__spark-section-icon parent-card__spark-section-icon--unique text-white"><FontAwesomeIcon icon={faStar} /></div>
-                                    <div className="parent-card__spark-container">
-                                        {aggregatedSparks.unique.map(spark => (
-                                            <div key={spark.name} className="lineage-spark" data-spark-category="unique">
-                                                {getSparkDisplayName(spark.name)}
-                                                {!spark.fromParent && <FontAwesomeIcon icon={faUser} className="lineage-spark__gp-icon" />}
-                                                <span className="lineage-spark__parent-contrib">({spark.stars}★)</span>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </>
+                                <div className="parent-card__spark-container">
+                                    {aggregatedSparks.unique.map(spark => (
+                                        <div key={spark.name} className="lineage-spark" data-spark-category="unique">
+                                            {getSparkDisplayName(spark.name)}
+                                            {!spark.fromParent && <FontAwesomeIcon icon={faUser} className="lineage-spark__gp-icon" />}
+                                            <span className="lineage-spark__parent-contrib">({spark.stars}★)</span>
+                                        </div>
+                                    ))}
+                                </div>
                             )}
                         </div>
                         
@@ -217,31 +207,14 @@ const ParentCard = ({ parent, isTopParent = false, displayScore = true, onEdit, 
                     </div>
                 </div>
             </div>
-            {(hasLineageSparks || onAssign) && !isSelectionMode && (
+            {onAssign && !isSelectionMode && (
                 <div className="parent-card__footer">
-                    {hasLineageSparks && (
-                         <button className="parent-card__lineage-toggle" onClick={() => setIsLineageVisible(!isLineageVisible)}>
-                            <FontAwesomeIcon icon={faChevronDown} className={`transition-transform ${isLineageVisible ? 'rotate-180' : ''}`} />
-                            <span className="ml-1">{t('parentCard.lineage')}</span>
-                        </button>
-                    )}
-                    {onAssign && (
-                        <>
-                            <span className="parent-card__assigned-projects" title={assignedProjects?.join(', ')}>
-                                {assignedProjects && assignedProjects.length > 0 ? assignedProjects.join(', ') : t('inventory.unassigned')}
-                            </span>
-                            <button className="button button--secondary button--small" onClick={onAssign}>
-                                <FontAwesomeIcon icon={faPlus} />
-                            </button>
-                        </>
-                    )}
-                </div>
-            )}
-            {isLineageVisible && hasGrandparents && (
-                <div className="parent-card__lineage">
-                    <h4 className="parent-card__lineage-title">{t('parentCard.legacyOrigin')}</h4>
-                    {parent.grandparent1 && <GrandparentDisplay grandparent={parent.grandparent1} />}
-                    {parent.grandparent2 && <GrandparentDisplay grandparent={parent.grandparent2} />}
+                    <span className="parent-card__assigned-projects" title={assignedProjects?.join(', ')}>
+                        {assignedProjects && assignedProjects.length > 0 ? assignedProjects.join(', ') : t('inventory.unassigned')}
+                    </span>
+                    <button className="button button--secondary button--small" onClick={onAssign}>
+                        <FontAwesomeIcon icon={faPlus} />
+                    </button>
                 </div>
             )}
         </div>
