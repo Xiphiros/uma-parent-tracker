@@ -20,5 +20,11 @@
   "moveParentConfirmTitle": "親の移動の確認",
   "moveParentConfirmMsg": "「{{name}}」を{{server}}サーバーに移動してもよろしいですか？この親は完全に互換性があります。",
   "moveParentWarningTitle": "互換性の警告",
-  "moveParentWarningMsg": "「{{name}}」を{{server}}サーバーに移動できません。以下の非互換性が見つかりました："
+  "moveParentWarningMsg": "「{{name}}」を{{server}}サーバーに移動できません。以下の非互換性が見つかりました：",
+  "legacyOriginSection": "継承元",
+  "grandparent1": "親1",
+  "grandparent2": "親2",
+  "selectFromInventory": "所持ウマ娘から選択",
+  "enterManually": "手動入力（レンタル）",
+  "selectParentPlaceholder": "親を選択..."
 }
