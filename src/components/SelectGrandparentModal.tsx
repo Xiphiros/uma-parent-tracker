@@ -1,5 +1,5 @@
-import { useState, useEffect, useMemo } from 'react';
-import { Parent, Uma, ManualParentData, BlueSpark, UniqueSpark, Grandparent } from '../types';
+import { useState, useMemo } from 'react';
+import { Parent, Uma, ManualParentData, BlueSpark, UniqueSpark, Grandparent, Skill } from '../types';
 import { useAppContext } from '../context/AppContext';
 import Modal from './common/Modal';
 import SearchableSelect from './common/SearchableSelect';
@@ -31,7 +31,7 @@ const SelectGrandparentModal = ({ isOpen, onClose, onSave, title }: SelectGrandp
     const [selectionType, setSelectionType] = useState<'inventory' | 'manual'>('inventory');
     const [selectedInventoryParent, setSelectedInventoryParent] = useState<Parent | null>(null);
     const [manualData, setManualData] = useState<ManualParentData>(initialManualGpState);
-    const [manualUnique, setManualUnique] = useState<UniqueSpark | null>(null);
+    const [manualUnique, setManualUnique] = useState<Skill | null>(null);
 
     const inventory = useMemo(() => appData.inventory.filter(p => p.server === activeServer), [appData.inventory, activeServer]);
     const uniqueSkills = useMemo(() => masterSkillList.filter(s => s.type === 'unique'), [masterSkillList]);
@@ -81,7 +81,7 @@ const SelectGrandparentModal = ({ isOpen, onClose, onSave, title }: SelectGrandp
             </div>
 
             {selectionType === 'inventory' ? (
-                <SearchableSelect items={inventory.map(p => ({...p, name_en: getDisplayName(p.umaId), name_jp: getDisplayName(p.umaId)}))} placeholder={t('selectParentPlaceholder')} value={selectedInventoryParent ? getDisplayName(selectedInventoryParent.umaId) : null} onSelect={(item) => setSelectedInventoryParent(item as Parent)} displayProp={displayNameProp} />
+                <SearchableSelect items={inventory.map(p => ({...p, name_en: getDisplayName(p.umaId), name_jp: getDisplayName(p.umaId)}))} placeholder={t('selectParentPlaceholder')} value={selectedInventoryParent ? getDisplayName(selectedInventoryParent.umaId) : null} onSelect={(item) => setSelectedInventoryParent(item as unknown as Parent)} displayProp={displayNameProp} />
             ) : (
                 <div className="gp-selector__manual-card">
                     <SearchableSelect items={masterUmaList} placeholder={t('selectUmaPlaceholder')} value={manualData.umaId ? getDisplayName(manualData.umaId) : null} onSelect={(item) => setManualData(p => ({...p, umaId: (item as Uma).id}))} displayProp={displayNameProp} />
@@ -93,7 +93,7 @@ const SelectGrandparentModal = ({ isOpen, onClose, onSave, title }: SelectGrandp
                             {PINK_SPARK_TYPES.map(type => <option key={type} value={type}>{t(type, { ns: 'game' })}</option>)}
                         </select>
                     </div>
-                    <SearchableSelect items={uniqueSkills} placeholder={t('searchUniqueSkill')} value={manualUnique?.[displayNameProp] || null} onSelect={(item) => { setManualUnique(item as UniqueSpark); setManualData(p => ({...p, uniqueSparks: item ? [{name: (item as UniqueSpark).name_en, stars: 3}] : []})); }} displayProp={displayNameProp} />
+                    <SearchableSelect items={uniqueSkills} placeholder={t('searchUniqueSkill')} value={manualUnique?.[displayNameProp] || null} onSelect={(item) => { const skill = item as Skill; setManualUnique(skill); setManualData(p => ({...p, uniqueSparks: skill ? [{name: skill.name_en, stars: 3}] : []})); }} displayProp={displayNameProp} />
                 </div>
             )}
 
