@@ -7,6 +7,8 @@ import { formatStars } from '../utils/ui';
 import { useTranslation } from 'react-i18next';
 import './AddParentModal.css';
 import SelectGrandparentModal from './SelectGrandparentModal';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
 
 interface AddParentModalProps {
   isOpen: boolean;
@@ -48,6 +50,12 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
     const displayNameProp = dataDisplayLanguage === 'jp' ? 'name_jp' : 'name_en';
     const uniqueSkills = useMemo(() => masterSkillList.filter(s => s.type === 'unique'), [masterSkillList]);
     const normalSkills = useMemo(() => masterSkillList.filter(s => s.type !== 'unique' && s.rarity === 1), [masterSkillList]);
+
+    const mainParentImage = useMemo(() => {
+        if (!formData.umaId) return null;
+        const uma = umaMapById.get(formData.umaId);
+        return uma?.image ? `${import.meta.env.BASE_URL}${uma.image}` : null;
+    }, [formData.umaId, umaMapById]);
 
     const skillNameToGroupId = useMemo(() => {
         const map = new Map<string, number | undefined>();
@@ -136,8 +144,26 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
         setActiveGpSlot(null);
     };
 
+    const getGrandparentAvatar = (gp: Grandparent | undefined): string | null => {
+        if (!gp) return null;
+        let umaId: string | undefined;
+        if (typeof gp === 'number') {
+            const ownedParent = appData.inventory.find(p => p.id === gp);
+            umaId = ownedParent?.umaId;
+        } else if (gp.umaId) {
+            umaId = gp.umaId;
+        }
+        
+        if (umaId) {
+            const umaData = umaMapById.get(umaId);
+            return umaData?.image ? `${import.meta.env.BASE_URL}${umaData.image}` : null;
+        }
+        return null;
+    };
+
     const renderGrandparentDisplay = (slot: GrandparentSlot) => {
         const gp = formData[slot];
+        const avatarUrl = getGrandparentAvatar(gp);
         let name = t('notSelected');
         if (gp) {
             if (typeof gp === 'number') {
@@ -153,7 +179,16 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
             <div>
                 <h5 className="form__label mb-2">{t(slot)}</h5>
                 <div className="form__static-display">
-                    <span className={`form__static-display-text ${!gp ? 'form__static-display-text--placeholder' : ''}`}>{name}</span>
+                    <div className="flex items-center gap-2">
+                        {avatarUrl ? (
+                            <img src={avatarUrl} alt="" className="form__static-display-image" />
+                        ) : (
+                            <div className="form__static-display-image-placeholder">
+                                <FontAwesomeIcon icon={faUser} />
+                            </div>
+                        )}
+                        <span className={`form__static-display-text ${!gp ? 'form__static-display-text--placeholder' : ''}`}>{name}</span>
+                    </div>
                     <button type="button" className="button button--secondary button--small" onClick={() => handleOpenGpModal(slot)}>
                         {gp ? t('changeBtn') : t('selectBtn')}
                     </button>
@@ -166,15 +201,24 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
         <>
             <Modal isOpen={isOpen} onClose={onClose} title={parentToEdit ? t('editParentTitle') : t('addParentTitle')} size="lg">
                 <form onSubmit={handleSubmit} className="form space-y-4">
-                    <div>
-                        <label className="form__label form__label--xs">{t('umaNameLabel')}</label>
-                        <SearchableSelect 
-                            items={masterUmaList}
-                            placeholder={t('selectUmaPlaceholder')}
-                            value={formData.umaId ? umaMapById.get(formData.umaId)?.[displayNameProp] || null : null}
-                            onSelect={(item) => handleUmaSelect(item as Uma)}
-                            displayProp={displayNameProp}
-                        />
+                    <div className="add-parent-modal__header">
+                        {mainParentImage ? (
+                            <img src={mainParentImage} alt="" className="add-parent-modal__portrait" />
+                        ) : (
+                            <div className="add-parent-modal__portrait-placeholder">
+                                <FontAwesomeIcon icon={faUser} size="2x" />
+                            </div>
+                        )}
+                        <div className="add-parent-modal__main-info">
+                            <label className="form__label form__label--xs">{t('umaNameLabel')}</label>
+                            <SearchableSelect 
+                                items={masterUmaList}
+                                placeholder={t('selectUmaPlaceholder')}
+                                value={formData.umaId ? umaMapById.get(formData.umaId)?.[displayNameProp] || null : null}
+                                onSelect={(item) => handleUmaSelect(item as Uma)}
+                                displayProp={displayNameProp}
+                            />
+                        </div>
                     </div>
 
                     <div className="form__section">
