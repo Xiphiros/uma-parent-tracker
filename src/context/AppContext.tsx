@@ -4,6 +4,7 @@ import masterSkillListJson from '../data/skill-list.json';
 import masterUmaListJson from '../data/uma-list.json';
 import { calculateScore } from '../utils/scoring';
 import i18n from '../i18n';
+import { generateParentHash } from '../utils/hashing';
 
 const DB_KEY = 'umaTrackerData_v2';
 const USER_PREFERENCES_KEY = 'umaTrackerPrefs_v1';
@@ -692,12 +693,19 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const addParent = (parentData: NewParentData, profileId?: number) => {
+    const newHash = generateParentHash(parentData);
+    const isDuplicate = appData.inventory.some(p => p.hash === newHash && p.server === activeServer);
+    if (isDuplicate) {
+        throw new Error(i18n.t('modals:duplicateParentError'));
+    }
+
     const newParent: Parent = {
       ...parentData,
       id: Date.now(),
       gen: getNextGenNumberForCharacter(parentData.umaId),
       score: 0, // Score is always calculated on the fly
       server: activeServer,
+      hash: newHash,
     };
 
     setAppData(prevData => {
@@ -729,9 +737,15 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const updateParent = (parent: Parent) => {
+    const newHash = generateParentHash(parent);
+    const isDuplicate = appData.inventory.some(p => p.id !== parent.id && p.hash === newHash && p.server === activeServer);
+    if (isDuplicate) {
+        throw new Error(i18n.t('modals:duplicateParentError'));
+    }
+    
     setAppData(prevData => ({
       ...prevData,
-      inventory: prevData.inventory.map(p => p.id === parent.id ? { ...p, ...parent } : p)
+      inventory: prevData.inventory.map(p => p.id === parent.id ? { ...p, ...parent, hash: newHash } : p)
     }));
   };
 
