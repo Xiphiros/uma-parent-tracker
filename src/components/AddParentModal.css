@@ -1,4 +1,56 @@
 /* AddParentModal Styles */
+.add-parent-modal__header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.add-parent-modal__portrait {
+    width: 64px;
+    height: 64px;
+    object-fit: cover;
+    border-radius: 9999px; /* rounded-full */
+    border: 2px solid var(--color-avatar-border);
+    flex-shrink: 0;
+}
+
+.add-parent-modal__portrait-placeholder {
+    width: 64px;
+    height: 64px;
+    border-radius: 9999px;
+    border: 2px solid var(--color-avatar-border);
+    background-color: var(--color-card-bg-hover);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text-muted);
+    flex-shrink: 0;
+}
+
+.add-parent-modal__main-info {
+    flex-grow: 1;
+}
+
+.form__static-display-image {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 9999px;
+    border: 2px solid var(--color-avatar-border);
+}
+
+.form__static-display-image-placeholder {
+    width: 40px;
+    height: 40px;
+    border-radius: 9999px;
+    background-color: var(--color-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text-muted);
+}
+
 .gp-selector__toggle {
     display: flex;
     background-color: var(--color-card-bg-hover);
