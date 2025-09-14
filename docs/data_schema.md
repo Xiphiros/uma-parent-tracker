@@ -2,7 +2,69 @@
 
 This document outlines the structure of the exported JSON data for this application. As features are added, the schema may evolve. The `version` key at the root of the JSON file helps in handling data migrations.
 
-## Version 5 (Current)
+## Version 6 (Current)
+
+Version 6 adds an optional `hash` property to each `Parent` object in the `inventory`. This hash is a string generated from the parent's core characteristics (sparks, lineage, etc.) and is used internally to prevent the creation of duplicate parents.
+
+*   An optional `hash` string is added to each `Parent` object.
+*   The `version` key is set to `6`.
+
+```json
+{
+  "version": 6,
+  "activeServer": "jp",
+  "inventory": [
+    {
+      "id": 1725612900123,
+      "umaId": "100401",
+      "name": "Super Creek",
+      "server": "jp",
+      "hash": "uma:100401;blue:Stamina|3;...",
+      "...": "..."
+    },
+    {
+      "id": 1725612900456,
+      "umaId": "100101",
+      "name": "Special Week",
+      "server": "global",
+      "hash": "uma:100101;blue:Speed|2;...",
+      "...": "..."
+    }
+  ],
+  "serverData": {
+    "jp": {
+      "activeProfileId": 1725612458123,
+      "profiles": [
+        {
+          "id": 1725612458123,
+          "name": "Super Creek Project (JP)",
+          "isPinned": false,
+          "goal": { "...": "..." },
+          "roster": [ 1725612900123 ]
+        }
+      ],
+      "folders": [],
+      "layout": [ 1725612458123 ]
+    },
+    "global": {
+      "activeProfileId": 1725613000000,
+      "profiles": [
+         {
+          "id": 1725613000000,
+          "name": "Special Week Project (Global)",
+          "isPinned": false,
+          "goal": { "...": "..." },
+          "roster": [ 1725612900456 ]
+        }
+      ],
+      "folders": [],
+      "layout": [ 1725613000000 ]
+    }
+  }
+}
+```
+
+## Version 5
 
 Version 5 introduces **server-specific workspaces**, allowing users to maintain separate sets of projects, folders, and layouts for the JP and Global game servers while sharing a single global inventory of parents.
 
