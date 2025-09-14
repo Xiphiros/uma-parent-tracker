@@ -79,6 +79,7 @@ export interface Parent {
   server: 'jp' | 'global';
   grandparent1?: Grandparent;
   grandparent2?: Grandparent;
+  hash?: string;
 }
 
 export type NewParentData = Omit<Parent, 'id' | 'score' | 'gen' | 'server'>;
