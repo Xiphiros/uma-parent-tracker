@@ -8,7 +8,7 @@ import { generateParentHash } from '../utils/hashing';
 
 const DB_KEY = 'umaTrackerData_v2';
 const USER_PREFERENCES_KEY = 'umaTrackerPrefs_v1';
-const CURRENT_VERSION = 5;
+const CURRENT_VERSION = 6;
 
 type DataDisplayLanguage = 'en' | 'jp';
 
@@ -174,6 +174,16 @@ const migrateData = (data: any): AppData => {
         delete migrated.layout;
         
         migrated.version = 5;
+    }
+
+    // V5 -> V6: Add hash property to parents
+    if (migrated.version < 6) {
+        migrated.inventory.forEach((p: Parent) => {
+            if (!p.hash) {
+                p.hash = generateParentHash(p);
+            }
+        });
+        migrated.version = 6;
     }
     
     // Universal sanity checks for all versions
