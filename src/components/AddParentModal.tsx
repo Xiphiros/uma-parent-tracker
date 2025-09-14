@@ -101,12 +101,17 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
             setAlertMessage(t('selectUmaAlert'));
             return;
         }
-        if (parentToEdit) {
-            updateParent({ ...parentToEdit, ...formData });
-        } else {
-            addParent(formData, getActiveProfile()?.id);
+        try {
+            if (parentToEdit) {
+                updateParent({ ...parentToEdit, ...formData });
+            } else {
+                addParent(formData, getActiveProfile()?.id);
+            }
+            onClose();
+        } catch (error) {
+            const message = error instanceof Error ? error.message : 'An unknown error occurred.';
+            setAlertMessage(message);
         }
-        onClose();
     };
     
     const getDisplayName = (idOrName: string, type: 'uma' | 'skill'): string => {
@@ -141,7 +146,7 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
             } else if (gp.umaId) {
                 name = getDisplayName(gp.umaId, 'uma');
             } else {
-                name = t('enterManuallyBorrowed');
+                name = t('enterManually');
             }
         }
         return (
