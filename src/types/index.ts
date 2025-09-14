@@ -112,7 +112,7 @@ export interface ServerSpecificData {
 }
 
 export interface AppData {
-  version: 5;
+  version: 6;
   activeServer: 'jp' | 'global';
   inventory: Parent[];
   serverData: {
