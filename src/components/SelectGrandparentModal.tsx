@@ -103,7 +103,7 @@ const SelectGrandparentModal = ({ isOpen, onClose, onSave, title, grandparentToE
         }
         if (selectionType === 'manual' && manualData.umaId) {
             const uma = umaMapById.get(manualData.umaId);
-            return { image: uma?.image, name: getDisplayName(manualData.umaId, 'uma'), type: t('enterManuallyBorrowed') };
+            return { image: uma?.image, name: getDisplayName(manualData.umaId, 'uma'), type: t('enterManually') };
         }
         return null;
     }, [selectionType, selectedInventoryParent, manualData, umaMapById, getDisplayName, t]);
@@ -165,7 +165,7 @@ const SelectGrandparentModal = ({ isOpen, onClose, onSave, title, grandparentToE
 
                 <div className="gp-selector__toggle">
                     <button type="button" className={`gp-selector__toggle-btn ${selectionType === 'inventory' ? 'gp-selector__toggle-btn--active' : ''}`} onClick={() => setSelectionType('inventory')}>{t('selectFromInventory')}</button>
-                    <button type="button" className={`gp-selector__toggle-btn ${selectionType === 'manual' ? 'gp-selector__toggle-btn--active' : ''}`} onClick={() => setSelectionType('manual')}>{t('enterManuallyBorrowed')}</button>
+                    <button type="button" className={`gp-selector__toggle-btn ${selectionType === 'manual' ? 'gp-selector__toggle-btn--active' : ''}`} onClick={() => setSelectionType('manual')}>{t('enterManually')}</button>
                 </div>
 
                 {selectionType === 'inventory' ? (
