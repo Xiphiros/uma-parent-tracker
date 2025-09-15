@@ -27,23 +27,24 @@ const SuggestionParentCard = ({ parent }: SuggestionParentCardProps) => {
         const gp1 = resolveGrandparent(parent.grandparent1, inventoryMap);
         const gp2 = resolveGrandparent(parent.grandparent2, inventoryMap);
 
-        const blue: { [key: string]: { total: number } } = {};
-        const pink: { [key: string]: { total: number } } = {};
+        const blue: { [key: string]: { total: number, parent: number } } = {};
+        const pink: { [key: string]: { total: number, parent: number } } = {};
 
-        const processSpark = (map: typeof blue, spark: BlueSpark | PinkSpark) => {
-            if (!map[spark.type]) map[spark.type] = { total: 0 };
+        const processSpark = (map: typeof blue, spark: BlueSpark | PinkSpark, isParent: boolean) => {
+            if (!map[spark.type]) map[spark.type] = { total: 0, parent: 0 };
             map[spark.type].total += spark.stars;
+            if (isParent) map[spark.type].parent += spark.stars;
         };
 
-        processSpark(blue, parent.blueSpark);
-        processSpark(pink, parent.pinkSpark);
+        processSpark(blue, parent.blueSpark, true);
+        processSpark(pink, parent.pinkSpark, true);
         if (gp1) {
-            processSpark(blue, gp1.blueSpark);
-            processSpark(pink, gp1.pinkSpark);
+            processSpark(blue, gp1.blueSpark, false);
+            processSpark(pink, gp1.pinkSpark, false);
         }
         if (gp2) {
-            processSpark(blue, gp2.blueSpark);
-            processSpark(pink, gp2.pinkSpark);
+            processSpark(blue, gp2.blueSpark, false);
+            processSpark(pink, gp2.pinkSpark, false);
         }
 
         const unique: { name: string, stars: 1 | 2 | 3, fromParent: boolean }[] = parent.uniqueSparks.map(s => ({ ...s, fromParent: true }));
@@ -108,12 +109,24 @@ const SuggestionParentCard = ({ parent }: SuggestionParentCardProps) => {
                 {Object.entries(aggregatedSparks.blue).map(([type, data]) => (
                     <div key={`blue-${type}`} className="lineage-spark" data-spark-category="blue" data-spark-type={type.toLowerCase()}>
                         {data.total}★ {t(type, { ns: 'game' })}
+                        {data.parent > 0 && (
+                            <>
+                                <FontAwesomeIcon icon={faUser} className="spark-origin-icon" />
+                                <span className="lineage-spark__parent-contrib">({data.parent}★)</span>
+                            </>
+                        )}
                     </div>
                 ))}
                 {/* Pink Sparks */}
                 {Object.entries(aggregatedSparks.pink).map(([type, data]) => (
                     <div key={`pink-${type}`} className="lineage-spark" data-spark-category="pink" data-spark-type={type.toLowerCase().replace(/ /g, '-')}>
                         {data.total}★ {t(type, { ns: 'game' })}
+                        {data.parent > 0 && (
+                            <>
+                                <FontAwesomeIcon icon={faUser} className="spark-origin-icon" />
+                                <span className="lineage-spark__parent-contrib">({data.parent}★)</span>
+                            </>
+                        )}
                     </div>
                 ))}
                 {/* Unique Sparks */}
