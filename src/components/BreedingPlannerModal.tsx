@@ -11,7 +11,7 @@ import LineageDisplay from './common/LineageDisplay';
 import { calculateFullAffinity, getLineageCharacterIds, countUniqueInheritableSkills, resolveGrandparent } from '../utils/affinity';
 import PlaceholderCard from './common/PlaceholderCard';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUsers, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faUsers, faUser, faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import SparkTag from './common/SparkTag';
 
 interface BreedingPlannerModalProps {
@@ -52,6 +52,7 @@ const BreedingPlannerModal = ({ isOpen, onClose }: BreedingPlannerModalProps) =>
     // Suggestions State
     const [trainee, setTrainee] = useState<Uma | null>(null);
     const [selectedSuggestion, setSelectedSuggestion] = useState<Suggestion | null>(null);
+    const [isSparkViewExpanded, setIsSparkViewExpanded] = useState(false);
 
     const getDisplayName = (umaId: string) => umaMapById.get(umaId)?.[displayNameProp] || 'Unknown';
     const getSkillDisplayName = (name_en: string) => skillMapByName.get(name_en)?.[displayNameProp] || name_en;
@@ -161,6 +162,7 @@ const BreedingPlannerModal = ({ isOpen, onClose }: BreedingPlannerModalProps) =>
         } else {
             setSelectedSuggestion(null);
         }
+        setIsSparkViewExpanded(false);
     }, [suggestions]);
     
     const handleSelectParent = (parent: Parent) => {
@@ -189,6 +191,11 @@ const BreedingPlannerModal = ({ isOpen, onClose }: BreedingPlannerModalProps) =>
     const getSelectedItem = (item: Uma | null) => {
         if (!item) return null;
         return { name: item[displayNameProp], image: item.image || null };
+    };
+
+    const handleSelectSuggestion = (suggestion: Suggestion) => {
+        setSelectedSuggestion(suggestion);
+        setIsSparkViewExpanded(false);
     };
 
     return (
@@ -246,8 +253,8 @@ const BreedingPlannerModal = ({ isOpen, onClose }: BreedingPlannerModalProps) =>
                                                 role="button"
                                                 tabIndex={0}
                                                 className={`breeding-planner__suggestion-item ${selectedSuggestion?.p1.id === s.p1.id && selectedSuggestion?.p2.id === s.p2.id ? 'breeding-planner__suggestion-item--selected' : ''}`}
-                                                onClick={() => setSelectedSuggestion(s)}
-                                                onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && setSelectedSuggestion(s)}
+                                                onClick={() => handleSelectSuggestion(s)}
+                                                onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && handleSelectSuggestion(s)}
                                             >
                                                 <div className="breeding-planner__suggestion-rank">#{index + 1}</div>
                                                 <div className="breeding-planner__suggestion-pair">
@@ -264,6 +271,9 @@ const BreedingPlannerModal = ({ isOpen, onClose }: BreedingPlannerModalProps) =>
                                     <div className="breeding-planner__suggestion-detail">
                                         {selectedSuggestion && aggregatedSparksForSelected ? (
                                             <>
+                                                <button className="breeding-planner__expand-btn" onClick={() => setIsSparkViewExpanded(prev => !prev)}>
+                                                    <FontAwesomeIcon icon={isSparkViewExpanded ? faChevronUp : faChevronDown} />
+                                                </button>
                                                 <div className="breeding-planner__detail-lineage">
                                                     <LineageDisplay label="" parent={selectedSuggestion.p1} />
                                                     <span className="breeding-planner__pair-selector-plus">+</span>
@@ -279,7 +289,7 @@ const BreedingPlannerModal = ({ isOpen, onClose }: BreedingPlannerModalProps) =>
                                                         <span className="breeding-planner__detail-summary-label">{t('breedingPlanner.totalSkills')}</span>
                                                     </div>
                                                 </div>
-                                                <div className="breeding-planner__detail-sparks">
+                                                <div className={`breeding-planner__detail-sparks ${isSparkViewExpanded ? 'breeding-planner__detail-sparks--expanded' : ''}`}>
                                                     {Object.entries(aggregatedSparksForSelected.blue).map(([type, data]) => (
                                                         <div key={type} className="lineage-spark" data-spark-category="blue" data-spark-type={type.toLowerCase()}>
                                                             {data.total}★ {t(type, { ns: 'game' })}
