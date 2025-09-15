@@ -33,23 +33,27 @@
 .breeding-planner__pair-selector {
     display: flex;
     gap: 1rem;
-    align-items: center;
+    align-items: flex-start; /* Align to top to account for grandparents */
     justify-content: center;
 }
 
 .breeding-planner__pair-selector-plus {
     font-size: 1.5rem;
     color: var(--color-text-muted);
+    margin-top: 80px; /* Align with middle of main slots */
+}
+
+.breeding-planner__results-container {
+    margin-top: 1.5rem;
+    width: 100%;
+    max-width: 500px;
 }
 
 .breeding-planner__results-card {
-    margin-top: 1.5rem;
     padding: 1rem;
     border: 1px solid var(--color-border);
     border-radius: 0.5rem;
     background-color: var(--color-bg);
-    width: 100%;
-    max-width: 400px;
     text-align: center;
 }
 
