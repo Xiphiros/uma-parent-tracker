@@ -5,10 +5,11 @@ import './BreedingSuggestions.css';
 import { useTranslation } from 'react-i18next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLightbulb } from '@fortawesome/free-solid-svg-icons';
+import { calculateFullAffinity, resolveGrandparent } from '../utils/affinity';
 
 const BreedingSuggestions = () => {
     const { t } = useTranslation('roster');
-    const { getScoredRoster, masterUmaList, affinityData, appData, dataDisplayLanguage, umaMapById } = useAppContext();
+    const { getScoredRoster, masterUmaList, appData, dataDisplayLanguage, umaMapById, charaRelations, relationPoints } = useAppContext();
     const roster = getScoredRoster();
     const displayNameProp = dataDisplayLanguage === 'jp' ? 'name_jp' : 'name_en';
 
@@ -16,55 +17,40 @@ const BreedingSuggestions = () => {
         return [...roster].sort((a, b) => b.score - a.score).slice(0, 2);
     }, [roster]);
 
+    const inventoryMap = useMemo(() => new Map(appData.inventory.map(p => [p.id, p])), [appData.inventory]);
+
     const suggestions = useMemo(() => {
-        if (topTwoParents.length < 2 || !affinityData) return [];
-
+        if (topTwoParents.length < 2) return [];
         const [parent1, parent2] = topTwoParents;
-
-        // Get character IDs of all four grandparents to prevent inbreeding
-        const grandparentCharIds = new Set<string>();
-        const inventoryMap = new Map(appData.inventory.map(p => [p.id, p]));
-
-        const addGrandparent = (gp: Grandparent | undefined) => {
-            if (!gp) return;
-            let gpData: Parent | ManualParentData | undefined;
-            if (typeof gp === 'number') {
-                gpData = inventoryMap.get(gp);
-            } else {
-                gpData = gp;
-            }
-            if (gpData?.umaId) {
-                const uma = umaMapById.get(gpData.umaId);
-                if (uma) grandparentCharIds.add(uma.characterId);
-            }
-        };
-
-        addGrandparent(parent1.grandparent1);
-        addGrandparent(parent1.grandparent2);
-        addGrandparent(parent2.grandparent2);
-        addGrandparent(parent2.grandparent1);
         
-        const parent1Char = umaMapById.get(parent1.umaId);
-        const parent2Char = umaMapById.get(parent2.umaId);
-        if (!parent1Char || !parent2Char) return [];
-
+        const lineageCharIds = new Set<string>();
+        const lineageMembers = [
+            parent1, parent2,
+            resolveGrandparent(parent1.grandparent1, inventoryMap),
+            resolveGrandparent(parent1.grandparent2, inventoryMap),
+            resolveGrandparent(parent2.grandparent1, inventoryMap),
+            resolveGrandparent(parent2.grandparent2, inventoryMap)
+        ];
+        
+        for (const member of lineageMembers) {
+            if (member?.umaId) {
+                const uma = umaMapById.get(member.umaId);
+                if (uma) lineageCharIds.add(uma.characterId);
+            }
+        }
+        
         const scoredSuggestions = masterUmaList
-            .filter(uma => !grandparentCharIds.has(uma.characterId)) // Anti-inbreeding filter
-            .map(trainee => {
-                const traineeAffinity = affinityData[trainee.characterId];
-                if (!traineeAffinity) return { uma: trainee, score: 0 };
-                
-                const score1 = traineeAffinity[parent1Char.characterId] ?? 0;
-                const score2 = traineeAffinity[parent2Char.characterId] ?? 0;
-                
-                return { uma: trainee, score: score1 + score2 };
-            })
+            .filter(uma => !lineageCharIds.has(uma.characterId)) // Anti-inbreeding filter
+            .map(trainee => ({
+                uma: trainee,
+                score: calculateFullAffinity(trainee, parent1, parent2, charaRelations, relationPoints, inventoryMap, umaMapById)
+            }))
             .filter(item => item.score > 0)
             .sort((a, b) => b.score - a.score);
 
         return scoredSuggestions.slice(0, 10);
 
-    }, [topTwoParents, masterUmaList, affinityData, appData.inventory, umaMapById]);
+    }, [topTwoParents, masterUmaList, inventoryMap, umaMapById, charaRelations, relationPoints]);
 
     return (
         <section className="card">
