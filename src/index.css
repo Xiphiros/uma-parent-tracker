@@ -20,6 +20,7 @@
 @import "./components/SelectGrandparentModal.css";
 @import "./components/SelectUmaModal.css";
 @import "./components/common/SelectionSlot.css";
+@import "./components/common/SuggestionParentCard.css";
 @import "./components/Tabs.css";
 @import "./components/common/Modal.css";
 @import "./components/common/MultiSelect.css";
