@@ -1,0 +1,43 @@
+.lineage-display {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.lineage-display__grandparents {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.25rem;
+}
+
+.lineage-display__gp-slot {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 76px; /* Slightly smaller than half of the main slot */
+    height: 60px;
+}
+
+.lineage-display__gp-image {
+    width: 32px;
+    height: 32px;
+    border-radius: 9999px;
+    object-fit: cover;
+    border: 1px solid var(--color-avatar-border);
+}
+
+.lineage-display__gp-name {
+    margin-top: 0.25rem;
+    font-size: 0.7rem;
+    text-align: center;
+    color: var(--color-text-muted);
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+.lineage-display__gp-placeholder {
+    color: var(--color-text-muted);
+    font-size: 1.5rem;
+    line-height: 1;
+}
