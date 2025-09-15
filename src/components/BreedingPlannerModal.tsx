@@ -198,6 +198,13 @@ const BreedingPlannerModal = ({ isOpen, onClose }: BreedingPlannerModalProps) =>
         setIsSparkViewExpanded(false);
     };
 
+    const excludedPlannerIds = useMemo(() => {
+        const ids = new Set<number>();
+        if (activeSlot === 'parent1' && manualParent2) ids.add(manualParent2.id);
+        if (activeSlot === 'parent2' && manualParent1) ids.add(manualParent1.id);
+        return ids;
+    }, [activeSlot, manualParent1, manualParent2]);
+
     return (
         <>
             <Modal isOpen={isOpen} onClose={onClose} title={t('breedingPlanner.title')} size="xl">
@@ -271,6 +278,9 @@ const BreedingPlannerModal = ({ isOpen, onClose }: BreedingPlannerModalProps) =>
                                     <div className="breeding-planner__suggestion-detail">
                                         {selectedSuggestion && aggregatedSparksForSelected ? (
                                             <>
+                                                <button className="breeding-planner__expand-btn" onClick={() => setIsSparkViewExpanded(prev => !prev)}>
+                                                    <FontAwesomeIcon icon={isSparkViewExpanded ? faChevronDown : faChevronUp} />
+                                                </button>
                                                 <div className="breeding-planner__detail-lineage">
                                                     <LineageDisplay label="" parent={selectedSuggestion.p1} />
                                                     <span className="breeding-planner__pair-selector-plus">+</span>
@@ -287,9 +297,6 @@ const BreedingPlannerModal = ({ isOpen, onClose }: BreedingPlannerModalProps) =>
                                                     </div>
                                                 </div>
                                                 <div className={`breeding-planner__detail-sparks ${isSparkViewExpanded ? 'breeding-planner__detail-sparks--expanded' : ''}`}>
-                                                    <button className="breeding-planner__expand-btn" onClick={() => setIsSparkViewExpanded(prev => !prev)}>
-                                                        <FontAwesomeIcon icon={isSparkViewExpanded ? faChevronDown : faChevronUp} />
-                                                    </button>
                                                     <div className="breeding-planner__detail-sparks-content">
                                                         {Object.entries(aggregatedSparksForSelected.blue).map(([type, data]) => (
                                                             <div key={type} className="lineage-spark" data-spark-category="blue" data-spark-type={type.toLowerCase()}>
@@ -336,7 +343,7 @@ const BreedingPlannerModal = ({ isOpen, onClose }: BreedingPlannerModalProps) =>
                 </div>
             </Modal>
 
-            <InventoryModal isOpen={isInventoryModalOpen} onClose={() => setInventoryModalOpen(false)} isSelectionMode onSelectParent={handleSelectParent} />
+            <InventoryModal isOpen={isInventoryModalOpen} onClose={() => setInventoryModalOpen(false)} isSelectionMode onSelectParent={handleSelectParent} excludedIds={excludedPlannerIds} />
             <SelectUmaModal isOpen={isUmaModalOpen} onClose={() => setUmaModalOpen(false)} onSelect={handleSelectUma} />
         </>
     );
