@@ -8,6 +8,7 @@ import SelectionSlot from './common/SelectionSlot';
 import InventoryModal from './InventoryModal';
 import SelectUmaModal from './SelectUmaModal';
 import LineageDisplay from './common/LineageDisplay';
+import { calculateFullAffinity, getLineageCharacterIds } from '../utils/affinity';
 
 interface BreedingPlannerModalProps {
     isOpen: boolean;
@@ -19,11 +20,13 @@ type ActiveSlot = 'parent1' | 'parent2' | null;
 
 const BreedingPlannerModal = ({ isOpen, onClose }: BreedingPlannerModalProps) => {
     const { t } = useTranslation('roster');
-    const { getScoredRoster, dataDisplayLanguage, umaMapById, affinityData, masterUmaList } = useAppContext();
+    const { getScoredRoster, dataDisplayLanguage, umaMapById, affinityData, masterUmaList, appData } = useAppContext();
     const roster = getScoredRoster();
     const displayNameProp = dataDisplayLanguage === 'jp' ? 'name_jp' : 'name_en';
+    const inventoryMap = useMemo(() => new Map(appData.inventory.map(p => [p.id, p])), [appData.inventory]);
 
     const [activeTab, setActiveTab] = useState<PlannerTab>('manual');
+    const [excludeInbreeding, setExcludeInbreeding] = useState(true);
     
     // Modals state
     const [isInventoryModalOpen, setInventoryModalOpen] = useState(false);
@@ -39,7 +42,7 @@ const BreedingPlannerModal = ({ isOpen, onClose }: BreedingPlannerModalProps) =>
 
     const getDisplayName = (umaId: string) => umaMapById.get(umaId)?.[displayNameProp] || 'Unknown';
 
-    const manualAffinityScore = useMemo(() => {
+    const parentToParentAffinity = useMemo(() => {
         if (!manualParent1 || !manualParent2 || !affinityData) return 0;
         const char1 = umaMapById.get(manualParent1.umaId);
         const char2 = umaMapById.get(manualParent2.umaId);
@@ -49,43 +52,33 @@ const BreedingPlannerModal = ({ isOpen, onClose }: BreedingPlannerModalProps) =>
     
     const traineeSuggestionsForManualPair = useMemo(() => {
         if (!manualParent1 || !manualParent2 || !affinityData) return [];
-        const p1Char = umaMapById.get(manualParent1.umaId);
-        const p2Char = umaMapById.get(manualParent2.umaId);
-        if (!p1Char || !p2Char) return [];
+        
+        let potentialTrainees = masterUmaList;
+        if (excludeInbreeding) {
+            const lineageIds = getLineageCharacterIds(manualParent1, manualParent2, inventoryMap, umaMapById);
+            potentialTrainees = masterUmaList.filter(uma => !lineageIds.has(uma.characterId));
+        }
 
-        return masterUmaList.map(tUma => {
-            const tCharId = tUma.characterId;
-            const affinityT1 = affinityData[tCharId]?.[p1Char.characterId] ?? 0;
-            const affinityT2 = affinityData[tCharId]?.[p2Char.characterId] ?? 0;
-            const totalAffinity = affinityT1 + affinityT2 + manualAffinityScore;
-            return { uma: tUma, totalAffinity };
-        }).sort((a,b) => b.totalAffinity - a.totalAffinity).slice(0, 10);
+        return potentialTrainees.map(tUma => ({
+            uma: tUma,
+            totalAffinity: calculateFullAffinity(tUma, manualParent1, manualParent2, affinityData, inventoryMap, umaMapById)
+        })).sort((a,b) => b.totalAffinity - a.totalAffinity).slice(0, 10);
 
-    }, [manualParent1, manualParent2, manualAffinityScore, masterUmaList, affinityData, umaMapById]);
+    }, [manualParent1, manualParent2, masterUmaList, affinityData, umaMapById, inventoryMap, excludeInbreeding]);
 
     const suggestions = useMemo(() => {
         if (!trainee || roster.length < 2 || !affinityData) return [];
-        const traineeCharId = trainee.characterId;
-        const traineeAffinity = affinityData[traineeCharId];
-        if (!traineeAffinity) return [];
         const pairs = [];
         for (let i = 0; i < roster.length; i++) {
             for (let j = i + 1; j < roster.length; j++) {
                 const p1 = roster[i];
                 const p2 = roster[j];
-                const p1Char = umaMapById.get(p1.umaId);
-                const p2Char = umaMapById.get(p2.umaId);
-                if (p1Char && p2Char) {
-                    const affinityP1 = traineeAffinity[p1Char.characterId] ?? 0;
-                    const affinityP2 = traineeAffinity[p2Char.characterId] ?? 0;
-                    const affinityBetween = affinityData[p1Char.characterId]?.[p2Char.characterId] ?? 0;
-                    const totalAffinity = affinityP1 + affinityP2 + affinityBetween;
-                    pairs.push({ p1, p2, totalAffinity });
-                }
+                const totalAffinity = calculateFullAffinity(trainee, p1, p2, affinityData, inventoryMap, umaMapById);
+                pairs.push({ p1, p2, totalAffinity });
             }
         }
         return pairs.sort((a, b) => b.totalAffinity - a.totalAffinity).slice(0, 10);
-    }, [trainee, roster, affinityData, umaMapById]);
+    }, [trainee, roster, affinityData, umaMapById, inventoryMap]);
     
     const handleSelectParent = (parent: Parent) => {
         if (activeSlot === 'parent1') {
@@ -134,10 +127,14 @@ const BreedingPlannerModal = ({ isOpen, onClose }: BreedingPlannerModalProps) =>
                             {manualParent1 && manualParent2 && (
                                 <div className="breeding-planner__results-container">
                                     <div className="breeding-planner__results-card">
-                                        <h4 className="form__section-title">{t('breedingPlanner.directAffinity')}</h4>
-                                        <p className="breeding-planner__affinity-score"><span>{manualAffinityScore}</span> {t('parentCard.pts')}</p>
+                                        <h4 className="form__section-title">{t('breedingPlanner.baseAffinity')}</h4>
+                                        <p className="breeding-planner__affinity-score"><span>{parentToParentAffinity}</span> {t('parentCard.pts')}</p>
                                     </div>
-                                    <div className="breeding-planner__suggestions-list mt-4">
+                                    <div className="breeding-planner__inbreeding-toggle">
+                                        <input type="checkbox" id="inbreeding-toggle" checked={excludeInbreeding} onChange={e => setExcludeInbreeding(e.target.checked)} />
+                                        <label htmlFor="inbreeding-toggle">{t('breedingPlanner.excludeInbreeding')}</label>
+                                    </div>
+                                    <div className="breeding-planner__suggestions-list mt-2">
                                         <h4 className="form__section-title text-center mb-2">{t('breedingPlanner.bestTrainees')}</h4>
                                         {traineeSuggestionsForManualPair.map((s, index) => (
                                              <div key={s.uma.id} className="breeding-planner__suggestion-item">
