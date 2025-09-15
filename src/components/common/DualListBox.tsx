@@ -131,7 +131,7 @@ const DualListBox = ({
     return (
         <div className="dual-list-box">
             <div className="dual-list-box__column">
-                <h4 className="dual-list-box__title">{t('availableTitle')} ({filteredAvailable.length})</h4>
+                <h4 className="dual-list-box__title">{t('available')} ({filteredAvailable.length})</h4>
                 <input type="text" className="form__input dual-list-box__filter" placeholder="Filter..." value={filterAvailable} onChange={e => setFilterAvailable(e.target.value)} />
                 {renderList('available')}
             </div>
@@ -142,7 +142,7 @@ const DualListBox = ({
             </div>
 
             <div className="dual-list-box__column">
-                 <h4 className="dual-list-box__title">{t('excludedTitle')} ({filteredExcluded.length})</h4>
+                 <h4 className="dual-list-box__title">{t('excluded')} ({filteredExcluded.length})</h4>
                 <input type="text" className="form__input dual-list-box__filter" placeholder="Filter..." value={filterExcluded} onChange={e => setFilterExcluded(e.target.value)} />
                 {renderList('excluded')}
             </div>

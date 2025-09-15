@@ -27,7 +27,9 @@ HARDCODED_COLOR_RE = re.compile(fr':\s*(?!var\(--|color-mix)[\s"\']*{HARDCODED_V
 COLOR_KEYWORDS_RE = re.compile(r':\s*(red|blue|green|yellow|purple|orange|black|white)\s*;')
 INVALID_BEM_RE = re.compile(r'(___|---)')
 CSS_VAR_RE = re.compile(r'(--[\w-]+):\s*(#[\da-fA-F]{3,6});')
-I18N_KEY_RE = re.compile(r"""t\(\s*['"]([\w:.-]+)['"]\s*[,)]""")
+# Use a word boundary (\b) to ensure we're matching the 't' function and not a variable containing 't'.
+# Also improve the optional arguments part of the regex.
+I18N_KEY_RE = re.compile(r"""\bt\(\s*['"]([\w.:-]+)['"](?:,.*)?\)""")
 
 
 # --- Color Contrast Calculation Helpers ---
@@ -44,7 +46,7 @@ def get_relative_luminance(rgb: Tuple[int, int, int]) -> float:
     r, g, b = rgb
     srgb = [x / 255.0 for x in (r, g, b)]
     linear = [c / 12.92 if c <= 0.03928 else ((c + 0.055) / 1.055) ** 2.4 for c in srgb]
-    return 0.2126 * linear[0] + 0.7152 * linear[1] + 0.0722 * linear[2]
+    return 0.2126 * linear + 0.7152 * linear + 0.0722 * linear
 
 def get_contrast_ratio(lum1: float, lum2: float) -> float:
     """Calculates the contrast ratio between two luminance values."""
@@ -195,7 +197,7 @@ def check_pascalcase_filenames(tsx_files: List[Path]) -> List[str]:
     EXCLUDED_FILES = {'Icons.tsx'}
     for file in tsx_files:
         if file.name in EXCLUDED_FILES: continue
-        if 'components' in str(file) and not file.stem[0].isupper():
+        if 'components' in str(file) and not file.stem.isupper():
             violations.append(str(file.relative_to(PROJECT_ROOT)))
     return violations
 
@@ -319,7 +321,7 @@ def main():
     css_files = find_files(SRC_DIR, '.css')
 
     # --- Group 1: TSX/React Checks ---
-    print("\n[1] Checking TSX/React files...")
+    print("\n Checking TSX/React files...")
     inline_style_violations = {f: check_inline_styles(f) for f in tsx_files}
     pascal_case_violations = check_pascalcase_filenames(tsx_files)
     console_log_violations = check_console_logs(tsx_files)
@@ -355,7 +357,7 @@ def main():
     total_errors += inline_style_errors + pascal_case_errors + console_log_errors + missing_export_errors
 
     # --- Group 2: CSS Checks ---
-    print("\n[2] Checking CSS files...")
+    print("\n Checking CSS files...")
     id_selector_violations = {f: check_id_selectors(f) for f in css_files}
     hardcoded_color_violations = {f: check_hardcoded_colors(f) for f in css_files}
     bem_syntax_violations = {f: check_bem_syntax(f) for f in css_files}
@@ -396,7 +398,7 @@ def main():
     total_errors += id_selector_errors + hardcoded_color_errors + bem_syntax_errors + unimported_css_errors
 
     # --- Group 3: Project Health ---
-    print("\n[3] Checking project health...")
+    print("\n Checking project health...")
     unused_asset_violations = check_unused_assets()
     unused_asset_errors = len(unused_asset_violations)
     if unused_asset_errors == 0: print("  \033[92mPASS:\033[0m No unused image assets found.")
@@ -407,7 +409,7 @@ def main():
     total_errors += unused_asset_errors
 
     # --- Group 4: Accessibility Checks ---
-    print("\n[4] Checking Accessibility...")
+    print("\n Checking Accessibility...")
     css_vars = parse_css_variables(SRC_DIR / 'css' / 'main.css')
     contrast_violations = check_color_contrast(css_vars)
     contrast_errors = len(contrast_violations)
@@ -421,7 +423,7 @@ def main():
     total_errors += contrast_errors
 
     # --- Group 5: Localization Checks ---
-    print("\n[5] Checking Localization files...")
+    print("\n Checking Localization files...")
     translation_violations = check_translations()
     translation_errors = len(translation_violations)
     if translation_errors == 0:
