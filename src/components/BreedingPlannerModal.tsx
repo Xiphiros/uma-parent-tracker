@@ -13,6 +13,7 @@ import PlaceholderCard from './common/PlaceholderCard';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUsers, faUser, faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import SparkTag from './common/SparkTag';
+import { getExcludedCharacterIds } from '../utils/selectionExclusion';
 
 interface BreedingPlannerModalProps {
     isOpen: boolean;
@@ -199,18 +200,15 @@ const BreedingPlannerModal = ({ isOpen, onClose }: BreedingPlannerModalProps) =>
     };
 
     const excludedPlannerCharacterIds = useMemo(() => {
-        const ids = new Set<string>();
-        let parentToCheck: Parent | null = null;
-
-        if (activeSlot === 'parent1') parentToCheck = manualParent2;
-        if (activeSlot === 'parent2') parentToCheck = manualParent1;
-
-        if (parentToCheck) {
-            const charId = umaMapById.get(parentToCheck.umaId)?.characterId;
-            if (charId) ids.add(charId);
-        }
-        return ids;
-    }, [activeSlot, manualParent1, manualParent2, umaMapById]);
+        return getExcludedCharacterIds({
+            context: 'planner',
+            activeSlot,
+            parent1: manualParent1,
+            parent2: manualParent2,
+            umaMapById,
+            inventory: appData.inventory
+        });
+    }, [activeSlot, manualParent1, manualParent2, umaMapById, appData.inventory]);
 
     return (
         <>
