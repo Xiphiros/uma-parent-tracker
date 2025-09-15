@@ -25,6 +25,10 @@
     "count": "{{count}} 人のウマ娘",
     "unassigned": "未割り当て"
   },
+  "suggestions": {
+    "title": "育成おすすめ",
+    "placeholder": "ウマ娘一覧に2人の親を追加して、おすすめを確認しましょう。"
+  },
   "placeholderCard": {
     "title": "このウマ娘一覧は空です",
     "messageInventoryEmpty": "このサーバーの所持ウマ娘がいません。最初の親を追加しましょう！",

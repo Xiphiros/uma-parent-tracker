@@ -25,6 +25,10 @@
     "count": "{{count}} Parents",
     "unassigned": "Unassigned"
   },
+  "suggestions": {
+    "title": "Breeding Suggestions",
+    "placeholder": "Add two parents to the roster to see suggestions."
+  },
   "placeholderCard": {
     "title": "This Roster is Empty",
     "messageInventoryEmpty": "Your inventory for this server is empty. Let's add your first parent!",

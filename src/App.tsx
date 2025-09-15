@@ -4,6 +4,7 @@ import Roster from './components/Roster';
 import TopBreedingPair from './components/TopBreedingPair';
 import Tabs from './components/Tabs';
 import { useAppContext } from './context/AppContext';
+import BreedingSuggestions from './components/BreedingSuggestions';
 
 function App() {
   const { loading, getActiveProfile } = useAppContext();
@@ -39,6 +40,7 @@ function App() {
             <div className="lg-col-span-1 space-y-8">
                 <GoalDefinition />
                 <TopBreedingPair />
+                <BreedingSuggestions />
             </div>
             <Roster />
         </main>
