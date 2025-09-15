@@ -271,9 +271,6 @@ const BreedingPlannerModal = ({ isOpen, onClose }: BreedingPlannerModalProps) =>
                                     <div className="breeding-planner__suggestion-detail">
                                         {selectedSuggestion && aggregatedSparksForSelected ? (
                                             <>
-                                                <button className="breeding-planner__expand-btn" onClick={() => setIsSparkViewExpanded(prev => !prev)}>
-                                                    <FontAwesomeIcon icon={isSparkViewExpanded ? faChevronUp : faChevronDown} />
-                                                </button>
                                                 <div className="breeding-planner__detail-lineage">
                                                     <LineageDisplay label="" parent={selectedSuggestion.p1} />
                                                     <span className="breeding-planner__pair-selector-plus">+</span>
@@ -290,33 +287,38 @@ const BreedingPlannerModal = ({ isOpen, onClose }: BreedingPlannerModalProps) =>
                                                     </div>
                                                 </div>
                                                 <div className={`breeding-planner__detail-sparks ${isSparkViewExpanded ? 'breeding-planner__detail-sparks--expanded' : ''}`}>
-                                                    {Object.entries(aggregatedSparksForSelected.blue).map(([type, data]) => (
-                                                        <div key={type} className="lineage-spark" data-spark-category="blue" data-spark-type={type.toLowerCase()}>
-                                                            {data.total}★ {t(type, { ns: 'game' })}
-                                                            {data.parent > 0 && <FontAwesomeIcon icon={faUser} className="lineage-spark__gp-icon" />}
-                                                        </div>
-                                                    ))}
-                                                    {Object.entries(aggregatedSparksForSelected.pink).map(([type, data]) => (
-                                                        <div key={type} className="lineage-spark" data-spark-category="pink" data-spark-type={type.toLowerCase().replace(/ /g, '-')}>
-                                                            {data.total}★ {t(type, { ns: 'game' })}
-                                                            {data.parent > 0 && <FontAwesomeIcon icon={faUser} className="lineage-spark__gp-icon" />}
-                                                        </div>
-                                                    ))}
-                                                    {aggregatedSparksForSelected.unique.map(spark => (
-                                                        <SparkTag key={spark.name} category="unique" type={getSkillDisplayName(spark.name)} stars={spark.stars}>
-                                                            {spark.fromParent && <FontAwesomeIcon icon={faUser} className="lineage-spark__gp-icon" />}
-                                                        </SparkTag>
-                                                    ))}
-                                                    {aggregatedSparksForSelected.white.map(spark => {
-                                                        const wishlistItem = goal?.wishlist.find(w => w.name === spark.name);
-                                                        const tier = wishlistItem ? `(${t('parentCard.rank')} ${wishlistItem.tier})` : null;
-                                                        return (
-                                                            <SparkTag key={spark.name} category="white" type={getSkillDisplayName(spark.name)} stars={spark.stars}>
+                                                    <button className="breeding-planner__expand-btn" onClick={() => setIsSparkViewExpanded(prev => !prev)}>
+                                                        <FontAwesomeIcon icon={isSparkViewExpanded ? faChevronDown : faChevronUp} />
+                                                    </button>
+                                                    <div className="breeding-planner__detail-sparks-content">
+                                                        {Object.entries(aggregatedSparksForSelected.blue).map(([type, data]) => (
+                                                            <div key={type} className="lineage-spark" data-spark-category="blue" data-spark-type={type.toLowerCase()}>
+                                                                {data.total}★ {t(type, { ns: 'game' })}
+                                                                {data.parent > 0 && <FontAwesomeIcon icon={faUser} className="lineage-spark__gp-icon" />}
+                                                            </div>
+                                                        ))}
+                                                        {Object.entries(aggregatedSparksForSelected.pink).map(([type, data]) => (
+                                                            <div key={type} className="lineage-spark" data-spark-category="pink" data-spark-type={type.toLowerCase().replace(/ /g, '-')}>
+                                                                {data.total}★ {t(type, { ns: 'game' })}
+                                                                {data.parent > 0 && <FontAwesomeIcon icon={faUser} className="lineage-spark__gp-icon" />}
+                                                            </div>
+                                                        ))}
+                                                        {aggregatedSparksForSelected.unique.map(spark => (
+                                                            <SparkTag key={spark.name} category="unique" type={getSkillDisplayName(spark.name)} stars={spark.stars}>
                                                                 {spark.fromParent && <FontAwesomeIcon icon={faUser} className="lineage-spark__gp-icon" />}
-                                                                {tier && <span className="parent-card__spark-tier">{tier}</span>}
                                                             </SparkTag>
-                                                        );
-                                                    })}
+                                                        ))}
+                                                        {aggregatedSparksForSelected.white.map(spark => {
+                                                            const wishlistItem = goal?.wishlist.find(w => w.name === spark.name);
+                                                            const tier = wishlistItem ? `(${t('parentCard.rank')} ${wishlistItem.tier})` : null;
+                                                            return (
+                                                                <SparkTag key={spark.name} category="white" type={getSkillDisplayName(spark.name)} stars={spark.stars}>
+                                                                    {spark.fromParent && <FontAwesomeIcon icon={faUser} className="lineage-spark__gp-icon" />}
+                                                                    {tier && <span className="parent-card__spark-tier">{tier}</span>}
+                                                                </SparkTag>
+                                                            );
+                                                        })}
+                                                    </div>
                                                 </div>
                                             </>
                                         ) : (
