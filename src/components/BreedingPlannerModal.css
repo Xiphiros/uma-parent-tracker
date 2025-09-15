@@ -49,23 +49,6 @@
     max-width: 500px;
 }
 
-.breeding-planner__results-card {
-    padding: 1rem;
-    border: 1px solid var(--color-border);
-    border-radius: 0.5rem;
-    background-color: var(--color-bg);
-    text-align: center;
-}
-
-.breeding-planner__affinity-score {
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: var(--color-text-primary);
-}
-.breeding-planner__affinity-score span {
-    color: var(--color-score);
-}
-
 .breeding-planner__inbreeding-toggle {
     display: flex;
     align-items: center;
@@ -79,6 +62,19 @@
     accent-color: var(--color-button-primary-bg);
 }
 
+/* New Master-Detail Layout for Suggestions */
+.breeding-planner__suggestions-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    width: 100%;
+}
+@media (min-width: 1024px) { /* lg breakpoint */
+    .breeding-planner__suggestions-grid {
+        grid-template-columns: 350px 1fr;
+    }
+}
+
 .breeding-planner__suggestions-list {
     width: 100%;
     max-height: 450px;
@@ -89,13 +85,22 @@
 .breeding-planner__suggestion-item {
     display: grid;
     grid-template-columns: auto 1fr auto;
-    gap: 1rem;
+    gap: 0.75rem;
     align-items: center;
     padding: 0.75rem;
+    border-radius: 0.5rem;
+    border: 1px solid transparent;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
     border-bottom: 1px solid var(--color-border);
 }
-.breeding-planner__suggestion-item:last-child {
-    border-bottom: none;
+.breeding-planner__suggestion-item:hover {
+    background-color: var(--color-card-bg-hover);
+}
+.breeding-planner__suggestion-item--selected {
+    background-color: color-mix(in srgb, var(--color-accent-primary) 10%, transparent);
+    border-color: var(--color-accent-primary);
 }
 
 .breeding-planner__suggestion-rank {
@@ -107,28 +112,16 @@
 .breeding-planner__suggestion-pair {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
-    color: var(--color-text-primary);
-    font-weight: 500;
+    gap: 0.5rem;
 }
 
 .breeding-planner__suggestion-avatar {
-    width: 48px;
-    height: 48px;
+    width: 40px;
+    height: 40px;
     border-radius: 9999px;
     object-fit: cover;
     border: 2px solid var(--color-avatar-border);
     flex-shrink: 0;
-}
-
-.breeding-planner__suggestion-pair-cards {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-}
-
-.breeding-planner__suggestion-pair-single .suggestion-card {
-    width: 100%;
 }
 
 .breeding-planner__suggestion-scores {
@@ -145,4 +138,41 @@
     font-size: 0.875rem;
     color: var(--color-text-muted);
     margin-top: 0.25rem;
+}
+
+.breeding-planner__suggestion-detail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    background-color: var(--color-bg);
+    border-radius: 0.5rem;
+    min-height: 300px;
+}
+
+.breeding-planner__detail-lineage {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.breeding-planner__detail-summary {
+    display: flex;
+    gap: 2rem;
+    margin-top: 1.5rem;
+    text-align: center;
+}
+
+.breeding-planner__detail-summary-value {
+    display: block;
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--color-score);
+}
+
+.breeding-planner__detail-summary-label {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
 }
