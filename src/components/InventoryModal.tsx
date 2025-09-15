@@ -180,7 +180,7 @@ const InventoryModal = ({ isOpen, onClose, isSelectionMode = false, onSelectPare
     return (
         <>
             <Modal isOpen={isOpen} onClose={onClose} title={modalTitle} size="xl">
-                <InventoryControls filters={filters} setFilters={setFilters} sortBy={sortBy} setSortBy={setSortBy} itemCount={filteredAndSortedInventory.length} />
+                <InventoryControls filters={filters} setFilters={setFilters} sortBy={sortBy} setSortBy={setSortBy} />
 
                 <div className="inventory-modal__grid">
                     {filteredAndSortedInventory.length > 0 ? (
