@@ -46,7 +46,7 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
     
     const [isGpModalOpen, setIsGpModalOpen] = useState(false);
     const [activeGpSlot, setActiveGpSlot] = useState<GrandparentSlot | null>(null);
-    const [excludedGpIds, setExcludedGpIds] = useState<Set<number>>(new Set());
+    const [excludedGpCharacterIds, setExcludedGpCharacterIds] = useState<Set<string>>(new Set());
 
     const displayNameProp = dataDisplayLanguage === 'jp' ? 'name_jp' : 'name_en';
     const uniqueSkills = useMemo(() => masterSkillList.filter(s => s.type === 'unique'), [masterSkillList]);
@@ -133,17 +133,30 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
     };
 
     const handleOpenGpModal = (slot: GrandparentSlot) => {
-        const idsToExclude = new Set<number>();
-        const otherSlot = slot === 'grandparent1' ? formData.grandparent2 : formData.grandparent1;
+        const idsToExclude = new Set<string>();
+        const otherSlotGp = slot === 'grandparent1' ? formData.grandparent2 : formData.grandparent1;
         
-        if (typeof otherSlot === 'number') {
-            idsToExclude.add(otherSlot);
-        }
+        // Exclude the parent being edited
         if (parentToEdit) {
-            idsToExclude.add(parentToEdit.id);
+            const charId = umaMapById.get(parentToEdit.umaId)?.characterId;
+            if (charId) idsToExclude.add(charId);
         }
 
-        setExcludedGpIds(idsToExclude);
+        // Exclude the other grandparent
+        if (otherSlotGp) {
+            let otherGpUmaId: string | undefined;
+            if (typeof otherSlotGp === 'number') {
+                otherGpUmaId = appData.inventory.find(p => p.id === otherSlotGp)?.umaId;
+            } else {
+                otherGpUmaId = otherSlotGp.umaId;
+            }
+            if (otherGpUmaId) {
+                const charId = umaMapById.get(otherGpUmaId)?.characterId;
+                if (charId) idsToExclude.add(charId);
+            }
+        }
+
+        setExcludedGpCharacterIds(idsToExclude);
         setActiveGpSlot(slot);
         setIsGpModalOpen(true);
     };
@@ -356,7 +369,7 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
                     onSave={handleSaveGrandparent}
                     title={t('selectGrandparentTitle')}
                     grandparentToEdit={activeGpSlot ? formData[activeGpSlot] : null}
-                    excludedIds={excludedGpIds}
+                    excludedCharacterIds={excludedGpCharacterIds}
                 />
             )}
 
