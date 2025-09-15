@@ -1,0 +1,41 @@
+.select-uma-modal__controls {
+    margin-bottom: 1rem;
+}
+
+.select-uma-modal__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 1rem;
+    max-height: 60vh;
+    overflow-y: auto;
+    padding: 0.5rem;
+}
+
+.select-uma-modal__card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    transition: background-color 0.2s ease;
+}
+.select-uma-modal__card:hover {
+    background-color: var(--color-card-bg-hover);
+}
+
+.select-uma-modal__image {
+    width: 80px;
+    height: 80px;
+    border-radius: 9999px;
+    object-fit: cover;
+    border: 2px solid var(--color-avatar-border);
+}
+
+.select-uma-modal__name {
+    margin-top: 0.5rem;
+    font-size: 0.75rem;
+    text-align: center;
+    color: var(--color-text-secondary);
+    font-weight: 500;
+}
