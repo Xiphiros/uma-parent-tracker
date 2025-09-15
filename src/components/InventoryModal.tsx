@@ -13,7 +13,7 @@ interface InventoryModalProps {
   onClose: () => void;
   isSelectionMode?: boolean;
   onSelectParent?: (parent: Parent) => void;
-  excludedIds?: Set<number>;
+  excludedCharacterIds?: Set<string>;
 }
 
 interface MoveConfirmState {
@@ -21,7 +21,7 @@ interface MoveConfirmState {
     result: ValidationResult;
 }
 
-const InventoryModal = ({ isOpen, onClose, isSelectionMode = false, onSelectParent, excludedIds = new Set() }: InventoryModalProps) => {
+const InventoryModal = ({ isOpen, onClose, isSelectionMode = false, onSelectParent, excludedCharacterIds = new Set() }: InventoryModalProps) => {
     const { t } = useTranslation(['roster', 'modals', 'common']);
     const { appData, activeServer, deleteParent, addParentToProfile, removeParentFromProfile, moveParentToServer, validateParentForServer, umaMapById, dataDisplayLanguage } = useAppContext();
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
@@ -123,21 +123,25 @@ const InventoryModal = ({ isOpen, onClose, isSelectionMode = false, onSelectPare
             <Modal isOpen={isOpen} onClose={onClose} title={modalTitle} size="xl">
                 <div className="inventory-modal__grid">
                     {inventory.length > 0 ? (
-                        inventory.map(parent => (
-                            <ParentCard 
-                                key={parent.id} 
-                                parent={parent} 
-                                displayScore={false}
-                                onEdit={() => handleOpenEditModal(parent)}
-                                onDelete={() => handleDeleteParent(parent)}
-                                onMove={() => handleMoveParent(parent)}
-                                onAssign={(e) => handleOpenAssignmentMenu(e, parent)}
-                                assignedProjects={parentToProfileMap.get(parent.id)}
-                                isSelectionMode={isSelectionMode}
-                                onSelect={onSelectParent}
-                                isDisabled={excludedIds.has(parent.id)}
-                            />
-                        ))
+                        inventory.map(parent => {
+                            const characterId = umaMapById.get(parent.umaId)?.characterId;
+                            const isDisabled = !!characterId && excludedCharacterIds.has(characterId);
+                            return (
+                                <ParentCard 
+                                    key={parent.id} 
+                                    parent={parent} 
+                                    displayScore={false}
+                                    onEdit={() => handleOpenEditModal(parent)}
+                                    onDelete={() => handleDeleteParent(parent)}
+                                    onMove={() => handleMoveParent(parent)}
+                                    onAssign={(e) => handleOpenAssignmentMenu(e, parent)}
+                                    assignedProjects={parentToProfileMap.get(parent.id)}
+                                    isSelectionMode={isSelectionMode}
+                                    onSelect={onSelectParent}
+                                    isDisabled={isDisabled}
+                                />
+                            );
+                        })
                     ) : (
                         <p className="card__placeholder-text text-center py-8 col-span-full">{t('inventory.placeholder')}</p>
                     )}
