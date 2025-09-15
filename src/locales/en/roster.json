@@ -40,13 +40,13 @@
     "traineeSuggestions": "Trainee Suggestions",
     "selectParent1": "Select Parent 1",
     "selectParent2": "Select Parent 2",
-    "directAffinity": "Direct Affinity (Parents Only)",
     "baseAffinity": "Base Affinity (Parents Only)",
     "selectTrainee": "Select Trainee",
-    "affinity": "Affinity",
+    "affinity": "Total Affinity",
     "totalAffinity": "Total Affinity",
     "noResults": "No compatible pairs found in roster.",
     "bestTrainees": "Best Trainees for this Pair",
-    "excludeInbreeding": "Exclude Inbreeding"
+    "excludeInbreeding": "Exclude Inbreeding",
+    "totalSkills": "Total Skills"
   }
 }
