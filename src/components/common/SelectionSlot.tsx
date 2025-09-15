@@ -5,15 +5,17 @@ import './SelectionSlot.css';
 interface SelectionSlotProps {
     label: string;
     selectedItem: { name: string; image?: string | null } | null;
-    onClick: () => void;
+    onClick?: () => void;
     onClear?: () => void;
 }
 
 const SelectionSlot = ({ label, selectedItem, onClick, onClear }: SelectionSlotProps) => {
+    const isInteractive = !!onClick;
+
     return (
         <div className="selection-slot">
             {selectedItem ? (
-                <div className="selection-slot__card" onClick={onClick}>
+                <div className={`selection-slot__card ${isInteractive ? 'selection-slot__card--interactive' : ''}`} onClick={onClick}>
                     {onClear && (
                         <button className="selection-slot__clear-btn" onClick={(e) => { e.stopPropagation(); onClear(); }}>
                             <FontAwesomeIcon icon={faTimes} />
