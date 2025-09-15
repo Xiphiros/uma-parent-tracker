@@ -198,12 +198,19 @@ const BreedingPlannerModal = ({ isOpen, onClose }: BreedingPlannerModalProps) =>
         setIsSparkViewExpanded(false);
     };
 
-    const excludedPlannerIds = useMemo(() => {
-        const ids = new Set<number>();
-        if (activeSlot === 'parent1' && manualParent2) ids.add(manualParent2.id);
-        if (activeSlot === 'parent2' && manualParent1) ids.add(manualParent1.id);
+    const excludedPlannerCharacterIds = useMemo(() => {
+        const ids = new Set<string>();
+        let parentToCheck: Parent | null = null;
+
+        if (activeSlot === 'parent1') parentToCheck = manualParent2;
+        if (activeSlot === 'parent2') parentToCheck = manualParent1;
+
+        if (parentToCheck) {
+            const charId = umaMapById.get(parentToCheck.umaId)?.characterId;
+            if (charId) ids.add(charId);
+        }
         return ids;
-    }, [activeSlot, manualParent1, manualParent2]);
+    }, [activeSlot, manualParent1, manualParent2, umaMapById]);
 
     return (
         <>
@@ -343,7 +350,7 @@ const BreedingPlannerModal = ({ isOpen, onClose }: BreedingPlannerModalProps) =>
                 </div>
             </Modal>
 
-            <InventoryModal isOpen={isInventoryModalOpen} onClose={() => setInventoryModalOpen(false)} isSelectionMode onSelectParent={handleSelectParent} excludedIds={excludedPlannerIds} />
+            <InventoryModal isOpen={isInventoryModalOpen} onClose={() => setInventoryModalOpen(false)} isSelectionMode onSelectParent={handleSelectParent} excludedCharacterIds={excludedPlannerCharacterIds} />
             <SelectUmaModal isOpen={isUmaModalOpen} onClose={() => setUmaModalOpen(false)} onSelect={handleSelectUma} />
         </>
     );
