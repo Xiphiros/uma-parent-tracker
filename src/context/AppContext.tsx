@@ -2,7 +2,8 @@ import { createContext, useContext, useState, useEffect, ReactNode, useRef, useM
 import { AppData, Profile, Skill, Uma, Goal, Parent, NewParentData, WishlistItem, Folder, IconName, ServerSpecificData, ValidationResult } from '../types';
 import masterSkillListJson from '../data/skill-list.json';
 import masterUmaListJson from '../data/uma-list.json';
-import affinityComponentsJson from '../data/affinity_components.json';
+import affinityJpJson from '../data/affinity_jp.json';
+import affinityGlJson from '../data/affinity_gl.json';
 import { calculateScore } from '../utils/scoring';
 import i18n from '../i18n';
 import { generateParentHash } from '../utils/hashing';
@@ -19,6 +20,12 @@ interface AffinityComponents {
     relation_points: Record<string, number>;
     chara_relations: Record<string, number[]>;
 }
+
+// Pre-load both datasets
+const affinityDataSources = {
+    jp: affinityJpJson as AffinityComponents,
+    global: affinityGlJson as AffinityComponents,
+};
 
 interface AppContextType {
   loading: boolean;
@@ -230,7 +237,7 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
   const isInitialLoad = useRef(true);
 
   const { relationPoints, charaRelations } = useMemo(() => {
-    const components = affinityComponentsJson as AffinityComponents;
+    const components = affinityDataSources[activeServer];
     const points = new Map<number, number>();
     for (const [key, value] of Object.entries(components.relation_points)) {
         points.set(parseInt(key, 10), value);
@@ -240,7 +247,7 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
         relations.set(parseInt(key, 10), new Set(value));
     }
     return { relationPoints: points, charaRelations: relations };
-  }, []);
+  }, [activeServer]);
 
   useEffect(() => {
     let data: AppData | null = null;
