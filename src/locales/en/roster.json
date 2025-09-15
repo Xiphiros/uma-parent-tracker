@@ -33,5 +33,16 @@
     "title": "This Roster is Empty",
     "messageInventoryEmpty": "Your inventory for this server is empty. Let's add your first parent!",
     "messageRosterEmpty": "Assign parents from your inventory to this project to see them here."
+  },
+  "breedingPlanner": {
+    "title": "Planner",
+    "manualPair": "Manual Pair",
+    "traineeSuggestions": "Trainee Suggestions",
+    "selectParent1": "Select Parent 1...",
+    "selectParent2": "Select Parent 2...",
+    "directAffinity": "Direct Affinity",
+    "selectTrainee": "Select Trainee...",
+    "affinity": "Affinity",
+    "noResults": "No compatible pairs found in roster."
   }
 }
