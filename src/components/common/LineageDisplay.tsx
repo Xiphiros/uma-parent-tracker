@@ -1,5 +1,5 @@
 import { useAppContext } from '../../context/AppContext';
-import { Grandparent, ManualParentData, Parent, Uma } from '../../types';
+import { Grandparent, ManualParentData, Parent } from '../../types';
 import SelectionSlot from './SelectionSlot';
 import './LineageDisplay.css';
 
