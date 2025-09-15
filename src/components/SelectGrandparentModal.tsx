@@ -25,9 +25,10 @@ interface SelectGrandparentModalProps {
     onSave: (data: Grandparent) => void;
     title: string;
     grandparentToEdit?: Grandparent | null;
+    excludedIds?: Set<number>;
 }
 
-const SelectGrandparentModal = ({ isOpen, onClose, onSave, title, grandparentToEdit }: SelectGrandparentModalProps) => {
+const SelectGrandparentModal = ({ isOpen, onClose, onSave, title, grandparentToEdit, excludedIds }: SelectGrandparentModalProps) => {
     const { t } = useTranslation(['modals', 'game', 'roster', 'common']);
     const { masterUmaList, masterSkillList, dataDisplayLanguage, umaMapById, appData, skillMapByName } = useAppContext();
     const displayNameProp = dataDisplayLanguage === 'jp' ? 'name_jp' : 'name_en';
@@ -231,6 +232,7 @@ const SelectGrandparentModal = ({ isOpen, onClose, onSave, title, grandparentToE
                 onClose={() => setIsInventorySelectorOpen(false)}
                 isSelectionMode={true}
                 onSelectParent={handleSelectFromInventory}
+                excludedIds={excludedIds}
             />
         </>
     );
