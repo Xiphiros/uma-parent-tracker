@@ -1,4 +1,5 @@
 import { useState, useMemo, useEffect, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 
 interface Item {
     id: string;
@@ -9,17 +10,14 @@ interface DualListBoxProps {
     allItems: Item[];
     initialExcludedIds: Set<string>;
     onChange: (newExcludedIds: Set<string>) => void;
-    availableTitle?: string;
-    excludedTitle?: string;
 }
 
 const DualListBox = ({
     allItems,
     initialExcludedIds,
     onChange,
-    availableTitle = 'Available',
-    excludedTitle = 'Excluded',
 }: DualListBoxProps) => {
+    const { t } = useTranslation('devtools');
     const [excludedIds, setExcludedIds] = useState(new Set(initialExcludedIds));
     const [selectedAvailable, setSelectedAvailable] = useState<Set<string>>(new Set());
     const [selectedExcluded, setSelectedExcluded] = useState<Set<string>>(new Set());
@@ -133,7 +131,7 @@ const DualListBox = ({
     return (
         <div className="dual-list-box">
             <div className="dual-list-box__column">
-                <h4 className="dual-list-box__title">{availableTitle} ({filteredAvailable.length})</h4>
+                <h4 className="dual-list-box__title">{t('availableTitle')} ({filteredAvailable.length})</h4>
                 <input type="text" className="form__input dual-list-box__filter" placeholder="Filter..." value={filterAvailable} onChange={e => setFilterAvailable(e.target.value)} />
                 {renderList('available')}
             </div>
@@ -144,7 +142,7 @@ const DualListBox = ({
             </div>
 
             <div className="dual-list-box__column">
-                 <h4 className="dual-list-box__title">{excludedTitle} ({filteredExcluded.length})</h4>
+                 <h4 className="dual-list-box__title">{t('excludedTitle')} ({filteredExcluded.length})</h4>
                 <input type="text" className="form__input dual-list-box__filter" placeholder="Filter..." value={filterExcluded} onChange={e => setFilterExcluded(e.target.value)} />
                 {renderList('excluded')}
             </div>
