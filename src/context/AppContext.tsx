@@ -2,6 +2,7 @@ import { createContext, useContext, useState, useEffect, ReactNode, useRef, useM
 import { AppData, Profile, Skill, Uma, Goal, Parent, NewParentData, WishlistItem, Folder, IconName, ServerSpecificData, ValidationResult } from '../types';
 import masterSkillListJson from '../data/skill-list.json';
 import masterUmaListJson from '../data/uma-list.json';
+import affinityDataJson from '../data/affinity_data.json'; // Import affinity data
 import { calculateScore } from '../utils/scoring';
 import i18n from '../i18n';
 import { generateParentHash } from '../utils/hashing';
@@ -12,9 +13,13 @@ const CURRENT_VERSION = 6;
 
 type DataDisplayLanguage = 'en' | 'jp';
 
+// Define the structure for the affinity data
+type AffinityData = Record<string, Record<string, number>>;
+
 interface AppContextType {
   loading: boolean;
   appData: AppData;
+  affinityData: AffinityData; // Add affinity data to context type
   activeServer: 'jp' | 'global';
   setActiveServer: (server: 'jp' | 'global') => void;
   dataDisplayLanguage: DataDisplayLanguage;
@@ -211,6 +216,7 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
   const [loading, setLoading] = useState(true);
   const [fullMasterSkillList] = useState<Skill[]>(masterSkillListJson as Skill[]);
   const [fullMasterUmaList] = useState<Uma[]>(masterUmaListJson as Uma[]);
+  const [affinityData] = useState<AffinityData>(affinityDataJson as AffinityData); // Load affinity data
   const [appData, setAppData] = useState<AppData>(createDefaultState());
   const activeServer = appData.activeServer;
 
@@ -962,6 +968,7 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
   const value = {
     loading,
     appData,
+    affinityData, // Expose affinity data
     activeServer,
     setActiveServer,
     dataDisplayLanguage,
