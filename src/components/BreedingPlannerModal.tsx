@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { useAppContext } from '../context/AppContext';
 import { Parent, Uma } from '../types';
 import Modal from './common/Modal';
@@ -9,11 +9,20 @@ import InventoryModal from './InventoryModal';
 import SelectUmaModal from './SelectUmaModal';
 import LineageDisplay from './common/LineageDisplay';
 import { calculateFullAffinity, getLineageCharacterIds, countUniqueInheritableSkills } from '../utils/affinity';
-import SuggestionParentCard from './common/SuggestionParentCard';
+import PlaceholderCard from './common/PlaceholderCard';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUsers } from '@fortawesome/free-solid-svg-icons';
 
 interface BreedingPlannerModalProps {
     isOpen: boolean;
     onClose: () => void;
+}
+
+interface Suggestion {
+    p1: Parent;
+    p2: Parent;
+    totalAffinity: number;
+    totalInheritableSkills: number;
 }
 
 type PlannerTab = 'manual' | 'suggestions';
@@ -40,6 +49,7 @@ const BreedingPlannerModal = ({ isOpen, onClose }: BreedingPlannerModalProps) =>
 
     // Suggestions State
     const [trainee, setTrainee] = useState<Uma | null>(null);
+    const [selectedSuggestion, setSelectedSuggestion] = useState<Suggestion | null>(null);
 
     const getDisplayName = (umaId: string) => umaMapById.get(umaId)?.[displayNameProp] || 'Unknown';
     
@@ -60,7 +70,7 @@ const BreedingPlannerModal = ({ isOpen, onClose }: BreedingPlannerModalProps) =>
 
     }, [manualParent1, manualParent2, masterUmaList, inventoryMap, umaMapById, charaRelations, relationPoints, excludeInbreeding]);
 
-    const suggestions = useMemo(() => {
+    const suggestions = useMemo<Suggestion[]>(() => {
         if (!trainee || roster.length < 2) return [];
         const pairs = [];
         for (let i = 0; i < roster.length; i++) {
@@ -83,8 +93,16 @@ const BreedingPlannerModal = ({ isOpen, onClose }: BreedingPlannerModalProps) =>
         return pairs.sort((a, b) => {
             if (b.totalAffinity !== a.totalAffinity) return b.totalAffinity - a.totalAffinity;
             return b.totalInheritableSkills - a.totalInheritableSkills;
-        }).slice(0, 10);
+        }).slice(0, 20);
     }, [trainee, roster, inventoryMap, umaMapById, charaRelations, relationPoints]);
+
+    useEffect(() => {
+        if (suggestions.length > 0) {
+            setSelectedSuggestion(suggestions[0]);
+        } else {
+            setSelectedSuggestion(null);
+        }
+    }, [suggestions]);
     
     const handleSelectParent = (parent: Parent) => {
         if (activeSlot === 'parent1') {
@@ -161,20 +179,53 @@ const BreedingPlannerModal = ({ isOpen, onClose }: BreedingPlannerModalProps) =>
                             <SelectionSlot label={t('breedingPlanner.selectTrainee')} selectedItem={getSelectedItem(trainee)} onClick={() => setUmaModalOpen(true)} onClear={() => setTrainee(null)} />
                             
                             {trainee && (
-                                <div className="breeding-planner__suggestions-list mt-4">
-                                    {suggestions.length > 0 ? suggestions.map((s, index) => (
-                                        <div key={`${s.p1.id}-${s.p2.id}`} className="breeding-planner__suggestion-item">
-                                            <div className="breeding-planner__suggestion-rank">#{index + 1}</div>
-                                            <div className="breeding-planner__suggestion-pair-cards">
-                                                <SuggestionParentCard parent={s.p1} />
-                                                <SuggestionParentCard parent={s.p2} />
-                                            </div>
-                                            <div className="breeding-planner__suggestion-scores">
-                                                <div className="breeding-planner__suggestion-affinity">{s.totalAffinity} {t('breedingPlanner.affinity')}</div>
-                                                <div className="breeding-planner__suggestion-parent-score">{s.totalInheritableSkills} {t('breedingPlanner.totalSkills')}</div>
-                                            </div>
-                                        </div>
-                                    )) : <p className="card__placeholder-text text-center py-8">{t('breedingPlanner.noResults')}</p>}
+                                <div className="breeding-planner__suggestions-grid mt-4">
+                                    <div className="breeding-planner__suggestions-list">
+                                        {suggestions.length > 0 ? suggestions.map((s, index) => (
+                                            <button 
+                                                key={`${s.p1.id}-${s.p2.id}`} 
+                                                className={`breeding-planner__suggestion-item ${selectedSuggestion?.p1.id === s.p1.id && selectedSuggestion?.p2.id === s.p2.id ? 'breeding-planner__suggestion-item--selected' : ''}`}
+                                                onClick={() => setSelectedSuggestion(s)}
+                                            >
+                                                <div className="breeding-planner__suggestion-rank">#{index + 1}</div>
+                                                <div className="breeding-planner__suggestion-pair">
+                                                    {renderAvatar(s.p1.umaId)}
+                                                    {renderAvatar(s.p2.umaId)}
+                                                </div>
+                                                <div className="breeding-planner__suggestion-scores">
+                                                    <div className="breeding-planner__suggestion-affinity">{s.totalAffinity} {t('breedingPlanner.affinity')}</div>
+                                                    <div className="breeding-planner__suggestion-parent-score">{s.totalInheritableSkills} {t('breedingPlanner.totalSkills')}</div>
+                                                </div>
+                                            </button>
+                                        )) : <p className="card__placeholder-text text-center py-8">{t('breedingPlanner.noResults')}</p>}
+                                    </div>
+                                    <div className="breeding-planner__suggestion-detail">
+                                        {selectedSuggestion ? (
+                                            <>
+                                                <div className="breeding-planner__detail-lineage">
+                                                    <LineageDisplay label="" parent={selectedSuggestion.p1} onClick={() => {}} onClear={() => {}} />
+                                                    <span className="breeding-planner__pair-selector-plus">+</span>
+                                                    <LineageDisplay label="" parent={selectedSuggestion.p2} onClick={() => {}} onClear={() => {}} />
+                                                </div>
+                                                <div className="breeding-planner__detail-summary">
+                                                    <div>
+                                                        <span className="breeding-planner__detail-summary-value">{selectedSuggestion.totalAffinity}</span>
+                                                        <span className="breeding-planner__detail-summary-label">{t('breedingPlanner.affinity')}</span>
+                                                    </div>
+                                                    <div>
+                                                        <span className="breeding-planner__detail-summary-value">{selectedSuggestion.totalInheritableSkills}</span>
+                                                        <span className="breeding-planner__detail-summary-label">{t('breedingPlanner.totalSkills')}</span>
+                                                    </div>
+                                                </div>
+                                            </>
+                                        ) : (
+                                            <PlaceholderCard 
+                                                icon={<FontAwesomeIcon icon={faUsers} size="2x" />}
+                                                title={t('breedingPlanner.noResults')}
+                                                message={t('breedingPlanner.noResultsMessage')}
+                                            />
+                                        )}
+                                    </div>
                                 </div>
                             )}
                         </div>
