@@ -40,13 +40,13 @@
     "traineeSuggestions": "育成ウマ娘候補",
     "selectParent1": "親1を選択",
     "selectParent2": "親2を選択",
-    "directAffinity": "直接相性（親のみ）",
     "baseAffinity": "基本相性（親同士）",
     "selectTrainee": "育成ウマ娘を選択",
-    "affinity": "相性",
+    "affinity": "合計相性",
     "totalAffinity": "合計相性",
     "noResults": "ウマ娘一覧に互換性のあるペアが見つかりませんでした。",
     "bestTrainees": "このペアに最適の育成ウマ娘",
-    "excludeInbreeding": "近親配合を除外"
+    "excludeInbreeding": "近親配合を除外",
+    "totalSkills": "合計スキル数"
   }
 }
