@@ -41,6 +41,8 @@ const BreedingPlannerModal = ({ isOpen, onClose }: BreedingPlannerModalProps) =>
     // Suggestions State
     const [trainee, setTrainee] = useState<Uma | null>(null);
 
+    const getDisplayName = (umaId: string) => umaMapById.get(umaId)?.[displayNameProp] || 'Unknown';
+
     const parentToParentAffinity = useMemo(() => {
         if (!manualParent1 || !manualParent2 || !affinityData) return 0;
         const char1 = umaMapById.get(manualParent1.umaId);
@@ -100,6 +102,11 @@ const BreedingPlannerModal = ({ isOpen, onClose }: BreedingPlannerModalProps) =>
         setTrainee(uma);
         setUmaModalOpen(false);
     };
+    
+    const renderAvatar = (umaId: string) => {
+        const uma = umaMapById.get(umaId);
+        return <img src={`${import.meta.env.BASE_URL}${uma?.image}`} alt={getDisplayName(umaId)} className="breeding-planner__suggestion-avatar" />;
+    };
 
     const getSelectedItem = (item: Uma | null) => {
         if (!item) return null;
@@ -137,8 +144,9 @@ const BreedingPlannerModal = ({ isOpen, onClose }: BreedingPlannerModalProps) =>
                                         {traineeSuggestionsForManualPair.map((s, index) => (
                                              <div key={s.uma.id} className="breeding-planner__suggestion-item">
                                                 <div className="breeding-planner__suggestion-rank">#{index + 1}</div>
-                                                <div className="breeding-planner__suggestion-pair-single">
-                                                    <SuggestionParentCard parent={{...s.uma, score: 0} as Parent}/>
+                                                <div className="breeding-planner__suggestion-pair">
+                                                    {renderAvatar(s.uma.id)}
+                                                    <span>{s.uma[displayNameProp]}</span>
                                                 </div>
                                                 <div className="breeding-planner__suggestion-scores">
                                                     <div className="breeding-planner__suggestion-affinity">{s.totalAffinity} {t('breedingPlanner.totalAffinity')}</div>
