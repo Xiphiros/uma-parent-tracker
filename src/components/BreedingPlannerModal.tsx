@@ -8,7 +8,8 @@ import SelectionSlot from './common/SelectionSlot';
 import InventoryModal from './InventoryModal';
 import SelectUmaModal from './SelectUmaModal';
 import LineageDisplay from './common/LineageDisplay';
-import { calculateFullAffinity, getLineageCharacterIds } from '../utils/affinity';
+import { calculateFullAffinity, getLineageCharacterIds, countUniqueInheritableSkills } from '../utils/affinity';
+import SuggestionParentCard from './common/SuggestionParentCard';
 
 interface BreedingPlannerModalProps {
     isOpen: boolean;
@@ -39,8 +40,6 @@ const BreedingPlannerModal = ({ isOpen, onClose }: BreedingPlannerModalProps) =>
 
     // Suggestions State
     const [trainee, setTrainee] = useState<Uma | null>(null);
-
-    const getDisplayName = (umaId: string) => umaMapById.get(umaId)?.[displayNameProp] || 'Unknown';
 
     const parentToParentAffinity = useMemo(() => {
         if (!manualParent1 || !manualParent2 || !affinityData) return 0;
@@ -74,10 +73,14 @@ const BreedingPlannerModal = ({ isOpen, onClose }: BreedingPlannerModalProps) =>
                 const p1 = roster[i];
                 const p2 = roster[j];
                 const totalAffinity = calculateFullAffinity(trainee, p1, p2, affinityData, inventoryMap, umaMapById);
-                pairs.push({ p1, p2, totalAffinity });
+                const totalInheritableSkills = countUniqueInheritableSkills(p1, p2, inventoryMap);
+                pairs.push({ p1, p2, totalAffinity, totalInheritableSkills });
             }
         }
-        return pairs.sort((a, b) => b.totalAffinity - a.totalAffinity).slice(0, 10);
+        return pairs.sort((a, b) => {
+            if (b.totalAffinity !== a.totalAffinity) return b.totalAffinity - a.totalAffinity;
+            return b.totalInheritableSkills - a.totalInheritableSkills;
+        }).slice(0, 10);
     }, [trainee, roster, affinityData, umaMapById, inventoryMap]);
     
     const handleSelectParent = (parent: Parent) => {
@@ -96,11 +99,6 @@ const BreedingPlannerModal = ({ isOpen, onClose }: BreedingPlannerModalProps) =>
     const handleSelectUma = (uma: Uma) => {
         setTrainee(uma);
         setUmaModalOpen(false);
-    };
-    
-    const renderAvatar = (umaId: string) => {
-        const uma = umaMapById.get(umaId);
-        return <img src={`${import.meta.env.BASE_URL}${uma?.image}`} alt={getDisplayName(umaId)} className="breeding-planner__suggestion-avatar" />;
     };
 
     const getSelectedItem = (item: Uma | null) => {
@@ -139,9 +137,8 @@ const BreedingPlannerModal = ({ isOpen, onClose }: BreedingPlannerModalProps) =>
                                         {traineeSuggestionsForManualPair.map((s, index) => (
                                              <div key={s.uma.id} className="breeding-planner__suggestion-item">
                                                 <div className="breeding-planner__suggestion-rank">#{index + 1}</div>
-                                                <div className="breeding-planner__suggestion-pair">
-                                                    {renderAvatar(s.uma.id)}
-                                                    <span>{s.uma[displayNameProp]}</span>
+                                                <div className="breeding-planner__suggestion-pair-single">
+                                                    <SuggestionParentCard parent={{...s.uma, score: 0} as Parent}/>
                                                 </div>
                                                 <div className="breeding-planner__suggestion-scores">
                                                     <div className="breeding-planner__suggestion-affinity">{s.totalAffinity} {t('breedingPlanner.totalAffinity')}</div>
@@ -163,19 +160,13 @@ const BreedingPlannerModal = ({ isOpen, onClose }: BreedingPlannerModalProps) =>
                                     {suggestions.length > 0 ? suggestions.map((s, index) => (
                                         <div key={`${s.p1.id}-${s.p2.id}`} className="breeding-planner__suggestion-item">
                                             <div className="breeding-planner__suggestion-rank">#{index + 1}</div>
-                                            <div>
-                                                <div className="breeding-planner__suggestion-pair">
-                                                    {renderAvatar(s.p1.umaId)}
-                                                    <span>{getDisplayName(s.p1.umaId)}</span>
-                                                </div>
-                                                <div className="breeding-planner__suggestion-pair mt-2">
-                                                    {renderAvatar(s.p2.umaId)}
-                                                    <span>{getDisplayName(s.p2.umaId)}</span>
-                                                </div>
+                                            <div className="breeding-planner__suggestion-pair-cards">
+                                                <SuggestionParentCard parent={s.p1} />
+                                                <SuggestionParentCard parent={s.p2} />
                                             </div>
                                             <div className="breeding-planner__suggestion-scores">
                                                 <div className="breeding-planner__suggestion-affinity">{s.totalAffinity} {t('breedingPlanner.affinity')}</div>
-                                                <div className="breeding-planner__suggestion-parent-score">{s.p1.score} + {s.p2.score} {t('parentCard.pts')}</div>
+                                                <div className="breeding-planner__suggestion-parent-score">{s.totalInheritableSkills} {t('breedingPlanner.totalSkills')}</div>
                                             </div>
                                         </div>
                                     )) : <p className="card__placeholder-text text-center py-8">{t('breedingPlanner.noResults')}</p>}
