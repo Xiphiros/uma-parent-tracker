@@ -36,6 +36,10 @@ class AffinityCalculator:
         valid_ids = [cid for cid in char_ids if cid and cid in self.chara_relations]
         if len(valid_ids) < 2:
             return 0
+        
+        # Inbreeding check: If any character is repeated (e.g., trainee is same as grandparent), affinity is 0.
+        if len(valid_ids) != len(set(valid_ids)):
+            return 0
 
         # Get the relationship group sets for all valid characters
         relation_sets = [self.chara_relations[cid] for cid in valid_ids]
