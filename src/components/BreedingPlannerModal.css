@@ -1,0 +1,107 @@
+/* Breeding Planner Modal */
+.breeding-planner__tabs {
+    display: flex;
+    border-bottom: 1px solid var(--color-border);
+    margin-bottom: 1.5rem;
+}
+.breeding-planner__tab {
+    padding: 0.75rem 1rem;
+    font-weight: 500;
+    color: var(--color-text-muted);
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    transition: color 0.2s ease, border-color 0.2s ease;
+}
+.breeding-planner__tab:hover {
+    color: var(--color-text-primary);
+}
+.breeding-planner__tab--active {
+    color: var(--color-accent-primary);
+    border-bottom-color: var(--color-accent-primary);
+}
+
+.breeding-planner__content {
+    min-height: 400px;
+}
+
+.breeding-planner__pair-selector {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 1rem;
+    align-items: center;
+}
+
+.breeding-planner__pair-selector-plus {
+    font-size: 1.5rem;
+    color: var(--color-text-muted);
+}
+
+.breeding-planner__results-card {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+    background-color: var(--color-bg);
+}
+
+.breeding-planner__affinity-score {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+}
+.breeding-planner__affinity-score span {
+    color: var(--color-score);
+}
+
+.breeding-planner__suggestions-list {
+    max-height: 400px;
+    overflow-y: auto;
+    padding-right: 0.5rem;
+}
+
+.breeding-planner__suggestion-item {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 0.75rem;
+    align-items: center;
+    padding: 0.75rem;
+    border-bottom: 1px solid var(--color-border);
+}
+.breeding-planner__suggestion-item:last-child {
+    border-bottom: none;
+}
+
+.breeding-planner__suggestion-rank {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-text-muted);
+}
+
+.breeding-planner__suggestion-pair {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.breeding-planner__suggestion-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 9999px;
+    object-fit: cover;
+    border: 1px solid var(--color-avatar-border);
+}
+
+.breeding-planner__suggestion-scores {
+    text-align: right;
+}
+
+.breeding-planner__suggestion-affinity {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-score);
+}
+
+.breeding-planner__suggestion-parent-score {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+}
