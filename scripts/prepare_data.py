@@ -17,7 +17,8 @@ import hashlib
 # This pipeline will generate the final production files:
 #    - `src/data/skill-list.json`
 #    - `src/data/uma-list.json`
-#    - `src/data/affinity_components.json`
+#    - `src/data/affinity_jp.json`
+#    - `src/data/affinity_gl.json`
 #    - `src/data/skill-list-dev.json` (an unfiltered list for dev tools)
 
 # --- PATHS ---
@@ -312,27 +313,34 @@ def prepare_umas(translations):
     print(f"Uma output saved to: {output_path.relative_to(PROJECT_ROOT)}")
 
 def prepare_affinity_components():
-    """Loads raw JP and Global affinity components and merges them into a single file."""
+    """Copies raw JP and Global affinity components into separate production files."""
     print("\nProcessing affinity components...")
-    output_path = OUTPUT_DATA_DIR / 'affinity_components.json'
-
-    jp_data = _load_json(RAW_DATA_DIR / 'jp' / 'affinity_components.json')
-    gl_data = _load_json(RAW_DATA_DIR / 'global' / 'affinity_components.json')
-
-    # Deep merge, with JP data taking precedence
-    merged_data = {
-        "chara_map": {**gl_data.get('chara_map', {}), **jp_data.get('chara_map', {})},
-        "relation_points": {**gl_data.get('relation_points', {}), **jp_data.get('relation_points', {})},
-        "chara_relations": {**gl_data.get('chara_relations', {}), **jp_data.get('chara_relations', {})}
-    }
+    
+    # Define paths
+    jp_source_path = RAW_DATA_DIR / 'jp' / 'affinity_components.json'
+    gl_source_path = RAW_DATA_DIR / 'global' / 'affinity_components.json'
+    jp_dest_path = OUTPUT_DATA_DIR / 'affinity_jp.json'
+    gl_dest_path = OUTPUT_DATA_DIR / 'affinity_gl.json'
 
     OUTPUT_DATA_DIR.mkdir(parents=True, exist_ok=True)
-    with open(output_path, 'w', encoding='utf-8') as f:
-        json.dump(merged_data, f, indent=2, ensure_ascii=False)
-        f.write('\n')
 
-    print(f"Successfully merged JP and Global affinity components.")
-    print(f"Affinity components saved to: {output_path.relative_to(PROJECT_ROOT)}")
+    # Process JP data
+    jp_data = _load_json(jp_source_path)
+    if jp_data:
+        with open(jp_dest_path, 'w', encoding='utf-8') as f:
+            json.dump(jp_data, f, ensure_ascii=False)
+        print(f"Successfully copied JP affinity components to: {jp_dest_path.relative_to(PROJECT_ROOT)}")
+    else:
+        print(f"Warning: JP affinity source not found at {jp_source_path}")
+
+    # Process Global data
+    gl_data = _load_json(gl_source_path)
+    if gl_data:
+        with open(gl_dest_path, 'w', encoding='utf-8') as f:
+            json.dump(gl_data, f, ensure_ascii=False)
+        print(f"Successfully copied Global affinity components to: {gl_dest_path.relative_to(PROJECT_ROOT)}")
+    else:
+        print(f"Warning: Global affinity source not found at {gl_source_path}")
 
 
 if __name__ == "__main__":
