@@ -92,7 +92,11 @@ For detailed information on the data structure, please see the [Data Schema Docu
 
 ### Data Source & Credits
 
-The skill and character datasets used in this application are sourced from the incredible work done by Alpha123 on the [uma-tools](https://github.com/alpha123/uma-tools) project, specifically the [umalator-global](https://github.com/alpha123/uma-tools/tree/master/umalator-global) dataset. This tool would not be possible without their effort.
+This tool utilizes data and assets from several incredible community projects. This tool would not be possible without their efforts.
+
+*   **Core Game Data**: The skill and character datasets are sourced from the incredible work done by **Alpha123** on the [uma-tools](https://github.com/alpha123/uma-tools) project.
+*   **Character Images**: All character images are provided by [Gametora](https://gametora.com/).
+*   **Affinity Data**: The character-to-character affinity data is provided by **Mee1080** from the [UmaiShow](https://github.com/mee1080/umaishow/) project.
 
 ### Special Thanks
 
