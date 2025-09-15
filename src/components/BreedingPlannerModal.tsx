@@ -32,7 +32,7 @@ type ActiveSlot = 'parent1' | 'parent2' | null;
 const BreedingPlannerModal = ({ isOpen, onClose }: BreedingPlannerModalProps) => {
     const { t } = useTranslation('roster');
     const { getScoredRoster, dataDisplayLanguage, umaMapById, masterUmaList, appData, charaRelations, relationPoints, skillMapByName, getActiveProfile } = useAppContext();
-    const roster = getScoredRoster();
+    const roster = useMemo(() => getScoredRoster(), [getScoredRoster]);
     const displayNameProp = dataDisplayLanguage === 'jp' ? 'name_jp' : 'name_en';
     const inventoryMap = useMemo(() => new Map(appData.inventory.map(p => [p.id, p])), [appData.inventory]);
     const goal = getActiveProfile()?.goal;
