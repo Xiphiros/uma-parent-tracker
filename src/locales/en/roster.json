@@ -38,10 +38,10 @@
     "title": "Planner",
     "manualPair": "Manual Pair",
     "traineeSuggestions": "Trainee Suggestions",
-    "selectParent1": "Select Parent 1...",
-    "selectParent2": "Select Parent 2...",
+    "selectParent1": "Select Parent 1",
+    "selectParent2": "Select Parent 2",
     "directAffinity": "Direct Affinity",
-    "selectTrainee": "Select Trainee...",
+    "selectTrainee": "Select Trainee",
     "affinity": "Affinity",
     "noResults": "No compatible pairs found in roster."
   }
