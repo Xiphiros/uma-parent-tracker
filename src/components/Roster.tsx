@@ -6,14 +6,16 @@ import InventoryModal from './InventoryModal';
 import { Parent } from '../types';
 import { useScrollLock } from '../hooks/useScrollLock';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUsers, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faUsers, faPlus, faFlask } from '@fortawesome/free-solid-svg-icons';
 import { useTranslation } from 'react-i18next';
+import BreedingPlannerModal from './BreedingPlannerModal';
 
 const Roster = () => {
     const { t } = useTranslation(['roster', 'common']);
     const { getActiveProfile, getScoredRoster, removeParentFromProfile } = useAppContext();
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
     const [isInventoryModalOpen, setIsInventoryModalOpen] = useState(false);
+    const [isPlannerModalOpen, setIsPlannerModalOpen] = useState(false);
     const [parentToEdit, setParentToEdit] = useState<Parent | null>(null);
     const rosterContainerRef = useRef<HTMLDivElement>(null);
     
@@ -75,6 +77,10 @@ const Roster = () => {
                         {t('rosterTitle', { projectName: activeProfile?.name })}
                     </h2>
                     <div className="flex items-center gap-2">
+                         <button className="button button--neutral" onClick={() => setIsPlannerModalOpen(true)}>
+                            <FontAwesomeIcon icon={faFlask} className="h-5 w-5 mr-1" />
+                            {t('breedingPlanner.title')}
+                        </button>
                         <button className="button button--neutral" onClick={() => setIsInventoryModalOpen(true)}>
                             <FontAwesomeIcon icon={faUsers} className="h-5 w-5 mr-1" />
                             {t('inventory.manageBtn')}
@@ -110,6 +116,11 @@ const Roster = () => {
             <InventoryModal
                 isOpen={isInventoryModalOpen}
                 onClose={() => setIsInventoryModalOpen(false)}
+            />
+
+            <BreedingPlannerModal
+                isOpen={isPlannerModalOpen}
+                onClose={() => setIsPlannerModalOpen(false)}
             />
         </>
     );
