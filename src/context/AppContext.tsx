@@ -2,7 +2,7 @@ import { createContext, useContext, useState, useEffect, ReactNode, useRef, useM
 import { AppData, Profile, Skill, Uma, Goal, Parent, NewParentData, WishlistItem, Folder, IconName, ServerSpecificData, ValidationResult } from '../types';
 import masterSkillListJson from '../data/skill-list.json';
 import masterUmaListJson from '../data/uma-list.json';
-import affinityDataJson from '../data/affinity_data.json'; // Import affinity data
+import affinityComponentsJson from '../data/affinity_components.json';
 import { calculateScore } from '../utils/scoring';
 import i18n from '../i18n';
 import { generateParentHash } from '../utils/hashing';
@@ -13,13 +13,18 @@ const CURRENT_VERSION = 6;
 
 type DataDisplayLanguage = 'en' | 'jp';
 
-// Define the structure for the affinity data
-type AffinityData = Record<string, Record<string, number>>;
+// Define the structure for the affinity component data
+interface AffinityComponents {
+    chara_map: Record<string, string>;
+    relation_points: Record<string, number>;
+    chara_relations: Record<string, number[]>;
+}
 
 interface AppContextType {
   loading: boolean;
   appData: AppData;
-  affinityData: AffinityData; // Add affinity data to context type
+  relationPoints: Map<number, number>;
+  charaRelations: Map<number, Set<number>>;
   activeServer: 'jp' | 'global';
   setActiveServer: (server: 'jp' | 'global') => void;
   dataDisplayLanguage: DataDisplayLanguage;
@@ -216,7 +221,6 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
   const [loading, setLoading] = useState(true);
   const [fullMasterSkillList] = useState<Skill[]>(masterSkillListJson as Skill[]);
   const [fullMasterUmaList] = useState<Uma[]>(masterUmaListJson as Uma[]);
-  const [affinityData] = useState<AffinityData>(affinityDataJson as AffinityData); // Load affinity data
   const [appData, setAppData] = useState<AppData>(createDefaultState());
   const activeServer = appData.activeServer;
 
@@ -224,6 +228,19 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
   const [useCommunityTranslations, setUseCommunityTranslationsState] = useState<boolean>(false);
   
   const isInitialLoad = useRef(true);
+
+  const { relationPoints, charaRelations } = useMemo(() => {
+    const components = affinityComponentsJson as AffinityComponents;
+    const points = new Map<number, number>();
+    for (const [key, value] of Object.entries(components.relation_points)) {
+        points.set(parseInt(key, 10), value);
+    }
+    const relations = new Map<number, Set<number>>();
+    for (const [key, value] of Object.entries(components.chara_relations)) {
+        relations.set(parseInt(key, 10), new Set(value));
+    }
+    return { relationPoints: points, charaRelations: relations };
+  }, []);
 
   useEffect(() => {
     let data: AppData | null = null;
@@ -968,7 +985,8 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
   const value = {
     loading,
     appData,
-    affinityData, // Expose affinity data
+    relationPoints,
+    charaRelations,
     activeServer,
     setActiveServer,
     dataDisplayLanguage,
