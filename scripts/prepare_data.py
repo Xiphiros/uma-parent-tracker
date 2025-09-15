@@ -7,7 +7,9 @@ import hashlib
 # To generate all production data, run the scripts in the following order from the project root:
 # 1. `python scripts/prepare_raw_data_gl.py path/to/global/master.mdb`
 # 2. `python scripts/prepare_raw_data_jp.py path/to/jp/master.mdb`
-# 3. `python scripts/prepare_data.py` (This script)
+# 3. `python scripts/prepare_raw_affinity.py global path/to/global/master.mdb`
+# 4. `python scripts/prepare_raw_affinity.py jp path/to/jp/master.mdb`
+# 5. `python scripts/prepare_data.py` (This script)
 #
 # Note: Factor data for races and scenarios must be manually placed in raw_data/
 # from the appropriate sources before running this script.
@@ -15,6 +17,7 @@ import hashlib
 # This pipeline will generate the final production files:
 #    - `src/data/skill-list.json`
 #    - `src/data/uma-list.json`
+#    - `src/data/affinity_data.json`
 #    - `src/data/skill-list-dev.json` (an unfiltered list for dev tools)
 
 # --- PATHS ---
@@ -308,6 +311,30 @@ def prepare_umas(translations):
     print(f"Successfully processed {len(uma_list)} umas.")
     print(f"Uma output saved to: {output_path.relative_to(PROJECT_ROOT)}")
 
+def prepare_affinity_data():
+    """Loads raw JP and Global affinity data and merges them into a single file."""
+    print("\nProcessing affinity data...")
+    output_path = OUTPUT_DATA_DIR / 'affinity_data.json'
+
+    jp_affinity = _load_json(RAW_DATA_DIR / 'jp' / 'affinity.json')
+    gl_affinity = _load_json(RAW_DATA_DIR / 'global' / 'affinity.json')
+
+    # Deep merge, with JP data taking precedence
+    merged_affinity = {**gl_affinity}
+    for char_id, relations in jp_affinity.items():
+        if char_id in merged_affinity:
+            merged_affinity[char_id].update(relations)
+        else:
+            merged_affinity[char_id] = relations
+
+    OUTPUT_DATA_DIR.mkdir(parents=True, exist_ok=True)
+    with open(output_path, 'w', encoding='utf-8') as f:
+        json.dump(merged_affinity, f, indent=2, ensure_ascii=False)
+        f.write('\n')
+
+    print(f"Successfully merged JP and Global affinity data.")
+    print(f"Affinity output saved to: {output_path.relative_to(PROJECT_ROOT)}")
+
 
 if __name__ == "__main__":
     try:
@@ -315,5 +342,6 @@ if __name__ == "__main__":
         skill_data, skill_meta, skill_names = load_and_merge_skill_data()
         prepare_skills(skill_data, skill_meta, skill_names, translations)
         prepare_umas(translations)
+        prepare_affinity_data()
     except Exception as e:
         print(f"\nAn error occurred during data preparation: {e}")
