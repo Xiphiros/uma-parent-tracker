@@ -14,6 +14,7 @@
 @import "./components/Header.css";
 @import "./components/InfoModal.css";
 @import "./components/InventoryModal.css";
+@import "./components/common/InventoryControls.css";
 @import "./components/common/LineageDisplay.css";
 @import "./components/common/LineageTree.css";
 @import "./components/ParentCard.css";
