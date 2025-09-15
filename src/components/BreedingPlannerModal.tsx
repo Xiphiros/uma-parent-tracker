@@ -21,7 +21,7 @@ type ActiveSlot = 'parent1' | 'parent2' | null;
 
 const BreedingPlannerModal = ({ isOpen, onClose }: BreedingPlannerModalProps) => {
     const { t } = useTranslation('roster');
-    const { getScoredRoster, dataDisplayLanguage, umaMapById, affinityData, masterUmaList, appData } = useAppContext();
+    const { getScoredRoster, dataDisplayLanguage, umaMapById, masterUmaList, appData, charaRelations, relationPoints } = useAppContext();
     const roster = getScoredRoster();
     const displayNameProp = dataDisplayLanguage === 'jp' ? 'name_jp' : 'name_en';
     const inventoryMap = useMemo(() => new Map(appData.inventory.map(p => [p.id, p])), [appData.inventory]);
@@ -44,37 +44,41 @@ const BreedingPlannerModal = ({ isOpen, onClose }: BreedingPlannerModalProps) =>
     const getDisplayName = (umaId: string) => umaMapById.get(umaId)?.[displayNameProp] || 'Unknown';
 
     const parentToParentAffinity = useMemo(() => {
-        if (!manualParent1 || !manualParent2 || !affinityData) return 0;
-        const char1 = umaMapById.get(manualParent1.umaId);
-        const char2 = umaMapById.get(manualParent2.umaId);
-        if (!char1 || !char2) return 0;
-        return affinityData[char1.characterId]?.[char2.characterId] ?? 0;
-    }, [manualParent1, manualParent2, affinityData, umaMapById]);
+        if (!manualParent1 || !manualParent2) return 0;
+        // This is a dummy call to the full calculator with a dummy trainee
+        // since we only care about the cross-parent score which is calculated inside.
+        // A dedicated 2-way function could be made, but this reuses the code well.
+        const dummyTrainee = masterUmaList[0];
+        const fullScore = calculateFullAffinity(dummyTrainee, manualParent1, manualParent2, charaRelations, relationPoints, inventoryMap, umaMapById);
+        const dummyScore = calculateFullAffinity(dummyTrainee, manualParent1, manualParent2, new Map(), new Map(), inventoryMap, umaMapById);
+        return fullScore - dummyScore; // This isolates the P1<>P2 score
+    }, [manualParent1, manualParent2, masterUmaList, charaRelations, relationPoints, inventoryMap, umaMapById]);
     
     const traineeSuggestionsForManualPair = useMemo(() => {
-        if (!manualParent1 || !manualParent2 || !affinityData) return [];
+        if (!manualParent1 || !manualParent2) return [];
         
         let potentialTrainees = masterUmaList;
         if (excludeInbreeding) {
             const lineageIds = getLineageCharacterIds(manualParent1, manualParent2, inventoryMap, umaMapById);
-            potentialTrainees = masterUmaList.filter(uma => !lineageIds.has(uma.characterId));
+            const lineageCharIdStrings = new Set(Array.from(lineageIds).map(String));
+            potentialTrainees = masterUmaList.filter(uma => !lineageCharIdStrings.has(uma.characterId));
         }
 
         return potentialTrainees.map(tUma => ({
             uma: tUma,
-            totalAffinity: calculateFullAffinity(tUma, manualParent1, manualParent2, affinityData, inventoryMap, umaMapById)
+            totalAffinity: calculateFullAffinity(tUma, manualParent1, manualParent2, charaRelations, relationPoints, inventoryMap, umaMapById)
         })).sort((a,b) => b.totalAffinity - a.totalAffinity).slice(0, 10);
 
-    }, [manualParent1, manualParent2, masterUmaList, affinityData, umaMapById, inventoryMap, excludeInbreeding]);
+    }, [manualParent1, manualParent2, masterUmaList, inventoryMap, umaMapById, charaRelations, relationPoints, excludeInbreeding]);
 
     const suggestions = useMemo(() => {
-        if (!trainee || roster.length < 2 || !affinityData) return [];
+        if (!trainee || roster.length < 2) return [];
         const pairs = [];
         for (let i = 0; i < roster.length; i++) {
             for (let j = i + 1; j < roster.length; j++) {
                 const p1 = roster[i];
                 const p2 = roster[j];
-                const totalAffinity = calculateFullAffinity(trainee, p1, p2, affinityData, inventoryMap, umaMapById);
+                const totalAffinity = calculateFullAffinity(trainee, p1, p2, charaRelations, relationPoints, inventoryMap, umaMapById);
                 const totalInheritableSkills = countUniqueInheritableSkills(p1, p2, inventoryMap);
                 pairs.push({ p1, p2, totalAffinity, totalInheritableSkills });
             }
@@ -83,7 +87,7 @@ const BreedingPlannerModal = ({ isOpen, onClose }: BreedingPlannerModalProps) =>
             if (b.totalAffinity !== a.totalAffinity) return b.totalAffinity - a.totalAffinity;
             return b.totalInheritableSkills - a.totalInheritableSkills;
         }).slice(0, 10);
-    }, [trainee, roster, affinityData, umaMapById, inventoryMap]);
+    }, [trainee, roster, inventoryMap, umaMapById, charaRelations, relationPoints]);
     
     const handleSelectParent = (parent: Parent) => {
         if (activeSlot === 'parent1') {
@@ -131,10 +135,6 @@ const BreedingPlannerModal = ({ isOpen, onClose }: BreedingPlannerModalProps) =>
                             </div>
                             {manualParent1 && manualParent2 && (
                                 <div className="breeding-planner__results-container">
-                                    <div className="breeding-planner__results-card">
-                                        <h4 className="form__section-title">{t('breedingPlanner.baseAffinity')}</h4>
-                                        <p className="breeding-planner__affinity-score"><span>{parentToParentAffinity}</span> {t('parentCard.pts')}</p>
-                                    </div>
                                     <div className="breeding-planner__inbreeding-toggle">
                                         <input type="checkbox" id="inbreeding-toggle" checked={excludeInbreeding} onChange={e => setExcludeInbreeding(e.target.checked)} />
                                         <label htmlFor="inbreeding-toggle">{t('breedingPlanner.excludeInbreeding')}</label>
