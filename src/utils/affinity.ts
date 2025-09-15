@@ -107,3 +107,33 @@ export function getLineageCharacterIds(
 
     return lineageIds;
 }
+
+/**
+ * Counts all unique inheritable skills from a full lineage of two parents and their grandparents.
+ * @returns The total number of unique skills.
+ */
+export function countUniqueInheritableSkills(
+    parent1: Parent,
+    parent2: Parent,
+    inventoryMap: Map<number, Parent>
+): number {
+    const skillNames = new Set<string>();
+    const lineage: (Parent | ManualParentData | null)[] = [
+        parent1,
+        parent2,
+        resolveGrandparent(parent1.grandparent1, inventoryMap),
+        resolveGrandparent(parent1.grandparent2, inventoryMap),
+        resolveGrandparent(parent2.grandparent1, inventoryMap),
+        resolveGrandparent(parent2.grandparent2, inventoryMap),
+    ];
+
+    for (const member of lineage) {
+        if (!member) continue;
+        member.uniqueSparks.forEach(s => skillNames.add(s.name));
+        if ('whiteSparks' in member) { // ManualParentData might not have whiteSparks
+            member.whiteSparks.forEach(s => skillNames.add(s.name));
+        }
+    }
+    
+    return skillNames.size;
+}
