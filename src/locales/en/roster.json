@@ -23,7 +23,25 @@
     "manageBtn": "Manage Inventory",
     "placeholder": "This server's inventory is empty.",
     "count": "{{count}} Parents",
-    "unassigned": "Unassigned"
+    "unassigned": "Unassigned",
+    "searchByName": "Search by name...",
+    "sortBy": "Sort By",
+    "filterBy": "Filter By",
+    "blueSpark": "Blue Spark",
+    "pinkSpark": "Pink Spark",
+    "uniqueSpark": "Unique Spark",
+    "whiteSpark": "White Spark",
+    "minStars": "Min. Stars",
+    "allTypes": "All Types",
+    "anyStars": "Any",
+    "clearFilters": "Clear Filters",
+    "sortOptions": {
+      "score": "Score (High-Low)",
+      "name": "Name (A-Z)",
+      "gen": "Generation (New-Old)",
+      "date": "Date Added (New-Old)",
+      "sparks": "Spark Count (High-Low)"
+    }
   },
   "suggestions": {
     "title": "Breeding Suggestions",
