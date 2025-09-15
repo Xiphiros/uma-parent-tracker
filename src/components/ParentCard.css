@@ -11,6 +11,10 @@
 .parent-card--top-pair {
     border-color: var(--color-top-pair-border);
 }
+.parent-card--disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
 .parent-card__main-content {
     display: flex;
     gap: 1rem;
