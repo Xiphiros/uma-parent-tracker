@@ -241,10 +241,13 @@ const BreedingPlannerModal = ({ isOpen, onClose }: BreedingPlannerModalProps) =>
                                 <div className="breeding-planner__suggestions-grid mt-4">
                                     <div className="breeding-planner__suggestions-list">
                                         {suggestions.length > 0 ? suggestions.map((s, index) => (
-                                            <button 
+                                            <div 
                                                 key={`${s.p1.id}-${s.p2.id}`} 
+                                                role="button"
+                                                tabIndex={0}
                                                 className={`breeding-planner__suggestion-item ${selectedSuggestion?.p1.id === s.p1.id && selectedSuggestion?.p2.id === s.p2.id ? 'breeding-planner__suggestion-item--selected' : ''}`}
                                                 onClick={() => setSelectedSuggestion(s)}
+                                                onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && setSelectedSuggestion(s)}
                                             >
                                                 <div className="breeding-planner__suggestion-rank">#{index + 1}</div>
                                                 <div className="breeding-planner__suggestion-pair">
@@ -255,7 +258,7 @@ const BreedingPlannerModal = ({ isOpen, onClose }: BreedingPlannerModalProps) =>
                                                     <div className="breeding-planner__suggestion-affinity">{s.totalAffinity} {t('breedingPlanner.affinity')}</div>
                                                     <div className="breeding-planner__suggestion-parent-score">{s.totalInheritableSkills} {t('breedingPlanner.totalSkills')}</div>
                                                 </div>
-                                            </button>
+                                            </div>
                                         )) : <p className="card__placeholder-text text-center py-8">{t('breedingPlanner.noResults')}</p>}
                                     </div>
                                     <div className="breeding-planner__suggestion-detail">
