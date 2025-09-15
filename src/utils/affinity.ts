@@ -8,7 +8,7 @@ type AffinityData = Record<string, Record<string, number>>;
  * @param inventoryMap A map of all parents in the inventory, keyed by ID.
  * @returns A Parent or ManualParentData object, or null if not found.
  */
-function resolveGrandparent(gp: Grandparent | undefined, inventoryMap: Map<number, Parent>): Parent | ManualParentData | null {
+export function resolveGrandparent(gp: Grandparent | undefined, inventoryMap: Map<number, Parent>): Parent | ManualParentData | null {
     if (!gp) return null;
     if (typeof gp === 'number') return inventoryMap.get(gp) || null;
     return gp;
