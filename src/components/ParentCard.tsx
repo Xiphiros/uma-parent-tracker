@@ -19,9 +19,10 @@ interface ParentCardProps {
     assignedProjects?: string[];
     isSelectionMode?: boolean;
     onSelect?: (parent: Parent) => void;
+    isDisabled?: boolean;
 }
 
-const ParentCard = ({ parent, isTopParent = false, displayScore = true, onEdit, onDelete, onAssign, onMove, assignedProjects, isSelectionMode = false, onSelect }: ParentCardProps) => {
+const ParentCard = ({ parent, isTopParent = false, displayScore = true, onEdit, onDelete, onAssign, onMove, assignedProjects, isSelectionMode = false, onSelect, isDisabled = false }: ParentCardProps) => {
     const { t } = useTranslation(['roster', 'common', 'game']);
     const { getActiveProfile, dataDisplayLanguage, umaMapById, skillMapByName, appData } = useAppContext();
     const goal = getActiveProfile()?.goal;
@@ -159,7 +160,7 @@ const ParentCard = ({ parent, isTopParent = false, displayScore = true, onEdit, 
     );
 
     return (
-        <div className={`parent-card ${isTopParent ? 'parent-card--top-pair' : ''}`}>
+        <div className={`parent-card ${isTopParent ? 'parent-card--top-pair' : ''} ${isDisabled ? 'parent-card--disabled' : ''}`}>
             <div className="parent-card__main-content">
                 <LineageTree parent={parent} />
                 <div className="parent-card__details">
@@ -172,7 +173,7 @@ const ParentCard = ({ parent, isTopParent = false, displayScore = true, onEdit, 
                         <div className="parent-card__score-wrapper">
                             {displayScore && <div className="parent-card__score">{parent.score} {t('parentCard.pts')}</div>}
                             {isSelectionMode && onSelect ? (
-                                <button onClick={() => onSelect(parent)} className="button button--primary button--small mt-1">{t('common:select')}</button>
+                                <button onClick={() => !isDisabled && onSelect(parent)} className="button button--primary button--small mt-1" disabled={isDisabled}>{t('common:select')}</button>
                             ) : (
                                 <div className="parent-card__actions">
                                     {onMove && <button onClick={onMove} className="parent-card__edit-btn">{t('common:move')}</button>}
