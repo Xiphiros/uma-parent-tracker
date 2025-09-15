@@ -29,10 +29,7 @@ const InfoModal = ({ isOpen, onClose }: InfoModalProps) => {
 
                 <div className="info-modal__section">
                     <h4 className="info-modal__section-title">{t('creditsTitle')}</h4>
-                    <p className="info-modal__text">
-                        {t('creditsText')}{' '}
-                        <a href="https://github.com/alpha123/uma-tools" target="_blank" rel="noopener noreferrer">{t('creditsLink')}</a> project.
-                    </p>
+                    <p className="info-modal__text" dangerouslySetInnerHTML={{ __html: t('creditsText') }} />
                 </div>
                 
                 <div className="info-modal__section">
