@@ -52,6 +52,12 @@ function _calculateAffinityScore(
     if (validIds.length < 2) {
         return 0;
     }
+    
+    // Inbreeding check: If any character is repeated (e.g., trainee is same as grandparent), affinity is 0.
+    const idSet = new Set(validIds);
+    if (idSet.size !== validIds.length) {
+        return 0;
+    }
 
     const relationSets = validIds.map(id => charaRelations.get(id)!);
 
