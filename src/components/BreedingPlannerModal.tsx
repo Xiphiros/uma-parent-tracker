@@ -67,6 +67,14 @@ const BreedingPlannerModal = ({ isOpen, onClose }: BreedingPlannerModalProps) =>
             for (let j = i + 1; j < roster.length; j++) {
                 const p1 = roster[i];
                 const p2 = roster[j];
+
+                // Prevent suggesting a character as its own parent
+                const p1CharId = umaMapById.get(p1.umaId)?.characterId;
+                const p2CharId = umaMapById.get(p2.umaId)?.characterId;
+                if (p1CharId === trainee.characterId || p2CharId === trainee.characterId) {
+                    continue;
+                }
+
                 const totalAffinity = calculateFullAffinity(trainee, p1, p2, charaRelations, relationPoints, inventoryMap, umaMapById);
                 const totalInheritableSkills = countUniqueInheritableSkills(p1, p2, inventoryMap);
                 pairs.push({ p1, p2, totalAffinity, totalInheritableSkills });
