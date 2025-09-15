@@ -42,17 +42,6 @@ const BreedingPlannerModal = ({ isOpen, onClose }: BreedingPlannerModalProps) =>
     const [trainee, setTrainee] = useState<Uma | null>(null);
 
     const getDisplayName = (umaId: string) => umaMapById.get(umaId)?.[displayNameProp] || 'Unknown';
-
-    const parentToParentAffinity = useMemo(() => {
-        if (!manualParent1 || !manualParent2) return 0;
-        // This is a dummy call to the full calculator with a dummy trainee
-        // since we only care about the cross-parent score which is calculated inside.
-        // A dedicated 2-way function could be made, but this reuses the code well.
-        const dummyTrainee = masterUmaList[0];
-        const fullScore = calculateFullAffinity(dummyTrainee, manualParent1, manualParent2, charaRelations, relationPoints, inventoryMap, umaMapById);
-        const dummyScore = calculateFullAffinity(dummyTrainee, manualParent1, manualParent2, new Map(), new Map(), inventoryMap, umaMapById);
-        return fullScore - dummyScore; // This isolates the P1<>P2 score
-    }, [manualParent1, manualParent2, masterUmaList, charaRelations, relationPoints, inventoryMap, umaMapById]);
     
     const traineeSuggestionsForManualPair = useMemo(() => {
         if (!manualParent1 || !manualParent2) return [];
