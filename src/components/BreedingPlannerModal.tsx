@@ -94,9 +94,9 @@ const BreedingPlannerModal = ({ isOpen, onClose }: BreedingPlannerModalProps) =>
                 {activeTab === 'manual' && (
                     <div>
                         <div className="breeding-planner__pair-selector">
-                            <SearchableSelect items={selectableRoster} placeholder={t('breedingPlanner.selectParent1')} value={manualParent1 ? getDisplayName(manualParent1.umaId) : null} onSelect={(item) => setManualParent1(item as Parent)} displayProp={displayNameProp} />
+                            <SearchableSelect items={selectableRoster} placeholder={t('breedingPlanner.selectParent1')} value={manualParent1 ? getDisplayName(manualParent1.umaId) : null} onSelect={(item) => setManualParent1(item as unknown as Parent)} displayProp={displayNameProp} />
                             <span className="breeding-planner__pair-selector-plus">+</span>
-                            <SearchableSelect items={selectableRoster.filter(p => p.id !== manualParent1?.id)} placeholder={t('breedingPlanner.selectParent2')} value={manualParent2 ? getDisplayName(manualParent2.umaId) : null} onSelect={(item) => setManualParent2(item as Parent)} displayProp={displayNameProp} disabled={!manualParent1} />
+                            <SearchableSelect items={selectableRoster.filter(p => p.id !== manualParent1?.id)} placeholder={t('breedingPlanner.selectParent2')} value={manualParent2 ? getDisplayName(manualParent2.umaId) : null} onSelect={(item) => setManualParent2(item as unknown as Parent)} displayProp={displayNameProp} disabled={!manualParent1} />
                         </div>
                         {manualParent1 && manualParent2 && (
                             <div className="breeding-planner__results-card">
