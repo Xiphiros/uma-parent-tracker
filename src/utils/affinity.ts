@@ -1,7 +1,5 @@
 import { Grandparent, ManualParentData, Parent, Uma } from '../types';
 
-type AffinityData = Record<string, Record<string, number>>;
-
 /**
  * Resolves a grandparent reference (ID or object) to a full data object.
  * @param gp The grandparent reference.
@@ -18,23 +16,56 @@ export function resolveGrandparent(gp: Grandparent | undefined, inventoryMap: Ma
  * Gets the base character ID from various data types (Parent, Uma, ManualParentData).
  * @param item The item to get the character ID from.
  * @param umaMapById A map of all uma data, keyed by outfit ID.
- * @returns The base character ID string, or null.
+ * @returns The base character ID as a number, or null.
  */
-function getCharacterId(item: Parent | Uma | ManualParentData | null, umaMapById: Map<string, Uma>): string | null {
+function getCharacterId(item: Parent | Uma | ManualParentData | null, umaMapById: Map<string, Uma>): number | null {
     if (!item) return null;
     let umaId: string | undefined;
 
     if ('umaId' in item) { // Parent or ManualParentData
         umaId = item.umaId;
     } else if ('characterId' in item) { // Uma
-        return item.characterId;
+        return parseInt(item.characterId, 10);
     }
 
     if (umaId) {
-        return umaMapById.get(umaId)?.characterId || null;
+        const charId = umaMapById.get(umaId)?.characterId;
+        return charId ? parseInt(charId, 10) : null;
     }
     return null;
 }
+
+/**
+ * Internal function to calculate affinity score based on shared relationship groups.
+ * @param charIds A list of character IDs to compare.
+ * @param charaRelations Map of character IDs to their set of relation group IDs.
+ * @param relationPoints Map of relation group IDs to their point values.
+ * @returns The calculated affinity score.
+ */
+function _calculateAffinityScore(
+    charIds: (number | null)[],
+    charaRelations: Map<number, Set<number>>,
+    relationPoints: Map<number, number>
+): number {
+    const validIds = charIds.filter((id): id is number => id !== null && charaRelations.has(id));
+
+    if (validIds.length < 2) {
+        return 0;
+    }
+
+    const relationSets = validIds.map(id => charaRelations.get(id)!);
+
+    // Find the intersection of all sets
+    const commonRelations = relationSets.reduce((s1, s2) => new Set([...s1].filter(x => s2.has(x))));
+
+    // Sum the points for the common relations
+    let score = 0;
+    for (const relId of commonRelations) {
+        score += relationPoints.get(relId) || 0;
+    }
+    return score;
+}
+
 
 /**
  * Calculates the full affinity score including a trainee, two parents, and all four grandparents.
@@ -44,37 +75,31 @@ export function calculateFullAffinity(
     trainee: Uma,
     parent1: Parent,
     parent2: Parent,
-    affinityData: AffinityData,
+    charaRelations: Map<number, Set<number>>,
+    relationPoints: Map<number, number>,
     inventoryMap: Map<number, Parent>,
     umaMapById: Map<string, Uma>
 ): number {
     const traineeCharId = getCharacterId(trainee, umaMapById);
     const p1CharId = getCharacterId(parent1, umaMapById);
     const p2CharId = getCharacterId(parent2, umaMapById);
+    const p1gp1CharId = getCharacterId(resolveGrandparent(parent1.grandparent1, inventoryMap), umaMapById);
+    const p1gp2CharId = getCharacterId(resolveGrandparent(parent1.grandparent2, inventoryMap), umaMapById);
+    const p2gp1CharId = getCharacterId(resolveGrandparent(parent2.grandparent1, inventoryMap), umaMapById);
+    const p2gp2CharId = getCharacterId(resolveGrandparent(parent2.grandparent2, inventoryMap), umaMapById);
 
-    if (!traineeCharId || !p1CharId || !p2CharId) return 0;
-    
-    const affinity = (id1: string, id2: string) => affinityData[id1]?.[id2] ?? 0;
+    // 2-Way Affinities
+    const trainee_p1 = _calculateAffinityScore([traineeCharId, p1CharId], charaRelations, relationPoints);
+    const trainee_p2 = _calculateAffinityScore([traineeCharId, p2CharId], charaRelations, relationPoints);
+    const p1_p2 = _calculateAffinityScore([p1CharId, p2CharId], charaRelations, relationPoints);
 
-    // Base affinities
-    let totalScore = affinity(traineeCharId, p1CharId) + affinity(traineeCharId, p2CharId) + affinity(p1CharId, p2CharId);
-    
-    // Grandparent affinities
-    const grandparents = [
-        resolveGrandparent(parent1.grandparent1, inventoryMap),
-        resolveGrandparent(parent1.grandparent2, inventoryMap),
-        resolveGrandparent(parent2.grandparent1, inventoryMap),
-        resolveGrandparent(parent2.grandparent2, inventoryMap)
-    ];
+    // 3-Way Grandparent Affinities
+    const trainee_p1_gp1 = _calculateAffinityScore([traineeCharId, p1CharId, p1gp1CharId], charaRelations, relationPoints);
+    const trainee_p1_gp2 = _calculateAffinityScore([traineeCharId, p1CharId, p1gp2CharId], charaRelations, relationPoints);
+    const trainee_p2_gp1 = _calculateAffinityScore([traineeCharId, p2CharId, p2gp1CharId], charaRelations, relationPoints);
+    const trainee_p2_gp2 = _calculateAffinityScore([traineeCharId, p2CharId, p2gp2CharId], charaRelations, relationPoints);
 
-    for (const gp of grandparents) {
-        const gpCharId = getCharacterId(gp, umaMapById);
-        if (gpCharId) {
-            totalScore += affinity(traineeCharId, gpCharId);
-        }
-    }
-
-    return totalScore;
+    return trainee_p1 + trainee_p2 + p1_p2 + trainee_p1_gp1 + trainee_p1_gp2 + trainee_p2_gp1 + trainee_p2_gp2;
 }
 
 
@@ -87,8 +112,8 @@ export function getLineageCharacterIds(
     parent2: Parent,
     inventoryMap: Map<number, Parent>,
     umaMapById: Map<string, Uma>
-): Set<string> {
-    const lineageIds = new Set<string>();
+): Set<number> {
+    const lineageIds = new Set<number>();
     const lineage = [
         parent1,
         parent2,
