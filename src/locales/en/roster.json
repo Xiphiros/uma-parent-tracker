@@ -40,9 +40,11 @@
     "traineeSuggestions": "Trainee Suggestions",
     "selectParent1": "Select Parent 1",
     "selectParent2": "Select Parent 2",
-    "directAffinity": "Direct Affinity",
+    "directAffinity": "Direct Affinity (Parents Only)",
     "selectTrainee": "Select Trainee",
     "affinity": "Affinity",
-    "noResults": "No compatible pairs found in roster."
+    "noResults": "No compatible pairs found in roster.",
+    "bestTrainees": "Best Trainees for this Pair",
+    "totalAffinity": "Total Affinity"
   }
 }
