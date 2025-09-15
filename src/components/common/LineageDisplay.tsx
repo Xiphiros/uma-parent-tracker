@@ -6,8 +6,8 @@ import './LineageDisplay.css';
 interface LineageDisplayProps {
     label: string;
     parent: Parent | null;
-    onClick: () => void;
-    onClear: () => void;
+    onClick?: () => void;
+    onClear?: () => void;
 }
 
 const LineageDisplay = ({ label, parent, onClick, onClear }: LineageDisplayProps) => {
