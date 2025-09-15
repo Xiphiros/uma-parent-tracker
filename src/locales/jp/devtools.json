@@ -1,4 +1,4 @@
 {
-  "availableTitle": "利用可能",
-  "excludedTitle": "除外済み"
+  "available": "利用可能",
+  "excluded": "除外済み"
 }
