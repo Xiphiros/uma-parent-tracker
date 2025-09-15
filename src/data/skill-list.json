@@ -5504,7 +5504,7 @@
     "name_en_community": "Caesura (Inherited)"
   },
   {
-    "id": "1000014",
+    "id": "1000013",
     "name_jp": "カーニバルボーナス",
     "name_en": "カーニバルボーナス",
     "type": "normal",
@@ -5514,17 +5514,7 @@
     "name_en_community": "Carnival Bonus"
   },
   {
-    "id": "1000016",
-    "name_jp": "カーニバルボーナス",
-    "name_en": "カーニバルボーナス",
-    "type": "normal",
-    "rarity": 1,
-    "groupId": 100001,
-    "isGlobal": false,
-    "name_en_community": "Carnival Bonus"
-  },
-  {
-    "id": "1000012",
+    "id": "1000015",
     "name_jp": "カーニバルボーナス",
     "name_en": "カーニバルボーナス",
     "type": "normal",
@@ -5554,7 +5544,7 @@
     "name_en_community": "Carnival Bonus"
   },
   {
-    "id": "1000015",
+    "id": "1000016",
     "name_jp": "カーニバルボーナス",
     "name_en": "カーニバルボーナス",
     "type": "normal",
@@ -5564,7 +5554,7 @@
     "name_en_community": "Carnival Bonus"
   },
   {
-    "id": "1000013",
+    "id": "1000014",
     "name_jp": "カーニバルボーナス",
     "name_en": "カーニバルボーナス",
     "type": "normal",
@@ -5574,27 +5564,17 @@
     "name_en_community": "Carnival Bonus"
   },
   {
-    "id": "9000016",
-    "name_jp": "カーニバルボーナス（継承）",
-    "name_en": "カーニバルボーナス（継承）",
-    "type": "unique",
+    "id": "1000012",
+    "name_jp": "カーニバルボーナス",
+    "name_en": "カーニバルボーナス",
+    "type": "normal",
     "rarity": 1,
     "groupId": 100001,
     "isGlobal": false,
-    "name_en_community": "Carnival Bonus (Inherited)"
+    "name_en_community": "Carnival Bonus"
   },
   {
     "id": "9000015",
-    "name_jp": "カーニバルボーナス（継承）",
-    "name_en": "カーニバルボーナス（継承）",
-    "type": "unique",
-    "rarity": 1,
-    "groupId": 100001,
-    "isGlobal": false,
-    "name_en_community": "Carnival Bonus (Inherited)"
-  },
-  {
-    "id": "9000013",
     "name_jp": "カーニバルボーナス（継承）",
     "name_en": "カーニバルボーナス（継承）",
     "type": "unique",
@@ -5614,7 +5594,27 @@
     "name_en_community": "Carnival Bonus (Inherited)"
   },
   {
-    "id": "9000011",
+    "id": "9000013",
+    "name_jp": "カーニバルボーナス（継承）",
+    "name_en": "カーニバルボーナス（継承）",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 100001,
+    "isGlobal": false,
+    "name_en_community": "Carnival Bonus (Inherited)"
+  },
+  {
+    "id": "9000012",
+    "name_jp": "カーニバルボーナス（継承）",
+    "name_en": "カーニバルボーナス（継承）",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 100001,
+    "isGlobal": false,
+    "name_en_community": "Carnival Bonus (Inherited)"
+  },
+  {
+    "id": "9000016",
     "name_jp": "カーニバルボーナス（継承）",
     "name_en": "カーニバルボーナス（継承）",
     "type": "unique",
@@ -5634,7 +5634,7 @@
     "name_en_community": "Carnival Bonus (Inherited)"
   },
   {
-    "id": "9000012",
+    "id": "9000011",
     "name_jp": "カーニバルボーナス（継承）",
     "name_en": "カーニバルボーナス（継承）",
     "type": "unique",
