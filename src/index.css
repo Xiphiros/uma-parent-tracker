@@ -4,6 +4,7 @@
 @import "./css/elements/Card.css";
 @import "./css/elements/Form.css";
 @import "./components/AddParentModal.css";
+@import "./components/BreedingPlannerModal.css";
 @import "./components/BreedingSuggestions.css";
 @import "./components/common/DualListBox.css";
 @import "./components/FolderTab.css";
