@@ -45,6 +45,7 @@
     "affinity": "Total Affinity",
     "totalAffinity": "Total Affinity",
     "noResults": "No compatible pairs found in roster.",
+    "noResultsMessage": "Select a trainee to see the best breeding pairs from your roster.",
     "bestTrainees": "Best Trainees for this Pair",
     "excludeInbreeding": "Exclude Inbreeding",
     "totalSkills": "Total Skills"
