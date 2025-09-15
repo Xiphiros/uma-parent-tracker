@@ -66,6 +66,19 @@
     color: var(--color-score);
 }
 
+.breeding-planner__inbreeding-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+}
+.breeding-planner__inbreeding-toggle input {
+    accent-color: var(--color-button-primary-bg);
+}
+
 .breeding-planner__suggestions-list {
     width: 100%;
     max-height: 350px;
