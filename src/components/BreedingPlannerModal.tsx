@@ -1,4 +1,4 @@
-import { useState, useMemo, Fragment } from 'react';
+import { useState, useMemo } from 'react';
 import { useAppContext } from '../context/AppContext';
 import { Parent, Uma } from '../types';
 import Modal from './common/Modal';
@@ -29,6 +29,17 @@ const BreedingPlannerModal = ({ isOpen, onClose }: BreedingPlannerModalProps) =>
     const [trainee, setTrainee] = useState<Uma | null>(null);
 
     const getDisplayName = (umaId: string) => umaMapById.get(umaId)?.[displayNameProp] || 'Unknown';
+
+    const selectableRoster = useMemo(() => {
+        return roster.map(parent => {
+            const uma = umaMapById.get(parent.umaId);
+            return {
+                ...parent,
+                name_en: uma ? uma[displayNameProp] : parent.name,
+                name_jp: uma ? uma.name_jp : parent.name,
+            };
+        });
+    }, [roster, umaMapById, displayNameProp]);
 
     const manualAffinityScore = useMemo(() => {
         if (!manualParent1 || !manualParent2 || !affinityData) return 0;
@@ -83,9 +94,9 @@ const BreedingPlannerModal = ({ isOpen, onClose }: BreedingPlannerModalProps) =>
                 {activeTab === 'manual' && (
                     <div>
                         <div className="breeding-planner__pair-selector">
-                            <SearchableSelect items={roster} placeholder={t('breedingPlanner.selectParent1')} value={manualParent1 ? getDisplayName(manualParent1.umaId) : null} onSelect={(item) => setManualParent1(item as Parent)} displayProp={displayNameProp} />
+                            <SearchableSelect items={selectableRoster} placeholder={t('breedingPlanner.selectParent1')} value={manualParent1 ? getDisplayName(manualParent1.umaId) : null} onSelect={(item) => setManualParent1(item as Parent)} displayProp={displayNameProp} />
                             <span className="breeding-planner__pair-selector-plus">+</span>
-                            <SearchableSelect items={roster.filter(p => p.id !== manualParent1?.id)} placeholder={t('breedingPlanner.selectParent2')} value={manualParent2 ? getDisplayName(manualParent2.umaId) : null} onSelect={(item) => setManualParent2(item as Parent)} displayProp={displayNameProp} disabled={!manualParent1} />
+                            <SearchableSelect items={selectableRoster.filter(p => p.id !== manualParent1?.id)} placeholder={t('breedingPlanner.selectParent2')} value={manualParent2 ? getDisplayName(manualParent2.umaId) : null} onSelect={(item) => setManualParent2(item as Parent)} displayProp={displayNameProp} disabled={!manualParent1} />
                         </div>
                         {manualParent1 && manualParent2 && (
                             <div className="breeding-planner__results-card">
