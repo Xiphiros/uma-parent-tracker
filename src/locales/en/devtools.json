@@ -1,4 +1,4 @@
 {
-  "availableTitle": "Available",
-  "excludedTitle": "Excluded"
+  "available": "Available",
+  "excluded": "Excluded"
 }
