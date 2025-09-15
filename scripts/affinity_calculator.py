@@ -1,5 +1,6 @@
 import json
 import argparse
+import random
 from pathlib import Path
 from typing import Dict, Any, Set
 from functools import reduce
@@ -123,18 +124,40 @@ def print_affinity_tree(result: Dict[str, Any]):
 def main():
     parser = argparse.ArgumentParser(description="Calculate Uma Musume breeding affinity using the strict method.")
     parser.add_argument("data_path", type=Path, help="Path to the affinity_components.json file.")
-    parser.add_argument("trainee_id", type=int, help="The ID of the character being trained.")
-    parser.add_argument("p1_id", type=int, help="The ID of the first parent.")
-    parser.add_argument("p2_id", type=int, help="The ID of the second parent.")
+    parser.add_argument("trainee_id", type=int, nargs='?', default=0, help="The ID of the character being trained (required if not using --random).")
+    parser.add_argument("p1_id", type=int, nargs='?', default=0, help="The ID of the first parent (required if not using --random).")
+    parser.add_argument("p2_id", type=int, nargs='?', default=0, help="The ID of the second parent (required if not using --random).")
     parser.add_argument("--p1_gp1", type=int, default=0, help="Parent 1's first grandparent.")
     parser.add_argument("--p1_gp2", type=int, default=0, help="Parent 1's second grandparent.")
     parser.add_argument("--p2_gp1", type=int, default=0, help="Parent 2's first grandparent.")
     parser.add_argument("--p2_gp2", type=int, default=0, help="Parent 2's second grandparent.")
+    parser.add_argument("--random", action="store_true", help="Generate a random set of 7 characters for the calculation.")
 
     args = parser.parse_args()
+    
+    if not args.random and (args.trainee_id == 0 or args.p1_id == 0 or args.p2_id == 0):
+        parser.error("trainee_id, p1_id, and p2_id are required when not using --random")
 
     try:
         calculator = AffinityCalculator(args.data_path)
+
+        if args.random:
+            print("\n--- Generating Random Combination ---")
+            all_ids = list(calculator.chara_map.keys())
+            if len(all_ids) < 7:
+                raise ValueError("Not enough characters in the data source to select 7 unique ones.")
+            
+            random_ids = random.sample(all_ids, 7)
+            args.trainee_id, args.p1_id, args.p2_id, args.p1_gp1, args.p1_gp2, args.p2_gp1, args.p2_gp2 = random_ids
+
+            print(f"Trainee : {calculator.chara_map.get(args.trainee_id)} ({args.trainee_id})")
+            print(f"Parent 1: {calculator.chara_map.get(args.p1_id)} ({args.p1_id})")
+            print(f"  GP 1.1: {calculator.chara_map.get(args.p1_gp1)} ({args.p1_gp1})")
+            print(f"  GP 1.2: {calculator.chara_map.get(args.p1_gp2)} ({args.p1_gp2})")
+            print(f"Parent 2: {calculator.chara_map.get(args.p2_id)} ({args.p2_id})")
+            print(f"  GP 2.1: {calculator.chara_map.get(args.p2_gp1)} ({args.p2_gp1})")
+            print(f"  GP 2.2: {calculator.chara_map.get(args.p2_gp2)} ({args.p2_gp2})")
+        
         result = calculator.calculate_total_affinity(
             args.trainee_id, args.p1_id, args.p1_gp1, args.p1_gp2,
             args.p2_id, args.p2_gp1, args.p2_gp2
