@@ -19,14 +19,13 @@ interface InventoryControlsProps {
     setFilters: React.Dispatch<React.SetStateAction<Filters>>;
     sortBy: SortByType;
     setSortBy: (value: SortByType) => void;
-    itemCount: number;
 }
 
 const BLUE_SPARK_TYPES: BlueSpark['type'][] = ['Speed', 'Stamina', 'Power', 'Guts', 'Wit'];
 const PINK_SPARK_TYPES = ['Turf', 'Dirt', 'Sprint', 'Mile', 'Medium', 'Long', 'Front Runner', 'Pace Chaser', 'Late Surger', 'End Closer'];
-const STAR_OPTIONS =;
+const STAR_OPTIONS: number[] =;
 
-const InventoryControls = ({ filters, setFilters, sortBy, setSortBy, itemCount }: InventoryControlsProps) => {
+const InventoryControls = ({ filters, setFilters, sortBy, setSortBy }: InventoryControlsProps) => {
     const { t } = useTranslation(['roster', 'game', 'common']);
     const { masterSkillList, dataDisplayLanguage } = useAppContext();
     const displayNameProp = dataDisplayLanguage === 'jp' ? 'name_jp' : 'name_en';
