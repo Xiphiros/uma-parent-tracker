@@ -23,7 +23,7 @@ interface InventoryControlsProps {
 
 const BLUE_SPARK_TYPES: BlueSpark['type'][] = ['Speed', 'Stamina', 'Power', 'Guts', 'Wit'];
 const PINK_SPARK_TYPES = ['Turf', 'Dirt', 'Sprint', 'Mile', 'Medium', 'Long', 'Front Runner', 'Pace Chaser', 'Late Surger', 'End Closer'];
-const STAR_OPTIONS: number[] =;
+const STAR_OPTIONS: number[] = [0, 1, 2, 3];
 
 const InventoryControls = ({ filters, setFilters, sortBy, setSortBy }: InventoryControlsProps) => {
     const { t } = useTranslation(['roster', 'game', 'common']);
