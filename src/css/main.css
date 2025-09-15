@@ -11,6 +11,7 @@ html {
     --color-text-link-hover: #3730a3; /* indigo-800 */
     --color-text-danger: #dc2626; /* red-600 */
     --color-text-danger-hover: #991b1b; /* red-800 */
+    --color-accent-primary: var(--color-text-link);
 
     --color-border: #e7e5e4; /* stone-200 */
     --color-border-input: #d6d3d1; /* stone-300 */
@@ -58,6 +59,7 @@ html.dark {
     --color-text-link-hover: #a5b4fc; /* indigo-300 */
     --color-text-danger: #f87171; /* red-400 */
     --color-text-danger-hover: #fb923c; /* orange-400 */
+    --color-accent-primary: var(--color-text-link);
 
     --color-border: #44403c; /* stone-700 */
     --color-border-input: #57534e; /* stone-600 */
