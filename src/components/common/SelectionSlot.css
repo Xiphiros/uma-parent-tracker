@@ -55,10 +55,12 @@
     height: 100%;
     border: 1px solid var(--color-border);
     border-radius: 0.5rem;
-    cursor: pointer;
     padding: 0.5rem;
     background-color: var(--color-card-bg-hover);
     box-shadow: var(--color-shadow);
+}
+.selection-slot__card--interactive {
+    cursor: pointer;
 }
 .selection-slot__image {
     width: 96px;
