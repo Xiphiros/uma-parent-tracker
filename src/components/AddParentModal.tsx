@@ -9,6 +9,7 @@ import './AddParentModal.css';
 import SelectGrandparentModal from './SelectGrandparentModal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
+import { getExcludedCharacterIds } from '../utils/selectionExclusion';
 
 interface AddParentModalProps {
   isOpen: boolean;
@@ -133,29 +134,15 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
     };
 
     const handleOpenGpModal = (slot: GrandparentSlot) => {
-        const idsToExclude = new Set<string>();
-        const otherSlotGp = slot === 'grandparent1' ? formData.grandparent2 : formData.grandparent1;
-        
-        // Exclude the parent being edited
-        if (parentToEdit) {
-            const charId = umaMapById.get(parentToEdit.umaId)?.characterId;
-            if (charId) idsToExclude.add(charId);
-        }
-
-        // Exclude the other grandparent
-        if (otherSlotGp) {
-            let otherGpUmaId: string | undefined;
-            if (typeof otherSlotGp === 'number') {
-                otherGpUmaId = appData.inventory.find(p => p.id === otherSlotGp)?.umaId;
-            } else {
-                otherGpUmaId = otherSlotGp.umaId;
-            }
-            if (otherGpUmaId) {
-                const charId = umaMapById.get(otherGpUmaId)?.characterId;
-                if (charId) idsToExclude.add(charId);
-            }
-        }
-
+        const idsToExclude = getExcludedCharacterIds({
+            context: 'grandparent',
+            activeGpSlot: slot,
+            parentToEdit: parentToEdit || null,
+            grandparent1: formData.grandparent1,
+            grandparent2: formData.grandparent2,
+            umaMapById,
+            inventory: appData.inventory
+        });
         setExcludedGpCharacterIds(idsToExclude);
         setActiveGpSlot(slot);
         setIsGpModalOpen(true);
