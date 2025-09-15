@@ -8,19 +8,9 @@
 }
 
 .suggestion-card__main-info {
-    position: relative;
     display: flex;
-    align-items: center;
-    gap: 0.75rem;
-}
-
-.suggestion-card__image {
-    width: 48px;
-    height: 48px;
-    border-radius: 9999px;
-    object-fit: cover;
-    border: 2px solid var(--color-avatar-border);
-    flex-shrink: 0;
+    align-items: flex-start; /* Align to top for lineage tree */
+    gap: 1rem; /* Increase gap for larger avatars */
 }
 
 .suggestion-card__details {
@@ -29,7 +19,8 @@
 }
 
 .suggestion-card__name {
-    font-weight: 500;
+    font-weight: 600; /* Bolder name */
+    font-size: 1rem;
     color: var(--color-text-primary);
     white-space: nowrap;
     overflow: hidden;
@@ -39,22 +30,6 @@
 .suggestion-card__score {
     font-size: 0.875rem;
     color: var(--color-text-muted);
-}
-
-.suggestion-card__grandparents {
-    position: absolute;
-    top: 0;
-    right: 0;
-    display: flex;
-    gap: 0.25rem;
-}
-
-.suggestion-card__gp-image {
-    width: 24px;
-    height: 24px;
-    border-radius: 9999px;
-    object-fit: cover;
-    border: 1px solid var(--color-avatar-border);
 }
 
 .suggestion-card__sparks {

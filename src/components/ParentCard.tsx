@@ -6,6 +6,7 @@ import './ParentCard.css';
 import { useTranslation } from 'react-i18next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faUser } from '@fortawesome/free-solid-svg-icons';
+import LineageTree from './common/LineageTree';
 
 interface ParentCardProps {
     parent: Parent;
@@ -19,52 +20,6 @@ interface ParentCardProps {
     isSelectionMode?: boolean;
     onSelect?: (parent: Parent) => void;
 }
-
-const LineageTree = ({ parent }: { parent: Parent }) => {
-    const { appData, umaMapById } = useAppContext();
-
-    const getAvatar = (gp: Grandparent | Parent): string | null => {
-        let umaId: string | undefined;
-        if (typeof gp === 'number') {
-            const ownedParent = appData.inventory.find(p => p.id === gp);
-            umaId = ownedParent?.umaId;
-        } else if ('umaId' in gp) {
-            umaId = gp.umaId;
-        }
-        
-        if (umaId) {
-            const umaData = umaMapById.get(umaId);
-            return umaData?.image ? `${import.meta.env.BASE_URL}${umaData.image}` : null;
-        }
-        return null;
-    };
-
-    const parentAvatar = getAvatar(parent);
-    const gp1Avatar = parent.grandparent1 ? getAvatar(parent.grandparent1) : null;
-    const gp2Avatar = parent.grandparent2 ? getAvatar(parent.grandparent2) : null;
-    
-    const renderAvatar = (src: string | null, size: 'parent' | 'grandparent') => (
-        <img
-            src={src || 'https://via.placeholder.com/80'}
-            className={`lineage-tree__avatar lineage-tree__avatar--${size}`}
-            alt=""
-        />
-    );
-
-    return (
-        <div className="lineage-tree">
-            <div className="lineage-tree__parent">
-                {renderAvatar(parentAvatar, 'parent')}
-            </div>
-            {(gp1Avatar || gp2Avatar) && (
-                <div className="lineage-tree__grandparents">
-                    {renderAvatar(gp1Avatar, 'grandparent')}
-                    {renderAvatar(gp2Avatar, 'grandparent')}
-                </div>
-            )}
-        </div>
-    );
-};
 
 const ParentCard = ({ parent, isTopParent = false, displayScore = true, onEdit, onDelete, onAssign, onMove, assignedProjects, isSelectionMode = false, onSelect }: ParentCardProps) => {
     const { t } = useTranslation(['roster', 'common', 'game']);

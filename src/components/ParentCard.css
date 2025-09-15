@@ -118,33 +118,6 @@
     font-size: 0.9em;
 }
 
-/* New Lineage Tree */
-.lineage-tree {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    flex-shrink: 0;
-    gap: 0.25rem;
-}
-.lineage-tree__grandparents {
-    display: flex;
-    gap: 0.25rem;
-}
-.lineage-tree__avatar {
-    object-fit: cover;
-    border-radius: 9999px;
-    border: 2px solid var(--color-avatar-border);
-    background-color: var(--color-card-bg-hover);
-}
-.lineage-tree__avatar--parent {
-    width: 64px;
-    height: 64px;
-}
-.lineage-tree__avatar--grandparent {
-    width: 48px;
-    height: 48px;
-}
-
 /* New Footer for Inventory View */
 .parent-card__footer {
     display: flex;

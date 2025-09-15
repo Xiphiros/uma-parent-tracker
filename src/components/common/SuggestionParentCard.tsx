@@ -1,12 +1,13 @@
 import { useMemo } from 'react';
 import { useAppContext } from '../../context/AppContext';
-import { Grandparent, ManualParentData, Parent, BlueSpark, PinkSpark } from '../../types';
+import { ManualParentData, Parent, BlueSpark, PinkSpark } from '../../types';
 import './SuggestionParentCard.css';
 import SparkTag from './SparkTag';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { resolveGrandparent } from '../../utils/affinity';
 import { useTranslation } from 'react-i18next';
+import LineageTree from './LineageTree';
 
 interface SuggestionParentCardProps {
     parent: Parent;
@@ -80,28 +81,13 @@ const SuggestionParentCard = ({ parent }: SuggestionParentCardProps) => {
         return { blue, pink, unique, white };
     }, [parent, inventoryMap]);
 
-    const getGrandparentImage = (gp: Grandparent | undefined) => {
-        const resolved = resolveGrandparent(gp, inventoryMap);
-        if (resolved?.umaId) {
-            return umaMapById.get(resolved.umaId)?.image || null;
-        }
-        return null;
-    };
-
-    const gp1Image = getGrandparentImage(parent.grandparent1);
-    const gp2Image = getGrandparentImage(parent.grandparent2);
-
     return (
         <div className="suggestion-card">
             <div className="suggestion-card__main-info">
-                <img src={`${import.meta.env.BASE_URL}${uma?.image}`} alt={uma?.[displayNameProp]} className="suggestion-card__image" />
+                <LineageTree parent={parent} />
                 <div className="suggestion-card__details">
                     <p className="suggestion-card__name">{uma?.[displayNameProp]}</p>
                     <p className="suggestion-card__score">{parent.score} {t('parentCard.pts')}</p>
-                </div>
-                <div className="suggestion-card__grandparents">
-                    {gp1Image && <img src={`${import.meta.env.BASE_URL}${gp1Image}`} className="suggestion-card__gp-image" />}
-                    {gp2Image && <img src={`${import.meta.env.BASE_URL}${gp2Image}`} className="suggestion-card__gp-image" />}
                 </div>
             </div>
             <div className="suggestion-card__sparks">
