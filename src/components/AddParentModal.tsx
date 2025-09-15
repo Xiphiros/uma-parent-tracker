@@ -46,6 +46,7 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
     
     const [isGpModalOpen, setIsGpModalOpen] = useState(false);
     const [activeGpSlot, setActiveGpSlot] = useState<GrandparentSlot | null>(null);
+    const [excludedGpIds, setExcludedGpIds] = useState<Set<number>>(new Set());
 
     const displayNameProp = dataDisplayLanguage === 'jp' ? 'name_jp' : 'name_en';
     const uniqueSkills = useMemo(() => masterSkillList.filter(s => s.type === 'unique'), [masterSkillList]);
@@ -132,6 +133,17 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
     };
 
     const handleOpenGpModal = (slot: GrandparentSlot) => {
+        const idsToExclude = new Set<number>();
+        const otherSlot = slot === 'grandparent1' ? formData.grandparent2 : formData.grandparent1;
+        
+        if (typeof otherSlot === 'number') {
+            idsToExclude.add(otherSlot);
+        }
+        if (parentToEdit) {
+            idsToExclude.add(parentToEdit.id);
+        }
+
+        setExcludedGpIds(idsToExclude);
         setActiveGpSlot(slot);
         setIsGpModalOpen(true);
     };
@@ -344,6 +356,7 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
                     onSave={handleSaveGrandparent}
                     title={t('selectGrandparentTitle')}
                     grandparentToEdit={activeGpSlot ? formData[activeGpSlot] : null}
+                    excludedIds={excludedGpIds}
                 />
             )}
 
