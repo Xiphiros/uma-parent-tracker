@@ -23,7 +23,25 @@
     "manageBtn": "所持ウマ娘を管理",
     "placeholder": "このサーバーにはウマ娘がいません。",
     "count": "{{count}} 人のウマ娘",
-    "unassigned": "未割り当て"
+    "unassigned": "未割り当て",
+    "searchByName": "名前で検索...",
+    "sortBy": "並び替え",
+    "filterBy": "フィルター",
+    "blueSpark": "青因子",
+    "pinkSpark": "赤因子",
+    "uniqueSpark": "固有因子",
+    "whiteSpark": "白因子",
+    "minStars": "星数",
+    "allTypes": "全てのタイプ",
+    "anyStars": "指定なし",
+    "clearFilters": "フィルターをクリア",
+    "sortOptions": {
+      "score": "スコア（高い順）",
+      "name": "名前（A-Z）",
+      "gen": "世代（新しい順）",
+      "date": "追加日（新しい順）",
+      "sparks": "因子数（多い順）"
+    }
   },
   "suggestions": {
     "title": "育成おすすめ",
