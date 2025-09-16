@@ -101,47 +101,36 @@ const ParentCard = ({ parent, isTopParent = false, displayScore = true, onEdit, 
 
     const renderSparksBody = () => (
         <div className="parent-card__body">
-            <div className="parent-card__spark-grid">
-                <div className="parent-card__spark-container">
-                    {Object.entries(aggregatedSparks.blue).map(([type, data]) => (
-                        <div key={type} className="lineage-spark" data-spark-category="blue" data-spark-type={type.toLowerCase()}>
-                            {data.total}★ {t(type, { ns: 'game' })}
-                            {data.parent > 0 && (
-                                <>
-                                    <FontAwesomeIcon icon={faUser} className="lineage-spark__gp-icon" />
-                                    <span className="lineage-spark__parent-contrib">({data.parent}★)</span>
-                                </>
-                            )}
-                        </div>
-                    ))}
-                </div>
-                <div className="parent-card__spark-container">
-                    {Object.entries(aggregatedSparks.pink).map(([type, data]) => (
-                        <div key={type} className="lineage-spark" data-spark-category="pink" data-spark-type={type.toLowerCase().replace(/ /g, '-')}>
-                            {data.total}★ {t(type, { ns: 'game' })}
-                            {data.parent > 0 && (
-                                <>
-                                    <FontAwesomeIcon icon={faUser} className="lineage-spark__gp-icon" />
-                                    <span className="lineage-spark__parent-contrib">({data.parent}★)</span>
-                                </>
-                            )}
-                        </div>
-                    ))}
-                </div>
-                {aggregatedSparks.unique.length > 0 && (
-                    <div className="parent-card__spark-container">
-                        {aggregatedSparks.unique.map(spark => (
-                            <div key={spark.name} className="lineage-spark" data-spark-category="unique">
-                                {getSparkDisplayName(spark.name)}
-                                {spark.fromParent && <FontAwesomeIcon icon={faUser} className="lineage-spark__gp-icon" />}
-                                <span className="lineage-spark__parent-contrib">({spark.stars}★)</span>
-                            </div>
-                        ))}
+            <div className="parent-card__spark-container">
+                {Object.entries(aggregatedSparks.blue).map(([type, data]) => (
+                    <div key={type} className="lineage-spark" data-spark-category="blue" data-spark-type={type.toLowerCase()}>
+                        {data.total}★ {t(type, { ns: 'game' })}
+                        {data.parent > 0 && (
+                            <>
+                                <FontAwesomeIcon icon={faUser} className="lineage-spark__gp-icon" />
+                                <span className="lineage-spark__parent-contrib">({data.parent}★)</span>
+                            </>
+                        )}
                     </div>
-                )}
-            </div>
-            
-            <div className="parent-card__spark-container parent-card__spark-container--white">
+                ))}
+                {Object.entries(aggregatedSparks.pink).map(([type, data]) => (
+                    <div key={type} className="lineage-spark" data-spark-category="pink" data-spark-type={type.toLowerCase().replace(/ /g, '-')}>
+                        {data.total}★ {t(type, { ns: 'game' })}
+                        {data.parent > 0 && (
+                            <>
+                                <FontAwesomeIcon icon={faUser} className="lineage-spark__gp-icon" />
+                                <span className="lineage-spark__parent-contrib">({data.parent}★)</span>
+                            </>
+                        )}
+                    </div>
+                ))}
+                {aggregatedSparks.unique.map(spark => (
+                    <div key={spark.name} className="lineage-spark" data-spark-category="unique">
+                        {getSparkDisplayName(spark.name)}
+                        {spark.fromParent && <FontAwesomeIcon icon={faUser} className="lineage-spark__gp-icon" />}
+                        <span className="lineage-spark__parent-contrib">({spark.stars}★)</span>
+                    </div>
+                ))}
                 {aggregatedSparks.white.length > 0 ? (
                     aggregatedSparks.white.map(spark => {
                         const wishlistItem = goal?.wishlist.find(w => w.name === spark.name);
