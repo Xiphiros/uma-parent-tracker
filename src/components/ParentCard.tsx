@@ -184,11 +184,10 @@ const ParentCard = ({ parent, isTopParent = false, displayScore = true, onEdit, 
                             )}
                         </div>
                     </div>
-                    {!isTopParent && renderSparksBody()}
                 </div>
             </div>
 
-            {isTopParent && renderSparksBody()}
+            {renderSparksBody()}
 
             {onAssign && !isSelectionMode && (
                 <div className="parent-card__footer">
