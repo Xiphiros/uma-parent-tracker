@@ -83,9 +83,6 @@
     flex-wrap: wrap;
     align-items: center;
 }
-.parent-card__spark-container--white {
-    margin-top: 0.5rem;
-}
 .parent-card__spark-tier {
     margin-left: 0.25rem;
     font-size: 0.75rem;
@@ -94,13 +91,6 @@
 .parent-card__no-sparks-text {
     font-size: 0.75rem;
     color: var(--color-text-placeholder);
-}
-
-/* New Aggregated Spark Display */
-.parent-card__spark-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 0.75rem;
 }
 
 .lineage-spark {
