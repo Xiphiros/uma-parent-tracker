@@ -1,4 +1,4 @@
-import { Grandparent, ManualParentData, Parent, Uma } from '../types';
+import { Grandparent, ManualParentData, Parent, Uma, WhiteSpark, UniqueSpark } from '../types';
 
 /**
  * Resolves a grandparent reference (ID or object) to a full data object.
@@ -167,4 +167,50 @@ export function countUniqueInheritableSkills(
     }
     
     return skillNames.size;
+}
+
+export interface LineageStats {
+    blue: Record<string, number>;
+    pink: Record<string, number>;
+    unique: Record<string, number>;
+    white: Record<string, number>;
+    whiteSkillCount: number;
+}
+
+/**
+ * Aggregates all spark data from a parent and its two grandparents.
+ * @returns An object containing the summed stats for the entire lineage.
+ */
+export function getLineageStats(parent: Parent, inventoryMap: Map<number, Parent>): LineageStats {
+    const stats: LineageStats = { blue: {}, pink: {}, unique: {}, white: {}, whiteSkillCount: 0 };
+    const members = [
+        parent,
+        resolveGrandparent(parent.grandparent1, inventoryMap),
+        resolveGrandparent(parent.grandparent2, inventoryMap)
+    ];
+
+    const allWhiteSparks = new Set<string>();
+
+    for (const member of members) {
+        if (!member) continue;
+
+        // Blue Sparks
+        stats.blue[member.blueSpark.type] = (stats.blue[member.blueSpark.type] || 0) + member.blueSpark.stars;
+        // Pink Sparks
+        stats.pink[member.pinkSpark.type] = (stats.pink[member.pinkSpark.type] || 0) + member.pinkSpark.stars;
+        // Unique Sparks (only parent's unique is counted for lineage filter)
+        member.uniqueSparks.forEach((s: UniqueSpark) => {
+            stats.unique[s.name] = (stats.unique[s.name] || 0) + s.stars;
+        });
+        // White Sparks
+        if ('whiteSparks' in member) {
+            member.whiteSparks.forEach((s: WhiteSpark) => {
+                stats.white[s.name] = (stats.white[s.name] || 0) + s.stars;
+                allWhiteSparks.add(s.name);
+            });
+        }
+    }
+
+    stats.whiteSkillCount = allWhiteSparks.size;
+    return stats;
 }
