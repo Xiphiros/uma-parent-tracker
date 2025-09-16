@@ -1,4 +1,3 @@
-import React from 'react';
 import './RangeSlider.css';
 
 interface RangeSliderProps {
