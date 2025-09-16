@@ -1,26 +1,29 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { BlueSpark, Skill, Filters } from '../../types';
 import SearchableSelect from './SearchableSelect';
 import { useAppContext } from '../../context/AppContext';
 import './InventoryControls.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFilter, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faFilter, faTimes, faArrowDownWideShort, faArrowUpShortWide } from '@fortawesome/free-solid-svg-icons';
 import RangeSlider from './RangeSlider';
 
-export type SortByType = 'score' | 'name' | 'gen' | 'id' | 'sparks';
+export type SortFieldType = 'score' | 'name' | 'gen' | 'id' | 'sparks';
+export type SortDirectionType = 'asc' | 'desc';
 
 interface InventoryControlsProps {
     filters: Filters;
     setFilters: React.Dispatch<React.SetStateAction<Filters>>;
-    sortBy: SortByType;
-    setSortBy: (value: SortByType) => void;
+    sortField: SortFieldType;
+    setSortField: (value: SortFieldType) => void;
+    sortDirection: SortDirectionType;
+    setSortDirection: (value: SortDirectionType) => void;
 }
 
 const BLUE_SPARK_TYPES: BlueSpark['type'][] = ['Speed', 'Stamina', 'Power', 'Guts', 'Wit'];
 const PINK_SPARK_TYPES = ['Turf', 'Dirt', 'Sprint', 'Mile', 'Medium', 'Long', 'Front Runner', 'Pace Chaser', 'Late Surger', 'End Closer'];
 
-const InventoryControls = ({ filters, setFilters, sortBy, setSortBy }: InventoryControlsProps) => {
+const InventoryControls = ({ filters, setFilters, sortField, setSortField, sortDirection, setSortDirection }: InventoryControlsProps) => {
     const { t } = useTranslation(['roster', 'game', 'common']);
     const { masterSkillList, dataDisplayLanguage } = useAppContext();
     const displayNameProp = dataDisplayLanguage === 'jp' ? 'name_jp' : 'name_en';
@@ -39,6 +42,10 @@ const InventoryControls = ({ filters, setFilters, sortBy, setSortBy }: Inventory
             ...prev,
             [sparkType]: { ...prev[sparkType], [part]: value }
         }));
+    };
+
+    const toggleSortDirection = () => {
+        setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc');
     };
 
     const clearFilters = () => {
@@ -70,79 +77,82 @@ const InventoryControls = ({ filters, setFilters, sortBy, setSortBy }: Inventory
 
     return (
         <div className="inventory-controls">
-            <div className="inventory-controls__grid">
-                <div className="inventory-controls__main">
-                    <div className="flex gap-4">
-                        <div className="inventory-controls__group flex-grow">
-                            <label className="inventory-controls__label">{t('inventory.searchByName')}</label>
-                            <input type="text" className="form__input" value={filters.searchTerm} onChange={(e) => handleFilterChange('searchTerm', e.target.value)} />
-                        </div>
-                        <div className="inventory-controls__group">
-                            <label className="inventory-controls__label">{t('inventory.sortBy')}</label>
-                            <select className="form__input" value={sortBy} onChange={(e) => setSortBy(e.target.value as SortByType)}>
+            <div className="inventory-controls__main">
+                 <div className="flex gap-4">
+                    <div className="inventory-controls__group flex-grow">
+                        <label className="inventory-controls__label">{t('inventory.searchByName')}</label>
+                        <input type="text" className="form__input" value={filters.searchTerm} onChange={(e) => handleFilterChange('searchTerm', e.target.value)} />
+                    </div>
+                    <div className="inventory-controls__group">
+                        <label className="inventory-controls__label">{t('inventory.sortBy')}</label>
+                        <div className="flex gap-2">
+                             <select className="form__input" value={sortField} onChange={(e) => setSortField(e.target.value as SortFieldType)}>
                                 <option value="score">{t('inventory.sortOptions.score')}</option>
                                 <option value="name">{t('inventory.sortOptions.name')}</option>
                                 <option value="gen">{t('inventory.sortOptions.gen')}</option>
                                 <option value="id">{t('inventory.sortOptions.date')}</option>
                                 <option value="sparks">{t('inventory.sortOptions.sparks')}</option>
                             </select>
+                             <button className="button button--secondary flex-shrink-0" onClick={toggleSortDirection} title={sortDirection === 'desc' ? 'Descending' : 'Ascending'}>
+                                <FontAwesomeIcon icon={sortDirection === 'desc' ? faArrowDownWideShort : faArrowUpShortWide} />
+                            </button>
                         </div>
-                    </div>
-                    <div className="flex justify-between items-end flex-grow">
-                        <button className="button button--neutral button--small" onClick={clearFilters}><FontAwesomeIcon icon={faTimes} className="mr-2" /> {t('inventory.clearFilters')}</button>
-                        <button className="button button--secondary button--small" onClick={() => setIsAdvanced(!isAdvanced)}><FontAwesomeIcon icon={faFilter} className="mr-2" /> {isAdvanced ? t('inventory.hideAdvanced') : t('inventory.showAdvanced')}</button>
                     </div>
                 </div>
-                {isAdvanced && (
-                    <div className="inventory-controls__advanced-panel">
-                        <div>
-                            <label className="inventory-controls__label mb-1">{t('inventory.searchScope')}</label>
-                            <div className="inventory-controls__scope-toggle">
-                                <button className={`inventory-controls__scope-btn ${filters.searchScope === 'total' ? 'inventory-controls__scope-btn--active' : ''}`} onClick={() => handleFilterChange('searchScope', 'total')}>{t('inventory.scope.total')}</button>
-                                <button className={`inventory-controls__scope-btn ${filters.searchScope === 'representative' ? 'inventory-controls__scope-btn--active' : ''}`} onClick={() => handleFilterChange('searchScope', 'representative')}>{t('inventory.scope.representative')}</button>
-                            </div>
-                        </div>
-                        <div className="inventory-controls__group">
-                            <label className="inventory-controls__label">{t('inventory.minWhiteSkills')}</label>
-                            <input type="number" className="form__input" min="0" value={filters.minWhiteSparks} onChange={e => handleFilterChange('minWhiteSparks', Math.max(0, parseInt(e.target.value, 10)) || 0)} />
-                        </div>
-                        <div className="inventory-controls__group">
-                            <label className="inventory-controls__label">{t('inventory.blueSpark')}</label>
-                            <div className="grid grid-cols-2 gap-2">
-                                <select className="form__input" value={filters.blueSpark.type} onChange={(e) => handleSparkFilterChange('blueSpark', 'type', e.target.value)}>
-                                    <option value="all">{t('inventory.allTypes')}</option>
-                                    {BLUE_SPARK_TYPES.map(type => <option key={type} value={type}>{t(type, { ns: 'game' })}</option>)}
-                                </select>
-                                {renderStarFilter('blueSpark', 9)}
-                            </div>
-                        </div>
-                        <div className="inventory-controls__group">
-                            <label className="inventory-controls__label">{t('inventory.pinkSpark')}</label>
-                            <div className="grid grid-cols-2 gap-2">
-                                <select className="form__input" value={filters.pinkSpark.type} onChange={(e) => handleSparkFilterChange('pinkSpark', 'type', e.target.value)}>
-                                    <option value="all">{t('inventory.allTypes')}</option>
-                                    {PINK_SPARK_TYPES.map(type => <option key={type} value={type}>{t(type, { ns: 'game' })}</option>)}
-                                </select>
-                                {renderStarFilter('pinkSpark', 9)}
-                            </div>
-                        </div>
-                         <div className="inventory-controls__group">
-                            <label className="inventory-controls__label">{t('inventory.uniqueSpark')}</label>
-                            <div className="grid grid-cols-2 gap-2">
-                                <SearchableSelect items={uniqueSkills} placeholder={t('common:selectPlaceholder')} value={filters.uniqueSpark.name ? masterSkillList.find(s => s.name_en === filters.uniqueSpark.name)?.[displayNameProp] || null : null} onSelect={(item) => handleSparkFilterChange('uniqueSpark', 'name', (item as Skill).name_en)} />
-                                {renderStarFilter('uniqueSpark', 3)}
-                            </div>
-                        </div>
-                         <div className="inventory-controls__group">
-                            <label className="inventory-controls__label">{t('inventory.whiteSpark')}</label>
-                            <div className="grid grid-cols-2 gap-2">
-                                <SearchableSelect items={normalSkills} placeholder={t('common:selectPlaceholder')} value={filters.whiteSpark.name ? masterSkillList.find(s => s.name_en === filters.whiteSpark.name)?.[displayNameProp] || null : null} onSelect={(item) => handleSparkFilterChange('whiteSpark', 'name', (item as Skill).name_en)} />
-                                {renderStarFilter('whiteSpark', 9)}
-                            </div>
+                <div className="flex justify-between items-end flex-grow">
+                    <button className="button button--neutral button--small" onClick={clearFilters}><FontAwesomeIcon icon={faTimes} className="mr-2" /> {t('inventory.clearFilters')}</button>
+                    <button className="button button--secondary button--small" onClick={() => setIsAdvanced(!isAdvanced)}><FontAwesomeIcon icon={faFilter} className="mr-2" /> {isAdvanced ? t('inventory.hideAdvanced') : t('inventory.showAdvanced')}</button>
+                </div>
+            </div>
+            {isAdvanced && (
+                <div className="inventory-controls__advanced-panel">
+                    <div>
+                        <label className="inventory-controls__label mb-1">{t('inventory.searchScope')}</label>
+                        <div className="inventory-controls__scope-toggle">
+                            <button className={`inventory-controls__scope-btn ${filters.searchScope === 'total' ? 'inventory-controls__scope-btn--active' : ''}`} onClick={() => handleFilterChange('searchScope', 'total')}>{t('inventory.scope.total')}</button>
+                            <button className={`inventory-controls__scope-btn ${filters.searchScope === 'representative' ? 'inventory-controls__scope-btn--active' : ''}`} onClick={() => handleFilterChange('searchScope', 'representative')}>{t('inventory.scope.representative')}</button>
                         </div>
                     </div>
-                )}
-            </div>
+                    <div className="inventory-controls__group">
+                        <label className="inventory-controls__label">{t('inventory.minWhiteSkills')}</label>
+                        <input type="number" className="form__input" min="0" value={filters.minWhiteSparks} onChange={e => handleFilterChange('minWhiteSparks', Math.max(0, parseInt(e.target.value, 10)) || 0)} />
+                    </div>
+                    <div className="inventory-controls__group">
+                        <label className="inventory-controls__label">{t('inventory.blueSpark')}</label>
+                        <div className="grid grid-cols-2 gap-2">
+                            <select className="form__input" value={filters.blueSpark.type} onChange={(e) => handleSparkFilterChange('blueSpark', 'type', e.target.value)}>
+                                <option value="all">{t('inventory.allTypes')}</option>
+                                {BLUE_SPARK_TYPES.map(type => <option key={type} value={type}>{t(type, { ns: 'game' })}</option>)}
+                            </select>
+                            {renderStarFilter('blueSpark', 9)}
+                        </div>
+                    </div>
+                    <div className="inventory-controls__group">
+                        <label className="inventory-controls__label">{t('inventory.pinkSpark')}</label>
+                        <div className="grid grid-cols-2 gap-2">
+                            <select className="form__input" value={filters.pinkSpark.type} onChange={(e) => handleSparkFilterChange('pinkSpark', 'type', e.target.value)}>
+                                <option value="all">{t('inventory.allTypes')}</option>
+                                {PINK_SPARK_TYPES.map(type => <option key={type} value={type}>{t(type, { ns: 'game' })}</option>)}
+                            </select>
+                            {renderStarFilter('pinkSpark', 9)}
+                        </div>
+                    </div>
+                     <div className="inventory-controls__group">
+                        <label className="inventory-controls__label">{t('inventory.uniqueSpark')}</label>
+                        <div className="grid grid-cols-2 gap-2">
+                            <SearchableSelect items={uniqueSkills} placeholder={t('common:selectPlaceholder')} value={filters.uniqueSpark.name ? masterSkillList.find(s => s.name_en === filters.uniqueSpark.name)?.[displayNameProp] || null : null} onSelect={(item) => handleSparkFilterChange('uniqueSpark', 'name', (item as Skill).name_en)} />
+                            {renderStarFilter('uniqueSpark', 3)}
+                        </div>
+                    </div>
+                     <div className="inventory-controls__group">
+                        <label className="inventory-controls__label">{t('inventory.whiteSpark')}</label>
+                        <div className="grid grid-cols-2 gap-2">
+                            <SearchableSelect items={normalSkills} placeholder={t('common:selectPlaceholder')} value={filters.whiteSpark.name ? masterSkillList.find(s => s.name_en === filters.whiteSpark.name)?.[displayNameProp] || null : null} onSelect={(item) => handleSparkFilterChange('whiteSpark', 'name', (item as Skill).name_en)} />
+                            {renderStarFilter('whiteSpark', 9)}
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };
