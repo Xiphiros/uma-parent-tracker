@@ -92,7 +92,9 @@ const InventoryControls = ({ filters, setFilters, sortField, setSortField, sortD
             );
         }
         return (
-            <RangeSlider label="" min={0} max={maxStars} value={value} onChange={onChange} />
+            <div className="w-24">
+                <RangeSlider label="" min={0} max={maxStars} value={value} onChange={onChange} />
+            </div>
         );
     };
 
