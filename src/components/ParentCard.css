@@ -7,9 +7,13 @@
     border: 1px solid var(--color-border);
     background-color: var(--color-card-bg-hover);
     transition: background-color 0.3s ease, border-color 0.3s ease;
+    border-left: 4px solid transparent; /* Space for roster indicator */
 }
 .parent-card--top-pair {
     border-color: var(--color-top-pair-border);
+}
+.parent-card--in-roster {
+    border-left-color: var(--color-accent-primary);
 }
 .parent-card--disabled {
     opacity: 0.5;
