@@ -35,6 +35,14 @@
     "allTypes": "全てのタイプ",
     "anyStars": "指定なし",
     "clearFilters": "フィルターをクリア",
+    "showAdvanced": "高度なフィルターを表示",
+    "hideAdvanced": "高度なフィルターを非表示",
+    "searchScope": "検索範囲",
+    "scope": {
+      "total": "血統全体",
+      "representative": "代表因子"
+    },
+    "minWhiteSkills": "白因子の最低数",
     "sortOptions": {
       "score": "スコア（高い順）",
       "name": "名前（A-Z）",
