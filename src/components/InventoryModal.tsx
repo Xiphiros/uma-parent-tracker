@@ -27,10 +27,10 @@ interface MoveConfirmState {
 const initialFilters: Filters = {
     searchTerm: '',
     searchScope: 'total',
-    blueSpark: { type: 'all', stars: 0 },
-    pinkSpark: { type: 'all', stars: 0 },
-    uniqueSpark: { name: '', stars: 0 },
-    whiteSpark: { name: '', stars: 0 },
+    blueSparks: [],
+    pinkSparks: [],
+    uniqueSparks: [],
+    whiteSparks: [],
     minWhiteSparks: 0,
 };
 
@@ -77,23 +77,21 @@ const InventoryModal = ({ isOpen, onClose, isSelectionMode = false, onSelectPare
             if (filters.searchTerm && !parentName.toLowerCase().includes(filters.searchTerm.toLowerCase())) return false;
 
             if (filters.searchScope === 'representative') {
-                if (filters.blueSpark.type !== 'all' && parent.blueSpark.type !== filters.blueSpark.type) return false;
-                if (filters.blueSpark.stars > 0 && parent.blueSpark.stars < filters.blueSpark.stars) return false;
-                if (filters.pinkSpark.type !== 'all' && parent.pinkSpark.type !== filters.pinkSpark.type) return false;
-                if (filters.pinkSpark.stars > 0 && parent.pinkSpark.stars < filters.pinkSpark.stars) return false;
-                if (filters.uniqueSpark.name && (!parent.uniqueSparks.some(s => s.name === filters.uniqueSpark.name) || (parent.uniqueSparks.find(s => s.name === filters.uniqueSpark.name)?.stars || 0) < filters.uniqueSpark.stars)) return false;
-                if (filters.whiteSpark.name && (!parent.whiteSparks.some(s => s.name === filters.whiteSpark.name) || (parent.whiteSparks.find(s => s.name === filters.whiteSpark.name)?.stars || 0) < filters.whiteSpark.stars)) return false;
+                if (!filters.blueSparks.every(f => parent.blueSpark.type === f.type && parent.blueSpark.stars >= f.stars)) return false;
+                if (!filters.pinkSparks.every(f => parent.pinkSpark.type === f.type && parent.pinkSpark.stars >= f.stars)) return false;
+                if (!filters.uniqueSparks.every(f => f.name && parent.uniqueSparks.some(s => s.name === f.name && s.stars >= f.stars))) return false;
+                if (!filters.whiteSparks.every(f => f.name && parent.whiteSparks.some(s => s.name === f.name && s.stars >= f.stars))) return false;
                 if (filters.minWhiteSparks > 0 && parent.whiteSparks.length < filters.minWhiteSparks) return false;
             } else { // Total Lineage Search
                 if (!lineageStatsCache.has(parent.id)) {
                     lineageStatsCache.set(parent.id, getLineageStats(parent, inventoryMap));
                 }
                 const lineage = lineageStatsCache.get(parent.id)!;
-
-                if (filters.blueSpark.type !== 'all' && (lineage.blue[filters.blueSpark.type] || 0) < filters.blueSpark.stars) return false;
-                if (filters.pinkSpark.type !== 'all' && (lineage.pink[filters.pinkSpark.type] || 0) < filters.pinkSpark.stars) return false;
-                if (filters.uniqueSpark.name && (lineage.unique[filters.uniqueSpark.name] || 0) < filters.uniqueSpark.stars) return false;
-                if (filters.whiteSpark.name && (lineage.white[filters.whiteSpark.name] || 0) < filters.whiteSpark.stars) return false;
+                
+                if (!filters.blueSparks.every(f => (lineage.blue[f.type] || 0) >= f.stars)) return false;
+                if (!filters.pinkSparks.every(f => (lineage.pink[f.type] || 0) >= f.stars)) return false;
+                if (!filters.uniqueSparks.every(f => f.name && (lineage.unique[f.name] || 0) >= f.stars)) return false;
+                if (!filters.whiteSparks.every(f => f.name && (lineage.white[f.name] || 0) >= f.stars)) return false;
                 if (filters.minWhiteSparks > 0 && lineage.whiteSkillCount < filters.minWhiteSparks) return false;
             }
             
