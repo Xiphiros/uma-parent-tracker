@@ -20,9 +20,10 @@ interface ParentCardProps {
     isSelectionMode?: boolean;
     onSelect?: (parent: Parent) => void;
     isDisabled?: boolean;
+    isInCurrentRoster?: boolean;
 }
 
-const ParentCard = ({ parent, isTopParent = false, displayScore = true, onEdit, onDelete, onAssign, onMove, assignedProjects, isSelectionMode = false, onSelect, isDisabled = false }: ParentCardProps) => {
+const ParentCard = ({ parent, isTopParent = false, displayScore = true, onEdit, onDelete, onAssign, onMove, assignedProjects, isSelectionMode = false, onSelect, isDisabled = false, isInCurrentRoster = false }: ParentCardProps) => {
     const { t } = useTranslation(['roster', 'common', 'game']);
     const { getActiveProfile, dataDisplayLanguage, umaMapById, skillMapByName, appData } = useAppContext();
     const goal = getActiveProfile()?.goal;
@@ -160,7 +161,7 @@ const ParentCard = ({ parent, isTopParent = false, displayScore = true, onEdit, 
     );
 
     return (
-        <div className={`parent-card ${isTopParent ? 'parent-card--top-pair' : ''} ${isDisabled ? 'parent-card--disabled' : ''}`}>
+        <div className={`parent-card ${isTopParent ? 'parent-card--top-pair' : ''} ${isDisabled ? 'parent-card--disabled' : ''} ${isInCurrentRoster ? 'parent-card--in-roster' : ''}`}>
             <div className="parent-card__main-content">
                 <LineageTree parent={parent} />
                 <div className="parent-card__details">
