@@ -6,9 +6,10 @@ interface RangeSliderProps {
     max: number;
     value: number;
     onChange: (value: number) => void;
+    disabled?: boolean;
 }
 
-const RangeSlider = ({ label, min, max, value, onChange }: RangeSliderProps) => {
+const RangeSlider = ({ label, min, max, value, onChange, disabled = false }: RangeSliderProps) => {
     return (
         <div className="range-slider">
             <div className="range-slider__header">
@@ -22,6 +23,7 @@ const RangeSlider = ({ label, min, max, value, onChange }: RangeSliderProps) => 
                 value={value}
                 className="range-slider__input"
                 onChange={(e) => onChange(Number(e.target.value))}
+                disabled={disabled}
             />
         </div>
     );
