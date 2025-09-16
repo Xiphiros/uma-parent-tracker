@@ -1,15 +1,17 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { BlueSpark, Skill, Filters } from '../../types';
+import { BlueSpark, Skill, Filters, BlueSparkFilter, PinkSparkFilter, UniqueSparkFilter, WhiteSparkFilter } from '../../types';
 import SearchableSelect from './SearchableSelect';
 import { useAppContext } from '../../context/AppContext';
 import './InventoryControls.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFilter, faTimes, faArrowDownWideShort, faArrowUpShortWide } from '@fortawesome/free-solid-svg-icons';
+import { faFilter, faTimes, faArrowDownWideShort, faArrowUpShortWide, faPlus } from '@fortawesome/free-solid-svg-icons';
 import RangeSlider from './RangeSlider';
 
 export type SortFieldType = 'score' | 'name' | 'gen' | 'id' | 'sparks';
 export type SortDirectionType = 'asc' | 'desc';
+
+type SparkFilterType = 'blueSparks' | 'pinkSparks' | 'uniqueSparks' | 'whiteSparks';
 
 interface InventoryControlsProps {
     filters: Filters;
@@ -36,12 +38,33 @@ const InventoryControls = ({ filters, setFilters, sortField, setSortField, sortD
     const handleFilterChange = <K extends keyof Filters>(key: K, value: Filters[K]) => {
         setFilters(prev => ({ ...prev, [key]: value }));
     };
-
-    const handleSparkFilterChange = (sparkType: 'blueSpark' | 'pinkSpark' | 'uniqueSpark' | 'whiteSpark', part: 'type' | 'stars' | 'name', value: string | number) => {
-        setFilters(prev => ({
-            ...prev,
-            [sparkType]: { ...prev[sparkType], [part]: value }
-        }));
+    
+    const handleAddSparkFilter = (type: SparkFilterType) => {
+        setFilters(prev => {
+            const newFilters = [...prev[type]];
+            let newItem;
+            if (type === 'blueSparks') newItem = { type: 'Speed', stars: 0 };
+            else if (type === 'pinkSparks') newItem = { type: 'Mile', stars: 0 };
+            else newItem = { name: '', stars: 0 };
+            newFilters.push(newItem as any);
+            return { ...prev, [type]: newFilters };
+        });
+    };
+    
+    const handleRemoveSparkFilter = (type: SparkFilterType, index: number) => {
+        setFilters(prev => {
+            const newFilters = [...prev[type]];
+            newFilters.splice(index, 1);
+            return { ...prev, [type]: newFilters };
+        });
+    };
+    
+    const handleUpdateSparkFilter = <T extends BlueSparkFilter | PinkSparkFilter | UniqueSparkFilter | WhiteSparkFilter>(type: SparkFilterType, index: number, field: keyof T, value: any) => {
+         setFilters(prev => {
+            const newFilters = [...prev[type]];
+            newFilters[index] = { ...newFilters[index], [field]: value };
+            return { ...prev, [type]: newFilters };
+        });
     };
 
     const toggleSortDirection = () => {
@@ -52,26 +75,24 @@ const InventoryControls = ({ filters, setFilters, sortField, setSortField, sortD
         setFilters({
             searchTerm: '',
             searchScope: 'total',
-            blueSpark: { type: 'all', stars: 0 },
-            pinkSpark: { type: 'all', stars: 0 },
-            uniqueSpark: { name: '', stars: 0 },
-            whiteSpark: { name: '', stars: 0 },
+            blueSparks: [],
+            pinkSparks: [],
+            uniqueSparks: [],
+            whiteSparks: [],
             minWhiteSparks: 0,
         });
     };
 
-    const renderStarFilter = (sparkType: 'blueSpark' | 'pinkSpark' | 'whiteSpark' | 'uniqueSpark', maxStars: number) => {
-        const value = (filters[sparkType] as { stars: number }).stars;
-
+    const renderStarFilter = (value: number, onChange: (value: number) => void, maxStars: number) => {
         if (filters.searchScope === 'representative') {
             return (
-                <select className="form__input" value={value} onChange={(e) => handleSparkFilterChange(sparkType, 'stars', Number(e.target.value))}>
+                <select className="form__input w-24" value={value} onChange={(e) => onChange(Number(e.target.value))}>
                     {[0, 1, 2, 3].map(s => <option key={s} value={s}>{s === 0 ? t('inventory.anyStars') : `${s}+`}</option>)}
                 </select>
             );
         }
         return (
-            <RangeSlider label="" min={0} max={maxStars} value={value} onChange={(v) => handleSparkFilterChange(sparkType, 'stars', v)} />
+            <RangeSlider label="" min={0} max={maxStars} value={value} onChange={onChange} />
         );
     };
 
@@ -117,39 +138,69 @@ const InventoryControls = ({ filters, setFilters, sortField, setSortField, sortD
                         <label className="inventory-controls__label">{t('inventory.minWhiteSkills')}</label>
                         <input type="number" className="form__input" min="0" value={filters.minWhiteSparks} onChange={e => handleFilterChange('minWhiteSparks', Math.max(0, parseInt(e.target.value, 10)) || 0)} />
                     </div>
+
+                    {/* Blue Sparks */}
                     <div className="inventory-controls__group">
-                        <label className="inventory-controls__label">{t('inventory.blueSpark')}</label>
-                        <div className="grid grid-cols-2 gap-2">
-                            <select className="form__input" value={filters.blueSpark.type} onChange={(e) => handleSparkFilterChange('blueSpark', 'type', e.target.value)}>
-                                <option value="all">{t('inventory.allTypes')}</option>
-                                {BLUE_SPARK_TYPES.map(type => <option key={type} value={type}>{t(type, { ns: 'game' })}</option>)}
-                            </select>
-                            {renderStarFilter('blueSpark', 9)}
+                        <div className="inventory-controls__filter-header">
+                            <label className="inventory-controls__label">{t('inventory.blueSpark')}</label>
+                            <button className="inventory-controls__add-btn" onClick={() => handleAddSparkFilter('blueSparks')} disabled={filters.blueSparks.length >= 3}><FontAwesomeIcon icon={faPlus} /></button>
                         </div>
+                        {filters.blueSparks.map((filter, index) => (
+                            <div key={index} className="inventory-controls__filter-row">
+                                <select className="form__input" value={filter.type} onChange={(e) => handleUpdateSparkFilter('blueSparks', index, 'type', e.target.value)}>
+                                    {BLUE_SPARK_TYPES.map(type => <option key={type} value={type}>{t(type, { ns: 'game' })}</option>)}
+                                </select>
+                                {renderStarFilter(filter.stars, (v) => handleUpdateSparkFilter('blueSparks', index, 'stars', v), 9)}
+                                <button className="inventory-controls__remove-btn" onClick={() => handleRemoveSparkFilter('blueSparks', index)}><FontAwesomeIcon icon={faTimes} /></button>
+                            </div>
+                        ))}
                     </div>
+
+                    {/* Pink Sparks */}
                     <div className="inventory-controls__group">
-                        <label className="inventory-controls__label">{t('inventory.pinkSpark')}</label>
-                        <div className="grid grid-cols-2 gap-2">
-                            <select className="form__input" value={filters.pinkSpark.type} onChange={(e) => handleSparkFilterChange('pinkSpark', 'type', e.target.value)}>
-                                <option value="all">{t('inventory.allTypes')}</option>
-                                {PINK_SPARK_TYPES.map(type => <option key={type} value={type}>{t(type, { ns: 'game' })}</option>)}
-                            </select>
-                            {renderStarFilter('pinkSpark', 9)}
+                        <div className="inventory-controls__filter-header">
+                            <label className="inventory-controls__label">{t('inventory.pinkSpark')}</label>
+                            <button className="inventory-controls__add-btn" onClick={() => handleAddSparkFilter('pinkSparks')} disabled={filters.pinkSparks.length >= 3}><FontAwesomeIcon icon={faPlus} /></button>
                         </div>
+                        {filters.pinkSparks.map((filter, index) => (
+                            <div key={index} className="inventory-controls__filter-row">
+                                <select className="form__input" value={filter.type} onChange={(e) => handleUpdateSparkFilter('pinkSparks', index, 'type', e.target.value)}>
+                                    {PINK_SPARK_TYPES.map(type => <option key={type} value={type}>{t(type, { ns: 'game' })}</option>)}
+                                </select>
+                                {renderStarFilter(filter.stars, (v) => handleUpdateSparkFilter('pinkSparks', index, 'stars', v), 9)}
+                                <button className="inventory-controls__remove-btn" onClick={() => handleRemoveSparkFilter('pinkSparks', index)}><FontAwesomeIcon icon={faTimes} /></button>
+                            </div>
+                        ))}
                     </div>
-                     <div className="inventory-controls__group">
-                        <label className="inventory-controls__label">{t('inventory.uniqueSpark')}</label>
-                        <div className="grid grid-cols-2 gap-2">
-                            <SearchableSelect items={uniqueSkills} placeholder={t('common:selectPlaceholder')} value={filters.uniqueSpark.name ? masterSkillList.find(s => s.name_en === filters.uniqueSpark.name)?.[displayNameProp] || null : null} onSelect={(item) => handleSparkFilterChange('uniqueSpark', 'name', (item as Skill).name_en)} />
-                            {renderStarFilter('uniqueSpark', 3)}
+
+                    {/* Unique Sparks */}
+                    <div className="inventory-controls__group">
+                         <div className="inventory-controls__filter-header">
+                            <label className="inventory-controls__label">{t('inventory.uniqueSpark')}</label>
+                            <button className="inventory-controls__add-btn" onClick={() => handleAddSparkFilter('uniqueSparks')} disabled={filters.uniqueSparks.length >= 6}><FontAwesomeIcon icon={faPlus} /></button>
                         </div>
+                        {filters.uniqueSparks.map((filter, index) => (
+                            <div key={index} className="inventory-controls__filter-row">
+                                <SearchableSelect items={uniqueSkills} placeholder={t('common:selectPlaceholder')} value={filter.name ? masterSkillList.find(s => s.name_en === filter.name)?.[displayNameProp] || null : null} onSelect={(item) => handleUpdateSparkFilter('uniqueSparks', index, 'name', (item as Skill).name_en)} />
+                                {renderStarFilter(filter.stars, (v) => handleUpdateSparkFilter('uniqueSparks', index, 'stars', v), 3)}
+                                <button className="inventory-controls__remove-btn" onClick={() => handleRemoveSparkFilter('uniqueSparks', index)}><FontAwesomeIcon icon={faTimes} /></button>
+                            </div>
+                        ))}
                     </div>
-                     <div className="inventory-controls__group">
-                        <label className="inventory-controls__label">{t('inventory.whiteSpark')}</label>
-                        <div className="grid grid-cols-2 gap-2">
-                            <SearchableSelect items={normalSkills} placeholder={t('common:selectPlaceholder')} value={filters.whiteSpark.name ? masterSkillList.find(s => s.name_en === filters.whiteSpark.name)?.[displayNameProp] || null : null} onSelect={(item) => handleSparkFilterChange('whiteSpark', 'name', (item as Skill).name_en)} />
-                            {renderStarFilter('whiteSpark', 9)}
+
+                    {/* White Sparks */}
+                    <div className="inventory-controls__group">
+                         <div className="inventory-controls__filter-header">
+                            <label className="inventory-controls__label">{t('inventory.whiteSpark')}</label>
+                            <button className="inventory-controls__add-btn" onClick={() => handleAddSparkFilter('whiteSparks')}><FontAwesomeIcon icon={faPlus} /></button>
                         </div>
+                        {filters.whiteSparks.map((filter, index) => (
+                            <div key={index} className="inventory-controls__filter-row">
+                                <SearchableSelect items={normalSkills} placeholder={t('common:selectPlaceholder')} value={filter.name ? masterSkillList.find(s => s.name_en === filter.name)?.[displayNameProp] || null : null} onSelect={(item) => handleUpdateSparkFilter('whiteSparks', index, 'name', (item as Skill).name_en)} />
+                                {renderStarFilter(filter.stars, (v) => handleUpdateSparkFilter('whiteSparks', index, 'stars', v), 9)}
+                                <button className="inventory-controls__remove-btn" onClick={() => handleRemoveSparkFilter('whiteSparks', index)}><FontAwesomeIcon icon={faTimes} /></button>
+                            </div>
+                        ))}
                     </div>
                 </div>
             )}
