@@ -62,3 +62,40 @@
     color: var(--color-text-primary);
     box-shadow: var(--color-shadow);
 }
+
+.inventory-controls__filter-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.inventory-controls__add-btn {
+    padding: 0.125rem 0.25rem;
+    color: var(--color-text-muted);
+}
+.inventory-controls__add-btn:hover {
+    color: var(--color-text-primary);
+}
+.inventory-controls__add-btn:disabled {
+    color: var(--color-border);
+    cursor: not-allowed;
+}
+
+.inventory-controls__filter-row {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+.inventory-controls__filter-row .form__input,
+.inventory-controls__filter-row .searchable-select {
+    flex-grow: 1;
+}
+
+.inventory-controls__remove-btn {
+    color: var(--color-text-muted);
+    padding: 0.25rem;
+    flex-shrink: 0;
+}
+.inventory-controls__remove-btn:hover {
+    color: var(--color-text-danger);
+}
