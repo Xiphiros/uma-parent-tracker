@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { BlueSpark, Skill, Filters, BlueSparkFilter, PinkSparkFilter, UniqueSparkFilter, WhiteSparkFilter } from '../../types';
+import { BlueSpark, Skill, Filters } from '../../types';
 import SearchableSelect from './SearchableSelect';
 import { useAppContext } from '../../context/AppContext';
 import './InventoryControls.css';
@@ -38,16 +38,12 @@ const InventoryControls = ({ filters, setFilters, sortField, setSortField, sortD
     // When switching to representative mode, clamp any existing star filters to the max of 3.
     useEffect(() => {
         if (filters.searchScope === 'representative') {
-            const clampStars = (sparkFilters: (BlueSparkFilter | PinkSparkFilter | UniqueSparkFilter | WhiteSparkFilter)[]) => {
-                return sparkFilters.map(f => ({ ...f, stars: Math.min(f.stars, 3) }));
-            };
-            
             setFilters(prev => ({
                 ...prev,
-                blueSparks: clampStars(prev.blueSparks),
-                pinkSparks: clampStars(prev.pinkSparks),
-                uniqueSparks: clampStars(prev.uniqueSparks),
-                whiteSparks: clampStars(prev.whiteSparks)
+                blueSparks: prev.blueSparks.map(f => ({ ...f, stars: Math.min(f.stars, 3) })),
+                pinkSparks: prev.pinkSparks.map(f => ({ ...f, stars: Math.min(f.stars, 3) })),
+                uniqueSparks: prev.uniqueSparks.map(f => ({ ...f, stars: Math.min(f.stars, 3) })),
+                whiteSparks: prev.whiteSparks.map(f => ({ ...f, stars: Math.min(f.stars, 3) }))
             }));
         }
     }, [filters.searchScope, setFilters]);
