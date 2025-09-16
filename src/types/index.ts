@@ -124,3 +124,13 @@ export interface AppData {
 export interface ValidationResult {
     errors: string[];
 }
+
+export interface Filters {
+    searchTerm: string;
+    searchScope: 'representative' | 'total';
+    blueSpark: { type: string; stars: number };
+    pinkSpark: { type: string; stars: number };
+    uniqueSpark: { name: string, stars: number };
+    whiteSpark: { name: string, stars: number };
+    minWhiteSparks: number;
+}
