@@ -7,7 +7,7 @@ import ContextMenu, { MenuItem } from './common/ContextMenu';
 import { useAppContext } from '../context/AppContext';
 import './InventoryModal.css';
 import { useTranslation } from 'react-i18next';
-import InventoryControls, { SortByType } from './common/InventoryControls';
+import InventoryControls, { SortFieldType, SortDirectionType } from './common/InventoryControls';
 import { getLineageStats, LineageStats } from '../utils/affinity';
 
 interface InventoryModalProps {
@@ -44,7 +44,8 @@ const InventoryModal = ({ isOpen, onClose, isSelectionMode = false, onSelectPare
     const [contextMenu, setContextMenu] = useState<{ isOpen: boolean; x: number; y: number; items: MenuItem[]; parent: Parent | null }>({ isOpen: false, x: 0, y: 0, items: [], parent: null });
 
     const [filters, setFilters] = useState<Filters>(initialFilters);
-    const [sortBy, setSortBy] = useState<SortByType>('score');
+    const [sortField, setSortField] = useState<SortFieldType>('score');
+    const [sortDirection, setSortDirection] = useState<SortDirectionType>('desc');
 
     const activeProfile = getActiveProfile();
     const inventoryMap = useMemo(() => new Map(appData.inventory.map(p => [p.id, p])), [appData.inventory]);
@@ -52,7 +53,7 @@ const InventoryModal = ({ isOpen, onClose, isSelectionMode = false, onSelectPare
     const { inventory, profiles, inventoryWithScores } = useMemo(() => {
         const currentServerInventory = appData.inventory.filter(p => p.server === activeServer);
         
-        const scoredInventory = sortBy === 'score' && activeProfile
+        const scoredInventory = sortField === 'score' && activeProfile
             ? currentServerInventory.map(p => ({
                 ...p,
                 score: appData.inventory.find(inv => inv.id === p.id)?.score || 0
@@ -64,10 +65,10 @@ const InventoryModal = ({ isOpen, onClose, isSelectionMode = false, onSelectPare
             profiles: appData.serverData[activeServer].profiles,
             inventoryWithScores: scoredInventory
         };
-    }, [appData.inventory, appData.serverData, activeServer, sortBy, activeProfile]);
+    }, [appData.inventory, appData.serverData, activeServer, sortField, activeProfile]);
 
     const filteredAndSortedInventory = useMemo(() => {
-        const sourceInventory = sortBy === 'score' ? inventoryWithScores : inventory;
+        const sourceInventory = sortField === 'score' ? inventoryWithScores : inventory;
         const lineageStatsCache = new Map<number, LineageStats>();
 
         const filtered = sourceInventory.filter(parent => {
@@ -101,20 +102,30 @@ const InventoryModal = ({ isOpen, onClose, isSelectionMode = false, onSelectPare
         });
 
         return filtered.sort((a, b) => {
-            switch (sortBy) {
-                case 'name': return a.name.localeCompare(b.name);
-                case 'gen': return b.gen - a.gen;
-                case 'id': return b.id - a.id;
+            let comparison = 0;
+            switch (sortField) {
+                case 'name':
+                    comparison = a.name.localeCompare(b.name);
+                    break;
+                case 'gen':
+                    comparison = b.gen - a.gen;
+                    break;
+                case 'id':
+                    comparison = b.id - a.id;
+                    break;
                 case 'sparks': 
                     const aSparks = a.uniqueSparks.length + a.whiteSparks.length;
                     const bSparks = b.uniqueSparks.length + b.whiteSparks.length;
-                    return bSparks - aSparks;
+                    comparison = bSparks - aSparks;
+                    break;
                 case 'score':
                 default:
-                    return b.score - a.score;
+                    comparison = b.score - a.score;
+                    break;
             }
+            return sortDirection === 'desc' ? comparison : -comparison;
         });
-    }, [inventory, inventoryWithScores, filters, sortBy, umaMapById, dataDisplayLanguage, inventoryMap]);
+    }, [inventory, inventoryWithScores, filters, sortField, sortDirection, umaMapById, dataDisplayLanguage, inventoryMap]);
 
 
     const handleOpenAddModal = () => {
@@ -201,7 +212,14 @@ const InventoryModal = ({ isOpen, onClose, isSelectionMode = false, onSelectPare
             <Modal isOpen={isOpen} onClose={onClose} title={modalTitle} size="2xl">
                 <div className="grid grid-cols-1 lg:grid-cols-[320px_1fr] gap-6">
                     <div className="inventory-modal__sidebar">
-                        <InventoryControls filters={filters} setFilters={setFilters} sortBy={sortBy} setSortBy={setSortBy} />
+                        <InventoryControls 
+                            filters={filters} 
+                            setFilters={setFilters} 
+                            sortField={sortField} 
+                            setSortField={setSortField}
+                            sortDirection={sortDirection}
+                            setSortDirection={setSortDirection}
+                        />
                     </div>
                     <div className="inventory-modal__main-content">
                         <div className="inventory-modal__grid">
@@ -213,7 +231,7 @@ const InventoryModal = ({ isOpen, onClose, isSelectionMode = false, onSelectPare
                                         <ParentCard 
                                             key={parent.id} 
                                             parent={parent} 
-                                            displayScore={sortBy === 'score'}
+                                            displayScore={sortField === 'score'}
                                             onEdit={() => handleOpenEditModal(parent)}
                                             onDelete={() => handleDeleteParent(parent)}
                                             onMove={() => handleMoveParent(parent)}
