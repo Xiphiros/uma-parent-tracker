@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { useAppContext } from '../context/AppContext';
-import { Parent, Grandparent, ManualParentData } from '../types';
+import { Parent, ManualParentData } from '../types';
 import './BreedingSuggestions.css';
 import { useTranslation } from 'react-i18next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -24,7 +24,7 @@ const BreedingSuggestions = () => {
         const [parent1, parent2] = topTwoParents;
         
         const lineageCharIds = new Set<string>();
-        const lineageMembers = [
+        const lineageMembers: (Parent | ManualParentData | null)[] = [
             parent1, parent2,
             resolveGrandparent(parent1.grandparent1, inventoryMap),
             resolveGrandparent(parent1.grandparent2, inventoryMap),
