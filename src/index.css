@@ -19,6 +19,7 @@
 @import "./components/common/LineageTree.css";
 @import "./components/ParentCard.css";
 @import "./components/common/PlaceholderCard.css";
+@import "./components/common/RangeSlider.css";
 @import "./components/SelectGrandparentModal.css";
 @import "./components/SelectUmaModal.css";
 @import "./components/common/SelectionSlot.css";
