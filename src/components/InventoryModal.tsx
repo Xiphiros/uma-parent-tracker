@@ -60,7 +60,6 @@ const InventoryModal = ({ isOpen, onClose, isSelectionMode = false, onSelectPare
     }, [appData.inventory, appData.serverData, activeServer]);
 
     const filteredAndSortedInventory = useMemo(() => {
-        const activeRosterIds = new Set(activeProfile?.roster || []);
         
         const scoredInventory = activeProfile
             ? inventory.map(p => ({
@@ -227,7 +226,7 @@ const InventoryModal = ({ isOpen, onClose, isSelectionMode = false, onSelectPare
                                 filteredAndSortedInventory.map(parent => {
                                     const characterId = umaMapById.get(parent.umaId)?.characterId;
                                     const isDisabled = !!characterId && excludedCharacterIds.has(characterId);
-                                    const isInCurrentRoster = activeRosterIds.has(parent.id);
+                                    
                                     return (
                                         <ParentCard 
                                             key={parent.id} 
@@ -241,7 +240,7 @@ const InventoryModal = ({ isOpen, onClose, isSelectionMode = false, onSelectPare
                                             isSelectionMode={isSelectionMode}
                                             onSelect={onSelectParent}
                                             isDisabled={isDisabled}
-                                            isInCurrentRoster={isInCurrentRoster}
+                                            isInCurrentRoster={activeRosterIds.has(parent.id)}
                                         />
                                     );
                                 })
