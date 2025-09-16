@@ -24,10 +24,10 @@
         "searchByName": "Search by name...",
         "sortBy": "Sort By",
         "sortOptions": {
-            "score": "Score (High-Low)",
-            "name": "Name (A-Z)",
-            "gen": "Generation (New-Old)",
-            "date": "Date Added (New-Old)",
+            "score": "Score",
+            "name": "Name",
+            "gen": "Generation",
+            "date": "Date Added",
             "sparks": "Total Sparks"
         },
         "blueSpark": "Blue Spark",
