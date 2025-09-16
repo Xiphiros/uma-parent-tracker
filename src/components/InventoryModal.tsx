@@ -9,6 +9,7 @@ import './InventoryModal.css';
 import { useTranslation } from 'react-i18next';
 import InventoryControls, { SortFieldType, SortDirectionType } from './common/InventoryControls';
 import { getLineageStats, LineageStats } from '../utils/affinity';
+import { calculateScore } from '../utils/scoring';
 
 interface InventoryModalProps {
   isOpen: boolean;
@@ -50,28 +51,27 @@ const InventoryModal = ({ isOpen, onClose, isSelectionMode = false, onSelectPare
     const activeProfile = getActiveProfile();
     const inventoryMap = useMemo(() => new Map(appData.inventory.map(p => [p.id, p])), [appData.inventory]);
 
-    const { inventory, profiles, inventoryWithScores } = useMemo(() => {
+    const { inventory, profiles } = useMemo(() => {
         const currentServerInventory = appData.inventory.filter(p => p.server === activeServer);
-        
-        const scoredInventory = sortField === 'score' && activeProfile
-            ? currentServerInventory.map(p => ({
-                ...p,
-                score: appData.inventory.find(inv => inv.id === p.id)?.score || 0
-            }))
-            : currentServerInventory;
-
         return {
             inventory: currentServerInventory,
             profiles: appData.serverData[activeServer].profiles,
-            inventoryWithScores: scoredInventory
         };
-    }, [appData.inventory, appData.serverData, activeServer, sortField, activeProfile]);
+    }, [appData.inventory, appData.serverData, activeServer]);
 
     const filteredAndSortedInventory = useMemo(() => {
-        const sourceInventory = sortField === 'score' ? inventoryWithScores : inventory;
+        const activeRosterIds = new Set(activeProfile?.roster || []);
+        
+        const scoredInventory = activeProfile
+            ? inventory.map(p => ({
+                ...p,
+                score: calculateScore(p, activeProfile.goal, appData.inventory)
+              }))
+            : inventory;
+
         const lineageStatsCache = new Map<number, LineageStats>();
 
-        const filtered = sourceInventory.filter(parent => {
+        const filtered = scoredInventory.filter(parent => {
             const uma = umaMapById.get(parent.umaId);
             const parentName = uma ? (dataDisplayLanguage === 'jp' ? uma.name_jp : uma.name_en) : parent.name;
             
@@ -125,7 +125,7 @@ const InventoryModal = ({ isOpen, onClose, isSelectionMode = false, onSelectPare
             }
             return sortDirection === 'desc' ? comparison : -comparison;
         });
-    }, [inventory, inventoryWithScores, filters, sortField, sortDirection, umaMapById, dataDisplayLanguage, inventoryMap]);
+    }, [inventory, filters, sortField, sortDirection, umaMapById, dataDisplayLanguage, inventoryMap, activeProfile, appData.inventory]);
 
 
     const handleOpenAddModal = () => {
@@ -204,7 +204,7 @@ const InventoryModal = ({ isOpen, onClose, isSelectionMode = false, onSelectPare
     };
     
     const parentDisplayName = getParentDisplayName(moveConfirmState?.parent || null);
-
+    const activeRosterIds = new Set(activeProfile?.roster || []);
     const modalTitle = isSelectionMode ? t('modals:selectGrandparentTitle') : t('inventory.title');
 
     return (
@@ -227,11 +227,12 @@ const InventoryModal = ({ isOpen, onClose, isSelectionMode = false, onSelectPare
                                 filteredAndSortedInventory.map(parent => {
                                     const characterId = umaMapById.get(parent.umaId)?.characterId;
                                     const isDisabled = !!characterId && excludedCharacterIds.has(characterId);
+                                    const isInCurrentRoster = activeRosterIds.has(parent.id);
                                     return (
                                         <ParentCard 
                                             key={parent.id} 
                                             parent={parent} 
-                                            displayScore={sortField === 'score'}
+                                            displayScore={true}
                                             onEdit={() => handleOpenEditModal(parent)}
                                             onDelete={() => handleDeleteParent(parent)}
                                             onMove={() => handleMoveParent(parent)}
@@ -240,6 +241,7 @@ const InventoryModal = ({ isOpen, onClose, isSelectionMode = false, onSelectPare
                                             isSelectionMode={isSelectionMode}
                                             onSelect={onSelectParent}
                                             isDisabled={isDisabled}
+                                            isInCurrentRoster={isInCurrentRoster}
                                         />
                                     );
                                 })
