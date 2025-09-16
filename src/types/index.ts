@@ -125,12 +125,18 @@ export interface ValidationResult {
     errors: string[];
 }
 
+export interface BlueSparkFilter { type: string; stars: number }
+export interface PinkSparkFilter { type: string; stars: number }
+export interface UniqueSparkFilter { name: string; stars: number }
+export interface WhiteSparkFilter { name: string; stars: number }
+
+
 export interface Filters {
     searchTerm: string;
     searchScope: 'representative' | 'total';
-    blueSpark: { type: string; stars: number };
-    pinkSpark: { type: string; stars: number };
-    uniqueSpark: { name: string, stars: number };
-    whiteSpark: { name: string, stars: number };
+    blueSparks: BlueSparkFilter[];
+    pinkSparks: PinkSparkFilter[];
+    uniqueSparks: UniqueSparkFilter[];
+    whiteSparks: WhiteSparkFilter[];
     minWhiteSparks: number;
 }
