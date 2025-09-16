@@ -44,11 +44,11 @@
     },
     "minWhiteSkills": "白因子の最低数",
     "sortOptions": {
-      "score": "スコア（高い順）",
-      "name": "名前（A-Z）",
-      "gen": "世代（新しい順）",
-      "date": "追加日（新しい順）",
-      "sparks": "因子数（多い順）"
+      "score": "スコア",
+      "name": "名前",
+      "gen": "世代",
+      "date": "追加日",
+      "sparks": "因子数"
     }
   },
   "suggestions": {
