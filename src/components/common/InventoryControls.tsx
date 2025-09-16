@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { BlueSpark, Skill, Filters } from '../../types';
 import SearchableSelect from './SearchableSelect';
@@ -54,18 +54,17 @@ const InventoryControls = ({ filters, setFilters, sortBy, setSortBy }: Inventory
     };
 
     const renderStarFilter = (sparkType: 'blueSpark' | 'pinkSpark' | 'whiteSpark' | 'uniqueSpark', maxStars: number) => {
-        const key = sparkType as keyof Filters;
-        const value = (filters[key] as { stars: number }).stars;
+        const value = (filters[sparkType] as { stars: number }).stars;
 
         if (filters.searchScope === 'representative') {
             return (
-                <select className="form__input" value={value} onChange={(e) => handleSparkFilterChange(key, 'stars', Number(e.target.value))}>
+                <select className="form__input" value={value} onChange={(e) => handleSparkFilterChange(sparkType, 'stars', Number(e.target.value))}>
                     {[0, 1, 2, 3].map(s => <option key={s} value={s}>{s === 0 ? t('inventory.anyStars') : `${s}+`}</option>)}
                 </select>
             );
         }
         return (
-            <RangeSlider label="" min={0} max={maxStars} value={value} onChange={(v) => handleSparkFilterChange(key, 'stars', v)} />
+            <RangeSlider label="" min={0} max={maxStars} value={value} onChange={(v) => handleSparkFilterChange(sparkType, 'stars', v)} />
         );
     };
 
