@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { Parent, ValidationResult } from '../types';
+import { Parent, ValidationResult, Filters } from '../types';
 import Modal from './common/Modal';
 import ParentCard from './ParentCard';
 import AddParentModal from './AddParentModal';
@@ -7,7 +7,8 @@ import ContextMenu, { MenuItem } from './common/ContextMenu';
 import { useAppContext } from '../context/AppContext';
 import './InventoryModal.css';
 import { useTranslation } from 'react-i18next';
-import InventoryControls, { Filters, SortByType } from './common/InventoryControls';
+import InventoryControls, { SortByType } from './common/InventoryControls';
+import { getLineageStats, LineageStats } from '../utils/affinity';
 
 interface InventoryModalProps {
   isOpen: boolean;
@@ -24,10 +25,12 @@ interface MoveConfirmState {
 
 const initialFilters: Filters = {
     searchTerm: '',
+    searchScope: 'total',
     blueSpark: { type: 'all', stars: 0 },
     pinkSpark: { type: 'all', stars: 0 },
-    uniqueSpark: '',
-    whiteSpark: '',
+    uniqueSpark: { name: '', stars: 0 },
+    whiteSpark: { name: '', stars: 0 },
+    minWhiteSparks: 0,
 };
 
 const InventoryModal = ({ isOpen, onClose, isSelectionMode = false, onSelectParent, excludedCharacterIds = new Set() }: InventoryModalProps) => {
@@ -44,11 +47,11 @@ const InventoryModal = ({ isOpen, onClose, isSelectionMode = false, onSelectPare
     const [sortBy, setSortBy] = useState<SortByType>('score');
 
     const activeProfile = getActiveProfile();
+    const inventoryMap = useMemo(() => new Map(appData.inventory.map(p => [p.id, p])), [appData.inventory]);
 
     const { inventory, profiles, inventoryWithScores } = useMemo(() => {
         const currentServerInventory = appData.inventory.filter(p => p.server === activeServer);
         
-        // Pre-calculate scores if sorting by score
         const scoredInventory = sortBy === 'score' && activeProfile
             ? currentServerInventory.map(p => ({
                 ...p,
@@ -65,19 +68,35 @@ const InventoryModal = ({ isOpen, onClose, isSelectionMode = false, onSelectPare
 
     const filteredAndSortedInventory = useMemo(() => {
         const sourceInventory = sortBy === 'score' ? inventoryWithScores : inventory;
+        const lineageStatsCache = new Map<number, LineageStats>();
 
         const filtered = sourceInventory.filter(parent => {
             const uma = umaMapById.get(parent.umaId);
             const parentName = uma ? (dataDisplayLanguage === 'jp' ? uma.name_jp : uma.name_en) : parent.name;
             
             if (filters.searchTerm && !parentName.toLowerCase().includes(filters.searchTerm.toLowerCase())) return false;
-            if (filters.blueSpark.type !== 'all' && parent.blueSpark.type !== filters.blueSpark.type) return false;
-            if (filters.blueSpark.stars > 0 && parent.blueSpark.stars < filters.blueSpark.stars) return false;
-            if (filters.pinkSpark.type !== 'all' && parent.pinkSpark.type !== filters.pinkSpark.type) return false;
-            if (filters.pinkSpark.stars > 0 && parent.pinkSpark.stars < filters.pinkSpark.stars) return false;
-            if (filters.uniqueSpark && !parent.uniqueSparks.some(s => s.name === filters.uniqueSpark)) return false;
-            if (filters.whiteSpark && !parent.whiteSparks.some(s => s.name === filters.whiteSpark)) return false;
 
+            if (filters.searchScope === 'representative') {
+                if (filters.blueSpark.type !== 'all' && parent.blueSpark.type !== filters.blueSpark.type) return false;
+                if (filters.blueSpark.stars > 0 && parent.blueSpark.stars < filters.blueSpark.stars) return false;
+                if (filters.pinkSpark.type !== 'all' && parent.pinkSpark.type !== filters.pinkSpark.type) return false;
+                if (filters.pinkSpark.stars > 0 && parent.pinkSpark.stars < filters.pinkSpark.stars) return false;
+                if (filters.uniqueSpark.name && (!parent.uniqueSparks.some(s => s.name === filters.uniqueSpark.name) || (parent.uniqueSparks.find(s => s.name === filters.uniqueSpark.name)?.stars || 0) < filters.uniqueSpark.stars)) return false;
+                if (filters.whiteSpark.name && (!parent.whiteSparks.some(s => s.name === filters.whiteSpark.name) || (parent.whiteSparks.find(s => s.name === filters.whiteSpark.name)?.stars || 0) < filters.whiteSpark.stars)) return false;
+                if (filters.minWhiteSparks > 0 && parent.whiteSparks.length < filters.minWhiteSparks) return false;
+            } else { // Total Lineage Search
+                if (!lineageStatsCache.has(parent.id)) {
+                    lineageStatsCache.set(parent.id, getLineageStats(parent, inventoryMap));
+                }
+                const lineage = lineageStatsCache.get(parent.id)!;
+
+                if (filters.blueSpark.type !== 'all' && (lineage.blue[filters.blueSpark.type] || 0) < filters.blueSpark.stars) return false;
+                if (filters.pinkSpark.type !== 'all' && (lineage.pink[filters.pinkSpark.type] || 0) < filters.pinkSpark.stars) return false;
+                if (filters.uniqueSpark.name && (lineage.unique[filters.uniqueSpark.name] || 0) < filters.uniqueSpark.stars) return false;
+                if (filters.whiteSpark.name && (lineage.white[filters.whiteSpark.name] || 0) < filters.whiteSpark.stars) return false;
+                if (filters.minWhiteSparks > 0 && lineage.whiteSkillCount < filters.minWhiteSparks) return false;
+            }
+            
             return true;
         });
 
@@ -95,7 +114,7 @@ const InventoryModal = ({ isOpen, onClose, isSelectionMode = false, onSelectPare
                     return b.score - a.score;
             }
         });
-    }, [inventory, inventoryWithScores, filters, sortBy, umaMapById, dataDisplayLanguage]);
+    }, [inventory, inventoryWithScores, filters, sortBy, umaMapById, dataDisplayLanguage, inventoryMap]);
 
 
     const handleOpenAddModal = () => {
