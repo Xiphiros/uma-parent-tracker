@@ -14,10 +14,7 @@ const RangeSlider = ({ label, min, max, value, onChange, disabled = false }: Ran
     const { t } = useTranslation('roster');
     return (
         <div className="range-slider">
-            <div className={`range-slider__header ${!label ? 'range-slider__header--centered' : ''}`}>
-                {label && <label className="range-slider__label">{label}</label>}
-                <span className="range-slider__value">{value > 0 ? `${value}+ ★` : t('inventory.anyStars')}</span>
-            </div>
+            {label && <label className="range-slider__label">{label}</label>}
             <input
                 type="range"
                 min={min}
@@ -27,6 +24,7 @@ const RangeSlider = ({ label, min, max, value, onChange, disabled = false }: Ran
                 onChange={(e) => onChange(Number(e.target.value))}
                 disabled={disabled}
             />
+            <span className="range-slider__value">{value > 0 ? `${value}+ ★` : t('inventory.anyStars')}</span>
         </div>
     );
 };
