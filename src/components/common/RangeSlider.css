@@ -10,6 +10,10 @@
     align-items: center;
 }
 
+.range-slider__header--centered {
+    justify-content: center;
+}
+
 .range-slider__label {
     font-size: 0.75rem;
     font-weight: 500;
