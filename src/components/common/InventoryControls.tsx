@@ -87,13 +87,13 @@ const InventoryControls = ({ filters, setFilters, sortField, setSortField, sortD
     const renderStarFilter = (value: number, onChange: (value: number) => void, maxStars: number) => {
         if (filters.searchScope === 'representative') {
             return (
-                <select className="form__input w-32" value={value} onChange={(e) => onChange(Number(e.target.value))}>
+                <select className="form__input w-40" value={value} onChange={(e) => onChange(Number(e.target.value))}>
                     {[0, 1, 2, 3].map(s => <option key={s} value={s}>{s === 0 ? t('inventory.anyStars') : `${s}+`}</option>)}
                 </select>
             );
         }
         return (
-            <div className="w-32">
+            <div className="w-40">
                 <RangeSlider label="" min={0} max={maxStars} value={value} onChange={onChange} />
             </div>
         );
