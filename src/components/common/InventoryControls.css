@@ -84,7 +84,7 @@
 .inventory-controls__filter-row {
     display: flex;
     gap: 0.5rem;
-    align-items: flex-end;
+    align-items: center;
 }
 .inventory-controls__filter-row .form__input,
 .inventory-controls__filter-row .searchable-select {
@@ -95,7 +95,6 @@
     color: var(--color-text-muted);
     padding: 0.25rem;
     flex-shrink: 0;
-    margin-bottom: 0.25rem; /* Align with slider thumb */
 }
 .inventory-controls__remove-btn:hover {
     color: var(--color-text-danger);
