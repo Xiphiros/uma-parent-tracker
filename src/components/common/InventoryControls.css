@@ -88,8 +88,13 @@
 }
 .inventory-controls__filter-row .form__input,
 .inventory-controls__filter-row .searchable-select {
-    flex-grow: 1;
+    width: 170px;
+    flex-shrink: 0;
     min-width: 0;
+}
+
+.inventory-controls__star-filter-wrapper {
+    flex-grow: 1;
 }
 
 .inventory-controls__remove-btn {
