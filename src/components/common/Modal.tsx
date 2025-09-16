@@ -7,7 +7,7 @@ interface ModalProps {
   onClose: () => void;
   title: string;
   children: ReactNode;
-  size?: 'sm' | 'lg' | 'xl';
+  size?: 'sm' | 'lg' | 'xl' | '2xl';
 }
 
 // Module-level counter to handle nested modals
@@ -41,6 +41,7 @@ const Modal = ({ isOpen, onClose, title, children, size = 'sm' }: ModalProps) =>
   let sizeClass = 'dialog-modal__content--sm';
   if (size === 'lg') sizeClass = 'dialog-modal__content--lg';
   if (size === 'xl') sizeClass = 'dialog-modal__content--xl';
+  if (size === '2xl') sizeClass = 'dialog-modal__content--2xl';
 
   return ReactDOM.createPortal(
     <div className="dialog-modal opacity-100" onClick={onClose}>
