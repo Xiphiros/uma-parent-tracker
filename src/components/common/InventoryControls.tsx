@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { BlueSpark, Skill, Filters } from '../../types';
+import { BlueSpark, Skill, Filters, BlueSparkFilter, PinkSparkFilter, UniqueSparkFilter, WhiteSparkFilter } from '../../types';
 import SearchableSelect from './SearchableSelect';
 import { useAppContext } from '../../context/AppContext';
 import './InventoryControls.css';
@@ -34,6 +34,23 @@ const InventoryControls = ({ filters, setFilters, sortField, setSortField, sortD
 
     const uniqueSkills = masterSkillList.filter(s => s.type === 'unique');
     const normalSkills = masterSkillList.filter(s => s.type !== 'unique' && s.rarity === 1);
+
+    // When switching to representative mode, clamp any existing star filters to the max of 3.
+    useEffect(() => {
+        if (filters.searchScope === 'representative') {
+            const clampStars = (sparkFilters: (BlueSparkFilter | PinkSparkFilter | UniqueSparkFilter | WhiteSparkFilter)[]) => {
+                return sparkFilters.map(f => ({ ...f, stars: Math.min(f.stars, 3) }));
+            };
+            
+            setFilters(prev => ({
+                ...prev,
+                blueSparks: clampStars(prev.blueSparks),
+                pinkSparks: clampStars(prev.pinkSparks),
+                uniqueSparks: clampStars(prev.uniqueSparks),
+                whiteSparks: clampStars(prev.whiteSparks)
+            }));
+        }
+    }, [filters.searchScope, setFilters]);
 
     const handleFilterChange = <K extends keyof Filters>(key: K, value: Filters[K]) => {
         setFilters(prev => ({ ...prev, [key]: value }));
@@ -85,18 +102,11 @@ const InventoryControls = ({ filters, setFilters, sortField, setSortField, sortD
     };
 
     const renderStarFilter = (value: number, onChange: (value: number) => void, maxStars: number) => {
-        if (filters.searchScope === 'representative') {
-            return (
-                <div className="inventory-controls__star-filter-wrapper">
-                    <select className="form__input" value={value} onChange={(e) => onChange(Number(e.target.value))}>
-                        {[0, 1, 2, 3].map(s => <option key={s} value={s}>{s === 0 ? t('inventory.anyStars') : `${s}+`}</option>)}
-                    </select>
-                </div>
-            );
-        }
+        const sliderMax = filters.searchScope === 'representative' ? 3 : maxStars;
+        
         return (
             <div className="inventory-controls__star-filter-wrapper">
-                <RangeSlider label="" min={0} max={maxStars} value={value} onChange={onChange} />
+                <RangeSlider label="" min={0} max={sliderMax} value={value} onChange={onChange} />
             </div>
         );
     };
