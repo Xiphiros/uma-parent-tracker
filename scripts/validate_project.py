@@ -46,7 +46,7 @@ def get_relative_luminance(rgb: Tuple[int, int, int]) -> float:
     r, g, b = rgb
     srgb = [x / 255.0 for x in (r, g, b)]
     linear = [c / 12.92 if c <= 0.03928 else ((c + 0.055) / 1.055) ** 2.4 for c in srgb]
-    return 0.2126 * linear + 0.7152 * linear + 0.0722 * linear
+    return 0.2126 * linear[0] + 0.7152 * linear[1] + 0.0722 * linear[2]
 
 def get_contrast_ratio(lum1: float, lum2: float) -> float:
     """Calculates the contrast ratio between two luminance values."""
@@ -197,7 +197,7 @@ def check_pascalcase_filenames(tsx_files: List[Path]) -> List[str]:
     EXCLUDED_FILES = {'Icons.tsx'}
     for file in tsx_files:
         if file.name in EXCLUDED_FILES: continue
-        if 'components' in str(file) and not file.stem.isupper():
+        if 'components' in str(file) and not file.stem[0].isupper():
             violations.append(str(file.relative_to(PROJECT_ROOT)))
     return violations
 
