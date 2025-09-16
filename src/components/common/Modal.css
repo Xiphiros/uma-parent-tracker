@@ -125,6 +125,9 @@
 .dialog-modal__content--xl {
     max-width: 56rem; /* max-w-3xl */
 }
+.dialog-modal__content--2xl {
+    max-width: 72rem; /* max-w-6xl */
+}
 .dialog-modal:not(.opacity-0) .dialog-modal__content {
     transform: scale(1);
 }
