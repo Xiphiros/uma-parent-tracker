@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { BlueSpark, Skill, Filters, BlueSparkFilter, PinkSparkFilter, UniqueSparkFilter, WhiteSparkFilter } from '../../types';
+import { BlueSpark, Skill, Filters } from '../../types';
 import SearchableSelect from './SearchableSelect';
 import { useAppContext } from '../../context/AppContext';
 import './InventoryControls.css';
@@ -59,10 +59,11 @@ const InventoryControls = ({ filters, setFilters, sortField, setSortField, sortD
         });
     };
     
-    const handleUpdateSparkFilter = <T extends BlueSparkFilter | PinkSparkFilter | UniqueSparkFilter | WhiteSparkFilter>(type: SparkFilterType, index: number, field: keyof T, value: any) => {
+    const handleUpdateSparkFilter = (type: SparkFilterType, index: number, field: 'type' | 'name' | 'stars', value: any) => {
          setFilters(prev => {
             const newFilters = [...prev[type]];
-            newFilters[index] = { ...newFilters[index], [field]: value };
+            const updatedItem = { ...newFilters[index], [field]: value };
+            newFilters[index] = updatedItem;
             return { ...prev, [type]: newFilters };
         });
     };
