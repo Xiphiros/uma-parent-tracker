@@ -79,8 +79,8 @@ const InventoryModal = ({ isOpen, onClose, isSelectionMode = false, onSelectPare
             if (filters.searchScope === 'representative') {
                 if (!filters.blueSparks.every(f => parent.blueSpark.type === f.type && parent.blueSpark.stars >= f.stars)) return false;
                 if (!filters.pinkSparks.every(f => parent.pinkSpark.type === f.type && parent.pinkSpark.stars >= f.stars)) return false;
-                if (!filters.uniqueSparks.every(f => f.name && parent.uniqueSparks.some(s => s.name === f.name && s.stars >= f.stars))) return false;
-                if (!filters.whiteSparks.every(f => f.name && parent.whiteSparks.some(s => s.name === f.name && s.stars >= f.stars))) return false;
+                if (!filters.uniqueSparks.every(f => !f.name || parent.uniqueSparks.some(s => s.name === f.name && s.stars >= f.stars))) return false;
+                if (!filters.whiteSparks.every(f => !f.name || parent.whiteSparks.some(s => s.name === f.name && s.stars >= f.stars))) return false;
                 if (filters.minWhiteSparks > 0 && parent.whiteSparks.length < filters.minWhiteSparks) return false;
             } else { // Total Lineage Search
                 if (!lineageStatsCache.has(parent.id)) {
@@ -90,8 +90,8 @@ const InventoryModal = ({ isOpen, onClose, isSelectionMode = false, onSelectPare
                 
                 if (!filters.blueSparks.every(f => (lineage.blue[f.type] || 0) >= f.stars)) return false;
                 if (!filters.pinkSparks.every(f => (lineage.pink[f.type] || 0) >= f.stars)) return false;
-                if (!filters.uniqueSparks.every(f => f.name && (lineage.unique[f.name] || 0) >= f.stars)) return false;
-                if (!filters.whiteSparks.every(f => f.name && (lineage.white[f.name] || 0) >= f.stars)) return false;
+                if (!filters.uniqueSparks.every(f => !f.name || (lineage.unique[f.name] || 0) >= f.stars)) return false;
+                if (!filters.whiteSparks.every(f => !f.name || (lineage.white[f.name] || 0) >= f.stars)) return false;
                 if (filters.minWhiteSparks > 0 && lineage.whiteSkillCount < filters.minWhiteSparks) return false;
             }
             
