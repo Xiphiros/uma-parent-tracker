@@ -1,71 +1,64 @@
 {
-  "rosterTitle": "Scored Roster for \"{{projectName}}\"",
-  "addParentBtn": "Add New Parent",
-  "placeholder": "Your active server's inventory is empty. Add a parent to get started!",
-  "placeholderRoster": "This project's roster is empty. Add parents from your inventory or create a new one.",
-  "topPairTitle": "Top Breeding Pair",
-  "topPairPlaceholder": "Add parents to this project's roster to see the top pair here.",
-  "topPairPlaceholderSingle": "Add one more parent to this project's roster to complete the pair.",
-  "deleteConfirmTitle": "Confirm Deletion",
-  "deleteConfirmMsg": "Are you sure you want to permanently delete \"{{name}}\" from your inventory?",
-  "parentCard": {
-    "gen": "Gen",
-    "pts": "pts",
-    "noWhiteSparks": "No white sparks.",
-    "rank": "Rank",
-    "lineage": "Lineage",
-    "legacyOrigin": "Legacy Origin",
-    "borrowedParent": "Borrowed Parent",
-    "noGpData": "Grandparent data not found."
-  },
-  "inventory": {
-    "title": "Parent Inventory",
-    "manageBtn": "Manage Inventory",
-    "placeholder": "This server's inventory is empty.",
-    "count": "{{count}} Parents",
-    "unassigned": "Unassigned",
-    "searchByName": "Search by name...",
-    "sortBy": "Sort By",
-    "filterBy": "Filter By",
-    "blueSpark": "Blue Spark",
-    "pinkSpark": "Pink Spark",
-    "uniqueSpark": "Unique Spark",
-    "whiteSpark": "White Spark",
-    "minStars": "Min. Stars",
-    "allTypes": "All Types",
-    "anyStars": "Any",
-    "clearFilters": "Clear Filters",
-    "sortOptions": {
-      "score": "Score (High-Low)",
-      "name": "Name (A-Z)",
-      "gen": "Generation (New-Old)",
-      "date": "Date Added (New-Old)",
-      "sparks": "Spark Count (High-Low)"
+    "rosterTitle": "Roster for: {{projectName}}",
+    "placeholderRoster": "No parents in this roster. Add one to get started!",
+    "addParentBtn": "Add Parent",
+    "topPairTitle": "Top Breeding Pair",
+    "topPairPlaceholder": "Add at least two parents to the roster to see your top pair.",
+    "topPairPlaceholderSingle": "Add one more parent to see your top pair.",
+    "suggestions": {
+        "title": "Breeding Suggestions",
+        "placeholder": "Add two parents to the roster to get breeding suggestions."
+    },
+    "parentCard": {
+        "gen": "Gen",
+        "pts": "pts",
+        "rank": "Rank",
+        "noWhiteSparks": "No inheritable white sparks."
+    },
+    "inventory": {
+        "title": "Parent Inventory",
+        "placeholder": "Your inventory is empty. Add a parent to get started.",
+        "count": "{{count}} parents found",
+        "manageBtn": "Manage Inventory",
+        "unassigned": "Unassigned",
+        "searchByName": "Search by name...",
+        "sortBy": "Sort By",
+        "sortOptions": {
+            "score": "Score (High-Low)",
+            "name": "Name (A-Z)",
+            "gen": "Generation (New-Old)",
+            "date": "Date Added (New-Old)",
+            "sparks": "Total Sparks"
+        },
+        "blueSpark": "Blue Spark",
+        "pinkSpark": "Pink Spark",
+        "uniqueSpark": "Unique Spark",
+        "whiteSpark": "White Spark",
+        "allTypes": "All Types",
+        "anyStars": "Any ★",
+        "clearFilters": "Clear Filters",
+        "showAdvanced": "Advanced Filters",
+        "hideAdvanced": "Hide Advanced",
+        "searchScope": "Search Scope",
+        "scope": {
+            "total": "Total Lineage",
+            "representative": "Representative"
+        },
+        "minWhiteSkills": "Min. White Skills"
+    },
+    "breedingPlanner": {
+        "title": "Breeding Planner",
+        "manualPair": "Manual Pair",
+        "traineeSuggestions": "Trainee Suggestions",
+        "selectParent1": "Select Parent 1",
+        "selectParent2": "Select Parent 2",
+        "selectTrainee": "Select Trainee",
+        "excludeInbreeding": "Exclude Inbreeding",
+        "bestTrainees": "Best Trainees for this Pair",
+        "totalAffinity": "Total Affinity",
+        "affinity": "Affinity",
+        "totalSkills": "Total Skills",
+        "noResults": "No Results",
+        "noResultsMessage": "No suitable breeding pairs found for this trainee. Try adding more parents to your roster."
     }
-  },
-  "suggestions": {
-    "title": "Breeding Suggestions",
-    "placeholder": "Add two parents to the roster to see suggestions."
-  },
-  "placeholderCard": {
-    "title": "This Roster is Empty",
-    "messageInventoryEmpty": "Your inventory for this server is empty. Let's add your first parent!",
-    "messageRosterEmpty": "Assign parents from your inventory to this project to see them here."
-  },
-  "breedingPlanner": {
-    "title": "Planner",
-    "manualPair": "Manual Pair",
-    "traineeSuggestions": "Trainee Suggestions",
-    "selectParent1": "Select Parent 1",
-    "selectParent2": "Select Parent 2",
-    "baseAffinity": "Base Affinity (Parents Only)",
-    "selectTrainee": "Select Trainee",
-    "affinity": "Total Affinity",
-    "totalAffinity": "Total Affinity",
-    "noResults": "No compatible pairs found in roster.",
-    "noResultsMessage": "Select a trainee to see the best breeding pairs from your roster.",
-    "bestTrainees": "Best Trainees for this Pair",
-    "excludeInbreeding": "Exclude Inbreeding",
-    "totalSkills": "Total Skills"
-  }
 }
