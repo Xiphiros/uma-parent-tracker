@@ -283,9 +283,6 @@ const BreedingPlannerModal = ({ isOpen, onClose }: BreedingPlannerModalProps) =>
                                     <div className="breeding-planner__suggestion-detail">
                                         {selectedSuggestion && aggregatedSparksForSelected ? (
                                             <>
-                                                <button className="breeding-planner__expand-btn" onClick={() => setIsSparkViewExpanded(prev => !prev)}>
-                                                    <FontAwesomeIcon icon={isSparkViewExpanded ? faChevronDown : faChevronUp} />
-                                                </button>
                                                 <div className="breeding-planner__detail-lineage">
                                                     <LineageDisplay label="" parent={selectedSuggestion.p1} />
                                                     <span className="breeding-planner__pair-selector-plus">+</span>
@@ -302,6 +299,9 @@ const BreedingPlannerModal = ({ isOpen, onClose }: BreedingPlannerModalProps) =>
                                                     </div>
                                                 </div>
                                                 <div className={`breeding-planner__detail-sparks ${isSparkViewExpanded ? 'breeding-planner__detail-sparks--expanded' : ''}`}>
+                                                    <button className="breeding-planner__expand-btn" onClick={() => setIsSparkViewExpanded(prev => !prev)}>
+                                                        <FontAwesomeIcon icon={isSparkViewExpanded ? faChevronDown : faChevronUp} />
+                                                    </button>
                                                     <div className="breeding-planner__detail-sparks-content">
                                                         {Object.entries(aggregatedSparksForSelected.blue).map(([type, data]) => (
                                                             <div key={type} className="lineage-spark" data-spark-category="blue" data-spark-type={type.toLowerCase()}>
