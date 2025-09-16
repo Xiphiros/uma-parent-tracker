@@ -198,33 +198,38 @@ const InventoryModal = ({ isOpen, onClose, isSelectionMode = false, onSelectPare
 
     return (
         <>
-            <Modal isOpen={isOpen} onClose={onClose} title={modalTitle} size="xl">
-                <InventoryControls filters={filters} setFilters={setFilters} sortBy={sortBy} setSortBy={setSortBy} />
-
-                <div className="inventory-modal__grid">
-                    {filteredAndSortedInventory.length > 0 ? (
-                        filteredAndSortedInventory.map(parent => {
-                            const characterId = umaMapById.get(parent.umaId)?.characterId;
-                            const isDisabled = !!characterId && excludedCharacterIds.has(characterId);
-                            return (
-                                <ParentCard 
-                                    key={parent.id} 
-                                    parent={parent} 
-                                    displayScore={sortBy === 'score'}
-                                    onEdit={() => handleOpenEditModal(parent)}
-                                    onDelete={() => handleDeleteParent(parent)}
-                                    onMove={() => handleMoveParent(parent)}
-                                    onAssign={(e) => handleOpenAssignmentMenu(e, parent)}
-                                    assignedProjects={parentToProfileMap.get(parent.id)}
-                                    isSelectionMode={isSelectionMode}
-                                    onSelect={onSelectParent}
-                                    isDisabled={isDisabled}
-                                />
-                            );
-                        })
-                    ) : (
-                        <p className="card__placeholder-text text-center py-8 col-span-full">{t('inventory.placeholder')}</p>
-                    )}
+            <Modal isOpen={isOpen} onClose={onClose} title={modalTitle} size="2xl">
+                <div className="grid grid-cols-1 lg:grid-cols-[320px_1fr] gap-6">
+                    <div className="inventory-modal__sidebar">
+                        <InventoryControls filters={filters} setFilters={setFilters} sortBy={sortBy} setSortBy={setSortBy} />
+                    </div>
+                    <div className="inventory-modal__main-content">
+                        <div className="inventory-modal__grid">
+                            {filteredAndSortedInventory.length > 0 ? (
+                                filteredAndSortedInventory.map(parent => {
+                                    const characterId = umaMapById.get(parent.umaId)?.characterId;
+                                    const isDisabled = !!characterId && excludedCharacterIds.has(characterId);
+                                    return (
+                                        <ParentCard 
+                                            key={parent.id} 
+                                            parent={parent} 
+                                            displayScore={sortBy === 'score'}
+                                            onEdit={() => handleOpenEditModal(parent)}
+                                            onDelete={() => handleDeleteParent(parent)}
+                                            onMove={() => handleMoveParent(parent)}
+                                            onAssign={(e) => handleOpenAssignmentMenu(e, parent)}
+                                            assignedProjects={parentToProfileMap.get(parent.id)}
+                                            isSelectionMode={isSelectionMode}
+                                            onSelect={onSelectParent}
+                                            isDisabled={isDisabled}
+                                        />
+                                    );
+                                })
+                            ) : (
+                                <p className="card__placeholder-text text-center py-8 col-span-full">{t('inventory.placeholder')}</p>
+                            )}
+                        </div>
+                    </div>
                 </div>
                 <div className="inventory-modal__footer">
                     <span className="inventory-modal__count">{t('inventory.count', { count: filteredAndSortedInventory.length })}</span>
