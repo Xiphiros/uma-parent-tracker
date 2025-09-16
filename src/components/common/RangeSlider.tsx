@@ -1,4 +1,5 @@
 import './RangeSlider.css';
+import { useTranslation } from 'react-i18next';
 
 interface RangeSliderProps {
     label: string;
@@ -10,11 +11,12 @@ interface RangeSliderProps {
 }
 
 const RangeSlider = ({ label, min, max, value, onChange, disabled = false }: RangeSliderProps) => {
+    const { t } = useTranslation('roster');
     return (
         <div className="range-slider">
-            <div className="range-slider__header">
-                <label className="range-slider__label">{label}</label>
-                <span className="range-slider__value">{value}+ ★</span>
+            <div className={`range-slider__header ${!label ? 'range-slider__header--centered' : ''}`}>
+                {label && <label className="range-slider__label">{label}</label>}
+                <span className="range-slider__value">{value > 0 ? `${value}+ ★` : t('inventory.anyStars')}</span>
             </div>
             <input
                 type="range"
