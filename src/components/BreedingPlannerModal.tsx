@@ -83,10 +83,11 @@ const BreedingPlannerModal = ({ isOpen, onClose }: BreedingPlannerModalProps) =>
                 const p1 = roster[i];
                 const p2 = roster[j];
 
-                // Prevent suggesting a character as its own parent
                 const p1CharId = umaMapById.get(p1.umaId)?.characterId;
                 const p2CharId = umaMapById.get(p2.umaId)?.characterId;
-                if (p1CharId === trainee.characterId || p2CharId === trainee.characterId) {
+
+                // Prevent suggesting a character as its own parent or two of the same character as parents
+                if (p1CharId === trainee.characterId || p2CharId === trainee.characterId || p1CharId === p2CharId) {
                     continue;
                 }
 
