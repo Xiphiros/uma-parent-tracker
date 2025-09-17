@@ -13,7 +13,8 @@
         "gen": "Gen",
         "pts": "pts",
         "rank": "Rank",
-        "noWhiteSparks": "No inheritable white sparks."
+        "noWhiteSparks": "No inheritable white sparks.",
+        "whiteSparkCount": "Total Unique White Sparks"
     },
     "inventory": {
         "title": "Parent Inventory",
