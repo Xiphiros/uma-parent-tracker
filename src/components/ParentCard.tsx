@@ -5,7 +5,7 @@ import SparkTag from './common/SparkTag';
 import './ParentCard.css';
 import { useTranslation } from 'react-i18next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus, faUser, faStar } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faUser, faStar, faLayerGroup } from '@fortawesome/free-solid-svg-icons';
 import LineageTree from './common/LineageTree';
 
 interface ParentCardProps {
@@ -78,9 +78,11 @@ const ParentCard = ({ parent, isTopParent = false, displayScore = true, onEdit, 
 
         const white: { name: string, stars: 1 | 2 | 3, fromParent: boolean }[] = parent.whiteSparks.map(s => ({ ...s, fromParent: true }));
         const lineageWhiteNames = new Set(parent.whiteSparks.map(s => s.name));
+        let totalWhiteSparksCount = parent.whiteSparks.length;
 
         const addGrandparentWhiteSparks = (gp: Parent | ManualParentData | null | undefined) => {
             if (!gp || !('whiteSparks' in gp)) return; // Manual data doesn't have white sparks
+            totalWhiteSparksCount += gp.whiteSparks.length;
             gp.whiteSparks.forEach(spark => {
                 if (!lineageWhiteNames.has(spark.name)) {
                     white.push({ ...spark, fromParent: false });
@@ -91,7 +93,7 @@ const ParentCard = ({ parent, isTopParent = false, displayScore = true, onEdit, 
         addGrandparentWhiteSparks(gp1);
         addGrandparentWhiteSparks(gp2);
 
-        return { blue, pink, unique, white };
+        return { blue, pink, unique, white, totalWhiteSparksCount };
     }, [parent, appData.inventory]);
 
     const getSparkDisplayName = (name: string) => {
@@ -161,6 +163,9 @@ const ParentCard = ({ parent, isTopParent = false, displayScore = true, onEdit, 
                                 <span className="parent-card__gen">({t('parentCard.gen')} {parent.gen})</span>
                                 <span className="parent-card__spark-count" title={t('parentCard.whiteSparkCount')}>
                                     <FontAwesomeIcon icon={faStar} /> {parent.whiteSparks.length}
+                                </span>
+                                <span className="parent-card__total-spark-count" title={t('parentCard.totalWhiteSparkCount')}>
+                                    <FontAwesomeIcon icon={faLayerGroup} /> {aggregatedSparks.totalWhiteSparksCount}
                                 </span>
                             </div>
                         </div>
