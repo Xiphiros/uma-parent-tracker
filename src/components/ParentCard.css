@@ -32,16 +32,22 @@
     justify-content: space-between;
     align-items: flex-start;
 }
+.parent-card__identity {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 64px;
+}
 .parent-card__name {
     font-weight: 700;
     font-size: 1.125rem;
     color: var(--color-text-primary);
-    margin-bottom: 0.25rem;
 }
 .parent-card__meta {
     display: flex;
     align-items: center;
     gap: 0.75rem;
+    margin-top: 0.25rem;
 }
 .parent-card__gen,
 .parent-card__spark-count,
@@ -100,6 +106,9 @@
     border-top: 1px solid var(--color-border);
     padding-top: 0.75rem;
     transition: border-color 0.3s ease;
+    max-height: 150px; /* Add this line */
+    overflow-y: auto; /* Add this line */
+    padding-right: 0.5rem; /* Add this line to prevent text from touching scrollbar */
 }
 .parent-card__spark-container {
     display: flex;
