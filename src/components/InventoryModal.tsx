@@ -8,7 +8,7 @@ import { useAppContext } from '../context/AppContext';
 import './InventoryModal.css';
 import { useTranslation } from 'react-i18next';
 import InventoryControls, { SortFieldType, SortDirectionType } from './common/InventoryControls';
-import { getLineageStats, LineageStats } from '../utils/affinity';
+import { getLineageStats, LineageStats, countUniqueInheritableSkills } from '../utils/affinity';
 import { calculateScore } from '../utils/scoring';
 
 interface InventoryModalProps {
@@ -69,6 +69,12 @@ const InventoryModal = ({ isOpen, onClose, isSelectionMode = false, onSelectPare
             : inventory;
 
         const lineageStatsCache = new Map<number, LineageStats>();
+        const getCachedLineageStats = (parent: Parent) => {
+            if (!lineageStatsCache.has(parent.id)) {
+                lineageStatsCache.set(parent.id, getLineageStats(parent, inventoryMap));
+            }
+            return lineageStatsCache.get(parent.id)!;
+        };
 
         const filtered = scoredInventory.filter(parent => {
             const uma = umaMapById.get(parent.umaId);
@@ -76,23 +82,20 @@ const InventoryModal = ({ isOpen, onClose, isSelectionMode = false, onSelectPare
             
             if (filters.searchTerm && !parentName.toLowerCase().includes(filters.searchTerm.toLowerCase())) return false;
 
+            // Standardize white skill count to always use lineage
+            const lineageStats = getCachedLineageStats(parent);
+            if (filters.minWhiteSparks > 0 && lineageStats.whiteSkillCount < filters.minWhiteSparks) return false;
+
             if (filters.searchScope === 'representative') {
                 if (!filters.blueSparks.every(f => parent.blueSpark.type === f.type && parent.blueSpark.stars >= f.stars)) return false;
                 if (!filters.pinkSparks.every(f => parent.pinkSpark.type === f.type && parent.pinkSpark.stars >= f.stars)) return false;
                 if (!filters.uniqueSparks.every(f => !f.name || parent.uniqueSparks.some(s => s.name === f.name && s.stars >= f.stars))) return false;
                 if (!filters.whiteSparks.every(f => !f.name || parent.whiteSparks.some(s => s.name === f.name && s.stars >= f.stars))) return false;
-                if (filters.minWhiteSparks > 0 && parent.whiteSparks.length < filters.minWhiteSparks) return false;
             } else { // Total Lineage Search
-                if (!lineageStatsCache.has(parent.id)) {
-                    lineageStatsCache.set(parent.id, getLineageStats(parent, inventoryMap));
-                }
-                const lineage = lineageStatsCache.get(parent.id)!;
-                
-                if (!filters.blueSparks.every(f => (lineage.blue[f.type] || 0) >= f.stars)) return false;
-                if (!filters.pinkSparks.every(f => (lineage.pink[f.type] || 0) >= f.stars)) return false;
-                if (!filters.uniqueSparks.every(f => !f.name || (lineage.unique[f.name] || 0) >= f.stars)) return false;
-                if (!filters.whiteSparks.every(f => !f.name || (lineage.white[f.name] || 0) >= f.stars)) return false;
-                if (filters.minWhiteSparks > 0 && lineage.whiteSkillCount < filters.minWhiteSparks) return false;
+                if (!filters.blueSparks.every(f => (lineageStats.blue[f.type] || 0) >= f.stars)) return false;
+                if (!filters.pinkSparks.every(f => (lineageStats.pink[f.type] || 0) >= f.stars)) return false;
+                if (!filters.uniqueSparks.every(f => !f.name || (lineageStats.unique[f.name] || 0) >= f.stars)) return false;
+                if (!filters.whiteSparks.every(f => !f.name || (lineageStats.white[f.name] || 0) >= f.stars)) return false;
             }
             
             return true;
@@ -111,8 +114,8 @@ const InventoryModal = ({ isOpen, onClose, isSelectionMode = false, onSelectPare
                     comparison = b.id - a.id;
                     break;
                 case 'sparks': 
-                    const aSparks = a.uniqueSparks.length + a.whiteSparks.length;
-                    const bSparks = b.uniqueSparks.length + b.whiteSparks.length;
+                    const aSparks = countUniqueInheritableSkills(a, a, inventoryMap); // Self-comparison to count its own lineage
+                    const bSparks = countUniqueInheritableSkills(b, b, inventoryMap);
                     comparison = bSparks - aSparks;
                     break;
                 case 'score':
