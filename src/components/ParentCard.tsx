@@ -5,7 +5,7 @@ import SparkTag from './common/SparkTag';
 import './ParentCard.css';
 import { useTranslation } from 'react-i18next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faUser, faStar } from '@fortawesome/free-solid-svg-icons';
 import LineageTree from './common/LineageTree';
 
 interface ParentCardProps {
@@ -156,9 +156,13 @@ const ParentCard = ({ parent, isTopParent = false, displayScore = true, onEdit, 
                 <div className="parent-card__details">
                     <div className="parent-card__header">
                         <div>
-                            <h3 className="parent-card__name">
-                                {displayName} <span className="parent-card__gen">({t('parentCard.gen')} {parent.gen})</span>
-                            </h3>
+                            <h3 className="parent-card__name">{displayName}</h3>
+                            <div className="parent-card__meta">
+                                <span className="parent-card__gen">({t('parentCard.gen')} {parent.gen})</span>
+                                <span className="parent-card__spark-count" title={t('parentCard.whiteSparkCount')}>
+                                    <FontAwesomeIcon icon={faStar} /> {parent.whiteSparks.length}
+                                </span>
+                            </div>
                         </div>
                         <div className="parent-card__score-wrapper">
                             {displayScore && <div className="parent-card__score">{parent.score} {t('parentCard.pts')}</div>}
