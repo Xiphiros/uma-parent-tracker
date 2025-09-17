@@ -45,12 +45,14 @@
     gap: 0.75rem;
 }
 .parent-card__gen,
-.parent-card__spark-count {
+.parent-card__spark-count,
+.parent-card__total-spark-count {
     font-size: 0.875rem;
     font-weight: 500;
     color: var(--color-text-muted);
 }
-.parent-card__spark-count {
+.parent-card__spark-count,
+.parent-card__total-spark-count {
     display: flex;
     align-items: center;
     gap: 0.25rem;
