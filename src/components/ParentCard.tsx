@@ -182,7 +182,7 @@ const ParentCard = ({ parent, isTopParent = false, displayScore = true, onEdit, 
                             <div className="parent-card__meta">
                                 <span className="parent-card__gen">({t('parentCard.gen')} {parent.gen})</span>
                                 <span className="parent-card__spark-count" title={t('parentCard.whiteSparkCount')}>
-                                    <FontAwesomeIcon icon={faStar} /> {parent.whiteSparks.length}
+                                    <FontAwesomeIcon icon={faStar} /> {aggregatedSparks.white.length}
                                 </span>
                                 <span className="parent-card__total-spark-count" title={t('parentCard.totalWhiteSparkCount')}>
                                     <FontAwesomeIcon icon={faLayerGroup} /> {aggregatedSparks.totalWhiteSparksCount}
