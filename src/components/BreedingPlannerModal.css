@@ -49,6 +49,14 @@
     max-width: 500px;
 }
 
+.breeding-planner__sub-header {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    text-align: center;
+    margin-bottom: 0.5rem;
+}
+
 .breeding-planner__inbreeding-toggle {
     display: flex;
     align-items: center;
