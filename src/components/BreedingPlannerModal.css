@@ -49,7 +49,8 @@
     max-width: 500px;
 }
 
-.breeding-planner__sub-header {
+/* Increased specificity to override base styles */
+.breeding-planner__manual-view .breeding-planner__sub-header {
     font-size: 1rem;
     font-weight: 600;
     color: var(--color-text-primary);
