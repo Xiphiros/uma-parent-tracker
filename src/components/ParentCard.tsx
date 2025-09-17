@@ -4,7 +4,7 @@ import { Grandparent, ManualParentData, Parent, BlueSpark, PinkSpark, WhiteSpark
 import './ParentCard.css';
 import { useTranslation } from 'react-i18next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus, faUser, faStar, faLayerGroup } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faUser, faStar, faLayerGroup, faPenToSquare, faTrashCan, faRightLeft } from '@fortawesome/free-solid-svg-icons';
 import LineageTree from './common/LineageTree';
 
 interface ParentCardProps {
@@ -195,9 +195,9 @@ const ParentCard = ({ parent, isTopParent = false, displayScore = true, onEdit, 
                                 <button onClick={() => !isDisabled && onSelect(parent)} className="button button--primary button--small mt-1" disabled={isDisabled}>{t('common:select')}</button>
                             ) : (
                                 <div className="parent-card__actions">
-                                    {onMove && <button onClick={onMove} className="parent-card__edit-btn">{t('common:move')}</button>}
-                                    {onEdit && <button onClick={onEdit} className="parent-card__edit-btn">{t('common:edit')}</button>}
-                                    {onDelete && <button onClick={onDelete} className="parent-card__delete-btn">{t('common:delete')}</button>}
+                                    {onMove && <button onClick={onMove} className="parent-card__action-btn parent-card__edit-btn" title={t('common:move')}><FontAwesomeIcon icon={faRightLeft} /></button>}
+                                    {onEdit && <button onClick={onEdit} className="parent-card__action-btn parent-card__edit-btn" title={t('common:edit')}><FontAwesomeIcon icon={faPenToSquare} /></button>}
+                                    {onDelete && <button onClick={onDelete} className="parent-card__action-btn parent-card__delete-btn" title={t('common:delete')}><FontAwesomeIcon icon={faTrashCan} /></button>}
                                 </div>
                             )}
                         </div>
