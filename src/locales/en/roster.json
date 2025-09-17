@@ -14,7 +14,8 @@
         "pts": "pts",
         "rank": "Rank",
         "noWhiteSparks": "No inheritable white sparks.",
-        "whiteSparkCount": "Total Unique White Sparks"
+        "whiteSparkCount": "Total Unique White Sparks",
+        "totalWhiteSparkCount": "Total Lineage White Sparks (including duplicates)"
     },
     "inventory": {
         "title": "Parent Inventory",
