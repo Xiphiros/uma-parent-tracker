@@ -37,11 +37,23 @@
     font-weight: 700;
     font-size: 1.125rem;
     color: var(--color-text-primary);
+    margin-bottom: 0.25rem;
 }
-.parent-card__gen {
+.parent-card__meta {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+.parent-card__gen,
+.parent-card__spark-count {
     font-size: 0.875rem;
     font-weight: 500;
     color: var(--color-text-muted);
+}
+.parent-card__spark-count {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
 }
 .parent-card__score-wrapper {
     text-align: right;
