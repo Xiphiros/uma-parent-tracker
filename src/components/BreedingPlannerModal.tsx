@@ -239,7 +239,7 @@ const BreedingPlannerModal = ({ isOpen, onClose }: BreedingPlannerModalProps) =>
                                                 <div className="breeding-planner__suggestion-rank">#{index + 1}</div>
                                                 <div className="breeding-planner__suggestion-pair">
                                                     {renderAvatar(s.uma.id)}
-                                                    <span>{s.uma[displayNameProp]}</span>
+                                                    <span className="breeding-planner__suggestion-name">{s.uma[displayNameProp]}</span>
                                                 </div>
                                                 <div className="breeding-planner__suggestion-scores">
                                                     <div className="breeding-planner__suggestion-affinity">{s.totalAffinity} {t('breedingPlanner.totalAffinity')}</div>
