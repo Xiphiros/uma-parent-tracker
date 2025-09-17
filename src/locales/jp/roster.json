@@ -18,7 +18,9 @@
     "borrowedParent": "レンタルウマ娘",
     "noGpData": "継承元のデータが見つかりません。",
     "whiteSparkCount": "白因子の合計数",
-    "totalWhiteSparkCount": "血統の白因子合計数（重複を含む）"
+    "totalWhiteSparkCount": "血統の白因子合計数（重複を含む）",
+    "parentSource": "親",
+    "gpSource": "祖"
   },
   "inventory": {
     "title": "所持ウマ娘一覧",
