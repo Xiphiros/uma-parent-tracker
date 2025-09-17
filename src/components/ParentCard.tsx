@@ -177,7 +177,7 @@ const ParentCard = ({ parent, isTopParent = false, displayScore = true, onEdit, 
                 <LineageTree parent={parent} />
                 <div className="parent-card__details">
                     <div className="parent-card__header">
-                        <div>
+                        <div className="parent-card__identity">
                             <h3 className="parent-card__name">{displayName}</h3>
                             <div className="parent-card__meta">
                                 <span className="parent-card__gen">({t('parentCard.gen')} {parent.gen})</span>
