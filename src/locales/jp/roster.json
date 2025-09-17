@@ -16,7 +16,8 @@
     "lineage": "血統",
     "legacyOrigin": "継承元",
     "borrowedParent": "レンタルウマ娘",
-    "noGpData": "継承元のデータが見つかりません。"
+    "noGpData": "継承元のデータが見つかりません。",
+    "whiteSparkCount": "白因子の合計数"
   },
   "inventory": {
     "title": "所持ウマ娘一覧",
