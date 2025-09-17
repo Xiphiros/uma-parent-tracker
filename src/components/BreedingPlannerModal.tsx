@@ -233,7 +233,7 @@ const BreedingPlannerModal = ({ isOpen, onClose }: BreedingPlannerModalProps) =>
                                         <label htmlFor="inbreeding-toggle">{t('breedingPlanner.excludeInbreeding')}</label>
                                     </div>
                                     <div className="breeding-planner__suggestions-list mt-2">
-                                        <h4 className="form__section-title text-center mb-2">{t('breedingPlanner.bestTrainees')}</h4>
+                                        <h4 className="breeding-planner__sub-header">{t('breedingPlanner.bestTrainees')}</h4>
                                         {traineeSuggestionsForManualPair.map((s, index) => (
                                              <div key={s.uma.id} className="breeding-planner__suggestion-item">
                                                 <div className="breeding-planner__suggestion-rank">#{index + 1}</div>
