@@ -8,6 +8,8 @@
     background-color: var(--color-card-bg-hover);
     transition: background-color 0.3s ease, border-color 0.3s ease;
     border-left: 4px solid transparent; /* Space for roster indicator */
+    break-inside: avoid; /* Prevent card from splitting across columns */
+    margin-bottom: 1rem; /* Add vertical spacing between cards in a column */
 }
 .parent-card--top-pair {
     border-color: var(--color-top-pair-border);
@@ -22,7 +24,6 @@
 .parent-card__main-content {
     display: flex;
     gap: 1rem;
-    flex-grow: 1;
 }
 .parent-card__details {
     flex-grow: 1;
