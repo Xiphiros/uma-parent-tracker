@@ -124,6 +124,10 @@
     gap: 0.5rem;
 }
 
+.breeding-planner__suggestion-name {
+    color: var(--color-text-primary);
+}
+
 .breeding-planner__suggestion-avatar {
     width: 40px;
     height: 40px;
