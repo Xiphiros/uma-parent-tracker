@@ -17,7 +17,7 @@
     "legacyOrigin": "継承元",
     "borrowedParent": "レンタルウマ娘",
     "noGpData": "継承元のデータが見つかりません。",
-    "whiteSparkCount": "白因子の合計数",
+    "whiteSparkCount": "血統内のユニーク白因子",
     "totalWhiteSparkCount": "血統の白因子合計数（重複を含む）",
     "parentSource": "親",
     "gpSource": "祖"
