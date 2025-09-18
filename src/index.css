@@ -18,6 +18,7 @@
 @import "./components/common/LineageDisplay.css";
 @import "./components/common/LineageTree.css";
 @import "./components/ParentCard.css";
+@import "./components/common/PairedParentCard.css";
 @import "./components/common/PlaceholderCard.css";
 @import "./components/common/RangeSlider.css";
 @import "./components/SelectGrandparentModal.css";
