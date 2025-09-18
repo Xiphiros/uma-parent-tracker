@@ -4,7 +4,7 @@ import { Parent } from '../types';
 import { useTranslation } from 'react-i18next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
-import { countTotalLineageSparks, countUniqueCombinedLineageSkills } from '../utils/affinity';
+import { countTotalLineageWhiteSparks, countUniqueLineageWhiteSparks } from '../utils/affinity';
 import { calculateScore } from '../utils/scoring';
 import PairedParentCard from './common/PairedParentCard';
 import ParentDetailModal from './ParentDetailModal';
@@ -16,8 +16,8 @@ interface BreedingPair {
     p1: Parent;
     p2: Parent;
     avgScore: number;
-    totalSparks: number;
-    uniqueSparks: number;
+    totalSparks: number; // Represents total white sparks
+    uniqueSparks: number; // Represents unique white sparks
 }
 
 const TopBreedingPair = () => {
@@ -51,8 +51,8 @@ const TopBreedingPair = () => {
                     pairs.push({
                         p1, p2,
                         avgScore: Math.round((p1.score + p2.score) / 2),
-                        totalSparks: countTotalLineageSparks(p1, inventoryMap) + countTotalLineageSparks(p2, inventoryMap),
-                        uniqueSparks: countUniqueCombinedLineageSkills(p1, p2, inventoryMap)
+                        totalSparks: countTotalLineageWhiteSparks(p1, inventoryMap) + countTotalLineageWhiteSparks(p2, inventoryMap),
+                        uniqueSparks: countUniqueLineageWhiteSparks(p1, inventoryMap) + countUniqueLineageWhiteSparks(p2, inventoryMap)
                     });
                 }
             }
@@ -73,8 +73,8 @@ const TopBreedingPair = () => {
                      pairs.push({
                         p1, p2,
                         avgScore: Math.round((p1.score + p2.score) / 2),
-                        totalSparks: countTotalLineageSparks(p1, inventoryMap) + countTotalLineageSparks(p2, inventoryMap),
-                        uniqueSparks: countUniqueCombinedLineageSkills(p1, p2, inventoryMap)
+                        totalSparks: countTotalLineageWhiteSparks(p1, inventoryMap) + countTotalLineageWhiteSparks(p2, inventoryMap),
+                        uniqueSparks: countUniqueLineageWhiteSparks(p1, inventoryMap) + countUniqueLineageWhiteSparks(p2, inventoryMap)
                     });
                 }
             }
