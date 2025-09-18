@@ -10,6 +10,7 @@ import RangeSlider from './RangeSlider';
 
 export type SortFieldType = 'score' | 'name' | 'gen' | 'id' | 'sparks';
 export type SortDirectionType = 'asc' | 'desc';
+export type InventoryViewType = 'all' | 'owned' | 'borrowed';
 
 type SparkFilterType = 'blueSparks' | 'pinkSparks' | 'uniqueSparks' | 'whiteSparks';
 
@@ -20,12 +21,14 @@ interface InventoryControlsProps {
     setSortField: (value: SortFieldType) => void;
     sortDirection: SortDirectionType;
     setSortDirection: (value: SortDirectionType) => void;
+    inventoryView: InventoryViewType;
+    setInventoryView: (value: InventoryViewType) => void;
 }
 
 const BLUE_SPARK_TYPES: BlueSpark['type'][] = ['Speed', 'Stamina', 'Power', 'Guts', 'Wit'];
 const PINK_SPARK_TYPES = ['Turf', 'Dirt', 'Sprint', 'Mile', 'Medium', 'Long', 'Front Runner', 'Pace Chaser', 'Late Surger', 'End Closer'];
 
-const InventoryControls = ({ filters, setFilters, sortField, setSortField, sortDirection, setSortDirection }: InventoryControlsProps) => {
+const InventoryControls = ({ filters, setFilters, sortField, setSortField, sortDirection, setSortDirection, inventoryView, setInventoryView }: InventoryControlsProps) => {
     const { t } = useTranslation(['roster', 'game', 'common']);
     const { masterSkillList, dataDisplayLanguage } = useAppContext();
     const displayNameProp = dataDisplayLanguage === 'jp' ? 'name_jp' : 'name_en';
@@ -110,6 +113,13 @@ const InventoryControls = ({ filters, setFilters, sortField, setSortField, sortD
     return (
         <div className="inventory-controls">
             <div className="inventory-controls__main">
+                <div className="inventory-controls__group">
+                    <div className="inventory-controls__scope-toggle">
+                        <button className={`inventory-controls__scope-btn ${inventoryView === 'all' ? 'inventory-controls__scope-btn--active' : ''}`} onClick={() => setInventoryView('all')}>{t('inventory.view.all')}</button>
+                        <button className={`inventory-controls__scope-btn ${inventoryView === 'owned' ? 'inventory-controls__scope-btn--active' : ''}`} onClick={() => setInventoryView('owned')}>{t('inventory.view.owned')}</button>
+                        <button className={`inventory-controls__scope-btn ${inventoryView === 'borrowed' ? 'inventory-controls__scope-btn--active' : ''}`} onClick={() => setInventoryView('borrowed')}>{t('inventory.view.borrowed')}</button>
+                    </div>
+                </div>
                  <div className="flex gap-4">
                     <div className="inventory-controls__group flex-grow">
                         <label className="inventory-controls__label">{t('inventory.searchByName')}</label>
