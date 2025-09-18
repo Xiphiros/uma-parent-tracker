@@ -73,7 +73,7 @@ const PairedParentCard = ({ parent, onDetailsClick }: PairedParentCardProps) => 
             return a.name.localeCompare(b.name);
         });
 
-        return allSparks.slice(0, 7); // Take the top 7 most important sparks
+        return allSparks; // Return the full sorted list
 
     }, [goal, parent, appData.inventory]);
     
@@ -83,7 +83,7 @@ const PairedParentCard = ({ parent, onDetailsClick }: PairedParentCardProps) => 
                 <img src={`${import.meta.env.BASE_URL}${umaData?.image}`} alt={displayName} className="paired-parent-card__avatar" />
                 <div className="paired-parent-card__details">
                     <div className="paired-parent-card__name-container">
-                        <h4 className="paired-parent-card__name" title={displayName}>{displayName}</h4>
+                        <h4 className="paired-parent-card__name">{displayName}</h4>
                         {parent.isBorrowed && <span className="parent-card__borrowed-tag">{t('parentCard.borrowed')}</span>}
                     </div>
                     <div className="paired-parent-card__score">{parent.score} {t('parentCard.pts')}</div>
