@@ -25,19 +25,19 @@ const PairedParentCard = ({ parent, onDetailsClick }: PairedParentCardProps) => 
 
     const displayedSparks = useMemo(() => {
         const sparks = [];
-        // Always add blue, pink, and unique sparks
+        // 1. Add representative Blue, Pink, and Unique sparks
         sparks.push({ ...parent.blueSpark, category: 'blue' as const, name: parent.blueSpark.type });
         sparks.push({ ...parent.pinkSpark, category: 'pink' as const, name: parent.pinkSpark.type });
         parent.uniqueSparks.forEach(s => sparks.push({ ...s, category: 'unique' as const }));
 
-        // Filter, sort, and limit white sparks based on wishlist
+        // 2. Filter, sort, and limit white sparks based on the user's wishlist
         if (goal?.wishlist) {
             const wishlistMap = new Map(goal.wishlist.map((item: WishlistItem) => [item.name, WISH_RANK_ORDER[item.tier]]));
             
             const topWhiteSparks = parent.whiteSparks
                 .filter(spark => wishlistMap.has(spark.name))
                 .sort((a, b) => (wishlistMap.get(a.name) ?? 99) - (wishlistMap.get(b.name) ?? 99))
-                .slice(0, 3);
+                .slice(0, 3); // Show only the top 3 wishlisted sparks
             
             topWhiteSparks.forEach(s => sparks.push({ ...s, category: 'white' as const }));
         }
@@ -50,10 +50,10 @@ const PairedParentCard = ({ parent, onDetailsClick }: PairedParentCardProps) => 
             <div className="paired-parent-card__header">
                 <img src={`${import.meta.env.BASE_URL}${umaData?.image}`} alt={displayName} className="paired-parent-card__avatar" />
                 <div className="paired-parent-card__details">
-                    <h4 className="paired-parent-card__name">
-                        <span>{displayName}</span>
+                    <div className="paired-parent-card__name-container">
+                        <h4 className="paired-parent-card__name" title={displayName}>{displayName}</h4>
                         {parent.isBorrowed && <span className="parent-card__borrowed-tag">{t('parentCard.borrowed')}</span>}
-                    </h4>
+                    </div>
                     <div className="paired-parent-card__score">{parent.score} {t('parentCard.pts')}</div>
                 </div>
                  <button className="paired-parent-card__details-btn" onClick={onDetailsClick} title={t('parentCard.details')}>
@@ -62,7 +62,7 @@ const PairedParentCard = ({ parent, onDetailsClick }: PairedParentCardProps) => 
             </div>
             <div className="paired-parent-card__body">
                 <div className="paired-parent-card__sparks">
-                    {displayedSparks.map(spark => (
+                     {displayedSparks.map(spark => (
                         <SparkTag 
                             key={`${spark.category}-${spark.name}`} 
                             category={spark.category} 
