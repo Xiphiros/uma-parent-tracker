@@ -4,6 +4,15 @@
   "placeholder": "アクティブなサーバーの所持ウマ娘がいません。親を追加して始めましょう！",
   "placeholderRoster": "このプロジェクトのウマ娘一覧は空です。所持ウマ娘から追加するか、新しく作成してください。",
   "topPairTitle": "継承相性上位ペア",
+  "topPair": {
+    "ownedXowned": "所持 × 所持",
+    "ownedXborrowed": "所持 × レンタル",
+    "sortBy": "ソート:",
+    "avgScore": "平均スコア",
+    "totalSparks": "合計因子数",
+    "pair": "ペア",
+    "of": "/"
+  },
   "topPairPlaceholder": "このプロジェクトのウマ娘一覧に親を追加すると、ここに上位のペアが表示されます。",
   "topPairPlaceholderSingle": "もう1人親をこのプロジェクトに追加してペアを完成させましょう。",
   "deleteConfirmTitle": "削除の確認",
@@ -13,6 +22,7 @@
     "pts": "pt",
     "noWhiteSparks": "白因子がありません。",
     "rank": "ランク",
+    "borrowed": "レンタル",
     "lineage": "血統",
     "legacyOrigin": "継承元",
     "borrowedParent": "レンタルウマ娘",
@@ -57,7 +67,8 @@
   },
   "suggestions": {
     "title": "育成おすすめ",
-    "placeholder": "ウマ娘一覧に2人の親を追加して、おすすめを確認しましょう。"
+    "placeholder": "ウマ娘一覧に2人の親を追加して、おすすめを確認しましょう。",
+    "placeholderCarousel": "上の継承ペアを選択して育成おすすめを確認してください。"
   },
   "placeholderCard": {
     "title": "このウマ娘一覧は空です",
