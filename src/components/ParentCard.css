@@ -45,6 +45,10 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    flex-wrap: wrap; /* Allow wrapping */
+}
+.parent-card__name > span:first-child {
+    word-break: break-word; /* Break long names */
 }
 .parent-card__borrowed-tag {
     font-size: 0.7rem;
@@ -55,6 +59,7 @@
     color: var(--color-text-inverted);
     text-transform: uppercase;
     letter-spacing: 0.05em;
+    flex-shrink: 0; /* Prevent the tag itself from shrinking */
 }
 .parent-card__meta {
     display: flex;
