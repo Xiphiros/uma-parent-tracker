@@ -42,6 +42,11 @@
     "searchByName": "名前で検索...",
     "sortBy": "並び替え",
     "filterBy": "フィルター",
+    "view": {
+      "all": "すべて",
+      "owned": "所持",
+      "borrowed": "レンタル"
+    },
     "blueSpark": "青因子",
     "pinkSpark": "赤因子",
     "uniqueSpark": "固有因子",
