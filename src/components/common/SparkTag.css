@@ -12,12 +12,9 @@
     border-bottom: 3px solid transparent;
     transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
     
-    /* Properties for layout consistency */
+    /* Ensure tag fills container but allows internal text to wrap */
     width: 100%;
     max-width: 100%;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
 
 /* Spark BORDER Colors (applies to any element with these data attributes) */
