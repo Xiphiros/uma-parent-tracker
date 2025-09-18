@@ -4,7 +4,7 @@ import { Parent } from '../types';
 import { useTranslation } from 'react-i18next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
-import { countTotalLineageWhiteSparks, countUniqueLineageWhiteSparks } from '../utils/affinity';
+import { countTotalLineageWhiteSparks, countUniqueCombinedLineageWhiteSparks } from '../utils/affinity';
 import { calculateScore } from '../utils/scoring';
 import PairedParentCard from './common/PairedParentCard';
 import ParentDetailModal from './ParentDetailModal';
@@ -52,7 +52,7 @@ const TopBreedingPair = () => {
                         p1, p2,
                         avgScore: Math.round((p1.score + p2.score) / 2),
                         totalSparks: countTotalLineageWhiteSparks(p1, inventoryMap) + countTotalLineageWhiteSparks(p2, inventoryMap),
-                        uniqueSparks: countUniqueLineageWhiteSparks(p1, inventoryMap) + countUniqueLineageWhiteSparks(p2, inventoryMap)
+                        uniqueSparks: countUniqueCombinedLineageWhiteSparks(p1, p2, inventoryMap)
                     });
                 }
             }
@@ -74,7 +74,7 @@ const TopBreedingPair = () => {
                         p1, p2,
                         avgScore: Math.round((p1.score + p2.score) / 2),
                         totalSparks: countTotalLineageWhiteSparks(p1, inventoryMap) + countTotalLineageWhiteSparks(p2, inventoryMap),
-                        uniqueSparks: countUniqueLineageWhiteSparks(p1, inventoryMap) + countUniqueLineageWhiteSparks(p2, inventoryMap)
+                        uniqueSparks: countUniqueCombinedLineageWhiteSparks(p1, p2, inventoryMap)
                     });
                 }
             }
