@@ -8,7 +8,7 @@ import { useAppContext } from '../context/AppContext';
 import './InventoryModal.css';
 import { useTranslation } from 'react-i18next';
 import InventoryControls, { SortFieldType, SortDirectionType, InventoryViewType } from './common/InventoryControls';
-import { getLineageStats, LineageStats, countTotalLineageSparks } from '../utils/affinity';
+import { getLineageStats, LineageStats, countTotalLineageWhiteSparks } from '../utils/affinity';
 import { calculateScore } from '../utils/scoring';
 
 interface InventoryModalProps {
@@ -122,8 +122,8 @@ const InventoryModal = ({ isOpen, onClose, isSelectionMode = false, onSelectPare
                     comparison = b.id - a.id;
                     break;
                 case 'sparks': 
-                    const aSparks = countTotalLineageSparks(a, inventoryMap);
-                    const bSparks = countTotalLineageSparks(b, inventoryMap);
+                    const aSparks = countTotalLineageWhiteSparks(a, inventoryMap);
+                    const bSparks = countTotalLineageWhiteSparks(b, inventoryMap);
                     comparison = bSparks - aSparks;
                     break;
                 case 'score':
