@@ -8,7 +8,7 @@ import SelectionSlot from './common/SelectionSlot';
 import InventoryModal from './InventoryModal';
 import SelectUmaModal from './SelectUmaModal';
 import LineageDisplay from './common/LineageDisplay';
-import { calculateFullAffinity, getLineageCharacterIds, countUniqueInheritableSkills, resolveGrandparent } from '../utils/affinity';
+import { calculateFullAffinity, getLineageCharacterIds, countUniqueCombinedLineageSkills, resolveGrandparent } from '../utils/affinity';
 import PlaceholderCard from './common/PlaceholderCard';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUsers, faUser, faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
@@ -92,7 +92,7 @@ const BreedingPlannerModal = ({ isOpen, onClose }: BreedingPlannerModalProps) =>
                 }
 
                 const totalAffinity = calculateFullAffinity(trainee, p1, p2, charaRelations, relationPoints, inventoryMap, umaMapById);
-                const totalInheritableSkills = countUniqueInheritableSkills(p1, p2, inventoryMap);
+                const totalInheritableSkills = countUniqueCombinedLineageSkills(p1, p2, inventoryMap);
                 pairs.push({ p1, p2, totalAffinity, totalInheritableSkills });
             }
         }
