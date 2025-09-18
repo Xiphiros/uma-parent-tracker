@@ -46,6 +46,11 @@
             "date": "Date Added",
             "sparks": "Total Sparks"
         },
+        "view": {
+            "all": "All",
+            "owned": "Owned",
+            "borrowed": "Borrowed"
+        },
         "blueSpark": "Blue Spark",
         "pinkSpark": "Pink Spark",
         "uniqueSpark": "Unique Spark",
