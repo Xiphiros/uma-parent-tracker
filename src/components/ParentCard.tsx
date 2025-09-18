@@ -178,9 +178,12 @@ const ParentCard = ({ parent, isTopParent = false, displayScore = true, onEdit, 
                 <div className="parent-card__details">
                     <div className="parent-card__header">
                         <div className="parent-card__identity">
-                            <h3 className="parent-card__name">{displayName}</h3>
+                            <h3 className="parent-card__name">
+                                {displayName}
+                                {parent.isBorrowed && <span className="parent-card__borrowed-tag">{t('parentCard.borrowed')}</span>}
+                            </h3>
                             <div className="parent-card__meta">
-                                <span className="parent-card__gen">({t('parentCard.gen')} {parent.gen})</span>
+                                {!parent.isBorrowed && <span className="parent-card__gen">({t('parentCard.gen')} {parent.gen})</span>}
                                 <span className="parent-card__spark-count" title={t('parentCard.whiteSparkCount')}>
                                     <FontAwesomeIcon icon={faStar} /> {aggregatedSparks.white.length}
                                 </span>
@@ -207,7 +210,7 @@ const ParentCard = ({ parent, isTopParent = false, displayScore = true, onEdit, 
 
             {renderSparksBody()}
 
-            {onAssign && !isSelectionMode && (
+            {!parent.isBorrowed && onAssign && !isSelectionMode && (
                 <div className="parent-card__footer">
                     <span className="parent-card__assigned-projects" title={assignedProjects?.join(', ')}>
                         {assignedProjects && assignedProjects.length > 0 ? assignedProjects.join(', ') : t('inventory.unassigned')}
