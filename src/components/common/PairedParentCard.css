@@ -33,7 +33,7 @@
 
 .paired-parent-card__name-container {
     display: flex;
-    align-items: flex-start; /* Align to top to handle wrapping */
+    align-items: flex-start; /* Changed to flex-start for wrapping */
     gap: 0.5rem;
     margin-bottom: 0.25rem;
 }
@@ -42,7 +42,7 @@
     font-weight: 600;
     font-size: 1rem;
     color: var(--color-text-primary);
-    /* Allow name to wrap */
+    /* Allow name to wrap instead of truncating */
     white-space: normal;
     word-break: break-word;
 }
@@ -70,10 +70,6 @@
     padding-top: 0.75rem;
     border-top: 1px solid var(--color-border);
     flex-grow: 1;
-    /* Create a fixed-height, scrollable container */
-    height: 150px;
-    overflow-y: auto;
-    padding-right: 0.5rem; /* Space for scrollbar */
 }
 
 .paired-parent-card__sparks {
