@@ -2,7 +2,45 @@
 
 This document outlines the structure of the exported JSON data for this application. As features are added, the schema may evolve. The `version` key at the root of the JSON file helps in handling data migrations.
 
-## Version 6 (Current)
+## Version 7 (Current)
+
+Version 7 adds an optional `isBorrowed` boolean property to each `Parent` object in the `inventory`. This flag is used to distinguish between a user's owned parents and borrowed parents (e.g., from a friend list).
+
+*   An optional `isBorrowed` boolean is added to each `Parent` object. It defaults to `false` if missing.
+*   The `version` key is set to `7`.
+
+```json
+{
+  "version": 7,
+  "activeServer": "jp",
+  "inventory": [
+    {
+      "id": 1725612900123,
+      "umaId": "100401",
+      "name": "Super Creek",
+      "server": "jp",
+      "isBorrowed": true,
+      "hash": "uma:100401;blue:Stamina|3;...",
+      "...": "..."
+    },
+    {
+      "id": 1725612900456,
+      "umaId": "100101",
+      "name": "Special Week",
+      "server": "global",
+      "isBorrowed": false,
+      "hash": "uma:100101;blue:Speed|2;...",
+      "...": "..."
+    }
+  ],
+  "serverData": {
+    "jp": { "...": "..." },
+    "global": { "...": "..." }
+  }
+}
+```
+
+## Version 6
 
 Version 6 adds an optional `hash` property to each `Parent` object in the `inventory`. This hash is a string generated from the parent's core characteristics (sparks, lineage, etc.) and is used internally to prevent the creation of duplicate parents.
 
