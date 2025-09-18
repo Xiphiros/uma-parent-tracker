@@ -21,16 +21,27 @@ const BreedingSuggestions = () => {
         const lineageCharIds = getLineageCharacterIds(parent1, parent2, inventoryMap, umaMapById);
         const lineageCharIdStrings = new Set(Array.from(lineageCharIds).map(String));
         
-        // De-duplicate the trainee list to show only one outfit per character,
-        // as all outfits for a character have the same affinity.
-        const uniqueTrainees = masterUmaList.reduce((acc, currentUma) => {
-            if (!acc.has(currentUma.characterId)) {
-                acc.set(currentUma.characterId, currentUma);
+        // Group all available outfits by their base character ID.
+        const traineesByCharacter = masterUmaList.reduce((acc, uma) => {
+            if (!acc.has(uma.characterId)) {
+                acc.set(uma.characterId, []);
             }
+            acc.get(uma.characterId)!.push(uma);
             return acc;
-        }, new Map<string, Uma>());
+        }, new Map<string, Uma[]>());
 
-        const scoredSuggestions = Array.from(uniqueTrainees.values())
+        // For each character, select their primary outfit ('...01') if available, otherwise fall back to the first one.
+        const uniqueTrainees: Uma[] = [];
+        for (const characterOutfits of traineesByCharacter.values()) {
+            const baseOutfit = characterOutfits.find(uma => uma.id === `${uma.characterId}01`);
+            if (baseOutfit) {
+                uniqueTrainees.push(baseOutfit);
+            } else if (characterOutfits.length > 0) {
+                uniqueTrainees.push(characterOutfits[0]); // Fallback to first available outfit
+            }
+        }
+
+        const scoredSuggestions = uniqueTrainees
             .filter(uma => !lineageCharIdStrings.has(uma.characterId)) // Anti-inbreeding filter
             .map(trainee => ({
                 uma: trainee,
