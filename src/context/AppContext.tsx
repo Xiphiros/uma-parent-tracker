@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect, ReactNode, useRef, useMemo } from 'react';
-import { AppData, Profile, Skill, Uma, Goal, Parent, NewParentData, WishlistItem, Folder, IconName, ServerSpecificData, ValidationResult } from '../types';
+import { AppData, Profile, Skill, Uma, Goal, Parent, NewParentData, WishlistItem, Folder, IconName, ServerSpecificData, ValidationResult, BreedingPair } from '../types';
 import masterSkillListJson from '../data/skill-list.json';
 import masterUmaListJson from '../data/uma-list.json';
 import affinityJpJson from '../data/affinity_jp.json';
@@ -45,6 +45,8 @@ interface AppContextType {
   umaMapById: Map<string, Uma>;
   getActiveProfile: () => Profile | undefined;
   getScoredRoster: () => Parent[];
+  activeBreedingPair: BreedingPair | null;
+  setActiveBreedingPair: (pair: BreedingPair | null) => void;
   saveState: (newData: AppData) => void;
   exportData: () => void;
   importData: (file: File) => Promise<void>;
@@ -243,6 +245,7 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
 
   const [dataDisplayLanguage, setDataDisplayLanguageState] = useState<DataDisplayLanguage>('en');
   const [useCommunityTranslations, setUseCommunityTranslationsState] = useState<boolean>(false);
+  const [activeBreedingPair, setActiveBreedingPair] = useState<BreedingPair | null>(null);
   
   const isInitialLoad = useRef(true);
 
@@ -1017,6 +1020,8 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
     umaMapById,
     getActiveProfile,
     getScoredRoster,
+    activeBreedingPair,
+    setActiveBreedingPair,
     saveState,
     exportData,
     importData,
