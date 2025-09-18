@@ -6,15 +6,15 @@
     border-radius: 9999px;
     font-weight: 500;
     font-size: 0.8rem;
-    margin-right: 0.5rem;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.125rem; /* Reduced bottom margin */
     background-color: var(--color-card-bg-hover);
     color: var(--color-text-secondary);
     border-bottom: 3px solid transparent;
     transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
     
-    /* New properties for layout consistency */
-    max-width: 140px;
+    /* Properties for layout consistency */
+    width: 100%; /* Make tag full width */
+    max-width: 100%; /* Override previous max-width */
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
