@@ -6,7 +6,7 @@ export const CURRENT_VERSION = 7;
 
 // --- Default State Creation ---
 
-const createNewProfile = (name: string): Profile => ({
+export const createNewProfile = (name: string): Profile => ({
   id: Date.now(),
   name,
   goal: { primaryBlue: [], primaryPink: [], uniqueWishlist: [], wishlist: [] },
