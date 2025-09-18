@@ -83,8 +83,10 @@ const PairedParentCard = ({ parent, onDetailsClick }: PairedParentCardProps) => 
                 <img src={`${import.meta.env.BASE_URL}${umaData?.image}`} alt={displayName} className="paired-parent-card__avatar" />
                 <div className="paired-parent-card__details">
                     <div className="paired-parent-card__name-container">
-                        <h4 className="paired-parent-card__name">{displayName}</h4>
-                        {parent.isBorrowed && <span className="parent-card__borrowed-tag">{t('parentCard.borrowed')}</span>}
+                        <h4 className="paired-parent-card__name">
+                            <span>{displayName}</span>
+                            {parent.isBorrowed && <span className="parent-card__borrowed-tag">{t('parentCard.borrowed')}</span>}
+                        </h4>
                     </div>
                     <div className="paired-parent-card__score">{parent.score} {t('parentCard.pts')}</div>
                 </div>
