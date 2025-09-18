@@ -25,19 +25,21 @@ const PairedParentCard = ({ parent, onDetailsClick }: PairedParentCardProps) => 
 
     const displayedSparks = useMemo(() => {
         const sparks = [];
-        // 1. Add representative Blue, Pink, and Unique sparks
+        // 1. Add representative Blue and Pink sparks
         sparks.push({ ...parent.blueSpark, category: 'blue' as const, name: parent.blueSpark.type });
         sparks.push({ ...parent.pinkSpark, category: 'pink' as const, name: parent.pinkSpark.type });
+        
+        // 2. Add Unique spark if it exists
         parent.uniqueSparks.forEach(s => sparks.push({ ...s, category: 'unique' as const }));
 
-        // 2. Filter, sort, and limit white sparks based on the user's wishlist
+        // 3. Filter, sort, and limit white sparks based on the user's wishlist
         if (goal?.wishlist) {
             const wishlistMap = new Map(goal.wishlist.map((item: WishlistItem) => [item.name, WISH_RANK_ORDER[item.tier]]));
             
             const topWhiteSparks = parent.whiteSparks
                 .filter(spark => wishlistMap.has(spark.name))
                 .sort((a, b) => (wishlistMap.get(a.name) ?? 99) - (wishlistMap.get(b.name) ?? 99))
-                .slice(0, 3); // Show only the top 3 wishlisted sparks
+                .slice(0, 4); // Show up to the top 4 wishlisted sparks
             
             topWhiteSparks.forEach(s => sparks.push({ ...s, category: 'white' as const }));
         }
