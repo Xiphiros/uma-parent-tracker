@@ -69,7 +69,10 @@
     margin-top: 0.75rem;
     padding-top: 0.75rem;
     border-top: 1px solid var(--color-border);
-    flex-grow: 1;
+    /* Create a fixed-height, scrollable container */
+    height: 160px;
+    overflow-y: auto;
+    padding-right: 0.5rem; /* Space for scrollbar */
 }
 
 .paired-parent-card__sparks {
