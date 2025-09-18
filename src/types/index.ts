@@ -126,6 +126,11 @@ export interface ValidationResult {
     errors: string[];
 }
 
+export interface BreedingPair {
+    p1: Parent;
+    p2: Parent;
+}
+
 export interface BlueSparkFilter { type: string; stars: number }
 export interface PinkSparkFilter { type: string; stars: number }
 export interface UniqueSparkFilter { name: string; stars: number }
