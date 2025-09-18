@@ -7,7 +7,7 @@ import ContextMenu, { MenuItem } from './common/ContextMenu';
 import { useAppContext } from '../context/AppContext';
 import './InventoryModal.css';
 import { useTranslation } from 'react-i18next';
-import InventoryControls, { SortFieldType, SortDirectionType } from './common/InventoryControls';
+import InventoryControls, { SortFieldType, SortDirectionType, InventoryViewType } from './common/InventoryControls';
 import { getLineageStats, LineageStats, countUniqueInheritableSkills } from '../utils/affinity';
 import { calculateScore } from '../utils/scoring';
 
@@ -44,6 +44,7 @@ const InventoryModal = ({ isOpen, onClose, isSelectionMode = false, onSelectPare
     const [moveConfirmState, setMoveConfirmState] = useState<MoveConfirmState | null>(null);
     const [contextMenu, setContextMenu] = useState<{ isOpen: boolean; x: number; y: number; items: MenuItem[]; parent: Parent | null }>({ isOpen: false, x: 0, y: 0, items: [], parent: null });
 
+    const [inventoryView, setInventoryView] = useState<InventoryViewType>('all');
     const [filters, setFilters] = useState<Filters>(initialFilters);
     const [sortField, setSortField] = useState<SortFieldType>('score');
     const [sortDirection, setSortDirection] = useState<SortDirectionType>('desc');
@@ -61,12 +62,19 @@ const InventoryModal = ({ isOpen, onClose, isSelectionMode = false, onSelectPare
 
     const filteredAndSortedInventory = useMemo(() => {
         
+        let viewFilteredInventory = inventory;
+        if (inventoryView === 'owned') {
+            viewFilteredInventory = inventory.filter(p => !p.isBorrowed);
+        } else if (inventoryView === 'borrowed') {
+            viewFilteredInventory = inventory.filter(p => p.isBorrowed);
+        }
+
         const scoredInventory = activeProfile
-            ? inventory.map(p => ({
+            ? viewFilteredInventory.map(p => ({
                 ...p,
                 score: calculateScore(p, activeProfile.goal, appData.inventory)
               }))
-            : inventory;
+            : viewFilteredInventory;
 
         const lineageStatsCache = new Map<number, LineageStats>();
         const getCachedLineageStats = (parent: Parent) => {
@@ -125,7 +133,7 @@ const InventoryModal = ({ isOpen, onClose, isSelectionMode = false, onSelectPare
             }
             return sortDirection === 'desc' ? comparison : -comparison;
         });
-    }, [inventory, filters, sortField, sortDirection, umaMapById, dataDisplayLanguage, inventoryMap, activeProfile, appData.inventory]);
+    }, [inventory, inventoryView, filters, sortField, sortDirection, umaMapById, dataDisplayLanguage, inventoryMap, activeProfile, appData.inventory]);
 
 
     const handleOpenAddModal = () => {
@@ -213,6 +221,8 @@ const InventoryModal = ({ isOpen, onClose, isSelectionMode = false, onSelectPare
                 <div className="grid grid-cols-1 lg:grid-cols-[320px_1fr] gap-6">
                     <div className="inventory-modal__sidebar">
                         <InventoryControls 
+                            inventoryView={inventoryView}
+                            setInventoryView={setInventoryView}
                             filters={filters} 
                             setFilters={setFilters} 
                             sortField={sortField} 
