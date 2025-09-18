@@ -7,10 +7,10 @@ import affinityGlJson from '../data/affinity_gl.json';
 import { calculateScore } from '../utils/scoring';
 import i18n from '../i18n';
 import { generateParentHash } from '../utils/hashing';
+import { migrateData, createDefaultState } from '../utils/migrationHandler';
 
 const DB_KEY = 'umaTrackerData_v2';
 const USER_PREFERENCES_KEY = 'umaTrackerPrefs_v1';
-const CURRENT_VERSION = 7;
 
 type DataDisplayLanguage = 'en' | 'jp';
 
@@ -87,154 +87,6 @@ export const useAppContext = () => {
   }
   return context;
 };
-
-const createNewProfile = (name: string): Profile => ({
-  id: Date.now(),
-  name,
-  goal: { primaryBlue: [], primaryPink: [], uniqueWishlist: [], wishlist: [] },
-  roster: [],
-  isPinned: false,
-});
-
-const createDefaultServerData = (): ServerSpecificData => {
-    const firstProfile = createNewProfile(i18n.t('app:newProjectName'));
-    return {
-        activeProfileId: firstProfile.id,
-        profiles: [firstProfile],
-        folders: [],
-        layout: [firstProfile.id],
-    };
-};
-
-const createDefaultState = (): AppData => {
-    return {
-        version: CURRENT_VERSION,
-        activeServer: 'jp',
-        inventory: [],
-        serverData: {
-            jp: createDefaultServerData(),
-            global: createDefaultServerData(),
-        },
-    };
-};
-
-const migrateData = (data: any): AppData => {
-    let migrated = data;
-    // V1 -> V2: Single project structure to multi-project
-    if (!migrated.version || migrated.version < 2) {
-        const singleProfile: Profile = {
-            id: Date.now(),
-            name: 'Imported Project',
-            goal: migrated.goal || { primaryBlue: [], primaryPink: [], uniqueWishlist: [], wishlist: [] },
-            roster: [], // Will be populated later
-            isPinned: false,
-        };
-        migrated = {
-            version: 2,
-            activeProfileId: singleProfile.id,
-            profiles: [singleProfile],
-            roster: migrated.roster || [], // Temporarily hold roster at top level
-        };
-    }
-    
-    // V2 -> V3: Add folders and layout
-    if (migrated.version < 3) {
-        migrated.version = 3;
-        migrated.folders = [];
-        migrated.layout = migrated.profiles.map((p: Profile) => p.id);
-    }
-
-    // V3 -> V4: Global inventory and server context
-    if (migrated.version < 4) {
-        migrated.version = 4;
-        migrated.inventory = [];
-        const oldPreferences = JSON.parse(localStorage.getItem(USER_PREFERENCES_KEY) || '{}');
-        const serverContext = oldPreferences.dataMode || 'jp';
-        migrated.activeServer = serverContext;
-
-        const newProfiles: Profile[] = [];
-        migrated.profiles.forEach((p: Profile & { roster?: Parent[] | number[] }) => {
-            const newProfile: Profile = { ...p, roster: [] };
-            if (p.roster && Array.isArray(p.roster) && p.roster.length > 0) {
-                // This handles the old V2/V3 structure where roster contained full objects
-                if (typeof p.roster[0] === 'object' && p.roster[0] !== null) {
-                    (p.roster as Parent[]).forEach(parent => {
-                        const newParent = { ...parent, server: serverContext };
-                        migrated.inventory.push(newParent);
-                        newProfile.roster.push(newParent.id);
-                    });
-                }
-            }
-            newProfiles.push(newProfile);
-        });
-        migrated.profiles = newProfiles;
-    }
-    
-    // V4 -> V5: Server-specific workspaces
-    if (migrated.version < 5) {
-        const currentServer = migrated.activeServer || 'jp';
-        const otherServer = currentServer === 'jp' ? 'global' : 'jp';
-
-        const currentServerData: ServerSpecificData = {
-            activeProfileId: migrated.activeProfileId,
-            profiles: migrated.profiles,
-            folders: migrated.folders,
-            layout: migrated.layout,
-        };
-
-        migrated.serverData = {
-            [currentServer]: currentServerData,
-            [otherServer]: createDefaultServerData(),
-        };
-
-        delete migrated.activeProfileId;
-        delete migrated.profiles;
-        delete migrated.folders;
-        delete migrated.layout;
-        
-        migrated.version = 5;
-    }
-
-    // V5 -> V6: Add hash property to parents
-    if (migrated.version < 6) {
-        migrated.inventory.forEach((p: Parent) => {
-            if (!p.hash) {
-                p.hash = generateParentHash(p);
-            }
-        });
-        migrated.version = 6;
-    }
-    
-    // V6 -> V7: Add isBorrowed flag to parents
-    if (migrated.version < 7) {
-        migrated.inventory.forEach((p: Parent) => {
-            if (p.isBorrowed === undefined) {
-                p.isBorrowed = false;
-            }
-        });
-        migrated.version = 7;
-    }
-    
-    // Universal sanity checks for all versions
-    (Object.values(migrated.serverData) as ServerSpecificData[]).forEach(serverData => {
-        serverData.profiles.forEach((p: Profile) => {
-            if (!p.goal) p.goal = { primaryBlue: [], primaryPink: [], uniqueWishlist: [], wishlist: [] };
-            if (!p.goal.uniqueWishlist) p.goal.uniqueWishlist = [];
-            if (p.isPinned === undefined) p.isPinned = false;
-            if (!p.roster) p.roster = [];
-        });
-        serverData.folders.forEach((f: Folder) => {
-            if (f.isPinned === undefined) f.isPinned = false;
-        });
-    });
-    migrated.inventory.forEach((p: Parent) => {
-        if (!p.uniqueSparks) p.uniqueSparks = [];
-        if (!p.server) p.server = 'jp';
-    });
-
-    return migrated as AppData;
-};
-
 
 export const AppProvider = ({ children }: { children: ReactNode }) => {
   const [loading, setLoading] = useState(true);
