@@ -4,7 +4,7 @@ import { Parent } from '../types';
 import { useTranslation } from 'react-i18next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
-import { countUniqueInheritableSkills } from '../utils/affinity';
+import { countTotalLineageSparks, countUniqueCombinedLineageSkills } from '../utils/affinity';
 import { calculateScore } from '../utils/scoring';
 import PairedParentCard from './common/PairedParentCard';
 import ParentDetailModal from './ParentDetailModal';
@@ -17,6 +17,7 @@ interface BreedingPair {
     p2: Parent;
     avgScore: number;
     totalSparks: number;
+    uniqueSparks: number;
 }
 
 const TopBreedingPair = () => {
@@ -50,7 +51,8 @@ const TopBreedingPair = () => {
                     pairs.push({
                         p1, p2,
                         avgScore: Math.round((p1.score + p2.score) / 2),
-                        totalSparks: countUniqueInheritableSkills(p1, p2, inventoryMap)
+                        totalSparks: countTotalLineageSparks(p1, inventoryMap) + countTotalLineageSparks(p2, inventoryMap),
+                        uniqueSparks: countUniqueCombinedLineageSkills(p1, p2, inventoryMap)
                     });
                 }
             }
@@ -71,7 +73,8 @@ const TopBreedingPair = () => {
                      pairs.push({
                         p1, p2,
                         avgScore: Math.round((p1.score + p2.score) / 2),
-                        totalSparks: countUniqueInheritableSkills(p1, p2, inventoryMap)
+                        totalSparks: countTotalLineageSparks(p1, inventoryMap) + countTotalLineageSparks(p2, inventoryMap),
+                        uniqueSparks: countUniqueCombinedLineageSkills(p1, p2, inventoryMap)
                     });
                 }
             }
@@ -144,6 +147,8 @@ const TopBreedingPair = () => {
                                     <span>{t('topPair.avgScore')}: {currentPair.avgScore}</span>
                                     <span className="mx-2">|</span>
                                     <span>{t('topPair.totalSparks')}: {currentPair.totalSparks}</span>
+                                     <span className="mx-2">|</span>
+                                    <span>{t('topPair.uniqueSparks')}: {currentPair.uniqueSparks}</span>
                                 </div>
                             </>
                         ) : (
