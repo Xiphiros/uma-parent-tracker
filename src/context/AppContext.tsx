@@ -10,7 +10,7 @@ import { generateParentHash } from '../utils/hashing';
 
 const DB_KEY = 'umaTrackerData_v2';
 const USER_PREFERENCES_KEY = 'umaTrackerPrefs_v1';
-const CURRENT_VERSION = 6;
+const CURRENT_VERSION = 7;
 
 type DataDisplayLanguage = 'en' | 'jp';
 
@@ -201,6 +201,16 @@ const migrateData = (data: any): AppData => {
             }
         });
         migrated.version = 6;
+    }
+    
+    // V6 -> V7: Add isBorrowed flag to parents
+    if (migrated.version < 7) {
+        migrated.inventory.forEach((p: Parent) => {
+            if (p.isBorrowed === undefined) {
+                p.isBorrowed = false;
+            }
+        });
+        migrated.version = 7;
     }
     
     // Universal sanity checks for all versions
@@ -742,7 +752,7 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
     const newParent: Parent = {
       ...parentData,
       id: Date.now(),
-      gen: getNextGenNumberForCharacter(parentData.umaId),
+      gen: parentData.isBorrowed ? 0 : getNextGenNumberForCharacter(parentData.umaId),
       score: 0, // Score is always calculated on the fly
       server: activeServer,
       hash: newHash,
@@ -753,7 +763,7 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
       
       const activeServerData = prevData.serverData[prevData.activeServer];
       let newProfiles = activeServerData.profiles;
-      if (profileId) {
+      if (profileId && !newParent.isBorrowed) {
         newProfiles = newProfiles.map(p => {
           if (p.id === profileId) {
             return { ...p, roster: [...p.roster, newParent.id] };
