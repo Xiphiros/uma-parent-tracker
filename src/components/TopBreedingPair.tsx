@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { countUniqueInheritableSkills } from '../utils/affinity';
+import { calculateScore } from '../utils/scoring';
 import PairedParentCard from './common/PairedParentCard';
 import ParentDetailModal from './ParentDetailModal';
 
@@ -20,8 +21,9 @@ interface BreedingPair {
 
 const TopBreedingPair = () => {
     const { t } = useTranslation('roster');
-    const { getScoredRoster, appData, activeServer, setActiveBreedingPair } = useAppContext();
+    const { getScoredRoster, appData, activeServer, setActiveBreedingPair, getActiveProfile } = useAppContext();
     const roster = getScoredRoster();
+    const activeGoal = getActiveProfile()?.goal;
 
     const [recType, setRecType] = useState<RecommendationType>('owned');
     const [sortBy, setSortBy] = useState<SortByType>('score');
@@ -31,6 +33,7 @@ const TopBreedingPair = () => {
     const inventoryMap = useMemo(() => new Map(appData.inventory.map(p => [p.id, p])), [appData.inventory]);
 
     const recommendedPairs = useMemo<BreedingPair[]>(() => {
+        if (!activeGoal) return [];
         const pairs: BreedingPair[] = [];
         
         if (recType === 'owned') {
@@ -47,7 +50,10 @@ const TopBreedingPair = () => {
                 }
             }
         } else { // 'borrowed'
-            const borrowedParents = appData.inventory.filter(p => p.isBorrowed && p.server === activeServer);
+            const borrowedParents = appData.inventory
+                .filter(p => p.isBorrowed && p.server === activeServer)
+                .map(p => ({ ...p, score: calculateScore(p, activeGoal, appData.inventory) })); // Calculate score on the fly
+            
             if (roster.length < 1 || borrowedParents.length < 1) return [];
 
             for (const p1 of roster) {
@@ -71,7 +77,7 @@ const TopBreedingPair = () => {
             }
         });
 
-    }, [roster, recType, sortBy, appData.inventory, activeServer, inventoryMap]);
+    }, [roster, recType, sortBy, appData.inventory, activeServer, inventoryMap, activeGoal]);
 
     useEffect(() => {
         setCurrentIndex(0);
@@ -95,7 +101,7 @@ const TopBreedingPair = () => {
         <>
             <section className="card">
                 <h2 className="card__title">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mr-2 card__title-icon--highlight" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" /></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mr-2 card__title-icon--highlight" fill="none" viewBox="0 0 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" /></svg>
                     {t('topPairTitle')}
                 </h2>
                 <div className="top-pair__controls">
