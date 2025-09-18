@@ -28,7 +28,7 @@
 
 .paired-parent-card__details {
     flex-grow: 1;
-    min-width: 0;
+    min-width: 0; /* Prevents flexbox overflow */
 }
 
 .paired-parent-card__name {
@@ -39,6 +39,11 @@
     align-items: center;
     gap: 0.5rem;
     margin-bottom: 0.25rem;
+    flex-wrap: wrap; /* Allow wrapping */
+}
+
+.paired-parent-card__name > span:first-child {
+    word-break: break-word; /* Break long names */
 }
 
 .paired-parent-card__score {
@@ -48,6 +53,7 @@
 }
 
 .paired-parent-card__details-btn {
+    flex-shrink: 0;
     margin-left: auto;
     color: var(--color-text-muted);
     padding: 0.25rem;
