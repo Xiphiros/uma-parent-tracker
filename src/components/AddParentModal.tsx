@@ -29,7 +29,7 @@ const initialState: NewParentData = {
   umaId: '', name: '',
   blueSpark: { type: 'Speed', stars: 1 }, pinkSpark: { type: 'Turf', stars: 1 },
   uniqueSparks: [], whiteSparks: [],
-  grandparent1: undefined, grandparent2: undefined,
+  grandparent1: undefined, grandparent2: undefined, isBorrowed: false,
 };
 
 type GrandparentSlot = 'grandparent1' | 'grandparent2';
@@ -231,6 +231,18 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
                                 displayProp={displayNameProp}
                             />
                         </div>
+                    </div>
+
+                    <div className="form__section !border-t-0 !pt-0">
+                         <label className="flex items-center gap-2 cursor-pointer">
+                            <input
+                                type="checkbox"
+                                className="form__checkbox"
+                                checked={formData.isBorrowed}
+                                onChange={(e) => setFormData(prev => ({ ...prev, isBorrowed: e.target.checked }))}
+                            />
+                            <span className="form__label !mb-0">{t('markAsBorrowed')}</span>
+                        </label>
                     </div>
 
                     <div className="form__section">
