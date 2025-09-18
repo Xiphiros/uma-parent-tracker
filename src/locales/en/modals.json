@@ -1,6 +1,7 @@
 {
   "addParentTitle": "Add New Parent",
   "editParentTitle": "Edit Parent",
+  "parentDetailsTitle": "Parent Details",
   "umaNameLabel": "Uma Name",
   "selectUmaPlaceholder": "Select uma name...",
   "markAsBorrowed": "Mark as borrowed parent",
