@@ -13,6 +13,7 @@ interface PairedParentCardProps {
 }
 
 const WISH_RANK_ORDER: { [key: string]: number } = { S: 0, A: 1, B: 2, C: 3 };
+const CATEGORY_ORDER: { [key: string]: number } = { blue: 0, pink: 1, unique: 2, white: 3 };
 
 const PairedParentCard = ({ parent, onDetailsClick }: PairedParentCardProps) => {
     const { t } = useTranslation(['roster', 'game']);
@@ -66,14 +67,15 @@ const PairedParentCard = ({ parent, onDetailsClick }: PairedParentCardProps) => 
         
         // Sort all collected sparks by importance
         allSparks.sort((a, b) => {
-            if (a.category === 'blue' || a.category === 'pink') return -1;
-            if (b.category === 'blue' || b.category === 'pink') return 1;
+            const categoryOrder = CATEGORY_ORDER[a.category] - CATEGORY_ORDER[b.category];
+            if (categoryOrder !== 0) return categoryOrder;
+
             if (a.tierSort !== b.tierSort) return a.tierSort - b.tierSort;
             if (b.stars !== a.stars) return b.stars - a.stars;
             return a.name.localeCompare(b.name);
         });
 
-        return allSparks; // Return the full sorted list
+        return allSparks;
 
     }, [goal, parent, appData.inventory]);
     
