@@ -1,27 +1,84 @@
-/* PlaceholderCard Styles */
-.placeholder-card {
+/* Paired Parent Card (Compact View) */
+.paired-parent-card {
     display: flex;
     flex-direction: column;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--color-border);
+    background-color: var(--color-card-bg);
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+    border-left: 4px solid var(--color-top-pair-border);
+    height: 100%; /* Ensure cards in a row are same height */
+}
+
+.paired-parent-card__header {
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+}
+
+.paired-parent-card__avatar {
+    width: 48px;
+    height: 48px;
+    object-fit: cover;
+    border-radius: 9999px;
+    border: 2px solid var(--color-avatar-border);
+    flex-shrink: 0;
+}
+
+.paired-parent-card__details {
+    flex-grow: 1;
+    min-width: 0; /* Prevents flexbox overflow */
+}
+
+.paired-parent-card__name-container {
+    margin-bottom: 0.25rem;
+}
+
+.paired-parent-card__name {
+    display: flex;
     align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 2rem;
-    height: 100%;
-    color: var(--color-text-muted);
-}
-
-.placeholder-card__icon {
-    margin-bottom: 1rem;
-    color: var(--color-text-placeholder);
-}
-
-.placeholder-card__title {
+    gap: 0.5rem;
+    flex-wrap: wrap;
     font-weight: 600;
-    color: var(--color-text-secondary);
+    font-size: 1rem;
+    color: var(--color-text-primary);
 }
 
-.placeholder-card__message {
-    font-size: 0.875rem;
-    margin-top: 0.25rem;
-    margin-bottom: 1rem;
+.paired-parent-card__name > span:first-child {
+    word-break: break-word;
+}
+
+.paired-parent-card__score {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-score);
+}
+
+.paired-parent-card__details-btn {
+    flex-shrink: 0;
+    margin-left: auto;
+    color: var(--color-text-muted);
+    padding: 0.25rem;
+    border-radius: 9999px;
+}
+.paired-parent-card__details-btn:hover {
+    background-color: var(--color-card-bg-hover);
+    color: var(--color-text-primary);
+}
+
+.paired-parent-card__body {
+    margin-top: 0.75rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--color-border);
+    /* Create a fixed-height, scrollable container */
+    height: 160px;
+    overflow-y: auto;
+    padding-right: 0.5rem; /* Space for scrollbar */
+}
+
+.paired-parent-card__sparks {
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
 }
