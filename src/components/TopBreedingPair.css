@@ -1,0 +1,96 @@
+/* Top Breeding Pair Block */
+.top-pair__controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.top-pair__toggle-group {
+    display: flex;
+    background-color: var(--color-card-bg-hover);
+    border-radius: 0.375rem;
+    padding: 0.25rem;
+}
+
+.top-pair__toggle-btn {
+    padding: 0.375rem 0.75rem;
+    border-radius: 0.25rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: none;
+    background-color: transparent;
+}
+
+.top-pair__toggle-btn--active {
+    background-color: var(--color-card-bg);
+    color: var(--color-text-primary);
+    box-shadow: var(--color-shadow);
+}
+
+.top-pair__carousel {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.top-pair__nav-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 2.5rem;
+    height: 2.5rem;
+    background-color: var(--color-card-bg-hover);
+    border-radius: 9999px;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    border: 1px solid var(--color-border);
+    transition: all 0.2s ease;
+}
+
+.top-pair__nav-btn:hover:not(:disabled) {
+    color: var(--color-text-primary);
+    background-color: var(--color-border);
+}
+
+.top-pair__nav-btn:disabled {
+    opacity: 0.25;
+    cursor: not-allowed;
+}
+
+.top-pair__content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.top-pair__pair-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+}
+
+@media (min-width: 1024px) { /* lg */
+    .top-pair__pair-container {
+        flex-direction: row;
+        align-items: stretch;
+    }
+    .top-pair__pair-container > * {
+        flex: 1;
+    }
+}
+
+.top-pair__meta {
+    text-align: center;
+    color: var(--color-text-secondary);
+    font-size: 0.875rem;
+}
