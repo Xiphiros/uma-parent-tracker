@@ -194,18 +194,22 @@ export function countTotalLineageWhiteSparks(
 }
 
 /**
- * Counts the number of unique inheritable WHITE sparks in a single parent's lineage.
- * @returns The count of unique white sparks from the parent and its grandparents.
+ * Counts the number of unique inheritable WHITE sparks from the combined lineage of a PAIR of parents.
+ * @returns The count of unique white sparks from both parents and their grandparents.
  */
-export function countUniqueLineageWhiteSparks(
-    parent: Parent,
+export function countUniqueCombinedLineageWhiteSparks(
+    parent1: Parent,
+    parent2: Parent,
     inventoryMap: Map<number, Parent>
 ): number {
     const skillNames = new Set<string>();
     const lineage: (Parent | ManualParentData | null)[] = [
-        parent,
-        resolveGrandparent(parent.grandparent1, inventoryMap),
-        resolveGrandparent(parent.grandparent2, inventoryMap),
+        parent1,
+        parent2,
+        resolveGrandparent(parent1.grandparent1, inventoryMap),
+        resolveGrandparent(parent1.grandparent2, inventoryMap),
+        resolveGrandparent(parent2.grandparent1, inventoryMap),
+        resolveGrandparent(parent2.grandparent2, inventoryMap),
     ];
 
     for (const member of lineage) {
