@@ -1,11 +1,12 @@
 import { useState, useMemo, useEffect } from 'react';
 import { useAppContext } from '../context/AppContext';
 import { Parent } from '../types';
-import ParentCard from './ParentCard';
 import { useTranslation } from 'react-i18next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { countUniqueInheritableSkills } from '../utils/affinity';
+import PairedParentCard from './common/PairedParentCard';
+import ParentDetailModal from './ParentDetailModal';
 
 type RecommendationType = 'owned' | 'borrowed';
 type SortByType = 'score' | 'sparks';
@@ -25,6 +26,7 @@ const TopBreedingPair = () => {
     const [recType, setRecType] = useState<RecommendationType>('owned');
     const [sortBy, setSortBy] = useState<SortByType>('score');
     const [currentIndex, setCurrentIndex] = useState(0);
+    const [detailModalParent, setDetailModalParent] = useState<Parent | null>(null);
     
     const inventoryMap = useMemo(() => new Map(appData.inventory.map(p => [p.id, p])), [appData.inventory]);
 
@@ -90,53 +92,61 @@ const TopBreedingPair = () => {
     const currentPair = recommendedPairs[currentIndex];
 
     return (
-        <section className="card">
-            <h2 className="card__title">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mr-2 card__title-icon--highlight" fill="none" viewBox="0 0 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" /></svg>
-                {t('topPairTitle')}
-            </h2>
-            <div className="top-pair__controls">
-                <div className="top-pair__toggle-group">
-                    <button className={`top-pair__toggle-btn ${recType === 'owned' ? 'top-pair__toggle-btn--active' : ''}`} onClick={() => setRecType('owned')}>{t('topPair.ownedXowned')}</button>
-                    <button className={`top-pair__toggle-btn ${recType === 'borrowed' ? 'top-pair__toggle-btn--active' : ''}`} onClick={() => setRecType('borrowed')}>{t('topPair.ownedXborrowed')}</button>
+        <>
+            <section className="card">
+                <h2 className="card__title">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mr-2 card__title-icon--highlight" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" /></svg>
+                    {t('topPairTitle')}
+                </h2>
+                <div className="top-pair__controls">
+                    <div className="top-pair__toggle-group">
+                        <button className={`top-pair__toggle-btn ${recType === 'owned' ? 'top-pair__toggle-btn--active' : ''}`} onClick={() => setRecType('owned')}>{t('topPair.ownedXowned')}</button>
+                        <button className={`top-pair__toggle-btn ${recType === 'borrowed' ? 'top-pair__toggle-btn--active' : ''}`} onClick={() => setRecType('borrowed')}>{t('topPair.ownedXborrowed')}</button>
+                    </div>
+                     <div className="top-pair__toggle-group">
+                        <span className="top-pair__toggle-btn !cursor-default">{t('topPair.sortBy')}</span>
+                        <button className={`top-pair__toggle-btn ${sortBy === 'score' ? 'top-pair__toggle-btn--active' : ''}`} onClick={() => setSortBy('score')}>{t('topPair.avgScore')}</button>
+                        <button className={`top-pair__toggle-btn ${sortBy === 'sparks' ? 'top-pair__toggle-btn--active' : ''}`} onClick={() => setSortBy('sparks')}>{t('topPair.totalSparks')}</button>
+                    </div>
                 </div>
-                 <div className="top-pair__toggle-group">
-                    <span className="top-pair__toggle-btn !cursor-default">{t('topPair.sortBy')}</span>
-                    <button className={`top-pair__toggle-btn ${sortBy === 'score' ? 'top-pair__toggle-btn--active' : ''}`} onClick={() => setSortBy('score')}>{t('topPair.avgScore')}</button>
-                    <button className={`top-pair__toggle-btn ${sortBy === 'sparks' ? 'top-pair__toggle-btn--active' : ''}`} onClick={() => setSortBy('sparks')}>{t('topPair.totalSparks')}</button>
-                </div>
-            </div>
-            
-            <div className="top-pair__carousel">
-                <button className="top-pair__nav-btn" onClick={handlePrev} disabled={recommendedPairs.length < 2}>
-                    <FontAwesomeIcon icon={faChevronLeft} />
-                </button>
+                
+                <div className="top-pair__carousel">
+                    <button className="top-pair__nav-btn" onClick={handlePrev} disabled={recommendedPairs.length < 2}>
+                        <FontAwesomeIcon icon={faChevronLeft} />
+                    </button>
 
-                <div className="top-pair__content">
-                    {currentPair ? (
-                        <>
-                            <div className="top-pair__pair-container">
-                                <ParentCard parent={currentPair.p1} isTopParent />
-                                <ParentCard parent={currentPair.p2} isTopParent />
-                            </div>
-                            <div className="top-pair__meta">
-                                <span>{t('topPair.pair')} {currentIndex + 1} {t('topPair.of')} {recommendedPairs.length}</span>
-                                <span className="mx-2">|</span>
-                                <span>{t('topPair.avgScore')}: {currentPair.avgScore}</span>
-                                <span className="mx-2">|</span>
-                                <span>{t('topPair.totalSparks')}: {currentPair.totalSparks}</span>
-                            </div>
-                        </>
-                    ) : (
-                        <p className="card__placeholder-text">{t('topPairPlaceholder')}</p>
-                    )}
-                </div>
+                    <div className="top-pair__content">
+                        {currentPair ? (
+                            <>
+                                <div className="top-pair__pair-container">
+                                    <PairedParentCard parent={currentPair.p1} onDetailsClick={() => setDetailModalParent(currentPair.p1)} />
+                                    <PairedParentCard parent={currentPair.p2} onDetailsClick={() => setDetailModalParent(currentPair.p2)} />
+                                </div>
+                                <div className="top-pair__meta">
+                                    <span>{t('topPair.pair')} {currentIndex + 1} {t('topPair.of')} {recommendedPairs.length}</span>
+                                    <span className="mx-2">|</span>
+                                    <span>{t('topPair.avgScore')}: {currentPair.avgScore}</span>
+                                    <span className="mx-2">|</span>
+                                    <span>{t('topPair.totalSparks')}: {currentPair.totalSparks}</span>
+                                </div>
+                            </>
+                        ) : (
+                            <p className="card__placeholder-text">{t('topPairPlaceholder')}</p>
+                        )}
+                    </div>
 
-                <button className="top-pair__nav-btn" onClick={handleNext} disabled={recommendedPairs.length < 2}>
-                    <FontAwesomeIcon icon={faChevronRight} />
-                </button>
-            </div>
-        </section>
+                    <button className="top-pair__nav-btn" onClick={handleNext} disabled={recommendedPairs.length < 2}>
+                        <FontAwesomeIcon icon={faChevronRight} />
+                    </button>
+                </div>
+            </section>
+
+            <ParentDetailModal 
+                isOpen={!!detailModalParent}
+                onClose={() => setDetailModalParent(null)}
+                parent={detailModalParent}
+            />
+        </>
     );
 };
 
