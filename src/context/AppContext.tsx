@@ -7,7 +7,7 @@ import affinityGlJson from '../data/affinity_gl.json';
 import { calculateScore } from '../utils/scoring';
 import i18n from '../i18n';
 import { generateParentHash } from '../utils/hashing';
-import { migrateData, createDefaultState } from '../utils/migrationHandler';
+import { migrateData, createDefaultState, createNewProfile } from '../utils/migrationHandler';
 
 const DB_KEY = 'umaTrackerData_v2';
 const USER_PREFERENCES_KEY = 'umaTrackerPrefs_v1';
