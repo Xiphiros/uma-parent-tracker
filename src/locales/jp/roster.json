@@ -96,6 +96,7 @@
     "noResultsMessage": "育成ウマ娘を選択して、所持ウマ娘から最適な継承ペアを確認しましょう。",
     "bestTrainees": "このペアに最適の育成ウマ娘",
     "excludeInbreeding": "近親配合を除外",
-    "totalSkills": "合計スキル数"
+    "totalWhiteSparks": "合計白因子数",
+    "uniqueWhiteSparks": "ユニーク白因子数"
   }
 }
