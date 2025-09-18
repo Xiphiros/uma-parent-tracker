@@ -24,6 +24,7 @@
         "pts": "pts",
         "rank": "Rank",
         "borrowed": "Borrowed",
+        "details": "View Details",
         "noWhiteSparks": "No inheritable white sparks.",
         "whiteSparkCount": "Unique Lineage White Sparks",
         "totalWhiteSparkCount": "Total Lineage White Sparks (including duplicates)",
