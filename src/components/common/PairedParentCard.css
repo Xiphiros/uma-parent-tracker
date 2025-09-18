@@ -70,9 +70,8 @@
     padding-top: 0.75rem;
     border-top: 1px solid var(--color-border);
     flex-grow: 1;
-    min-height: 90px; /* Set a fixed height for the sparks area */
-    max-height: 90px;
-    overflow: hidden; /* Hide any sparks that wrap beyond the fixed height */
+    /* Set a min-height to prevent cards with few sparks from shrinking, ensuring vertical consistency. */
+    min-height: 80px; 
 }
 
 .paired-parent-card__sparks {
