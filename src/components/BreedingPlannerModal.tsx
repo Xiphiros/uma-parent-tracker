@@ -8,7 +8,7 @@ import SelectionSlot from './common/SelectionSlot';
 import InventoryModal from './InventoryModal';
 import SelectUmaModal from './SelectUmaModal';
 import LineageDisplay from './common/LineageDisplay';
-import { calculateFullAffinity, getLineageCharacterIds, countUniquePairSkills, resolveGrandparent } from '../utils/affinity';
+import { calculateFullAffinity, getLineageCharacterIds, countTotalLineageWhiteSparks, countUniqueCombinedLineageWhiteSparks, resolveGrandparent } from '../utils/affinity';
 import PlaceholderCard from './common/PlaceholderCard';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUsers, faUser, faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
@@ -24,7 +24,8 @@ interface Suggestion {
     p1: Parent;
     p2: Parent;
     totalAffinity: number;
-    totalInheritableSkills: number;
+    totalWhiteSparks: number;
+    uniqueWhiteSparks: number;
 }
 
 type PlannerTab = 'manual' | 'suggestions';
@@ -92,13 +93,15 @@ const BreedingPlannerModal = ({ isOpen, onClose }: BreedingPlannerModalProps) =>
                 }
 
                 const totalAffinity = calculateFullAffinity(trainee, p1, p2, charaRelations, relationPoints, inventoryMap, umaMapById);
-                const totalInheritableSkills = countUniquePairSkills(p1, p2, inventoryMap);
-                pairs.push({ p1, p2, totalAffinity, totalInheritableSkills });
+                const totalWhiteSparks = countTotalLineageWhiteSparks(p1, inventoryMap) + countTotalLineageWhiteSparks(p2, inventoryMap);
+                const uniqueWhiteSparks = countUniqueCombinedLineageWhiteSparks(p1, p2, inventoryMap);
+                pairs.push({ p1, p2, totalAffinity, totalWhiteSparks, uniqueWhiteSparks });
             }
         }
         return pairs.sort((a, b) => {
             if (b.totalAffinity !== a.totalAffinity) return b.totalAffinity - a.totalAffinity;
-            return b.totalInheritableSkills - a.totalInheritableSkills;
+            if (b.totalWhiteSparks !== a.totalWhiteSparks) return b.totalWhiteSparks - a.totalWhiteSparks;
+            return b.uniqueWhiteSparks - a.uniqueWhiteSparks;
         }).slice(0, 20);
     }, [trainee, roster, inventoryMap, umaMapById, charaRelations, relationPoints]);
 
@@ -276,13 +279,13 @@ const BreedingPlannerModal = ({ isOpen, onClose }: BreedingPlannerModalProps) =>
                                                 </div>
                                                 <div className="breeding-planner__suggestion-scores">
                                                     <div className="breeding-planner__suggestion-affinity">{s.totalAffinity} {t('breedingPlanner.affinity')}</div>
-                                                    <div className="breeding-planner__suggestion-parent-score">{s.totalInheritableSkills} {t('breedingPlanner.totalSkills')}</div>
+                                                    <div className="breeding-planner__suggestion-parent-score">{s.totalWhiteSparks} {t('breedingPlanner.totalWhiteSparks')}</div>
                                                 </div>
                                             </div>
                                         )) : <p className="card__placeholder-text text-center py-8">{t('breedingPlanner.noResults')}</p>}
                                     </div>
                                     <div className="breeding-planner__suggestion-detail">
-                                        {selectedSuggestion && aggregatedSparksForSelected ? (
+                                        {selectedSuggestion ? (
                                             <>
                                                 <div className="breeding-planner__detail-lineage">
                                                     <LineageDisplay label="" parent={selectedSuggestion.p1} />
@@ -295,43 +298,49 @@ const BreedingPlannerModal = ({ isOpen, onClose }: BreedingPlannerModalProps) =>
                                                         <span className="breeding-planner__detail-summary-label">{t('breedingPlanner.affinity')}</span>
                                                     </div>
                                                     <div>
-                                                        <span className="breeding-planner__detail-summary-value">{selectedSuggestion.totalInheritableSkills}</span>
-                                                        <span className="breeding-planner__detail-summary-label">{t('breedingPlanner.totalSkills')}</span>
+                                                        <span className="breeding-planner__detail-summary-value">{selectedSuggestion.totalWhiteSparks}</span>
+                                                        <span className="breeding-planner__detail-summary-label">{t('breedingPlanner.totalWhiteSparks')}</span>
+                                                    </div>
+                                                    <div>
+                                                        <span className="breeding-planner__detail-summary-value">{selectedSuggestion.uniqueWhiteSparks}</span>
+                                                        <span className="breeding-planner__detail-summary-label">{t('breedingPlanner.uniqueWhiteSparks')}</span>
                                                     </div>
                                                 </div>
                                                 <div className={`breeding-planner__detail-sparks ${isSparkViewExpanded ? 'breeding-planner__detail-sparks--expanded' : ''}`}>
                                                     <button className="breeding-planner__expand-btn" onClick={() => setIsSparkViewExpanded(prev => !prev)}>
                                                         <FontAwesomeIcon icon={isSparkViewExpanded ? faChevronDown : faChevronUp} />
                                                     </button>
-                                                    <div className="breeding-planner__detail-sparks-content">
-                                                        {Object.entries(aggregatedSparksForSelected.blue).map(([type, data]) => (
-                                                            <div key={type} className="lineage-spark" data-spark-category="blue" data-spark-type={type.toLowerCase()}>
-                                                                {data.total}★ {t(type, { ns: 'game' })}
-                                                                {data.parent > 0 && <FontAwesomeIcon icon={faUser} className="lineage-spark__gp-icon" />}
-                                                            </div>
-                                                        ))}
-                                                        {Object.entries(aggregatedSparksForSelected.pink).map(([type, data]) => (
-                                                            <div key={type} className="lineage-spark" data-spark-category="pink" data-spark-type={type.toLowerCase().replace(/ /g, '-')}>
-                                                                {data.total}★ {t(type, { ns: 'game' })}
-                                                                {data.parent > 0 && <FontAwesomeIcon icon={faUser} className="lineage-spark__gp-icon" />}
-                                                            </div>
-                                                        ))}
-                                                        {aggregatedSparksForSelected.unique.map(spark => (
-                                                            <SparkTag key={spark.name} category="unique" type={getSkillDisplayName(spark.name)} stars={spark.stars}>
-                                                                {spark.fromParent && <FontAwesomeIcon icon={faUser} className="lineage-spark__gp-icon" />}
-                                                            </SparkTag>
-                                                        ))}
-                                                        {aggregatedSparksForSelected.white.map(spark => {
-                                                            const wishlistItem = goal?.wishlist.find(w => w.name === spark.name);
-                                                            const tier = wishlistItem ? `(${t('parentCard.rank')} ${wishlistItem.tier})` : null;
-                                                            return (
-                                                                <SparkTag key={spark.name} category="white" type={getSkillDisplayName(spark.name)} stars={spark.stars}>
+                                                    {aggregatedSparksForSelected && (
+                                                        <div className="breeding-planner__detail-sparks-content">
+                                                            {Object.entries(aggregatedSparksForSelected.blue).map(([type, data]) => (
+                                                                <div key={type} className="lineage-spark" data-spark-category="blue" data-spark-type={type.toLowerCase()}>
+                                                                    {data.total}★ {t(type, { ns: 'game' })}
+                                                                    {data.parent > 0 && <FontAwesomeIcon icon={faUser} className="lineage-spark__gp-icon" />}
+                                                                </div>
+                                                            ))}
+                                                            {Object.entries(aggregatedSparksForSelected.pink).map(([type, data]) => (
+                                                                <div key={type} className="lineage-spark" data-spark-category="pink" data-spark-type={type.toLowerCase().replace(/ /g, '-')}>
+                                                                    {data.total}★ {t(type, { ns: 'game' })}
+                                                                    {data.parent > 0 && <FontAwesomeIcon icon={faUser} className="lineage-spark__gp-icon" />}
+                                                                </div>
+                                                            ))}
+                                                            {aggregatedSparksForSelected.unique.map(spark => (
+                                                                <SparkTag key={spark.name} category="unique" type={getSkillDisplayName(spark.name)} stars={spark.stars}>
                                                                     {spark.fromParent && <FontAwesomeIcon icon={faUser} className="lineage-spark__gp-icon" />}
-                                                                    {tier && <span className="parent-card__spark-tier">{tier}</span>}
                                                                 </SparkTag>
-                                                            );
-                                                        })}
-                                                    </div>
+                                                            ))}
+                                                            {aggregatedSparksForSelected.white.map(spark => {
+                                                                const wishlistItem = goal?.wishlist.find(w => w.name === spark.name);
+                                                                const tier = wishlistItem ? `(${t('parentCard.rank')} ${wishlistItem.tier})` : null;
+                                                                return (
+                                                                    <SparkTag key={spark.name} category="white" type={getSkillDisplayName(spark.name)} stars={spark.stars}>
+                                                                        {spark.fromParent && <FontAwesomeIcon icon={faUser} className="lineage-spark__gp-icon" />}
+                                                                        {tier && <span className="parent-card__spark-tier">{tier}</span>}
+                                                                    </SparkTag>
+                                                                );
+                                                            })}
+                                                        </div>
+                                                    )}
                                                 </div>
                                             </>
                                         ) : (
