@@ -21,7 +21,7 @@ interface BreedingPair {
 
 const TopBreedingPair = () => {
     const { t } = useTranslation('roster');
-    const { getScoredRoster, appData, activeServer, setActiveBreedingPair, getActiveProfile } = useAppContext();
+    const { getScoredRoster, appData, activeServer, setActiveBreedingPair, getActiveProfile, umaMapById } = useAppContext();
     const roster = getScoredRoster();
     const activeGoal = getActiveProfile()?.goal;
 
@@ -42,6 +42,11 @@ const TopBreedingPair = () => {
                 for (let j = i + 1; j < roster.length; j++) {
                     const p1 = roster[i];
                     const p2 = roster[j];
+                    
+                    const p1CharId = umaMapById.get(p1.umaId)?.characterId;
+                    const p2CharId = umaMapById.get(p2.umaId)?.characterId;
+                    if (p1CharId === p2CharId) continue;
+
                     pairs.push({
                         p1, p2,
                         avgScore: Math.round((p1.score + p2.score) / 2),
@@ -50,14 +55,19 @@ const TopBreedingPair = () => {
                 }
             }
         } else { // 'borrowed'
+            const ownedRosterParents = roster.filter(p => !p.isBorrowed);
             const borrowedParents = appData.inventory
                 .filter(p => p.isBorrowed && p.server === activeServer)
-                .map(p => ({ ...p, score: calculateScore(p, activeGoal, appData.inventory) })); // Calculate score on the fly
+                .map(p => ({ ...p, score: calculateScore(p, activeGoal, appData.inventory) }));
             
-            if (roster.length < 1 || borrowedParents.length < 1) return [];
+            if (ownedRosterParents.length < 1 || borrowedParents.length < 1) return [];
 
-            for (const p1 of roster) {
+            for (const p1 of ownedRosterParents) {
                 for (const p2 of borrowedParents) {
+                    const p1CharId = umaMapById.get(p1.umaId)?.characterId;
+                    const p2CharId = umaMapById.get(p2.umaId)?.characterId;
+                    if (p1CharId === p2CharId) continue;
+                    
                      pairs.push({
                         p1, p2,
                         avgScore: Math.round((p1.score + p2.score) / 2),
@@ -77,7 +87,7 @@ const TopBreedingPair = () => {
             }
         });
 
-    }, [roster, recType, sortBy, appData.inventory, activeServer, inventoryMap, activeGoal]);
+    }, [roster, recType, sortBy, appData.inventory, activeServer, inventoryMap, activeGoal, umaMapById]);
 
     useEffect(() => {
         setCurrentIndex(0);
