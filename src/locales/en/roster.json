@@ -3,16 +3,27 @@
     "placeholderRoster": "No parents in this roster. Add one to get started!",
     "addParentBtn": "Add Parent",
     "topPairTitle": "Top Breeding Pair",
+    "topPair": {
+        "ownedXowned": "Owned × Owned",
+        "ownedXborrowed": "Owned × Borrowed",
+        "sortBy": "Sort By:",
+        "avgScore": "Avg Score",
+        "totalSparks": "Total Sparks",
+        "pair": "Pair",
+        "of": "of"
+    },
     "topPairPlaceholder": "Add at least two parents to the roster to see your top pair.",
     "topPairPlaceholderSingle": "Add one more parent to see your top pair.",
     "suggestions": {
         "title": "Breeding Suggestions",
-        "placeholder": "Add two parents to the roster to get breeding suggestions."
+        "placeholder": "Add two parents to the roster to get breeding suggestions.",
+        "placeholderCarousel": "Select a breeding pair above to see trainee suggestions."
     },
     "parentCard": {
         "gen": "Gen",
         "pts": "pts",
         "rank": "Rank",
+        "borrowed": "Borrowed",
         "noWhiteSparks": "No inheritable white sparks.",
         "whiteSparkCount": "Unique Lineage White Sparks",
         "totalWhiteSparkCount": "Total Lineage White Sparks (including duplicates)",
