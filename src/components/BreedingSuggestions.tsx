@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLightbulb } from '@fortawesome/free-solid-svg-icons';
 import { calculateFullAffinity, getLineageCharacterIds } from '../utils/affinity';
+import { Uma } from '../types';
 
 const BreedingSuggestions = () => {
     const { t } = useTranslation('roster');
@@ -20,7 +21,16 @@ const BreedingSuggestions = () => {
         const lineageCharIds = getLineageCharacterIds(parent1, parent2, inventoryMap, umaMapById);
         const lineageCharIdStrings = new Set(Array.from(lineageCharIds).map(String));
         
-        const scoredSuggestions = masterUmaList
+        // De-duplicate the trainee list to show only one outfit per character,
+        // as all outfits for a character have the same affinity.
+        const uniqueTrainees = masterUmaList.reduce((acc, currentUma) => {
+            if (!acc.has(currentUma.characterId)) {
+                acc.set(currentUma.characterId, currentUma);
+            }
+            return acc;
+        }, new Map<string, Uma>());
+
+        const scoredSuggestions = Array.from(uniqueTrainees.values())
             .filter(uma => !lineageCharIdStrings.has(uma.characterId)) // Anti-inbreeding filter
             .map(trainee => ({
                 uma: trainee,
