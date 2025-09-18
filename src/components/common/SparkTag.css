@@ -1,20 +1,20 @@
 /* Spark Tag Component */
 .spark-tag {
-    display: inline-flex;
+    display: flex; /* Changed from inline-flex */
     align-items: center;
     padding: 0.25rem 0.75rem;
     border-radius: 9999px;
     font-weight: 500;
     font-size: 0.8rem;
-    margin-bottom: 0.125rem; /* Reduced bottom margin */
+    margin-bottom: 0.125rem;
     background-color: var(--color-card-bg-hover);
     color: var(--color-text-secondary);
     border-bottom: 3px solid transparent;
     transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
     
     /* Properties for layout consistency */
-    width: 100%; /* Make tag full width */
-    max-width: 100%; /* Override previous max-width */
+    width: 100%;
+    max-width: 100%;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
