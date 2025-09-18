@@ -80,6 +80,7 @@ export interface Parent {
   grandparent1?: Grandparent;
   grandparent2?: Grandparent;
   hash?: string;
+  isBorrowed?: boolean;
 }
 
 export type NewParentData = Omit<Parent, 'id' | 'score' | 'gen' | 'server'>;
@@ -112,7 +113,7 @@ export interface ServerSpecificData {
 }
 
 export interface AppData {
-  version: 6;
+  version: 7;
   activeServer: 'jp' | 'global';
   inventory: Parent[];
   serverData: {
