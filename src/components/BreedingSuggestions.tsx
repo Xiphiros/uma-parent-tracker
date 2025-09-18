@@ -1,46 +1,27 @@
 import { useMemo } from 'react';
 import { useAppContext } from '../context/AppContext';
-import { Parent, ManualParentData } from '../types';
 import './BreedingSuggestions.css';
 import { useTranslation } from 'react-i18next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLightbulb } from '@fortawesome/free-solid-svg-icons';
-import { calculateFullAffinity, resolveGrandparent } from '../utils/affinity';
+import { calculateFullAffinity, getLineageCharacterIds } from '../utils/affinity';
 
 const BreedingSuggestions = () => {
     const { t } = useTranslation('roster');
-    const { getScoredRoster, masterUmaList, appData, dataDisplayLanguage, umaMapById, charaRelations, relationPoints } = useAppContext();
-    const roster = getScoredRoster();
+    const { masterUmaList, appData, dataDisplayLanguage, umaMapById, charaRelations, relationPoints, activeBreedingPair } = useAppContext();
     const displayNameProp = dataDisplayLanguage === 'jp' ? 'name_jp' : 'name_en';
-
-    const topTwoParents = useMemo(() => {
-        return [...roster].sort((a, b) => b.score - a.score).slice(0, 2);
-    }, [roster]);
-
+    
     const inventoryMap = useMemo(() => new Map(appData.inventory.map(p => [p.id, p])), [appData.inventory]);
 
     const suggestions = useMemo(() => {
-        if (topTwoParents.length < 2) return [];
-        const [parent1, parent2] = topTwoParents;
+        if (!activeBreedingPair) return [];
+        const { p1: parent1, p2: parent2 } = activeBreedingPair;
         
-        const lineageCharIds = new Set<string>();
-        const lineageMembers: (Parent | ManualParentData | null)[] = [
-            parent1, parent2,
-            resolveGrandparent(parent1.grandparent1, inventoryMap),
-            resolveGrandparent(parent1.grandparent2, inventoryMap),
-            resolveGrandparent(parent2.grandparent1, inventoryMap),
-            resolveGrandparent(parent2.grandparent2, inventoryMap)
-        ];
-        
-        for (const member of lineageMembers) {
-            if (member?.umaId) {
-                const uma = umaMapById.get(member.umaId);
-                if (uma) lineageCharIds.add(uma.characterId);
-            }
-        }
+        const lineageCharIds = getLineageCharacterIds(parent1, parent2, inventoryMap, umaMapById);
+        const lineageCharIdStrings = new Set(Array.from(lineageCharIds).map(String));
         
         const scoredSuggestions = masterUmaList
-            .filter(uma => !lineageCharIds.has(uma.characterId)) // Anti-inbreeding filter
+            .filter(uma => !lineageCharIdStrings.has(uma.characterId)) // Anti-inbreeding filter
             .map(trainee => ({
                 uma: trainee,
                 score: calculateFullAffinity(trainee, parent1, parent2, charaRelations, relationPoints, inventoryMap, umaMapById)
@@ -50,7 +31,7 @@ const BreedingSuggestions = () => {
 
         return scoredSuggestions.slice(0, 10);
 
-    }, [topTwoParents, masterUmaList, inventoryMap, umaMapById, charaRelations, relationPoints]);
+    }, [activeBreedingPair, masterUmaList, inventoryMap, umaMapById, charaRelations, relationPoints]);
 
     return (
         <section className="card">
@@ -59,8 +40,8 @@ const BreedingSuggestions = () => {
                 {t('suggestions.title')}
             </h2>
             <div className="suggestions-list">
-                {topTwoParents.length < 2 ? (
-                    <p className="card__placeholder-text">{t('suggestions.placeholder')}</p>
+                {!activeBreedingPair ? (
+                    <p className="card__placeholder-text">{t('suggestions.placeholderCarousel')}</p>
                 ) : (
                     suggestions.map((item, index) => (
                         <div key={item.uma.id} className="suggestions-list__item">
