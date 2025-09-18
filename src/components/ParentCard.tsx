@@ -179,7 +179,7 @@ const ParentCard = ({ parent, isTopParent = false, displayScore = true, onEdit, 
                     <div className="parent-card__header">
                         <div className="parent-card__identity">
                             <h3 className="parent-card__name">
-                                {displayName}
+                                <span>{displayName}</span>
                                 {parent.isBorrowed && <span className="parent-card__borrowed-tag">{t('parentCard.borrowed')}</span>}
                             </h3>
                             <div className="parent-card__meta">
