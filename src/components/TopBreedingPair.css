@@ -79,16 +79,6 @@
     width: 100%;
 }
 
-@media (min-width: 1024px) { /* lg */
-    .top-pair__pair-container {
-        flex-direction: row;
-        align-items: stretch;
-    }
-    .top-pair__pair-container > * {
-        flex: 1;
-    }
-}
-
 .top-pair__meta {
     text-align: center;
     color: var(--color-text-secondary);
