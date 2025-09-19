@@ -1,11 +1,10 @@
 import { useMemo } from 'react';
 import { useAppContext } from '../../context/AppContext';
-import { Grandparent, ManualParentData, Parent, WhiteSpark } from '../../types';
-import SparkTag from './SparkTag';
+import { Grandparent, Parent, WhiteSpark } from '../../types';
 import { useTranslation } from 'react-i18next';
 import './PairedParentCard.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEllipsis } from '@fortawesome/free-solid-svg-icons';
+import { faEllipsis, faUser } from '@fortawesome/free-solid-svg-icons';
 
 interface PairedParentCardProps {
     parent: Parent;
@@ -13,71 +12,65 @@ interface PairedParentCardProps {
 }
 
 const WISH_RANK_ORDER: { [key: string]: number } = { S: 0, A: 1, B: 2, C: 3 };
-const CATEGORY_ORDER: { [key: string]: number } = { blue: 0, pink: 1, unique: 2, white: 3 };
 
 const PairedParentCard = ({ parent, onDetailsClick }: PairedParentCardProps) => {
     const { t } = useTranslation(['roster', 'game']);
-    const { umaMapById, dataDisplayLanguage, getActiveProfile, appData } = useAppContext();
+    const { umaMapById, dataDisplayLanguage, getActiveProfile, appData, skillMapByName } = useAppContext();
     const displayNameProp = dataDisplayLanguage === 'jp' ? 'name_jp' : 'name_en';
     const goal = getActiveProfile()?.goal;
 
     const umaData = useMemo(() => umaMapById.get(parent.umaId), [umaMapById, parent.umaId]);
     const displayName = umaData ? umaData[displayNameProp] : parent.name;
 
-    const displayedSparks = useMemo(() => {
+    const aggregatedSparks = useMemo(() => {
         const inventoryMap = new Map(appData.inventory.map(p => [p.id, p]));
-        const resolveGrandparent = (gp: Grandparent | undefined): Parent | ManualParentData | null => {
+
+        const resolveGrandparent = (gp: Grandparent | undefined) => {
             if (!gp) return null;
-            if (typeof gp === 'number') return inventoryMap.get(gp) || null;
+            if (typeof gp === 'number') return inventoryMap.get(gp);
             return gp;
         };
         const gp1 = resolveGrandparent(parent.grandparent1);
         const gp2 = resolveGrandparent(parent.grandparent2);
 
-        const allSparks: (any & { category: string, tierSort: number })[] = [];
-
-        // Add representative sparks
-        allSparks.push({ ...parent.blueSpark, category: 'blue', name: parent.blueSpark.type, tierSort: 99 });
-        allSparks.push({ ...parent.pinkSpark, category: 'pink', name: parent.pinkSpark.type, tierSort: 99 });
-        parent.uniqueSparks.forEach(s => {
-            const wishlistItem = goal?.uniqueWishlist.find(w => w.name === s.name);
-            const tier = wishlistItem ? wishlistItem.tier : 'C'; // Default to C for sorting
-            allSparks.push({ ...s, category: 'unique', tierSort: WISH_RANK_ORDER[tier] });
-        });
-
-        // Aggregate and add white sparks from lineage
-        const whiteSparksMap: Map<string, { stars: number; tier: 'S' | 'A' | 'B' | 'C' }> = new Map();
-        const lineage = [parent, gp1, gp2];
-        lineage.forEach(member => {
-            if (member && 'whiteSparks' in member) {
-                (member.whiteSparks as WhiteSpark[]).forEach(spark => {
-                    if (!whiteSparksMap.has(spark.name)) {
-                        const wishlistItem = goal?.wishlist.find(w => w.name === spark.name);
-                        if (wishlistItem) {
-                            whiteSparksMap.set(spark.name, { stars: spark.stars, tier: wishlistItem.tier });
-                        }
-                    }
+        // Aggregate White Sparks from the entire lineage
+        const white: Map<string, { totalStars: number; contributions: { source: string; stars: number }[]; name: string; tier: string | null }> = new Map();
+        
+        const processWhiteSpark = (spark: WhiteSpark, source: string) => {
+            const existing = white.get(spark.name);
+            if (existing) {
+                existing.totalStars += spark.stars;
+                existing.contributions.push({ source, stars: spark.stars });
+            } else {
+                const wishlistItem = goal?.wishlist.find(w => w.name === spark.name);
+                white.set(spark.name, {
+                    name: spark.name,
+                    totalStars: spark.stars,
+                    contributions: [{ source, stars: spark.stars }],
+                    tier: wishlistItem ? wishlistItem.tier : null
                 });
             }
-        });
+        };
 
-        Array.from(whiteSparksMap.entries()).forEach(([name, data]) => {
-            allSparks.push({ name, stars: data.stars, category: 'white', tierSort: WISH_RANK_ORDER[data.tier] });
-        });
-        
-        // Sort all collected sparks by importance
-        allSparks.sort((a, b) => {
-            const categoryOrder = CATEGORY_ORDER[a.category] - CATEGORY_ORDER[b.category];
-            if (categoryOrder !== 0) return categoryOrder;
+        parent.whiteSparks.forEach(s => processWhiteSpark(s, t('parentCard.parentSource')));
+        if (gp1 && 'whiteSparks' in gp1) gp1.whiteSparks.forEach(s => processWhiteSpark(s, t('parentCard.gpSource')));
+        if (gp2 && 'whiteSparks' in gp2) gp2.whiteSparks.forEach(s => processWhiteSpark(s, t('parentCard.gpSource')));
 
-            if (a.tierSort !== b.tierSort) return a.tierSort - b.tierSort;
-            if (b.stars !== a.stars) return b.stars - a.stars;
+        const sortedWhite = Array.from(white.values()).sort((a, b) => {
+            const aTier = a.tier ? WISH_RANK_ORDER[a.tier] : 99;
+            const bTier = b.tier ? WISH_RANK_ORDER[b.tier] : 99;
+            if (aTier !== bTier) return aTier - bTier;
+            if (b.totalStars !== a.totalStars) return b.totalStars - a.totalStars;
             return a.name.localeCompare(b.name);
         });
 
-        return allSparks;
+        return { white: sortedWhite };
+    }, [parent, appData.inventory, goal, t]);
 
-    }, [goal, parent, appData.inventory]);
+    const getSparkDisplayName = (name: string) => {
+        const skill = skillMapByName.get(name);
+        return skill ? skill[displayNameProp] : name;
+    };
     
     return (
         <div className="paired-parent-card">
@@ -98,15 +91,27 @@ const PairedParentCard = ({ parent, onDetailsClick }: PairedParentCardProps) => 
             </div>
             <div className="paired-parent-card__body">
                 <div className="paired-parent-card__sparks">
-                     {displayedSparks.map(spark => (
-                        <SparkTag 
-                            key={`${spark.category}-${spark.name}`} 
-                            category={spark.category as any} 
-                            type={t(spark.name, { ns: 'game', defaultValue: spark.name })} 
-                            stars={spark.stars}
-                            originalType={spark.name}
-                        />
+                    <div className="lineage-spark" data-spark-category="blue">{parent.blueSpark.stars}★ {t(parent.blueSpark.type, { ns: 'game' })}</div>
+                    <div className="lineage-spark" data-spark-category="pink">{parent.pinkSpark.stars}★ {t(parent.pinkSpark.type, { ns: 'game' })}</div>
+                    {parent.uniqueSparks.map(spark => (
+                        <div key={spark.name} className="lineage-spark" data-spark-category="unique">
+                            {getSparkDisplayName(spark.name)}
+                            <span className="lineage-spark__parent-contrib">({spark.stars}★)</span>
+                        </div>
                     ))}
+                    {aggregatedSparks.white.map(spark => {
+                        const fromParent = spark.contributions.some(c => c.source === t('parentCard.parentSource'));
+                        const tier = spark.tier ? `(${t('parentCard.rank')} ${spark.tier})` : null;
+                        const tooltipText = spark.contributions.map(c => `${c.source}: ${c.stars}★`).join(' + ');
+                        
+                        return (
+                            <div key={spark.name} className="lineage-spark" data-spark-category="white" title={tooltipText}>
+                                {spark.totalStars}★ {getSparkDisplayName(spark.name)}
+                                {fromParent && <FontAwesomeIcon icon={faUser} className="lineage-spark__gp-icon" />}
+                                {tier && <span className="parent-card__spark-tier">{tier}</span>}
+                            </div>
+                        );
+                    })}
                 </div>
             </div>
         </div>
