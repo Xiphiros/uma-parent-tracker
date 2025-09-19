@@ -1,4 +1,4 @@
-import { Grandparent, ManualParentData, Parent, Uma, WhiteSpark, UniqueSpark, Goal, WishlistItem } from '../types';
+import { Grandparent, ManualParentData, Parent, Uma, WhiteSpark, UniqueSpark, Goal, WishlistItem, Skill } from '../types';
 
 /**
  * Resolves a grandparent reference (ID or object) to a full data object.
@@ -170,23 +170,32 @@ export function getCombinedLineageSkillNames(
 }
 
 /**
- * Compares a breeding pair's combined lineage skills against a goal wishlist to find missing skills.
- * @returns An array of WishlistItem objects that are not present in the lineage.
+ * Compares a breeding pair's lineage against the goal to find missing non-race, non-unique white skills.
+ * @returns An object with the list of missing skills and the count of relevant wishlist items.
  */
 export function getMissingWishlistSkills(
     parent1: Parent,
     parent2: Parent,
     goal: Goal,
-    inventoryMap: Map<number, Parent>
-): WishlistItem[] {
-    const allWishlistItems = [...goal.uniqueWishlist, ...goal.wishlist];
-    if (allWishlistItems.length === 0) {
-        return [];
+    inventoryMap: Map<number, Parent>,
+    skillMapByName: Map<string, Skill>
+): { missingSkills: WishlistItem[]; relevantWishlistCount: number } {
+    
+    // Filter the wishlist to only include "normal" white sparks (not race factors).
+    const relevantWishlistItems = goal.wishlist.filter(item => {
+        const skill = skillMapByName.get(item.name);
+        return skill && skill.type === 'normal' && !skill.id.startsWith('race_');
+    });
+
+    const relevantWishlistCount = relevantWishlistItems.length;
+    if (relevantWishlistCount === 0) {
+        return { missingSkills: [], relevantWishlistCount: 0 };
     }
 
     const lineageSkills = getCombinedLineageSkillNames(parent1, parent2, inventoryMap);
-
-    return allWishlistItems.filter(item => !lineageSkills.has(item.name));
+    const missingSkills = relevantWishlistItems.filter(item => !lineageSkills.has(item.name));
+    
+    return { missingSkills, relevantWishlistCount };
 }
 
 /**
