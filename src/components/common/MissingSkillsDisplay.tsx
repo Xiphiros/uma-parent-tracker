@@ -12,7 +12,7 @@ interface MissingSkillsDisplayProps {
     onToggleSkill?: (skillName: string) => void;
 }
 
-type SkillView = 'missing' | 'unsaturated';
+type SkillView = 'missing' | 'partial';
 
 const WISH_RANK_ORDER: { [key: string]: number } = { S: 0, A: 1, B: 2, C: 3 };
 
@@ -49,8 +49,8 @@ const MissingSkillsDisplay = ({ missingSkills, unsaturatedSkills, totalWishlistC
                     {t('roster:breedingPlanner.viewMissing')} ({missingSkills.length})
                 </button>
                 <button 
-                    className={`missing-skills__toggle-btn ${view === 'unsaturated' ? 'missing-skills__toggle-btn--active' : ''}`}
-                    onClick={() => setView('unsaturated')}>
+                    className={`missing-skills__toggle-btn ${view === 'partial' ? 'missing-skills__toggle-btn--active' : ''}`}
+                    onClick={() => setView('partial')}>
                     {t('roster:breedingPlanner.viewUnsaturated')} ({unsaturatedSkills.length})
                 </button>
             </div>
@@ -77,7 +77,7 @@ const MissingSkillsDisplay = ({ missingSkills, unsaturatedSkills, totalWishlistC
                     </ul>
                 </div>
             ))}
-             {skillsToDisplay.length === 0 && view === 'unsaturated' && (
+             {skillsToDisplay.length === 0 && view === 'partial' && (
                 <p className="missing-skills__placeholder">{t('roster:breedingPlanner.allSkillsSaturated')}</p>
             )}
         </div>
