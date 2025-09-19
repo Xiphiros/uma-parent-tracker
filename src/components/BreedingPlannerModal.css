@@ -238,9 +238,10 @@
     background-color: var(--color-card-bg-hover);
 }
 
+/* Updated single-column layout for slide-up panel content */
 .breeding-planner__detail-sparks-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    flex-direction: column;
     gap: 1rem;
     padding: 1.5rem 1rem 1rem;
     overflow-y: auto;
@@ -248,8 +249,16 @@
     min-height: 0; /* Flexbox overflow fix */
 }
 
-.breeding-planner__sparks-column, .breeding-planner__missing-skills-column {
+/* Reuse parent card's container for consistent wrapping */
+.breeding-planner__detail-sparks-content .parent-card__spark-container {
     display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.breeding-planner__divider {
+    border: none;
+    height: 1px;
+    background-color: var(--color-border);
+    margin: 0.5rem 0;
 }
