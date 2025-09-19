@@ -97,6 +97,7 @@
     "bestTrainees": "このペアに最適の育成ウマ娘",
     "excludeInbreeding": "近親配合を除外",
     "totalWhiteSparks": "合計白因子数",
-    "uniqueWhiteSparks": "ユニーク白因子数"
+    "uniqueWhiteSparks": "ユニーク白因子数",
+    "allSkillsCovered": "このペアはウィッシュリストの{{count}}個のスキルをすべてカバーしています！"
   }
 }

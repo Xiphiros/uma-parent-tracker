@@ -17,6 +17,7 @@
 @import "./components/common/InventoryControls.css";
 @import "./components/common/LineageDisplay.css";
 @import "./components/common/LineageTree.css";
+@import "./components/common/MissingSkillsDisplay.css";
 @import "./components/ParentCard.css";
 @import "./components/common/PairedParentCard.css";
 @import "./components/common/PlaceholderCard.css";
