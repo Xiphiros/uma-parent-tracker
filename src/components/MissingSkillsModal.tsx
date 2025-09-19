@@ -3,7 +3,7 @@ import { BreedingPair } from '../types';
 import Modal from './common/Modal';
 import { useAppContext } from '../context/AppContext';
 import { useTranslation } from 'react-i18next';
-import { getMissingWishlistSkills } from '../utils/affinity';
+import { getMissingWishlistSkills, getUnsaturatedWishlistSkills } from '../utils/affinity';
 import MissingSkillsDisplay from './common/MissingSkillsDisplay';
 import './MissingSkillsModal.css';
 
@@ -28,12 +28,13 @@ const MissingSkillsModal = ({ isOpen, onClose, pair }: MissingSkillsModalProps) 
         }
     }, [isOpen]);
 
-    const { missingSkills, totalWishlistCount } = useMemo(() => {
+    const { missingSkills, unsaturatedSkills, totalWishlistCount } = useMemo(() => {
         if (!pair || !activeProfile?.goal) {
-            return { missingSkills: [], totalWishlistCount: 0 };
+            return { missingSkills: [], unsaturatedSkills: [], totalWishlistCount: 0 };
         }
         const { missingSkills: missing, relevantWishlistCount } = getMissingWishlistSkills(pair.p1, pair.p2, activeProfile.goal, inventoryMap, skillMapByName);
-        return { missingSkills: missing, totalWishlistCount: relevantWishlistCount };
+        const unsaturated = getUnsaturatedWishlistSkills(pair.p1, pair.p2, activeProfile.goal, inventoryMap, skillMapByName);
+        return { missingSkills: missing, unsaturatedSkills: unsaturated, totalWishlistCount: relevantWishlistCount };
     }, [pair, activeProfile, inventoryMap, skillMapByName]);
 
     const handleToggleSkill = (skillName: string) => {
@@ -55,6 +56,7 @@ const MissingSkillsModal = ({ isOpen, onClose, pair }: MissingSkillsModalProps) 
             <div className="missing-skills-modal__content">
                 <MissingSkillsDisplay 
                     missingSkills={missingSkills} 
+                    unsaturatedSkills={unsaturatedSkills}
                     totalWishlistCount={totalWishlistCount}
                     checkedSkills={checkedSkills}
                     onToggleSkill={handleToggleSkill}
