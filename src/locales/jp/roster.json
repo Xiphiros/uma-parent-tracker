@@ -103,6 +103,7 @@
     "missingSkills": "不足しているウィッシュリストスキル",
     "viewMissing": "不足",
     "viewUnsaturated": "欠けあり",
-    "allSkillsSaturated": "ウィッシュリストの全スキルが、定義済みのすべての先祖に存在します。"
+    "allSkillsSaturated": "ウィッシュリストの全スキルが、定義済みのすべての先祖に存在します。",
+    "clearChecks": "チェックをクリア"
   }
 }
