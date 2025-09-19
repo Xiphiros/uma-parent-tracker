@@ -1,0 +1,32 @@
+/* Checkable Skill Item Component */
+.checkable-skill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: var(--color-card-bg-hover);
+    color: var(--color-text-secondary);
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    user-select: none;
+}
+
+.checkable-skill:hover {
+    border-color: var(--color-border-active);
+}
+
+.checkable-skill--checked {
+    background-color: color-mix(in srgb, var(--color-button-secondary-bg) 15%, transparent);
+    color: var(--color-button-secondary-bg);
+    font-weight: 500;
+}
+
+html.dark .checkable-skill--checked {
+    color: var(--color-text-inverted);
+}
+
+.checkable-skill__icon {
+    font-size: 0.875rem;
+}
