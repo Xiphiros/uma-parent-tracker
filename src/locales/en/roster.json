@@ -85,6 +85,9 @@
         "noResults": "No Results",
         "noResultsMessage": "No suitable breeding pairs found for this trainee. Try adding more parents to your roster.",
         "allSkillsCovered": "This pair covers all {{count}} of your wishlist items!",
-        "missingSkills": "Missing Wishlist Skills"
+        "missingSkills": "Missing Wishlist Skills",
+        "viewMissing": "Missing",
+        "viewUnsaturated": "Unsaturated",
+        "allSkillsSaturated": "All wishlisted skills are present in every defined ancestor."
     }
 }
