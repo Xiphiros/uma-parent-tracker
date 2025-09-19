@@ -1,6 +1,6 @@
 import { useState, useMemo, useEffect } from 'react';
 import { useAppContext } from '../context/AppContext';
-import { Parent, Uma, ManualParentData, BlueSpark, PinkSpark } from '../types';
+import { Parent, Uma, ManualParentData, BlueSpark, PinkSpark, WishlistItem } from '../types';
 import Modal from './common/Modal';
 import { useTranslation } from 'react-i18next';
 import './BreedingPlannerModal.css';
@@ -8,12 +8,13 @@ import SelectionSlot from './common/SelectionSlot';
 import InventoryModal from './InventoryModal';
 import SelectUmaModal from './SelectUmaModal';
 import LineageDisplay from './common/LineageDisplay';
-import { calculateFullAffinity, getLineageCharacterIds, countTotalLineageWhiteSparks, countUniqueCombinedLineageWhiteSparks, resolveGrandparent } from '../utils/affinity';
+import { calculateFullAffinity, getLineageCharacterIds, countTotalLineageWhiteSparks, countUniqueCombinedLineageWhiteSparks, resolveGrandparent, getMissingWishlistSkills } from '../utils/affinity';
 import PlaceholderCard from './common/PlaceholderCard';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUsers, faUser, faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import SparkTag from './common/SparkTag';
 import { getExcludedCharacterIds } from '../utils/selectionExclusion';
+import MissingSkillsDisplay from './common/MissingSkillsDisplay';
 
 interface BreedingPlannerModalProps {
     isOpen: boolean;
@@ -75,6 +76,11 @@ const BreedingPlannerModal = ({ isOpen, onClose }: BreedingPlannerModalProps) =>
         })).sort((a,b) => b.totalAffinity - a.totalAffinity).slice(0, 10);
 
     }, [manualParent1, manualParent2, masterUmaList, inventoryMap, umaMapById, charaRelations, relationPoints, excludeInbreeding]);
+
+    const missingSkillsForManualPair = useMemo(() => {
+        if (!manualParent1 || !manualParent2 || !goal) return [];
+        return getMissingWishlistSkills(manualParent1, manualParent2, goal, inventoryMap);
+    }, [manualParent1, manualParent2, goal, inventoryMap]);
 
     const suggestions = useMemo<Suggestion[]>(() => {
         if (!trainee || roster.length < 2) return [];
@@ -161,9 +167,14 @@ const BreedingPlannerModal = ({ isOpen, onClose }: BreedingPlannerModalProps) =>
         return { blue, pink, unique, white };
     }, [selectedSuggestion, inventoryMap]);
 
+    const missingSkillsForSelectedSuggestion = useMemo(() => {
+        if (!selectedSuggestion || !goal) return [];
+        return getMissingWishlistSkills(selectedSuggestion.p1, selectedSuggestion.p2, goal, inventoryMap);
+    }, [selectedSuggestion, goal, inventoryMap]);
+
     useEffect(() => {
         if (suggestions.length > 0) {
-            setSelectedSuggestion(suggestions[0]);
+            setSelectedSuggestion(suggestions);
         } else {
             setSelectedSuggestion(null);
         }
@@ -214,6 +225,8 @@ const BreedingPlannerModal = ({ isOpen, onClose }: BreedingPlannerModalProps) =>
         });
     }, [activeSlot, manualParent1, manualParent2, umaMapById, appData.inventory]);
 
+    const totalWishlistCount = goal ? goal.uniqueWishlist.length + goal.wishlist.length : 0;
+
     return (
         <>
             <Modal isOpen={isOpen} onClose={onClose} title={t('breedingPlanner.title')} size="xl">
@@ -250,6 +263,10 @@ const BreedingPlannerModal = ({ isOpen, onClose }: BreedingPlannerModalProps) =>
                                                 </div>
                                             </div>
                                         ))}
+                                    </div>
+                                    <div className="breeding-planner__missing-skills-section">
+                                        <h4 className="breeding-planner__sub-header">{t('breedingPlanner.missingSkills')}</h4>
+                                        <MissingSkillsDisplay missingSkills={missingSkillsForManualPair} totalWishlistCount={totalWishlistCount} />
                                     </div>
                                 </div>
                             )}
@@ -312,33 +329,38 @@ const BreedingPlannerModal = ({ isOpen, onClose }: BreedingPlannerModalProps) =>
                                                     </button>
                                                     {aggregatedSparksForSelected && (
                                                         <div className="breeding-planner__detail-sparks-content">
-                                                            {Object.entries(aggregatedSparksForSelected.blue).map(([type, data]) => (
-                                                                <div key={type} className="lineage-spark" data-spark-category="blue" data-spark-type={type.toLowerCase()}>
-                                                                    {data.total}★ {t(type, { ns: 'game' })}
-                                                                    {data.parent > 0 && <FontAwesomeIcon icon={faUser} className="lineage-spark__gp-icon" />}
-                                                                </div>
-                                                            ))}
-                                                            {Object.entries(aggregatedSparksForSelected.pink).map(([type, data]) => (
-                                                                <div key={type} className="lineage-spark" data-spark-category="pink" data-spark-type={type.toLowerCase().replace(/ /g, '-')}>
-                                                                    {data.total}★ {t(type, { ns: 'game' })}
-                                                                    {data.parent > 0 && <FontAwesomeIcon icon={faUser} className="lineage-spark__gp-icon" />}
-                                                                </div>
-                                                            ))}
-                                                            {aggregatedSparksForSelected.unique.map(spark => (
-                                                                <SparkTag key={spark.name} category="unique" type={getSkillDisplayName(spark.name)} stars={spark.stars}>
-                                                                    {spark.fromParent && <FontAwesomeIcon icon={faUser} className="lineage-spark__gp-icon" />}
-                                                                </SparkTag>
-                                                            ))}
-                                                            {aggregatedSparksForSelected.white.map(spark => {
-                                                                const wishlistItem = goal?.wishlist.find(w => w.name === spark.name);
-                                                                const tier = wishlistItem ? `(${t('parentCard.rank')} ${wishlistItem.tier})` : null;
-                                                                return (
-                                                                    <SparkTag key={spark.name} category="white" type={getSkillDisplayName(spark.name)} stars={spark.stars}>
+                                                            <div className="breeding-planner__sparks-column">
+                                                                {Object.entries(aggregatedSparksForSelected.blue).map(([type, data]) => (
+                                                                    <div key={type} className="lineage-spark" data-spark-category="blue" data-spark-type={type.toLowerCase()}>
+                                                                        {data.total}★ {t(type, { ns: 'game' })}
+                                                                        {data.parent > 0 && <FontAwesomeIcon icon={faUser} className="lineage-spark__gp-icon" />}
+                                                                    </div>
+                                                                ))}
+                                                                {Object.entries(aggregatedSparksForSelected.pink).map(([type, data]) => (
+                                                                    <div key={type} className="lineage-spark" data-spark-category="pink" data-spark-type={type.toLowerCase().replace(/ /g, '-')}>
+                                                                        {data.total}★ {t(type, { ns: 'game' })}
+                                                                        {data.parent > 0 && <FontAwesomeIcon icon={faUser} className="lineage-spark__gp-icon" />}
+                                                                    </div>
+                                                                ))}
+                                                                {aggregatedSparksForSelected.unique.map(spark => (
+                                                                    <SparkTag key={spark.name} category="unique" type={getSkillDisplayName(spark.name)} stars={spark.stars}>
                                                                         {spark.fromParent && <FontAwesomeIcon icon={faUser} className="lineage-spark__gp-icon" />}
-                                                                        {tier && <span className="parent-card__spark-tier">{tier}</span>}
                                                                     </SparkTag>
-                                                                );
-                                                            })}
+                                                                ))}
+                                                                {aggregatedSparksForSelected.white.map(spark => {
+                                                                    const wishlistItem = goal?.wishlist.find(w => w.name === spark.name);
+                                                                    const tier = wishlistItem ? `(${t('parentCard.rank')} ${wishlistItem.tier})` : null;
+                                                                    return (
+                                                                        <SparkTag key={spark.name} category="white" type={getSkillDisplayName(spark.name)} stars={spark.stars}>
+                                                                            {spark.fromParent && <FontAwesomeIcon icon={faUser} className="lineage-spark__gp-icon" />}
+                                                                            {tier && <span className="parent-card__spark-tier">{tier}</span>}
+                                                                        </SparkTag>
+                                                                    );
+                                                                })}
+                                                            </div>
+                                                            <div className="breeding-planner__missing-skills-column">
+                                                                <MissingSkillsDisplay missingSkills={missingSkillsForSelectedSuggestion} totalWishlistCount={totalWishlistCount} />
+                                                            </div>
                                                         </div>
                                                     )}
                                                 </div>

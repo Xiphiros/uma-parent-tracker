@@ -99,6 +99,7 @@
     "excludeInbreeding": "近親配合を除外",
     "totalWhiteSparks": "合計白因子数",
     "uniqueWhiteSparks": "ユニーク白因子数",
-    "allSkillsCovered": "このペアはウィッシュリストの{{count}}個のスキルをすべてカバーしています！"
+    "allSkillsCovered": "このペアはウィッシュリストの{{count}}個のスキルをすべてカバーしています！",
+    "missingSkills": "不足しているウィッシュリストスキル"
   }
 }
