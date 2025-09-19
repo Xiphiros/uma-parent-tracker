@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 import { BreedingPair } from '../types';
 import Modal from './common/Modal';
 import { useAppContext } from '../context/AppContext';
@@ -18,6 +18,15 @@ const MissingSkillsModal = ({ isOpen, onClose, pair }: MissingSkillsModalProps) 
     const { getActiveProfile, appData, skillMapByName } = useAppContext();
     const activeProfile = getActiveProfile();
     const inventoryMap = useMemo(() => new Map(appData.inventory.map(p => [p.id, p])), [appData.inventory]);
+    
+    const [checkedSkills, setCheckedSkills] = useState(new Set<string>());
+
+    useEffect(() => {
+        // Reset checked skills every time the modal opens
+        if (isOpen) {
+            setCheckedSkills(new Set<string>());
+        }
+    }, [isOpen]);
 
     const { missingSkills, totalWishlistCount } = useMemo(() => {
         if (!pair || !activeProfile?.goal) {
@@ -27,12 +36,29 @@ const MissingSkillsModal = ({ isOpen, onClose, pair }: MissingSkillsModalProps) 
         return { missingSkills: missing, totalWishlistCount: relevantWishlistCount };
     }, [pair, activeProfile, inventoryMap, skillMapByName]);
 
+    const handleToggleSkill = (skillName: string) => {
+        setCheckedSkills(prev => {
+            const newSet = new Set(prev);
+            if (newSet.has(skillName)) {
+                newSet.delete(skillName);
+            } else {
+                newSet.add(skillName);
+            }
+            return newSet;
+        });
+    };
+
     if (!pair) return null;
 
     return (
         <Modal isOpen={isOpen} onClose={onClose} title={t('missingSkillsTitle')} size="lg">
             <div className="missing-skills-modal__content">
-                <MissingSkillsDisplay missingSkills={missingSkills} totalWishlistCount={totalWishlistCount} />
+                <MissingSkillsDisplay 
+                    missingSkills={missingSkills} 
+                    totalWishlistCount={totalWishlistCount}
+                    checkedSkills={checkedSkills}
+                    onToggleSkill={handleToggleSkill}
+                />
             </div>
             <div className="dialog-modal__footer">
                 <button className="button button--primary" onClick={onClose}>{t('common:close')}</button>
