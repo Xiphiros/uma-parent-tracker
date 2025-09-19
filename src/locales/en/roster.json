@@ -88,6 +88,7 @@
         "missingSkills": "Missing Wishlist Skills",
         "viewMissing": "Missing",
         "viewUnsaturated": "Partial",
-        "allSkillsSaturated": "All wishlisted skills are present in every defined ancestor."
+        "allSkillsSaturated": "All wishlisted skills are present in every defined ancestor.",
+        "clearChecks": "Clear Checks"
     }
 }
