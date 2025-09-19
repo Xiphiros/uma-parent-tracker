@@ -87,7 +87,7 @@
         "allSkillsCovered": "This pair covers all {{count}} of your wishlist items!",
         "missingSkills": "Missing Wishlist Skills",
         "viewMissing": "Missing",
-        "viewUnsaturated": "Unsaturated",
+        "viewUnsaturated": "Partial",
         "allSkillsSaturated": "All wishlisted skills are present in every defined ancestor."
     }
 }
