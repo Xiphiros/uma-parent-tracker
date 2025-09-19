@@ -82,6 +82,7 @@
         "totalWhiteSparks": "Total White Sparks",
         "uniqueWhiteSparks": "Unique White Sparks",
         "noResults": "No Results",
-        "noResultsMessage": "No suitable breeding pairs found for this trainee. Try adding more parents to your roster."
+        "noResultsMessage": "No suitable breeding pairs found for this trainee. Try adding more parents to your roster.",
+        "allSkillsCovered": "This pair covers all {{count}} of your wishlist items!"
     }
 }
