@@ -331,7 +331,7 @@ const BreedingPlannerModal = ({ isOpen, onClose }: BreedingPlannerModalProps) =>
                                                     </button>
                                                     {aggregatedSparksForSelected && (
                                                         <div className="breeding-planner__detail-sparks-content">
-                                                            <div className="breeding-planner__sparks-column">
+                                                            <div className="parent-card__spark-container">
                                                                 {Object.entries(aggregatedSparksForSelected.blue).map(([type, data]) => (
                                                                     <div key={type} className="lineage-spark" data-spark-category="blue" data-spark-type={type.toLowerCase()}>
                                                                         {data.total}★ {t(type, { ns: 'game' })}
@@ -360,9 +360,8 @@ const BreedingPlannerModal = ({ isOpen, onClose }: BreedingPlannerModalProps) =>
                                                                     );
                                                                 })}
                                                             </div>
-                                                            <div className="breeding-planner__missing-skills-column">
-                                                                <MissingSkillsDisplay missingSkills={missingSkillsForSelectedSuggestion} totalWishlistCount={selectedSuggestionWishlistCount} />
-                                                            </div>
+                                                            <hr className="breeding-planner__divider" />
+                                                            <MissingSkillsDisplay missingSkills={missingSkillsForSelectedSuggestion} totalWishlistCount={selectedSuggestionWishlistCount} />
                                                         </div>
                                                     )}
                                                 </div>
