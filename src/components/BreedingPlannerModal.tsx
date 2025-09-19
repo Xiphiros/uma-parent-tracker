@@ -51,11 +51,18 @@ const BreedingPlannerModal = ({ isOpen, onClose }: BreedingPlannerModalProps) =>
     // Manual Pair State
     const [manualParent1, setManualParent1] = useState<Parent | null>(null);
     const [manualParent2, setManualParent2] = useState<Parent | null>(null);
+    const [manualCheckedSkills, setManualCheckedSkills] = useState(new Set<string>());
 
     // Suggestions State
     const [trainee, setTrainee] = useState<Uma | null>(null);
     const [selectedSuggestion, setSelectedSuggestion] = useState<Suggestion | null>(null);
+    const [suggestionCheckedSkills, setSuggestionCheckedSkills] = useState(new Set<string>());
     const [isSparkViewExpanded, setIsSparkViewExpanded] = useState(false);
+    
+    // Reset checked skills when the relevant data changes
+    useEffect(() => { setManualCheckedSkills(new Set<string>()); }, [manualParent1, manualParent2]);
+    useEffect(() => { setSuggestionCheckedSkills(new Set<string>()); }, [selectedSuggestion]);
+
 
     const getDisplayName = (umaId: string) => umaMapById.get(umaId)?.[displayNameProp] || 'Unknown';
     const getSkillDisplayName = (name_en: string) => skillMapByName.get(name_en)?.[displayNameProp] || name_en;
@@ -202,6 +209,19 @@ const BreedingPlannerModal = ({ isOpen, onClose }: BreedingPlannerModalProps) =>
         setTrainee(uma);
         setUmaModalOpen(false);
     };
+
+    const handleToggleSkill = (skillName: string, type: 'manual' | 'suggestion') => {
+        const setChecked = type === 'manual' ? setManualCheckedSkills : setSuggestionCheckedSkills;
+        setChecked(prev => {
+            const newSet = new Set(prev);
+            if (newSet.has(skillName)) {
+                newSet.delete(skillName);
+            } else {
+                newSet.add(skillName);
+            }
+            return newSet;
+        });
+    };
     
     const renderAvatar = (umaId: string) => {
         const uma = umaMapById.get(umaId);
@@ -268,7 +288,7 @@ const BreedingPlannerModal = ({ isOpen, onClose }: BreedingPlannerModalProps) =>
                                     </div>
                                     <div className="breeding-planner__missing-skills-section">
                                         <h4 className="breeding-planner__sub-header">{t('breedingPlanner.missingSkills')}</h4>
-                                        <MissingSkillsDisplay missingSkills={missingSkillsForManualPair} totalWishlistCount={manualPairWishlistCount} />
+                                        <MissingSkillsDisplay missingSkills={missingSkillsForManualPair} totalWishlistCount={manualPairWishlistCount} checkedSkills={manualCheckedSkills} onToggleSkill={(name) => handleToggleSkill(name, 'manual')} />
                                     </div>
                                 </div>
                             )}
@@ -361,7 +381,7 @@ const BreedingPlannerModal = ({ isOpen, onClose }: BreedingPlannerModalProps) =>
                                                                 })}
                                                             </div>
                                                             <hr className="breeding-planner__divider" />
-                                                            <MissingSkillsDisplay missingSkills={missingSkillsForSelectedSuggestion} totalWishlistCount={selectedSuggestionWishlistCount} />
+                                                            <MissingSkillsDisplay missingSkills={missingSkillsForSelectedSuggestion} totalWishlistCount={selectedSuggestionWishlistCount} checkedSkills={suggestionCheckedSkills} onToggleSkill={(name) => handleToggleSkill(name, 'suggestion')} />
                                                         </div>
                                                     )}
                                                 </div>
