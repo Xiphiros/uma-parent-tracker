@@ -8,7 +8,7 @@ import SelectionSlot from './common/SelectionSlot';
 import InventoryModal from './InventoryModal';
 import SelectUmaModal from './SelectUmaModal';
 import LineageDisplay from './common/LineageDisplay';
-import { calculateFullAffinity, getLineageCharacterIds, countTotalLineageWhiteSparks, countUniqueCombinedLineageWhiteSparks, resolveGrandparent, getMissingWishlistSkills } from '../utils/affinity';
+import { calculateFullAffinity, getLineageCharacterIds, countTotalLineageWhiteSparks, countUniqueCombinedLineageWhiteSparks, resolveGrandparent, getMissingWishlistSkills, getUnsaturatedWishlistSkills } from '../utils/affinity';
 import PlaceholderCard from './common/PlaceholderCard';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUsers, faUser, faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
@@ -84,11 +84,13 @@ const BreedingPlannerModal = ({ isOpen, onClose }: BreedingPlannerModalProps) =>
 
     }, [manualParent1, manualParent2, masterUmaList, inventoryMap, umaMapById, charaRelations, relationPoints, excludeInbreeding]);
 
-    const { missingSkills: missingSkillsForManualPair, relevantWishlistCount: manualPairWishlistCount } = useMemo(() => {
+    const { missingSkills: missingSkillsForManualPair, unsaturatedSkills: unsaturatedSkillsForManualPair, relevantWishlistCount: manualPairWishlistCount } = useMemo(() => {
         if (!manualParent1 || !manualParent2 || !goal) {
-            return { missingSkills: [], relevantWishlistCount: 0 };
+            return { missingSkills: [], unsaturatedSkills: [], relevantWishlistCount: 0 };
         }
-        return getMissingWishlistSkills(manualParent1, manualParent2, goal, inventoryMap, skillMapByName);
+        const missing = getMissingWishlistSkills(manualParent1, manualParent2, goal, inventoryMap, skillMapByName);
+        const unsaturated = getUnsaturatedWishlistSkills(manualParent1, manualParent2, goal, inventoryMap, skillMapByName);
+        return { ...missing, unsaturatedSkills: unsaturated };
     }, [manualParent1, manualParent2, goal, inventoryMap, skillMapByName]);
 
     const suggestions = useMemo<Suggestion[]>(() => {
@@ -176,11 +178,13 @@ const BreedingPlannerModal = ({ isOpen, onClose }: BreedingPlannerModalProps) =>
         return { blue, pink, unique, white };
     }, [selectedSuggestion, inventoryMap]);
 
-    const { missingSkills: missingSkillsForSelectedSuggestion, relevantWishlistCount: selectedSuggestionWishlistCount } = useMemo(() => {
+    const { missingSkills: missingSkillsForSelectedSuggestion, unsaturatedSkills: unsaturatedSkillsForSelectedSuggestion, relevantWishlistCount: selectedSuggestionWishlistCount } = useMemo(() => {
         if (!selectedSuggestion || !goal) {
-            return { missingSkills: [], relevantWishlistCount: 0 };
+            return { missingSkills: [], unsaturatedSkills: [], relevantWishlistCount: 0 };
         }
-        return getMissingWishlistSkills(selectedSuggestion.p1, selectedSuggestion.p2, goal, inventoryMap, skillMapByName);
+        const missing = getMissingWishlistSkills(selectedSuggestion.p1, selectedSuggestion.p2, goal, inventoryMap, skillMapByName);
+        const unsaturated = getUnsaturatedWishlistSkills(selectedSuggestion.p1, selectedSuggestion.p2, goal, inventoryMap, skillMapByName);
+        return { ...missing, unsaturatedSkills: unsaturated };
     }, [selectedSuggestion, goal, inventoryMap, skillMapByName]);
 
     useEffect(() => {
@@ -288,7 +292,13 @@ const BreedingPlannerModal = ({ isOpen, onClose }: BreedingPlannerModalProps) =>
                                     </div>
                                     <div className="breeding-planner__missing-skills-section">
                                         <h4 className="breeding-planner__sub-header">{t('breedingPlanner.missingSkills')}</h4>
-                                        <MissingSkillsDisplay missingSkills={missingSkillsForManualPair} totalWishlistCount={manualPairWishlistCount} checkedSkills={manualCheckedSkills} onToggleSkill={(name) => handleToggleSkill(name, 'manual')} />
+                                        <MissingSkillsDisplay 
+                                            missingSkills={missingSkillsForManualPair} 
+                                            unsaturatedSkills={unsaturatedSkillsForManualPair}
+                                            totalWishlistCount={manualPairWishlistCount} 
+                                            checkedSkills={manualCheckedSkills} 
+                                            onToggleSkill={(name) => handleToggleSkill(name, 'manual')} 
+                                        />
                                     </div>
                                 </div>
                             )}
@@ -381,7 +391,13 @@ const BreedingPlannerModal = ({ isOpen, onClose }: BreedingPlannerModalProps) =>
                                                                 })}
                                                             </div>
                                                             <hr className="breeding-planner__divider" />
-                                                            <MissingSkillsDisplay missingSkills={missingSkillsForSelectedSuggestion} totalWishlistCount={selectedSuggestionWishlistCount} checkedSkills={suggestionCheckedSkills} onToggleSkill={(name) => handleToggleSkill(name, 'suggestion')} />
+                                                            <MissingSkillsDisplay 
+                                                                missingSkills={missingSkillsForSelectedSuggestion}
+                                                                unsaturatedSkills={unsaturatedSkillsForSelectedSuggestion}
+                                                                totalWishlistCount={selectedSuggestionWishlistCount} 
+                                                                checkedSkills={suggestionCheckedSkills} 
+                                                                onToggleSkill={(name) => handleToggleSkill(name, 'suggestion')} 
+                                                            />
                                                         </div>
                                                     )}
                                                 </div>
