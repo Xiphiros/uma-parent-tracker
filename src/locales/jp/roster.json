@@ -12,7 +12,8 @@
     "totalSparks": "合計因子数",
     "uniqueSparks": "ユニーク因子数",
     "pair": "ペア",
-    "of": "/"
+    "of": "/",
+    "viewMissing": "不足しているウィッシュリストスキルを表示"
   },
   "topPairPlaceholder": "このプロジェクトのウマ娘一覧に親を追加すると、ここに上位のペアが表示されます。",
   "topPairPlaceholderSingle": "もう1人親をこのプロジェクトに追加してペアを完成させましょう。",
