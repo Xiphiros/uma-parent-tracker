@@ -1,6 +1,6 @@
 import { useState, useMemo, useEffect } from 'react';
 import { useAppContext } from '../context/AppContext';
-import { Parent, Uma, ManualParentData, BlueSpark, PinkSpark, WishlistItem } from '../types';
+import { Parent, Uma, ManualParentData, BlueSpark, PinkSpark } from '../types';
 import Modal from './common/Modal';
 import { useTranslation } from 'react-i18next';
 import './BreedingPlannerModal.css';
@@ -174,7 +174,7 @@ const BreedingPlannerModal = ({ isOpen, onClose }: BreedingPlannerModalProps) =>
 
     useEffect(() => {
         if (suggestions.length > 0) {
-            setSelectedSuggestion(suggestions);
+            setSelectedSuggestion(suggestions[0]);
         } else {
             setSelectedSuggestion(null);
         }
