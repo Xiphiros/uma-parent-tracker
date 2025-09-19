@@ -20,6 +20,33 @@
     font-weight: 500;
 }
 
+.missing-skills__toggle {
+    display: flex;
+    background-color: var(--color-card-bg-hover);
+    border-radius: 0.375rem;
+    padding: 0.25rem;
+    margin-bottom: 0.5rem;
+}
+
+.missing-skills__toggle-btn {
+    flex: 1;
+    padding: 0.375rem 0.5rem;
+    border-radius: 0.25rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--color-text-secondary);
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    border: none;
+}
+
+.missing-skills__toggle-btn--active {
+    background-color: var(--color-card-bg);
+    color: var(--color-text-primary);
+    box-shadow: var(--color-shadow);
+}
+
 .missing-skills__tier-title {
     font-weight: 600;
     color: var(--color-text-primary);
