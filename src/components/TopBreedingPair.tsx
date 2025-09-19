@@ -1,20 +1,19 @@
 import { useState, useMemo, useEffect } from 'react';
 import { useAppContext } from '../context/AppContext';
-import { Parent } from '../types';
+import { Parent, BreedingPair } from '../types';
 import { useTranslation } from 'react-i18next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { faChevronLeft, faChevronRight, faClipboardQuestion } from '@fortawesome/free-solid-svg-icons';
 import { countTotalLineageWhiteSparks, countUniqueCombinedLineageWhiteSparks } from '../utils/affinity';
 import { calculateScore } from '../utils/scoring';
 import PairedParentCard from './common/PairedParentCard';
 import ParentDetailModal from './ParentDetailModal';
+import MissingSkillsModal from './MissingSkillsModal';
 
 type RecommendationType = 'owned' | 'borrowed';
 type SortByType = 'score' | 'sparks';
 
-interface BreedingPair {
-    p1: Parent;
-    p2: Parent;
+interface BreedingPairWithStats extends BreedingPair {
     avgScore: number;
     totalSparks: number; // Represents total white sparks
     uniqueSparks: number; // Represents unique white sparks
@@ -30,12 +29,13 @@ const TopBreedingPair = () => {
     const [sortBy, setSortBy] = useState<SortByType>('score');
     const [currentIndex, setCurrentIndex] = useState(0);
     const [detailModalParent, setDetailModalParent] = useState<Parent | null>(null);
+    const [isMissingSkillsModalOpen, setIsMissingSkillsModalOpen] = useState(false);
     
     const inventoryMap = useMemo(() => new Map(appData.inventory.map(p => [p.id, p])), [appData.inventory]);
 
-    const recommendedPairs = useMemo<BreedingPair[]>(() => {
+    const recommendedPairs = useMemo<BreedingPairWithStats[]>(() => {
         if (!activeGoal) return [];
-        const pairs: BreedingPair[] = [];
+        const pairs: BreedingPairWithStats[] = [];
         
         if (recType === 'owned') {
             if (roster.length < 2) return [];
@@ -109,6 +109,7 @@ const TopBreedingPair = () => {
     const handleNext = () => setCurrentIndex(prev => (prev < recommendedPairs.length - 1 ? prev + 1 : 0));
 
     const currentPair = recommendedPairs[currentIndex];
+    const totalWishlistCount = activeGoal ? activeGoal.uniqueWishlist.length + activeGoal.wishlist.length : 0;
 
     return (
         <>
@@ -149,6 +150,14 @@ const TopBreedingPair = () => {
                                     <span>{t('topPair.totalSparks')}: {currentPair.totalSparks}</span>
                                      <span className="mx-2">|</span>
                                     <span>{t('topPair.uniqueSparks')}: {currentPair.uniqueSparks}</span>
+                                    <button 
+                                        className="top-pair__action-btn" 
+                                        onClick={() => setIsMissingSkillsModalOpen(true)}
+                                        disabled={totalWishlistCount === 0}
+                                        title={t('topPair.viewMissing')}
+                                    >
+                                        <FontAwesomeIcon icon={faClipboardQuestion} />
+                                    </button>
                                 </div>
                             </>
                         ) : (
@@ -166,6 +175,12 @@ const TopBreedingPair = () => {
                 isOpen={!!detailModalParent}
                 onClose={() => setDetailModalParent(null)}
                 parent={detailModalParent}
+            />
+
+            <MissingSkillsModal
+                isOpen={isMissingSkillsModalOpen}
+                onClose={() => setIsMissingSkillsModalOpen(false)}
+                pair={currentPair}
             />
         </>
     );

@@ -86,4 +86,28 @@
     text-align: center;
     color: var(--color-text-secondary);
     font-size: 0.875rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.top-pair__action-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    padding: 0.25rem;
+    border-radius: 9999px;
+    transition: all 0.2s ease;
+}
+.top-pair__action-btn:hover:not(:disabled) {
+    background-color: var(--color-card-bg-hover);
+    color: var(--color-text-primary);
+}
+.top-pair__action-btn:disabled {
+    opacity: 0.25;
+    cursor: not-allowed;
 }

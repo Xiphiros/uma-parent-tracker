@@ -11,7 +11,8 @@
         "totalSparks": "Total Sparks",
         "uniqueSparks": "Unique Sparks",
         "pair": "Pair",
-        "of": "of"
+        "of": "of",
+        "viewMissing": "View Missing Wishlist Skills"
     },
     "topPairPlaceholder": "Add at least two parents to the roster to see your top pair.",
     "topPairPlaceholderSingle": "Add one more parent to see your top pair.",
