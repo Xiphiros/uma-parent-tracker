@@ -199,6 +199,52 @@ export function getMissingWishlistSkills(
 }
 
 /**
+ * Finds wishlisted skills that are not present in EVERY defined ancestor.
+ * @returns An array of unsaturated WishlistItem objects.
+ */
+export function getUnsaturatedWishlistSkills(
+    parent1: Parent,
+    parent2: Parent,
+    goal: Goal,
+    inventoryMap: Map<number, Parent>,
+    skillMapByName: Map<string, Skill>
+): WishlistItem[] {
+    const relevantWishlistItems = goal.wishlist.filter(item => {
+        const skill = skillMapByName.get(item.name);
+        return skill && skill.type === 'normal' && !skill.id.startsWith('race_');
+    });
+
+    if (relevantWishlistItems.length === 0) {
+        return [];
+    }
+
+    const lineage: (Parent | ManualParentData | null)[] = [
+        parent1,
+        parent2,
+        resolveGrandparent(parent1.grandparent1, inventoryMap),
+        resolveGrandparent(parent1.grandparent2, inventoryMap),
+        resolveGrandparent(parent2.grandparent1, inventoryMap),
+        resolveGrandparent(parent2.grandparent2, inventoryMap),
+    ];
+
+    const definedLineage = lineage.filter((member): member is Parent | ManualParentData => !!member);
+
+    if (definedLineage.length === 0) {
+        return relevantWishlistItems; // If no ancestors, all are technically unsaturated.
+    }
+    
+    return relevantWishlistItems.filter(wishlistItem => {
+        // A skill is "unsaturated" if NOT every defined ancestor has it.
+        return !definedLineage.every(member => {
+            if ('whiteSparks' in member) {
+                return member.whiteSparks.some(spark => spark.name === wishlistItem.name);
+            }
+            return false;
+        });
+    });
+}
+
+/**
  * Counts the total number of inheritable WHITE sparks (including duplicates) in a single parent's lineage.
  * @returns The raw sum of all white sparks from the parent and its grandparents.
  */
