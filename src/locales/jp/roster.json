@@ -102,7 +102,7 @@
     "allSkillsCovered": "このペアはウィッシュリストの{{count}}個のスキルをすべてカバーしています！",
     "missingSkills": "不足しているウィッシュリストスキル",
     "viewMissing": "不足",
-    "viewUnsaturated": "未飽和",
+    "viewUnsaturated": "欠けあり",
     "allSkillsSaturated": "ウィッシュリストの全スキルが、定義済みのすべての先祖に存在します。"
   }
 }
