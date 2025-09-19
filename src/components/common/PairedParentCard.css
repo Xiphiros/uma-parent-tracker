@@ -83,9 +83,9 @@
     gap: 0.375rem;
 }
 
-/* Override for Paired Parent Card to make tags full-width */
-.paired-parent-card__sparks .spark-tag {
+/* Override for Paired Parent Card to make lineage sparks full-width */
+.paired-parent-card__sparks .lineage-spark {
     width: 100%;
     margin-right: 0;
-    margin-bottom: 0; /* Let the container's gap handle spacing */
+    margin-bottom: 0;
 }
