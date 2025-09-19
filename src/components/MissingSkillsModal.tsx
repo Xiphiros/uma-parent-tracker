@@ -15,7 +15,7 @@ interface MissingSkillsModalProps {
 
 const MissingSkillsModal = ({ isOpen, onClose, pair }: MissingSkillsModalProps) => {
     const { t } = useTranslation(['modals', 'common']);
-    const { getActiveProfile, appData } = useAppContext();
+    const { getActiveProfile, appData, skillMapByName } = useAppContext();
     const activeProfile = getActiveProfile();
     const inventoryMap = useMemo(() => new Map(appData.inventory.map(p => [p.id, p])), [appData.inventory]);
 
@@ -23,10 +23,9 @@ const MissingSkillsModal = ({ isOpen, onClose, pair }: MissingSkillsModalProps) 
         if (!pair || !activeProfile?.goal) {
             return { missingSkills: [], totalWishlistCount: 0 };
         }
-        const totalCount = activeProfile.goal.uniqueWishlist.length + activeProfile.goal.wishlist.length;
-        const missing = getMissingWishlistSkills(pair.p1, pair.p2, activeProfile.goal, inventoryMap);
-        return { missingSkills: missing, totalWishlistCount: totalCount };
-    }, [pair, activeProfile, inventoryMap]);
+        const { missingSkills: missing, relevantWishlistCount } = getMissingWishlistSkills(pair.p1, pair.p2, activeProfile.goal, inventoryMap, skillMapByName);
+        return { missingSkills: missing, totalWishlistCount: relevantWishlistCount };
+    }, [pair, activeProfile, inventoryMap, skillMapByName]);
 
     if (!pair) return null;
 
