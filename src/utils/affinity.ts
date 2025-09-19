@@ -1,4 +1,4 @@
-import { Grandparent, ManualParentData, Parent, Uma, WhiteSpark, UniqueSpark } from '../types';
+import { Grandparent, ManualParentData, Parent, Uma, WhiteSpark, UniqueSpark, Goal, WishlistItem } from '../types';
 
 /**
  * Resolves a grandparent reference (ID or object) to a full data object.
@@ -140,14 +140,14 @@ export function getLineageCharacterIds(
 }
 
 /**
- * Counts all unique inheritable skills from the combined lineage of two parents. This is a measure of skill diversity.
- * @returns The total number of unique skills across both lineages.
+ * Gathers all unique inheritable skill names from a combined lineage of two parents.
+ * @returns A Set containing all unique skill names.
  */
-export function countUniquePairSkills(
+export function getCombinedLineageSkillNames(
     parent1: Parent,
     parent2: Parent,
     inventoryMap: Map<number, Parent>
-): number {
+): Set<string> {
     const skillNames = new Set<string>();
     const lineage: (Parent | ManualParentData | null)[] = [
         parent1,
@@ -166,7 +166,27 @@ export function countUniquePairSkills(
         }
     }
     
-    return skillNames.size;
+    return skillNames;
+}
+
+/**
+ * Compares a breeding pair's combined lineage skills against a goal wishlist to find missing skills.
+ * @returns An array of WishlistItem objects that are not present in the lineage.
+ */
+export function getMissingWishlistSkills(
+    parent1: Parent,
+    parent2: Parent,
+    goal: Goal,
+    inventoryMap: Map<number, Parent>
+): WishlistItem[] {
+    const allWishlistItems = [...goal.uniqueWishlist, ...goal.wishlist];
+    if (allWishlistItems.length === 0) {
+        return [];
+    }
+
+    const lineageSkills = getCombinedLineageSkillNames(parent1, parent2, inventoryMap);
+
+    return allWishlistItems.filter(item => !lineageSkills.has(item.name));
 }
 
 /**
