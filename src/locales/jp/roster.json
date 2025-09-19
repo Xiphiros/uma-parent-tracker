@@ -100,6 +100,9 @@
     "totalWhiteSparks": "合計白因子数",
     "uniqueWhiteSparks": "ユニーク白因子数",
     "allSkillsCovered": "このペアはウィッシュリストの{{count}}個のスキルをすべてカバーしています！",
-    "missingSkills": "不足しているウィッシュリストスキル"
+    "missingSkills": "不足しているウィッシュリストスキル",
+    "viewMissing": "不足",
+    "viewUnsaturated": "未飽和",
+    "allSkillsSaturated": "ウィッシュリストの全スキルが、定義済みのすべての先祖に存在します。"
   }
 }
