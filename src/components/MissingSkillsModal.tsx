@@ -49,6 +49,10 @@ const MissingSkillsModal = ({ isOpen, onClose, pair }: MissingSkillsModalProps) 
         });
     };
 
+    const handleClearChecks = () => {
+        setCheckedSkills(new Set<string>());
+    };
+
     if (!pair) return null;
 
     return (
@@ -60,6 +64,7 @@ const MissingSkillsModal = ({ isOpen, onClose, pair }: MissingSkillsModalProps) 
                     totalWishlistCount={totalWishlistCount}
                     checkedSkills={checkedSkills}
                     onToggleSkill={handleToggleSkill}
+                    onClearChecks={handleClearChecks}
                 />
             </div>
             <div className="dialog-modal__footer">
