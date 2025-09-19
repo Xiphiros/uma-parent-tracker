@@ -1,25 +1,20 @@
 import { useMemo } from 'react';
 import { WishlistItem } from '../../types';
-import { useAppContext } from '../../context/AppContext';
 import { useTranslation } from 'react-i18next';
 import './MissingSkillsDisplay.css';
+import CheckableSkillItem from './CheckableSkillItem';
 
 interface MissingSkillsDisplayProps {
     missingSkills: WishlistItem[];
     totalWishlistCount: number;
+    checkedSkills?: Set<string>;
+    onToggleSkill?: (skillName: string) => void;
 }
 
 const WISH_RANK_ORDER: { [key: string]: number } = { S: 0, A: 1, B: 2, C: 3 };
 
-const MissingSkillsDisplay = ({ missingSkills, totalWishlistCount }: MissingSkillsDisplayProps) => {
+const MissingSkillsDisplay = ({ missingSkills, totalWishlistCount, checkedSkills, onToggleSkill }: MissingSkillsDisplayProps) => {
     const { t } = useTranslation(['roster', 'goal']);
-    const { skillMapByName, dataDisplayLanguage } = useAppContext();
-    const displayNameProp = dataDisplayLanguage === 'jp' ? 'name_jp' : 'name_en';
-
-    const getDisplayName = (name_en: string) => {
-        const skill = skillMapByName.get(name_en);
-        return skill ? skill[displayNameProp] : name_en;
-    };
 
     const groupedSkills = useMemo(() => {
         if (!missingSkills) return {};
@@ -36,6 +31,8 @@ const MissingSkillsDisplay = ({ missingSkills, totalWishlistCount }: MissingSkil
     if (missingSkills.length === 0) {
         return <p className="missing-skills__success">{t('roster:breedingPlanner.allSkillsCovered', { count: totalWishlistCount })}</p>;
     }
+    
+    const canBeChecked = checkedSkills && onToggleSkill;
 
     return (
         <div className="missing-skills">
@@ -44,8 +41,18 @@ const MissingSkillsDisplay = ({ missingSkills, totalWishlistCount }: MissingSkil
                     <h4 className="missing-skills__tier-title">{t('goal:wishlist.rank')} {tier}</h4>
                     <ul className="missing-skills__list">
                         {groupedSkills[tier].map(item => (
-                            <li key={item.name} className="missing-skills__item">
-                                {getDisplayName(item.name)}
+                             <li key={item.name}>
+                                {canBeChecked ? (
+                                    <CheckableSkillItem 
+                                        skillName={item.name} 
+                                        isChecked={checkedSkills.has(item.name)} 
+                                        onToggle={onToggleSkill} 
+                                    />
+                                ) : (
+                                    <span className="missing-skills__item">
+                                        {item.name}
+                                    </span>
+                                )}
                             </li>
                         ))}
                     </ul>
