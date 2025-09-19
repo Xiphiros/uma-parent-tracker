@@ -227,6 +227,14 @@ const BreedingPlannerModal = ({ isOpen, onClose }: BreedingPlannerModalProps) =>
         });
     };
     
+    const handleClearChecks = (type: 'manual' | 'suggestion') => {
+        if (type === 'manual') {
+            setManualCheckedSkills(new Set<string>());
+        } else {
+            setSuggestionCheckedSkills(new Set<string>());
+        }
+    };
+
     const renderAvatar = (umaId: string) => {
         const uma = umaMapById.get(umaId);
         return <img src={`${import.meta.env.BASE_URL}${uma?.image}`} alt={getDisplayName(umaId)} className="breeding-planner__suggestion-avatar" />;
@@ -297,7 +305,8 @@ const BreedingPlannerModal = ({ isOpen, onClose }: BreedingPlannerModalProps) =>
                                             unsaturatedSkills={unsaturatedSkillsForManualPair}
                                             totalWishlistCount={manualPairWishlistCount} 
                                             checkedSkills={manualCheckedSkills} 
-                                            onToggleSkill={(name) => handleToggleSkill(name, 'manual')} 
+                                            onToggleSkill={(name) => handleToggleSkill(name, 'manual')}
+                                            onClearChecks={() => handleClearChecks('manual')}
                                         />
                                     </div>
                                 </div>
@@ -397,6 +406,7 @@ const BreedingPlannerModal = ({ isOpen, onClose }: BreedingPlannerModalProps) =>
                                                                 totalWishlistCount={selectedSuggestionWishlistCount} 
                                                                 checkedSkills={suggestionCheckedSkills} 
                                                                 onToggleSkill={(name) => handleToggleSkill(name, 'suggestion')} 
+                                                                onClearChecks={() => handleClearChecks('suggestion')}
                                                             />
                                                         </div>
                                                     )}
