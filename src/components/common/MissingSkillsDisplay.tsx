@@ -3,6 +3,8 @@ import { WishlistItem } from '../../types';
 import { useTranslation } from 'react-i18next';
 import './MissingSkillsDisplay.css';
 import CheckableSkillItem from './CheckableSkillItem';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 interface MissingSkillsDisplayProps {
     missingSkills: WishlistItem[];
@@ -10,17 +12,27 @@ interface MissingSkillsDisplayProps {
     totalWishlistCount: number;
     checkedSkills?: Set<string>;
     onToggleSkill?: (skillName: string) => void;
+    onClearChecks?: () => void;
 }
 
 type SkillView = 'missing' | 'partial';
 
 const WISH_RANK_ORDER: { [key: string]: number } = { S: 0, A: 1, B: 2, C: 3 };
 
-const MissingSkillsDisplay = ({ missingSkills, unsaturatedSkills, totalWishlistCount, checkedSkills, onToggleSkill }: MissingSkillsDisplayProps) => {
-    const { t } = useTranslation(['roster', 'goal']);
+const MissingSkillsDisplay = ({ missingSkills, unsaturatedSkills, totalWishlistCount, checkedSkills, onToggleSkill, onClearChecks }: MissingSkillsDisplayProps) => {
+    const { t } = useTranslation(['roster', 'goal', 'common']);
     const [view, setView] = useState<SkillView>('missing');
+    const [searchQuery, setSearchQuery] = useState('');
 
-    const skillsToDisplay = view === 'missing' ? missingSkills : unsaturatedSkills;
+    const skillsToDisplay = useMemo(() => {
+        const sourceList = view === 'missing' ? missingSkills : unsaturatedSkills;
+        if (!searchQuery) return sourceList;
+
+        const lowerQuery = searchQuery.toLowerCase();
+        return sourceList.filter(item => item.name.toLowerCase().includes(lowerQuery));
+
+    }, [view, missingSkills, unsaturatedSkills, searchQuery]);
+
 
     const groupedSkills = useMemo(() => {
         if (!skillsToDisplay) return {};
@@ -42,6 +54,22 @@ const MissingSkillsDisplay = ({ missingSkills, unsaturatedSkills, totalWishlistC
 
     return (
         <div className="missing-skills">
+            <div className="missing-skills__controls">
+                <input 
+                    type="text" 
+                    placeholder={t('common:searchPlaceholder')}
+                    className="form__input form__input--small"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                />
+                {onClearChecks && checkedSkills && checkedSkills.size > 0 && (
+                    <button className="button button--secondary button--small" onClick={onClearChecks}>
+                        <FontAwesomeIcon icon={faTimes} className="mr-1" />
+                        {t('roster:breedingPlanner.clearChecks')}
+                    </button>
+                )}
+            </div>
+
             <div className="missing-skills__toggle">
                 <button 
                     className={`missing-skills__toggle-btn ${view === 'missing' ? 'missing-skills__toggle-btn--active' : ''}`}
@@ -79,6 +107,9 @@ const MissingSkillsDisplay = ({ missingSkills, unsaturatedSkills, totalWishlistC
             ))}
              {skillsToDisplay.length === 0 && view === 'partial' && (
                 <p className="missing-skills__placeholder">{t('roster:breedingPlanner.allSkillsSaturated')}</p>
+            )}
+             {skillsToDisplay.length === 0 && searchQuery && (
+                <p className="missing-skills__placeholder">{t('common:noResults')}</p>
             )}
         </div>
     );
