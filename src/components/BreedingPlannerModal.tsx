@@ -77,10 +77,12 @@ const BreedingPlannerModal = ({ isOpen, onClose }: BreedingPlannerModalProps) =>
 
     }, [manualParent1, manualParent2, masterUmaList, inventoryMap, umaMapById, charaRelations, relationPoints, excludeInbreeding]);
 
-    const missingSkillsForManualPair = useMemo(() => {
-        if (!manualParent1 || !manualParent2 || !goal) return [];
-        return getMissingWishlistSkills(manualParent1, manualParent2, goal, inventoryMap);
-    }, [manualParent1, manualParent2, goal, inventoryMap]);
+    const { missingSkills: missingSkillsForManualPair, relevantWishlistCount: manualPairWishlistCount } = useMemo(() => {
+        if (!manualParent1 || !manualParent2 || !goal) {
+            return { missingSkills: [], relevantWishlistCount: 0 };
+        }
+        return getMissingWishlistSkills(manualParent1, manualParent2, goal, inventoryMap, skillMapByName);
+    }, [manualParent1, manualParent2, goal, inventoryMap, skillMapByName]);
 
     const suggestions = useMemo<Suggestion[]>(() => {
         if (!trainee || roster.length < 2) return [];
@@ -167,10 +169,12 @@ const BreedingPlannerModal = ({ isOpen, onClose }: BreedingPlannerModalProps) =>
         return { blue, pink, unique, white };
     }, [selectedSuggestion, inventoryMap]);
 
-    const missingSkillsForSelectedSuggestion = useMemo(() => {
-        if (!selectedSuggestion || !goal) return [];
-        return getMissingWishlistSkills(selectedSuggestion.p1, selectedSuggestion.p2, goal, inventoryMap);
-    }, [selectedSuggestion, goal, inventoryMap]);
+    const { missingSkills: missingSkillsForSelectedSuggestion, relevantWishlistCount: selectedSuggestionWishlistCount } = useMemo(() => {
+        if (!selectedSuggestion || !goal) {
+            return { missingSkills: [], relevantWishlistCount: 0 };
+        }
+        return getMissingWishlistSkills(selectedSuggestion.p1, selectedSuggestion.p2, goal, inventoryMap, skillMapByName);
+    }, [selectedSuggestion, goal, inventoryMap, skillMapByName]);
 
     useEffect(() => {
         if (suggestions.length > 0) {
@@ -225,8 +229,6 @@ const BreedingPlannerModal = ({ isOpen, onClose }: BreedingPlannerModalProps) =>
         });
     }, [activeSlot, manualParent1, manualParent2, umaMapById, appData.inventory]);
 
-    const totalWishlistCount = goal ? goal.uniqueWishlist.length + goal.wishlist.length : 0;
-
     return (
         <>
             <Modal isOpen={isOpen} onClose={onClose} title={t('breedingPlanner.title')} size="xl">
@@ -266,7 +268,7 @@ const BreedingPlannerModal = ({ isOpen, onClose }: BreedingPlannerModalProps) =>
                                     </div>
                                     <div className="breeding-planner__missing-skills-section">
                                         <h4 className="breeding-planner__sub-header">{t('breedingPlanner.missingSkills')}</h4>
-                                        <MissingSkillsDisplay missingSkills={missingSkillsForManualPair} totalWishlistCount={totalWishlistCount} />
+                                        <MissingSkillsDisplay missingSkills={missingSkillsForManualPair} totalWishlistCount={manualPairWishlistCount} />
                                     </div>
                                 </div>
                             )}
@@ -359,7 +361,7 @@ const BreedingPlannerModal = ({ isOpen, onClose }: BreedingPlannerModalProps) =>
                                                                 })}
                                                             </div>
                                                             <div className="breeding-planner__missing-skills-column">
-                                                                <MissingSkillsDisplay missingSkills={missingSkillsForSelectedSuggestion} totalWishlistCount={totalWishlistCount} />
+                                                                <MissingSkillsDisplay missingSkills={missingSkillsForSelectedSuggestion} totalWishlistCount={selectedSuggestionWishlistCount} />
                                                             </div>
                                                         </div>
                                                     )}
