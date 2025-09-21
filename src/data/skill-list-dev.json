@@ -5639,37 +5639,7 @@
     "name_en_community": "Caesura (Inherited)"
   },
   {
-    "id": "1000014",
-    "name_jp": "カーニバルボーナス",
-    "name_en": "カーニバルボーナス",
-    "type": "normal",
-    "rarity": 1,
-    "groupId": 100001,
-    "isGlobal": false,
-    "name_en_community": "Carnival Bonus"
-  },
-  {
-    "id": "1000017",
-    "name_jp": "カーニバルボーナス",
-    "name_en": "カーニバルボーナス",
-    "type": "normal",
-    "rarity": 1,
-    "groupId": 100001,
-    "isGlobal": false,
-    "name_en_community": "Carnival Bonus"
-  },
-  {
     "id": "1000015",
-    "name_jp": "カーニバルボーナス",
-    "name_en": "カーニバルボーナス",
-    "type": "normal",
-    "rarity": 1,
-    "groupId": 100001,
-    "isGlobal": false,
-    "name_en_community": "Carnival Bonus"
-  },
-  {
-    "id": "1000016",
     "name_jp": "カーニバルボーナス",
     "name_en": "カーニバルボーナス",
     "type": "normal",
@@ -5689,7 +5659,17 @@
     "name_en_community": "Carnival Bonus"
   },
   {
-    "id": "1000012",
+    "id": "1000016",
+    "name_jp": "カーニバルボーナス",
+    "name_en": "カーニバルボーナス",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 100001,
+    "isGlobal": false,
+    "name_en_community": "Carnival Bonus"
+  },
+  {
+    "id": "1000017",
     "name_jp": "カーニバルボーナス",
     "name_en": "カーニバルボーナス",
     "type": "normal",
@@ -5709,14 +5689,24 @@
     "name_en_community": "Carnival Bonus"
   },
   {
-    "id": "9000016",
-    "name_jp": "カーニバルボーナス（継承）",
-    "name_en": "カーニバルボーナス（継承）",
-    "type": "unique",
+    "id": "1000014",
+    "name_jp": "カーニバルボーナス",
+    "name_en": "カーニバルボーナス",
+    "type": "normal",
     "rarity": 1,
     "groupId": 100001,
     "isGlobal": false,
-    "name_en_community": "Carnival Bonus (Inherited)"
+    "name_en_community": "Carnival Bonus"
+  },
+  {
+    "id": "1000012",
+    "name_jp": "カーニバルボーナス",
+    "name_en": "カーニバルボーナス",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 100001,
+    "isGlobal": false,
+    "name_en_community": "Carnival Bonus"
   },
   {
     "id": "9000017",
@@ -5730,16 +5720,6 @@
   },
   {
     "id": "9000013",
-    "name_jp": "カーニバルボーナス（継承）",
-    "name_en": "カーニバルボーナス（継承）",
-    "type": "unique",
-    "rarity": 1,
-    "groupId": 100001,
-    "isGlobal": false,
-    "name_en_community": "Carnival Bonus (Inherited)"
-  },
-  {
-    "id": "9000012",
     "name_jp": "カーニバルボーナス（継承）",
     "name_en": "カーニバルボーナス（継承）",
     "type": "unique",
@@ -5770,6 +5750,26 @@
   },
   {
     "id": "9000014",
+    "name_jp": "カーニバルボーナス（継承）",
+    "name_en": "カーニバルボーナス（継承）",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 100001,
+    "isGlobal": false,
+    "name_en_community": "Carnival Bonus (Inherited)"
+  },
+  {
+    "id": "9000016",
+    "name_jp": "カーニバルボーナス（継承）",
+    "name_en": "カーニバルボーナス（継承）",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 100001,
+    "isGlobal": false,
+    "name_en_community": "Carnival Bonus (Inherited)"
+  },
+  {
+    "id": "9000012",
     "name_jp": "カーニバルボーナス（継承）",
     "name_en": "カーニバルボーナス（継承）",
     "type": "unique",
@@ -6263,6 +6263,15 @@
     "groupId": 10670321,
     "isGlobal": false,
     "name_en_community": "Danse de l'Épée (Inherited)"
+  },
+  {
+    "id": "aptitude_db12d17dbcc2ac6e845c3a2d5250414d",
+    "name_jp": "ダートの遺伝子",
+    "name_en": "ダートの遺伝子",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": null,
+    "isGlobal": false
   },
   {
     "id": "203103",
@@ -6971,6 +6980,15 @@
     "id": "race_5e778df682bbbcbf92c6b2bd22b7b709",
     "name_jp": "マイルCS南部杯",
     "name_en": "マイルCS南部杯",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": null,
+    "isGlobal": false
+  },
+  {
+    "id": "aptitude_99dd54e9b6729849c829c6c0037f83f1",
+    "name_jp": "マイルの遺伝子",
+    "name_en": "マイルの遺伝子",
     "type": "normal",
     "rarity": 1,
     "groupId": null,
@@ -7883,6 +7901,15 @@
     "groupId": 20279,
     "isGlobal": false,
     "name_en_community": "Skilled at Mid-Race"
+  },
+  {
+    "id": "aptitude_50a8e60f4c5d468e5ef4ae99bdfc47bd",
+    "name_jp": "中距離の遺伝子",
+    "name_en": "中距離の遺伝子",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": null,
+    "isGlobal": false
   },
   {
     "id": "1200011",
@@ -12957,6 +12984,15 @@
     "name_en_community": "Deceive the Foe at Night, Win a Hundred Battles"
   },
   {
+    "id": "aptitude_390a325fb840f851bd75e3e22174a717",
+    "name_jp": "短距離の遺伝子",
+    "name_en": "短距離の遺伝子",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": null,
+    "isGlobal": false
+  },
+  {
     "id": "1200041",
     "name_jp": "短距離レースへの想い",
     "name_en": "短距離レースへの想い",
@@ -13732,6 +13768,15 @@
     "groupId": 20015,
     "isGlobal": false,
     "name_en_community": "Demon of Good Tracks"
+  },
+  {
+    "id": "aptitude_b34a9083d69d33986c5a88786ca9ca49",
+    "name_jp": "芝の遺伝子",
+    "name_en": "芝の遺伝子",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": null,
+    "isGlobal": false
   },
   {
     "id": "900761",
@@ -14768,6 +14813,15 @@
     "groupId": 10170121,
     "isGlobal": false,
     "name_en_community": "Effortless Victory (Inherited)"
+  },
+  {
+    "id": "aptitude_451a1239cde0e9441e55da9adf64d55f",
+    "name_jp": "長距離の遺伝子",
+    "name_en": "長距離の遺伝子",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": null,
+    "isGlobal": false
   },
   {
     "id": "1200021",
