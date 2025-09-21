@@ -9,7 +9,8 @@ import hashlib
 # 2. `python scripts/prepare_raw_data_jp.py path/to/jp/master.mdb`
 # 3. `python scripts/prepare_raw_affinity_components.py global path/to/global/master.mdb`
 # 4. `python scripts/prepare_raw_affinity_components.py jp path/to/jp/master.mdb`
-# 5. `python scripts/prepare_data.py` (This script)
+# 5. `python scripts/prepare_raw_aptitude_factors.py jp path/to/jp/master.mdb`
+# 6. `python scripts/prepare_data.py` (This script)
 #
 # Note: Factor data for races and scenarios must be manually placed in raw_data/
 # from the appropriate sources before running this script.
@@ -158,7 +159,7 @@ def prepare_skills(skill_data, skill_meta, skill_names, translations):
         all_possible_skills.append(skill_entry)
         
     # --- New Factor Processing Logic ---
-    print("Processing race and scenario factors using factor-map...")
+    print("Processing race, scenario, and aptitude factors...")
 
     # 1. Load the canonical map and raw factor lists
     factor_map = _load_json(FACTOR_MAP_PATH)
@@ -167,6 +168,8 @@ def prepare_skills(skill_data, skill_meta, skill_names, translations):
     jp_race_factors = set(_load_json(RAW_DATA_DIR / 'jp' / 'races.json'))
     global_scenario_factors = set(_load_json(RAW_DATA_DIR / 'global' / 'scenarios.json'))
     jp_scenario_factors = set(_load_json(RAW_DATA_DIR / 'jp' / 'scenarios.json'))
+    global_aptitude_factors = set(_load_json(RAW_DATA_DIR / 'global' / 'aptitude_factors.json'))
+    jp_aptitude_factors = set(_load_json(RAW_DATA_DIR / 'jp' / 'aptitude_factors.json'))
 
     processed_names = set()
 
@@ -213,9 +216,16 @@ def prepare_skills(skill_data, skill_meta, skill_names, translations):
     for factor in sorted(list(unmapped_gl_scenarios)): add_unmapped_factor(factor, 'scenario_', True)
     for factor in sorted(list(unmapped_jp_scenarios)): add_unmapped_factor(factor, 'scenario_', False)
 
+    # 4. Process Aptitude Factors (Green Sparks)
+    all_aptitude_factors = jp_aptitude_factors.union(global_aptitude_factors)
+    for factor in sorted(list(all_aptitude_factors)):
+        add_unmapped_factor(factor, 'aptitude_', factor in global_aptitude_factors)
+
+
     print(f"Processed {len(factor_map.get('races', [])) + len(factor_map.get('scenarios', []))} mapped factors.")
     print(f"Processed {len(unmapped_gl_races | unmapped_jp_races)} unmapped race factors.")
     print(f"Processed {len(unmapped_gl_scenarios | unmapped_jp_scenarios)} unmapped scenario factors.")
+    print(f"Processed {len(all_aptitude_factors)} aptitude factors.")
 
     # --- End of New Factor Logic ---
 
