@@ -9,8 +9,9 @@ import hashlib
 # 2. `python scripts/prepare_raw_data_jp.py path/to/jp/master.mdb`
 # 3. `python scripts/prepare_raw_affinity_components.py global path/to/global/master.mdb`
 # 4. `python scripts/prepare_raw_affinity_components.py jp path/to/jp/master.mdb`
-# 5. `python scripts/prepare_raw_aptitude_factors.py jp path/to/jp/master.mdb`
-# 6. `python scripts/prepare_data.py` (This script)
+# 5. `python scripts/prepare_raw_aptitude_factors.py global path/to/global/master.mdb`
+# 6. `python scripts/prepare_raw_aptitude_factors.py jp path/to/jp/master.mdb`
+# 7. `python scripts/prepare_data.py` (This script)
 #
 # Note: Factor data for races and scenarios must be manually placed in raw_data/
 # from the appropriate sources before running this script.
