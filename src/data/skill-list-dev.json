@@ -2969,6 +2969,33 @@
     "isGlobal": true
   },
   {
+    "id": "aptitude_f932e91d2b55a422463139afb8f3d4d8",
+    "name_jp": "S2000",
+    "name_en": "S2000",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": null,
+    "isGlobal": false
+  },
+  {
+    "id": "aptitude_ebcfe597bb185a51897a06b8791f2343",
+    "name_jp": "SMILE",
+    "name_en": "SMILE",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": null,
+    "isGlobal": false
+  },
+  {
+    "id": "aptitude_4cecb21b44628b17c436739bf6301af2",
+    "name_jp": "SMS",
+    "name_en": "SMS",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": null,
+    "isGlobal": false
+  },
+  {
     "id": "900461",
     "name_jp": "キラキラ☆STARDOM",
     "name_en": "SPARKLY☆STARDOM",
@@ -2976,6 +3003,15 @@
     "rarity": 5,
     "groupId": 10046,
     "isGlobal": true
+  },
+  {
+    "id": "aptitude_f542e296af9bd593c4e06b5a31a6eab4",
+    "name_jp": "SSS",
+    "name_en": "SSS",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": null,
+    "isGlobal": false
   },
   {
     "id": "200082",
@@ -4546,6 +4582,15 @@
     "name_en_community": "Excuse me for going first!"
   },
   {
+    "id": "aptitude_639f1b2b665c1fe2a96483a73aacead7",
+    "name_jp": "お嬢様",
+    "name_en": "お嬢様",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": null,
+    "isGlobal": false
+  },
+  {
     "id": "900402211",
     "name_jp": "お立ち台の支配者（継承）",
     "name_en": "お立ち台の支配者（継承）",
@@ -5475,6 +5520,15 @@
     "name_en_community": "Uma Maniac"
   },
   {
+    "id": "aptitude_c4ff55c361dea0fd4d13adace9a94fc4",
+    "name_jp": "ウマ娘よ大志を抱け",
+    "name_en": "ウマ娘よ大志を抱け",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": null,
+    "isGlobal": false
+  },
+  {
     "id": "900701211",
     "name_jp": "エクストリーム下校術（継承）",
     "name_en": "エクストリーム下校術（継承）",
@@ -5585,17 +5639,7 @@
     "name_en_community": "Caesura (Inherited)"
   },
   {
-    "id": "1000013",
-    "name_jp": "カーニバルボーナス",
-    "name_en": "カーニバルボーナス",
-    "type": "normal",
-    "rarity": 1,
-    "groupId": 100001,
-    "isGlobal": false,
-    "name_en_community": "Carnival Bonus"
-  },
-  {
-    "id": "1000015",
+    "id": "1000014",
     "name_jp": "カーニバルボーナス",
     "name_en": "カーニバルボーナス",
     "type": "normal",
@@ -5615,7 +5659,7 @@
     "name_en_community": "Carnival Bonus"
   },
   {
-    "id": "1000011",
+    "id": "1000015",
     "name_jp": "カーニバルボーナス",
     "name_en": "カーニバルボーナス",
     "type": "normal",
@@ -5635,7 +5679,7 @@
     "name_en_community": "Carnival Bonus"
   },
   {
-    "id": "1000014",
+    "id": "1000013",
     "name_jp": "カーニバルボーナス",
     "name_en": "カーニバルボーナス",
     "type": "normal",
@@ -5655,7 +5699,17 @@
     "name_en_community": "Carnival Bonus"
   },
   {
-    "id": "9000015",
+    "id": "1000011",
+    "name_jp": "カーニバルボーナス",
+    "name_en": "カーニバルボーナス",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": 100001,
+    "isGlobal": false,
+    "name_en_community": "Carnival Bonus"
+  },
+  {
+    "id": "9000016",
     "name_jp": "カーニバルボーナス（継承）",
     "name_en": "カーニバルボーナス（継承）",
     "type": "unique",
@@ -5695,7 +5749,17 @@
     "name_en_community": "Carnival Bonus (Inherited)"
   },
   {
-    "id": "9000016",
+    "id": "9000011",
+    "name_jp": "カーニバルボーナス（継承）",
+    "name_en": "カーニバルボーナス（継承）",
+    "type": "unique",
+    "rarity": 1,
+    "groupId": 100001,
+    "isGlobal": false,
+    "name_en_community": "Carnival Bonus (Inherited)"
+  },
+  {
+    "id": "9000015",
     "name_jp": "カーニバルボーナス（継承）",
     "name_en": "カーニバルボーナス（継承）",
     "type": "unique",
@@ -5706,16 +5770,6 @@
   },
   {
     "id": "9000014",
-    "name_jp": "カーニバルボーナス（継承）",
-    "name_en": "カーニバルボーナス（継承）",
-    "type": "unique",
-    "rarity": 1,
-    "groupId": 100001,
-    "isGlobal": false,
-    "name_en_community": "Carnival Bonus (Inherited)"
-  },
-  {
-    "id": "9000011",
     "name_jp": "カーニバルボーナス（継承）",
     "name_en": "カーニバルボーナス（継承）",
     "type": "unique",
@@ -6015,6 +6069,24 @@
     "name_en_community": "Singularity"
   },
   {
+    "id": "aptitude_5378eb7e16730cb862d1cdbb53692459",
+    "name_jp": "ジャックポット",
+    "name_en": "ジャックポット",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": null,
+    "isGlobal": false
+  },
+  {
+    "id": "aptitude_e088541e7bd144b447a816410464edd3",
+    "name_jp": "ジュエリー",
+    "name_en": "ジュエリー",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": null,
+    "isGlobal": false
+  },
+  {
     "id": "910911",
     "name_jp": "ジュ・テーム☆バカンス！",
     "name_en": "ジュ・テーム☆バカンス！",
@@ -6043,6 +6115,15 @@
     "groupId": 10080111,
     "isGlobal": false,
     "name_en_community": "Skittle Break (Inherited)"
+  },
+  {
+    "id": "aptitude_2028ae1ccf2682e1c5df89647e208b11",
+    "name_jp": "スタミナの目覚め",
+    "name_en": "スタミナの目覚め",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": null,
+    "isGlobal": false
   },
   {
     "id": "203552",
@@ -6093,6 +6174,15 @@
     "groupId": 130007,
     "isGlobal": false,
     "name_en_community": "Spurt Hero (Inherited)"
+  },
+  {
+    "id": "aptitude_9c91847d2949238a443ca16df35e993a",
+    "name_jp": "スピードの目覚め",
+    "name_en": "スピードの目覚め",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": null,
+    "isGlobal": false
   },
   {
     "id": "900701",
@@ -6495,6 +6585,15 @@
     "name_en_community": "Non-Stop Princess (Inherited)"
   },
   {
+    "id": "aptitude_f3fd42886dfb4e7df0d6cb7701e9c305",
+    "name_jp": "ノーブレーキ",
+    "name_en": "ノーブレーキ",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": null,
+    "isGlobal": false
+  },
+  {
     "id": "909101211",
     "name_jp": "ハイソ・メンタリティ！（継承）",
     "name_en": "ハイソ・メンタリティ！（継承）",
@@ -6565,6 +6664,15 @@
     "name_en_community": "Bakushin-esque Lead! (Inherited)"
   },
   {
+    "id": "aptitude_c8704469e46b8bab3ec5d1cd98781e95",
+    "name_jp": "バランス重視",
+    "name_en": "バランス重視",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": null,
+    "isGlobal": false
+  },
+  {
     "id": "902402211",
     "name_jp": "バレルロール（継承）",
     "name_en": "バレルロール（継承）",
@@ -6615,6 +6723,24 @@
     "name_en_community": "Pathfinder"
   },
   {
+    "id": "aptitude_0d395e6a3f3d8b4e7a22a73d4861352a",
+    "name_jp": "パワーの目覚め",
+    "name_en": "パワーの目覚め",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": null,
+    "isGlobal": false
+  },
+  {
+    "id": "aptitude_e6053105408b25404606f232bfeca8e5",
+    "name_jp": "パーフェクトクラウン",
+    "name_en": "パーフェクトクラウン",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": null,
+    "isGlobal": false
+  },
+  {
     "id": "900901111",
     "name_jp": "パーフェクトチューン（継承）",
     "name_en": "パーフェクトチューン（継承）",
@@ -6623,6 +6749,15 @@
     "groupId": 10090111,
     "isGlobal": false,
     "name_en_community": "Perfect Tune (Inherited)"
+  },
+  {
+    "id": "aptitude_583b598e35c66526475f58ed5c66f041",
+    "name_jp": "パーフェクトティアラ",
+    "name_en": "パーフェクトティアラ",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": null,
+    "isGlobal": false
   },
   {
     "id": "902602211",
@@ -6653,6 +6788,24 @@
     "groupId": 20389,
     "isGlobal": false,
     "name_en_community": "Heat Up"
+  },
+  {
+    "id": "aptitude_d3ccfa4e8bb083ee3542514a3ed693c1",
+    "name_jp": "ビュービュー",
+    "name_en": "ビュービュー",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": null,
+    "isGlobal": false
+  },
+  {
+    "id": "aptitude_890a77ec9e50fec20b5d52fbc750a95f",
+    "name_jp": "ピカピカ",
+    "name_en": "ピカピカ",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": null,
+    "isGlobal": false
   },
   {
     "id": "902001111",
@@ -7054,6 +7207,15 @@
     "name_en_community": "Star of the Runway (Inherited)"
   },
   {
+    "id": "aptitude_0aecde4049a0c6913b8ca999aecbaf7b",
+    "name_jp": "リフレッシュ",
+    "name_en": "リフレッシュ",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": null,
+    "isGlobal": false
+  },
+  {
     "id": "1300061",
     "name_jp": "リンケージヒーロー",
     "name_en": "リンケージヒーロー",
@@ -7322,6 +7484,15 @@
     "groupId": 10160111,
     "isGlobal": false,
     "name_en_community": "Cut in Two with One Stroke (Inherited)"
+  },
+  {
+    "id": "aptitude_e883d5ef1ac36170350df5b1de79f64b",
+    "name_jp": "一年の計は",
+    "name_en": "一年の計は",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": null,
+    "isGlobal": false
   },
   {
     "id": "203171",
@@ -7744,6 +7915,15 @@
     "name_en_community": "An All-or-Nothing Gamble (Inherited)"
   },
   {
+    "id": "aptitude_8f0576c124910a065774e288c4ee99ba",
+    "name_jp": "二刀流",
+    "name_en": "二刀流",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": null,
+    "isGlobal": false
+  },
+  {
     "id": "202832",
     "name_jp": "二段構え",
     "name_en": "二段構え",
@@ -7792,6 +7972,15 @@
     "groupId": 10370212,
     "isGlobal": false,
     "name_en_community": "Preparation is Perfect (Inherited)"
+  },
+  {
+    "id": "aptitude_2aa8fd654a9bca6f2298cc61a94ce9c5",
+    "name_jp": "企画上手",
+    "name_en": "企画上手",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": null,
+    "isGlobal": false
   },
   {
     "id": "910402111",
@@ -7844,6 +8033,15 @@
     "name_en_community": "Grace of a Prodigy (Inherited)"
   },
   {
+    "id": "aptitude_6f4f8e0d33dfb598f5cb648f3ac2d214",
+    "name_jp": "信頼の証",
+    "name_en": "信頼の証",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": null,
+    "isGlobal": false
+  },
+  {
     "id": "908901111",
     "name_jp": "偉大なる踏破（継承）",
     "name_en": "偉大なる踏破（継承）",
@@ -7862,6 +8060,15 @@
     "groupId": 20366,
     "isGlobal": false,
     "name_en_community": "Strong Legs"
+  },
+  {
+    "id": "aptitude_20a10d3d4dbb619d980df0b1bbf5a2c2",
+    "name_jp": "健闘",
+    "name_en": "健闘",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": null,
+    "isGlobal": false
   },
   {
     "id": "203461",
@@ -8034,6 +8241,15 @@
     "name_en_community": "Giving It My All (Inherited)"
   },
   {
+    "id": "aptitude_90e08fd6d8c0e065f32e2eed60c99414",
+    "name_jp": "全天候型",
+    "name_en": "全天候型",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": null,
+    "isGlobal": false
+  },
+  {
     "id": "race_aff484730edec37a57dc0537fe86f484",
     "name_jp": "全日本ジュニア優駿",
     "name_en": "全日本ジュニア優駿",
@@ -8061,6 +8277,15 @@
     "groupId": 20228,
     "isGlobal": false,
     "name_en_community": "Full Speed Ahead!"
+  },
+  {
+    "id": "aptitude_da0c17dc2bf93755f567d72bd19c870d",
+    "name_jp": "全階級制覇",
+    "name_en": "全階級制覇",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": null,
+    "isGlobal": false
   },
   {
     "id": "907201211",
@@ -8091,6 +8316,15 @@
     "groupId": 10150211,
     "isGlobal": false,
     "name_en_community": "Maestro of the Waltz (Inherited)"
+  },
+  {
+    "id": "aptitude_e068693023bcbc8b6152c5e53eba5a0a",
+    "name_jp": "冬の目覚め",
+    "name_en": "冬の目覚め",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": null,
+    "isGlobal": false
   },
   {
     "id": "202292",
@@ -8140,6 +8374,15 @@
     "groupId": 20180,
     "isGlobal": false,
     "name_en_community": "Bumpy Nails"
+  },
+  {
+    "id": "aptitude_a8e56f29b26a9cc8e90d836097b5163a",
+    "name_jp": "出たとこ勝負",
+    "name_en": "出たとこ勝負",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": null,
+    "isGlobal": false
   },
   {
     "id": "906601111",
@@ -8652,6 +8895,15 @@
     "name_en_community": "As a Friend, as a Rival"
   },
   {
+    "id": "aptitude_86210e9121d1c647e25d25693876e8b0",
+    "name_jp": "反骨精神",
+    "name_en": "反骨精神",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": null,
+    "isGlobal": false
+  },
+  {
     "id": "900571",
     "name_jp": "叙情、旅路の果てに",
     "name_en": "叙情、旅路の果てに",
@@ -8662,6 +8914,15 @@
     "name_en_community": "Lyricism, at the Journey's End"
   },
   {
+    "id": "aptitude_5d953a5c7410ca06a2112887ee157bf8",
+    "name_jp": "叩き良化型",
+    "name_en": "叩き良化型",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": null,
+    "isGlobal": false
+  },
+  {
     "id": "903201111",
     "name_jp": "可能性の徒（継承）",
     "name_en": "可能性の徒（継承）",
@@ -8670,6 +8931,15 @@
     "groupId": 10320111,
     "isGlobal": false,
     "name_en_community": "Disciple of Possibility (Inherited)"
+  },
+  {
+    "id": "aptitude_a1773c10f592d5ae921c1054ce78c080",
+    "name_jp": "右回りの目覚め",
+    "name_en": "右回りの目覚め",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": null,
+    "isGlobal": false
   },
   {
     "id": "906701211",
@@ -8932,6 +9202,15 @@
     "name_en_community": "Summer's Great Actor (Inherited)"
   },
   {
+    "id": "aptitude_d900c383dd4d03a714cd9da7ff90b4ac",
+    "name_jp": "夏の目覚め",
+    "name_en": "夏の目覚め",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": null,
+    "isGlobal": false
+  },
+  {
     "id": "910321",
     "name_jp": "夏空ハレーション",
     "name_en": "夏空ハレーション",
@@ -9152,6 +9431,15 @@
     "name_en_community": "A Big Serving! First Bite!"
   },
   {
+    "id": "aptitude_05719aab4030f70451438b325e446cb3",
+    "name_jp": "大肺活量",
+    "name_en": "大肺活量",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": null,
+    "isGlobal": false
+  },
+  {
     "id": "202121",
     "name_jp": "大胆不敵",
     "name_en": "大胆不敵",
@@ -9340,6 +9628,15 @@
     "groupId": 21026,
     "isGlobal": false,
     "name_en_community": "Wisdom of the Sun"
+  },
+  {
+    "id": "aptitude_7312d8437ceeb1b423240d0020f0c396",
+    "name_jp": "太陽系",
+    "name_en": "太陽系",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": null,
+    "isGlobal": false
   },
   {
     "id": "910531",
@@ -9572,6 +9869,15 @@
     "name_en_community": "Tail's Waterfall Climb"
   },
   {
+    "id": "aptitude_479c1521d0ade1615cf48b26f47bedd0",
+    "name_jp": "山娘",
+    "name_en": "山娘",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": null,
+    "isGlobal": false
+  },
+  {
     "id": "903003111",
     "name_jp": "山頂でイタダキマス（継承）",
     "name_en": "山頂でイタダキマス（継承）",
@@ -9615,6 +9921,15 @@
     "id": "race_8fa380754105990e9667277a51e91b6d",
     "name_jp": "川崎記念",
     "name_en": "川崎記念",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": null,
+    "isGlobal": false
+  },
+  {
+    "id": "aptitude_b052992ff6ae04cacee4a9c25f41dea8",
+    "name_jp": "左回りの目覚め",
+    "name_en": "左回りの目覚め",
     "type": "normal",
     "rarity": 1,
     "groupId": null,
@@ -10251,6 +10566,15 @@
     "name_en_community": "Without Reserve"
   },
   {
+    "id": "aptitude_ff2b3f7bb3225900b7a5253032c7a4b3",
+    "name_jp": "想いの継ぎ手",
+    "name_en": "想いの継ぎ手",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": null,
+    "isGlobal": false
+  },
+  {
     "id": "210292",
     "name_jp": "想いを背負って",
     "name_en": "想いを背負って",
@@ -10661,6 +10985,24 @@
     "name_en_community": "The One Who Builds a New Legend"
   },
   {
+    "id": "aptitude_691e8f86de68072523563f9bb9f6390e",
+    "name_jp": "新聞屋さん",
+    "name_en": "新聞屋さん",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": null,
+    "isGlobal": false
+  },
+  {
+    "id": "aptitude_4bfdfb4c574e94b702675a72d22a0214",
+    "name_jp": "旅人",
+    "name_en": "旅人",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": null,
+    "isGlobal": false
+  },
+  {
     "id": "900103211",
     "name_jp": "日之本一のド根性（継承）",
     "name_en": "日之本一のド根性（継承）",
@@ -10761,6 +11103,15 @@
     "name_en_community": "Clear and Serene"
   },
   {
+    "id": "aptitude_372204dbc150af83c286c52c6b88812e",
+    "name_jp": "星に願いを",
+    "name_en": "星に願いを",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": null,
+    "isGlobal": false
+  },
+  {
     "id": "910501211",
     "name_jp": "星の海を駆けて（継承）",
     "name_en": "星の海を駆けて（継承）",
@@ -10769,6 +11120,15 @@
     "groupId": 11050121,
     "isGlobal": false,
     "name_en_community": "Galloping Across the Sea of Stars (Inherited)"
+  },
+  {
+    "id": "aptitude_6c1a7e669b2849bdc662e04c486c2b21",
+    "name_jp": "春の目覚め",
+    "name_en": "春の目覚め",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": null,
+    "isGlobal": false
   },
   {
     "id": "200174",
@@ -11061,6 +11421,24 @@
     "name_en_community": "Showing True Colors"
   },
   {
+    "id": "aptitude_08a1afa4bcb7807eded10e77566ca8a5",
+    "name_jp": "東の雄",
+    "name_en": "東の雄",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": null,
+    "isGlobal": false
+  },
+  {
+    "id": "aptitude_5f128a8e89f9ae43d26419b881824875",
+    "name_jp": "東奔西走",
+    "name_en": "東奔西走",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": null,
+    "isGlobal": false
+  },
+  {
     "id": "911901111",
     "name_jp": "果てへの面舵（継承）",
     "name_en": "果てへの面舵（継承）",
@@ -11089,6 +11467,15 @@
     "groupId": 11100211,
     "isGlobal": false,
     "name_en_community": "Who can block the path of glory? (Inherited)"
+  },
+  {
+    "id": "aptitude_d0a3b5677ec23751bc706f5c4714afb8",
+    "name_jp": "根性の目覚め",
+    "name_en": "根性の目覚め",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": null,
+    "isGlobal": false
   },
   {
     "id": "906901121",
@@ -12261,6 +12648,15 @@
     "name_en_community": "Thoroughly Prepared"
   },
   {
+    "id": "aptitude_153dc8b4d313c1272d6bd2843d8d0fa5",
+    "name_jp": "甲斐性なし",
+    "name_en": "甲斐性なし",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": null,
+    "isGlobal": false
+  },
+  {
     "id": "202811",
     "name_jp": "画竜点睛",
     "name_en": "画竜点睛",
@@ -12841,6 +13237,15 @@
     "name_en_community": "The Path We Run"
   },
   {
+    "id": "aptitude_17ac378a3896133972410c092fd1ad43",
+    "name_jp": "秋の目覚め",
+    "name_en": "秋の目覚め",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": null,
+    "isGlobal": false
+  },
+  {
     "id": "203681",
     "name_jp": "秘めた闘魂",
     "name_en": "秘めた闘魂",
@@ -12949,6 +13354,15 @@
     "groupId": 10060111,
     "isGlobal": false,
     "name_en_community": "The Glutton of Kasamatsu (Inherited)"
+  },
+  {
+    "id": "aptitude_66f5a82371350cf9d40e8d627c3e98fe",
+    "name_jp": "策略家",
+    "name_en": "策略家",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": null,
+    "isGlobal": false
   },
   {
     "id": "903401221",
@@ -13261,6 +13675,15 @@
     "name_en_community": "Free-Spirited"
   },
   {
+    "id": "aptitude_0f6acaeaf0193b4a0af3a21a1de8d3fc",
+    "name_jp": "自由自在",
+    "name_en": "自由自在",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": null,
+    "isGlobal": false
+  },
+  {
     "id": "900851",
     "name_jp": "至上であれ",
     "name_en": "至上であれ",
@@ -13491,6 +13914,15 @@
     "name_en_community": "Contradictory Feelings"
   },
   {
+    "id": "aptitude_caf8a7651e73dbefd019c1576c576f5b",
+    "name_jp": "西の雄",
+    "name_en": "西の雄",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": null,
+    "isGlobal": false
+  },
+  {
     "id": "203512",
     "name_jp": "覇気十分",
     "name_en": "覇気十分",
@@ -13671,6 +14103,15 @@
     "name_en_community": "I won't give up, you know~! (Inherited)"
   },
   {
+    "id": "aptitude_b23ba24cc80826b953132636330ede31",
+    "name_jp": "諦めない心",
+    "name_en": "諦めない心",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": null,
+    "isGlobal": false
+  },
+  {
     "id": "203482",
     "name_jp": "譲れぬ一歩",
     "name_en": "譲れぬ一歩",
@@ -13779,6 +14220,15 @@
     "groupId": 10690221,
     "isGlobal": false,
     "name_en_community": "I don't want to lose! (Inherited)"
+  },
+  {
+    "id": "aptitude_a2ad1c2e4a4c0b6903aa7517dfe7e0fb",
+    "name_jp": "賢さの目覚め",
+    "name_en": "賢さの目覚め",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": null,
+    "isGlobal": false
   },
   {
     "id": "908301111",
@@ -14129,6 +14579,15 @@
     "groupId": 20334,
     "isGlobal": false,
     "name_en_community": "Creeping Footsteps"
+  },
+  {
+    "id": "aptitude_62d33ebcb5494236efd4ec8f3923d8f8",
+    "name_jp": "連戦連勝",
+    "name_en": "連戦連勝",
+    "type": "normal",
+    "rarity": 1,
+    "groupId": null,
+    "isGlobal": false
   },
   {
     "id": "203241",
