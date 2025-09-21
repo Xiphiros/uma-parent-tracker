@@ -3,10 +3,13 @@ import json
 import argparse
 from pathlib import Path
 
-# In the `succession_factor` table, `factor_type` = 9 corresponds to
-# the inheritable aptitude factors (green sparks). We use this as the
+# In the `succession_factor` table, the following factor_types correspond
+# to inheritable aptitude factors (green sparks). We use this as the
 # source of truth to get all valid factor IDs.
-APTITUDE_FACTOR_TYPE = 9
+# Type 8: Distance Aptitude Genes (e.g., Mile Gene)
+# Type 9: Stat/Condition Aptitude Awakenings (e.g., Guts Awakening)
+# Type 10: Surface Aptitude Genes (e.g., Turf Gene)
+APTITUDE_FACTOR_TYPES = [8, 9, 10]
 
 # In the `text_data` table, the names for these factors are stored under
 # specific categories.
@@ -40,10 +43,11 @@ def main():
         cursor = conn.cursor()
         
         # Step 1: Get all valid aptitude factor IDs from the definitive source table.
-        print(f"Querying `succession_factor` for factor_type = {APTITUDE_FACTOR_TYPE}...")
+        print(f"Querying `succession_factor` for factor_types: {APTITUDE_FACTOR_TYPES}...")
+        factor_type_placeholders = ', '.join('?' for _ in APTITUDE_FACTOR_TYPES)
         cursor.execute(
-            "SELECT factor_id FROM succession_factor WHERE factor_type = ?;",
-            (APTITUDE_FACTOR_TYPE,)
+            f"SELECT factor_id FROM succession_factor WHERE factor_type IN ({factor_type_placeholders});",
+            APTITUDE_FACTOR_TYPES
         )
         factor_ids = [row['factor_id'] for row in cursor.fetchall()]
         print(f"Found {len(factor_ids)} potential aptitude factor IDs.")
