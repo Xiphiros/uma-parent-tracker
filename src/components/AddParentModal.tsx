@@ -36,7 +36,7 @@ const initialState: NewParentData = {
 type GrandparentSlot = 'grandparent1' | 'grandparent2';
 
 const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) => {
-    const { t } = useTranslation(['modals', 'common', 'game']);
+    const { t } = useTranslation(['modals', 'common', 'game', 'roster']);
     const { getActiveProfile, masterUmaList, masterSkillList, addParent, updateParent, dataDisplayLanguage, umaMapById, skillMapByName, appData } = useAppContext();
     
     const [formData, setFormData] = useState<NewParentData>(initialState);
@@ -371,11 +371,17 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
                            {renderGrandparentDisplay('grandparent2')}
                         </div>
                     </div>
-                    <div className="dialog-modal__footer">
-                        <button type="button" className="button button--neutral" onClick={onClose}>{t('common:cancel')}</button>
-                        <button type="submit" className="button button--primary">
-                            {parentToEdit ? t('updateParentBtn') : t('calculateScoreBtn')}
-                        </button>
+                    <div className="dialog-modal__footer add-parent-modal__footer">
+                        <div className="add-parent-modal__score-display">
+                            <span className="add-parent-modal__score-label">{t('roster:inventory.sortOptions.score')}:</span>
+                            <span className="add-parent-modal__score-value">{liveScore} {t('roster:parentCard.pts')}</span>
+                        </div>
+                        <div className="add-parent-modal__footer-actions">
+                            <button type="button" className="button button--neutral" onClick={onClose}>{t('common:cancel')}</button>
+                            <button type="submit" className="button button--primary">
+                                {parentToEdit ? t('updateParentBtn') : t('saveParentBtn')}
+                            </button>
+                        </div>
                     </div>
                 </form>
             </Modal>
