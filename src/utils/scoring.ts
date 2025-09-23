@@ -20,7 +20,7 @@ const GRANDPARENT_MULTIPLIER = 0.5;
 
 const getBlueMultiplier = (type: string, goal: Goal): number => {
     if (goal.primaryBlue.includes(type)) return 1.5;
-    if (goal.secondaryBlue === type) return 1.2;
+    if (goal.secondaryBlue.includes(type)) return 1.2;
     return 0.5;
 };
 
