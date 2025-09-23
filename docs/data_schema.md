@@ -2,7 +2,48 @@
 
 This document outlines the structure of the exported JSON data for this application. As features are added, the schema may evolve. The `version` key at the root of the JSON file helps in handling data migrations.
 
-## Version 7 (Current)
+## Version 8 (Current)
+
+Version 8 introduces a more flexible goal definition system by adding support for **Secondary Blue Sparks**. This allows for a three-tiered priority system (Primary, Secondary, Other) in the parent scoring calculation.
+
+*   A `secondaryBlue: string[]` array is added to the `Goal` object within each `Profile`.
+*   The migration process ensures this key exists on all profiles, initializing it as an empty array if it's missing from older data.
+*   The `version` key is set to `8`.
+
+```json
+{
+  "version": 8,
+  "activeServer": "jp",
+  "inventory": [
+    { "...": "..." }
+  ],
+  "serverData": {
+    "jp": {
+      "activeProfileId": 1725612458123,
+      "profiles": [
+        {
+          "id": 1725612458123,
+          "name": "Super Creek Project (JP)",
+          "isPinned": false,
+          "goal": {
+            "primaryBlue": ["Stamina", "Power"],
+            "secondaryBlue": ["Guts"],
+            "primaryPink": ["Mile", "Long"],
+            "uniqueWishlist": [],
+            "wishlist": []
+          },
+          "roster": [ 1725612900123 ]
+        }
+      ],
+      "folders": [],
+      "layout": [ 1725612458123 ]
+    },
+    "global": { "...": "..." }
+  }
+}
+```
+
+## Version 7
 
 Version 7 adds an optional `isBorrowed` boolean property to each `Parent` object in the `inventory`. This flag is used to distinguish between a user's owned parents and borrowed parents (e.g., from a friend list).
 
@@ -99,8 +140,7 @@ Version 6 adds an optional `hash` property to each `Parent` object in the `inven
       "layout": [ 1725613000000 ]
     }
   }
-}
-```
+}```
 
 ## Version 5
 
