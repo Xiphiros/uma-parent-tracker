@@ -373,7 +373,6 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
                     </div>
                     <div className="dialog-modal__footer add-parent-modal__footer">
                         <div className="add-parent-modal__score-display">
-                            <span className="add-parent-modal__score-label">{t('roster:inventory.sortOptions.score')}:</span>
                             <span className="add-parent-modal__score-value">{liveScore} {t('roster:parentCard.pts')}</span>
                         </div>
                         <div className="add-parent-modal__footer-actions">
