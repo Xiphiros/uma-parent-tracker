@@ -10,8 +10,8 @@ export const createNewProfile = (name: string): Profile => ({
   id: Date.now(),
   name,
   goal: {
-    primaryBlue: ['Stamina', 'Power'],
-    secondaryBlue: 'Speed',
+    primaryBlue: [],
+    secondaryBlue: [],
     primaryPink: [],
     uniqueWishlist: [],
     wishlist: []
@@ -141,14 +141,16 @@ const migrateToV7 = (data: any): any => {
 const runSanityChecks = (data: any): any => {
     (Object.values(data.serverData) as ServerSpecificData[]).forEach(serverData => {
         serverData.profiles.forEach((p: Profile) => {
-            if (!p.goal) p.goal = { primaryBlue: ['Stamina', 'Power'], secondaryBlue: 'Speed', primaryPink: [], uniqueWishlist: [], wishlist: [] };
+            if (!p.goal) p.goal = { primaryBlue: [], secondaryBlue: [], primaryPink: [], uniqueWishlist: [], wishlist: [] };
             if (!p.goal.uniqueWishlist) p.goal.uniqueWishlist = [];
             if (p.isPinned === undefined) p.isPinned = false;
             if (!p.roster) p.roster = [];
-            // Fix for old goal structure
-            if (Array.isArray(p.goal.primaryBlue) && p.goal.primaryBlue.length > 2) {
-                p.goal.primaryBlue = ['Stamina', 'Power'];
-                p.goal.secondaryBlue = 'Speed';
+            // Fix for previous rigid goal structure
+            if (p.goal.primaryBlue && !Array.isArray(p.goal.primaryBlue)) {
+                 p.goal.primaryBlue = [];
+            }
+            if (p.goal.secondaryBlue && !Array.isArray(p.goal.secondaryBlue)) {
+                 p.goal.secondaryBlue = [];
             }
         });
         serverData.folders.forEach((f: Folder) => {
