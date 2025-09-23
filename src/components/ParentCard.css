@@ -161,10 +161,6 @@
     color: var(--color-text-muted);
     margin: 0 0.25rem;
 }
-.lineage-spark__parent-contrib {
-    color: var(--color-text-muted);
-    font-size: 0.9em;
-}
 
 /* New Footer for Inventory View */
 .parent-card__footer {
