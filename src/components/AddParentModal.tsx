@@ -98,12 +98,12 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
                 score: 0,
                 server: parentToEdit?.server || 'jp'
             };
-            const score = calculateScore(tempParent, activeProfile.goal, appData.inventory);
+            const score = calculateScore(tempParent, activeProfile.goal, appData.inventory, skillMapByName);
             setLiveScore(score);
         } else {
             setLiveScore(0);
         }
-    }, [formData, getActiveProfile, appData.inventory, parentToEdit]);
+    }, [formData, getActiveProfile, appData.inventory, parentToEdit, skillMapByName]);
 
     const handleUmaSelect = (item: Uma) => setFormData(prev => ({ ...prev, name: item.name_en, umaId: item.id }));
     const handleSparkChange = (sparkType: 'blueSpark' | 'pinkSpark', part: 'type' | 'stars', value: string | number) => {

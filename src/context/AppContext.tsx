@@ -245,9 +245,9 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
       .filter((p): p is Parent => !!p && p.server === activeServer)
       .map(p => ({
         ...p,
-        score: calculateScore(p, profile.goal, appData.inventory)
+        score: calculateScore(p, profile.goal, appData.inventory, skillMapByName)
       }));
-  }, [appData.inventory, appData.serverData, activeServer]);
+  }, [appData.inventory, appData.serverData, activeServer, skillMapByName]);
 
   const exportData = () => {
     const jsonString = JSON.stringify(appData, null, 2);

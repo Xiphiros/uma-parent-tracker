@@ -36,7 +36,7 @@ const initialFilters: Filters = {
 
 const InventoryModal = ({ isOpen, onClose, isSelectionMode = false, onSelectParent, excludedCharacterIds = new Set() }: InventoryModalProps) => {
     const { t } = useTranslation(['roster', 'modals', 'common']);
-    const { appData, activeServer, deleteParent, addParentToProfile, removeParentFromProfile, moveParentToServer, validateParentForServer, umaMapById, dataDisplayLanguage, getActiveProfile } = useAppContext();
+    const { appData, activeServer, deleteParent, addParentToProfile, removeParentFromProfile, moveParentToServer, validateParentForServer, umaMapById, dataDisplayLanguage, getActiveProfile, skillMapByName } = useAppContext();
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
     const [parentToEdit, setParentToEdit] = useState<Parent | null>(null);
     const [isDeleteConfirmOpen, setDeleteConfirmOpen] = useState(false);
@@ -72,7 +72,7 @@ const InventoryModal = ({ isOpen, onClose, isSelectionMode = false, onSelectPare
         const scoredInventory = activeProfile
             ? viewFilteredInventory.map(p => ({
                 ...p,
-                score: calculateScore(p, activeProfile.goal, appData.inventory)
+                score: calculateScore(p, activeProfile.goal, appData.inventory, skillMapByName)
               }))
             : viewFilteredInventory;
 
@@ -133,7 +133,7 @@ const InventoryModal = ({ isOpen, onClose, isSelectionMode = false, onSelectPare
             }
             return sortDirection === 'desc' ? comparison : -comparison;
         });
-    }, [inventory, inventoryView, filters, sortField, sortDirection, umaMapById, dataDisplayLanguage, inventoryMap, activeProfile, appData.inventory]);
+    }, [inventory, inventoryView, filters, sortField, sortDirection, umaMapById, dataDisplayLanguage, inventoryMap, activeProfile, appData.inventory, skillMapByName]);
 
 
     const handleOpenAddModal = () => {
