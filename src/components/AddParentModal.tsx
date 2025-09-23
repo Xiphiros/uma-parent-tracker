@@ -44,6 +44,7 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
     const [currentWhiteSkill, setCurrentWhiteSkill] = useState<any>(null);
     const [currentWhiteStars, setCurrentWhiteStars] = useState<1 | 2 | 3>(3);
     const [alertMessage, setAlertMessage] = useState('');
+    const [liveScore, setLiveScore] = useState(0);
     
     const [isGpModalOpen, setIsGpModalOpen] = useState(false);
     const [activeGpSlot, setActiveGpSlot] = useState<GrandparentSlot | null>(null);
