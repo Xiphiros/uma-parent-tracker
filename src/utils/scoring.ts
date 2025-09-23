@@ -1,4 +1,4 @@
-import { Goal, Parent, WhiteSpark, UniqueSpark, ManualParentData, Grandparent } from '../types';
+import { Goal, Parent, WhiteSpark, UniqueSpark, ManualParentData } from '../types';
 
 // --- BASE SCORE TABLES & CONSTANTS ---
 
@@ -28,7 +28,7 @@ const getPinkMultiplier = (type: string, goal: Goal): number => {
     return goal.primaryPink.includes(type) ? 1.5 : 0.5;
 };
 
-const getWishlistMultiplier = (name: string, tier: 'S' | 'A' | 'B' | 'C' | 'OTHER'): number => {
+const getWishlistMultiplier = (tier: 'S' | 'A' | 'B' | 'C' | 'OTHER'): number => {
     switch (tier) {
         case 'S': return 2.0;
         case 'A': return 1.5;
@@ -112,7 +112,7 @@ const calculateIndividualScore = (
             const baseScore = calculateWhiteSparkBaseScore(spark.stars, ancestorCount);
             const wishlistItem = goal.wishlist.find(w => w.name === spark.name);
             const tier = wishlistItem ? wishlistItem.tier : 'OTHER';
-            totalScore += baseScore * getWishlistMultiplier(spark.name, tier);
+            totalScore += baseScore * getWishlistMultiplier(tier);
         });
     }
 
