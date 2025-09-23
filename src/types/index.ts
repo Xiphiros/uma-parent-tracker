@@ -45,8 +45,8 @@ export interface WishlistItem {
 }
 
 export interface Goal {
-  primaryBlue: [string, string];
-  secondaryBlue: string;
+  primaryBlue: string[];
+  secondaryBlue: string[];
   primaryPink: string[];
   uniqueWishlist: WishlistItem[];
   wishlist: WishlistItem[];
