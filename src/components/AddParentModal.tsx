@@ -10,6 +10,7 @@ import SelectGrandparentModal from './SelectGrandparentModal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { getExcludedCharacterIds } from '../utils/selectionExclusion';
+import { calculateScore } from '../utils/scoring';
 
 interface AddParentModalProps {
   isOpen: boolean;
@@ -86,6 +87,23 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
             }
         }
     }, [parentToEdit, isOpen]);
+
+    useEffect(() => {
+        const activeProfile = getActiveProfile();
+        if (activeProfile?.goal) {
+            const tempParent: Parent = {
+                ...formData,
+                id: parentToEdit?.id || 0,
+                gen: parentToEdit?.gen || 0,
+                score: 0,
+                server: parentToEdit?.server || 'jp'
+            };
+            const score = calculateScore(tempParent, activeProfile.goal, appData.inventory);
+            setLiveScore(score);
+        } else {
+            setLiveScore(0);
+        }
+    }, [formData, getActiveProfile, appData.inventory, parentToEdit]);
 
     const handleUmaSelect = (item: Uma) => setFormData(prev => ({ ...prev, name: item.name_en, umaId: item.id }));
     const handleSparkChange = (sparkType: 'blueSpark' | 'pinkSpark', part: 'type' | 'stars', value: string | number) => {
