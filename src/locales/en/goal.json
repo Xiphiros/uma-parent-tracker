@@ -1,6 +1,10 @@
 {
   "title": "Define Goal Parent",
-  "primaryBlue": "Primary Blue Sparks",
+  "primaryBlue": "Blue Spark Priorities",
+  "primaryStat1": "Primary Stat 1",
+  "primaryStat2": "Primary Stat 2",
+  "secondaryStat": "Secondary Stat",
+  "noneSelected": "None",
   "primaryPink": "Primary Pink Sparks",
   "uniqueWishlist": "Unique Spark Wishlist",
   "whiteWishlist": "White Spark Wishlist",

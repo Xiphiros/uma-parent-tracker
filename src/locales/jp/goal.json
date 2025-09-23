@@ -1,6 +1,10 @@
 {
   "title": "目標の親を定義",
-  "primaryBlue": "主要な青因子",
+  "primaryBlue": "青因子の優先度",
+  "primaryStat1": "優先ステータス 1",
+  "primaryStat2": "優先ステータス 2",
+  "secondaryStat": "準優先ステータス",
+  "noneSelected": "なし",
   "primaryPink": "主要な赤因子",
   "uniqueWishlist": "固有スキルウィッシュリスト",
   "whiteWishlist": "白因子ウィッシュリスト",
