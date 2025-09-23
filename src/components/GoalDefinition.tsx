@@ -96,10 +96,7 @@ const GoalDefinition = () => {
     };
 
     const handleSecondaryBlueChange = (value: string) => {
-        // If the value is already a primary, do nothing (or clear it from primary)
-        if (goal.primaryBlue.includes(value)) {
-            return;
-        }
+        // The value is guaranteed not to be a primary due to filtered options
         handleGoalChange({ secondaryBlue: value });
     };
 
