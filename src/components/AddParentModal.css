@@ -86,3 +86,32 @@
     border-radius: 0.375rem;
     background-color: var(--color-bg);
 }
+
+.add-parent-modal__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.add-parent-modal__footer-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.add-parent-modal__score-display {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+}
+
+.add-parent-modal__score-label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+}
+
+.add-parent-modal__score-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-score);
+}
