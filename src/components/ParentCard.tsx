@@ -4,7 +4,7 @@ import { Grandparent, ManualParentData, Parent, BlueSpark, PinkSpark, WhiteSpark
 import './ParentCard.css';
 import { useTranslation } from 'react-i18next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus, faStar, faLayerGroup, faPenToSquare, faTrashCan, faRightLeft } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faUser, faStar, faLayerGroup, faPenToSquare, faTrashCan, faRightLeft } from '@fortawesome/free-solid-svg-icons';
 import LineageTree from './common/LineageTree';
 
 interface ParentCardProps {
@@ -131,12 +131,16 @@ const ParentCard = ({ parent, isTopParent = false, displayScore = true, onEdit, 
             <div className="parent-card__spark-container">
                 {Object.entries(aggregatedSparks.blue).map(([type, data]) => (
                     <div key={type} className="lineage-spark" data-spark-category="blue" data-spark-type={type.toLowerCase()}>
-                        {`${data.total}★ ${t(type, { ns: 'game' })}${data.parent > 0 && data.parent < data.total ? ` (${data.parent}★)` : ''}`}
+                        {`${data.total}★ ${t(type, { ns: 'game' })}`}
+                        {data.parent > 0 && <FontAwesomeIcon icon={faUser} className="lineage-spark__gp-icon" title={t('parentCard.parentSource')} />}
+                        {data.parent > 0 && data.parent < data.total ? `(${data.parent}★)` : ''}
                     </div>
                 ))}
                 {Object.entries(aggregatedSparks.pink).map(([type, data]) => (
                     <div key={type} className="lineage-spark" data-spark-category="pink" data-spark-type={type.toLowerCase().replace(/ /g, '-')}>
-                        {`${data.total}★ ${t(type, { ns: 'game' })}${data.parent > 0 && data.parent < data.total ? ` (${data.parent}★)` : ''}`}
+                        {`${data.total}★ ${t(type, { ns: 'game' })}`}
+                        {data.parent > 0 && <FontAwesomeIcon icon={faUser} className="lineage-spark__gp-icon" title={t('parentCard.parentSource')} />}
+                        {data.parent > 0 && data.parent < data.total ? `(${data.parent}★)` : ''}
                     </div>
                 ))}
                 {aggregatedSparks.unique.map(spark => (
@@ -151,7 +155,9 @@ const ParentCard = ({ parent, isTopParent = false, displayScore = true, onEdit, 
                         
                         return (
                             <div key={spark.name} className="lineage-spark" data-spark-category="white" title={tooltipText}>
-                                {`${spark.totalStars}★ ${getSparkDisplayName(spark.name)}${spark.parentStars > 0 && spark.parentStars < spark.totalStars ? ` (${spark.parentStars}★)` : ''}`}
+                                {`${spark.totalStars}★ ${getSparkDisplayName(spark.name)}`}
+                                {spark.parentStars > 0 && <FontAwesomeIcon icon={faUser} className="lineage-spark__gp-icon" title={t('parentCard.parentSource')} />}
+                                {spark.parentStars > 0 && spark.parentStars < spark.totalStars ? `(${spark.parentStars}★)` : ''}
                                 {tier && <span className="parent-card__spark-tier">{tier}</span>}
                             </div>
                         );
