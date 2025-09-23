@@ -2,7 +2,7 @@ import i18n from '../i18n';
 import { AppData, Folder, Parent, Profile, ServerSpecificData } from '../types';
 import { generateParentHash } from './hashing';
 
-export const CURRENT_VERSION = 7;
+export const CURRENT_VERSION = 8;
 
 // --- Default State Creation ---
 
@@ -138,6 +138,25 @@ const migrateToV7 = (data: any): any => {
     return data;
 };
 
+const migrateToV8 = (data: any): any => {
+    (Object.values(data.serverData) as ServerSpecificData[]).forEach(serverData => {
+        serverData.profiles.forEach((p: Profile) => {
+            if (p.goal) {
+                // Ensure primaryBlue is an array
+                if (!p.goal.primaryBlue || !Array.isArray(p.goal.primaryBlue)) {
+                    p.goal.primaryBlue = [];
+                }
+                // Ensure secondaryBlue is an array
+                if (!p.goal.secondaryBlue || !Array.isArray(p.goal.secondaryBlue)) {
+                    p.goal.secondaryBlue = [];
+                }
+            }
+        });
+    });
+    data.version = 8;
+    return data;
+};
+
 const runSanityChecks = (data: any): any => {
     (Object.values(data.serverData) as ServerSpecificData[]).forEach(serverData => {
         serverData.profiles.forEach((p: Profile) => {
@@ -145,13 +164,6 @@ const runSanityChecks = (data: any): any => {
             if (!p.goal.uniqueWishlist) p.goal.uniqueWishlist = [];
             if (p.isPinned === undefined) p.isPinned = false;
             if (!p.roster) p.roster = [];
-            // Fix for previous rigid goal structure
-            if (p.goal.primaryBlue && !Array.isArray(p.goal.primaryBlue)) {
-                 p.goal.primaryBlue = [];
-            }
-            if (p.goal.secondaryBlue && !Array.isArray(p.goal.secondaryBlue)) {
-                 p.goal.secondaryBlue = [];
-            }
         });
         serverData.folders.forEach((f: Folder) => {
             if (f.isPinned === undefined) f.isPinned = false;
@@ -177,6 +189,7 @@ export const migrateData = (data: any): AppData => {
     if (migratedData.version < 5) migratedData = migrateToV5(migratedData);
     if (migratedData.version < 6) migratedData = migrateToV6(migratedData);
     if (migratedData.version < 7) migratedData = migrateToV7(migratedData);
+    if (migratedData.version < 8) migratedData = migrateToV8(migratedData);
     
     // Final check to ensure data consistency after all migrations
     migratedData = runSanityChecks(migratedData);
