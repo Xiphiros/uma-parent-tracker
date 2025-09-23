@@ -1,17 +1,20 @@
-import { Goal, Parent, WhiteSpark, UniqueSpark, ManualParentData } from '../types';
+import { Goal, Parent, WhiteSpark, UniqueSpark, ManualParentData, Skill } from '../types';
 
-// --- BASE SCORE TABLES & CONSTANTS ---
+// --- BASE SCORE TABLES & CONSTANTS (Quantified Utility Model) ---
 
 const BASE_SCORES = {
-    blue: { 1: 12, 2: 13, 3: 100 },
-    pink: { 1: 6, 2: 7, 3: 50 },
+    blue: { 1: 8, 2: 15, 3: 30 },
+    pink: { 1: 10, 2: 17, 3: 30 },
 };
 
 const WHITE_SPARK_PROBABILITY = {
-    baseChance: 0.20,
     starChance: { 1: 0.50, 2: 0.45, 3: 0.05 }, // Standard Rank Runs (< SS)
-    inheritanceBonus: 1.1,
-    categoryWeight: 0.8,
+    ancestorBonus: 0.025,
+};
+
+const UTILITY_SCORES = {
+    unique: { 1: 7, 2: 14, 3: 21 },
+    white: { 1: 7, 2: 14, 3: 21 },
 };
 
 const GRANDPARENT_MULTIPLIER = 0.5;
@@ -41,33 +44,46 @@ const getWishlistMultiplier = (tier: 'S' | 'A' | 'B' | 'C' | 'OTHER'): number =>
 // --- WHITE SPARK DYNAMIC SCORING ---
 
 /**
- * Calculates the base score of a white spark dynamically based on its inheritance chain.
- * @param stars The star rating of the spark.
- * @param ancestorCount The number of direct ancestors (grandparents) with the same spark.
+ * Calculates the base score of a white or unique spark dynamically.
  * @returns The calculated integer base score.
  */
-const calculateWhiteSparkBaseScore = (stars: 1 | 2 | 3, ancestorCount: number): number => {
-    const { baseChance, starChance, inheritanceBonus, categoryWeight } = WHITE_SPARK_PROBABILITY;
-    const pAcquire = baseChance * (inheritanceBonus ** ancestorCount);
-    const pStar = starChance[stars];
+const calculateDynamicSparkBaseScore = (
+    spark: WhiteSpark | UniqueSpark,
+    ancestorCount: number,
+    skillMapByName: Map<string, Skill>
+): number => {
+    const { starChance, ancestorBonus } = WHITE_SPARK_PROBABILITY;
+    const sourceSkill = skillMapByName.get(spark.name);
+
+    let baseChance = 0.20; // Default for White and Unique skills
+    if (sourceSkill) {
+        // Source: Global Doc, p. 41. Rarity 2 is '◎', higher rarities are Gold.
+        if (sourceSkill.rarity === 2) baseChance = 0.25;
+        else if (sourceSkill.rarity && sourceSkill.rarity > 2) baseChance = 0.40;
+    }
+    
+    const pAcquire = baseChance + (ancestorBonus * ancestorCount);
+    const pStar = starChance[spark.stars];
     const finalProbability = pAcquire * pStar;
 
     if (finalProbability === 0) return 0;
-
-    const rawScore = (1 / finalProbability) * categoryWeight;
-    return Math.round(rawScore);
+    
+    const rarityScore = Math.round(Math.sqrt(1 / finalProbability));
+    const utilityScore = sourceSkill?.type === 'unique' ? UTILITY_SCORES.unique[spark.stars] : UTILITY_SCORES.white[spark.stars];
+    
+    return rarityScore + utilityScore;
 };
 
 // --- CORE SCORING FUNCTIONS ---
 
 /**
- * Calculates the score for a single entity (Parent or ManualParentData),
- * considering its own sparks and lineage for white spark calculations.
+ * Calculates the score for a single entity (Parent or ManualParentData).
  */
 const calculateIndividualScore = (
     entity: Parent | ManualParentData,
     goal: Goal,
-    inventoryMap: Map<number, Parent>
+    inventoryMap: Map<number, Parent>,
+    skillMapByName: Map<string, Skill>
 ): number => {
     let totalScore = 0;
 
@@ -83,9 +99,9 @@ const calculateIndividualScore = (
     entity.uniqueSparks.forEach((spark: UniqueSpark) => {
         const wishlistItem = goal.uniqueWishlist.find(w => w.name === spark.name);
         const tier = wishlistItem ? wishlistItem.tier : 'OTHER';
-        // Unique sparks don't have a base score table; we use a simplified point system.
-        const uniquePoints = { S: [0, 5, 10, 15], A: [0, 3, 6, 10], B: [0, 2, 4, 6], C: [0, 1, 2, 3], OTHER: [0, 0, 1, 2] };
-        totalScore += uniquePoints[tier][spark.stars] || 0;
+        // Unique sparks now use dynamic base score calculation
+        const baseScore = calculateDynamicSparkBaseScore(spark, 0, skillMapByName); // Uniques have no ancestors for generation chance
+        totalScore += baseScore * getWishlistMultiplier(tier);
     });
 
     // White Spark Score (Dynamic)
@@ -109,7 +125,7 @@ const calculateIndividualScore = (
 
         entity.whiteSparks.forEach((spark: WhiteSpark) => {
             const ancestorCount = ancestorCountMap.get(spark.name) || 0;
-            const baseScore = calculateWhiteSparkBaseScore(spark.stars, ancestorCount);
+            const baseScore = calculateDynamicSparkBaseScore(spark, ancestorCount, skillMapByName);
             const wishlistItem = goal.wishlist.find(w => w.name === spark.name);
             const tier = wishlistItem ? wishlistItem.tier : 'OTHER';
             totalScore += baseScore * getWishlistMultiplier(tier);
@@ -121,21 +137,22 @@ const calculateIndividualScore = (
 
 /**
  * Calculates the final score for a parent, including bonuses from its grandparents.
- * @param parent The parent to score.
- * @param goal The user's defined goal.
- * @param inventory The full inventory list to look up owned grandparents by ID.
- * @returns The final, rounded score.
  */
-export const calculateScore = (parent: Parent, goal: Goal, inventory: Parent[]): number => {
+export const calculateScore = (
+    parent: Parent,
+    goal: Goal,
+    inventory: Parent[],
+    skillMapByName: Map<string, Skill>
+): number => {
     const inventoryMap = new Map(inventory.map(p => [p.id, p]));
 
-    const parentScore = calculateIndividualScore(parent, goal, inventoryMap);
+    const parentScore = calculateIndividualScore(parent, goal, inventoryMap, skillMapByName);
 
     const gp1 = typeof parent.grandparent1 === 'number' ? inventoryMap.get(parent.grandparent1) : parent.grandparent1;
     const gp2 = typeof parent.grandparent2 === 'number' ? inventoryMap.get(parent.grandparent2) : parent.grandparent2;
 
-    const gp1Score = gp1 ? calculateIndividualScore(gp1, goal, inventoryMap) : 0;
-    const gp2Score = gp2 ? calculateIndividualScore(gp2, goal, inventoryMap) : 0;
+    const gp1Score = gp1 ? calculateIndividualScore(gp1, goal, inventoryMap, skillMapByName) : 0;
+    const gp2Score = gp2 ? calculateIndividualScore(gp2, goal, inventoryMap, skillMapByName) : 0;
 
     const finalScore = parentScore + (gp1Score * GRANDPARENT_MULTIPLIER) + (gp2Score * GRANDPARENT_MULTIPLIER);
 
