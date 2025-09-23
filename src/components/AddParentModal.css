@@ -104,12 +104,6 @@
     gap: 0.5rem;
 }
 
-.add-parent-modal__score-label {
-    font-size: 0.875rem;
-    font-weight: 500;
-    color: var(--color-text-secondary);
-}
-
 .add-parent-modal__score-value {
     font-size: 1.5rem;
     font-weight: 700;
