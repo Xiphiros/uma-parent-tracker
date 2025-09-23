@@ -76,6 +76,33 @@ const GoalDefinition = () => {
         updateWishlistItem(listName, oldName, newItem);
     };
 
+    const handlePrimaryBlueChange = (index: 0 | 1, value: string) => {
+        const newPrimaryBlue: [string, string] = [...goal.primaryBlue];
+        const otherIndex = index === 0 ? 1 : 0;
+        let newSecondaryBlue = goal.secondaryBlue;
+
+        // Swap if the new value is already in the other primary slot
+        if (value === newPrimaryBlue[otherIndex]) {
+            newPrimaryBlue[otherIndex] = newPrimaryBlue[index];
+        }
+        newPrimaryBlue[index] = value;
+
+        // If the new value conflicts with secondary, clear secondary
+        if (value === newSecondaryBlue) {
+            newSecondaryBlue = '';
+        }
+
+        handleGoalChange({ primaryBlue: newPrimaryBlue, secondaryBlue: newSecondaryBlue });
+    };
+
+    const handleSecondaryBlueChange = (value: string) => {
+        // If the value is already a primary, do nothing (or clear it from primary)
+        if (goal.primaryBlue.includes(value)) {
+            return;
+        }
+        handleGoalChange({ secondaryBlue: value });
+    };
+
     const translatedOptions = (options: string[]) => options.map(opt => ({
         value: opt,
         label: t(opt, { ns: 'game' })
@@ -90,11 +117,27 @@ const GoalDefinition = () => {
             <div className="space-y-4">
                 <div>
                     <h3 className="form__section-title mb-2">{t('primaryBlue')}</h3>
-                    <MultiSelect
-                        options={translatedOptions(BLUE_SPARK_OPTIONS)}
-                        selectedValues={goal.primaryBlue}
-                        onChange={(selected) => handleGoalChange({ primaryBlue: selected })}
-                    />
+                    <div className="grid grid-cols-2 gap-4">
+                        <div>
+                            <label className="form__label form__label--xs">{t('primaryStat1')}</label>
+                            <select className="form__input" value={goal.primaryBlue[0]} onChange={e => handlePrimaryBlueChange(0, e.target.value)}>
+                                {BLUE_SPARK_OPTIONS.map(opt => <option key={opt} value={opt}>{t(opt, { ns: 'game' })}</option>)}
+                            </select>
+                        </div>
+                         <div>
+                            <label className="form__label form__label--xs">{t('primaryStat2')}</label>
+                            <select className="form__input" value={goal.primaryBlue[1]} onChange={e => handlePrimaryBlueChange(1, e.target.value)}>
+                                {BLUE_SPARK_OPTIONS.map(opt => <option key={opt} value={opt}>{t(opt, { ns: 'game' })}</option>)}
+                            </select>
+                        </div>
+                    </div>
+                     <div className="mt-2">
+                        <label className="form__label form__label--xs">{t('secondaryStat')}</label>
+                        <select className="form__input" value={goal.secondaryBlue} onChange={e => handleSecondaryBlueChange(e.target.value)}>
+                            <option value="">{t('noneSelected')}</option>
+                            {BLUE_SPARK_OPTIONS.filter(opt => !goal.primaryBlue.includes(opt)).map(opt => <option key={opt} value={opt}>{t(opt, { ns: 'game' })}</option>)}
+                        </select>
+                    </div>
                 </div>
                 <div className="border-t pt-4">
                     <h3 className="form__section-title mb-2">{t('primaryPink')}</h3>
