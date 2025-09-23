@@ -9,7 +9,13 @@ export const CURRENT_VERSION = 7;
 export const createNewProfile = (name: string): Profile => ({
   id: Date.now(),
   name,
-  goal: { primaryBlue: [], primaryPink: [], uniqueWishlist: [], wishlist: [] },
+  goal: {
+    primaryBlue: ['Stamina', 'Power'],
+    secondaryBlue: 'Speed',
+    primaryPink: [],
+    uniqueWishlist: [],
+    wishlist: []
+  },
   roster: [],
   isPinned: false,
 });
@@ -135,10 +141,15 @@ const migrateToV7 = (data: any): any => {
 const runSanityChecks = (data: any): any => {
     (Object.values(data.serverData) as ServerSpecificData[]).forEach(serverData => {
         serverData.profiles.forEach((p: Profile) => {
-            if (!p.goal) p.goal = { primaryBlue: [], primaryPink: [], uniqueWishlist: [], wishlist: [] };
+            if (!p.goal) p.goal = { primaryBlue: ['Stamina', 'Power'], secondaryBlue: 'Speed', primaryPink: [], uniqueWishlist: [], wishlist: [] };
             if (!p.goal.uniqueWishlist) p.goal.uniqueWishlist = [];
             if (p.isPinned === undefined) p.isPinned = false;
             if (!p.roster) p.roster = [];
+            // Fix for old goal structure
+            if (Array.isArray(p.goal.primaryBlue) && p.goal.primaryBlue.length > 2) {
+                p.goal.primaryBlue = ['Stamina', 'Power'];
+                p.goal.secondaryBlue = 'Speed';
+            }
         });
         serverData.folders.forEach((f: Folder) => {
             if (f.isPinned === undefined) f.isPinned = false;
