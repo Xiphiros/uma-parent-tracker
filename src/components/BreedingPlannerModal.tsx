@@ -1,6 +1,6 @@
 import { useState, useMemo, useEffect } from 'react';
 import { useAppContext } from '../context/AppContext';
-import { Parent, Uma, ManualParentData, BlueSpark, PinkSpark } from '../types';
+import { Parent, Uma, ManualParentData, BlueSpark, PinkSpark, WhiteSpark } from '../types';
 import Modal from './common/Modal';
 import { useTranslation } from 'react-i18next';
 import './BreedingPlannerModal.css';
@@ -11,7 +11,7 @@ import LineageDisplay from './common/LineageDisplay';
 import { calculateFullAffinity, getLineageCharacterIds, countTotalLineageWhiteSparks, countUniqueCombinedLineageWhiteSparks, resolveGrandparent, getMissingWishlistSkills, getUnsaturatedWishlistSkills } from '../utils/affinity';
 import PlaceholderCard from './common/PlaceholderCard';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUsers, faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
+import { faUsers, faChevronDown, faChevronUp, faUser } from '@fortawesome/free-solid-svg-icons';
 import SparkTag from './common/SparkTag';
 import { getExcludedCharacterIds } from '../utils/selectionExclusion';
 import MissingSkillsDisplay from './common/MissingSkillsDisplay';
@@ -31,6 +31,8 @@ interface Suggestion {
 
 type PlannerTab = 'manual' | 'suggestions';
 type ActiveSlot = 'parent1' | 'parent2' | null;
+
+const WISH_RANK_ORDER: { [key: string]: number } = { S: 0, A: 1, B: 2, C: 3 };
 
 const BreedingPlannerModal = ({ isOpen, onClose }: BreedingPlannerModalProps) => {
     const { t } = useTranslation('roster');
@@ -151,32 +153,50 @@ const BreedingPlannerModal = ({ isOpen, onClose }: BreedingPlannerModalProps) =>
         });
 
         const unique: { name: string, stars: 1 | 2 | 3, fromParent: boolean }[] = [];
-        const skillNames = new Set<string>();
-
-        const addSparks = (member: Parent | ManualParentData | null, isParent: boolean, type: 'unique' | 'white') => {
+        const uniqueSkillNames = new Set<string>();
+        
+        const addUniqueSparks = (member: Parent | ManualParentData | null, isParent: boolean) => {
             if (!member) return;
-            const sparks = type === 'unique' ? member.uniqueSparks : ('whiteSparks' in member ? member.whiteSparks : []);
-            const targetList = type === 'unique' ? unique : white;
-
-            sparks.forEach(spark => {
-                if (!skillNames.has(spark.name)) {
-                    targetList.push({ ...spark, fromParent: isParent });
-                    skillNames.add(spark.name);
+            member.uniqueSparks.forEach(spark => {
+                if (!uniqueSkillNames.has(spark.name)) {
+                    unique.push({ ...spark, fromParent: isParent });
+                    uniqueSkillNames.add(spark.name);
                 }
             });
         };
+        addUniqueSparks(p1, true); addUniqueSparks(p2, true);
+        addUniqueSparks(gp1_1, false); addUniqueSparks(gp1_2, false);
+        addUniqueSparks(gp2_1, false); addUniqueSparks(gp2_2, false);
+
+        const white: Map<string, { name: string, totalStars: number, parentStars: number, tier: string | null }> = new Map();
         
-        addSparks(p1, true, 'unique'); addSparks(p2, true, 'unique');
-        addSparks(gp1_1, false, 'unique'); addSparks(gp1_2, false, 'unique');
-        addSparks(gp2_1, false, 'unique'); addSparks(gp2_2, false, 'unique');
+        const processWhiteSpark = (spark: WhiteSpark, isParent: boolean) => {
+             if (!white.has(spark.name)) {
+                const wishlistItem = goal?.wishlist.find(w => w.name === spark.name);
+                white.set(spark.name, { name: spark.name, totalStars: 0, parentStars: 0, tier: wishlistItem?.tier || null });
+            }
+            const existing = white.get(spark.name)!;
+            existing.totalStars += spark.stars;
+            if (isParent) {
+                existing.parentStars += spark.stars;
+            }
+        };
 
-        const white: { name: string, stars: 1 | 2 | 3, fromParent: boolean }[] = [];
-        addSparks(p1, true, 'white'); addSparks(p2, true, 'white');
-        addSparks(gp1_1, false, 'white'); addSparks(gp1_2, false, 'white');
-        addSparks(gp2_1, false, 'white'); addSparks(gp2_2, false, 'white');
+        [p1, p2].forEach(p => p.whiteSparks.forEach(s => processWhiteSpark(s, true)));
+        [gp1_1, gp1_2, gp2_1, gp2_2].forEach(gp => {
+             if (gp && 'whiteSparks' in gp) gp.whiteSparks.forEach(s => processWhiteSpark(s, false));
+        });
 
-        return { blue, pink, unique, white };
-    }, [selectedSuggestion, inventoryMap]);
+        const sortedWhite = Array.from(white.values()).sort((a, b) => {
+            const aTier = a.tier ? WISH_RANK_ORDER[a.tier] : 99;
+            const bTier = b.tier ? WISH_RANK_ORDER[b.tier] : 99;
+            if (aTier !== bTier) return aTier - bTier;
+            if (b.totalStars !== a.totalStars) return b.totalStars - a.totalStars;
+            return a.name.localeCompare(b.name);
+        });
+
+        return { blue, pink, unique, white: sortedWhite };
+    }, [selectedSuggestion, inventoryMap, goal]);
 
     const { missingSkills: missingSkillsForSelectedSuggestion, unsaturatedSkills: unsaturatedSkillsForSelectedSuggestion, relevantWishlistCount: selectedSuggestionWishlistCount } = useMemo(() => {
         if (!selectedSuggestion || !goal) {
@@ -372,20 +392,23 @@ const BreedingPlannerModal = ({ isOpen, onClose }: BreedingPlannerModalProps) =>
                                                         <div className="breeding-planner__detail-sparks-content">
                                                             <div className="parent-card__spark-container">
                                                                 {Object.entries(aggregatedSparksForSelected.blue).map(([type, data]) => (
-                                                                    <SparkTag key={type} category="blue" type={`${data.total}★ ${t(type, { ns: 'game' })}${data.parent > 0 && data.parent < data.total ? ` (${data.parent}★)` : ''}`} stars={data.total} />
+                                                                    <SparkTag key={type} category="blue" type={`${data.total}★ ${t(type, { ns: 'game' })}${data.parent > 0 && data.parent < data.total ? ` (${data.parent}★)` : ''}`} stars={data.total}>
+                                                                        {data.parent > 0 && <FontAwesomeIcon icon={faUser} className="lineage-spark__gp-icon" title={t('parentCard.parentSource')} />}
+                                                                    </SparkTag>
                                                                 ))}
                                                                 {Object.entries(aggregatedSparksForSelected.pink).map(([type, data]) => (
-                                                                    <SparkTag key={type} category="pink" type={`${data.total}★ ${t(type, { ns: 'game' })}${data.parent > 0 && data.parent < data.total ? ` (${data.parent}★)` : ''}`} stars={data.total} />
+                                                                    <SparkTag key={type} category="pink" type={`${data.total}★ ${t(type, { ns: 'game' })}${data.parent > 0 && data.parent < data.total ? ` (${data.parent}★)` : ''}`} stars={data.total}>
+                                                                        {data.parent > 0 && <FontAwesomeIcon icon={faUser} className="lineage-spark__gp-icon" title={t('parentCard.parentSource')} />}
+                                                                    </SparkTag>
                                                                 ))}
                                                                 {aggregatedSparksForSelected.unique.map(spark => (
                                                                     <SparkTag key={spark.name} category="unique" type={`${getSkillDisplayName(spark.name)} (${spark.stars}★)`} stars={spark.stars} />
                                                                 ))}
                                                                 {aggregatedSparksForSelected.white.map(spark => {
-                                                                    const wishlistItem = goal?.wishlist.find(w => w.name === spark.name);
-                                                                    const tier = wishlistItem ? `(${t('parentCard.rank')} ${wishlistItem.tier})` : null;
+                                                                    const tier = spark.tier ? `(${t('parentCard.rank')} ${spark.tier})` : null;
                                                                     return (
-                                                                        <SparkTag key={spark.name} category="white" type={`${getSkillDisplayName(spark.name)}`} stars={spark.stars}>
-                                                                            {spark.fromParent && <span className='lineage-spark__parent-contrib'>({spark.stars}★)</span>}
+                                                                        <SparkTag key={spark.name} category="white" type={`${spark.totalStars}★ ${getSkillDisplayName(spark.name)}${spark.parentStars > 0 && spark.parentStars < spark.totalStars ? ` (${spark.parentStars}★)` : ''}`} stars={spark.totalStars}>
+                                                                            {spark.parentStars > 0 && <FontAwesomeIcon icon={faUser} className="lineage-spark__gp-icon" title={t('parentCard.parentSource')} />}
                                                                             {tier && <span className="parent-card__spark-tier">{tier}</span>}
                                                                         </SparkTag>
                                                                     );
