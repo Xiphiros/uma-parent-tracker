@@ -122,10 +122,7 @@ const ProbabilityCalculatorModal = ({ isOpen, onClose, pair }: ProbabilityCalcul
                             <div className="prob-calc__result-header">
                                 <span className="prob-calc__result-name">
                                     {t('breedingPlanner.probScoreUpgrade')}
-                                    <span 
-                                        className="ml-2 text-stone-400"
-                                        title={t('breedingPlanner.probAssumptionsText')}
-                                    >
+                                    <span className="ml-2 text-stone-400">
                                         <FontAwesomeIcon icon={faInfoCircle} />
                                     </span>
                                 </span>
@@ -140,7 +137,7 @@ const ProbabilityCalculatorModal = ({ isOpen, onClose, pair }: ProbabilityCalcul
                             <li>{t('breedingPlanner.disclaimerScoreUpgrade')}</li>
                             <li>{t('breedingPlanner.disclaimerBlue')}</li>
                             <li>{t('breedingPlanner.disclaimerPink', { count: ASSUMED_A_RANK_APTITUDES })}</li>
-                            <li>{t('breedingPlanner.disclaimerWhite')}</li>
+                            <li>{t('breedingPlanner.disclaimerWhiteSP')}</li>
                         </ul>
                     </div>
                 </div>

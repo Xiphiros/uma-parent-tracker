@@ -105,11 +105,10 @@
         "avgRuns": "Avg. {{value}} runs",
         "noMissingSkills": "No missing high-value (S/A rank) wishlist skills.",
         "probScoreUpgrade": "Probability of Score Upgrade",
-        "probAssumptionsText": "This is an estimate based on a set of assumptions. See the disclaimer below for details.",
         "disclaimerText": "Probabilities are estimates based on game data and certain assumptions:",
         "disclaimerScoreUpgrade": "Score upgrade probability compares the child's potential individual score to the weaker parent's individual score.",
         "disclaimerBlue": "Blue spark probability is based on the target stats for all 5 blue factor types.",
         "disclaimerPink": "Pink spark probability assumes you have {{count}} A-rank aptitudes.",
-        "disclaimerWhite": "White spark probability is based on the weighted average of all possible inheritable skills."
+        "disclaimerWhiteSP": "The number of white sparks acquired is estimated based on your wishlist, the pair's lineage, and the provided Skill Point Budget. Only Lv. 1 skills are considered."
     }
 }
