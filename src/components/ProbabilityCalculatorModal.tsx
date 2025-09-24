@@ -1,5 +1,5 @@
-import { useState, useMemo, useEffect, useRef } from 'react';
-import { BreedingPair, Parent } from '../types';
+import { useState, useEffect, useRef } from 'react';
+import { BreedingPair } from '../types';
 import Modal from './common/Modal';
 import { useTranslation } from 'react-i18next';
 import { useAppContext } from '../context/AppContext';
@@ -123,7 +123,7 @@ const ProbabilityCalculatorModal = ({ isOpen, onClose, pair }: ProbabilityCalcul
             <div className="prob-calc__layout">
                 <div className="prob-calc__inputs">
                     <h3 className="prob-calc__inputs-title">{t('breedingPlanner.inputs')}</h3>
-                    <div className="prob-calc__input-group">
+                    <fieldset disabled={isCalculating} className="prob-calc__input-group">
                         <div>
                             <label className="form__label form__label--xs">{t('breedingPlanner.targetStats')}</label>
                             {STATS.map(stat => (
@@ -165,22 +165,28 @@ const ProbabilityCalculatorModal = ({ isOpen, onClose, pair }: ProbabilityCalcul
                                 <button className={`top-pair__toggle-btn ${trainingRank === 'ss+' ? 'top-pair__toggle-btn--active' : ''}`} onClick={() => setTrainingRank('ss+')}>{t('breedingPlanner.rankSSPlus')}</button>
                             </div>
                         </div>
-                    </div>
+                    </fieldset>
                 </div>
                 <div className="prob-calc__results">
                     <h3 className="prob-calc__results-title">{t('breedingPlanner.estimatedProbabilities')}</h3>
                     <div className="prob-calc__results-grid">
                          <div className="prob-calc__result-item">
-                            <div className="prob-calc__result-header">
-                                <span className="prob-calc__result-name">
-                                    {t('breedingPlanner.probScoreUpgrade')}
-                                    <span className="ml-2 text-stone-400">
-                                        <FontAwesomeIcon icon={faInfoCircle} />
-                                    </span>
-                                </span>
-                                <span className="prob-calc__result-percent">{formatResult(probabilityResult).percent}</span>
-                            </div>
-                            <p className="prob-calc__result-runs">{t('breedingPlanner.avgRuns', { value: formatResult(probabilityResult).runs })}</p>
+                            {isCalculating ? (
+                                <p className="text-center text-stone-500">{t('common:calculating')}...</p>
+                            ) : (
+                                <>
+                                    <div className="prob-calc__result-header">
+                                        <span className="prob-calc__result-name">
+                                            {t('breedingPlanner.probScoreUpgrade')}
+                                            <span className="ml-2 text-stone-400">
+                                                <FontAwesomeIcon icon={faInfoCircle} />
+                                            </span>
+                                        </span>
+                                        <span className="prob-calc__result-percent">{formatResult(probabilityResult).percent}</span>
+                                    </div>
+                                    <p className="prob-calc__result-runs">{t('breedingPlanner.avgRuns', { value: formatResult(probabilityResult).runs })}</p>
+                                </>
+                            )}
                         </div>
                     </div>
                      <div className="prob-calc__disclaimer">
