@@ -18,10 +18,12 @@ While veteran players will consistently achieve stats in the `>1100` range (gran
 
 The final score for any given parent is calculated using a multi-stage formula:
 
-1.  **Individual Score Calculation:** Each entity in a lineage (the parent and its two grandparents) is first scored individually.
-    *   `Individual Score = Σ (Base Score × Multipliers)` for all of its sparks.
+1.  **Individual Score Calculation:** Each entity in a lineage (the parent and its two grandparents) is first scored individually. An entity's score is the sum of its spark scores, enhanced by a bonus for having a high quantity of white sparks.
+    *   `Base Spark Sum = Σ (Base Score × Multipliers)` for all of its sparks.
+    *   `White Spark Count Bonus = 1 + (Number of White Sparks * 0.01)`
+    *   `Individual Score = Base Spark Sum * White Spark Count Bonus`
 
-2.  **Final Parent Score:** The final score is the parent's own score plus a bonus from its grandparents.
+2.  **Final Parent Score:** The final score is the parent's own enhanced score plus a bonus from its grandparents' enhanced scores.
     *   `Final Score = Parent's Individual Score + (Grandparent1's Score × 0.5) + (Grandparent2's Score × 0.5)`
 
 The result is rounded to the nearest integer.
@@ -47,7 +49,7 @@ This component is derived from the statistical probability of *obtaining* a spar
     *   P(1-Star): **~50%**
 *   **Category Choice Probability:**
     *   **Blue Sparks:** 1 in 5 (0.20)
-    *   **Pink Sparks:** 1 in N, where N is the number of A-rank aptitudes. For standardization, we assume N=5, making the probability **0.20**.
+    *   **Pink Sparks:** `1 / N`, where N is the number of A-rank or higher aptitudes a character has at the end of a training run. This number can vary. For the purpose of establishing a consistent base score for the table below, we use a common example where a character has **N=5** A-rank aptitudes, making the probability **0.20**.
 
 ### B. Quantified Utility Score
 
@@ -88,7 +90,7 @@ The `Base Score` for White and Unique sparks is calculated dynamically, as their
 
 ## Part 2: The `Multipliers` (Strategic Value)
 
-After the `Base Score` is determined, it is multiplied by factors based on the user's defined goals.
+After the `Base Score` is determined, it is multiplied by factors based on the user's defined goals. This result is summed up to get the `Base Spark Sum`.
 
 | Multiplier Type | Condition | Value |
 | :--- | :--- | :--- |
@@ -105,53 +107,78 @@ After the `Base Score` is determined, it is multiplied by factors based on the u
 
 ---
 
+## Part 3: White Spark Count Bonus (Objective Potential)
+
+After the `Base Spark Sum` is calculated for an individual, a final multiplier is applied based on the sheer quantity of its white sparks. This bonus is independent of the user's goal and serves as an objective measure of the parent's potential, as a higher number of sparks increases the probability of generating a superior child.
+
+`White Spark Count Bonus = 1 + (Number of White Sparks * 0.01)`
+
+`Individual Score = Base Spark Sum * White Spark Count Bonus`
+
+> **Why This Matters: A Probability Example**
+>
+> The chance of a child generating a white spark for a skill they've learned is heavily influenced by how many of their ancestors (2 parents + 4 grandparents) also had a spark for that skill.
+>
+> Consider the astronomical odds of trying to generate a child with 10 specific white sparks:
+>
+> *   **With no help from ancestors:** The base chance for each spark is ~20%. The combined probability is `0.20 ^ 10`, or roughly **1 in 9.7 million**.
+> *   **With all 6 ancestors having those sparks:** The chance for *each* spark is boosted from 20% to ~35.43% (`0.20 * 1.1^6`). The combined probability becomes `0.3543 ^ 10`, or roughly **1 in 32,000**.
+>
+> This is a **~300x increase** in probability. The White Spark Count Bonus rewards parents that contribute to this massive improvement in odds, making it a critical factor in their objective score.
+
+---
+
 ## Full Example
 
 Let's calculate the final score for a parent with the following goal:
 *   **Primary Blue:** Stamina, Power
 *   **Primary Pink:** Mile
-*   **Wishlist:** "Groundwork" (Rank A, originates from a standard White skill)
+*   **Wishlist:** "Groundwork" (Rank A)
 
 **The Parent:**
 *   **Blue Spark:** 3★ Stamina
 *   **Pink Spark:** 2★ Mile
-*   **White Spark:** 2★ "Groundwork"
-*   **Grandparent 1:** Also has a "Groundwork" spark.
+*   **White Sparks:** 2★ "Groundwork", 1★ "Pace Chaser Corners"
+*   **Grandparent 1:** Also has a "Groundwork" spark. Total Individual Score is `80`.
+*   **Grandparent 2:** Total Individual Score is `50`.
 
 **Calculation:**
 
-1.  **Score for 3★ Stamina Spark:**
-    *   Base Score (from table): `30`
-    *   Multiplier (Primary Blue): `1.5x`
-    *   Spark Score: `30 * 1.5 = 45`
-
-2.  **Score for 2★ Mile Spark:**
-    *   Base Score (from table): `17`
-    *   Multiplier (Primary Pink): `1.5x`
-    *   Spark Score: `17 * 1.5 = 25.5` -> **26** (rounded)
-
-3.  **Score for 2★ "Groundwork" Spark:**
-    *   **Dynamic Base Score Calculation:**
-        *   `P(Acquire Spark)`: Base (0.20) + Ancestor Bonus (0.025 * 1) = `0.225`
+1.  **Calculate Parent's `Base Spark Sum`:**
+    *   **Score for 3★ Stamina Spark:** `30 (base) * 1.5 (primary blue) = 45`
+    *   **Score for 2★ Mile Spark:** `17 (base) * 1.5 (primary pink) = 25.5` -> **26**
+    *   **Score for 2★ "Groundwork" Spark:**
+        *   `P(Acquire)`: Base (0.20) + Ancestor Bonus (0.025 * 1) = `0.225`
         *   `P(Is 2-Star)`: `0.45`
         *   `P(Final)` = 0.225 * 0.45 = `0.10125`
-        *   Rarity Score = `ROUND(sqrt(1 / 0.10125)) = 3`
-        *   Utility Score = `14` (for a 2★ White spark)
+        *   Rarity = `ROUND(sqrt(1 / 0.10125)) = 3`
+        *   Utility = `14` (for 2★ white spark)
         *   Base Score = `3 + 14 = 17`
-    *   **Multiplier Calculation:**
-        *   Multiplier (Rank A Wishlist): `1.5x`
-    *   Spark Score: `17 * 1.5 = 25.5` -> **26** (rounded)
+        *   Final Spark Score: `17 * 1.5 (Rank A) = 25.5` -> **26**
+    *   **Score for 1★ "Pace Chaser Corners" (not on wishlist):**
+        *   `P(Acquire)`: Base (0.20) = `0.20`
+        *   `P(Is 1-Star)`: `0.50`
+        *   `P(Final)` = 0.20 * 0.50 = `0.10`
+        *   Rarity = `ROUND(sqrt(1 / 0.10)) = 3`
+        *   Utility = `7` (for 1★ white spark)
+        *   Base Score = `3 + 7 = 10`
+        *   Final Spark Score: `10 * 1.0 (not on list) = 10`
+    *   `Base Spark Sum` = `45 + 26 + 26 + 10 = 107`
 
-4.  **Parent's Individual Score:**
-    *   `45 (Stamina) + 26 (Mile) + 26 (Groundwork) = 97`
+2.  **Calculate Parent's `White Spark Count Bonus`:**
+    *   The parent has **2** white sparks ("Groundwork", "Pace Chaser Corners").
+    *   Bonus Multiplier = `1 + (2 * 0.01) = 1.02`
 
-5.  **Grandparent Bonus:**
-    *   Assume Grandparent 1's total individual score is `80`.
-    *   Assume Grandparent 2's score is `50`.
+3.  **Calculate Parent's Final `Individual Score`:**
+    *   `107 (Base Spark Sum) * 1.02 (Bonus) = 109.14` -> **109**
+
+4.  **Calculate Grandparent Bonus:**
+    *   Grandparent 1's Score: `80`
+    *   Grandparent 2's Score: `50`
     *   Bonus = `(80 * 0.5) + (50 * 0.5) = 40 + 25 = 65`
 
-6.  **Final Score:**
-    *   `97 (Parent) + 65 (Grandparents) = 162`
+5.  **Final Score:**
+    *   `109 (Parent) + 65 (Grandparents) = 174`
 
 ---
 
