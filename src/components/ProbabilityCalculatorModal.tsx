@@ -14,6 +14,8 @@ interface ProbabilityCalculatorModalProps {
     pair: BreedingPair | null;
 }
 
+type CalculationStatus = 'idle' | 'calculating' | 'success' | 'error';
+
 const STATS = ['speed', 'stamina', 'power', 'guts', 'wit'];
 const ASSUMED_A_RANK_APTITUDES = 5;
 
@@ -27,31 +29,32 @@ const ProbabilityCalculatorModal = ({ isOpen, onClose, pair }: ProbabilityCalcul
     const [trainingRank, setTrainingRank] = useState<'ss' | 'ss+'>('ss');
     const [spBudget, setSpBudget] = useState(1500);
 
-    const [isCalculating, setIsCalculating] = useState(true);
-    const [probabilityResult, setProbabilityResult] = useState<number | null>(null);
+    const [calculationState, setCalculationState] = useState<{ status: CalculationStatus; result: number | null }>({
+        status: 'idle',
+        result: null,
+    });
     const workerRef = useRef<Worker | null>(null);
     
     const activeGoal = getActiveProfile()?.goal;
 
     useEffect(() => {
         if (isOpen) {
+            setCalculationState({ status: 'idle', result: null }); // Reset on open
             const worker = new Worker(new URL('../workers/probability.worker.ts', import.meta.url), { type: 'module' });
             workerRef.current = worker;
 
             worker.onmessage = (e) => {
                 if (e.data.result !== undefined) {
-                    setProbabilityResult(e.data.result);
+                    setCalculationState({ status: 'success', result: e.data.result });
                 } else if (e.data.error) {
                     console.error("Probability worker error:", e.data.error);
-                    setProbabilityResult(null);
+                    setCalculationState({ status: 'error', result: null });
                 }
-                setIsCalculating(false);
             };
             
             worker.onerror = (e) => {
                 console.error("Worker error:", e);
-                setIsCalculating(false);
-                setProbabilityResult(null);
+                setCalculationState({ status: 'error', result: null });
             };
 
             return () => {
@@ -61,17 +64,15 @@ const ProbabilityCalculatorModal = ({ isOpen, onClose, pair }: ProbabilityCalcul
         }
     }, [isOpen]);
 
-    // This useEffect now correctly handles debouncing and worker communication
     useEffect(() => {
         const worker = workerRef.current;
         if (!worker || !pair || !activeGoal) {
-            setIsCalculating(false);
+            setCalculationState({ status: 'idle', result: null });
             return;
         }
 
-        setIsCalculating(true);
-        
         const handler = setTimeout(() => {
+            setCalculationState({ status: 'calculating', result: null });
             const payload: ProbabilityWorkerPayload = {
                 pair,
                 goal: activeGoal,
@@ -83,10 +84,8 @@ const ProbabilityCalculatorModal = ({ isOpen, onClose, pair }: ProbabilityCalcul
                 spBudget
             };
             worker.postMessage(payload);
-        }, 300); // 300ms debounce delay
+        }, 300);
 
-        // This cleanup function is crucial. It clears the timeout on every re-render
-        // caused by input changes, ensuring the worker is only called once the user stops typing.
         return () => {
             clearTimeout(handler);
         };
@@ -111,26 +110,31 @@ const ProbabilityCalculatorModal = ({ isOpen, onClose, pair }: ProbabilityCalcul
         }
     };
 
-    const formatResult = (prob: number | null) => {
-        if (prob === null) return { percent: 'Error', runs: 'N/A' };
-        if (prob === 0 || !prob) return { percent: '0.00%', runs: '∞' };
-        if (prob < 0.00000001) {
-             const runs = 1 / prob;
+    const formatResult = () => {
+        const { status, result } = calculationState;
+        if (status === 'error') return { percent: 'Error', runs: 'N/A' };
+        if (status === 'idle' || status === 'calculating' || result === null) return { percent: '—', runs: '—' };
+        
+        if (result === 0) return { percent: '0.00%', runs: '∞' };
+        if (result < 0.00000001) {
+             const runs = 1 / result;
              return { percent: '0.00%', runs: runs.toLocaleString('en-US', { notation: 'scientific' }) };
         }
-        const runs = Math.ceil(1 / prob);
+        const runs = Math.ceil(1 / result);
         return {
-            percent: `${(prob * 100).toFixed(2)}%`,
+            percent: `${(result * 100).toFixed(2)}%`,
             runs: runs.toLocaleString()
         };
     };
+    
+    const formattedResult = formatResult();
 
     return (
         <Modal isOpen={isOpen} onClose={onClose} title={t('breedingPlanner.probabilityCalculator')} size="lg">
             <div className="prob-calc__layout">
                 <div className="prob-calc__inputs">
                     <h3 className="prob-calc__inputs-title">{t('breedingPlanner.inputs')}</h3>
-                    <fieldset disabled={isCalculating} className="prob-calc__input-group">
+                    <fieldset disabled={calculationState.status === 'calculating'} className="prob-calc__input-group">
                         <div>
                             <label className="form__label form__label--xs">{t('breedingPlanner.targetStats')}</label>
                             {STATS.map(stat => (
@@ -178,7 +182,7 @@ const ProbabilityCalculatorModal = ({ isOpen, onClose, pair }: ProbabilityCalcul
                     <h3 className="prob-calc__results-title">{t('breedingPlanner.estimatedProbabilities')}</h3>
                     <div className="prob-calc__results-grid">
                          <div className="prob-calc__result-item">
-                            {isCalculating ? (
+                            {calculationState.status === 'calculating' ? (
                                 <p className="text-center text-stone-500">{t('common:calculating')}...</p>
                             ) : (
                                 <>
@@ -189,9 +193,9 @@ const ProbabilityCalculatorModal = ({ isOpen, onClose, pair }: ProbabilityCalcul
                                                 <FontAwesomeIcon icon={faInfoCircle} />
                                             </span>
                                         </span>
-                                        <span className="prob-calc__result-percent">{formatResult(probabilityResult).percent}</span>
+                                        <span className="prob-calc__result-percent">{formattedResult.percent}</span>
                                     </div>
-                                    <p className="prob-calc__result-runs">{t('breedingPlanner.avgRuns', { value: formatResult(probabilityResult).runs })}</p>
+                                    <p className="prob-calc__result-runs">{t('breedingPlanner.avgRuns', { value: formattedResult.runs })}</p>
                                 </>
                             )}
                         </div>
