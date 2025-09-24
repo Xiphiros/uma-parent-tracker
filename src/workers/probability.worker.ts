@@ -12,7 +12,7 @@ self.onmessage = (e: MessageEvent<any>) => {
     } = e.data;
 
     // Reconstruct Maps from the serialized arrays sent from the main thread.
-    const inventoryMap = new Map<number, Parent>(inventory.map((p: Parent) => [p.id, p.id]));
+    const inventoryMap = new Map<number, Parent>(inventory.map((p: Parent) => [p.id, p]));
     const skillMapByName = new Map<string, Skill>(skillMapEntries);
     const acquirableSkillIdsSet = new Set<string>(acquirableSkillIds);
 
