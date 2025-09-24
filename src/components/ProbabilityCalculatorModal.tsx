@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useMemo } from 'react';
-import { BreedingPair } from '../types';
+import { BreedingPair, Skill } from '../types';
 import Modal from './common/Modal';
 import { useTranslation } from 'react-i18next';
 import { useAppContext } from '../context/AppContext';
@@ -17,6 +17,11 @@ interface ProbabilityCalculatorModalProps {
 }
 
 type CalculationStatus = 'idle' | 'calculating' | 'success' | 'error';
+interface CalculationResult {
+    probScoreUpgrade: number;
+    probSparkCountUpgrade: number;
+    targetSparkCount: number;
+}
 
 const STATS = ['speed', 'stamina', 'power', 'guts', 'wit'];
 const PINK_SPARK_TYPES = ['Turf', 'Dirt', 'Sprint', 'Mile', 'Medium', 'Long', 'Front Runner', 'Pace Chaser', 'Late Surger', 'End Closer'];
@@ -38,7 +43,7 @@ const ProbabilityCalculatorModal = ({ isOpen, onClose, pair }: ProbabilityCalcul
     const [obtainableAptitudes, setObtainableAptitudes] = useState<string[]>(['Turf', 'Mile', 'Medium', 'Pace Chaser', 'Late Surger']);
 
 
-    const [calculationState, setCalculationState] = useState<{ status: CalculationStatus; result: number | null }>({
+    const [calculationState, setCalculationState] = useState<{ status: CalculationStatus; result: CalculationResult | null }>({
         status: 'idle',
         result: null,
     });
@@ -46,13 +51,9 @@ const ProbabilityCalculatorModal = ({ isOpen, onClose, pair }: ProbabilityCalcul
     
     const activeGoal = getActiveProfile()?.goal;
 
-    // Memoize the initial list of acquirable skills based on the pair's lineage
     const initialSkillPool = useMemo(() => {
         if (!pair) return new Set<string>();
-        const skillIds = new Set<string>();
-        // Future logic to pre-populate based on lineage can go here.
-        // For now, it starts empty, allowing user to select all.
-        return skillIds;
+        return new Set<string>();
     }, [pair]);
 
     useEffect(() => {
@@ -63,12 +64,12 @@ const ProbabilityCalculatorModal = ({ isOpen, onClose, pair }: ProbabilityCalcul
 
     useEffect(() => {
         if (isOpen) {
-            setCalculationState({ status: 'idle', result: null }); // Reset on open
+            setCalculationState({ status: 'idle', result: null });
             const worker = new Worker(new URL('../workers/probability.worker.ts', import.meta.url), { type: 'module' });
             workerRef.current = worker;
 
             worker.onmessage = (e) => {
-                if (e.data.result !== undefined) {
+                if (e.data.result) {
                     setCalculationState({ status: 'success', result: e.data.result });
                 } else if (e.data.error) {
                     console.error("Probability worker error:", e.data.error);
@@ -111,9 +112,7 @@ const ProbabilityCalculatorModal = ({ isOpen, onClose, pair }: ProbabilityCalcul
             worker.postMessage(payload);
         }, 300);
 
-        return () => {
-            clearTimeout(handler);
-        };
+        return () => clearTimeout(handler);
     }, [pair, activeGoal, targetStats, trainingRank, spBudget, acquirableSkillIds, obtainableAptitudes, appData.inventory, skillMapByName]);
 
 
@@ -134,25 +133,13 @@ const ProbabilityCalculatorModal = ({ isOpen, onClose, pair }: ProbabilityCalcul
             setSpBudget(0);
         }
     };
-
-    const formatResult = () => {
-        const { status, result } = calculationState;
-        if (status === 'error') return { percent: 'Error', runs: 'N/A' };
-        if (status === 'idle' || status === 'calculating' || result === null) return { percent: '—', runs: '—' };
-        
-        if (result === 0) return { percent: '0.00%', runs: '∞' };
-        if (result < 0.00000001) {
-             const runs = 1 / result;
-             return { percent: '0.00%', runs: runs.toLocaleString('en-US', { notation: 'scientific' }) };
-        }
-        const runs = Math.ceil(1 / result);
-        return {
-            percent: `${(result * 100).toFixed(2)}%`,
-            runs: runs.toLocaleString()
-        };
-    };
     
-    const formattedResult = formatResult();
+    const formatProbAsFraction = (prob: number | null | undefined): string => {
+        if (prob === null || prob === undefined) return '—';
+        if (prob <= 0) return '1 / ∞';
+        const denominator = Math.round(1 / prob);
+        return `1 / ${denominator.toLocaleString()}`;
+    };
 
     const translatedAptitudeOptions = PINK_SPARK_TYPES.map(opt => ({
         value: opt,
@@ -212,21 +199,26 @@ const ProbabilityCalculatorModal = ({ isOpen, onClose, pair }: ProbabilityCalcul
                     <div className="prob-calc__results">
                         <h3 className="prob-calc__results-title">{t('breedingPlanner.estimatedProbabilities')}</h3>
                         <div className="prob-calc__results-grid">
-                            <div className="prob-calc__result-item">
-                                {calculationState.status === 'calculating' ? (
+                            {calculationState.status === 'calculating' ? (
+                                <div className="prob-calc__result-item">
                                     <p className="text-center text-stone-500">{t('common:calculating')}...</p>
-                                ) : (
-                                    <>
+                                </div>
+                            ) : (
+                                <>
+                                    <div className="prob-calc__result-item">
                                         <div className="prob-calc__result-header">
-                                            <span className="prob-calc__result-name">{t('breedingPlanner.probScoreUpgrade')}
-                                                <span className="ml-2 text-stone-400"><FontAwesomeIcon icon={faInfoCircle} /></span>
-                                            </span>
-                                            <span className="prob-calc__result-percent">{formattedResult.percent}</span>
+                                            <span className="prob-calc__result-name">{t('breedingPlanner.probScoreUpgrade')}</span>
+                                            <span className="prob-calc__result-percent">{formatProbAsFraction(calculationState.result?.probScoreUpgrade)}</span>
                                         </div>
-                                        <p className="prob-calc__result-runs">{t('breedingPlanner.avgRuns', { value: formattedResult.runs })}</p>
-                                    </>
-                                )}
-                            </div>
+                                    </div>
+                                    <div className="prob-calc__result-item">
+                                        <div className="prob-calc__result-header">
+                                            <span className="prob-calc__result-name">{t('breedingPlanner.probSparkCountUpgrade', { count: calculationState.result?.targetSparkCount ?? 'N/A' })}</span>
+                                            <span className="prob-calc__result-percent">{formatProbAsFraction(calculationState.result?.probSparkCountUpgrade)}</span>
+                                        </div>
+                                    </div>
+                                </>
+                            )}
                         </div>
                         <div className="prob-calc__disclaimer">
                             <p><strong>{t('common:disclaimer')}:</strong> {t('breedingPlanner.disclaimerText')}</p>
