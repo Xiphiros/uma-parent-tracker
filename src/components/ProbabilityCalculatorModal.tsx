@@ -1,9 +1,9 @@
 import { useState, useMemo } from 'react';
-import { BreedingPair, Parent } from '../types';
+import { BreedingPair, Parent } from '../../types';
 import Modal from './common/Modal';
 import { useTranslation } from 'react-i18next';
 import { useAppContext } from '../context/AppContext';
-import { calculateUpgradeProbability } from '../utils/probability';
+import { calculateUpgradeProbability } from '../utils/upgradeProbability';
 import './ProbabilityCalculatorModal.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
@@ -15,7 +15,6 @@ interface ProbabilityCalculatorModalProps {
 }
 
 const STATS = ['speed', 'stamina', 'power', 'guts', 'wit'];
-const ASSUMED_WHITE_SPARKS_PER_RUN = 5;
 const ASSUMED_A_RANK_APTITUDES = 5;
 
 const ProbabilityCalculatorModal = ({ isOpen, onClose, pair }: ProbabilityCalculatorModalProps) => {
@@ -26,6 +25,7 @@ const ProbabilityCalculatorModal = ({ isOpen, onClose, pair }: ProbabilityCalcul
         speed: 1100, stamina: 1100, power: 1100, guts: 600, wit: 600
     });
     const [trainingRank, setTrainingRank] = useState<'ss' | 'ss+'>('ss');
+    const [spBudget, setSpBudget] = useState(1500);
     
     const activeGoal = getActiveProfile()?.goal;
     const inventoryMap = useMemo(() => new Map(appData.inventory.map((p: Parent) => [p.id, p])), [appData.inventory]);
@@ -38,14 +38,28 @@ const ProbabilityCalculatorModal = ({ isOpen, onClose, pair }: ProbabilityCalcul
             setTargetStats(prev => ({...prev, [stat]: 0}));
         }
     };
+    
+    const handleBudgetChange = (value: string) => {
+        const numValue = parseInt(value, 10);
+        if (!isNaN(numValue)) {
+            setSpBudget(numValue);
+        } else if (value === '') {
+            setSpBudget(0);
+        }
+    };
 
     const upgradeProb = useMemo(() => {
         if (!pair || !activeGoal) return 0;
-        return calculateUpgradeProbability(pair, activeGoal, targetStats, trainingRank, inventoryMap, skillMapByName);
+        // This will be updated in a later step to use the new spBudget
+        return calculateUpgradeProbability(pair, activeGoal, targetStats, trainingRank, inventoryMap, skillMapByName, 1500);
     }, [pair, activeGoal, targetStats, trainingRank, inventoryMap, skillMapByName]);
 
     const formatResult = (prob: number) => {
-        if (prob === 0 || !prob) return { percent: '0%', runs: '∞' };
+        if (prob === 0 || !prob) return { percent: '0.00%', runs: '∞' };
+        if (prob < 0.00000001) { // Handle extremely small numbers
+             const runs = 1 / prob;
+             return { percent: '0.00%', runs: runs.toLocaleString('en-US', { notation: 'scientific' }) };
+        }
         const runs = Math.ceil(1 / prob);
         return {
             percent: `${(prob * 100).toFixed(2)}%`,
@@ -77,6 +91,23 @@ const ProbabilityCalculatorModal = ({ isOpen, onClose, pair }: ProbabilityCalcul
                             ))}
                         </div>
                         <div>
+                            <label htmlFor="sp-budget" className="form__label form__label--xs flex items-center">
+                                {t('breedingPlanner.spBudget')}
+                                <span className="ml-1 text-stone-400" title={t('breedingPlanner.spBudgetTooltip')}>
+                                    <FontAwesomeIcon icon={faInfoCircle} />
+                                </span>
+                            </label>
+                            <input
+                                type="number"
+                                id="sp-budget"
+                                className="form__input form__input--small w-full"
+                                value={spBudget}
+                                onChange={(e) => handleBudgetChange(e.target.value)}
+                                step="100"
+                                min="0"
+                            />
+                        </div>
+                        <div>
                             <label className="form__label form__label--xs">{t('breedingPlanner.trainingRank')}</label>
                              <div className="top-pair__toggle-group">
                                 <button className={`top-pair__toggle-btn ${trainingRank === 'ss' ? 'top-pair__toggle-btn--active' : ''}`} onClick={() => setTrainingRank('ss')}>{t('breedingPlanner.rankBelowSS')}</button>
@@ -94,7 +125,7 @@ const ProbabilityCalculatorModal = ({ isOpen, onClose, pair }: ProbabilityCalcul
                                     {t('breedingPlanner.probScoreUpgrade')}
                                     <span 
                                         className="ml-2 text-stone-400"
-                                        title={t('breedingPlanner.probAssumptionsText', { count: ASSUMED_WHITE_SPARKS_PER_RUN })}
+                                        title={t('breedingPlanner.probAssumptionsText')}
                                     >
                                         <FontAwesomeIcon icon={faInfoCircle} />
                                     </span>

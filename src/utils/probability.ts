@@ -180,7 +180,8 @@ export const calculateUpgradeProbability = (
     targetStats: Record<string, number>,
     trainingRank: 'ss' | 'ss+',
     inventoryMap: Map<number, Parent>,
-    skillMapByName: Map<string, Skill>
+    skillMapByName: Map<string, Skill>,
+    spBudget: number // Added parameter, currently unused
 ): number => {
     try {
         const p1Score = calculateIndividualScore(pair.p1, goal, inventoryMap, skillMapByName, trainingRank);
