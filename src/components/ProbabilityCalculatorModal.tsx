@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import { BreedingPair, Parent } from '../../types';
+import { BreedingPair, Parent } from '../types';
 import Modal from './common/Modal';
 import { useTranslation } from 'react-i18next';
 import { useAppContext } from '../context/AppContext';
@@ -19,7 +19,7 @@ const ASSUMED_A_RANK_APTITUDES = 5;
 
 const ProbabilityCalculatorModal = ({ isOpen, onClose, pair }: ProbabilityCalculatorModalProps) => {
     const { t } = useTranslation(['roster', 'game', 'common']);
-    const { getActiveProfile, skillMapByName, appData } = useAppContext();
+    const { getActiveProfile, skillMapByName, skillMetaMap, appData } = useAppContext();
     
     const [targetStats, setTargetStats] = useState<Record<string, number>>({
         speed: 1100, stamina: 1100, power: 1100, guts: 600, wit: 600
@@ -50,9 +50,8 @@ const ProbabilityCalculatorModal = ({ isOpen, onClose, pair }: ProbabilityCalcul
 
     const upgradeProb = useMemo(() => {
         if (!pair || !activeGoal) return 0;
-        // This will be updated in a later step to use the new spBudget
-        return calculateUpgradeProbability(pair, activeGoal, targetStats, trainingRank, inventoryMap, skillMapByName, 1500);
-    }, [pair, activeGoal, targetStats, trainingRank, inventoryMap, skillMapByName]);
+        return calculateUpgradeProbability(pair, activeGoal, targetStats, trainingRank, inventoryMap, skillMapByName, skillMetaMap, spBudget);
+    }, [pair, activeGoal, targetStats, trainingRank, inventoryMap, skillMapByName, skillMetaMap, spBudget]);
 
     const formatResult = (prob: number) => {
         if (prob === 0 || !prob) return { percent: '0.00%', runs: '∞' };
