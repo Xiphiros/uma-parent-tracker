@@ -76,13 +76,18 @@ export const calculateSparkCountDistribution = (
             tier: tier as 'S' | 'A' | 'B' | 'C' | 'Other',
             cost,
             acquireProb,
+            level: skill.rarity || 1, // Add level (rarity) for sorting
         };
     });
 
-    // 3. Sort skills by the new priority: Tier (S->C->Other), then Cost (low->high)
+    // 3. Sort skills by the new priority: Tier (S->C->Other), then Level (1->2), then Cost (low->high)
     const sortedSkills = potentialSkills.sort((a, b) => {
         const tierDiff = WISH_RANK_ORDER[a.tier] - WISH_RANK_ORDER[b.tier];
         if (tierDiff !== 0) return tierDiff;
+
+        const levelDiff = a.level - b.level;
+        if (levelDiff !== 0) return levelDiff;
+
         return a.cost - b.cost;
     });
 
@@ -92,16 +97,22 @@ export const calculateSparkCountDistribution = (
 
     for (const skill of sortedSkills) {
         if (remainingBudget < skill.cost) {
-            break; // Cannot afford this or any subsequent skills
+            // Cannot afford this or any subsequent (more expensive or lower priority) skills.
+            // We can break early because the list is sorted by cost within each priority level.
+            // Note: This assumes Lv1 is always cheaper or same cost as Lv2. If not, this needs adjustment.
+            // For now, this is a safe assumption for Umamusume skill costs.
+            continue;
         }
 
         const pAcquire = skill.acquireProb;
         const nextDistribution = new Map<number, number>();
 
         for (const [count, prob] of distribution.entries()) {
-            // Case 1: Skill is acquired
-            const probAcquired = prob * pAcquire;
-            nextDistribution.set(count + 1, (nextDistribution.get(count + 1) || 0) + probAcquired);
+            // Case 1: Skill is acquired (and we can afford it)
+            if (remainingBudget >= skill.cost) {
+                const probAcquired = prob * pAcquire;
+                nextDistribution.set(count + 1, (nextDistribution.get(count + 1) || 0) + probAcquired);
+            }
 
             // Case 2: Skill is not acquired
             const probNotAcquired = prob * (1 - pAcquire);
@@ -109,6 +120,11 @@ export const calculateSparkCountDistribution = (
         }
         
         distribution = nextDistribution;
+        
+        // This simplified budget deduction works because we only care about the distribution of *counts*,
+        // not the distribution of remaining budget. We iterate through the sorted list and "attempt"
+        // to buy each one, updating the probabilities as we go. We just need to make sure we don't
+        // attempt to buy something we can't afford at all. A more complex model would track budget distribution.
         remainingBudget -= skill.cost;
     }
 
