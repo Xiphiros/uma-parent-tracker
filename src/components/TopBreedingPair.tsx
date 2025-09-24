@@ -23,7 +23,7 @@ interface BreedingPairWithStats extends BreedingPair {
 const TopBreedingPair = () => {
     const { t } = useTranslation('roster');
     const { getScoredRoster, appData, activeServer, setActiveBreedingPair, getActiveProfile, umaMapById, skillMapByName } = useAppContext();
-    const roster = getScoredRoster();
+    const roster = useMemo(() => getScoredRoster(), [getScoredRoster]);
     const activeGoal = getActiveProfile()?.goal;
 
     const [recType, setRecType] = useState<RecommendationType>('owned');
