@@ -93,12 +93,19 @@
         "clearChecks": "Clear Checks",
         "probabilityCalculator": "Probability Calculator",
         "inputs": "Inputs",
+        "targetOutcome": "Target Outcome",
+        "runConfiguration": "Run Configuration",
         "targetStats": "Target Stats",
         "spBudget": "Est. Skill Point Budget",
         "spBudgetTooltip": "The total amount of Skill Points you expect to have available to purchase skills during the training run. This directly impacts how many white sparks can be acquired.",
         "trainingRank": "Est. Final Rank",
         "rankBelowSS": "Below SS+",
         "rankSSPlus": "SS+ & Higher",
+        "acquirableSkills": "Acquirable White Sparks",
+        "selectAcquirableSkills": "Select Acquirable Skills...",
+        "allSkillsConsidered": "All lineage skills considered",
+        "skillsSelected": "{{count}} skills selected",
+        "targetAptitudes": "Target Aptitudes (for Pink Sparks)",
         "estimatedProbabilities": "Estimated Probabilities",
         "primaryBlueSpark": "3★ Primary Blue Spark",
         "primaryPinkSpark": "3★ Primary Pink Spark",
@@ -108,7 +115,7 @@
         "disclaimerText": "Probabilities are estimates based on game data and certain assumptions:",
         "disclaimerScoreUpgrade": "Score upgrade probability compares the child's potential individual score to the weaker parent's individual score.",
         "disclaimerBlue": "Blue spark probability is based on the target stats for all 5 blue factor types.",
-        "disclaimerPink": "Pink spark probability assumes you have {{count}} A-rank aptitudes.",
+        "disclaimerPinkDynamic": "Pink spark probability is based on the intersection of your Goal and selected Target Aptitudes.",
         "disclaimerWhiteSP": "The number of white sparks acquired is estimated based on your wishlist, the pair's lineage, and the provided Skill Point Budget. Only Lv. 1 skills are considered."
     }
 }

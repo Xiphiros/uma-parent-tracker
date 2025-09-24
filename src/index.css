@@ -24,6 +24,7 @@
 @import "./components/common/PairedParentCard.css";
 @import "./components/common/PlaceholderCard.css";
 @import "./components/common/RangeSlider.css";
+@import "./components/SelectAcquirableSkillsModal.css";
 @import "./components/SelectGrandparentModal.css";
 @import "./components/SelectUmaModal.css";
 @import "./components/common/SelectionSlot.css";
