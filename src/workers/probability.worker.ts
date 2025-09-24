@@ -1,9 +1,10 @@
-import { BreedingPair, Goal, ManualParentData, Parent, Skill } from '../types';
+import { BreedingPair, Goal, ManualParentData, Parent, Skill, WhiteSpark, UniqueSpark } from '../types';
 import { resolveGrandparent } from '../utils/affinity';
-import { calculateIndividualScore, scoreHypotheticalParent } from '../utils/scoring';
+import { calculateIndividualScore } from '../utils/scoring';
 import { calculateSparkCountDistribution } from '../utils/sparkAcquisitionModel';
 
-// The main entry point for the worker. It listens for messages from the main thread.
+// --- Worker Entry Point ---
+
 self.onmessage = (e: MessageEvent<any>) => {
     const { 
         pair, goal, targetStats, trainingRank, 
@@ -11,7 +12,6 @@ self.onmessage = (e: MessageEvent<any>) => {
         acquirableSkillIds, targetAptitudes
     } = e.data;
 
-    // Reconstruct Maps from the serialized arrays sent from the main thread.
     const inventoryMap = new Map<number, Parent>(inventory.map((p: Parent) => [p.id, p]));
     const skillMapByName = new Map<string, Skill>(skillMapEntries);
     const acquirableSkillIdsSet = new Set<string>(acquirableSkillIds);
@@ -22,16 +22,14 @@ self.onmessage = (e: MessageEvent<any>) => {
             inventoryMap, skillMapByName, spBudget,
             acquirableSkillIdsSet, targetAptitudes
         );
-        // Send the result back to the main thread on success.
         self.postMessage({ result });
     } catch (error) {
-        // Send an error message back if the calculation fails.
         self.postMessage({ error: error instanceof Error ? error.message : 'Unknown worker error' });
     }
 };
 
 
-// --- All calculation logic from upgradeProbability.ts is now here ---
+// --- Core Calculation Logic ---
 
 const NUM_BLUE_STATS = 5;
 const BLUE_SPARK_TYPES: ('Speed' | 'Stamina' | 'Power' | 'Guts' | 'Wit')[] = ['Speed', 'Stamina', 'Power', 'Guts', 'Wit'];
@@ -47,12 +45,37 @@ const BLUE_STAR_PROBABILITY = {
     low: { 1: 0.50, 2: 0.50, 3: 0.00 },
 };
 
-const WHITE_SKILL_BASE_PROBABILITY = {
-  normal: 0.20, circle: 0.25, gold: 0.40,
-};
+const WHITE_SKILL_BASE_PROBABILITY = { normal: 0.20, circle: 0.25, gold: 0.40 };
 const ANCESTOR_BONUS = 1.1;
 
 type ProbabilityDistribution = Map<number, number>;
+
+// Helper function to calculate a single spark's score contribution
+const getSparkScoreContribution = (
+    sparkType: 'blue' | 'pink' | 'white',
+    sparkData: any,
+    goal: Goal,
+    skillMapByName: Map<string, Skill>,
+    trainingRank: 'ss' | 'ss+'
+): number => {
+    const baseScore = calculateIndividualScore({
+        blueSpark: { type: 'Speed', stars: 1 }, pinkSpark: { type: 'Turf', stars: 1 },
+        whiteSparks: [], uniqueSparks: [],
+    }, goal, new Map(), skillMapByName, trainingRank);
+
+    let testEntity: ManualParentData = {
+        blueSpark: { type: 'Speed', stars: 1 }, pinkSpark: { type: 'Turf', stars: 1 },
+        whiteSparks: [], uniqueSparks: [],
+    };
+
+    if (sparkType === 'blue') testEntity.blueSpark = sparkData;
+    if (sparkType === 'pink') testEntity.pinkSpark = sparkData;
+    if (sparkType === 'white') testEntity.whiteSparks = [sparkData];
+    
+    const totalScore = calculateIndividualScore(testEntity, goal, new Map(), skillMapByName, trainingRank);
+
+    return Math.round(totalScore - baseScore);
+};
 
 const getBlueStarDistributionForStat = (statValue: number): { 1: number; 2: number; 3: number } => {
     if (statValue >= 1100) return BLUE_STAR_PROBABILITY.high;
@@ -60,38 +83,22 @@ const getBlueStarDistributionForStat = (statValue: number): { 1: number; 2: numb
     return BLUE_STAR_PROBABILITY.low;
 };
 
-const countAncestorsWithSkill = (pair: BreedingPair, skillGroupId: number | undefined, inventoryMap: Map<number, Parent>, skillMapByName: Map<string, Skill>): number => {
-  if (skillGroupId === undefined) return 0;
-  const lineage: (Parent | ManualParentData | null)[] = [
-    pair.p1, pair.p2,
-    resolveGrandparent(pair.p1.grandparent1, inventoryMap), resolveGrandparent(pair.p1.grandparent2, inventoryMap),
-    resolveGrandparent(pair.p2.grandparent1, inventoryMap), resolveGrandparent(pair.p2.grandparent2, inventoryMap),
-  ];
-  let count = 0;
-  for (const member of lineage) {
-    if (!member) continue;
-    const skills = [...member.uniqueSparks, ...member.whiteSparks];
-    if (skills.some(s => skillMapByName.get(s.name)?.groupId === skillGroupId)) count++;
-  }
-  return count;
-};
-
-function getBlueSparkDistribution(goal: Goal, targetStats: Record<string, number>, trainingRank: 'ss' | 'ss+'): ProbabilityDistribution {
+function getBlueSparkDistribution(goal: Goal, targetStats: Record<string, number>, skillMapByName: Map<string, Skill>, trainingRank: 'ss' | 'ss+'): ProbabilityDistribution {
     const distribution: ProbabilityDistribution = new Map();
     for (const stat of BLUE_SPARK_TYPES) {
         const starProbs = getBlueStarDistributionForStat(targetStats[stat.toLowerCase()] || 0);
         for (const stars of [1, 2, 3] as const) {
             const prob = (1 / NUM_BLUE_STATS) * starProbs[stars];
             if (prob === 0) continue;
-            const score = Math.round(scoreHypotheticalParent({ blueSpark: { type: stat, stars }, pinkSpark: { type: '', stars: 1 }, whiteSparks: [] }, goal, [], new Map(), trainingRank));
-            const blueScoreContribution = score - Math.round(scoreHypotheticalParent({ blueSpark: { type: '', stars: 1 }, pinkSpark: { type: '', stars: 1 }, whiteSparks: [] }, goal, [], new Map(), trainingRank));
-            distribution.set(blueScoreContribution, (distribution.get(blueScoreContribution) || 0) + prob);
+            
+            const score = getSparkScoreContribution('blue', { type: stat, stars }, goal, skillMapByName, trainingRank);
+            distribution.set(score, (distribution.get(score) || 0) + prob);
         }
     }
     return distribution;
 }
 
-function getPinkSparkDistribution(goal: Goal, trainingRank: 'ss' | 'ss+', targetAptitudes: string[]): ProbabilityDistribution {
+function getPinkSparkDistribution(goal: Goal, trainingRank: 'ss' | 'ss+', targetAptitudes: string[], skillMapByName: Map<string, Skill>): ProbabilityDistribution {
     const distribution: ProbabilityDistribution = new Map();
     const starProbs = trainingRank === 'ss+' ? STAR_PROBABILITY.ssPlus : STAR_PROBABILITY.standard;
     
@@ -104,51 +111,66 @@ function getPinkSparkDistribution(goal: Goal, trainingRank: 'ss' | 'ss+', target
     for (const stars of [1, 2, 3] as const) {
         if (primaryProb > 0) {
             const primaryType = goal.primaryPink.find(p => targetAptitudes.includes(p)) || goal.primaryPink[0] || 'Other';
-            const score = Math.round(scoreHypotheticalParent({ blueSpark: { type: '', stars: 1 }, pinkSpark: { type: primaryType, stars }, whiteSparks: [] }, goal, [], new Map(), trainingRank));
-            const pinkScore = score - Math.round(scoreHypotheticalParent({ blueSpark: { type: '', stars: 1 }, pinkSpark: { type: '', stars: 1 }, whiteSparks: [] }, goal, [], new Map(), trainingRank));
-            distribution.set(pinkScore, (distribution.get(pinkScore) || 0) + (primaryProb * starProbs[stars]));
+            const score = getSparkScoreContribution('pink', { type: primaryType, stars }, goal, skillMapByName, trainingRank);
+            distribution.set(score, (distribution.get(score) || 0) + (primaryProb * starProbs[stars]));
         }
         if (otherProb > 0) {
-            const score = Math.round(scoreHypotheticalParent({ blueSpark: { type: '', stars: 1 }, pinkSpark: { type: 'Other', stars }, whiteSparks: [] }, goal, [], new Map(), trainingRank));
-            const pinkScore = score - Math.round(scoreHypotheticalParent({ blueSpark: { type: '', stars: 1 }, pinkSpark: { type: '', stars: 1 }, whiteSparks: [] }, goal, [], new Map(), trainingRank));
-            distribution.set(pinkScore, (distribution.get(pinkScore) || 0) + (otherProb * starProbs[stars]));
+            const score = getSparkScoreContribution('pink', { type: 'Other', stars }, goal, skillMapByName, trainingRank);
+            distribution.set(score, (distribution.get(score) || 0) + (otherProb * starProbs[stars]));
         }
     }
     return distribution;
 }
 
-function getWhiteSparkDistribution(pair: BreedingPair, goal: Goal, trainingRank: 'ss' | 'ss+', skillMapByName: Map<string, Skill>, inventoryMap: Map<number, Parent>): ProbabilityDistribution {
-    const distribution: ProbabilityDistribution = new Map();
+function getAverageWhiteSparkScoreDistribution(pair: BreedingPair, goal: Goal, trainingRank: 'ss' | 'ss+', skillMapByName: Map<string, Skill>, inventoryMap: Map<number, Parent>, acquirableSkillIds: Set<string>): ProbabilityDistribution {
+    const mixtureDist: ProbabilityDistribution = new Map();
     const starProbs = trainingRank === 'ss+' ? STAR_PROBABILITY.ssPlus : STAR_PROBABILITY.standard;
-    const potentialSkills = Array.from(skillMapByName.values()).filter(s => s.type === 'normal');
-    if (potentialSkills.length === 0) {
-        distribution.set(0, 1.0);
-        return distribution;
+    const allSkillsFromMap = Array.from(skillMapByName.values());
+
+    let skillPool: Skill[];
+    if (acquirableSkillIds.size === 0) {
+        const lineageSkillNames = new Set<string>();
+        const lineage = [pair.p1, pair.p2, resolveGrandparent(pair.p1.grandparent1, inventoryMap), resolveGrandparent(pair.p1.grandparent2, inventoryMap), resolveGrandparent(pair.p2.grandparent1, inventoryMap), resolveGrandparent(pair.p2.grandparent2, inventoryMap)];
+        lineage.forEach(member => {
+            if (member) member.whiteSparks.forEach(spark => lineageSkillNames.add(spark.name));
+        });
+        skillPool = Array.from(lineageSkillNames).map(name => skillMapByName.get(name)).filter((s): s is Skill => !!s && s.type === 'normal');
+    } else {
+        skillPool = Array.from(acquirableSkillIds).map(id => allSkillsFromMap.find(s => s.id === id)).filter((s): s is Skill => !!s);
     }
-    const numSkills = potentialSkills.length;
-    let totalProbabilityMass = 0;
-    potentialSkills.forEach(skill => {
+
+    if (skillPool.length === 0) return new Map([[0, 1.0]]);
+    
+    const weightedSkills = skillPool.map(skill => {
         let baseProb = WHITE_SKILL_BASE_PROBABILITY.normal;
         if (skill.rarity === 2) baseProb = WHITE_SKILL_BASE_PROBABILITY.circle;
-        if (skill.rarity && skill.rarity > 2) baseProb = WHITE_SKILL_BASE_PROBABILITY.gold;
-        const ancestorCount = countAncestorsWithSkill(pair, skill.groupId, inventoryMap, skillMapByName);
+
+        const lineage = [pair.p1, pair.p2, resolveGrandparent(pair.p1.grandparent1, inventoryMap), resolveGrandparent(pair.p1.grandparent2, inventoryMap), resolveGrandparent(pair.p2.grandparent1, inventoryMap), resolveGrandparent(pair.p2.grandparent2, inventoryMap)];
+        const ancestorCount = lineage.filter(member => member && member.whiteSparks.some(s => skillMapByName.get(s.name)?.groupId === skill.groupId)).length;
+        
         const acquireProb = Math.min(1.0, baseProb * (ANCESTOR_BONUS ** ancestorCount));
-        for (const stars of [1, 2, 3] as const) {
-            const probOfThisOutcome = acquireProb * starProbs[stars];
-            const finalProb = probOfThisOutcome / numSkills;
-            if (finalProb === 0) continue;
-            const score = Math.round(scoreHypotheticalParent({ blueSpark: { type: '', stars: 1 }, pinkSpark: { type: '', stars: 1 }, whiteSparks: [{ name: skill.name_en, stars }] }, goal, [], skillMapByName, trainingRank));
-            const whiteScoreContribution = score - Math.round(scoreHypotheticalParent({ blueSpark: { type: '', stars: 1 }, pinkSpark: { type: '', stars: 1 }, whiteSparks: [] }, goal, [], new Map(), trainingRank));
-            distribution.set(whiteScoreContribution, (distribution.get(whiteScoreContribution) || 0) + finalProb);
-            totalProbabilityMass += finalProb;
-        }
+        return { skill, acquireProb };
     });
-    distribution.set(0, (distribution.get(0) || 0) + (1 - totalProbabilityMass));
-    return distribution;
+
+    const totalAcquireProb = weightedSkills.reduce((sum, s) => sum + s.acquireProb, 0);
+    if (totalAcquireProb === 0) return new Map([[0, 1.0]]);
+
+    for (const { skill, acquireProb } of weightedSkills) {
+        const weight = acquireProb / totalAcquireProb;
+        for (const stars of [1, 2, 3] as const) {
+            const score = getSparkScoreContribution('white', { name: skill.name_en, stars }, goal, skillMapByName, trainingRank);
+            const prob = weight * starProbs[stars];
+            mixtureDist.set(score, (mixtureDist.get(score) || 0) + prob);
+        }
+    }
+    return mixtureDist;
 }
 
 function convolve(dist1: ProbabilityDistribution, dist2: ProbabilityDistribution): ProbabilityDistribution {
     const newDist: ProbabilityDistribution = new Map();
+    if (dist1.size === 0) return dist2;
+    if (dist2.size === 0) return dist1;
+    
     for (const [score1, prob1] of dist1.entries()) {
         for (const [score2, prob2] of dist2.entries()) {
             const newScore = score1 + score2;
@@ -160,50 +182,4 @@ function convolve(dist1: ProbabilityDistribution, dist2: ProbabilityDistribution
 }
 
 const calculateUpgradeProbability = (
-    pair: BreedingPair, 
-    goal: Goal, 
-    targetStats: Record<string, number>, 
-    trainingRank: 'ss' | 'ss+', 
-    inventoryMap: Map<number, Parent>, 
-    skillMapByName: Map<string, Skill>, 
-    spBudget: number,
-    acquirableSkillIds: Set<string>,
-    targetAptitudes: string[]
-): { probScoreUpgrade: number; probSparkCountUpgrade: number; targetSparkCount: number; } => {
-    const p1Score = calculateIndividualScore(pair.p1, goal, inventoryMap, skillMapByName, trainingRank);
-    const p2Score = calculateIndividualScore(pair.p2, goal, inventoryMap, skillMapByName, trainingRank);
-    const targetIndividualScore = Math.min(p1Score, p2Score);
-
-    const targetSparkCount = Math.min(pair.p1.whiteSparks.length, pair.p2.whiteSparks.length);
-
-    const blueDist = getBlueSparkDistribution(goal, targetStats, trainingRank);
-    const pinkDist = getPinkSparkDistribution(goal, trainingRank, targetAptitudes);
-    const whiteDist = getWhiteSparkDistribution(pair, goal, trainingRank, skillMapByName, inventoryMap);
-    const sparkCountDist = calculateSparkCountDistribution(pair, goal, spBudget, skillMapByName, inventoryMap, acquirableSkillIds);
-    
-    let totalScoreUpgradeProb = 0;
-    let totalSparkCountUpgradeProb = 0;
-
-    for (const [sparkCount, countProb] of sparkCountDist.entries()) {
-        if (countProb === 0) continue;
-        
-        // Calculate probability of spark count upgrade for this specific count
-        if (sparkCount > targetSparkCount) {
-            totalSparkCountUpgradeProb += countProb;
-        }
-
-        let finalDist = convolve(blueDist, pinkDist);
-        for (let i = 0; i < sparkCount; i++) {
-            finalDist = convolve(finalDist, whiteDist);
-        }
-        
-        let upgradeProbForThisCount = 0;
-        for (const [score, scoreProb] of finalDist.entries()) {
-            if (score > targetIndividualScore) {
-                upgradeProbForThisCount += scoreProb;
-            }
-        }
-        totalScoreUpgradeProb += upgradeProbForThisCount * countProb;
-    }
-    return { probScoreUpgrade: totalScoreUpgradeProb, probSparkCountUpgrade: totalSparkCountUpgradeProb, targetSparkCount };
-};
+    pair: BreedingPair, goal: Goal, targetStats: Record<string, number
