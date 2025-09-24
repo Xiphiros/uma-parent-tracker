@@ -112,7 +112,7 @@
     "estimatedProbabilities": "推定確率",
     "primaryBlueSpark": "★3 主要青因子",
     "primaryPinkSpark": "★3 主要赤因子",
-    "avgRuns": "平均{{count}}回",
+    "avgRuns": "平均{{value}}回",
     "noMissingSkills": "不足している高ランク（S/A）のウィッシュリストスキルはありません。",
     "disclaimerText": "確率はゲームデータと特定の仮定に基づいた推定値です：",
     "disclaimerBlue": "青因子の確率は、2つの主要な青因子に対する目標ステータスに基づいています。",

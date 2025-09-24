@@ -116,14 +116,14 @@ const ProbabilityCalculatorModal = ({ isOpen, onClose, pair }: ProbabilityCalcul
                                 <span className="prob-calc__result-name">{t('breedingPlanner.primaryBlueSpark')}</span>
                                 <span className="prob-calc__result-percent">{formatResult(blueSparkProb).percent}</span>
                             </div>
-                            <p className="prob-calc__result-runs">{t('breedingPlanner.avgRuns', { count: formatResult(blueSparkProb).runs })}</p>
+                            <p className="prob-calc__result-runs">{t('breedingPlanner.avgRuns', { value: formatResult(blueSparkProb).runs })}</p>
                         </div>
                         <div className="prob-calc__result-item">
                             <div className="prob-calc__result-header">
                                 <span className="prob-calc__result-name">{t('breedingPlanner.primaryPinkSpark')}</span>
                                 <span className="prob-calc__result-percent">{formatResult(pinkSparkProb).percent}</span>
                             </div>
-                             <p className="prob-calc__result-runs">{t('breedingPlanner.avgRuns', { count: formatResult(pinkSparkProb).runs })}</p>
+                             <p className="prob-calc__result-runs">{t('breedingPlanner.avgRuns', { value: formatResult(pinkSparkProb).runs })}</p>
                         </div>
 
                         {whiteSparkProbs.map(result => (
@@ -132,7 +132,7 @@ const ProbabilityCalculatorModal = ({ isOpen, onClose, pair }: ProbabilityCalcul
                                     <span className="prob-calc__result-name">{getSkillDisplayName(result.name)} (3★)</span>
                                     <span className="prob-calc__result-percent">{formatResult(result.prob).percent}</span>
                                 </div>
-                                <p className="prob-calc__result-runs">{t('breedingPlanner.avgRuns', { count: formatResult(result.prob).runs })}</p>
+                                <p className="prob-calc__result-runs">{t('breedingPlanner.avgRuns', { value: formatResult(result.prob).runs })}</p>
                             </div>
                         ))}
                          {highValueMissingSkills.length === 0 && <p className="text-sm text-stone-500">{t('breedingPlanner.noMissingSkills')}</p>}

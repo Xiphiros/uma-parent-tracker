@@ -97,7 +97,7 @@
         "estimatedProbabilities": "Estimated Probabilities",
         "primaryBlueSpark": "3★ Primary Blue Spark",
         "primaryPinkSpark": "3★ Primary Pink Spark",
-        "avgRuns": "Avg. {{count}} runs",
+        "avgRuns": "Avg. {{value}} runs",
         "noMissingSkills": "No missing high-value (S/A rank) wishlist skills.",
         "disclaimerText": "Probabilities are estimates based on game data and certain assumptions:",
         "disclaimerBlue": "Blue spark probability is based on the target stats for your two primary blue sparks.",
