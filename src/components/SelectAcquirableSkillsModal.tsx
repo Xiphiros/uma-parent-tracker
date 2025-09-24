@@ -16,7 +16,7 @@ interface SelectAcquirableSkillsModalProps {
 const WISH_RANK_ORDER: { [key: string]: number } = { S: 0, A: 1, B: 2, C: 3, Other: 4 };
 
 const SelectAcquirableSkillsModal = ({ isOpen, onClose, allSkills: availableSkills, selectedIds, onSave }: SelectAcquirableSkillsModalProps) => {
-    const { t } = useTranslation(['roster', 'goal', 'common']);
+    const { t } = useTranslation(['roster', 'goal']);
     const { getActiveProfile, dataDisplayLanguage, masterSkillList } = useAppContext();
     const displayNameProp = dataDisplayLanguage === 'jp' ? 'name_jp' : 'name_en';
     const goal = getActiveProfile()?.goal;
@@ -119,15 +119,15 @@ const SelectAcquirableSkillsModal = ({ isOpen, onClose, allSkills: availableSkil
                     onChange={e => setSearchQuery(e.target.value)}
                 />
                 <div className="skill-select__actions">
-                    <button className="button button--secondary button--small" onClick={handleSelectAll}>{t('selectAll')}</button>
-                    <button className="button button--secondary button--small" onClick={handleDeselectAll}>{t('deselectAll')}</button>
+                    <button className="button button--secondary button--small" onClick={handleSelectAll}>{t('breedingPlanner.selectAll')}</button>
+                    <button className="button button--secondary button--small" onClick={handleDeselectAll}>{t('breedingPlanner.deselectAll')}</button>
                 </div>
             </div>
 
             <div className="skill-select__grid">
                 {groupedAndFilteredSkills.map(([tier, skills]) => (
                     <div key={tier} className="skill-select__group">
-                        <h4 className="skill-select__group-title">{tier === 'Other' ? t('otherSkills') : `${t('goal:wishlist.rank')} ${tier}`}</h4>
+                        <h4 className="skill-select__group-title">{tier === 'Other' ? t('breedingPlanner.otherSkills') : `${t('goal:wishlist.rank')} ${tier}`}</h4>
                         <div className="skill-select__list">
                             {skills.map(skill => {
                                 const isChecked = localSelectedIds.has(skill.id);
@@ -159,7 +159,7 @@ const SelectAcquirableSkillsModal = ({ isOpen, onClose, allSkills: availableSkil
             </div>
 
             <div className="dialog-modal__footer">
-                <div className="skill-select__summary">{t('skillsSelected', { count: localSelectedIds.size })}</div>
+                <div className="skill-select__summary">{t('breedingPlanner.skillsSelected', { count: localSelectedIds.size })}</div>
                 <div>
                     <button className="button button--neutral" onClick={onClose}>{t('cancel', { ns: 'common' })}</button>
                     <button className="button button--primary" onClick={handleSave}>{t('save', { ns: 'common' })}</button>
