@@ -1,12 +1,13 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect, useRef } from 'react';
 import { BreedingPair, Parent } from '../types';
 import Modal from './common/Modal';
 import { useTranslation } from 'react-i18next';
 import { useAppContext } from '../context/AppContext';
-import { calculateUpgradeProbability } from '../utils/upgradeProbability';
 import './ProbabilityCalculatorModal.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
+import { ProbabilityWorkerPayload } from '../utils/upgradeProbability';
+import { useDebounce } from '../hooks/useDebounce';
 
 interface ProbabilityCalculatorModalProps {
     isOpen: boolean;
@@ -26,9 +27,64 @@ const ProbabilityCalculatorModal = ({ isOpen, onClose, pair }: ProbabilityCalcul
     });
     const [trainingRank, setTrainingRank] = useState<'ss' | 'ss+'>('ss');
     const [spBudget, setSpBudget] = useState(1500);
+
+    const [isCalculating, setIsCalculating] = useState(true);
+    const [probabilityResult, setProbabilityResult] = useState<number | null>(null);
+    const workerRef = useRef<Worker | null>(null);
     
     const activeGoal = getActiveProfile()?.goal;
-    const inventoryMap = useMemo(() => new Map(appData.inventory.map((p: Parent) => [p.id, p])), [appData.inventory]);
+    
+    const debouncedInputs = useDebounce({ targetStats, trainingRank, spBudget, pair, activeGoal }, 300);
+
+    useEffect(() => {
+        if (isOpen) {
+            const worker = new Worker(new URL('../workers/probability.worker.ts', import.meta.url), { type: 'module' });
+            workerRef.current = worker;
+
+            worker.onmessage = (e) => {
+                if (e.data.result !== undefined) {
+                    setProbabilityResult(e.data.result);
+                } else if (e.data.error) {
+                    console.error("Probability worker error:", e.data.error);
+                    setProbabilityResult(null);
+                }
+                setIsCalculating(false);
+            };
+            
+            worker.onerror = (e) => {
+                console.error("Worker error:", e);
+                setIsCalculating(false);
+                setProbabilityResult(null);
+            };
+
+            return () => {
+                worker.terminate();
+                workerRef.current = null;
+            };
+        }
+    }, [isOpen]);
+
+    useEffect(() => {
+        const worker = workerRef.current;
+        const { pair: debouncedPair, activeGoal: debouncedGoal, targetStats: debouncedStats, trainingRank: debouncedRank, spBudget: debouncedBudget } = debouncedInputs;
+
+        if (worker && debouncedPair && debouncedGoal) {
+            setIsCalculating(true);
+            setProbabilityResult(null);
+
+            const payload: ProbabilityWorkerPayload = {
+                pair: debouncedPair,
+                goal: debouncedGoal,
+                targetStats: debouncedStats,
+                trainingRank: debouncedRank,
+                inventory: appData.inventory,
+                skillMapEntries: Array.from(skillMapByName.entries()),
+                skillMetaMapEntries: Array.from(skillMetaMap.entries()),
+                spBudget: debouncedBudget
+            };
+            worker.postMessage(payload);
+        }
+    }, [debouncedInputs, appData.inventory, skillMapByName, skillMetaMap]);
 
     const handleStatChange = (stat: string, value: string) => {
         const numValue = parseInt(value, 10);
@@ -48,14 +104,10 @@ const ProbabilityCalculatorModal = ({ isOpen, onClose, pair }: ProbabilityCalcul
         }
     };
 
-    const upgradeProb = useMemo(() => {
-        if (!pair || !activeGoal) return 0;
-        return calculateUpgradeProbability(pair, activeGoal, targetStats, trainingRank, inventoryMap, skillMapByName, skillMetaMap, spBudget);
-    }, [pair, activeGoal, targetStats, trainingRank, inventoryMap, skillMapByName, skillMetaMap, spBudget]);
-
-    const formatResult = (prob: number) => {
+    const formatResult = (prob: number | null) => {
+        if (prob === null) return { percent: 'Error', runs: 'N/A' };
         if (prob === 0 || !prob) return { percent: '0.00%', runs: '∞' };
-        if (prob < 0.00000001) { // Handle extremely small numbers
+        if (prob < 0.00000001) {
              const runs = 1 / prob;
              return { percent: '0.00%', runs: runs.toLocaleString('en-US', { notation: 'scientific' }) };
         }
@@ -126,9 +178,9 @@ const ProbabilityCalculatorModal = ({ isOpen, onClose, pair }: ProbabilityCalcul
                                         <FontAwesomeIcon icon={faInfoCircle} />
                                     </span>
                                 </span>
-                                <span className="prob-calc__result-percent">{formatResult(upgradeProb).percent}</span>
+                                <span className="prob-calc__result-percent">{formatResult(probabilityResult).percent}</span>
                             </div>
-                            <p className="prob-calc__result-runs">{t('breedingPlanner.avgRuns', { value: formatResult(upgradeProb).runs })}</p>
+                            <p className="prob-calc__result-runs">{t('breedingPlanner.avgRuns', { value: formatResult(probabilityResult).runs })}</p>
                         </div>
                     </div>
                      <div className="prob-calc__disclaimer">
