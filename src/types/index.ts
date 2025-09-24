@@ -6,6 +6,7 @@ export interface Skill {
   type: 'unique' | 'normal';
   rarity?: number;
   groupId?: number;
+  baseCost?: number;
   isGlobal: boolean;
 }
 
