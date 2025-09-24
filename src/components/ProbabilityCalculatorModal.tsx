@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import { BreedingPair, WishlistItem } from '../types';
+import { BreedingPair } from '../types';
 import Modal from './common/Modal';
 import { useTranslation } from 'react-i18next';
 import { useAppContext } from '../context/AppContext';
