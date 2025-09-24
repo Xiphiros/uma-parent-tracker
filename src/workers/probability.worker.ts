@@ -1,4 +1,4 @@
-import { BreedingPair, Goal, ManualParentData, Parent, Skill, WhiteSpark, UniqueSpark } from '../types';
+import { BreedingPair, Goal, ManualParentData, Parent, Skill } from '../types';
 import { resolveGrandparent } from '../utils/affinity';
 import { calculateIndividualScore } from '../utils/scoring';
 import { calculateSparkCountDistribution } from '../utils/sparkAcquisitionModel';
@@ -182,4 +182,54 @@ function convolve(dist1: ProbabilityDistribution, dist2: ProbabilityDistribution
 }
 
 const calculateUpgradeProbability = (
-    pair: BreedingPair, goal: Goal, targetStats: Record<string, number
+    pair: BreedingPair, goal: Goal, targetStats: Record<string, number>, trainingRank: 'ss' | 'ss+', 
+    inventoryMap: Map<number, Parent>, skillMapByName: Map<string, Skill>, spBudget: number,
+    acquirableSkillIds: Set<string>, targetAptitudes: string[]
+) => {
+    
+    const p1Score = calculateIndividualScore(pair.p1, goal, inventoryMap, skillMapByName, trainingRank);
+    const p2Score = calculateIndividualScore(pair.p2, goal, inventoryMap, skillMapByName, trainingRank);
+    const targetIndividualScore = Math.min(p1Score, p2Score);
+    const targetSparkCount = Math.min(pair.p1.whiteSparks.length, pair.p2.whiteSparks.length);
+
+    const blueDist = getBlueSparkDistribution(goal, targetStats, skillMapByName, trainingRank);
+    const pinkDist = getPinkSparkDistribution(goal, trainingRank, targetAptitudes, skillMapByName);
+    const avgWhiteDist = getAverageWhiteSparkScoreDistribution(pair, goal, trainingRank, skillMapByName, inventoryMap, acquirableSkillIds);
+    const sparkCountDist = calculateSparkCountDistribution(pair, goal, spBudget, skillMapByName, inventoryMap, acquirableSkillIds);
+
+    const baseScoreDist = convolve(blueDist, pinkDist);
+    let finalScoreDist: ProbabilityDistribution = new Map();
+
+    for (const [sparkCount, countProb] of sparkCountDist.entries()) {
+        if (countProb === 0) continue;
+
+        let currentTotalScoreDist = baseScoreDist;
+        for (let i = 0; i < sparkCount; i++) {
+            currentTotalScoreDist = convolve(currentTotalScoreDist, avgWhiteDist);
+        }
+
+        const bonusMultiplier = 1 + (sparkCount * 0.01);
+
+        for (const [score, prob] of currentTotalScoreDist.entries()) {
+            const finalScore = Math.round(score * bonusMultiplier);
+            const finalProb = prob * countProb;
+            finalScoreDist.set(finalScore, (finalScoreDist.get(finalScore) || 0) + finalProb);
+        }
+    }
+
+    let probScoreUpgrade = 0;
+    for (const [score, prob] of finalScoreDist.entries()) {
+        if (score > targetIndividualScore) {
+            probScoreUpgrade += prob;
+        }
+    }
+    
+    let probSparkCountUpgrade = 0;
+    for (const [count, prob] of sparkCountDist.entries()) {
+        if (count > targetSparkCount) {
+            probSparkCountUpgrade += prob;
+        }
+    }
+    
+    return { probScoreUpgrade, probSparkCountUpgrade, targetSparkCount };
+};
