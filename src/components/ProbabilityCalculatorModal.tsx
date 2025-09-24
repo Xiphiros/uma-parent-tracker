@@ -1,14 +1,12 @@
 import { useState, useMemo } from 'react';
-import { BreedingPair } from '../types';
+import { BreedingPair } from '../../types';
 import Modal from './common/Modal';
 import { useTranslation } from 'react-i18next';
-import { useAppContext } from '../context/AppContext';
-import { calculateBlueSparkProb, calculatePinkSparkProb, calculateSingleWhiteSparkProb } from '../utils/probability';
-import { getCombinedLineageSkillNames } from '../utils/affinity';
+import { useAppContext } from '../../context/AppContext';
+import { calculateUpgradeProbability } from '../utils/upgradeProbability';
 import './ProbabilityCalculatorModal.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
-import { calculateUpgradeProbability } from '../utils/upgradeProbability';
 
 interface ProbabilityCalculatorModalProps {
     isOpen: boolean;
@@ -21,8 +19,7 @@ const ASSUMED_WHITE_SPARKS_PER_RUN = 5;
 
 const ProbabilityCalculatorModal = ({ isOpen, onClose, pair }: ProbabilityCalculatorModalProps) => {
     const { t } = useTranslation(['roster', 'game', 'common']);
-    const { getActiveProfile, masterSkillList, skillMapByName, appData, dataDisplayLanguage } = useAppContext();
-    const displayNameProp = dataDisplayLanguage === 'jp' ? 'name_jp' : 'name_en';
+    const { getActiveProfile, skillMapByName, appData } = useAppContext();
     
     const [targetStats, setTargetStats] = useState<Record<string, number>>({
         speed: 1100, stamina: 1100, power: 1100, guts: 600, wit: 600
@@ -41,32 +38,6 @@ const ProbabilityCalculatorModal = ({ isOpen, onClose, pair }: ProbabilityCalcul
         }
     };
 
-    const blueSparkProb = useMemo(() => {
-        if (!activeGoal) return 0;
-        return calculateBlueSparkProb(activeGoal, targetStats);
-    }, [activeGoal, targetStats]);
-    
-    const pinkSparkProb = useMemo(() => {
-        if (!activeGoal) return 0;
-        return calculatePinkSparkProb(activeGoal, trainingRank);
-    }, [activeGoal, trainingRank]);
-    
-    const highValueMissingSkills = useMemo(() => {
-        if (!pair || !activeGoal) return [];
-        const lineageSkills = getCombinedLineageSkillNames(pair.p1, pair.p2, inventoryMap);
-        return activeGoal.wishlist.filter(item => 
-            (item.tier === 'S' || item.tier === 'A') && !lineageSkills.has(item.name)
-        );
-    }, [pair, activeGoal, inventoryMap]);
-    
-    const whiteSparkProbs = useMemo(() => {
-        if (!pair || !activeGoal) return [];
-        return highValueMissingSkills.map(item => ({
-            name: item.name,
-            prob: calculateSingleWhiteSparkProb(item, pair, trainingRank, masterSkillList, skillMapByName, inventoryMap)
-        }));
-    }, [pair, highValueMissingSkills, trainingRank, masterSkillList, skillMapByName, inventoryMap]);
-
     const upgradeProb = useMemo(() => {
         if (!pair || !activeGoal) return 0;
         return calculateUpgradeProbability(pair, activeGoal, targetStats, trainingRank, inventoryMap, skillMapByName);
@@ -79,10 +50,6 @@ const ProbabilityCalculatorModal = ({ isOpen, onClose, pair }: ProbabilityCalcul
             percent: `${(prob * 100).toFixed(2)}%`,
             runs: runs.toLocaleString()
         };
-    };
-
-    const getSkillDisplayName = (name_en: string) => {
-        return skillMapByName.get(name_en)?.[displayNameProp] || name_en;
     };
 
     return (
@@ -135,38 +102,13 @@ const ProbabilityCalculatorModal = ({ isOpen, onClose, pair }: ProbabilityCalcul
                             </div>
                             <p className="prob-calc__result-runs">{t('breedingPlanner.avgRuns', { value: formatResult(upgradeProb).runs })}</p>
                         </div>
-                        <div className="prob-calc__result-item">
-                            <div className="prob-calc__result-header">
-                                <span className="prob-calc__result-name">{t('breedingPlanner.primaryBlueSpark')}</span>
-                                <span className="prob-calc__result-percent">{formatResult(blueSparkProb).percent}</span>
-                            </div>
-                            <p className="prob-calc__result-runs">{t('breedingPlanner.avgRuns', { value: formatResult(blueSparkProb).runs })}</p>
-                        </div>
-                        <div className="prob-calc__result-item">
-                            <div className="prob-calc__result-header">
-                                <span className="prob-calc__result-name">{t('breedingPlanner.primaryPinkSpark')}</span>
-                                <span className="prob-calc__result-percent">{formatResult(pinkSparkProb).percent}</span>
-                            </div>
-                             <p className="prob-calc__result-runs">{t('breedingPlanner.avgRuns', { value: formatResult(pinkSparkProb).runs })}</p>
-                        </div>
-
-                        {whiteSparkProbs.map(result => (
-                             <div key={result.name} className="prob-calc__result-item">
-                                <div className="prob-calc__result-header">
-                                    <span className="prob-calc__result-name">{getSkillDisplayName(result.name)} (3★)</span>
-                                    <span className="prob-calc__result-percent">{formatResult(result.prob).percent}</span>
-                                </div>
-                                <p className="prob-calc__result-runs">{t('breedingPlanner.avgRuns', { value: formatResult(result.prob).runs })}</p>
-                            </div>
-                        ))}
-                         {highValueMissingSkills.length === 0 && <p className="text-sm text-stone-500">{t('breedingPlanner.noMissingSkills')}</p>}
                     </div>
                      <div className="prob-calc__disclaimer">
                         <p><strong>{t('common:disclaimer')}:</strong> {t('breedingPlanner.disclaimerText')}</p>
                         <ul>
                             <li>{t('breedingPlanner.disclaimerScoreUpgrade')}</li>
                             <li>{t('breedingPlanner.disclaimerBlue')}</li>
-                            <li>{t('breedingPlanner.disclaimerPink', { count: 5 })}</li>
+                            <li>{t('breedingPlanner.disclaimerPink', { count: ASSUMED_A_RANK_APTITUDES })}</li>
                             <li>{t('breedingPlanner.disclaimerWhite')}</li>
                         </ul>
                     </div>
