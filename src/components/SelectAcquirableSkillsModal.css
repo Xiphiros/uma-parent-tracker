@@ -1,1 +1,58 @@
-/* Placeholder - styles for SelectAcquirableSkillsModal */
+.skill-select__controls {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--color-border);
+}
+.skill-select__controls .form__input {
+    flex-grow: 1;
+}
+.skill-select__actions {
+    display: flex;
+    gap: 0.5rem;
+    flex-shrink: 0;
+}
+
+.skill-select__grid {
+    max-height: 50vh;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 0.25rem;
+}
+
+.skill-select__group-title {
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.25rem;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.skill-select__list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 0.5rem;
+}
+
+.skill-select__item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    font-size: 0.875rem;
+    cursor: pointer;
+    user-select: none;
+}
+.skill-select__item:hover {
+    background-color: var(--color-card-bg-hover);
+}
+
+.skill-select__summary {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+}
