@@ -6,6 +6,9 @@ import { useAppContext } from '../context/AppContext';
 import { calculateBlueSparkProb, calculatePinkSparkProb, calculateSingleWhiteSparkProb } from '../utils/probability';
 import { getCombinedLineageSkillNames } from '../utils/affinity';
 import './ProbabilityCalculatorModal.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
+import { calculateUpgradeProbability } from '../utils/upgradeProbability';
 
 interface ProbabilityCalculatorModalProps {
     isOpen: boolean;
@@ -14,6 +17,7 @@ interface ProbabilityCalculatorModalProps {
 }
 
 const STATS = ['speed', 'stamina', 'power', 'guts', 'wit'];
+const ASSUMED_WHITE_SPARKS_PER_RUN = 5;
 
 const ProbabilityCalculatorModal = ({ isOpen, onClose, pair }: ProbabilityCalculatorModalProps) => {
     const { t } = useTranslation(['roster', 'game', 'common']);
@@ -61,7 +65,12 @@ const ProbabilityCalculatorModal = ({ isOpen, onClose, pair }: ProbabilityCalcul
             name: item.name,
             prob: calculateSingleWhiteSparkProb(item, pair, trainingRank, masterSkillList, skillMapByName, inventoryMap)
         }));
-    }, [pair, highValueMissingSkills, trainingRank, masterSkillList, skillMapByName, inventoryMap, activeGoal]);
+    }, [pair, highValueMissingSkills, trainingRank, masterSkillList, skillMapByName, inventoryMap]);
+
+    const upgradeProb = useMemo(() => {
+        if (!pair || !activeGoal) return 0;
+        return calculateUpgradeProbability(pair, activeGoal, targetStats, trainingRank, inventoryMap, skillMapByName);
+    }, [pair, activeGoal, targetStats, trainingRank, inventoryMap, skillMapByName]);
 
     const formatResult = (prob: number) => {
         if (prob === 0 || !prob) return { percent: '0%', runs: '∞' };
@@ -111,6 +120,21 @@ const ProbabilityCalculatorModal = ({ isOpen, onClose, pair }: ProbabilityCalcul
                 <div className="prob-calc__results">
                     <h3 className="prob-calc__results-title">{t('breedingPlanner.estimatedProbabilities')}</h3>
                     <div className="prob-calc__results-grid">
+                         <div className="prob-calc__result-item">
+                            <div className="prob-calc__result-header">
+                                <span className="prob-calc__result-name">
+                                    {t('breedingPlanner.probScoreUpgrade')}
+                                    <span 
+                                        className="ml-2 text-stone-400"
+                                        title={t('breedingPlanner.probAssumptionsText', { count: ASSUMED_WHITE_SPARKS_PER_RUN })}
+                                    >
+                                        <FontAwesomeIcon icon={faInfoCircle} />
+                                    </span>
+                                </span>
+                                <span className="prob-calc__result-percent">{formatResult(upgradeProb).percent}</span>
+                            </div>
+                            <p className="prob-calc__result-runs">{t('breedingPlanner.avgRuns', { value: formatResult(upgradeProb).runs })}</p>
+                        </div>
                         <div className="prob-calc__result-item">
                             <div className="prob-calc__result-header">
                                 <span className="prob-calc__result-name">{t('breedingPlanner.primaryBlueSpark')}</span>
@@ -140,6 +164,7 @@ const ProbabilityCalculatorModal = ({ isOpen, onClose, pair }: ProbabilityCalcul
                      <div className="prob-calc__disclaimer">
                         <p><strong>{t('common:disclaimer')}:</strong> {t('breedingPlanner.disclaimerText')}</p>
                         <ul>
+                            <li>{t('breedingPlanner.disclaimerScoreUpgrade')}</li>
                             <li>{t('breedingPlanner.disclaimerBlue')}</li>
                             <li>{t('breedingPlanner.disclaimerPink', { count: 5 })}</li>
                             <li>{t('breedingPlanner.disclaimerWhite')}</li>
