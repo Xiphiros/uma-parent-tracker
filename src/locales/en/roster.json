@@ -94,6 +94,8 @@
         "inputs": "Inputs",
         "targetStats": "Target Stats",
         "trainingRank": "Est. Final Rank",
+        "rankBelowSS": "Below SS+",
+        "rankSSPlus": "SS+ & Higher",
         "estimatedProbabilities": "Estimated Probabilities",
         "primaryBlueSpark": "3★ Primary Blue Spark",
         "primaryPinkSpark": "3★ Primary Pink Spark",

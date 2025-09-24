@@ -109,6 +109,8 @@
     "inputs": "入力",
     "targetStats": "目標ステータス",
     "trainingRank": "想定最終評価",
+    "rankBelowSS": "SS+未満",
+    "rankSSPlus": "SS+以上",
     "estimatedProbabilities": "推定確率",
     "primaryBlueSpark": "★3 主要青因子",
     "primaryPinkSpark": "★3 主要赤因子",
