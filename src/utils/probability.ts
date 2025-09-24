@@ -1,4 +1,4 @@
-import { BreedingPair, Goal, ManualParentData, Parent, Skill, Uma, WishlistItem } from '../types';
+import { BreedingPair, Goal, ManualParentData, Parent, Skill, WishlistItem } from '../types';
 import { resolveGrandparent } from './affinity';
 
 // --- Constants from Reference Documents ---
