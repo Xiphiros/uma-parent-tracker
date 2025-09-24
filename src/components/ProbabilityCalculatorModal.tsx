@@ -1,9 +1,9 @@
 import { useState, useMemo } from 'react';
-import { BreedingPair } from '../../types';
+import { BreedingPair, Parent } from '../types';
 import Modal from './common/Modal';
 import { useTranslation } from 'react-i18next';
-import { useAppContext } from '../../context/AppContext';
-import { calculateUpgradeProbability } from '../utils/upgradeProbability';
+import { useAppContext } from '../context/AppContext';
+import { calculateUpgradeProbability } from '../utils/probability';
 import './ProbabilityCalculatorModal.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
@@ -16,6 +16,7 @@ interface ProbabilityCalculatorModalProps {
 
 const STATS = ['speed', 'stamina', 'power', 'guts', 'wit'];
 const ASSUMED_WHITE_SPARKS_PER_RUN = 5;
+const ASSUMED_A_RANK_APTITUDES = 5;
 
 const ProbabilityCalculatorModal = ({ isOpen, onClose, pair }: ProbabilityCalculatorModalProps) => {
     const { t } = useTranslation(['roster', 'game', 'common']);
@@ -27,7 +28,7 @@ const ProbabilityCalculatorModal = ({ isOpen, onClose, pair }: ProbabilityCalcul
     const [trainingRank, setTrainingRank] = useState<'ss' | 'ss+'>('ss');
     
     const activeGoal = getActiveProfile()?.goal;
-    const inventoryMap = useMemo(() => new Map(appData.inventory.map(p => [p.id, p])), [appData.inventory]);
+    const inventoryMap = useMemo(() => new Map(appData.inventory.map((p: Parent) => [p.id, p])), [appData.inventory]);
 
     const handleStatChange = (stat: string, value: string) => {
         const numValue = parseInt(value, 10);
