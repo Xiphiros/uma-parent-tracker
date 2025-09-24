@@ -29,28 +29,11 @@ Before starting, you must establish what a "perfect" parent looks like for your 
 
 #### **Step 2: The Parent Rating System**
 
-After each training run, the resulting uma is assigned a **Parent Score** based on your defined goals. This score provides an objective measure of its quality.
+After each training run, the resulting uma is assigned a **Parent Score** based on your defined goals. This score is automatically calculated by the tool and provides an objective measure of its quality.
 
-The scoring is as follows:
+The scoring system is a hybrid model that balances a spark's statistical rarity with its in-game utility. The final score is a sum of the points from all of a parent's sparks, modified by multipliers from your goal definitions, plus a bonus derived from its grandparents' scores.
 
-| Category | Spark Type | ★ (1-Star) | ★★ (2-Star) | ★★★ (3-Star) |
-| :--- | :--- | :--- | :--- | :--- |
-| **Blue Sparks** | **Primary (Stamina/Power)** | 2 pts | 6 pts | **10 pts** |
-| | **Secondary (Speed)** | 1 pt | 4 pts | 8 pts |
-| | **Other (Guts/Wit)** | 1 pt | 2 pts | 3 pts |
-| **Pink Sparks** | **Primary (Turf/Mile)** | 3 pts | 6 pts | **10 pts** |
-| | **Other** | 1 pt | 2 pts | 3 pts |
-| **Unique Sparks**| **Rank S** | 5 pts | 10 pts | **15 pts** |
-| | **Rank A**| 3 pts | 6 pts | 10 pts |
-| | **Rank B** | 2 pts | 4 pts | 6 pts |
-| | **Rank C** | 1 pt | 2 pts | 3 pts |
-| | **Other (Not on list)** | 1 pt | 2 pts | 3 pts |
-| **White Sparks** | **Rank S (Essential)** | 5 pts | 10 pts | **15 pts** |
-| | **Rank A (High-Value)**| 2 pts | 5 pts | 8 pts |
-| | **Rank B (Beneficial)** | 1 pt | 3 pts | 5 pts |
-| | **Rank C (Nice-to-have)**| 1 pt | 2 pts | 3 pts |
-
-*The tracker tool automatically calculates this score for each parent you add.*
+For a complete breakdown of the formulas and point values, please see the [**Scoring Methodology Documentation**](./docs/scoring_methodology.md).
 
 #### **Step 3: The Generational Farming Loop**
 
@@ -86,7 +69,13 @@ You can save and load your progress using the Import and Export buttons in the h
 * **Export Data**: Click this button to download a JSON file containing all your current goal definitions and roster data. It's recommended to do this periodically as a backup.
 * **Import Data**: Click this button to select a previously exported JSON file. **Warning**: Importing a file will overwrite all of your current data. A confirmation prompt will appear before the data is replaced.
 
-For detailed information on the data structure, please see the [Data Schema Documentation](./docs/data_schema.md).
+### Technical Documentation
+
+For those interested in the underlying mechanics of the tool, the following documents provide detailed explanations:
+
+*   [**Scoring Methodology**](./docs/scoring_methodology.md): A complete breakdown of the parent scoring formula.
+*   [**Affinity Calculation**](./docs/affinity_calculation.md): An explanation of how breeding compatibility is calculated.
+*   [**Data Schema**](./docs/data_schema.md): Detailed information on the structure of the import/export JSON file.
 
 ---
 
