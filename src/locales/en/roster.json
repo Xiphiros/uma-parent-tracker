@@ -111,6 +111,7 @@
         "noMissingSkills": "No missing high-value (S/A rank) wishlist skills.",
         "probScoreUpgrade": "Probability of Score Upgrade",
         "probSparkCountUpgrade": "Prob. of >{{count}} White Sparks",
+        "probSparkCountUpgrade_label": "Prob. of Spark Count Upgrade",
         "disclaimerText": "Probabilities are estimates based on game data and certain assumptions:",
         "disclaimerScoreUpgrade": "Score upgrade probability compares the child's potential individual score to the weaker parent's individual score.",
         "disclaimerBlue": "Blue spark probability is based on the target stats for all 5 blue factor types.",

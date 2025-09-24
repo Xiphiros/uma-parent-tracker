@@ -124,6 +124,7 @@
     "noMissingSkills": "不足している高ランク（S/A）のウィッシュリストスキルはありません。",
     "probScoreUpgrade": "スコア更新の確率",
     "probSparkCountUpgrade": "白因子{{count}}個超の確率",
+    "probSparkCountUpgrade_label": "白因子数更新の確率",
     "disclaimerText": "確率はゲームデータと特定の仮定に基づいた推定値です：",
     "disclaimerScoreUpgrade": "スコア更新確率は、子の潜在的な個体スコアを、弱い方の親の個体スコアと比較します。",
     "disclaimerBlue": "青因子の確率は、5つ全ての青因子タイプに対する目標ステータスに基づいています。",
