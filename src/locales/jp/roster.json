@@ -104,6 +104,19 @@
     "viewMissing": "不足",
     "viewUnsaturated": "欠けあり",
     "allSkillsSaturated": "ウィッシュリストの全スキルが、定義済みのすべての先祖に存在します。",
-    "clearChecks": "チェックをクリア"
+    "clearChecks": "チェックをクリア",
+    "probabilityCalculator": "確率計算機",
+    "inputs": "入力",
+    "targetStats": "目標ステータス",
+    "trainingRank": "想定最終評価",
+    "estimatedProbabilities": "推定確率",
+    "primaryBlueSpark": "★3 主要青因子",
+    "primaryPinkSpark": "★3 主要赤因子",
+    "avgRuns": "平均{{count}}回",
+    "noMissingSkills": "不足している高ランク（S/A）のウィッシュリストスキルはありません。",
+    "disclaimerText": "確率はゲームデータと特定の仮定に基づいた推定値です：",
+    "disclaimerBlue": "青因子の確率は、2つの主要な青因子に対する目標ステータスに基づいています。",
+    "disclaimerPink": "赤因子の確率は、Aランクの適性が{{count}}個あると仮定しています。",
+    "disclaimerWhite": "白因子の確率は、スキルの最高レアリティ版（例：金スキル）を取得することに基づいています。"
   }
 }
