@@ -102,8 +102,8 @@ const ProbabilityCalculatorModal = ({ isOpen, onClose, pair }: ProbabilityCalcul
                         <div>
                             <label className="form__label form__label--xs">{t('breedingPlanner.trainingRank')}</label>
                              <div className="top-pair__toggle-group">
-                                <button className={`top-pair__toggle-btn ${trainingRank === 'ss' ? 'top-pair__toggle-btn--active' : ''}`} onClick={() => setTrainingRank('ss')}>A+ ~ SS</button>
-                                <button className={`top-pair__toggle-btn ${trainingRank === 'ss+' ? 'top-pair__toggle-btn--active' : ''}`} onClick={() => setTrainingRank('ss+')}>SS+ ~</button>
+                                <button className={`top-pair__toggle-btn ${trainingRank === 'ss' ? 'top-pair__toggle-btn--active' : ''}`} onClick={() => setTrainingRank('ss')}>{t('breedingPlanner.rankBelowSS')}</button>
+                                <button className={`top-pair__toggle-btn ${trainingRank === 'ss+' ? 'top-pair__toggle-btn--active' : ''}`} onClick={() => setTrainingRank('ss+')}>{t('breedingPlanner.rankSSPlus')}</button>
                             </div>
                         </div>
                     </div>
