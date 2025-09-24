@@ -3,12 +3,13 @@ import { useAppContext } from '../context/AppContext';
 import { Parent, BreedingPair } from '../types';
 import { useTranslation } from 'react-i18next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronLeft, faChevronRight, faClipboardQuestion } from '@fortawesome/free-solid-svg-icons';
+import { faChevronLeft, faChevronRight, faClipboardQuestion, faCalculator } from '@fortawesome/free-solid-svg-icons';
 import { countTotalLineageWhiteSparks, countUniqueCombinedLineageWhiteSparks } from '../utils/affinity';
 import { calculateScore } from '../utils/scoring';
 import PairedParentCard from './common/PairedParentCard';
 import ParentDetailModal from './ParentDetailModal';
 import MissingSkillsModal from './MissingSkillsModal';
+import ProbabilityCalculatorModal from './ProbabilityCalculatorModal';
 
 type RecommendationType = 'owned' | 'borrowed';
 type SortByType = 'score' | 'sparks';
@@ -30,6 +31,7 @@ const TopBreedingPair = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [detailModalParent, setDetailModalParent] = useState<Parent | null>(null);
     const [isMissingSkillsModalOpen, setIsMissingSkillsModalOpen] = useState(false);
+    const [isProbCalcModalOpen, setIsProbCalcModalOpen] = useState(false);
     
     const inventoryMap = useMemo(() => new Map(appData.inventory.map(p => [p.id, p])), [appData.inventory]);
 
@@ -158,6 +160,13 @@ const TopBreedingPair = () => {
                                     >
                                         <FontAwesomeIcon icon={faClipboardQuestion} />
                                     </button>
+                                    <button
+                                        className="top-pair__action-btn"
+                                        onClick={() => setIsProbCalcModalOpen(true)}
+                                        title={t('breedingPlanner.probabilityCalculator')}
+                                    >
+                                        <FontAwesomeIcon icon={faCalculator} />
+                                    </button>
                                 </div>
                             </>
                         ) : (
@@ -180,6 +189,12 @@ const TopBreedingPair = () => {
             <MissingSkillsModal
                 isOpen={isMissingSkillsModalOpen}
                 onClose={() => setIsMissingSkillsModalOpen(false)}
+                pair={currentPair}
+            />
+            
+            <ProbabilityCalculatorModal
+                isOpen={isProbCalcModalOpen}
+                onClose={() => setIsProbCalcModalOpen(false)}
                 pair={currentPair}
             />
         </>
