@@ -7,7 +7,6 @@ import './ProbabilityCalculatorModal.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import { ProbabilityWorkerPayload } from '../utils/upgradeProbability';
-import { useDebounce } from '../hooks/useDebounce';
 
 interface ProbabilityCalculatorModalProps {
     isOpen: boolean;
@@ -33,8 +32,6 @@ const ProbabilityCalculatorModal = ({ isOpen, onClose, pair }: ProbabilityCalcul
     const workerRef = useRef<Worker | null>(null);
     
     const activeGoal = getActiveProfile()?.goal;
-    
-    const debouncedInputs = useDebounce({ targetStats, trainingRank, spBudget, pair, activeGoal }, 300);
 
     useEffect(() => {
         if (isOpen) {
@@ -64,27 +61,37 @@ const ProbabilityCalculatorModal = ({ isOpen, onClose, pair }: ProbabilityCalcul
         }
     }, [isOpen]);
 
+    // This useEffect now correctly handles debouncing and worker communication
     useEffect(() => {
         const worker = workerRef.current;
-        const { pair: debouncedPair, activeGoal: debouncedGoal, targetStats: debouncedStats, trainingRank: debouncedRank, spBudget: debouncedBudget } = debouncedInputs;
+        if (!worker || !pair || !activeGoal) {
+            setIsCalculating(false);
+            return;
+        }
 
-        if (worker && debouncedPair && debouncedGoal) {
-            setIsCalculating(true);
-            setProbabilityResult(null);
-
+        setIsCalculating(true);
+        
+        const handler = setTimeout(() => {
             const payload: ProbabilityWorkerPayload = {
-                pair: debouncedPair,
-                goal: debouncedGoal,
-                targetStats: debouncedStats,
-                trainingRank: debouncedRank,
+                pair,
+                goal: activeGoal,
+                targetStats,
+                trainingRank,
                 inventory: appData.inventory,
                 skillMapEntries: Array.from(skillMapByName.entries()),
                 skillMetaMapEntries: Array.from(skillMetaMap.entries()),
-                spBudget: debouncedBudget
+                spBudget
             };
             worker.postMessage(payload);
-        }
-    }, [debouncedInputs, appData.inventory, skillMapByName, skillMetaMap]);
+        }, 300); // 300ms debounce delay
+
+        // This cleanup function is crucial. It clears the timeout on every re-render
+        // caused by input changes, ensuring the worker is only called once the user stops typing.
+        return () => {
+            clearTimeout(handler);
+        };
+    }, [pair, activeGoal, targetStats, trainingRank, spBudget, appData.inventory, skillMapByName, skillMetaMap]);
+
 
     const handleStatChange = (stat: string, value: string) => {
         const numValue = parseInt(value, 10);
