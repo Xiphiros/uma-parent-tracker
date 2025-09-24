@@ -213,7 +213,12 @@ const ProbabilityCalculatorModal = ({ isOpen, onClose, pair }: ProbabilityCalcul
                                     </div>
                                     <div className="prob-calc__result-item">
                                         <div className="prob-calc__result-header">
-                                            <span className="prob-calc__result-name">{t('breedingPlanner.probSparkCountUpgrade', { count: calculationState.result?.targetSparkCount ?? 'N/A' })}</span>
+                                            <span className="prob-calc__result-name">
+                                                {calculationState.result
+                                                    ? t('breedingPlanner.probSparkCountUpgrade', { count: calculationState.result.targetSparkCount })
+                                                    : t('breedingPlanner.probSparkCountUpgrade_label')
+                                                }
+                                            </span>
                                             <span className="prob-calc__result-percent">{formatProbAsFraction(calculationState.result?.probSparkCountUpgrade)}</span>
                                         </div>
                                     </div>
