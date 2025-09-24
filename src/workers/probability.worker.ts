@@ -8,11 +8,11 @@ self.onmessage = (e: MessageEvent<any>) => {
     const { 
         pair, goal, targetStats, trainingRank, 
         inventory, skillMapEntries, spBudget,
-        acquirableSkillIds, targetApetitudes
+        acquirableSkillIds, targetAptitudes
     } = e.data;
 
     // Reconstruct Maps from the serialized arrays sent from the main thread.
-    const inventoryMap = new Map<number, Parent>(inventory.map((p: Parent) => [p.id, p]));
+    const inventoryMap = new Map<number, Parent>(inventory.map((p: Parent) => [p.id, p.id]));
     const skillMapByName = new Map<string, Skill>(skillMapEntries);
     const acquirableSkillIdsSet = new Set<string>(acquirableSkillIds);
 
@@ -20,7 +20,7 @@ self.onmessage = (e: MessageEvent<any>) => {
         const result = calculateUpgradeProbability(
             pair, goal, targetStats, trainingRank, 
             inventoryMap, skillMapByName, spBudget,
-            acquirableSkillIdsSet, targetApetitudes
+            acquirableSkillIdsSet, targetAptitudes
         );
         // Send the result back to the main thread on success.
         self.postMessage({ result });
