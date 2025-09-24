@@ -16,8 +16,8 @@ interface SelectAcquirableSkillsModalProps {
 const WISH_RANK_ORDER: { [key: string]: number } = { S: 0, A: 1, B: 2, C: 3, Other: 4 };
 
 const SelectAcquirableSkillsModal = ({ isOpen, onClose, allSkills, selectedIds, onSave }: SelectAcquirableSkillsModalProps) => {
-    const { t } = useTranslation(['roster', 'goal']);
-    const { getActiveProfile, dataDisplayLanguage, skillMapByName } = useAppContext();
+    const { t } = useTranslation(['roster', 'goal', 'common']);
+    const { getActiveProfile, dataDisplayLanguage } = useAppContext();
     const displayNameProp = dataDisplayLanguage === 'jp' ? 'name_jp' : 'name_en';
     const goal = getActiveProfile()?.goal;
 
