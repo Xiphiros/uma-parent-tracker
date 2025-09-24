@@ -8,7 +8,7 @@ self.onmessage = (e: MessageEvent<any>) => {
     const { 
         pair, goal, targetStats, trainingRank, 
         inventory, skillMapEntries, spBudget,
-        acquirableSkillIds, targetAptitudes
+        acquirableSkillIds, targetApetitudes
     } = e.data;
 
     // Reconstruct Maps from the serialized arrays sent from the main thread.
@@ -20,7 +20,7 @@ self.onmessage = (e: MessageEvent<any>) => {
         const result = calculateUpgradeProbability(
             pair, goal, targetStats, trainingRank, 
             inventoryMap, skillMapByName, spBudget,
-            acquirableSkillIdsSet, targetAptitudes
+            acquirableSkillIdsSet, targetApetitudes
         );
         // Send the result back to the main thread on success.
         self.postMessage({ result });
@@ -169,28 +169,41 @@ const calculateUpgradeProbability = (
     spBudget: number,
     acquirableSkillIds: Set<string>,
     targetAptitudes: string[]
-): number => {
+): { probScoreUpgrade: number; probSparkCountUpgrade: number; targetSparkCount: number; } => {
     const p1Score = calculateIndividualScore(pair.p1, goal, inventoryMap, skillMapByName, trainingRank);
     const p2Score = calculateIndividualScore(pair.p2, goal, inventoryMap, skillMapByName, trainingRank);
     const targetIndividualScore = Math.min(p1Score, p2Score);
+
+    const targetSparkCount = Math.min(pair.p1.whiteSparks.length, pair.p2.whiteSparks.length);
+
     const blueDist = getBlueSparkDistribution(goal, targetStats, trainingRank);
     const pinkDist = getPinkSparkDistribution(goal, trainingRank, targetAptitudes);
     const whiteDist = getWhiteSparkDistribution(pair, goal, trainingRank, skillMapByName, inventoryMap);
     const sparkCountDist = calculateSparkCountDistribution(pair, goal, spBudget, skillMapByName, inventoryMap, acquirableSkillIds);
-    let totalUpgradeProb = 0;
+    
+    let totalScoreUpgradeProb = 0;
+    let totalSparkCountUpgradeProb = 0;
+
     for (const [sparkCount, countProb] of sparkCountDist.entries()) {
         if (countProb === 0) continue;
+        
+        // Calculate probability of spark count upgrade for this specific count
+        if (sparkCount > targetSparkCount) {
+            totalSparkCountUpgradeProb += countProb;
+        }
+
         let finalDist = convolve(blueDist, pinkDist);
         for (let i = 0; i < sparkCount; i++) {
             finalDist = convolve(finalDist, whiteDist);
         }
+        
         let upgradeProbForThisCount = 0;
         for (const [score, scoreProb] of finalDist.entries()) {
             if (score > targetIndividualScore) {
                 upgradeProbForThisCount += scoreProb;
             }
         }
-        totalUpgradeProb += upgradeProbForThisCount * countProb;
+        totalScoreUpgradeProb += upgradeProbForThisCount * countProb;
     }
-    return totalUpgradeProb;
+    return { probScoreUpgrade: totalScoreUpgradeProb, probSparkCountUpgrade: totalSparkCountUpgradeProb, targetSparkCount };
 };
