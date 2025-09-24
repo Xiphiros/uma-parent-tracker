@@ -21,8 +21,6 @@ const UTILITY_SCORES = {
     white: { 1: 7, 2: 14, 3: 21 },
 };
 
-const DENSITY_BONUS_POINTS = { S: 4, A: 3, B: 2, C: 1 };
-
 const GRANDPARENT_MULTIPLIER = 0.5;
 
 // -- MULTIPLIER LOGIC --
@@ -118,20 +116,12 @@ export const scoreHypotheticalParent = (
         const tier = wishlistItem ? wishlistItem.tier : 'OTHER';
         totalScore += baseScore * getWishlistMultiplier(tier);
     });
-
-    // --- White Spark Density Bonus (for hypothetical parents) ---
-    let densityScore = 0;
-    const wishlistMap = new Map(goal.wishlist.map(item => [item.name, item.tier]));
-    sparks.whiteSparks.forEach(spark => {
-        const tier = wishlistMap.get(spark.name);
-        if (tier && DENSITY_BONUS_POINTS[tier]) {
-            densityScore += DENSITY_BONUS_POINTS[tier];
-        }
-    });
-
-    const densityMultiplier = 1 + (densityScore * 0.01);
     
-    return totalScore * densityMultiplier;
+    // --- White Spark Count Bonus (for hypothetical parents) ---
+    const whiteSparkCount = sparks.whiteSparks.length;
+    const countMultiplier = 1 + (whiteSparkCount * 0.01);
+
+    return totalScore * countMultiplier;
 };
 
 /**
@@ -184,21 +174,14 @@ export const calculateIndividualScore = (
         baseTotalScore += baseScore * getWishlistMultiplier(tier);
     });
 
-    // --- White Spark Density Bonus ---
-    let densityScore = 0;
+    // --- White Spark Count Bonus ---
+    let whiteSparkCount = 0;
     if ('whiteSparks' in entity) {
-        const wishlistMap = new Map(goal.wishlist.map(item => [item.name, item.tier]));
-        entity.whiteSparks.forEach(spark => {
-            const tier = wishlistMap.get(spark.name);
-            if (tier && DENSITY_BONUS_POINTS[tier]) {
-                densityScore += DENSITY_BONUS_POINTS[tier];
-            }
-        });
+        whiteSparkCount = entity.whiteSparks.length;
     }
+    const countMultiplier = 1 + (whiteSparkCount * 0.01);
 
-    const densityMultiplier = 1 + (densityScore * 0.01);
-    
-    return baseTotalScore * densityMultiplier;
+    return baseTotalScore * countMultiplier;
 };
 
 /**
