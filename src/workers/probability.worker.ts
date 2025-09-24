@@ -33,7 +33,6 @@ self.onmessage = (e: MessageEvent<any>) => {
 
 // --- All calculation logic from upgradeProbability.ts is now here ---
 
-const ASSUMED_A_RANK_APTITUDES = 5;
 const NUM_BLUE_STATS = 5;
 const BLUE_SPARK_TYPES: ('Speed' | 'Stamina' | 'Power' | 'Guts' | 'Wit')[] = ['Speed', 'Stamina', 'Power', 'Guts', 'Wit'];
 
@@ -92,14 +91,20 @@ function getBlueSparkDistribution(goal: Goal, targetStats: Record<string, number
     return distribution;
 }
 
-function getPinkSparkDistribution(goal: Goal, trainingRank: 'ss' | 'ss+'): ProbabilityDistribution {
+function getPinkSparkDistribution(goal: Goal, trainingRank: 'ss' | 'ss+', targetAptitudes: string[]): ProbabilityDistribution {
     const distribution: ProbabilityDistribution = new Map();
     const starProbs = trainingRank === 'ss+' ? STAR_PROBABILITY.ssPlus : STAR_PROBABILITY.standard;
-    const primaryProb = goal.primaryPink.length > 0 ? goal.primaryPink.length / ASSUMED_A_RANK_APTITUDES : 0;
+    
+    const numTargetAptitudes = Math.max(1, targetAptitudes.length);
+    const numPrimaryMatches = goal.primaryPink.filter(p => targetAptitudes.includes(p)).length;
+    
+    const primaryProb = numPrimaryMatches / numTargetAptitudes;
     const otherProb = 1 - primaryProb;
+
     for (const stars of [1, 2, 3] as const) {
         if (primaryProb > 0) {
-            const score = Math.round(scoreHypotheticalParent({ blueSpark: { type: '', stars: 1 }, pinkSpark: { type: goal.primaryPink[0], stars }, whiteSparks: [] }, goal, [], new Map(), trainingRank));
+            const primaryType = goal.primaryPink.find(p => targetAptitudes.includes(p)) || goal.primaryPink[0] || 'Other';
+            const score = Math.round(scoreHypotheticalParent({ blueSpark: { type: '', stars: 1 }, pinkSpark: { type: primaryType, stars }, whiteSparks: [] }, goal, [], new Map(), trainingRank));
             const pinkScore = score - Math.round(scoreHypotheticalParent({ blueSpark: { type: '', stars: 1 }, pinkSpark: { type: '', stars: 1 }, whiteSparks: [] }, goal, [], new Map(), trainingRank));
             distribution.set(pinkScore, (distribution.get(pinkScore) || 0) + (primaryProb * starProbs[stars]));
         }
@@ -169,7 +174,7 @@ const calculateUpgradeProbability = (
     const p2Score = calculateIndividualScore(pair.p2, goal, inventoryMap, skillMapByName, trainingRank);
     const targetIndividualScore = Math.min(p1Score, p2Score);
     const blueDist = getBlueSparkDistribution(goal, targetStats, trainingRank);
-    const pinkDist = getPinkSparkDistribution(goal, trainingRank); // This will be refactored next
+    const pinkDist = getPinkSparkDistribution(goal, trainingRank, targetAptitudes);
     const whiteDist = getWhiteSparkDistribution(pair, goal, trainingRank, skillMapByName, inventoryMap);
     const sparkCountDist = calculateSparkCountDistribution(pair, goal, spBudget, skillMapByName, inventoryMap, acquirableSkillIds);
     let totalUpgradeProb = 0;
