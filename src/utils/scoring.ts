@@ -74,66 +74,99 @@ const calculateDynamicSparkBaseScore = (
     return rarityScore + utilityScore;
 };
 
-// --- CORE SCORING FUNCTIONS ---
+
+// --- SCORING LOGIC ---
+
+interface HypotheticalParentSparks {
+    blueSpark: { type: string, stars: 1 | 2 | 3 };
+    pinkSpark: { type: string, stars: 1 | 2 | 3 };
+    whiteSparks: WhiteSpark[];
+    // Unique spark is ignored for upgrade probability as its outcome is fixed
+}
 
 /**
- * Calculates the score for a single entity (Parent or ManualParentData).
+ * Scores a hypothetical set of sparks against a goal, with a given ancestor context.
+ * This is the core reusable logic for probability calculations.
  */
-const calculateIndividualScore = (
-    entity: Parent | ManualParentData,
+export const scoreHypotheticalParent = (
+    sparks: HypotheticalParentSparks,
     goal: Goal,
-    inventoryMap: Map<number, Parent>,
+    ancestorWhiteSparks: WhiteSpark[],
     skillMapByName: Map<string, Skill>
 ): number => {
     let totalScore = 0;
 
     // Blue Spark Score
-    const blueBase = BASE_SCORES.blue[entity.blueSpark.stars];
-    totalScore += blueBase * getBlueMultiplier(entity.blueSpark.type, goal);
+    const blueBase = BASE_SCORES.blue[sparks.blueSpark.stars];
+    totalScore += blueBase * getBlueMultiplier(sparks.blueSpark.type, goal);
 
     // Pink Spark Score
-    const pinkBase = BASE_SCORES.pink[entity.pinkSpark.stars];
-    totalScore += pinkBase * getPinkMultiplier(entity.pinkSpark.type, goal);
+    const pinkBase = BASE_SCORES.pink[sparks.pinkSpark.stars];
+    totalScore += pinkBase * getPinkMultiplier(sparks.pinkSpark.type, goal);
+    
+    // White Spark Score (Dynamic)
+    const ancestorCountMap = new Map<string, number>();
+    ancestorWhiteSparks.forEach(spark => {
+        ancestorCountMap.set(spark.name, (ancestorCountMap.get(spark.name) || 0) + 1);
+    });
 
-    // Unique Spark Score
+    sparks.whiteSparks.forEach((spark: WhiteSpark) => {
+        const ancestorCount = ancestorCountMap.get(spark.name) || 0;
+        const baseScore = calculateDynamicSparkBaseScore(spark, ancestorCount, skillMapByName);
+        const wishlistItem = goal.wishlist.find(w => w.name === spark.name);
+        const tier = wishlistItem ? wishlistItem.tier : 'OTHER';
+        totalScore += baseScore * getWishlistMultiplier(tier);
+    });
+    
+    return totalScore;
+};
+
+
+// --- CORE SCORING FUNCTIONS ---
+
+/**
+ * Calculates the score for a single entity (Parent or ManualParentData).
+ * This now acts as a wrapper around the new hypothetical scoring function.
+ */
+export const calculateIndividualScore = (
+    entity: Parent | ManualParentData,
+    goal: Goal,
+    inventoryMap: Map<number, Parent>,
+    skillMapByName: Map<string, Skill>
+): number => {
+    let ancestorWhiteSparks: WhiteSpark[] = [];
+    if ('grandparent1' in entity && 'grandparent2' in entity) {
+        const grandparents = [
+            entity.grandparent1,
+            entity.grandparent2
+        ].map(gp => (typeof gp === 'number' ? inventoryMap.get(gp) : gp));
+
+        for (const gp of grandparents) {
+            if (gp && 'whiteSparks' in gp) {
+                ancestorWhiteSparks.push(...gp.whiteSparks);
+            }
+        }
+    }
+
+    const hypotheticalSparks: HypotheticalParentSparks = {
+        blueSpark: entity.blueSpark,
+        pinkSpark: entity.pinkSpark,
+        whiteSparks: 'whiteSparks' in entity ? entity.whiteSparks : [],
+    };
+
+    let totalScore = scoreHypotheticalParent(hypotheticalSparks, goal, ancestorWhiteSparks, skillMapByName);
+    
+    // Add unique spark score, which is not part of the hypothetical calculation
     entity.uniqueSparks.forEach((spark: UniqueSpark) => {
         const wishlistItem = goal.uniqueWishlist.find(w => w.name === spark.name);
         const tier = wishlistItem ? wishlistItem.tier : 'OTHER';
-        // Unique sparks now use dynamic base score calculation
-        const baseScore = calculateDynamicSparkBaseScore(spark, 0, skillMapByName); // Uniques have no ancestors for generation chance
+        const baseScore = calculateDynamicSparkBaseScore(spark, 0, skillMapByName); // Uniques have no ancestors
         totalScore += baseScore * getWishlistMultiplier(tier);
     });
 
-    // White Spark Score (Dynamic)
-    if ('whiteSparks' in entity) {
-        let ancestorCountMap = new Map<string, number>();
-
-        if ('grandparent1' in entity && 'grandparent2' in entity) {
-            const grandparents = [
-                entity.grandparent1,
-                entity.grandparent2
-            ].map(gp => (typeof gp === 'number' ? inventoryMap.get(gp) : gp));
-
-            for (const gp of grandparents) {
-                if (gp && 'whiteSparks' in gp) {
-                    gp.whiteSparks.forEach(spark => {
-                        ancestorCountMap.set(spark.name, (ancestorCountMap.get(spark.name) || 0) + 1);
-                    });
-                }
-            }
-        }
-
-        entity.whiteSparks.forEach((spark: WhiteSpark) => {
-            const ancestorCount = ancestorCountMap.get(spark.name) || 0;
-            const baseScore = calculateDynamicSparkBaseScore(spark, ancestorCount, skillMapByName);
-            const wishlistItem = goal.wishlist.find(w => w.name === spark.name);
-            const tier = wishlistItem ? wishlistItem.tier : 'OTHER';
-            totalScore += baseScore * getWishlistMultiplier(tier);
-        });
-    }
-
     return totalScore;
 };
+
 
 /**
  * Calculates the final score for a parent, including bonuses from its grandparents.
