@@ -7,7 +7,7 @@ const WHITE_SKILL_BASE_PROBABILITY = {
     gold: 0.40,
 };
 const ANCESTOR_BONUS = 1.1;
-const WISH_RANK_ORDER: { [key: string]: number } = { S: 0, A: 1, B: 2, C: 3 };
+const WISH_RANK_ORDER: { [key: string]: number } = { S: 0, A: 1, B: 2, C: 3, Other: 4 };
 
 /**
  * Calculates a probability distribution for the number of white sparks acquired during a training run.
@@ -16,6 +16,7 @@ const WISH_RANK_ORDER: { [key: string]: number } = { S: 0, A: 1, B: 2, C: 3 };
  * @param spBudget The estimated total Skill Points available for purchases.
  * @param skillMapByName Map to look up skill details by English name.
  * @param inventoryMap Map of all parents in the user's inventory.
+ * @param acquirableSkillIds A set of skill IDs the user has defined as being available in the run.
  * @returns A Map where the key is the number of sparks acquired and the value is the probability of that count occurring.
  */
 export const calculateSparkCountDistribution = (
@@ -23,7 +24,8 @@ export const calculateSparkCountDistribution = (
     goal: Goal,
     spBudget: number,
     skillMapByName: Map<string, Skill>,
-    inventoryMap: Map<number, Parent>
+    inventoryMap: Map<number, Parent>,
+    acquirableSkillIds: Set<string>
 ): Map<number, number> => {
     
     const lineage: (Parent | ManualParentData | null)[] = [
@@ -34,17 +36,29 @@ export const calculateSparkCountDistribution = (
         resolveGrandparent(pair.p2.grandparent1, inventoryMap),
         resolveGrandparent(pair.p2.grandparent2, inventoryMap),
     ];
-
-    // 1. Get all unique, inheritable white skills from the lineage that are on the wishlist.
-    const potentialSkills = new Map<string, { name: string, tier: 'S' | 'A' | 'B' | 'C', cost: number, acquireProb: number }>();
     
-    goal.wishlist.forEach(wishlistItem => {
-        const skill = skillMapByName.get(wishlistItem.name);
-        if (!skill || skill.type !== 'normal') return;
+    const wishlistMap = new Map(goal.wishlist.map(item => [item.name, item.tier]));
 
-        const cost = skill.baseCost || 150; // Default cost if not found
+    // 1. Filter the skill universe down to only what the user has selected as acquirable.
+    // If the user has selected none, consider all skills from the lineage as acquirable.
+    let skillPool: Skill[];
+    if (acquirableSkillIds.size === 0) {
+        const lineageSkillNames = new Set<string>();
+        lineage.forEach(member => {
+            if (member) {
+                member.whiteSparks.forEach(spark => lineageSkillNames.add(spark.name));
+            }
+        });
+        skillPool = Array.from(lineageSkillNames).map(name => skillMapByName.get(name)).filter((s): s is Skill => !!s);
+    } else {
+        skillPool = Array.from(acquirableSkillIds).map(id => Array.from(skillMapByName.values()).find(s => s.id === id)).filter((s): s is Skill => !!s);
+    }
 
-        // Calculate ancestor count for this skill's group
+    // 2. Decorate each skill with its priority, cost, and acquisition probability.
+    const potentialSkills = skillPool.map(skill => {
+        const cost = skill.baseCost || 150;
+        const tier = wishlistMap.get(skill.name_en) || 'Other';
+        
         const ancestorCount = lineage.filter(member => 
             member && member.whiteSparks.some(s => {
                 const sInfo = skillMapByName.get(s.name);
@@ -56,23 +70,23 @@ export const calculateSparkCountDistribution = (
         if (skill.rarity === 2) baseProb = WHITE_SKILL_BASE_PROBABILITY.circle;
 
         const acquireProb = Math.min(1.0, baseProb * (ANCESTOR_BONUS ** ancestorCount));
-
-        potentialSkills.set(skill.name_en, {
+        
+        return {
             name: skill.name_en,
-            tier: wishlistItem.tier,
+            tier: tier as 'S' | 'A' | 'B' | 'C' | 'Other',
             cost,
             acquireProb,
-        });
+        };
     });
 
-    // 2. Sort skills by priority: Tier (S->C), then Cost (low->high)
-    const sortedSkills = Array.from(potentialSkills.values()).sort((a, b) => {
+    // 3. Sort skills by the new priority: Tier (S->C->Other), then Cost (low->high)
+    const sortedSkills = potentialSkills.sort((a, b) => {
         const tierDiff = WISH_RANK_ORDER[a.tier] - WISH_RANK_ORDER[b.tier];
         if (tierDiff !== 0) return tierDiff;
         return a.cost - b.cost;
     });
 
-    // 3. Use DP to calculate the distribution of spark counts
+    // 4. Use DP to calculate the distribution of spark counts
     let distribution = new Map<number, number>([[0, 1.0]]); // { num_sparks: probability }
     let remainingBudget = spBudget;
 

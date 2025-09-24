@@ -105,9 +105,8 @@ const ProbabilityCalculatorModal = ({ isOpen, onClose, pair }: ProbabilityCalcul
                 inventory: appData.inventory,
                 skillMapEntries: Array.from(skillMapByName.entries()),
                 spBudget,
-                // These will be used in a later step
-                // acquirableSkillIds: Array.from(acquirableSkillIds), 
-                // targetAptitudes,
+                acquirableSkillIds: Array.from(acquirableSkillIds), 
+                targetAptitudes,
             };
             worker.postMessage(payload);
         }, 300);
