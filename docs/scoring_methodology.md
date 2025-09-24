@@ -162,9 +162,12 @@ It is important to distinguish between the **Parent Scoring Model** described ab
 *   The **Parent Scoring Model** is used for *evaluating and ranking existing parents* in your inventory. It is a standardized benchmark to measure the quality of what you already have.
 *   The **Probability Calculator Model** is used for *predicting the outcome of future breeding attempts*. It is a more complex, dynamic model that simulates thousands of potential outcomes.
 
-A key difference is how White Sparks are handled. While the scoring model calculates the value of each spark individually, the probability model goes a step further. It no longer assumes a fixed number of white sparks per run. Instead, it calculates a full probability distribution for the *number* of white sparks a child might acquire, based on:
-1.  The user's defined wishlist.
-2.  The full lineage of the breeding pair.
-3.  A user-provided **Skill Point (SP) budget**, which simulates the in-game constraint of purchasing skills.
+Unlike the static scoring model, the probability model is almost entirely user-configurable to allow for highly specific scenario planning. Key differences include:
+
+*   **Dynamic Pink Spark Probability:** Instead of a fixed assumption of 5 A-rank aptitudes, the calculator uses the intersection of the user's **Goal** and their user-defined **Target Aptitudes** to dynamically calculate the probability of obtaining a primary pink spark.
+*   **Dynamic White Spark Acquisition:** The calculator no longer assumes a fixed number of white sparks per run. Instead, it calculates a full probability distribution for the *number* of white sparks a child might acquire, based on:
+    1.  A user-defined **pool of acquirable skills**.
+    2.  A user-provided **Skill Point (SP) budget**, which simulates the in-game constraint of purchasing skills.
+    3.  A **purchase priority** that prioritizes wishlist skills (`S > A > B > C`) over all other available skills.
 
 This makes the calculator a more powerful predictive tool, while the scoring model remains a stable and consistent tool for evaluation.
