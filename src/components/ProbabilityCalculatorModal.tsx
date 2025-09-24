@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useMemo } from 'react';
-import { BreedingPair, Skill } from '../types';
+import { BreedingPair } from '../types';
 import Modal from './common/Modal';
 import { useTranslation } from 'react-i18next';
 import { useAppContext } from '../context/AppContext';
@@ -161,7 +161,7 @@ const ProbabilityCalculatorModal = ({ isOpen, onClose, pair }: ProbabilityCalcul
 
     const acquirableSkillsSummary = () => {
         if (acquirableSkillIds.size === 0) return t('breedingPlanner.allSkillsConsidered');
-        return t('common:skillsSelected', { count: acquirableSkillIds.size });
+        return t('breedingPlanner.skillsSelected', { count: acquirableSkillIds.size });
     };
 
     return (
