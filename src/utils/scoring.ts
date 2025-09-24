@@ -21,6 +21,8 @@ const UTILITY_SCORES = {
     white: { 1: 7, 2: 14, 3: 21 },
 };
 
+const DENSITY_BONUS_POINTS = { S: 4, A: 3, B: 2, C: 1 };
+
 const GRANDPARENT_MULTIPLIER = 0.5;
 
 // -- MULTIPLIER LOGIC --
@@ -116,8 +118,20 @@ export const scoreHypotheticalParent = (
         const tier = wishlistItem ? wishlistItem.tier : 'OTHER';
         totalScore += baseScore * getWishlistMultiplier(tier);
     });
+
+    // --- White Spark Density Bonus (for hypothetical parents) ---
+    let densityScore = 0;
+    const wishlistMap = new Map(goal.wishlist.map(item => [item.name, item.tier]));
+    sparks.whiteSparks.forEach(spark => {
+        const tier = wishlistMap.get(spark.name);
+        if (tier && DENSITY_BONUS_POINTS[tier]) {
+            densityScore += DENSITY_BONUS_POINTS[tier];
+        }
+    });
+
+    const densityMultiplier = 1 + (densityScore * 0.01);
     
-    return totalScore;
+    return totalScore * densityMultiplier;
 };
 
 /**
@@ -130,36 +144,61 @@ export const calculateIndividualScore = (
     skillMapByName: Map<string, Skill>,
     trainingRank: 'ss' | 'ss+' = 'ss'
 ): number => {
-    let ancestorWhiteSparks: WhiteSpark[] = [];
-    if ('grandparent1' in entity && 'grandparent2' in entity) {
-        const grandparents = [
-            entity.grandparent1,
-            entity.grandparent2
-        ].map(gp => (typeof gp === 'number' ? inventoryMap.get(gp) : gp));
+    let baseTotalScore = 0;
 
-        for (const gp of grandparents) {
-            if (gp && 'whiteSparks' in gp) {
-                ancestorWhiteSparks.push(...gp.whiteSparks);
-            }
+    // --- Base Spark Scoring ---
+    const blueBase = BASE_SCORES.blue[entity.blueSpark.stars];
+    baseTotalScore += blueBase * getBlueMultiplier(entity.blueSpark.type, goal);
+    const pinkBase = BASE_SCORES.pink[entity.pinkSpark.stars];
+    baseTotalScore += pinkBase * getPinkMultiplier(entity.pinkSpark.type, goal);
+
+    // Dynamic White Spark Scoring
+    if ('whiteSparks' in entity) {
+        const ancestorWhiteSparks: WhiteSpark[] = [];
+        if ('grandparent1' in entity && 'grandparent2' in entity) {
+            const grandparents = [entity.grandparent1, entity.grandparent2]
+                .map(gp => (typeof gp === 'number' ? inventoryMap.get(gp) : gp));
+            grandparents.forEach(gp => {
+                if (gp && 'whiteSparks' in gp) ancestorWhiteSparks.push(...gp.whiteSparks);
+            });
         }
+        const ancestorCountMap = new Map<string, number>();
+        ancestorWhiteSparks.forEach(spark => {
+            ancestorCountMap.set(spark.name, (ancestorCountMap.get(spark.name) || 0) + 1);
+        });
+
+        entity.whiteSparks.forEach((spark: WhiteSpark) => {
+            const ancestorCount = ancestorCountMap.get(spark.name) || 0;
+            const baseScore = calculateDynamicSparkBaseScore(spark, ancestorCount, skillMapByName, trainingRank);
+            const wishlistItem = goal.wishlist.find(w => w.name === spark.name);
+            const tier = wishlistItem ? wishlistItem.tier : 'OTHER';
+            baseTotalScore += baseScore * getWishlistMultiplier(tier);
+        });
     }
 
-    const hypotheticalSparks: HypotheticalParentSparks = {
-        blueSpark: entity.blueSpark,
-        pinkSpark: entity.pinkSpark,
-        whiteSparks: 'whiteSparks' in entity ? entity.whiteSparks : [],
-    };
-
-    let totalScore = scoreHypotheticalParent(hypotheticalSparks, goal, ancestorWhiteSparks, skillMapByName, trainingRank);
-    
+    // Unique Spark Scoring
     entity.uniqueSparks.forEach((spark: UniqueSpark) => {
         const wishlistItem = goal.uniqueWishlist.find(w => w.name === spark.name);
         const tier = wishlistItem ? wishlistItem.tier : 'OTHER';
         const baseScore = calculateDynamicSparkBaseScore(spark, 0, skillMapByName, trainingRank);
-        totalScore += baseScore * getWishlistMultiplier(tier);
+        baseTotalScore += baseScore * getWishlistMultiplier(tier);
     });
 
-    return totalScore;
+    // --- White Spark Density Bonus ---
+    let densityScore = 0;
+    if ('whiteSparks' in entity) {
+        const wishlistMap = new Map(goal.wishlist.map(item => [item.name, item.tier]));
+        entity.whiteSparks.forEach(spark => {
+            const tier = wishlistMap.get(spark.name);
+            if (tier && DENSITY_BONUS_POINTS[tier]) {
+                densityScore += DENSITY_BONUS_POINTS[tier];
+            }
+        });
+    }
+
+    const densityMultiplier = 1 + (densityScore * 0.01);
+    
+    return baseTotalScore * densityMultiplier;
 };
 
 /**
