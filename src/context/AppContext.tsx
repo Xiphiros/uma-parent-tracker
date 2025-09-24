@@ -8,6 +8,8 @@ import { calculateScore } from '../utils/scoring';
 import i18n from '../i18n';
 import { generateParentHash } from '../utils/hashing';
 import { migrateData, createDefaultState, createNewProfile } from '../utils/migrationHandler';
+import jpSkillMeta from '../../raw_data/jp/skill_meta.json';
+import glSkillMeta from '../../raw_data/global/skill_meta.json';
 
 const DB_KEY = 'umaTrackerData_v2';
 const USER_PREFERENCES_KEY = 'umaTrackerPrefs_v1';
@@ -42,6 +44,7 @@ interface AppContextType {
   masterSkillList: Skill[];
   masterUmaList: Uma[];
   skillMapByName: Map<string, Skill>;
+  skillMetaMap: Map<string, { baseCost: number }>;
   umaMapById: Map<string, Uma>;
   getActiveProfile: () => Profile | undefined;
   getScoredRoster: () => Parent[];
@@ -100,6 +103,15 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
   const [activeBreedingPair, setActiveBreedingPair] = useState<BreedingPair | null>(null);
   
   const isInitialLoad = useRef(true);
+  
+  const skillMetaMap = useMemo(() => {
+    const mergedMeta = { ...jpSkillMeta, ...glSkillMeta };
+    const map = new Map<string, { baseCost: number }>();
+    for (const [id, meta] of Object.entries(mergedMeta)) {
+        map.set(id, { baseCost: meta.baseCost });
+    }
+    return map;
+  }, []);
 
   const { relationPoints, charaRelations } = useMemo(() => {
     const components = affinityDataSources[activeServer];
@@ -869,6 +881,7 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
     masterSkillList,
     masterUmaList,
     skillMapByName,
+    skillMetaMap,
     umaMapById,
     getActiveProfile,
     getScoredRoster,
