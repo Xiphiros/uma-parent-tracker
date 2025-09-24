@@ -7,18 +7,17 @@ import { calculateSparkCountDistribution } from '../utils/sparkAcquisitionModel'
 self.onmessage = (e: MessageEvent<any>) => {
     const { 
         pair, goal, targetStats, trainingRank, 
-        inventory, skillMapEntries, skillMetaMapEntries, spBudget 
+        inventory, skillMapEntries, spBudget 
     } = e.data;
 
     // Reconstruct Maps from the serialized arrays sent from the main thread.
     const inventoryMap = new Map<number, Parent>(inventory.map((p: Parent) => [p.id, p]));
     const skillMapByName = new Map<string, Skill>(skillMapEntries);
-    const skillMetaMap = new Map<string, { baseCost: number }>(skillMetaMapEntries);
 
     try {
         const result = calculateUpgradeProbability(
             pair, goal, targetStats, trainingRank, 
-            inventoryMap, skillMapByName, skillMetaMap, spBudget
+            inventoryMap, skillMapByName, spBudget
         );
         // Send the result back to the main thread on success.
         self.postMessage({ result });
@@ -152,14 +151,14 @@ function convolve(dist1: ProbabilityDistribution, dist2: ProbabilityDistribution
     return newDist;
 }
 
-const calculateUpgradeProbability = (pair: BreedingPair, goal: Goal, targetStats: Record<string, number>, trainingRank: 'ss' | 'ss+', inventoryMap: Map<number, Parent>, skillMapByName: Map<string, Skill>, skillMetaMap: Map<string, { baseCost: number }>, spBudget: number): number => {
+const calculateUpgradeProbability = (pair: BreedingPair, goal: Goal, targetStats: Record<string, number>, trainingRank: 'ss' | 'ss+', inventoryMap: Map<number, Parent>, skillMapByName: Map<string, Skill>, spBudget: number): number => {
     const p1Score = calculateIndividualScore(pair.p1, goal, inventoryMap, skillMapByName, trainingRank);
     const p2Score = calculateIndividualScore(pair.p2, goal, inventoryMap, skillMapByName, trainingRank);
     const targetIndividualScore = Math.min(p1Score, p2Score);
     const blueDist = getBlueSparkDistribution(goal, targetStats, trainingRank);
     const pinkDist = getPinkSparkDistribution(goal, trainingRank);
     const whiteDist = getWhiteSparkDistribution(pair, goal, trainingRank, skillMapByName, inventoryMap);
-    const sparkCountDist = calculateSparkCountDistribution(pair, goal, spBudget, skillMapByName, skillMetaMap, inventoryMap);
+    const sparkCountDist = calculateSparkCountDistribution(pair, goal, spBudget, skillMapByName, inventoryMap);
     let totalUpgradeProb = 0;
     for (const [sparkCount, countProb] of sparkCountDist.entries()) {
         if (countProb === 0) continue;

@@ -7,6 +7,5 @@ export type ProbabilityWorkerPayload = {
     trainingRank: 'ss' | 'ss+';
     inventory: Parent[];
     skillMapEntries: [string, Skill][];
-    skillMetaMapEntries: [string, { baseCost: number }][];
     spBudget: number;
 };

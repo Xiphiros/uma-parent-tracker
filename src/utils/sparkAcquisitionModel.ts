@@ -15,7 +15,6 @@ const WISH_RANK_ORDER: { [key: string]: number } = { S: 0, A: 1, B: 2, C: 3 };
  * @param goal The user's active goal containing the wishlist.
  * @param spBudget The estimated total Skill Points available for purchases.
  * @param skillMapByName Map to look up skill details by English name.
- * @param skillMetaMap Map to look up skill metadata (like cost) by ID.
  * @param inventoryMap Map of all parents in the user's inventory.
  * @returns A Map where the key is the number of sparks acquired and the value is the probability of that count occurring.
  */
@@ -24,7 +23,6 @@ export const calculateSparkCountDistribution = (
     goal: Goal,
     spBudget: number,
     skillMapByName: Map<string, Skill>,
-    skillMetaMap: Map<string, { baseCost: number }>,
     inventoryMap: Map<number, Parent>
 ): Map<number, number> => {
     
@@ -44,8 +42,7 @@ export const calculateSparkCountDistribution = (
         const skill = skillMapByName.get(wishlistItem.name);
         if (!skill || skill.type !== 'normal') return;
 
-        const skillMeta = skillMetaMap.get(skill.id);
-        const cost = skillMeta?.baseCost || 150; // Default cost if not found
+        const cost = skill.baseCost || 150; // Default cost if not found
 
         // Calculate ancestor count for this skill's group
         const ancestorCount = lineage.filter(member => 

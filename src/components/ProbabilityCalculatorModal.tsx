@@ -21,7 +21,7 @@ const ASSUMED_A_RANK_APTITUDES = 5;
 
 const ProbabilityCalculatorModal = ({ isOpen, onClose, pair }: ProbabilityCalculatorModalProps) => {
     const { t } = useTranslation(['roster', 'game', 'common']);
-    const { getActiveProfile, skillMapByName, skillMetaMap, appData } = useAppContext();
+    const { getActiveProfile, skillMapByName, appData } = useAppContext();
     
     const [targetStats, setTargetStats] = useState<Record<string, number>>({
         speed: 1100, stamina: 1100, power: 1100, guts: 600, wit: 600
@@ -80,7 +80,6 @@ const ProbabilityCalculatorModal = ({ isOpen, onClose, pair }: ProbabilityCalcul
                 trainingRank,
                 inventory: appData.inventory,
                 skillMapEntries: Array.from(skillMapByName.entries()),
-                skillMetaMapEntries: Array.from(skillMetaMap.entries()),
                 spBudget
             };
             worker.postMessage(payload);
@@ -89,7 +88,7 @@ const ProbabilityCalculatorModal = ({ isOpen, onClose, pair }: ProbabilityCalcul
         return () => {
             clearTimeout(handler);
         };
-    }, [pair, activeGoal, targetStats, trainingRank, spBudget, appData.inventory, skillMapByName, skillMetaMap]);
+    }, [pair, activeGoal, targetStats, trainingRank, spBudget, appData.inventory, skillMapByName]);
 
 
     const handleStatChange = (stat: string, value: string) => {
