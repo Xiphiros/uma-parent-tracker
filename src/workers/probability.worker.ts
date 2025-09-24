@@ -95,10 +95,10 @@ function getPinkSparkDistribution(goal: Goal, trainingRank: 'ss' | 'ss+', target
     const distribution: ProbabilityDistribution = new Map();
     const starProbs = trainingRank === 'ss+' ? STAR_PROBABILITY.ssPlus : STAR_PROBABILITY.standard;
     
-    const numTargetAptitudes = Math.max(1, targetAptitudes.length);
+    const numObtainableAptitudes = Math.max(1, targetAptitudes.length);
     const numPrimaryMatches = goal.primaryPink.filter(p => targetAptitudes.includes(p)).length;
     
-    const primaryProb = numPrimaryMatches / numTargetAptitudes;
+    const primaryProb = numPrimaryMatches / numObtainableAptitudes;
     const otherProb = 1 - primaryProb;
 
     for (const stars of [1, 2, 3] as const) {

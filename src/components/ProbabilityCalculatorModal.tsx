@@ -35,7 +35,7 @@ const ProbabilityCalculatorModal = ({ isOpen, onClose, pair }: ProbabilityCalcul
     // Run Configuration State
     const [isSkillModalOpen, setIsSkillModalOpen] = useState(false);
     const [acquirableSkillIds, setAcquirableSkillIds] = useState<Set<string>>(new Set());
-    const [targetAptitudes, setTargetAptitudes] = useState<string[]>(['Turf', 'Mile', 'Medium', 'Pace Chaser', 'Late Surger']);
+    const [obtainableAptitudes, setObtainableAptitudes] = useState<string[]>(['Turf', 'Mile', 'Medium', 'Pace Chaser', 'Late Surger']);
 
 
     const [calculationState, setCalculationState] = useState<{ status: CalculationStatus; result: number | null }>({
@@ -106,7 +106,7 @@ const ProbabilityCalculatorModal = ({ isOpen, onClose, pair }: ProbabilityCalcul
                 skillMapEntries: Array.from(skillMapByName.entries()),
                 spBudget,
                 acquirableSkillIds: Array.from(acquirableSkillIds), 
-                targetAptitudes,
+                targetAptitudes: obtainableAptitudes,
             };
             worker.postMessage(payload);
         }, 300);
@@ -114,7 +114,7 @@ const ProbabilityCalculatorModal = ({ isOpen, onClose, pair }: ProbabilityCalcul
         return () => {
             clearTimeout(handler);
         };
-    }, [pair, activeGoal, targetStats, trainingRank, spBudget, acquirableSkillIds, targetAptitudes, appData.inventory, skillMapByName]);
+    }, [pair, activeGoal, targetStats, trainingRank, spBudget, acquirableSkillIds, obtainableAptitudes, appData.inventory, skillMapByName]);
 
 
     const handleStatChange = (stat: string, value: string) => {
@@ -204,8 +204,8 @@ const ProbabilityCalculatorModal = ({ isOpen, onClose, pair }: ProbabilityCalcul
                                 <p className="text-xs text-stone-500 text-center mt-1">{acquirableSkillsSummary()}</p>
                             </div>
                             <div>
-                                <label className="form__label form__label--xs">{t('breedingPlanner.targetAptitudes')}</label>
-                                <MultiSelect options={translatedAptitudeOptions} selectedValues={targetAptitudes} onChange={setTargetAptitudes} />
+                                <label className="form__label form__label--xs">{t('breedingPlanner.obtainableAptitudes')}</label>
+                                <MultiSelect options={translatedAptitudeOptions} selectedValues={obtainableAptitudes} onChange={setObtainableAptitudes} />
                             </div>
                         </fieldset>
                     </div>
