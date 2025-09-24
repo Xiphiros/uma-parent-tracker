@@ -14,5 +14,9 @@
   "noResults": "結果が見つかりません。",
   "selectUmaTitle": "育成ウマ娘を選択",
   "disclaimer": "免責事項",
-  "calculating": "計算中"
+  "calculating": "計算中",
+  "selectAll": "すべて選択",
+  "deselectAll": "すべて選択解除",
+  "otherSkills": "その他",
+  "skillsSelected": "{{count}}個のスキルを選択済み"
 }

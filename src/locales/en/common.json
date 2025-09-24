@@ -14,5 +14,9 @@
   "noResults": "No results found.",
   "selectUmaTitle": "Select Trainee",
   "disclaimer": "Disclaimer",
-  "calculating": "Calculating"
+  "calculating": "Calculating",
+  "selectAll": "Select All",
+  "deselectAll": "Deselect All",
+  "otherSkills": "Other",
+  "skillsSelected": "{{count}} skills selected"
 }
