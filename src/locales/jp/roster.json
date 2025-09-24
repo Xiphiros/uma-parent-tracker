@@ -117,7 +117,6 @@
     "acquirableSkills": "習得可能な白因子",
     "selectAcquirableSkills": "習得可能なスキルを選択...",
     "allSkillsConsidered": "血統内の全スキルを考慮",
-    "skillsSelected": "{{count}}個のスキルを選択済み",
     "obtainableAptitudes": "習得可能な適性（赤因子用）",
     "estimatedProbabilities": "推定確率",
     "primaryBlueSpark": "★3 主要青因子",
@@ -132,6 +131,7 @@
     "disclaimerWhiteSP": "獲得される白因子の数は、ウィッシュリスト、ペアの血統、および提供されたスキルポイント予算に基づいて推定されます。Lv. 1のスキルのみが考慮されます。",
     "selectAll": "すべて選択",
     "deselectAll": "すべて選択解除",
-    "otherSkills": "その他"
+    "otherSkills": "その他",
+    "skillsSelected": "{{count}}個のスキルを選択済み"
   }
 }
