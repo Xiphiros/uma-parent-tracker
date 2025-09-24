@@ -89,6 +89,19 @@
         "viewMissing": "Missing",
         "viewUnsaturated": "Partial",
         "allSkillsSaturated": "All wishlisted skills are present in every defined ancestor.",
-        "clearChecks": "Clear Checks"
+        "clearChecks": "Clear Checks",
+        "probabilityCalculator": "Probability Calculator",
+        "inputs": "Inputs",
+        "targetStats": "Target Stats",
+        "trainingRank": "Est. Final Rank",
+        "estimatedProbabilities": "Estimated Probabilities",
+        "primaryBlueSpark": "3★ Primary Blue Spark",
+        "primaryPinkSpark": "3★ Primary Pink Spark",
+        "avgRuns": "Avg. {{count}} runs",
+        "noMissingSkills": "No missing high-value (S/A rank) wishlist skills.",
+        "disclaimerText": "Probabilities are estimates based on game data and certain assumptions:",
+        "disclaimerBlue": "Blue spark probability is based on the target stats for your two primary blue sparks.",
+        "disclaimerPink": "Pink spark probability assumes you have {{count}} A-rank aptitudes.",
+        "disclaimerWhite": "White spark probability is based on acquiring the highest-rarity version of the skill (e.g., the Gold version)."
     }
 }
