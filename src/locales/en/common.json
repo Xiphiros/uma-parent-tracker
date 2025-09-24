@@ -17,6 +17,5 @@
   "calculating": "Calculating",
   "selectAll": "Select All",
   "deselectAll": "Deselect All",
-  "otherSkills": "Other",
-  "skillsSelected": "{{count}} skills selected"
+  "otherSkills": "Other"
 }
