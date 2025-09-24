@@ -17,6 +17,5 @@
   "calculating": "計算中",
   "selectAll": "すべて選択",
   "deselectAll": "すべて選択解除",
-  "otherSkills": "その他",
-  "skillsSelected": "{{count}}個のスキルを選択済み"
+  "otherSkills": "その他"
 }
