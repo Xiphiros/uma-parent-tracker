@@ -101,9 +101,13 @@
         "primaryPinkSpark": "3★ Primary Pink Spark",
         "avgRuns": "Avg. {{value}} runs",
         "noMissingSkills": "No missing high-value (S/A rank) wishlist skills.",
+        "probScoreUpgrade": "Probability of Score Upgrade",
+        "probAssumptionsTitle": "Calculation Assumptions",
+        "probAssumptionsText": "This probability is an estimate of the child's *individual score* (before grandparent bonuses) exceeding the weaker parent's individual score. It is based on these assumptions:\n\n- **Run Outcome:** An average of {{count}} white sparks are obtained per run.\n- **White Sparks:** The pool of potential white sparks includes all non-race, non-scenario factors available in the game data for the active server.\n- **Unique Spark:** The unique skill is not factored into this calculation as its outcome is fixed.\n- **Model:** This is a statistical model and not a guarantee of in-game results.",
         "disclaimerText": "Probabilities are estimates based on game data and certain assumptions:",
         "disclaimerBlue": "Blue spark probability is based on the target stats for your two primary blue sparks.",
         "disclaimerPink": "Pink spark probability assumes you have {{count}} A-rank aptitudes.",
-        "disclaimerWhite": "White spark probability is based on acquiring the highest-rarity version of the skill (e.g., the Gold version)."
+        "disclaimerWhite": "White spark probability is based on acquiring the highest-rarity version of the skill (e.g., the Gold version).",
+        "disclaimerScoreUpgrade": "Score upgrade probability compares the child's potential individual score to the weaker parent's individual score."
     }
 }
