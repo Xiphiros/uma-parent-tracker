@@ -16,11 +16,12 @@ interface SelectAcquirableSkillsModalProps {
     selectedIds: Set<string>;
     onSave: (newSelectedIds: Set<string>) => void;
     pair: BreedingPair | null;
+    spBudget: number;
 }
 
 const WISH_RANK_ORDER: { [key: string]: number } = { S: 0, A: 1, B: 2, C: 3, Other: 4 };
 
-const SelectAcquirableSkillsModal = ({ isOpen, onClose, allSkills: availableSkills, selectedIds, onSave, pair }: SelectAcquirableSkillsModalProps) => {
+const SelectAcquirableSkillsModal = ({ isOpen, onClose, allSkills: availableSkills, selectedIds, onSave, pair, spBudget }: SelectAcquirableSkillsModalProps) => {
     const { t } = useTranslation(['roster', 'goal', 'common']);
     const { getActiveProfile, dataDisplayLanguage, masterSkillList, appData } = useAppContext();
     const displayNameProp = dataDisplayLanguage === 'jp' ? 'name_jp' : 'name_en';
@@ -211,6 +212,7 @@ const SelectAcquirableSkillsModal = ({ isOpen, onClose, allSkills: availableSkil
                 isOpen={isInfoModalOpen}
                 onClose={() => setIsInfoModalOpen(false)}
                 groupedSkills={groupedAndFilteredSkills}
+                spBudget={spBudget}
             />
         </>
     );

@@ -162,6 +162,7 @@ const ProbabilityCalculatorModal = ({ isOpen, onClose, pair }: ProbabilityCalcul
                 selectedIds={acquirableSkillIds}
                 onSave={setAcquirableSkillIds}
                 pair={pair}
+                spBudget={spBudget}
             />
         </>
     );
