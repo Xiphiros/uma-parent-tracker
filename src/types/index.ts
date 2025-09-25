@@ -114,10 +114,17 @@ export interface ServerSpecificData {
   layout: (string | number)[];
 }
 
+export interface SkillPreset {
+  id: string;
+  name: string;
+  skillIds: string[];
+}
+
 export interface AppData {
   version: number;
   activeServer: 'jp' | 'global';
   inventory: Parent[];
+  skillPresets: SkillPreset[];
   serverData: {
     jp: ServerSpecificData;
     global: ServerSpecificData;
