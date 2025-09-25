@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect, ReactNode, useRef, useMemo } from 'react';
-import { AppData, Profile, Skill, Uma, Goal, Parent, NewParentData, WishlistItem, Folder, IconName, ServerSpecificData, ValidationResult, BreedingPair } from '../types';
+import { AppData, Profile, Skill, Uma, Goal, Parent, NewParentData, WishlistItem, Folder, IconName, ServerSpecificData, ValidationResult, BreedingPair, SkillPreset } from '../types';
 import masterSkillListJson from '../data/skill-list.json';
 import masterUmaListJson from '../data/uma-list.json';
 import affinityJpJson from '../data/affinity_jp.json';
@@ -76,6 +76,9 @@ interface AppContextType {
   validateProjectForServer: (profileId: number) => ValidationResult;
   executeCopyProject: (profileId: number) => void;
   executeMoveProject: (profileId: number) => void;
+  addSkillPreset: (name: string, skillIds: string[]) => void;
+  updateSkillPreset: (id: string, name: string, skillIds: string[]) => void;
+  deleteSkillPreset: (id: string) => void;
 }
 
 const AppContext = createContext<AppContextType | null>(null);
@@ -853,6 +856,25 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
           };
       });
   };
+
+  const addSkillPreset = (name: string, skillIds: string[]) => {
+      const newPreset: SkillPreset = { id: `p${Date.now()}`, name, skillIds };
+      setAppData(prev => ({ ...prev, skillPresets: [...prev.skillPresets, newPreset] }));
+  };
+
+  const updateSkillPreset = (id: string, name: string, skillIds: string[]) => {
+      setAppData(prev => ({
+          ...prev,
+          skillPresets: prev.skillPresets.map(p => p.id === id ? { ...p, name, skillIds } : p),
+      }));
+  };
+
+  const deleteSkillPreset = (id: string) => {
+      setAppData(prev => ({
+          ...prev,
+          skillPresets: prev.skillPresets.filter(p => p.id !== id),
+      }));
+  };
   
   const value = {
     loading,
@@ -903,6 +925,9 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
     validateProjectForServer,
     executeCopyProject,
     executeMoveProject,
+    addSkillPreset,
+    updateSkillPreset,
+    deleteSkillPreset,
   };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
