@@ -4,3 +4,56 @@
     gap: 1.5rem;
     margin: 1rem 0;
 }
+
+.edit-preset__controls {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--color-border);
+}
+.edit-preset__controls .form__input {
+    flex-grow: 1;
+}
+.edit-preset__actions {
+    display: flex;
+    gap: 0.5rem;
+    flex-shrink: 0;
+}
+
+.edit-preset__grid {
+    max-height: 50vh;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 0.25rem;
+    background-color: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: 0.375rem;
+}
+
+.edit-preset__list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 0.5rem;
+}
+
+.edit-preset__item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    font-size: 0.875rem;
+    cursor: pointer;
+    user-select: none;
+}
+.edit-preset__item:hover {
+    background-color: var(--color-card-bg-hover);
+}
+
+.edit-preset__summary {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+}
