@@ -1,10 +1,10 @@
-import { createContext, useContext, useState, useEffect, ReactNode, useRef, useMemo } from 'react';
-import { AppData, Profile, Skill, Uma, Goal, Parent, NewParentData, WishlistItem, Folder, IconName, ServerSpecificData, ValidationResult, BreedingPair, SkillPreset } from '../types';
+import { createContext, useContext, useState, useEffect, ReactNode, useRef, useMemo, useCallback } from 'react';
+import { AppData, Profile, Skill, Uma, Goal, Parent, NewParentData, WishlistItem, Folder, IconName, ServerSpecificData, ValidationResult, BreedingPair, SkillPreset, ManualParentData } from '../types';
 import masterSkillListJson from '../data/skill-list.json';
 import masterUmaListJson from '../data/uma-list.json';
 import affinityJpJson from '../data/affinity_jp.json';
 import affinityGlJson from '../data/affinity_gl.json';
-import { calculateScore } from '../utils/scoring';
+import { calculateScore, calculateIndividualScore } from '../utils/scoring';
 import i18n from '../i18n';
 import { generateParentHash } from '../utils/hashing';
 import { migrateData, createDefaultState, createNewProfile } from '../utils/migrationHandler';
@@ -45,6 +45,7 @@ interface AppContextType {
   umaMapById: Map<string, Uma>;
   getActiveProfile: () => Profile | undefined;
   getScoredRoster: () => Parent[];
+  getIndividualScore: (entity: Parent | ManualParentData) => number;
   activeBreedingPair: BreedingPair | null;
   setActiveBreedingPair: (pair: BreedingPair | null) => void;
   saveState: (newData: AppData) => void;
@@ -237,11 +238,11 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
     return serverData.profiles.find(p => p.id === serverData.activeProfileId);
   };
 
+  const inventoryMap = useMemo(() => new Map(appData.inventory.map(p => [p.id, p])), [appData.inventory]);
+
   const getScoredRoster = useMemo(() => () => {
     const profile = getActiveProfile();
     if (!profile) return [];
-    
-    const inventoryMap = new Map(appData.inventory.map(p => [p.id, p]));
     
     return profile.roster
       .map(parentId => inventoryMap.get(parentId))
@@ -250,7 +251,13 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
         ...p,
         score: calculateScore(p, profile.goal, appData.inventory, skillMapByName)
       }));
-  }, [appData.inventory, appData.serverData, activeServer, skillMapByName]);
+  }, [appData.inventory, appData.serverData, activeServer, skillMapByName, inventoryMap]);
+
+  const getIndividualScore = useCallback((entity: Parent | ManualParentData) => {
+      const profile = getActiveProfile();
+      if (!profile) return 0;
+      return Math.round(calculateIndividualScore(entity, profile.goal, inventoryMap, skillMapByName));
+  }, [getActiveProfile, inventoryMap, skillMapByName]);
 
   const exportData = () => {
     const jsonString = JSON.stringify(appData, null, 2);
@@ -633,6 +640,7 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
       return { 
           ...prevData, 
           inventory: newInventory, 
+          skillPresets: prevData.skillPresets || [],
           serverData: {
               ...prevData.serverData,
               [prevData.activeServer]: {
@@ -800,6 +808,7 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
           return {
               ...prev,
               inventory: newInventory,
+              skillPresets: prev.skillPresets || [],
               serverData: {
                   ...prev.serverData,
                   [destServer]: destData
@@ -852,6 +861,7 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
           return {
               ...prev,
               inventory: newInventory,
+              skillPresets: prev.skillPresets || [],
               serverData: newServerData,
           };
       });
@@ -894,6 +904,7 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
     umaMapById,
     getActiveProfile,
     getScoredRoster,
+    getIndividualScore,
     activeBreedingPair,
     setActiveBreedingPair,
     saveState,
