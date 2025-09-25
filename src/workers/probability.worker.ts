@@ -8,7 +8,7 @@ import { ProbabilityWorkerPayload } from '../utils/upgradeProbability';
 
 self.onmessage = (e: MessageEvent<ProbabilityWorkerPayload>) => {
     const { 
-        pair, p1DisplayName, p2DisplayName, goal, targetStats, trainingRank, 
+        pair, p1DisplayName, p2DisplayName, calculationMode, goal, targetStats, trainingRank, 
         inventory, skillMapEntries, spBudget,
         acquirableSkillIds, conditionalSkillIds, targetAptitudes
     } = e.data;
@@ -20,7 +20,7 @@ self.onmessage = (e: MessageEvent<ProbabilityWorkerPayload>) => {
 
     try {
         const result = calculateUpgradeProbability(
-            pair, p1DisplayName, p2DisplayName, goal, targetStats, trainingRank, 
+            pair, p1DisplayName, p2DisplayName, calculationMode, goal, targetStats, trainingRank, 
             inventoryMap, skillMapByName, spBudget,
             acquirableSkillIdsSet, conditionalSkillIdsSet, targetAptitudes
         );
@@ -173,21 +173,50 @@ function convolve(dist1: ProbabilityDistribution, dist2: ProbabilityDistribution
 }
 
 const calculateUpgradeProbability = (
-    pair: BreedingPair, p1DisplayName: string, p2DisplayName: string, goal: Goal, targetStats: Record<string, number>, trainingRank: 'ss' | 'ss+', 
+    pair: BreedingPair, p1DisplayName: string, p2DisplayName: string, calculationMode: 'final' | 'individual',
+    goal: Goal, targetStats: Record<string, number>, trainingRank: 'ss' | 'ss+', 
     inventoryMap: Map<number, Parent>, skillMapByName: Map<string, Skill>, spBudget: number,
     acquirableSkillIds: Set<string>, conditionalSkillIds: Set<string>, targetAptitudes: string[]
 ) => {
     
-    // --- Target Score Logic ---
-    const weakerParent = pair.p1.score < pair.p2.score ? pair.p1 : pair.p2;
-    const targetParentName = pair.p1.score < pair.p2.score ? p1DisplayName : p2DisplayName;
-    const targetParentScore = weakerParent.score;
-
+    // --- New Target Score Logic ---
     const p1IndividualScore = calculateIndividualScore(pair.p1, goal, inventoryMap, skillMapByName, trainingRank);
     const p2IndividualScore = calculateIndividualScore(pair.p2, goal, inventoryMap, skillMapByName, trainingRank);
-    const grandparentBonusForChild = (p1IndividualScore * 0.5) + (p2IndividualScore * 0.5);
+
+    let weakerParent: Parent;
+    let targetParentName: string;
+    let targetParentFinalScore: number;
+    let targetParentIndividualScore: number;
+    let requiredIndividualScore: number;
     
-    const requiredIndividualScore = targetParentScore - grandparentBonusForChild;
+    if (calculationMode === 'individual') {
+        if (p1IndividualScore < p2IndividualScore) {
+            weakerParent = pair.p1;
+            targetParentName = p1DisplayName;
+            targetParentFinalScore = weakerParent.score;
+            targetParentIndividualScore = p1IndividualScore;
+        } else {
+            weakerParent = pair.p2;
+            targetParentName = p2DisplayName;
+            targetParentFinalScore = weakerParent.score;
+            targetParentIndividualScore = p2IndividualScore;
+        }
+        requiredIndividualScore = targetParentIndividualScore;
+    } else { // 'final' mode
+        if (pair.p1.score < pair.p2.score) {
+            weakerParent = pair.p1;
+            targetParentName = p1DisplayName;
+            targetParentIndividualScore = p1IndividualScore;
+        } else {
+            weakerParent = pair.p2;
+            targetParentName = p2DisplayName;
+            targetParentIndividualScore = p2IndividualScore;
+        }
+        targetParentFinalScore = weakerParent.score;
+        const grandparentBonusForChild = (p1IndividualScore * 0.5) + (p2IndividualScore * 0.5);
+        requiredIndividualScore = targetParentFinalScore - grandparentBonusForChild;
+    }
+
     const targetSparkCount = weakerParent.whiteSparks.length;
 
     // --- Phase 1: Get Score and Count Distributions ---
@@ -250,5 +279,5 @@ const calculateUpgradeProbability = (
         }
     }
     
-    return { probScoreUpgrade, probSparkCountUpgrade, targetSparkCount, targetParentName, targetParentScore };
+    return { probScoreUpgrade, probSparkCountUpgrade, targetSparkCount, targetParentName, targetParentFinalScore, targetParentIndividualScore };
 };
