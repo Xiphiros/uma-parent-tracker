@@ -28,10 +28,11 @@ const LineageTree = ({ parent }: LineageTreeProps) => {
     const renderAvatar = (src: string | null | undefined, size: 'parent' | 'grandparent', entity: Parent | ManualParentData | null) => {
         const score = entity ? getIndividualScore(entity) : 0;
         const tooltip = entity ? t('parentCard.individualScoreTooltip', { score }) : '';
+        const finalSrc = src ? `${import.meta.env.BASE_URL}${src}` : 'https://via.placeholder.com/80';
         
         return (
             <img
-                src={src || 'https://via.placeholder.com/80'}
+                src={finalSrc}
                 className={`lineage-tree__avatar lineage-tree__avatar--${size}`}
                 alt=""
                 title={tooltip}
