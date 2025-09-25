@@ -2,6 +2,8 @@ import { BreedingPair, Goal, Parent, Skill } from '../types';
 
 export type ProbabilityWorkerPayload = {
     pair: BreedingPair;
+    p1DisplayName: string;
+    p2DisplayName: string;
     goal: Goal;
     targetStats: Record<string, number>;
     trainingRank: 'ss' | 'ss+';
