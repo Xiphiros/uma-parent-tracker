@@ -52,7 +52,6 @@ const ANCESTOR_BONUS = 1.1;
 
 type ProbabilityDistribution = Map<number, number>;
 
-// Helper function to calculate a single spark's score contribution
 const getSparkScoreContribution = (
     sparkType: 'blue' | 'pink' | 'white',
     sparkData: any,
@@ -124,31 +123,21 @@ function getPinkSparkDistribution(goal: Goal, trainingRank: 'ss' | 'ss+', target
     return distribution;
 }
 
-function getAverageWhiteSparkScoreDistribution(pair: BreedingPair, goal: Goal, trainingRank: 'ss' | 'ss+', skillMapByName: Map<string, Skill>, inventoryMap: Map<number, Parent>, acquirableSkillIds: Set<string>): ProbabilityDistribution {
+function getAverageSparkScoreDistributionForPool(skillPool: Skill[], pair: BreedingPair, goal: Goal, trainingRank: 'ss'|'ss+', skillMapByName: Map<string, Skill>, inventoryMap: Map<number, Parent>): ProbabilityDistribution {
     const mixtureDist: ProbabilityDistribution = new Map();
     const starProbs = trainingRank === 'ss+' ? STAR_PROBABILITY.ssPlus : STAR_PROBABILITY.standard;
-    const allSkillsFromMap = Array.from(skillMapByName.values());
-
-    let skillPool: Skill[];
-    if (acquirableSkillIds.size === 0) {
-        const lineageSkillNames = new Set<string>();
-        const lineage = [pair.p1, pair.p2, resolveGrandparent(pair.p1.grandparent1, inventoryMap), resolveGrandparent(pair.p1.grandparent2, inventoryMap), resolveGrandparent(pair.p2.grandparent1, inventoryMap), resolveGrandparent(pair.p2.grandparent2, inventoryMap)];
-        lineage.forEach(member => {
-            if (member) member.whiteSparks.forEach(spark => lineageSkillNames.add(spark.name));
-        });
-        skillPool = Array.from(lineageSkillNames).map(name => skillMapByName.get(name)).filter((s): s is Skill => !!s && s.type === 'normal');
-    } else {
-        skillPool = Array.from(acquirableSkillIds).map(id => allSkillsFromMap.find(s => s.id === id)).filter((s): s is Skill => !!s);
-    }
+    const lineage = [pair.p1, pair.p2, resolveGrandparent(pair.p1.grandparent1, inventoryMap), resolveGrandparent(pair.p1.grandparent2, inventoryMap), resolveGrandparent(pair.p2.grandparent1, inventoryMap), resolveGrandparent(pair.p2.grandparent2, inventoryMap)];
 
     if (skillPool.length === 0) return new Map([[0, 1.0]]);
     
     const weightedSkills = skillPool.map(skill => {
         let baseProb = WHITE_SKILL_BASE_PROBABILITY.normal;
         if (skill.rarity === 2) baseProb = WHITE_SKILL_BASE_PROBABILITY.circle;
-
-        const lineage = [pair.p1, pair.p2, resolveGrandparent(pair.p1.grandparent1, inventoryMap), resolveGrandparent(pair.p1.grandparent2, inventoryMap), resolveGrandparent(pair.p2.grandparent1, inventoryMap), resolveGrandparent(pair.p2.grandparent2, inventoryMap)];
-        const ancestorCount = lineage.filter(member => member && member.whiteSparks.some(s => skillMapByName.get(s.name)?.groupId === skill.groupId)).length;
+        
+        const ancestorCount = lineage.filter(member => member && member.whiteSparks.some(s => {
+            const sInfo = skillMapByName.get(s.name);
+            return sInfo?.id === skill.id || sInfo?.groupId === skill.groupId;
+        })).length;
         
         const acquireProb = Math.min(1.0, baseProb * (ANCESTOR_BONUS ** ancestorCount));
         return { skill, acquireProb };
@@ -194,32 +183,51 @@ const calculateUpgradeProbability = (
     const targetIndividualScore = Math.min(p1Score, p2Score);
     const targetSparkCount = Math.min(pair.p1.whiteSparks.length, pair.p2.whiteSparks.length);
 
+    // --- Phase 1: Get Score and Count Distributions ---
     const blueDist = getBlueSparkDistribution(goal, targetStats, skillMapByName, trainingRank);
     const pinkDist = getPinkSparkDistribution(goal, trainingRank, targetAptitudes, skillMapByName);
-    // TODO: This logic will be completely overhauled in the next steps.
-    const avgWhiteDist = getAverageWhiteSparkScoreDistribution(pair, goal, trainingRank, skillMapByName, inventoryMap, acquirableSkillIds);
-    const sparkCountDist = calculateSparkCountDistribution(pair, goal, spBudget, skillMapByName, inventoryMap, acquirableSkillIds);
-
     const baseScoreDist = convolve(blueDist, pinkDist);
+
+    const { freeSparksDist, purchasedSparksDist } = calculateSparkCountDistribution(
+        pair, goal, spBudget, skillMapByName, inventoryMap, acquirableSkillIds, conditionalSkillIds
+    );
+    
+    // --- Phase 2: Create Average Score Distributions for Each Spark Type ---
+    const allSkills = Array.from(skillMapByName.values());
+    const conditionalSkillsPool = Array.from(conditionalSkillIds).map(id => allSkills.find(s => s.id === id)).filter((s): s is Skill => !!s);
+    const purchasableSkillsPool = Array.from(acquirableSkillIds).map(id => allSkills.find(s => s.id === id)).filter((s): s is Skill => !!s);
+
+    const avgFreeScoreDist = getAverageSparkScoreDistributionForPool(conditionalSkillsPool, pair, goal, trainingRank, skillMapByName, inventoryMap);
+    const avgPurchasedScoreDist = getAverageSparkScoreDistributionForPool(purchasableSkillsPool, pair, goal, trainingRank, skillMapByName, inventoryMap);
+
+    // --- Phase 3: Synthesize Final Score Distribution ---
     let finalScoreDist: ProbabilityDistribution = new Map();
 
-    for (const [sparkCount, countProb] of sparkCountDist.entries()) {
-        if (countProb === 0) continue;
-
-        let currentTotalScoreDist = baseScoreDist;
-        for (let i = 0; i < sparkCount; i++) {
-            currentTotalScoreDist = convolve(currentTotalScoreDist, avgWhiteDist);
+    for (const [kFree, pFree] of freeSparksDist.entries()) {
+        let scoreDistAfterFree = baseScoreDist;
+        for (let i = 0; i < kFree; i++) {
+            scoreDistAfterFree = convolve(scoreDistAfterFree, avgFreeScoreDist);
         }
 
-        const bonusMultiplier = 1 + (sparkCount * 0.01);
+        for (const [kPurchased, pPurchased] of purchasedSparksDist.entries()) {
+            let scoreDistAfterPurchased = scoreDistAfterFree;
+            for (let i = 0; i < kPurchased; i++) {
+                scoreDistAfterPurchased = convolve(scoreDistAfterPurchased, avgPurchasedScoreDist);
+            }
 
-        for (const [score, prob] of currentTotalScoreDist.entries()) {
-            const finalScore = Math.round(score * bonusMultiplier);
-            const finalProb = prob * countProb;
-            finalScoreDist.set(finalScore, (finalScoreDist.get(finalScore) || 0) + finalProb);
+            const kTotal = kFree + kPurchased;
+            const bonusMultiplier = 1 + (kTotal * 0.01);
+            const pathProb = pFree * pPurchased;
+
+            for (const [score, prob] of scoreDistAfterPurchased.entries()) {
+                const finalScore = Math.round(score * bonusMultiplier);
+                const finalProb = prob * pathProb;
+                finalScoreDist.set(finalScore, (finalScoreDist.get(finalScore) || 0) + finalProb);
+            }
         }
     }
-
+    
+    // --- Phase 4: Calculate Final Probabilities ---
     let probScoreUpgrade = 0;
     for (const [score, prob] of finalScoreDist.entries()) {
         if (score > targetIndividualScore) {
@@ -227,8 +235,9 @@ const calculateUpgradeProbability = (
         }
     }
     
+    const totalSparkCountDist = convolve(freeSparksDist, purchasedSparksDist);
     let probSparkCountUpgrade = 0;
-    for (const [count, prob] of sparkCountDist.entries()) {
+    for (const [count, prob] of totalSparkCountDist.entries()) {
         if (count > targetSparkCount) {
             probSparkCountUpgrade += prob;
         }
