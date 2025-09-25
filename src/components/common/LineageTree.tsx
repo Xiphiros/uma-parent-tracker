@@ -1,51 +1,53 @@
 import { useAppContext } from '../../context/AppContext';
 import { Grandparent, Parent } from '../../types';
 import './LineageTree.css';
+import { useTranslation } from 'react-i18next';
 
 interface LineageTreeProps {
     parent: Parent;
 }
 
 const LineageTree = ({ parent }: LineageTreeProps) => {
-    const { appData, umaMapById } = useAppContext();
+    const { t } = useTranslation('roster');
+    const { appData, umaMapById, getIndividualScore, inventory } = useAppContext();
+    const inventoryMap = new Map(inventory.map(p => [p.id, p]));
 
-    const getAvatar = (gp: Grandparent | Parent): string | null => {
-        let umaId: string | undefined;
-        if (typeof gp === 'number') {
-            const ownedParent = appData.inventory.find(p => p.id === gp);
-            umaId = ownedParent?.umaId;
-        } else if ('umaId' in gp) {
-            umaId = gp.umaId;
-        }
-        
-        if (umaId) {
-            const umaData = umaMapById.get(umaId);
-            return umaData?.image ? `${import.meta.env.BASE_URL}${umaData.image}` : null;
-        }
-        return null;
+    const getGrandparent = (gpRef: Grandparent | undefined) => {
+        if (!gpRef) return null;
+        if (typeof gpRef === 'number') return inventoryMap.get(gpRef) || null;
+        return gpRef;
     };
 
-    const parentAvatar = getAvatar(parent);
-    const gp1Avatar = parent.grandparent1 ? getAvatar(parent.grandparent1) : null;
-    const gp2Avatar = parent.grandparent2 ? getAvatar(parent.grandparent2) : null;
+    const parentAvatar = parent?.umaId ? umaMapById.get(parent.umaId)?.image : null;
+    const gp1 = getGrandparent(parent.grandparent1);
+    const gp2 = getGrandparent(parent.grandparent2);
     
-    const renderAvatar = (src: string | null, size: 'parent' | 'grandparent') => (
-        <img
-            src={src || 'https://via.placeholder.com/80'}
-            className={`lineage-tree__avatar lineage-tree__avatar--${size}`}
-            alt=""
-        />
-    );
+    const gp1Avatar = gp1?.umaId ? umaMapById.get(gp1.umaId)?.image : null;
+    const gp2Avatar = gp2?.umaId ? umaMapById.get(gp2.umaId)?.image : null;
+
+    const renderAvatar = (src: string | null, size: 'parent' | 'grandparent', entity: Parent | null) => {
+        const score = entity ? getIndividualScore(entity) : 0;
+        const tooltip = entity ? t('parentCard.individualScoreTooltip', { score }) : '';
+        
+        return (
+            <img
+                src={src || 'https://via.placeholder.com/80'}
+                className={`lineage-tree__avatar lineage-tree__avatar--${size}`}
+                alt=""
+                title={tooltip}
+            />
+        );
+    };
 
     return (
         <div className="lineage-tree">
             <div className="lineage-tree__parent">
-                {renderAvatar(parentAvatar, 'parent')}
+                {renderAvatar(parentAvatar, 'parent', parent)}
             </div>
-            {(gp1Avatar || gp2Avatar) && (
+            {(gp1 || gp2) && (
                 <div className="lineage-tree__grandparents">
-                    {renderAvatar(gp1Avatar, 'grandparent')}
-                    {renderAvatar(gp2Avatar, 'grandparent')}
+                    {renderAvatar(gp1Avatar, 'grandparent', gp1)}
+                    {renderAvatar(gp2Avatar, 'grandparent', gp2)}
                 </div>
             )}
         </div>
