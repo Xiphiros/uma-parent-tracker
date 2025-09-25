@@ -8,6 +8,7 @@ import { resolveGrandparent } from '../utils/affinity';
 import PurchaseOrderInfoModal from './PurchaseOrderInfoModal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
+import ManagePresetsModal from './ManagePresetsModal';
 
 interface SelectAcquirableSkillsModalProps {
     isOpen: boolean;
@@ -30,6 +31,8 @@ const SelectAcquirableSkillsModal = ({ isOpen, onClose, allSkills: availableSkil
     const [localSelectedIds, setLocalSelectedIds] = useState(selectedIds);
     const [searchQuery, setSearchQuery] = useState('');
     const [isInfoModalOpen, setIsInfoModalOpen] = useState(false);
+    const [isManagePresetsOpen, setIsManagePresetsOpen] = useState(false);
+    const [selectedPresetId, setSelectedPresetId] = useState<string>('');
 
     const skillGroupMap = useMemo(() => {
         const map = new Map<number, { lv1?: Skill, lv2?: Skill }>();
@@ -83,13 +86,8 @@ const SelectAcquirableSkillsModal = ({ isOpen, onClose, allSkills: availableSkil
         onClose();
     };
 
-    const handleSelectAll = () => {
-        setLocalSelectedIds(new Set(availableSkills.map(s => s.id)));
-    };
-
-    const handleDeselectAll = () => {
-        setLocalSelectedIds(new Set());
-    };
+    const handleSelectAll = () => setLocalSelectedIds(new Set(availableSkills.map(s => s.id)));
+    const handleDeselectAll = () => setLocalSelectedIds(new Set());
 
     const handleSelectLineage = () => {
         if (!pair) return;
@@ -117,12 +115,18 @@ const SelectAcquirableSkillsModal = ({ isOpen, onClose, allSkills: availableSkil
             }
         });
         
-        setLocalSelectedIds(lineageSkillIds);
+        setLocalSelectedIds(prev => new Set([...prev, ...lineageSkillIds]));
     };
     
-    const getSkillDisplayName = (skill: Skill) => {
-        return skill[displayNameProp] || skill.name_en;
+    const handleApplyPreset = () => {
+        if (!selectedPresetId) return;
+        const preset = appData.skillPresets.find(p => p.id === selectedPresetId);
+        if (preset) {
+            setLocalSelectedIds(prev => new Set([...prev, ...preset.skillIds]));
+        }
     };
+
+    const getSkillDisplayName = (skill: Skill) => skill[displayNameProp] || skill.name_en;
 
     const groupedAndFilteredSkills = useMemo(() => {
         const wishlistMap = new Map(goal?.wishlist.map(item => [item.name, item.tier]));
@@ -155,8 +159,20 @@ const SelectAcquirableSkillsModal = ({ isOpen, onClose, allSkills: availableSkil
                         value={searchQuery}
                         onChange={e => setSearchQuery(e.target.value)}
                     />
-                    <div className="skill-select__actions">
-                        <button className="button button--secondary button--small" title={t('breedingPlanner.purchaseOrder.tooltip')} onClick={() => setIsInfoModalOpen(true)}>
+                </div>
+                <div className="skill-select__actions-bar">
+                    <div className="skill-select__preset-controls">
+                        <select className="form__input" value={selectedPresetId} onChange={e => setSelectedPresetId(e.target.value)}>
+                            <option value="">Select a Preset...</option>
+                            {appData.skillPresets.map(preset => (
+                                <option key={preset.id} value={preset.id}>{preset.name}</option>
+                            ))}
+                        </select>
+                        <button className="button button--secondary button--small" onClick={handleApplyPreset} disabled={!selectedPresetId}>Apply</button>
+                        <button className="button button--neutral button--small" onClick={() => setIsManagePresetsOpen(true)}>Manage...</button>
+                    </div>
+                    <div className="skill-select__batch-actions">
+                        <button className="button button--secondary button--small" onClick={() => setIsInfoModalOpen(true)} title={t('breedingPlanner.purchaseOrder.tooltip')}>
                             <FontAwesomeIcon icon={faInfoCircle} />
                         </button>
                         <button className="button button--secondary button--small" onClick={handleSelectLineage} disabled={!pair}>{t('breedingPlanner.selectLineage')}</button>
@@ -213,6 +229,11 @@ const SelectAcquirableSkillsModal = ({ isOpen, onClose, allSkills: availableSkil
                 onClose={() => setIsInfoModalOpen(false)}
                 groupedSkills={groupedAndFilteredSkills}
                 spBudget={spBudget}
+            />
+
+            <ManagePresetsModal
+                isOpen={isManagePresetsOpen}
+                onClose={() => setIsManagePresetsOpen(false)}
             />
         </>
     );
