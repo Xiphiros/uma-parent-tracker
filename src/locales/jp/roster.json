@@ -32,7 +32,8 @@
     "whiteSparkCount": "血統内のユニーク白因子",
     "totalWhiteSparkCount": "血統の白因子合計数（重複を含む）",
     "parentSource": "親",
-    "gpSource": "祖"
+    "gpSource": "祖",
+    "individualScoreTooltip": "基礎スコア: {{score}} pt"
   },
   "inventory": {
     "title": "所持ウマ娘一覧",

@@ -31,7 +31,8 @@
         "whiteSparkCount": "Unique Lineage White Sparks",
         "totalWhiteSparkCount": "Total Lineage White Sparks (including duplicates)",
         "parentSource": "Parent",
-        "gpSource": "Grandparent"
+        "gpSource": "Grandparent",
+        "individualScoreTooltip": "Individual Score: {{score}} pts"
     },
     "inventory": {
         "title": "Parent Inventory",
