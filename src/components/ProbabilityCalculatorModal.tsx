@@ -16,13 +16,22 @@ interface ProbabilityCalculatorModalProps {
     pair: BreedingPair | null;
 }
 
+interface CalculationResult {
+    probScoreUpgrade: number;
+    probSparkCountUpgrade: number;
+    targetSparkCount: number;
+    targetParentName: string;
+    targetParentScore: number;
+}
+
 const STAT_NAMES = ['speed', 'stamina', 'power', 'guts', 'wit'];
 const PINK_SPARK_OPTIONS = ['Turf', 'Dirt', 'Sprint', 'Mile', 'Medium', 'Long', 'Front Runner', 'Pace Chaser', 'Late Surger', 'End Closer'];
 
 const ProbabilityCalculatorModal = ({ isOpen, onClose, pair }: ProbabilityCalculatorModalProps) => {
     const { t } = useTranslation(['roster', 'common', 'game']);
-    const { getActiveProfile, appData, masterSkillList, skillMapByName } = useAppContext();
+    const { getActiveProfile, appData, masterSkillList, skillMapByName, umaMapById, dataDisplayLanguage } = useAppContext();
     const goal = getActiveProfile()?.goal;
+    const displayNameProp = dataDisplayLanguage === 'jp' ? 'name_jp' : 'name_en';
 
     const [targetStats, setTargetStats] = useState<Record<string, number>>({ speed: 1100, stamina: 1100, power: 1100, guts: 1100, wit: 1100 });
     const [spBudget, setSpBudget] = useState(1800);
@@ -33,7 +42,7 @@ const ProbabilityCalculatorModal = ({ isOpen, onClose, pair }: ProbabilityCalcul
     
     const [isSkillModalOpen, setIsSkillModalOpen] = useState(false);
     const [isConditionalModalOpen, setIsConditionalModalOpen] = useState(false);
-    const [results, setResults] = useState<{ probScoreUpgrade: number; probSparkCountUpgrade: number; targetSparkCount: number } | null>(null);
+    const [results, setResults] = useState<CalculationResult | null>(null);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
@@ -63,6 +72,8 @@ const ProbabilityCalculatorModal = ({ isOpen, onClose, pair }: ProbabilityCalcul
             setTargetAptitudes(goal.primaryPink);
         }
     }, [isOpen, pair, goal]);
+    
+    const getDisplayName = (umaId: string) => umaMapById.get(umaId)?.[displayNameProp] || 'Unknown';
 
     const handleCalculate = () => {
         if (!pair || !goal || !workerRef.current) return;
@@ -71,7 +82,12 @@ const ProbabilityCalculatorModal = ({ isOpen, onClose, pair }: ProbabilityCalcul
         setResults(null);
 
         const payload: ProbabilityWorkerPayload = {
-            pair, goal, targetStats, trainingRank,
+            pair, 
+            p1DisplayName: getDisplayName(pair.p1.umaId),
+            p2DisplayName: getDisplayName(pair.p2.umaId),
+            goal, 
+            targetStats, 
+            trainingRank,
             inventory: appData.inventory,
             skillMapEntries: Array.from(skillMapByName.entries()),
             spBudget,
@@ -139,7 +155,7 @@ const ProbabilityCalculatorModal = ({ isOpen, onClose, pair }: ProbabilityCalcul
                                 <>
                                     <div className="prob-calc__result-item">
                                         <div className="prob-calc__result-header">
-                                            <span className="prob-calc__result-name">{t('breedingPlanner.probScoreUpgrade')}</span>
+                                            <span className="prob-calc__result-name">{t('breedingPlanner.probToSurpassLabel', { name: results.targetParentName, score: results.targetParentScore })}</span>
                                             <span className="prob-calc__result-value">{formatProbability(results.probScoreUpgrade)}</span>
                                         </div>
                                     </div>
