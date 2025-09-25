@@ -2,25 +2,27 @@ import { BreedingPair, Goal, ManualParentData, Parent, Skill } from '../types';
 import { resolveGrandparent } from '../utils/affinity';
 import { calculateIndividualScore } from '../utils/scoring';
 import { calculateSparkCountDistribution } from '../utils/sparkAcquisitionModel';
+import { ProbabilityWorkerPayload } from '../utils/upgradeProbability';
 
 // --- Worker Entry Point ---
 
-self.onmessage = (e: MessageEvent<any>) => {
+self.onmessage = (e: MessageEvent<ProbabilityWorkerPayload>) => {
     const { 
         pair, goal, targetStats, trainingRank, 
         inventory, skillMapEntries, spBudget,
-        acquirableSkillIds, targetAptitudes
+        acquirableSkillIds, conditionalSkillIds, targetAptitudes
     } = e.data;
 
     const inventoryMap = new Map<number, Parent>(inventory.map((p: Parent) => [p.id, p]));
     const skillMapByName = new Map<string, Skill>(skillMapEntries);
     const acquirableSkillIdsSet = new Set<string>(acquirableSkillIds);
+    const conditionalSkillIdsSet = new Set<string>(conditionalSkillIds);
 
     try {
         const result = calculateUpgradeProbability(
             pair, goal, targetStats, trainingRank, 
             inventoryMap, skillMapByName, spBudget,
-            acquirableSkillIdsSet, targetAptitudes
+            acquirableSkillIdsSet, conditionalSkillIdsSet, targetAptitudes
         );
         self.postMessage({ result });
     } catch (error) {
@@ -184,7 +186,7 @@ function convolve(dist1: ProbabilityDistribution, dist2: ProbabilityDistribution
 const calculateUpgradeProbability = (
     pair: BreedingPair, goal: Goal, targetStats: Record<string, number>, trainingRank: 'ss' | 'ss+', 
     inventoryMap: Map<number, Parent>, skillMapByName: Map<string, Skill>, spBudget: number,
-    acquirableSkillIds: Set<string>, targetAptitudes: string[]
+    acquirableSkillIds: Set<string>, conditionalSkillIds: Set<string>, targetAptitudes: string[]
 ) => {
     
     const p1Score = calculateIndividualScore(pair.p1, goal, inventoryMap, skillMapByName, trainingRank);
@@ -194,6 +196,7 @@ const calculateUpgradeProbability = (
 
     const blueDist = getBlueSparkDistribution(goal, targetStats, skillMapByName, trainingRank);
     const pinkDist = getPinkSparkDistribution(goal, trainingRank, targetAptitudes, skillMapByName);
+    // TODO: This logic will be completely overhauled in the next steps.
     const avgWhiteDist = getAverageWhiteSparkScoreDistribution(pair, goal, trainingRank, skillMapByName, inventoryMap, acquirableSkillIds);
     const sparkCountDist = calculateSparkCountDistribution(pair, goal, spBudget, skillMapByName, inventoryMap, acquirableSkillIds);
 
