@@ -105,6 +105,11 @@
     font-weight: 700;
     color: var(--color-score);
 }
+.parent-card__individual-score {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--color-text-muted);
+}
 .parent-card__edit-btn {
     color: var(--color-text-link);
 }
