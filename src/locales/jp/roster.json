@@ -1,5 +1,8 @@
 {
   "rosterTitle": "「{{projectName}}」のスコア付きウマ娘一覧",
+  "rosterSortBy": "ソート:",
+  "finalScore": "最終スコア",
+  "individualScore": "基礎スコア",
   "addParentBtn": "新しい親を追加",
   "placeholderRoster": "このプロジェクトのウマ娘一覧は空です。所持ウマ娘から追加するか、新しく作成してください。",
   "topPairTitle": "継承相性上位ペア",
@@ -7,9 +10,8 @@
     "ownedXowned": "所持 × 所持",
     "ownedXborrowed": "所持 × レンタル",
     "sortBy": "ソート:",
-    "avgScore": "平均スコア",
-    "totalSparks": "合計因子数",
-    "uniqueSparks": "ユニーク因子数",
+    "avgFinalScore": "平均最終スコア",
+    "avgIndivScore": "平均基礎スコア",
     "pair": "ペア",
     "of": "/",
     "viewMissing": "不足しているウィッシュリストスキルを表示"

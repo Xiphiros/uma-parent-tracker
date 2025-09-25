@@ -1,5 +1,8 @@
 {
     "rosterTitle": "Roster for: {{projectName}}",
+    "rosterSortBy": "Sort By:",
+    "finalScore": "Final Score",
+    "individualScore": "Individual Score",
     "placeholderRoster": "No parents in this roster. Add one to get started!",
     "addParentBtn": "Add Parent",
     "topPairTitle": "Top Breeding Pair",
@@ -7,9 +10,8 @@
         "ownedXowned": "Owned × Owned",
         "ownedXborrowed": "Owned × Borrowed",
         "sortBy": "Sort By:",
-        "avgScore": "Avg Score",
-        "totalSparks": "Total Sparks",
-        "uniqueSparks": "Unique Sparks",
+        "avgFinalScore": "Avg Final Score",
+        "avgIndivScore": "Avg Indiv. Score",
         "pair": "Pair",
         "of": "of",
         "viewMissing": "View Missing Wishlist Skills"
