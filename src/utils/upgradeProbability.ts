@@ -9,5 +9,6 @@ export type ProbabilityWorkerPayload = {
     skillMapEntries: [string, Skill][];
     spBudget: number;
     acquirableSkillIds: string[];
+    conditionalSkillIds: string[];
     targetAptitudes: string[];
 };
