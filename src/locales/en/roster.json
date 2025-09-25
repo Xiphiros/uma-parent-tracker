@@ -109,7 +109,7 @@
         "noConditionalSkills": "No conditional sparks selected",
         "obtainableAptitudes": "Obtainable Aptitudes (for Pink Sparks)",
         "estimatedProbabilities": "Estimated Probabilities",
-        "probScoreUpgrade": "Probability of Score Upgrade",
+        "probToSurpassLabel": "Prob. to surpass {{name}} ({{score}} pts)",
         "probSparkCountUpgrade": "Prob. of >{{count}} White Sparks",
         "probSparkCountUpgrade_label": "Prob. of Spark Count Upgrade",
         "disclaimerText": "Probabilities are estimates based on game data and certain assumptions:",

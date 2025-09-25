@@ -122,7 +122,7 @@
     "noConditionalSkills": "条件付きスキル未選択",
     "obtainableAptitudes": "習得可能な適性（赤因子用）",
     "estimatedProbabilities": "推定確率",
-    "probScoreUpgrade": "スコア更新の確率",
+    "probToSurpassLabel": "「{{name}}」({{score}} pt)超えの確率",
     "probSparkCountUpgrade": "白因子{{count}}個超の確率",
     "probSparkCountUpgrade_label": "白因子数更新の確率",
     "disclaimerText": "確率はゲームデータと特定の仮定に基づいた推定値です：",
