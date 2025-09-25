@@ -109,6 +109,13 @@ html.dark {
     border-width: 0;
 }
 
+/* Tooltip Hint Utility */
+.has-tooltip {
+    cursor: help;
+    text-decoration: underline dashed;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
+}
 
 /* Simple scrollbar styling */
 ::-webkit-scrollbar {
