@@ -1,5 +1,5 @@
 import { useAppContext } from '../../context/AppContext';
-import { Grandparent, Parent } from '../../types';
+import { Grandparent, ManualParentData, Parent } from '../../types';
 import './LineageTree.css';
 import { useTranslation } from 'react-i18next';
 
@@ -9,10 +9,10 @@ interface LineageTreeProps {
 
 const LineageTree = ({ parent }: LineageTreeProps) => {
     const { t } = useTranslation('roster');
-    const { appData, umaMapById, getIndividualScore, inventory } = useAppContext();
-    const inventoryMap = new Map(inventory.map(p => [p.id, p]));
+    const { appData, umaMapById, getIndividualScore } = useAppContext();
+    const inventoryMap = new Map(appData.inventory.map((p: Parent) => [p.id, p]));
 
-    const getGrandparent = (gpRef: Grandparent | undefined) => {
+    const getGrandparent = (gpRef: Grandparent | undefined): Parent | ManualParentData | null => {
         if (!gpRef) return null;
         if (typeof gpRef === 'number') return inventoryMap.get(gpRef) || null;
         return gpRef;
@@ -25,7 +25,7 @@ const LineageTree = ({ parent }: LineageTreeProps) => {
     const gp1Avatar = gp1?.umaId ? umaMapById.get(gp1.umaId)?.image : null;
     const gp2Avatar = gp2?.umaId ? umaMapById.get(gp2.umaId)?.image : null;
 
-    const renderAvatar = (src: string | null, size: 'parent' | 'grandparent', entity: Parent | null) => {
+    const renderAvatar = (src: string | null | undefined, size: 'parent' | 'grandparent', entity: Parent | ManualParentData | null) => {
         const score = entity ? getIndividualScore(entity) : 0;
         const tooltip = entity ? t('parentCard.individualScoreTooltip', { score }) : '';
         
