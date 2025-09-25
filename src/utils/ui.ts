@@ -13,18 +13,22 @@ export const formatStars = (count: number): string => {
 };
 
 /**
- * Formats a probability value (0 to 1) into a "1 in X" fractional string.
- * Handles edge cases for 0% and 100% probabilities.
+ * Formats a probability value (0 to 1) into a user-friendly string.
+ * Uses "1 in X" for probabilities < 50% and "XX.X%" for probabilities >= 50%.
+ * Handles edge cases for near-zero and near-one probabilities.
  * @param probability The probability value, from 0 to 1.
- * @returns A formatted string, e.g., "(1 in 5)", "(Never)", or "(Certain)".
+ * @returns A formatted string, e.g., "1 in 5", "75.2%", "Never", or "Certain".
  */
-export const formatProbabilityAsFraction = (probability: number): string => {
-    if (probability <= 0) {
-        return "(Never)";
+export const formatProbability = (probability: number): string => {
+    if (probability < 0.0001) { // Handles cases like 1 in 10,000 or less
+        return "Never";
     }
-    if (probability >= 1) {
-        return "(Certain)";
+    if (probability >= 0.9999) { // Handles 99.99% or more
+        return "Certain";
     }
-    const denominator = Math.round(1 / probability);
-    return `(1 in ${denominator})`;
+    if (probability < 0.5) {
+        const denominator = Math.round(1 / probability);
+        return `1 in ${denominator}`;
+    }
+    return `${(probability * 100).toFixed(1)}%`;
 };
