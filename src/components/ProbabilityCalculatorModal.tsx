@@ -64,16 +64,18 @@ const ProbabilityCalculatorModal = ({ isOpen, onClose, pair }: ProbabilityCalcul
     }, []);
 
     useEffect(() => {
-        if (isOpen && pair && goal) {
+        if (isOpen) {
             // Reset state on open
             setResults(null);
             setError(null);
             setIsLoading(false);
             setAcquirableSkillIds(new Set<string>());
             setConditionalSkillIds(new Set<string>());
-            setTargetAptitudes(goal.primaryPink);
+            if (goal) {
+                setTargetAptitudes(goal.primaryPink);
+            }
         }
-    }, [isOpen, pair, goal]);
+    }, [isOpen, goal]);
     
     const getDisplayName = (umaId: string) => umaMapById.get(umaId)?.[displayNameProp] || 'Unknown';
 
