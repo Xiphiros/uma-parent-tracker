@@ -72,21 +72,11 @@
     color: var(--color-text-primary);
 }
 
-.prob-calc__result-probability {
-    display: flex;
-    align-items: baseline;
-    gap: 0.5rem;
-}
-
-.prob-calc__result-percent {
+.prob-calc__result-value {
     font-size: 1.125rem;
     font-weight: 700;
     color: var(--color-score);
-}
-
-.prob-calc__result-fraction {
-    font-size: 0.8rem;
-    color: var(--color-text-muted);
+    flex-shrink: 0;
 }
 
 .prob-calc__result-runs {
