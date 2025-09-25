@@ -24,6 +24,7 @@
 @import "./components/common/PairedParentCard.css";
 @import "./components/common/PlaceholderCard.css";
 @import "./components/ProbabilityCalculatorModal.css";
+@import "./components/PurchaseOrderInfoModal.css";
 @import "./components/common/RangeSlider.css";
 @import "./components/SelectAcquirableSkillsModal.css";
 @import "./components/SelectGrandparentModal.css";

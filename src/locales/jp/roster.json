@@ -119,9 +119,6 @@
     "allSkillsConsidered": "血統内の全スキルを考慮",
     "obtainableAptitudes": "習得可能な適性（赤因子用）",
     "estimatedProbabilities": "推定確率",
-    "primaryBlueSpark": "★3 主要青因子",
-    "primaryPinkSpark": "★3 主要赤因子",
-    "noMissingSkills": "不足している高ランク（S/A）のウィッシュリストスキルはありません。",
     "probScoreUpgrade": "スコア更新の確率",
     "probSparkCountUpgrade": "白因子{{count}}個超の確率",
     "probSparkCountUpgrade_label": "白因子数更新の確率",
@@ -131,6 +128,11 @@
     "disclaimerPinkDynamic": "赤因子の確率は、目標と「習得可能な適性」リストの共通部分に基づいています。",
     "disclaimerWhiteSP": "獲得される白因子の数は、ウィッシュリスト、ペアの血統、および提供されたスキルポイント予算に基づいて推定されます。Lv. 1のスキルのみが考慮されます。",
     "selectLineage": "血統から選択",
-    "skillsSelected": "{{count}}個のスキルを選択済み"
+    "skillsSelected": "{{count}}個のスキルを選択済み",
+    "purchaseOrder": {
+        "title": "想定されるスキル習得順序",
+        "tooltip": "確率モデルがスキル習得を優先する順序を表示します。",
+        "explanation": "確率モデルは欲張り法（Greedy）戦略を想定しています。SP予算が尽きるまで、以下の順序で利用可能なスキルを常に習得しようとします：<br>1. <code>ウィッシュリストのランク (S > A > B > C)</code><br>2. <code>スキルレベル (Lv. 1 > Lv. 2)</code><br>3. <code>SPコスト (低い > 高い)</code>"
+    }
   }
 }

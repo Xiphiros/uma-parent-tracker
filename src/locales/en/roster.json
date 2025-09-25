@@ -106,9 +106,6 @@
         "allSkillsConsidered": "All lineage skills considered",
         "obtainableAptitudes": "Obtainable Aptitudes (for Pink Sparks)",
         "estimatedProbabilities": "Estimated Probabilities",
-        "primaryBlueSpark": "3★ Primary Blue Spark",
-        "primaryPinkSpark": "3★ Primary Pink Spark",
-        "noMissingSkills": "No missing high-value (S/A rank) wishlist skills.",
         "probScoreUpgrade": "Probability of Score Upgrade",
         "probSparkCountUpgrade": "Prob. of >{{count}} White Sparks",
         "probSparkCountUpgrade_label": "Prob. of Spark Count Upgrade",
@@ -118,6 +115,11 @@
         "disclaimerPinkDynamic": "Pink spark probability is based on the intersection of your Goal and the 'Obtainable Aptitudes' list.",
         "disclaimerWhiteSP": "The number of white sparks acquired is estimated based on your wishlist, the pair's lineage, and the provided Skill Point Budget. Only Lv. 1 skills are considered.",
         "selectLineage": "Select Lineage",
-        "skillsSelected": "{{count}} skills selected"
+        "skillsSelected": "{{count}} skills selected",
+        "purchaseOrder": {
+            "title": "Assumed Skill Purchase Order",
+            "tooltip": "View the order in which skills are prioritized for purchase by the probability model.",
+            "explanation": "The probability model assumes a greedy purchase strategy. It will always attempt to buy available skills in the following order until the SP Budget is depleted:<br>1. <code>Wishlist Tier (S > A > B > C)</code><br>2. <code>Skill Level (Lv. 1 > Lv. 2)</code><br>3. <code>SP Cost (Lowest > Highest)</code>"
+        }
     }
 }
