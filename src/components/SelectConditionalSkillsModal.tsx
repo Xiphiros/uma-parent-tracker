@@ -25,7 +25,7 @@ const SelectConditionalSkillsModal = ({ isOpen, onClose, allSkills, selectedIds,
         if (isOpen) {
             setLocalSelectedIds(new Set(selectedIds));
         }
-    }, [isOpen, selectedIds]);
+    }, [isOpen]);
 
     const handleToggle = (skillId: string) => {
         const newSet = new Set(localSelectedIds);
