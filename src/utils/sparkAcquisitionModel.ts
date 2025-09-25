@@ -34,29 +34,8 @@ const calculateFreeItemDistribution = (items: { acquireProb: number }[]): Map<nu
 };
 
 /**
- * Convolves two probability distributions to get the distribution of their sum.
- */
-const convolveDistributions = (dist1: Map<number, number>, dist2: Map<number, number>): Map<number, number> => {
-    const newDist = new Map<number, number>();
-    if (dist1.size === 0) return dist2;
-    if (dist2.size === 0) return dist1;
-
-    for (const [count1, prob1] of dist1.entries()) {
-        for (const [count2, prob2] of dist2.entries()) {
-            const newCount = count1 + count2;
-            const newProb = prob1 * prob2;
-            newDist.set(newCount, (newDist.get(newCount) || 0) + newProb);
-        }
-    }
-    return newDist;
-};
-
-/**
  * Calculates a probability distribution for the number of white sparks acquired during a training run.
- * This function uses a two-phase approach:
- * 1. Calculates the distribution for "free" conditional sparks (races, scenarios, aptitudes).
- * 2. Calculates the distribution for "purchased" skills using a DP approach for the stochastic knapsack problem.
- * 3. Convolves the two distributions to get the final result.
+ * @returns An object containing two separate probability distributions: one for free sparks and one for purchased sparks.
  */
 export const calculateSparkCountDistribution = (
     pair: BreedingPair,
@@ -66,7 +45,7 @@ export const calculateSparkCountDistribution = (
     inventoryMap: Map<number, Parent>,
     acquirableSkillIds: Set<string>,
     conditionalSkillIds: Set<string>
-): Map<number, number> => {
+): { freeSparksDist: Map<number, number>, purchasedSparksDist: Map<number, number> } => {
     
     const lineage: (Parent | ManualParentData | null)[] = [
         pair.p1, pair.p2,
@@ -163,6 +142,5 @@ export const calculateSparkCountDistribution = (
         }
     }
 
-    // --- Phase 3: Convolve the two distributions ---
-    return convolveDistributions(freeSparksDist, purchasedSparksDist);
+    return { freeSparksDist, purchasedSparksDist };
 };
