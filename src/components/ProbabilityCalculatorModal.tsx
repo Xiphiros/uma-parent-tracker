@@ -1,10 +1,11 @@
 import { useState, useMemo, useEffect, useRef } from 'react';
-import { BreedingPair, Skill } from '../types';
+import { BreedingPair } from '../types';
 import Modal from './common/Modal';
 import { useTranslation } from 'react-i18next';
 import { useAppContext } from '../context/AppContext';
 import './ProbabilityCalculatorModal.css';
 import SelectAcquirableSkillsModal from './SelectAcquirableSkillsModal';
+import SelectConditionalSkillsModal from './SelectConditionalSkillsModal';
 import { ProbabilityWorkerPayload } from '../utils/upgradeProbability';
 import MultiSelect from './common/MultiSelect';
 
@@ -26,9 +27,11 @@ const ProbabilityCalculatorModal = ({ isOpen, onClose, pair }: ProbabilityCalcul
     const [spBudget, setSpBudget] = useState(1800);
     const [trainingRank, setTrainingRank] = useState<'ss' | 'ss+'>('ss');
     const [acquirableSkillIds, setAcquirableSkillIds] = useState(new Set<string>());
+    const [conditionalSkillIds, setConditionalSkillIds] = useState(new Set<string>());
     const [targetAptitudes, setTargetAptitudes] = useState<string[]>([]);
     
     const [isSkillModalOpen, setIsSkillModalOpen] = useState(false);
+    const [isConditionalModalOpen, setIsConditionalModalOpen] = useState(false);
     const [results, setResults] = useState<{ probScoreUpgrade: number; probSparkCountUpgrade: number; targetSparkCount: number } | null>(null);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
@@ -55,6 +58,7 @@ const ProbabilityCalculatorModal = ({ isOpen, onClose, pair }: ProbabilityCalcul
             setError(null);
             setIsLoading(false);
             setAcquirableSkillIds(new Set<string>());
+            setConditionalSkillIds(new Set<string>());
             setTargetAptitudes(goal.primaryPink);
         }
     }, [isOpen, pair, goal]);
@@ -71,12 +75,16 @@ const ProbabilityCalculatorModal = ({ isOpen, onClose, pair }: ProbabilityCalcul
             skillMapEntries: Array.from(skillMapByName.entries()),
             spBudget,
             acquirableSkillIds: Array.from(acquirableSkillIds),
+            conditionalSkillIds: Array.from(conditionalSkillIds),
             targetAptitudes
         };
         workerRef.current.postMessage(payload);
     };
     
     const translatedAptitudeOptions = PINK_SPARK_OPTIONS.map(opt => ({ value: opt, label: t(opt, { ns: 'game' }) }));
+    
+    const purchasableSkills = useMemo(() => masterSkillList.filter(s => s.type === 'normal' && !s.id.startsWith('race_') && !s.id.startsWith('scenario_') && !s.id.startsWith('aptitude_')), [masterSkillList]);
+    const conditionalSkills = useMemo(() => masterSkillList.filter(s => s.id.startsWith('race_') || s.id.startsWith('scenario_') || s.id.startsWith('aptitude_')), [masterSkillList]);
 
     return (
         <>
@@ -109,6 +117,11 @@ const ProbabilityCalculatorModal = ({ isOpen, onClose, pair }: ProbabilityCalcul
                                 <label className="form__label">{t('breedingPlanner.acquirableSkills')}</label>
                                 <button className="button button--secondary w-full justify-center" onClick={() => setIsSkillModalOpen(true)}>{t('breedingPlanner.selectAcquirableSkills')}</button>
                                 <p className="text-xs text-stone-500 text-center mt-1">{acquirableSkillIds.size > 0 ? t('breedingPlanner.skillsSelected', { count: acquirableSkillIds.size }) : t('breedingPlanner.allSkillsConsidered')}</p>
+                            </div>
+                            <div>
+                                <label className="form__label">{t('breedingPlanner.conditionalSkills')}</label>
+                                <button className="button button--secondary w-full justify-center" onClick={() => setIsConditionalModalOpen(true)}>{t('breedingPlanner.selectConditionalSkills')}</button>
+                                <p className="text-xs text-stone-500 text-center mt-1">{conditionalSkillIds.size > 0 ? t('breedingPlanner.skillsSelected', { count: conditionalSkillIds.size }) : t('breedingPlanner.noConditionalSkills')}</p>
                             </div>
                             <div>
                                 <label className="form__label">{t('breedingPlanner.obtainableAptitudes')}</label>
@@ -158,11 +171,19 @@ const ProbabilityCalculatorModal = ({ isOpen, onClose, pair }: ProbabilityCalcul
             <SelectAcquirableSkillsModal
                 isOpen={isSkillModalOpen}
                 onClose={() => setIsSkillModalOpen(false)}
-                allSkills={masterSkillList.filter(s => s.type === 'normal')}
+                allSkills={purchasableSkills}
                 selectedIds={acquirableSkillIds}
                 onSave={setAcquirableSkillIds}
                 pair={pair}
                 spBudget={spBudget}
+            />
+
+            <SelectConditionalSkillsModal
+                isOpen={isConditionalModalOpen}
+                onClose={() => setIsConditionalModalOpen(false)}
+                allSkills={conditionalSkills}
+                selectedIds={conditionalSkillIds}
+                onSave={setConditionalSkillIds}
             />
         </>
     );
