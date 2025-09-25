@@ -2,7 +2,7 @@ import i18n from '../i18n';
 import { AppData, Folder, Parent, Profile, ServerSpecificData } from '../types';
 import { generateParentHash } from './hashing';
 
-export const CURRENT_VERSION = 8;
+export const CURRENT_VERSION = 9;
 
 // --- Default State Creation ---
 
@@ -35,6 +35,7 @@ export const createDefaultState = (): AppData => {
         version: CURRENT_VERSION,
         activeServer: 'jp',
         inventory: [],
+        skillPresets: [],
         serverData: {
             jp: createDefaultServerData(),
             global: createDefaultServerData(),
@@ -157,6 +158,14 @@ const migrateToV8 = (data: any): any => {
     return data;
 };
 
+const migrateToV9 = (data: any): any => {
+    if (!data.skillPresets) {
+        data.skillPresets = [];
+    }
+    data.version = 9;
+    return data;
+};
+
 const runSanityChecks = (data: any): any => {
     (Object.values(data.serverData) as ServerSpecificData[]).forEach(serverData => {
         serverData.profiles.forEach((p: Profile) => {
@@ -190,6 +199,7 @@ export const migrateData = (data: any): AppData => {
     if (migratedData.version < 6) migratedData = migrateToV6(migratedData);
     if (migratedData.version < 7) migratedData = migrateToV7(migratedData);
     if (migratedData.version < 8) migratedData = migrateToV8(migratedData);
+    if (migratedData.version < 9) migratedData = migrateToV9(migratedData);
     
     // Final check to ensure data consistency after all migrations
     migratedData = runSanityChecks(migratedData);
