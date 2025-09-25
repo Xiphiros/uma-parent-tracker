@@ -51,7 +51,7 @@ const SelectAcquirableSkillsModal = ({ isOpen, onClose, allSkills: availableSkil
         if (isOpen) {
             setLocalSelectedIds(new Set(selectedIds));
         }
-    }, [isOpen, selectedIds]);
+    }, [isOpen]);
 
     const handleToggle = (skillId: string) => {
         const newSet = new Set(localSelectedIds);
