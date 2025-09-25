@@ -8,7 +8,7 @@ import { ProbabilityWorkerPayload } from '../utils/upgradeProbability';
 
 self.onmessage = (e: MessageEvent<ProbabilityWorkerPayload>) => {
     const { 
-        pair, goal, targetStats, trainingRank, 
+        pair, p1DisplayName, p2DisplayName, goal, targetStats, trainingRank, 
         inventory, skillMapEntries, spBudget,
         acquirableSkillIds, conditionalSkillIds, targetAptitudes
     } = e.data;
@@ -20,7 +20,7 @@ self.onmessage = (e: MessageEvent<ProbabilityWorkerPayload>) => {
 
     try {
         const result = calculateUpgradeProbability(
-            pair, goal, targetStats, trainingRank, 
+            pair, p1DisplayName, p2DisplayName, goal, targetStats, trainingRank, 
             inventoryMap, skillMapByName, spBudget,
             acquirableSkillIdsSet, conditionalSkillIdsSet, targetAptitudes
         );
@@ -173,15 +173,22 @@ function convolve(dist1: ProbabilityDistribution, dist2: ProbabilityDistribution
 }
 
 const calculateUpgradeProbability = (
-    pair: BreedingPair, goal: Goal, targetStats: Record<string, number>, trainingRank: 'ss' | 'ss+', 
+    pair: BreedingPair, p1DisplayName: string, p2DisplayName: string, goal: Goal, targetStats: Record<string, number>, trainingRank: 'ss' | 'ss+', 
     inventoryMap: Map<number, Parent>, skillMapByName: Map<string, Skill>, spBudget: number,
     acquirableSkillIds: Set<string>, conditionalSkillIds: Set<string>, targetAptitudes: string[]
 ) => {
     
-    const p1Score = calculateIndividualScore(pair.p1, goal, inventoryMap, skillMapByName, trainingRank);
-    const p2Score = calculateIndividualScore(pair.p2, goal, inventoryMap, skillMapByName, trainingRank);
-    const targetIndividualScore = Math.min(p1Score, p2Score);
-    const targetSparkCount = Math.min(pair.p1.whiteSparks.length, pair.p2.whiteSparks.length);
+    // --- Target Score Logic ---
+    const weakerParent = pair.p1.score < pair.p2.score ? pair.p1 : pair.p2;
+    const targetParentName = pair.p1.score < pair.p2.score ? p1DisplayName : p2DisplayName;
+    const targetParentScore = weakerParent.score;
+
+    const p1IndividualScore = calculateIndividualScore(pair.p1, goal, inventoryMap, skillMapByName, trainingRank);
+    const p2IndividualScore = calculateIndividualScore(pair.p2, goal, inventoryMap, skillMapByName, trainingRank);
+    const grandparentBonusForChild = (p1IndividualScore * 0.5) + (p2IndividualScore * 0.5);
+    
+    const requiredIndividualScore = targetParentScore - grandparentBonusForChild;
+    const targetSparkCount = weakerParent.whiteSparks.length;
 
     // --- Phase 1: Get Score and Count Distributions ---
     const blueDist = getBlueSparkDistribution(goal, targetStats, skillMapByName, trainingRank);
@@ -230,7 +237,7 @@ const calculateUpgradeProbability = (
     // --- Phase 4: Calculate Final Probabilities ---
     let probScoreUpgrade = 0;
     for (const [score, prob] of finalScoreDist.entries()) {
-        if (score > targetIndividualScore) {
+        if (score > requiredIndividualScore) {
             probScoreUpgrade += prob;
         }
     }
@@ -243,5 +250,5 @@ const calculateUpgradeProbability = (
         }
     }
     
-    return { probScoreUpgrade, probSparkCountUpgrade, targetSparkCount };
+    return { probScoreUpgrade, probSparkCountUpgrade, targetSparkCount, targetParentName, targetParentScore };
 };
