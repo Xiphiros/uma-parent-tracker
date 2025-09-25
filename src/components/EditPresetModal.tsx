@@ -1,8 +1,7 @@
 import { useState, useMemo, useEffect } from 'react';
-import { SkillPreset } from '../types';
+import { SkillPreset, Skill } from '../types';
 import Modal from './common/Modal';
 import { useAppContext } from '../context/AppContext';
-import DualListBox from './common/DualListBox';
 import './EditPresetModal.css';
 
 interface EditPresetModalProps {
@@ -18,12 +17,12 @@ const EditPresetModal = ({ isOpen, onClose, onSave, presetToEdit }: EditPresetMo
 
     const [name, setName] = useState('');
     const [selectedSkillIds, setSelectedSkillIds] = useState<Set<string>>(new Set());
+    const [searchQuery, setSearchQuery] = useState('');
 
     const purchasableSkills = useMemo(() => {
         return masterSkillList
-            .filter(s => s.type === 'normal' && !s.id.startsWith('race_') && !s.id.startsWith('scenario_') && !s.id.startsWith('aptitude_'))
-            .map(s => ({ id: s.id, name: s[displayNameProp] }));
-    }, [masterSkillList, displayNameProp]);
+            .filter(s => s.type === 'normal' && !s.id.startsWith('race_') && !s.id.startsWith('scenario_') && !s.id.startsWith('aptitude_'));
+    }, [masterSkillList]);
 
     useEffect(() => {
         if (isOpen) {
@@ -34,6 +33,7 @@ const EditPresetModal = ({ isOpen, onClose, onSave, presetToEdit }: EditPresetMo
                 setName('New Preset');
                 setSelectedSkillIds(new Set());
             }
+            setSearchQuery('');
         }
     }, [isOpen, presetToEdit]);
 
@@ -43,6 +43,26 @@ const EditPresetModal = ({ isOpen, onClose, onSave, presetToEdit }: EditPresetMo
             onClose();
         }
     };
+
+    const handleToggle = (skillId: string) => {
+        const newSet = new Set(selectedSkillIds);
+        if (newSet.has(skillId)) {
+            newSet.delete(skillId);
+        } else {
+            newSet.add(skillId);
+        }
+        setSelectedSkillIds(newSet);
+    };
+
+    const handleSelectAll = () => setSelectedSkillIds(new Set(purchasableSkills.map(s => s.id)));
+    const handleDeselectAll = () => setSelectedSkillIds(new Set());
+
+    const filteredSkills = useMemo(() => {
+        const lowerQuery = searchQuery.toLowerCase();
+        return purchasableSkills.filter(skill => 
+            (skill[displayNameProp] || skill.name_en).toLowerCase().includes(lowerQuery)
+        );
+    }, [purchasableSkills, searchQuery, displayNameProp]);
 
     const modalTitle = presetToEdit ? `Edit Preset: ${presetToEdit.name}` : 'Create New Preset';
 
@@ -59,18 +79,43 @@ const EditPresetModal = ({ isOpen, onClose, onSave, presetToEdit }: EditPresetMo
                         onChange={(e) => setName(e.target.value)}
                     />
                 </div>
-                <DualListBox
-                    allItems={purchasableSkills}
-                    initialExcludedIds={new Set(purchasableSkills.filter(s => !selectedSkillIds.has(s.id)).map(s => s.id))}
-                    onChange={(excludedIds) => {
-                        const newSelectedIds = new Set(purchasableSkills.filter(s => !excludedIds.has(s.id)).map(s => s.id));
-                        setSelectedSkillIds(newSelectedIds);
-                    }}
-                />
+                <div>
+                    <div className="edit-preset__controls">
+                        <input
+                            type="text"
+                            placeholder="Search skills..."
+                            className="form__input"
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                        />
+                        <div className="edit-preset__actions">
+                            <button className="button button--secondary button--small" onClick={handleSelectAll}>Select All</button>
+                            <button className="button button--secondary button--small" onClick={handleDeselectAll}>Deselect All</button>
+                        </div>
+                    </div>
+                    <div className="edit-preset__grid">
+                        <div className="edit-preset__list">
+                            {filteredSkills.map(skill => (
+                                <label key={skill.id} className="edit-preset__item">
+                                    <input
+                                        type="checkbox"
+                                        className="form__checkbox"
+                                        checked={selectedSkillIds.has(skill.id)}
+                                        onChange={() => handleToggle(skill.id)}
+                                    />
+                                    {skill[displayNameProp] || skill.name_en}
+                                </label>
+                            ))}
+                        </div>
+                    </div>
+                </div>
             </div>
             <div className="dialog-modal__footer">
-                <button className="button button--neutral" onClick={onClose}>Cancel</button>
-                <button className="button button--primary" onClick={handleSave}>Save Preset</button>
+                <span className="edit-preset__summary">{selectedSkillIds.size} skills selected</span>
+                <div>
+                    <button className="button button--neutral" onClick={onClose}>Cancel</button>
+                    <button className="button button--primary" onClick={handleSave}>Save Preset</button>
+                </div>
             </div>
         </Modal>
     );
