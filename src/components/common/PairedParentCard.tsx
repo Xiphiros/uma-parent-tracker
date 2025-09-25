@@ -15,12 +15,13 @@ const WISH_RANK_ORDER: { [key: string]: number } = { S: 0, A: 1, B: 2, C: 3 };
 
 const PairedParentCard = ({ parent, onDetailsClick }: PairedParentCardProps) => {
     const { t } = useTranslation(['roster', 'game']);
-    const { umaMapById, dataDisplayLanguage, getActiveProfile, appData, skillMapByName } = useAppContext();
+    const { umaMapById, dataDisplayLanguage, getActiveProfile, appData, skillMapByName, getIndividualScore } = useAppContext();
     const displayNameProp = dataDisplayLanguage === 'jp' ? 'name_jp' : 'name_en';
     const goal = getActiveProfile()?.goal;
 
     const umaData = useMemo(() => umaMapById.get(parent.umaId), [umaMapById, parent.umaId]);
     const displayName = umaData ? umaData[displayNameProp] : parent.name;
+    const individualScore = getIndividualScore(parent);
 
     const aggregatedSparks = useMemo(() => {
         const inventoryMap = new Map(appData.inventory.map(p => [p.id, p]));
@@ -129,7 +130,10 @@ const PairedParentCard = ({ parent, onDetailsClick }: PairedParentCardProps) => 
                             {parent.isBorrowed && <span className="parent-card__borrowed-tag">{t('parentCard.borrowed')}</span>}
                         </h4>
                     </div>
-                    <div className="paired-parent-card__score">{parent.score} {t('parentCard.pts')}</div>
+                    <div className="flex items-baseline gap-2">
+                        <span className="paired-parent-card__score">{parent.score} {t('parentCard.pts')}</span>
+                        <span className="parent-card__individual-score">({individualScore} pts)</span>
+                    </div>
                 </div>
                  <button className="paired-parent-card__details-btn" onClick={onDetailsClick} title={t('parentCard.details')}>
                     <FontAwesomeIcon icon={faEllipsis} />
