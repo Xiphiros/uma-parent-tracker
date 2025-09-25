@@ -1,5 +1,5 @@
 import { useState, useMemo, useEffect, useRef } from 'react';
-import { BreedingPair } from '../types';
+import { BreedingPair, Skill } from '../types';
 import Modal from './common/Modal';
 import { useTranslation } from 'react-i18next';
 import { useAppContext } from '../context/AppContext';
@@ -21,7 +21,8 @@ interface CalculationResult {
     probSparkCountUpgrade: number;
     targetSparkCount: number;
     targetParentName: string;
-    targetParentScore: number;
+    targetParentFinalScore: number;
+    targetParentIndividualScore: number;
 }
 
 const STAT_NAMES = ['speed', 'stamina', 'power', 'guts', 'wit'];
@@ -33,6 +34,7 @@ const ProbabilityCalculatorModal = ({ isOpen, onClose, pair }: ProbabilityCalcul
     const goal = getActiveProfile()?.goal;
     const displayNameProp = dataDisplayLanguage === 'jp' ? 'name_jp' : 'name_en';
 
+    const [calculationMode, setCalculationMode] = useState<'final' | 'individual'>('final');
     const [targetStats, setTargetStats] = useState<Record<string, number>>({ speed: 1100, stamina: 1100, power: 1100, guts: 1100, wit: 1100 });
     const [spBudget, setSpBudget] = useState(1800);
     const [trainingRank, setTrainingRank] = useState<'ss' | 'ss+'>('ss');
@@ -85,6 +87,7 @@ const ProbabilityCalculatorModal = ({ isOpen, onClose, pair }: ProbabilityCalcul
             pair, 
             p1DisplayName: getDisplayName(pair.p1.umaId),
             p2DisplayName: getDisplayName(pair.p2.umaId),
+            calculationMode,
             goal, 
             targetStats, 
             trainingRank,
@@ -110,6 +113,13 @@ const ProbabilityCalculatorModal = ({ isOpen, onClose, pair }: ProbabilityCalcul
                     <div className="prob-calc__inputs">
                         <h4 className="prob-calc__inputs-title">{t('breedingPlanner.inputs')}</h4>
                         <div className="prob-calc__input-group">
+                            <div>
+                                <label className="form__label">{t('breedingPlanner.targetOutcome')}</label>
+                                <div className="prob-calc__mode-toggle">
+                                    <button className={`prob-calc__mode-btn ${calculationMode === 'final' ? 'prob-calc__mode-btn--active' : ''}`} onClick={() => setCalculationMode('final')}>{t('breedingPlanner.targetFinalScore')}</button>
+                                    <button className={`prob-calc__mode-btn ${calculationMode === 'individual' ? 'prob-calc__mode-btn--active' : ''}`} onClick={() => setCalculationMode('individual')}>{t('breedingPlanner.targetIndividualScore')}</button>
+                                </div>
+                            </div>
                             <div>
                                 <label className="form__label">{t('breedingPlanner.targetStats')}</label>
                                 {STAT_NAMES.map(stat => (
@@ -155,7 +165,12 @@ const ProbabilityCalculatorModal = ({ isOpen, onClose, pair }: ProbabilityCalcul
                                 <>
                                     <div className="prob-calc__result-item">
                                         <div className="prob-calc__result-header">
-                                            <span className="prob-calc__result-name">{t('breedingPlanner.probToSurpassLabel', { name: results.targetParentName, score: results.targetParentScore })}</span>
+                                            <span className="prob-calc__result-name">
+                                                {calculationMode === 'final'
+                                                    ? t('breedingPlanner.probToSurpassFinalLabel', { name: results.targetParentName, score: results.targetParentFinalScore })
+                                                    : t('breedingPlanner.probToSurpassIndividualLabel', { name: results.targetParentName, score: Math.round(results.targetParentIndividualScore) })
+                                                }
+                                            </span>
                                             <span className="prob-calc__result-value">{formatProbability(results.probScoreUpgrade)}</span>
                                         </div>
                                     </div>
