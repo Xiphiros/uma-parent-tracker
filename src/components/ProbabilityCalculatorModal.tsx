@@ -1,5 +1,5 @@
 import { useState, useMemo, useEffect, useRef } from 'react';
-import { BreedingPair, Skill } from '../types';
+import { BreedingPair } from '../types';
 import Modal from './common/Modal';
 import { useTranslation } from 'react-i18next';
 import { useAppContext } from '../context/AppContext';
@@ -8,7 +8,7 @@ import SelectAcquirableSkillsModal from './SelectAcquirableSkillsModal';
 import SelectConditionalSkillsModal from './SelectConditionalSkillsModal';
 import { ProbabilityWorkerPayload } from '../utils/upgradeProbability';
 import MultiSelect from './common/MultiSelect';
-import { formatProbabilityAsFraction } from '../utils/ui';
+import { formatProbability } from '../utils/ui';
 
 interface ProbabilityCalculatorModalProps {
     isOpen: boolean;
@@ -140,19 +140,13 @@ const ProbabilityCalculatorModal = ({ isOpen, onClose, pair }: ProbabilityCalcul
                                     <div className="prob-calc__result-item">
                                         <div className="prob-calc__result-header">
                                             <span className="prob-calc__result-name">{t('breedingPlanner.probScoreUpgrade')}</span>
-                                            <div className="prob-calc__result-probability">
-                                                <span className="prob-calc__result-percent">{(results.probScoreUpgrade * 100).toFixed(2)}%</span>
-                                                <span className="prob-calc__result-fraction">{formatProbabilityAsFraction(results.probScoreUpgrade)}</span>
-                                            </div>
+                                            <span className="prob-calc__result-value">{formatProbability(results.probScoreUpgrade)}</span>
                                         </div>
                                     </div>
                                     <div className="prob-calc__result-item">
                                         <div className="prob-calc__result-header">
                                             <span className="prob-calc__result-name">{t('breedingPlanner.probSparkCountUpgrade', { count: results.targetSparkCount })}</span>
-                                            <div className="prob-calc__result-probability">
-                                                <span className="prob-calc__result-percent">{(results.probSparkCountUpgrade * 100).toFixed(2)}%</span>
-                                                <span className="prob-calc__result-fraction">{formatProbabilityAsFraction(results.probSparkCountUpgrade)}</span>
-                                            </div>
+                                            <span className="prob-calc__result-value">{formatProbability(results.probSparkCountUpgrade)}</span>
                                         </div>
                                     </div>
                                 </>
