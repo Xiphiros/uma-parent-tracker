@@ -26,12 +26,13 @@ const WISH_RANK_ORDER: { [key: string]: number } = { S: 0, A: 1, B: 2, C: 3 };
 
 const ParentCard = ({ parent, isTopParent = false, displayScore = true, onEdit, onDelete, onAssign, onMove, assignedProjects, isSelectionMode = false, onSelect, isDisabled = false, isInCurrentRoster = false }: ParentCardProps) => {
     const { t } = useTranslation(['roster', 'common', 'game']);
-    const { getActiveProfile, dataDisplayLanguage, umaMapById, skillMapByName, appData } = useAppContext();
+    const { getActiveProfile, dataDisplayLanguage, umaMapById, skillMapByName, appData, getIndividualScore } = useAppContext();
     const goal = getActiveProfile()?.goal;
     const displayNameProp = dataDisplayLanguage === 'jp' ? 'name_jp' : 'name_en';
 
     const umaData = useMemo(() => umaMapById.get(parent.umaId), [umaMapById, parent.umaId]);
     const displayName = umaData ? umaData[displayNameProp] : parent.name;
+    const individualScore = getIndividualScore(parent);
 
     const aggregatedSparks = useMemo(() => {
         const inventoryMap = new Map(appData.inventory.map(p => [p.id, p]));
@@ -157,7 +158,7 @@ const ParentCard = ({ parent, isTopParent = false, displayScore = true, onEdit, 
                             <div key={spark.name} className="lineage-spark" data-spark-category="white" title={tooltipText}>
                                 {`${spark.totalStars}★ ${getSparkDisplayName(spark.name)}`}
                                 {spark.parentStars > 0 && <FontAwesomeIcon icon={faUser} className="lineage-spark__gp-icon" title={t('parentCard.parentSource')} />}
-                                {spark.parentStars > 0 && spark.parentStars < spark.totalStars ? `(${spark.parentStars}★)` : ''}
+                                {spark.parentStars > 0 && spark.parentStars < spark.totalStars ? ` (${spark.parentStars}★)` : ''}
                                 {tier && <span className="parent-card__spark-tier">{tier}</span>}
                             </div>
                         );
@@ -191,7 +192,12 @@ const ParentCard = ({ parent, isTopParent = false, displayScore = true, onEdit, 
                             </div>
                         </div>
                         <div className="parent-card__score-wrapper">
-                            {displayScore && <div className="parent-card__score">{parent.score} {t('parentCard.pts')}</div>}
+                            {displayScore && (
+                                <>
+                                    <div className="parent-card__score">{parent.score} {t('parentCard.pts')}</div>
+                                    <div className="parent-card__individual-score">({individualScore} pts)</div>
+                                </>
+                            )}
                             {isSelectionMode && onSelect ? (
                                 <button onClick={() => !isDisabled && onSelect(parent)} className="button button--primary button--small mt-1" disabled={isDisabled}>{t('common:select')}</button>
                             ) : (
