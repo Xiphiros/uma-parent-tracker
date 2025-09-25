@@ -1,204 +1,170 @@
-import { useState, useMemo, useEffect } from 'react';
-import { BreedingPair, ManualParentData, Parent, Skill } from '../types';
+import { useState, useMemo, useEffect, useRef } from 'react';
+import { BreedingPair, Skill } from '../types';
 import Modal from './common/Modal';
 import { useTranslation } from 'react-i18next';
 import { useAppContext } from '../context/AppContext';
-import './SelectAcquirableSkillsModal.css';
-import { resolveGrandparent } from '../utils/affinity';
+import './ProbabilityCalculatorModal.css';
+import SelectAcquirableSkillsModal from './SelectAcquirableSkillsModal';
+import { ProbabilityWorkerPayload } from '../utils/upgradeProbability';
+import MultiSelect from './common/MultiSelect';
 
-interface SelectAcquirableSkillsModalProps {
+interface ProbabilityCalculatorModalProps {
     isOpen: boolean;
     onClose: () => void;
-    allSkills: Skill[];
-    selectedIds: Set<string>;
-    onSave: (newSelectedIds: Set<string>) => void;
     pair: BreedingPair | null;
 }
 
-const WISH_RANK_ORDER: { [key: string]: number } = { S: 0, A: 1, B: 2, C: 3, Other: 4 };
+const STAT_NAMES = ['speed', 'stamina', 'power', 'guts', 'wit'];
+const PINK_SPARK_OPTIONS = ['Turf', 'Dirt', 'Sprint', 'Mile', 'Medium', 'Long', 'Front Runner', 'Pace Chaser', 'Late Surger', 'End Closer'];
 
-const SelectAcquirableSkillsModal = ({ isOpen, onClose, allSkills: availableSkills, selectedIds, onSave, pair }: SelectAcquirableSkillsModalProps) => {
-    const { t } = useTranslation(['roster', 'goal', 'common']);
-    const { getActiveProfile, dataDisplayLanguage, masterSkillList, appData } = useAppContext();
-    const displayNameProp = dataDisplayLanguage === 'jp' ? 'name_jp' : 'name_en';
+const ProbabilityCalculatorModal = ({ isOpen, onClose, pair }: ProbabilityCalculatorModalProps) => {
+    const { t } = useTranslation(['roster', 'common', 'game']);
+    const { getActiveProfile, appData, masterSkillList, skillMapByName } = useAppContext();
     const goal = getActiveProfile()?.goal;
 
-    const [localSelectedIds, setLocalSelectedIds] = useState(selectedIds);
-    const [searchQuery, setSearchQuery] = useState('');
+    const [targetStats, setTargetStats] = useState<Record<string, number>>({ speed: 1100, stamina: 1100, power: 1100, guts: 1100, wit: 1100 });
+    const [spBudget, setSpBudget] = useState(1800);
+    const [trainingRank, setTrainingRank] = useState<'ss' | 'ss+'>('ss');
+    const [acquirableSkillIds, setAcquirableSkillIds] = useState(new Set<string>());
+    const [targetAptitudes, setTargetAptitudes] = useState<string[]>([]);
+    
+    const [isSkillModalOpen, setIsSkillModalOpen] = useState(false);
+    const [results, setResults] = useState<{ probScoreUpgrade: number; probSparkCountUpgrade: number; targetSparkCount: number } | null>(null);
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState<string | null>(null);
 
-    const skillGroupMap = useMemo(() => {
-        const map = new Map<number, { lv1?: Skill, lv2?: Skill }>();
-        masterSkillList.forEach(skill => {
-            if (skill.groupId) {
-                if (!map.has(skill.groupId)) map.set(skill.groupId, {});
-                const group = map.get(skill.groupId)!;
-                if (skill.rarity === 1) group.lv1 = skill;
-                else if (skill.rarity === 2) group.lv2 = skill;
-            }
-        });
-        return map;
-    }, [masterSkillList]);
+    const workerRef = useRef<Worker | null>(null);
 
     useEffect(() => {
-        if (isOpen) {
-            setLocalSelectedIds(new Set(selectedIds));
-        }
-    }, [isOpen, selectedIds]);
-
-    const handleToggle = (skillId: string) => {
-        const newSet = new Set(localSelectedIds);
-        const skill = masterSkillList.find(s => s.id === skillId);
-
-        if (!skill || !skill.groupId) { // Not part of a group, toggle normally
-            newSet.has(skillId) ? newSet.delete(skillId) : newSet.add(skillId);
-            setLocalSelectedIds(newSet);
-            return;
-        }
-
-        const group = skillGroupMap.get(skill.groupId);
-        const lv1 = group?.lv1;
-        const lv2 = group?.lv2;
-        const isSelecting = !newSet.has(skillId);
-
-        if (skill.rarity === 2 && isSelecting) { // Selecting Lv2 skill
-            newSet.add(skill.id);
-            if (lv1) newSet.add(lv1.id);
-        } else if (skill.rarity === 1 && !isSelecting) { // Deselecting Lv1 skill
-            newSet.delete(skill.id);
-            if (lv2) newSet.delete(lv2.id);
-        } else { // All other cases (selecting Lv1, deselecting Lv2)
-            newSet.has(skillId) ? newSet.delete(skillId) : newSet.add(skillId);
-        }
-
-        setLocalSelectedIds(newSet);
-    };
-
-    const handleSave = () => {
-        onSave(localSelectedIds);
-        onClose();
-    };
-
-    const handleSelectAll = () => {
-        setLocalSelectedIds(new Set(availableSkills.map(s => s.id)));
-    };
-
-    const handleDeselectAll = () => {
-        setLocalSelectedIds(new Set());
-    };
-
-    const handleSelectLineage = () => {
-        if (!pair) return;
-        
-        const inventoryMap = new Map(appData.inventory.map(p => [p.id, p]));
-        const lineage: (Parent | ManualParentData | null)[] = [
-            pair.p1, pair.p2,
-            resolveGrandparent(pair.p1.grandparent1, inventoryMap),
-            resolveGrandparent(pair.p1.grandparent2, inventoryMap),
-            resolveGrandparent(pair.p2.grandparent1, inventoryMap),
-            resolveGrandparent(pair.p2.grandparent2, inventoryMap),
-        ];
-
-        const lineageSkillNames = new Set<string>();
-        lineage.forEach(member => {
-            if (member) {
-                member.whiteSparks.forEach(spark => lineageSkillNames.add(spark.name));
+        workerRef.current = new Worker(new URL('../workers/probability.worker.ts', import.meta.url), { type: 'module' });
+        workerRef.current.onmessage = (e) => {
+            if (e.data.error) {
+                setError(e.data.error);
+            } else {
+                setResults(e.data.result);
             }
-        });
+            setIsLoading(false);
+        };
+        return () => workerRef.current?.terminate();
+    }, []);
 
-        const lineageSkillIds = new Set<string>();
-        availableSkills.forEach(skill => {
-            if (lineageSkillNames.has(skill.name_en)) {
-                lineageSkillIds.add(skill.id);
-            }
-        });
-        
-        setLocalSelectedIds(lineageSkillIds);
+    useEffect(() => {
+        if (isOpen && pair && goal) {
+            // Reset state on open
+            setResults(null);
+            setError(null);
+            setIsLoading(false);
+            setAcquirableSkillIds(new Set<string>());
+            setTargetAptitudes(goal.primaryPink);
+        }
+    }, [isOpen, pair, goal]);
+
+    const handleCalculate = () => {
+        if (!pair || !goal || !workerRef.current) return;
+        setIsLoading(true);
+        setError(null);
+        setResults(null);
+
+        const payload: ProbabilityWorkerPayload = {
+            pair, goal, targetStats, trainingRank,
+            inventory: appData.inventory,
+            skillMapEntries: Array.from(skillMapByName.entries()),
+            spBudget,
+            acquirableSkillIds: Array.from(acquirableSkillIds),
+            targetAptitudes
+        };
+        workerRef.current.postMessage(payload);
     };
     
-    const getSkillDisplayName = (skill: Skill) => {
-        return skill[displayNameProp] || skill.name_en;
-    };
+    const translatedAptitudeOptions = PINK_SPARK_OPTIONS.map(opt => ({ value: opt, label: t(opt, { ns: 'game' }) }));
 
-    const groupedAndFilteredSkills = useMemo(() => {
-        const wishlistMap = new Map(goal?.wishlist.map(item => [item.name, item.tier]));
-        const lowerQuery = searchQuery.toLowerCase();
-
-        const filtered = availableSkills.filter(skill => 
-            getSkillDisplayName(skill).toLowerCase().includes(lowerQuery)
-        );
-
-        const grouped = filtered.reduce((acc, skill) => {
-            const tier = wishlistMap.get(skill.name_en) || 'Other';
-            if (!acc[tier]) acc[tier] = [];
-            acc[tier].push(skill);
-            return acc;
-        }, {} as Record<string, Skill[]>);
-
-        return Object.entries(grouped).sort(([tierA], [tierB]) => 
-            (WISH_RANK_ORDER[tierA] ?? 99) - (WISH_RANK_ORDER[tierB] ?? 99)
-        );
-    }, [availableSkills, goal, searchQuery, displayNameProp]);
-    
     return (
-        <Modal isOpen={isOpen} onClose={onClose} title={t('breedingPlanner.selectAcquirableSkills')} size="lg">
-            <div className="skill-select__controls">
-                <input
-                    type="text"
-                    placeholder={t('searchPlaceholder', { ns: 'common' })}
-                    className="form__input"
-                    value={searchQuery}
-                    onChange={e => setSearchQuery(e.target.value)}
-                />
-                <div className="skill-select__actions">
-                    <button className="button button--secondary button--small" onClick={handleSelectLineage} disabled={!pair}>{t('breedingPlanner.selectLineage')}</button>
-                    <button className="button button--secondary button--small" onClick={handleSelectAll}>{t('selectAll', { ns: 'common' })}</button>
-                    <button className="button button--secondary button--small" onClick={handleDeselectAll}>{t('deselectAll', { ns: 'common' })}</button>
-                </div>
-            </div>
-
-            <div className="skill-select__grid">
-                {groupedAndFilteredSkills.map(([tier, skills]) => (
-                    <div key={tier} className="skill-select__group">
-                        <h4 className="skill-select__group-title">{tier === 'Other' ? t('otherSkills', { ns: 'common' }) : `${t('goal:wishlist.rank')} ${tier}`}</h4>
-                        <div className="skill-select__list">
-                            {skills.map(skill => {
-                                const isChecked = localSelectedIds.has(skill.id);
-                                let isDisabled = false;
-
-                                if (skill.rarity === 1 && skill.groupId) {
-                                    const lv2Skill = skillGroupMap.get(skill.groupId)?.lv2;
-                                    if (lv2Skill && localSelectedIds.has(lv2Skill.id)) {
-                                        isDisabled = true;
-                                    }
-                                }
-
-                                return (
-                                    <label key={skill.id} className="skill-select__item">
-                                        <input
-                                            type="checkbox"
-                                            className="form__checkbox"
-                                            checked={isChecked}
-                                            disabled={isDisabled}
-                                            onChange={() => handleToggle(skill.id)}
-                                        />
-                                        {getSkillDisplayName(skill)}
-                                    </label>
-                                );
-                            })}
+        <>
+            <Modal isOpen={isOpen} onClose={onClose} title={t('breedingPlanner.probabilityCalculator')} size="xl">
+                <div className="prob-calc__layout">
+                    <div className="prob-calc__inputs">
+                        <h4 className="prob-calc__inputs-title">{t('breedingPlanner.inputs')}</h4>
+                        <div className="prob-calc__input-group">
+                            <div>
+                                <label className="form__label">{t('breedingPlanner.targetStats')}</label>
+                                {STAT_NAMES.map(stat => (
+                                    <div key={stat} className="prob-calc__stat-input">
+                                        <label htmlFor={`stat-${stat}`}>{t(stat.charAt(0).toUpperCase() + stat.slice(1), { ns: 'game' })}</label>
+                                        <input type="number" id={`stat-${stat}`} className="form__input" value={targetStats[stat]} onChange={e => setTargetStats(p => ({ ...p, [stat]: parseInt(e.target.value) || 0 }))} />
+                                    </div>
+                                ))}
+                            </div>
+                            <div>
+                                <label htmlFor="sp-budget" className="form__label" title={t('breedingPlanner.spBudgetTooltip')}>{t('breedingPlanner.spBudget')}</label>
+                                <input type="number" id="sp-budget" className="form__input" value={spBudget} onChange={e => setSpBudget(parseInt(e.target.value) || 0)} />
+                            </div>
+                            <div>
+                                <label className="form__label">{t('breedingPlanner.trainingRank')}</label>
+                                <select className="form__input" value={trainingRank} onChange={e => setTrainingRank(e.target.value as 'ss' | 'ss+')}>
+                                    <option value="ss">{t('breedingPlanner.rankBelowSS')}</option>
+                                    <option value="ss+">{t('breedingPlanner.rankSSPlus')}</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label className="form__label">{t('breedingPlanner.acquirableSkills')}</label>
+                                <button className="button button--secondary w-full justify-center" onClick={() => setIsSkillModalOpen(true)}>{t('breedingPlanner.selectAcquirableSkills')}</button>
+                                <p className="text-xs text-stone-500 text-center mt-1">{acquirableSkillIds.size > 0 ? t('breedingPlanner.skillsSelected', { count: acquirableSkillIds.size }) : t('breedingPlanner.allSkillsConsidered')}</p>
+                            </div>
+                            <div>
+                                <label className="form__label">{t('breedingPlanner.obtainableAptitudes')}</label>
+                                <MultiSelect options={translatedAptitudeOptions} selectedValues={targetAptitudes} onChange={setTargetAptitudes} />
+                            </div>
                         </div>
                     </div>
-                ))}
-            </div>
-
-            <div className="dialog-modal__footer">
-                <div className="skill-select__summary">{t('breedingPlanner.skillsSelected', { count: localSelectedIds.size })}</div>
-                <div>
-                    <button className="button button--neutral" onClick={onClose}>{t('cancel', { ns: 'common' })}</button>
-                    <button className="button button--primary" onClick={handleSave}>{t('save', { ns: 'common' })}</button>
+                    <div className="prob-calc__results">
+                        <h4 className="prob-calc__results-title">{t('breedingPlanner.estimatedProbabilities')}</h4>
+                        <div className="prob-calc__results-grid">
+                            {isLoading && <p className="card__placeholder-text">{t('calculating', { ns: 'common' })}...</p>}
+                            {error && <p className="text-red-500">{error}</p>}
+                            {results && (
+                                <>
+                                    <div className="prob-calc__result-item">
+                                        <div className="prob-calc__result-header">
+                                            <span className="prob-calc__result-name">{t('breedingPlanner.probScoreUpgrade')}</span>
+                                            <span className="prob-calc__result-percent">{(results.probScoreUpgrade * 100).toFixed(2)}%</span>
+                                        </div>
+                                    </div>
+                                    <div className="prob-calc__result-item">
+                                        <div className="prob-calc__result-header">
+                                            <span className="prob-calc__result-name">{t('breedingPlanner.probSparkCountUpgrade', { count: results.targetSparkCount })}</span>
+                                            <span className="prob-calc__result-percent">{(results.probSparkCountUpgrade * 100).toFixed(2)}%</span>
+                                        </div>
+                                    </div>
+                                </>
+                            )}
+                        </div>
+                        <div className="prob-calc__disclaimer">
+                            <p>{t('breedingPlanner.disclaimerText')}</p>
+                            <ul>
+                                <li>{t('breedingPlanner.disclaimerScoreUpgrade')}</li>
+                                <li>{t('breedingPlanner.disclaimerBlue')}</li>
+                                <li>{t('breedingPlanner.disclaimerPinkDynamic')}</li>
+                                <li>{t('breedingPlanner.disclaimerWhiteSP')}</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </Modal>
+                <div className="dialog-modal__footer">
+                    <button className="button button--neutral" onClick={onClose}>{t('close', { ns: 'common' })}</button>
+                    <button className="button button--primary" onClick={handleCalculate} disabled={isLoading || !pair}>{isLoading ? t('calculating', { ns: 'common' }) + '...' : 'Calculate'}</button>
+                </div>
+            </Modal>
+
+            <SelectAcquirableSkillsModal
+                isOpen={isSkillModalOpen}
+                onClose={() => setIsSkillModalOpen(false)}
+                allSkills={masterSkillList.filter(s => s.type === 'normal')}
+                selectedIds={acquirableSkillIds}
+                onSave={setAcquirableSkillIds}
+                pair={pair}
+            />
+        </>
     );
 };
 
-export default SelectAcquirableSkillsModal;
+export default ProbabilityCalculatorModal;
