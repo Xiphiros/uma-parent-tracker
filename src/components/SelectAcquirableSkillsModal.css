@@ -1,19 +1,29 @@
 .skill-select__controls {
+    margin-bottom: 1rem;
+}
+
+.skill-select__actions-bar {
     display: flex;
+    flex-wrap: wrap;
     gap: 1rem;
     align-items: center;
-    margin-bottom: 1rem;
+    justify-content: space-between;
     padding-bottom: 1rem;
     border-bottom: 1px solid var(--color-border);
+    margin-bottom: 1rem;
 }
-.skill-select__controls .form__input {
-    flex-grow: 1;
-}
-.skill-select__actions {
+
+.skill-select__preset-controls,
+.skill-select__batch-actions {
     display: flex;
     gap: 0.5rem;
-    flex-shrink: 0;
+    align-items: center;
 }
+
+.skill-select__preset-controls .form__input {
+    min-width: 150px;
+}
+
 
 .skill-select__grid {
     max-height: 50vh;
