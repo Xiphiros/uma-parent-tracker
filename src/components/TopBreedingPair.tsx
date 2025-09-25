@@ -12,22 +12,23 @@ import MissingSkillsModal from './MissingSkillsModal';
 import ProbabilityCalculatorModal from './ProbabilityCalculatorModal';
 
 type RecommendationType = 'owned' | 'borrowed';
-type SortByType = 'score' | 'sparks';
+type SortByType = 'finalScore' | 'individualScore';
 
 interface BreedingPairWithStats extends BreedingPair {
-    avgScore: number;
-    totalSparks: number; // Represents total white sparks
-    uniqueSparks: number; // Represents unique white sparks
+    avgFinalScore: number;
+    avgIndividualScore: number;
+    totalSparks: number;
+    uniqueSparks: number;
 }
 
 const TopBreedingPair = () => {
     const { t } = useTranslation('roster');
-    const { getScoredRoster, appData, activeServer, setActiveBreedingPair, getActiveProfile, umaMapById, skillMapByName } = useAppContext();
+    const { getScoredRoster, appData, activeServer, setActiveBreedingPair, getActiveProfile, umaMapById, skillMapByName, getIndividualScore } = useAppContext();
     const roster = useMemo(() => getScoredRoster(), [getScoredRoster]);
     const activeGoal = getActiveProfile()?.goal;
 
     const [recType, setRecType] = useState<RecommendationType>('owned');
-    const [sortBy, setSortBy] = useState<SortByType>('score');
+    const [sortBy, setSortBy] = useState<SortByType>('finalScore');
     const [currentIndex, setCurrentIndex] = useState(0);
     const [detailModalParent, setDetailModalParent] = useState<Parent | null>(null);
     const [isMissingSkillsModalOpen, setIsMissingSkillsModalOpen] = useState(false);
@@ -38,6 +39,8 @@ const TopBreedingPair = () => {
     const recommendedPairs = useMemo<BreedingPairWithStats[]>(() => {
         if (!activeGoal) return [];
         const pairs: BreedingPairWithStats[] = [];
+        
+        const individualScores = new Map(roster.map(p => [p.id, getIndividualScore(p)]));
         
         if (recType === 'owned') {
             if (roster.length < 2) return [];
@@ -52,7 +55,8 @@ const TopBreedingPair = () => {
 
                     pairs.push({
                         p1, p2,
-                        avgScore: Math.round((p1.score + p2.score) / 2),
+                        avgFinalScore: Math.round((p1.score + p2.score) / 2),
+                        avgIndividualScore: Math.round(((individualScores.get(p1.id) || 0) + (individualScores.get(p2.id) || 0)) / 2),
                         totalSparks: countTotalLineageWhiteSparks(p1, inventoryMap) + countTotalLineageWhiteSparks(p2, inventoryMap),
                         uniqueSparks: countUniqueCombinedLineageWhiteSparks(p1, p2, inventoryMap)
                     });
@@ -62,7 +66,11 @@ const TopBreedingPair = () => {
             const ownedRosterParents = roster.filter(p => !p.isBorrowed);
             const borrowedParents = appData.inventory
                 .filter(p => p.isBorrowed && p.server === activeServer)
-                .map(p => ({ ...p, score: calculateScore(p, activeGoal, appData.inventory, skillMapByName) }));
+                .map(p => ({ 
+                    ...p, 
+                    score: calculateScore(p, activeGoal, appData.inventory, skillMapByName),
+                    individualScore: getIndividualScore(p)
+                }));
             
             if (ownedRosterParents.length < 1 || borrowedParents.length < 1) return [];
 
@@ -74,7 +82,8 @@ const TopBreedingPair = () => {
                     
                      pairs.push({
                         p1, p2,
-                        avgScore: Math.round((p1.score + p2.score) / 2),
+                        avgFinalScore: Math.round((p1.score + p2.score) / 2),
+                        avgIndividualScore: Math.round(((individualScores.get(p1.id) || 0) + p2.individualScore) / 2),
                         totalSparks: countTotalLineageWhiteSparks(p1, inventoryMap) + countTotalLineageWhiteSparks(p2, inventoryMap),
                         uniqueSparks: countUniqueCombinedLineageWhiteSparks(p1, p2, inventoryMap)
                     });
@@ -83,16 +92,16 @@ const TopBreedingPair = () => {
         }
 
         return pairs.sort((a, b) => {
-            if (sortBy === 'score') {
-                if (b.avgScore !== a.avgScore) return b.avgScore - a.avgScore;
+            if (sortBy === 'individualScore') {
+                if (b.avgIndividualScore !== a.avgIndividualScore) return b.avgIndividualScore - a.avgIndividualScore;
                 return b.totalSparks - a.totalSparks;
-            } else { // 'sparks'
-                if (b.totalSparks !== a.totalSparks) return b.totalSparks - a.totalSparks;
-                return b.avgScore - a.avgScore;
+            } else { // 'finalScore'
+                if (b.avgFinalScore !== a.avgFinalScore) return b.avgFinalScore - a.avgFinalScore;
+                return b.totalSparks - a.totalSparks;
             }
         });
 
-    }, [roster, recType, sortBy, appData.inventory, activeServer, inventoryMap, activeGoal, umaMapById, skillMapByName]);
+    }, [roster, recType, sortBy, appData.inventory, activeServer, inventoryMap, activeGoal, umaMapById, skillMapByName, getIndividualScore]);
 
     useEffect(() => {
         setCurrentIndex(0);
@@ -127,8 +136,8 @@ const TopBreedingPair = () => {
                     </div>
                      <div className="top-pair__toggle-group">
                         <span className="top-pair__toggle-btn !cursor-default">{t('topPair.sortBy')}</span>
-                        <button className={`top-pair__toggle-btn ${sortBy === 'score' ? 'top-pair__toggle-btn--active' : ''}`} onClick={() => setSortBy('score')}>{t('topPair.avgScore')}</button>
-                        <button className={`top-pair__toggle-btn ${sortBy === 'sparks' ? 'top-pair__toggle-btn--active' : ''}`} onClick={() => setSortBy('sparks')}>{t('topPair.totalSparks')}</button>
+                        <button className={`top-pair__toggle-btn ${sortBy === 'finalScore' ? 'top-pair__toggle-btn--active' : ''}`} onClick={() => setSortBy('finalScore')}>{t('topPair.avgFinalScore')}</button>
+                        <button className={`top-pair__toggle-btn ${sortBy === 'individualScore' ? 'top-pair__toggle-btn--active' : ''}`} onClick={() => setSortBy('individualScore')}>{t('topPair.avgIndivScore')}</button>
                     </div>
                 </div>
                 
@@ -147,11 +156,11 @@ const TopBreedingPair = () => {
                                 <div className="top-pair__meta">
                                     <span>{t('topPair.pair')} {currentIndex + 1} {t('topPair.of')} {recommendedPairs.length}</span>
                                     <span className="mx-2">|</span>
-                                    <span>{t('topPair.avgScore')}: {currentPair.avgScore}</span>
+                                    <span>{t('topPair.avgFinalScore')}: {currentPair.avgFinalScore}</span>
                                     <span className="mx-2">|</span>
-                                    <span>{t('topPair.totalSparks')}: {currentPair.totalSparks}</span>
+                                    <span>{t('topPair.avgIndivScore')}: {currentPair.avgIndividualScore}</span>
                                      <span className="mx-2">|</span>
-                                    <span>{t('topPair.uniqueSparks')}: {currentPair.uniqueSparks}</span>
+                                    <span>{t('inventory.sortOptions.sparks')}: {currentPair.totalSparks}</span>
                                     <button 
                                         className="top-pair__action-btn" 
                                         onClick={() => setIsMissingSkillsModalOpen(true)}
