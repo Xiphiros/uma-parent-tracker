@@ -12,11 +12,12 @@ import BreedingPlannerModal from './BreedingPlannerModal';
 
 const Roster = () => {
     const { t } = useTranslation(['roster', 'common']);
-    const { getActiveProfile, getScoredRoster, removeParentFromProfile } = useAppContext();
+    const { getActiveProfile, getScoredRoster, removeParentFromProfile, getIndividualScore } = useAppContext();
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
     const [isInventoryModalOpen, setIsInventoryModalOpen] = useState(false);
     const [isPlannerModalOpen, setIsPlannerModalOpen] = useState(false);
     const [parentToEdit, setParentToEdit] = useState<Parent | null>(null);
+    const [sortMode, setSortMode] = useState<'final' | 'individual'>('final');
     const rosterContainerRef = useRef<HTMLDivElement>(null);
     
     const [isRosterScrollable, setIsRosterScrollable] = useState(false);
@@ -26,8 +27,18 @@ const Roster = () => {
     const scoredRoster = getScoredRoster();
 
     const sortedRoster = useMemo(() => {
-        return [...scoredRoster].sort((a, b) => b.score - a.score);
-    }, [scoredRoster]);
+        const rosterWithIndividualScores = scoredRoster.map(p => ({
+            ...p,
+            individualScore: getIndividualScore(p)
+        }));
+
+        return rosterWithIndividualScores.sort((a, b) => {
+            if (sortMode === 'individual') {
+                return b.individualScore - a.individualScore;
+            }
+            return b.score - a.score; // Default to final score
+        });
+    }, [scoredRoster, sortMode, getIndividualScore]);
 
     useEffect(() => {
         const checkScroll = () => {
@@ -77,6 +88,11 @@ const Roster = () => {
                         {t('rosterTitle', { projectName: activeProfile?.name })}
                     </h2>
                     <div className="flex items-center gap-2">
+                        <div className="top-pair__toggle-group">
+                            <span className="top-pair__toggle-btn !cursor-default">{t('rosterSortBy')}</span>
+                            <button className={`top-pair__toggle-btn ${sortMode === 'final' ? 'top-pair__toggle-btn--active' : ''}`} onClick={() => setSortMode('final')}>{t('finalScore')}</button>
+                            <button className={`top-pair__toggle-btn ${sortMode === 'individual' ? 'top-pair__toggle-btn--active' : ''}`} onClick={() => setSortMode('individual')}>{t('individualScore')}</button>
+                        </div>
                          <button className="button button--neutral" onClick={() => setIsPlannerModalOpen(true)}>
                             <FontAwesomeIcon icon={faFlask} className="h-5 w-5 mr-1" />
                             {t('breedingPlanner.title')}
