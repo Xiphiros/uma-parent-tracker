@@ -36,7 +36,7 @@ const initialFilters: Filters = {
 
 const InventoryModal = ({ isOpen, onClose, isSelectionMode = false, onSelectParent, excludedCharacterIds = new Set() }: InventoryModalProps) => {
     const { t } = useTranslation(['roster', 'modals', 'common']);
-    const { appData, activeServer, deleteParent, addParentToProfile, removeParentFromProfile, moveParentToServer, validateParentForServer, umaMapById, dataDisplayLanguage, getActiveProfile, skillMapByName } = useAppContext();
+    const { appData, activeServer, deleteParent, addParentToProfile, removeParentFromProfile, moveParentToServer, validateParentForServer, umaMapById, dataDisplayLanguage, getActiveProfile, skillMapByName, getIndividualScore } = useAppContext();
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
     const [parentToEdit, setParentToEdit] = useState<Parent | null>(null);
     const [isDeleteConfirmOpen, setDeleteConfirmOpen] = useState(false);
@@ -72,9 +72,10 @@ const InventoryModal = ({ isOpen, onClose, isSelectionMode = false, onSelectPare
         const scoredInventory = activeProfile
             ? viewFilteredInventory.map(p => ({
                 ...p,
-                score: calculateScore(p, activeProfile.goal, appData.inventory, skillMapByName)
+                score: calculateScore(p, activeProfile.goal, appData.inventory, skillMapByName),
+                individualScore: getIndividualScore(p)
               }))
-            : viewFilteredInventory;
+            : viewFilteredInventory.map(p => ({ ...p, individualScore: getIndividualScore(p) }));
 
         const lineageStatsCache = new Map<number, LineageStats>();
         const getCachedLineageStats = (parent: Parent) => {
@@ -126,6 +127,9 @@ const InventoryModal = ({ isOpen, onClose, isSelectionMode = false, onSelectPare
                     const bSparks = countTotalLineageWhiteSparks(b, inventoryMap);
                     comparison = bSparks - aSparks;
                     break;
+                case 'individualScore':
+                    comparison = b.individualScore - a.individualScore;
+                    break;
                 case 'score':
                 default:
                     comparison = b.score - a.score;
@@ -133,7 +137,7 @@ const InventoryModal = ({ isOpen, onClose, isSelectionMode = false, onSelectPare
             }
             return sortDirection === 'desc' ? comparison : -comparison;
         });
-    }, [inventory, inventoryView, filters, sortField, sortDirection, umaMapById, dataDisplayLanguage, inventoryMap, activeProfile, appData.inventory, skillMapByName]);
+    }, [inventory, inventoryView, filters, sortField, sortDirection, umaMapById, dataDisplayLanguage, inventoryMap, activeProfile, appData.inventory, skillMapByName, getIndividualScore]);
 
 
     const handleOpenAddModal = () => {
