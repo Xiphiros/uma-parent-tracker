@@ -43,7 +43,8 @@
         "searchByName": "Search by name...",
         "sortBy": "Sort By",
         "sortOptions": {
-            "score": "Score",
+            "finalScore": "Final Score",
+            "individualScore": "Individual Score",
             "name": "Name",
             "gen": "Generation",
             "date": "Date Added",
