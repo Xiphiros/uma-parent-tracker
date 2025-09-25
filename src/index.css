@@ -8,6 +8,7 @@
 @import "./components/BreedingSuggestions.css";
 @import "./components/common/CheckableSkillItem.css";
 @import "./components/common/DualListBox.css";
+@import "./components/EditPresetModal.css";
 @import "./components/FolderTab.css";
 @import "./components/common/ContextMenu.css";
 @import "./components/SettingsModal.css";
@@ -18,6 +19,7 @@
 @import "./components/common/InventoryControls.css";
 @import "./components/common/LineageDisplay.css";
 @import "./components/common/LineageTree.css";
+@import "./components/ManagePresetsModal.css";
 @import "./components/common/MissingSkillsDisplay.css";
 @import "./components/MissingSkillsModal.css";
 @import "./components/ParentCard.css";
