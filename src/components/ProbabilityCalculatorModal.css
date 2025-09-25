@@ -27,6 +27,33 @@
     gap: 1rem;
 }
 
+.prob-calc__mode-toggle {
+    display: flex;
+    background-color: var(--color-card-bg-hover);
+    border-radius: 0.375rem;
+    padding: 0.25rem;
+    margin-top: 0.5rem;
+}
+
+.prob-calc__mode-btn {
+    flex: 1;
+    padding: 0.375rem 0.5rem;
+    border-radius: 0.25rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--color-text-secondary);
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    border: none;
+}
+
+.prob-calc__mode-btn--active {
+    background-color: var(--color-card-bg);
+    color: var(--color-text-primary);
+    box-shadow: var(--color-shadow);
+}
+
 .prob-calc__stat-input {
     display: flex;
     align-items: center;
