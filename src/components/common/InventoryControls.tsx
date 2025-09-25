@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFilter, faTimes, faArrowDownWideShort, faArrowUpShortWide, faPlus } from '@fortawesome/free-solid-svg-icons';
 import RangeSlider from './RangeSlider';
 
-export type SortFieldType = 'score' | 'name' | 'gen' | 'id' | 'sparks';
+export type SortFieldType = 'score' | 'individualScore' | 'name' | 'gen' | 'id' | 'sparks';
 export type SortDirectionType = 'asc' | 'desc';
 export type InventoryViewType = 'all' | 'owned' | 'borrowed';
 
@@ -129,7 +129,8 @@ const InventoryControls = ({ filters, setFilters, sortField, setSortField, sortD
                         <label className="inventory-controls__label">{t('inventory.sortBy')}</label>
                         <div className="flex gap-2">
                              <select className="form__input" value={sortField} onChange={(e) => setSortField(e.target.value as SortFieldType)}>
-                                <option value="score">{t('inventory.sortOptions.score')}</option>
+                                <option value="score">{t('inventory.sortOptions.finalScore')}</option>
+                                <option value="individualScore">{t('inventory.sortOptions.individualScore')}</option>
                                 <option value="name">{t('inventory.sortOptions.name')}</option>
                                 <option value="gen">{t('inventory.sortOptions.gen')}</option>
                                 <option value="id">{t('inventory.sortOptions.date')}</option>
