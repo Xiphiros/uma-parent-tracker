@@ -33,6 +33,8 @@ type PlannerTab = 'manual' | 'suggestions';
 type ActiveSlot = 'parent1' | 'parent2' | null;
 
 const WISH_RANK_ORDER: { [key: string]: number } = { S: 0, A: 1, B: 2, C: 3 };
+const TOP_K_MANUAL = 10;
+const TOP_K_SUGGESTIONS = 20;
 
 const BreedingPlannerModal = ({ isOpen, onClose }: BreedingPlannerModalProps) => {
     const { t } = useTranslation('roster');
@@ -79,10 +81,25 @@ const BreedingPlannerModal = ({ isOpen, onClose }: BreedingPlannerModalProps) =>
             potentialTrainees = masterUmaList.filter(uma => !lineageCharIdStrings.has(uma.characterId));
         }
 
-        return potentialTrainees.map(tUma => ({
-            uma: tUma,
-            totalAffinity: calculateFullAffinity(tUma, manualParent1, manualParent2, charaRelations, relationPoints, inventoryMap, umaMapById)
-        })).sort((a,b) => b.totalAffinity - a.totalAffinity).slice(0, 10);
+        const topSuggestions: { uma: Uma; totalAffinity: number }[] = [];
+        const compareFn = (a: { totalAffinity: number }, b: { totalAffinity: number }) => b.totalAffinity - a.totalAffinity;
+
+        for (const tUma of potentialTrainees) {
+            const totalAffinity = calculateFullAffinity(tUma, manualParent1, manualParent2, charaRelations, relationPoints, inventoryMap, umaMapById);
+            const newSuggestion = { uma: tUma, totalAffinity };
+
+            if (topSuggestions.length < TOP_K_MANUAL) {
+                topSuggestions.push(newSuggestion);
+                topSuggestions.sort(compareFn);
+            } else {
+                const worstSuggestion = topSuggestions[TOP_K_MANUAL - 1];
+                if (newSuggestion.totalAffinity > worstSuggestion.totalAffinity) {
+                    topSuggestions[TOP_K_MANUAL - 1] = newSuggestion;
+                    topSuggestions.sort(compareFn);
+                }
+            }
+        }
+        return topSuggestions;
 
     }, [manualParent1, manualParent2, masterUmaList, inventoryMap, umaMapById, charaRelations, relationPoints, excludeInbreeding]);
 
@@ -97,7 +114,14 @@ const BreedingPlannerModal = ({ isOpen, onClose }: BreedingPlannerModalProps) =>
 
     const suggestions = useMemo<Suggestion[]>(() => {
         if (!trainee || roster.length < 2) return [];
-        const pairs = [];
+        
+        const topPairs: Suggestion[] = [];
+        const compareFn = (a: Suggestion, b: Suggestion) => {
+            if (b.totalAffinity !== a.totalAffinity) return b.totalAffinity - a.totalAffinity;
+            if (b.totalWhiteSparks !== a.totalWhiteSparks) return b.totalWhiteSparks - a.totalWhiteSparks;
+            return b.uniqueWhiteSparks - a.uniqueWhiteSparks;
+        };
+
         for (let i = 0; i < roster.length; i++) {
             for (let j = i + 1; j < roster.length; j++) {
                 const p1 = roster[i];
@@ -106,22 +130,30 @@ const BreedingPlannerModal = ({ isOpen, onClose }: BreedingPlannerModalProps) =>
                 const p1CharId = umaMapById.get(p1.umaId)?.characterId;
                 const p2CharId = umaMapById.get(p2.umaId)?.characterId;
 
-                // Prevent suggesting a character as its own parent or two of the same character as parents
                 if (p1CharId === trainee.characterId || p2CharId === trainee.characterId || p1CharId === p2CharId) {
                     continue;
                 }
 
-                const totalAffinity = calculateFullAffinity(trainee, p1, p2, charaRelations, relationPoints, inventoryMap, umaMapById);
-                const totalWhiteSparks = countTotalLineageWhiteSparks(p1, inventoryMap) + countTotalLineageWhiteSparks(p2, inventoryMap);
-                const uniqueWhiteSparks = countUniqueCombinedLineageWhiteSparks(p1, p2, inventoryMap);
-                pairs.push({ p1, p2, totalAffinity, totalWhiteSparks, uniqueWhiteSparks });
+                const newPair: Suggestion = {
+                    p1, p2,
+                    totalAffinity: calculateFullAffinity(trainee, p1, p2, charaRelations, relationPoints, inventoryMap, umaMapById),
+                    totalWhiteSparks: countTotalLineageWhiteSparks(p1, inventoryMap) + countTotalLineageWhiteSparks(p2, inventoryMap),
+                    uniqueWhiteSparks: countUniqueCombinedLineageWhiteSparks(p1, p2, inventoryMap)
+                };
+
+                if (topPairs.length < TOP_K_SUGGESTIONS) {
+                    topPairs.push(newPair);
+                    topPairs.sort(compareFn);
+                } else {
+                    const worstPair = topPairs[TOP_K_SUGGESTIONS - 1];
+                    if (compareFn(newPair, worstPair) < 0) {
+                        topPairs[TOP_K_SUGGESTIONS - 1] = newPair;
+                        topPairs.sort(compareFn);
+                    }
+                }
             }
         }
-        return pairs.sort((a, b) => {
-            if (b.totalAffinity !== a.totalAffinity) return b.totalAffinity - a.totalAffinity;
-            if (b.totalWhiteSparks !== a.totalWhiteSparks) return b.totalWhiteSparks - a.totalWhiteSparks;
-            return b.uniqueWhiteSparks - a.uniqueWhiteSparks;
-        }).slice(0, 20);
+        return topPairs;
     }, [trainee, roster, inventoryMap, umaMapById, charaRelations, relationPoints]);
 
     const aggregatedSparksForSelected = useMemo(() => {
