@@ -21,6 +21,8 @@ interface BreedingPairWithStats extends BreedingPair {
     uniqueSparks: number;
 }
 
+const TOP_K = 20; // Limit the number of pairs to calculate and sort
+
 const TopBreedingPair = () => {
     const { t } = useTranslation('roster');
     const { getScoredRoster, appData, activeServer, setActiveBreedingPair, getActiveProfile, umaMapById, skillMapByName, getIndividualScore } = useAppContext();
@@ -38,28 +40,50 @@ const TopBreedingPair = () => {
 
     const recommendedPairs = useMemo<BreedingPairWithStats[]>(() => {
         if (!activeGoal) return [];
-        const pairs: BreedingPairWithStats[] = [];
         
+        const topPairs: BreedingPairWithStats[] = [];
         const individualScores = new Map(roster.map(p => [p.id, getIndividualScore(p)]));
-        
+
+        const comparePairs = (a: BreedingPairWithStats, b: BreedingPairWithStats) => {
+            if (sortBy === 'individualScore') {
+                if (b.avgIndividualScore !== a.avgIndividualScore) return b.avgIndividualScore - a.avgIndividualScore;
+                return b.totalSparks - a.totalSparks;
+            } else { // 'finalScore'
+                if (b.avgFinalScore !== a.avgFinalScore) return b.avgFinalScore - a.avgFinalScore;
+                return b.totalSparks - a.totalSparks;
+            }
+        };
+
+        const processPair = (p1: Parent, p2: Parent, p2IndividualScore: number) => {
+            const p1CharId = umaMapById.get(p1.umaId)?.characterId;
+            const p2CharId = umaMapById.get(p2.umaId)?.characterId;
+            if (p1CharId === p2CharId) return;
+
+            const newPair: BreedingPairWithStats = {
+                p1, p2,
+                avgFinalScore: Math.round((p1.score + p2.score) / 2),
+                avgIndividualScore: Math.round(((individualScores.get(p1.id) || 0) + p2IndividualScore) / 2),
+                totalSparks: countTotalLineageWhiteSparks(p1, inventoryMap) + countTotalLineageWhiteSparks(p2, inventoryMap),
+                uniqueSparks: countUniqueCombinedLineageWhiteSparks(p1, p2, inventoryMap)
+            };
+
+            if (topPairs.length < TOP_K) {
+                topPairs.push(newPair);
+                topPairs.sort(comparePairs);
+            } else {
+                const worstPair = topPairs[TOP_K - 1];
+                if (comparePairs(newPair, worstPair) < 0) {
+                    topPairs[TOP_K - 1] = newPair;
+                    topPairs.sort(comparePairs);
+                }
+            }
+        };
+
         if (recType === 'owned') {
             if (roster.length < 2) return [];
             for (let i = 0; i < roster.length; i++) {
                 for (let j = i + 1; j < roster.length; j++) {
-                    const p1 = roster[i];
-                    const p2 = roster[j];
-                    
-                    const p1CharId = umaMapById.get(p1.umaId)?.characterId;
-                    const p2CharId = umaMapById.get(p2.umaId)?.characterId;
-                    if (p1CharId === p2CharId) continue;
-
-                    pairs.push({
-                        p1, p2,
-                        avgFinalScore: Math.round((p1.score + p2.score) / 2),
-                        avgIndividualScore: Math.round(((individualScores.get(p1.id) || 0) + (individualScores.get(p2.id) || 0)) / 2),
-                        totalSparks: countTotalLineageWhiteSparks(p1, inventoryMap) + countTotalLineageWhiteSparks(p2, inventoryMap),
-                        uniqueSparks: countUniqueCombinedLineageWhiteSparks(p1, p2, inventoryMap)
-                    });
+                    processPair(roster[i], roster[j], individualScores.get(roster[j].id) || 0);
                 }
             }
         } else { // 'borrowed'
@@ -76,30 +100,12 @@ const TopBreedingPair = () => {
 
             for (const p1 of ownedRosterParents) {
                 for (const p2 of borrowedParents) {
-                    const p1CharId = umaMapById.get(p1.umaId)?.characterId;
-                    const p2CharId = umaMapById.get(p2.umaId)?.characterId;
-                    if (p1CharId === p2CharId) continue;
-                    
-                     pairs.push({
-                        p1, p2,
-                        avgFinalScore: Math.round((p1.score + p2.score) / 2),
-                        avgIndividualScore: Math.round(((individualScores.get(p1.id) || 0) + p2.individualScore) / 2),
-                        totalSparks: countTotalLineageWhiteSparks(p1, inventoryMap) + countTotalLineageWhiteSparks(p2, inventoryMap),
-                        uniqueSparks: countUniqueCombinedLineageWhiteSparks(p1, p2, inventoryMap)
-                    });
+                    processPair(p1, p2, p2.individualScore);
                 }
             }
         }
 
-        return pairs.sort((a, b) => {
-            if (sortBy === 'individualScore') {
-                if (b.avgIndividualScore !== a.avgIndividualScore) return b.avgIndividualScore - a.avgIndividualScore;
-                return b.totalSparks - a.totalSparks;
-            } else { // 'finalScore'
-                if (b.avgFinalScore !== a.avgFinalScore) return b.avgFinalScore - a.avgFinalScore;
-                return b.totalSparks - a.totalSparks;
-            }
-        });
+        return topPairs;
 
     }, [roster, recType, sortBy, appData.inventory, activeServer, inventoryMap, activeGoal, umaMapById, skillMapByName, getIndividualScore]);
 
