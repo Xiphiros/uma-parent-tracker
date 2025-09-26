@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { Parent, ValidationResult, Filters } from '../types';
 import Modal from './common/Modal';
 import ParentCard from './ParentCard';
@@ -10,6 +10,8 @@ import { useTranslation } from 'react-i18next';
 import InventoryControls, { SortFieldType, SortDirectionType, InventoryViewType } from './common/InventoryControls';
 import { getLineageStats, LineageStats, countTotalLineageWhiteSparks } from '../utils/affinity';
 import { calculateScore } from '../utils/scoring';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
 interface InventoryModalProps {
   isOpen: boolean;
@@ -34,6 +36,8 @@ const initialFilters: Filters = {
     minWhiteSparks: 0,
 };
 
+const ITEMS_PER_PAGE = 12;
+
 const InventoryModal = ({ isOpen, onClose, isSelectionMode = false, onSelectParent, excludedCharacterIds = new Set() }: InventoryModalProps) => {
     const { t } = useTranslation(['roster', 'modals', 'common']);
     const { appData, activeServer, deleteParent, addParentToProfile, removeParentFromProfile, moveParentToServer, validateParentForServer, umaMapById, dataDisplayLanguage, getActiveProfile, skillMapByName, getIndividualScore } = useAppContext();
@@ -48,6 +52,7 @@ const InventoryModal = ({ isOpen, onClose, isSelectionMode = false, onSelectPare
     const [filters, setFilters] = useState<Filters>(initialFilters);
     const [sortField, setSortField] = useState<SortFieldType>('score');
     const [sortDirection, setSortDirection] = useState<SortDirectionType>('desc');
+    const [currentPage, setCurrentPage] = useState(1);
 
     const activeProfile = getActiveProfile();
     const inventoryMap = useMemo(() => new Map(appData.inventory.map(p => [p.id, p])), [appData.inventory]);
@@ -60,7 +65,12 @@ const InventoryModal = ({ isOpen, onClose, isSelectionMode = false, onSelectPare
         };
     }, [appData.inventory, appData.serverData, activeServer]);
 
-    const filteredAndSortedInventory = useMemo(() => {
+    // Reset to page 1 whenever filters change
+    useEffect(() => {
+        setCurrentPage(1);
+    }, [filters, sortField, sortDirection, inventoryView]);
+
+    const { paginatedInventory, totalCount, totalPages } = useMemo(() => {
         
         let viewFilteredInventory = inventory;
         if (inventoryView === 'owned') {
@@ -91,7 +101,6 @@ const InventoryModal = ({ isOpen, onClose, isSelectionMode = false, onSelectPare
             
             if (filters.searchTerm && !parentName.toLowerCase().includes(filters.searchTerm.toLowerCase())) return false;
 
-            // Standardize white skill count to always use lineage
             const lineageStats = getCachedLineageStats(parent);
             if (filters.minWhiteSparks > 0 && lineageStats.whiteSkillCount < filters.minWhiteSparks) return false;
 
@@ -100,7 +109,7 @@ const InventoryModal = ({ isOpen, onClose, isSelectionMode = false, onSelectPare
                 if (!filters.pinkSparks.every(f => parent.pinkSpark.type === f.type && parent.pinkSpark.stars >= f.stars)) return false;
                 if (!filters.uniqueSparks.every(f => !f.name || parent.uniqueSparks.some(s => s.name === f.name && s.stars >= f.stars))) return false;
                 if (!filters.whiteSparks.every(f => !f.name || parent.whiteSparks.some(s => s.name === f.name && s.stars >= f.stars))) return false;
-            } else { // Total Lineage Search
+            } else {
                 if (!filters.blueSparks.every(f => (lineageStats.blue[f.type] || 0) >= f.stars)) return false;
                 if (!filters.pinkSparks.every(f => (lineageStats.pink[f.type] || 0) >= f.stars)) return false;
                 if (!filters.uniqueSparks.every(f => !f.name || (lineageStats.unique[f.name] || 0) >= f.stars)) return false;
@@ -110,7 +119,7 @@ const InventoryModal = ({ isOpen, onClose, isSelectionMode = false, onSelectPare
             return true;
         });
 
-        return filtered.sort((a, b) => {
+        const sorted = filtered.sort((a, b) => {
             let comparison = 0;
             switch (sortField) {
                 case 'name':
@@ -137,7 +146,14 @@ const InventoryModal = ({ isOpen, onClose, isSelectionMode = false, onSelectPare
             }
             return sortDirection === 'desc' ? comparison : -comparison;
         });
-    }, [inventory, inventoryView, filters, sortField, sortDirection, umaMapById, dataDisplayLanguage, inventoryMap, activeProfile, appData.inventory, skillMapByName, getIndividualScore]);
+
+        const totalPages = Math.ceil(sorted.length / ITEMS_PER_PAGE);
+        const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+        const paginatedInventory = sorted.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+
+        return { paginatedInventory, totalCount: sorted.length, totalPages };
+
+    }, [inventory, inventoryView, filters, sortField, sortDirection, umaMapById, dataDisplayLanguage, inventoryMap, activeProfile, appData.inventory, skillMapByName, getIndividualScore, currentPage]);
 
 
     const handleOpenAddModal = () => {
@@ -237,8 +253,8 @@ const InventoryModal = ({ isOpen, onClose, isSelectionMode = false, onSelectPare
                     </div>
                     <div className="inventory-modal__main-content">
                         <div className="inventory-modal__grid">
-                            {filteredAndSortedInventory.length > 0 ? (
-                                filteredAndSortedInventory.map(parent => {
+                            {paginatedInventory.length > 0 ? (
+                                paginatedInventory.map(parent => {
                                     const characterId = umaMapById.get(parent.umaId)?.characterId;
                                     const isDisabled = !!characterId && excludedCharacterIds.has(characterId);
                                     
@@ -266,7 +282,20 @@ const InventoryModal = ({ isOpen, onClose, isSelectionMode = false, onSelectPare
                     </div>
                 </div>
                 <div className="inventory-modal__footer">
-                    <span className="inventory-modal__count">{t('inventory.count', { count: filteredAndSortedInventory.length })}</span>
+                    <span className="inventory-modal__count">{t('inventory.count', { count: totalCount })}</span>
+                    
+                    {totalPages > 1 && (
+                        <div className="pagination-controls">
+                            <button className="button button--secondary button--small" onClick={() => setCurrentPage(p => p - 1)} disabled={currentPage === 1}>
+                                <FontAwesomeIcon icon={faChevronLeft} />
+                            </button>
+                            <span className="pagination-controls__text">Page {currentPage} of {totalPages}</span>
+                            <button className="button button--secondary button--small" onClick={() => setCurrentPage(p => p + 1)} disabled={currentPage === totalPages}>
+                                <FontAwesomeIcon icon={faChevronRight} />
+                            </button>
+                        </div>
+                    )}
+
                     {isSelectionMode ? (
                         <button className="button button--neutral" onClick={onClose}>{t('common:close')}</button>
                     ) : (
