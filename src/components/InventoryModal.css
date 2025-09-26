@@ -26,3 +26,15 @@
     font-size: 0.875rem;
     color: var(--color-text-muted);
 }
+
+.pagination-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.pagination-controls__text {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    font-weight: 500;
+}
