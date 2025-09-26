@@ -7,6 +7,8 @@ import { faLightbulb } from '@fortawesome/free-solid-svg-icons';
 import { calculateFullAffinity, getLineageCharacterIds } from '../utils/affinity';
 import { Uma } from '../types';
 
+const TOP_K_SUGGESTIONS = 10;
+
 const BreedingSuggestions = () => {
     const { t } = useTranslation('roster');
     const { masterUmaList, appData, dataDisplayLanguage, umaMapById, charaRelations, relationPoints, activeBreedingPair } = useAppContext();
@@ -21,7 +23,6 @@ const BreedingSuggestions = () => {
         const lineageCharIds = getLineageCharacterIds(parent1, parent2, inventoryMap, umaMapById);
         const lineageCharIdStrings = new Set(Array.from(lineageCharIds).map(String));
         
-        // Group all available outfits by their base character ID.
         const traineesByCharacter = masterUmaList.reduce((acc, uma) => {
             if (!acc.has(uma.characterId)) {
                 acc.set(uma.characterId, []);
@@ -30,27 +31,38 @@ const BreedingSuggestions = () => {
             return acc;
         }, new Map<string, Uma[]>());
 
-        // For each character, select their primary outfit ('...01') if available, otherwise fall back to the first one.
         const uniqueTrainees: Uma[] = [];
         for (const characterOutfits of traineesByCharacter.values()) {
             const baseOutfit = characterOutfits.find(uma => uma.id === `${uma.characterId}01`);
             if (baseOutfit) {
                 uniqueTrainees.push(baseOutfit);
             } else if (characterOutfits.length > 0) {
-                uniqueTrainees.push(characterOutfits[0]); // Fallback to first available outfit
+                uniqueTrainees.push(characterOutfits[0]);
             }
         }
 
-        const scoredSuggestions = uniqueTrainees
-            .filter(uma => !lineageCharIdStrings.has(uma.characterId)) // Anti-inbreeding filter
-            .map(trainee => ({
-                uma: trainee,
-                score: calculateFullAffinity(trainee, parent1, parent2, charaRelations, relationPoints, inventoryMap, umaMapById)
-            }))
-            .filter(item => item.score > 0)
-            .sort((a, b) => b.score - a.score);
+        const topSuggestions: { uma: Uma; score: number }[] = [];
+        const potentialTrainees = uniqueTrainees.filter(uma => !lineageCharIdStrings.has(uma.characterId));
 
-        return scoredSuggestions.slice(0, 10);
+        for (const trainee of potentialTrainees) {
+            const score = calculateFullAffinity(trainee, parent1, parent2, charaRelations, relationPoints, inventoryMap, umaMapById);
+            if (score <= 0) continue;
+
+            const newSuggestion = { uma: trainee, score };
+
+            if (topSuggestions.length < TOP_K_SUGGESTIONS) {
+                topSuggestions.push(newSuggestion);
+                topSuggestions.sort((a, b) => b.score - a.score);
+            } else {
+                const worstSuggestion = topSuggestions[TOP_K_SUGGESTIONS - 1];
+                if (newSuggestion.score > worstSuggestion.score) {
+                    topSuggestions[TOP_K_SUGGESTIONS - 1] = newSuggestion;
+                    topSuggestions.sort((a, b) => b.score - a.score);
+                }
+            }
+        }
+
+        return topSuggestions;
 
     }, [activeBreedingPair, masterUmaList, inventoryMap, umaMapById, charaRelations, relationPoints]);
 
