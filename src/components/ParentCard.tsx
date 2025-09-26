@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, memo } from 'react';
 import { useAppContext } from '../context/AppContext';
 import { Grandparent, ManualParentData, Parent, BlueSpark, PinkSpark, WhiteSpark } from '../types';
 import './ParentCard.css';
@@ -228,4 +228,4 @@ const ParentCard = ({ parent, isTopParent = false, displayScore = true, onEdit, 
     );
 };
 
-export default ParentCard;
+export default memo(ParentCard);
