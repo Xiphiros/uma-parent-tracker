@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useMemo, memo } from 'react';
 import { useAppContext } from '../../context/AppContext';
 import { Grandparent, ManualParentData, Parent, WhiteSpark, BlueSpark, PinkSpark } from '../../types';
 import { useTranslation } from 'react-i18next';
@@ -179,4 +179,4 @@ const PairedParentCard = ({ parent, onDetailsClick }: PairedParentCardProps) => 
     );
 };
 
-export default PairedParentCard;
+export default memo(PairedParentCard);
