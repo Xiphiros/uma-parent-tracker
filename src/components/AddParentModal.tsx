@@ -242,7 +242,7 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
                             <SearchableSelect 
                                 items={masterUmaListWithDisplayName}
                                 placeholder={t('selectUmaPlaceholder')}
-                                value={formData.umaId ? getUmaDisplayName(umaMapById.get(formData.umaId)!) : null}
+                                value={formData.umaId && umaMapById.get(formData.umaId) ? getUmaDisplayName(umaMapById.get(formData.umaId)!) : null}
                                 onSelect={(item) => handleUmaSelect(item as Uma)}
                                 displayProp="displayName"
                             />
