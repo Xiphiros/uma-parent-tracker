@@ -3,7 +3,7 @@
   "appTitle": "Umamusume Parent Tracker",
   "meta": "Version {{version}} (In Development) • Created by Xiph",
   "licenseTitle": "License",
-  "licenseText": "This application is licensed under the MIT License.",
+  "licenseText": "This application is licensed under the GNU General Public License v3.0 (GPLv3).",
   "licenseMutedText": "The underlying skill, character, and game data is sourced from the 'uma-tools' project, which is distributed under the GNU General Public License v3.0.",
   "creditsTitle": "Data Source & Credits",
   "creditsText": "This tool utilizes data and assets from several incredible community projects:<ul><li class='mt-2'>Core game data is sourced from the <a href='https://github.com/alpha123/uma-tools' target='_blank' rel='noopener noreferrer'>uma-tools</a> project by Alpha123.</li><li class='mt-2'>Character images are provided by <a href='https://gametora.com/' target='_blank' rel='noopener noreferrer'>Gametora</a>.</li><li class='mt-2'>Character affinity data is provided by Mee1080 from the <a href='https://github.com/mee1080/umaishow/' target='_blank' rel='noopener noreferrer'>UmaiShow</a> project.</li></ul>This tool would not be possible without their efforts.",

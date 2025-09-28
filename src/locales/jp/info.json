@@ -3,7 +3,7 @@
   "appTitle": "ウマ娘 因子研究ツール",
   "meta": "バージョン {{version}} (開発中) • 作成者 Xiph",
   "licenseTitle": "ライセンス",
-  "licenseText": "このアプリケーションはMITライセンスの下でライセンスされています。",
+  "licenseText": "このアプリケーションはGNU General Public License v3.0（GPLv3）の下でライセンスされています。",
   "licenseMutedText": "基になるスキル、キャラクター、ゲームデータは「uma-tools」プロジェクトから提供されており、これはGNU General Public License v3.0の下で配布されています。",
   "creditsTitle": "データソースとクレジット",
   "creditsText": "このツールは、いくつかの素晴らしいコミュニティプロジェクトのデータとアセットを利用しています：<ul><li class='mt-2'>ゲームのコアデータは、Alpha123氏による<a href='https://github.com/alpha123/uma-tools' target='_blank' rel='noopener noreferrer'>uma-tools</a>プロジェクトから提供されています。</li><li class='mt-2'>キャラクター画像は<a href='https://gametora.com/' target='_blank' rel='noopener noreferrer'>Gametora</a>様から提供されています。</li><li class='mt-2'>キャラクターの相性データは、Mee1080氏による<a href='https://github.com/mee1080/umaishow/' target='_blank' rel='noopener noreferrer'>UmaiShow</a>プロジェクトから提供されています。</li></ul>これらの皆様の努力なしには、このツールは実現できませんでした。",
