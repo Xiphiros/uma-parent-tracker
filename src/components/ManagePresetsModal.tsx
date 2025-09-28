@@ -30,7 +30,7 @@ const ManagePresetsModal = ({ isOpen, onClose }: ManagePresetsModalProps) => {
         setIsEditModalOpen(true);
     };
     
-    const handleSavePreset = (id: string | null, name: string, skillIds: string[]) => {
+    const handleSavePreset = (id: string | null, name: string, skillIds: number[]) => {
         if (id) {
             updateSkillPreset(id, name, skillIds);
         } else {

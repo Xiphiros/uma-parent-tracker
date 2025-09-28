@@ -14,8 +14,8 @@ interface SelectAcquirableSkillsModalProps {
     isOpen: boolean;
     onClose: () => void;
     allSkills: Skill[];
-    selectedIds: Set<string>;
-    onSave: (newSelectedIds: Set<string>) => void;
+    selectedIds: Set<number>;
+    onSave: (newSelectedIds: Set<number>) => void;
     pair: BreedingPair | null;
     spBudget: number;
 }
@@ -24,7 +24,7 @@ const WISH_RANK_ORDER: { [key: string]: number } = { S: 0, A: 1, B: 2, C: 3, Oth
 
 const SelectAcquirableSkillsModal = ({ isOpen, onClose, allSkills: availableSkills, selectedIds, onSave, pair, spBudget }: SelectAcquirableSkillsModalProps) => {
     const { t } = useTranslation(['roster', 'goal', 'common']);
-    const { getActiveProfile, dataDisplayLanguage, masterSkillList, appData } = useAppContext();
+    const { getActiveProfile, dataDisplayLanguage, appData } = useAppContext();
     const displayNameProp = dataDisplayLanguage === 'jp' ? 'name_jp' : 'name_en';
     const goal = getActiveProfile()?.goal;
 
@@ -34,50 +34,19 @@ const SelectAcquirableSkillsModal = ({ isOpen, onClose, allSkills: availableSkil
     const [isManagePresetsOpen, setIsManagePresetsOpen] = useState(false);
     const [selectedPresetId, setSelectedPresetId] = useState<string>('');
 
-    const skillGroupMap = useMemo(() => {
-        const map = new Map<number, { lv1?: Skill, lv2?: Skill }>();
-        masterSkillList.forEach(skill => {
-            if (skill.groupId) {
-                if (!map.has(skill.groupId)) map.set(skill.groupId, {});
-                const group = map.get(skill.groupId)!;
-                if (skill.rarity === 1) group.lv1 = skill;
-                else if (skill.rarity === 2) group.lv2 = skill;
-            }
-        });
-        return map;
-    }, [masterSkillList]);
-
     useEffect(() => {
         if (isOpen) {
             setLocalSelectedIds(new Set(selectedIds));
         }
-    }, [isOpen]);
+    }, [isOpen, selectedIds]);
 
-    const handleToggle = (skillId: string) => {
+    const handleToggle = (skillId: number) => {
         const newSet = new Set(localSelectedIds);
-        const skill = masterSkillList.find(s => s.id === skillId);
-
-        if (!skill || !skill.groupId) { // Not part of a group, toggle normally
-            newSet.has(skillId) ? newSet.delete(skillId) : newSet.add(skillId);
-            setLocalSelectedIds(newSet);
-            return;
+        if (newSet.has(skillId)) {
+            newSet.delete(skillId);
+        } else {
+            newSet.add(skillId);
         }
-
-        const group = skillGroupMap.get(skill.groupId);
-        const lv1 = group?.lv1;
-        const lv2 = group?.lv2;
-        const isSelecting = !newSet.has(skillId);
-
-        if (skill.rarity === 2 && isSelecting) { // Selecting Lv2 skill
-            newSet.add(skill.id);
-            if (lv1) newSet.add(lv1.id);
-        } else if (skill.rarity === 1 && !isSelecting) { // Deselecting Lv1 skill
-            newSet.delete(skill.id);
-            if (lv2) newSet.delete(lv2.id);
-        } else { // All other cases (selecting Lv1, deselecting Lv2)
-            newSet.has(skillId) ? newSet.delete(skillId) : newSet.add(skillId);
-        }
-
         setLocalSelectedIds(newSet);
     };
 
@@ -108,7 +77,7 @@ const SelectAcquirableSkillsModal = ({ isOpen, onClose, allSkills: availableSkil
             }
         });
 
-        const lineageSkillIds = new Set<string>();
+        const lineageSkillIds = new Set<number>();
         availableSkills.forEach(skill => {
             if (lineageSkillNames.has(skill.name_en)) {
                 lineageSkillIds.add(skill.id);
@@ -188,22 +157,12 @@ const SelectAcquirableSkillsModal = ({ isOpen, onClose, allSkills: availableSkil
                             <div className="skill-select__list">
                                 {skills.map(skill => {
                                     const isChecked = localSelectedIds.has(skill.id);
-                                    let isDisabled = false;
-
-                                    if (skill.rarity === 1 && skill.groupId) {
-                                        const lv2Skill = skillGroupMap.get(skill.groupId)?.lv2;
-                                        if (lv2Skill && localSelectedIds.has(lv2Skill.id)) {
-                                            isDisabled = true;
-                                        }
-                                    }
-
                                     return (
                                         <label key={skill.id} className="skill-select__item">
                                             <input
                                                 type="checkbox"
                                                 className="form__checkbox"
                                                 checked={isChecked}
-                                                disabled={isDisabled}
                                                 onChange={() => handleToggle(skill.id)}
                                             />
                                             {getSkillDisplayName(skill)}

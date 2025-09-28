@@ -15,8 +15,8 @@ self.onmessage = (e: MessageEvent<ProbabilityWorkerPayload>) => {
 
     const inventoryMap = new Map<number, Parent>(inventory.map((p: Parent) => [p.id, p]));
     const skillMapByName = new Map<string, Skill>(skillMapEntries);
-    const acquirableSkillIdsSet = new Set<string>(acquirableSkillIds);
-    const conditionalSkillIdsSet = new Set<string>(conditionalSkillIds);
+    const acquirableSkillIdsSet = new Set<number>(acquirableSkillIds);
+    const conditionalSkillIdsSet = new Set<number>(conditionalSkillIds);
 
     try {
         const result = calculateUpgradeProbability(
@@ -132,11 +132,10 @@ function getAverageSparkScoreDistributionForPool(skillPool: Skill[], pair: Breed
     
     const weightedSkills = skillPool.map(skill => {
         let baseProb = WHITE_SKILL_BASE_PROBABILITY.normal;
-        if (skill.rarity === 2) baseProb = WHITE_SKILL_BASE_PROBABILITY.circle;
         
         const ancestorCount = lineage.filter(member => member && member.whiteSparks.some(s => {
             const sInfo = skillMapByName.get(s.name);
-            return sInfo?.id === skill.id || sInfo?.groupId === skill.groupId;
+            return sInfo?.id === skill.id;
         })).length;
         
         const acquireProb = Math.min(1.0, baseProb * (ANCESTOR_BONUS ** ancestorCount));
@@ -176,7 +175,7 @@ const calculateUpgradeProbability = (
     pair: BreedingPair, p1DisplayName: string, p2DisplayName: string, calculationMode: 'final' | 'individual',
     goal: Goal, targetStats: Record<string, number>, trainingRank: 'ss' | 'ss+', 
     inventoryMap: Map<number, Parent>, skillMapByName: Map<string, Skill>, spBudget: number,
-    acquirableSkillIds: Set<string>, conditionalSkillIds: Set<string>, targetAptitudes: string[]
+    acquirableSkillIds: Set<number>, conditionalSkillIds: Set<number>, targetAptitudes: string[]
 ) => {
     
     // --- New Target Score Logic ---

@@ -44,23 +44,17 @@ const SelectGrandparentModal = ({ isOpen, onClose, onSave, title, grandparentToE
     const [currentWhiteSkill, setCurrentWhiteSkill] = useState<Skill | null>(null);
     const [currentWhiteStars, setCurrentWhiteStars] = useState<1 | 2 | 3>(3);
 
-    const uniqueSkills = useMemo(() => masterSkillList.filter(s => s.type === 'unique'), [masterSkillList]);
-    const normalSkills = useMemo(() => masterSkillList.filter(s => s.type !== 'unique' && s.rarity === 1), [masterSkillList]);
-
-    const skillNameToGroupId = useMemo(() => {
-        const map = new Map<string, number | undefined>();
-        masterSkillList.forEach(skill => { if (skill.groupId) map.set(skill.name_en, skill.groupId); });
-        return map;
-    }, [masterSkillList]);
+    const uniqueSkills = useMemo(() => masterSkillList.filter(s => s.category === 'unique'), [masterSkillList]);
+    const normalSkills = useMemo(() => masterSkillList.filter(s => s.category === 'white' && s.factorType === 4), [masterSkillList]);
 
     const availableNormalSkills = useMemo(() => {
         const addedGroupIds = new Set<number>();
         manualData.whiteSparks.forEach(item => {
-            const groupId = skillNameToGroupId.get(item.name);
-            if (groupId) addedGroupIds.add(groupId);
+            const skillData = skillMapByName.get(item.name);
+            if (skillData) addedGroupIds.add(skillData.id);
         });
-        return normalSkills.filter(skill => !skill.groupId || !addedGroupIds.has(skill.groupId));
-    }, [manualData.whiteSparks, normalSkills, skillNameToGroupId]);
+        return normalSkills.filter(skill => !addedGroupIds.has(skill.id));
+    }, [manualData.whiteSparks, normalSkills, skillMapByName]);
 
     useEffect(() => {
         if (isOpen) {

@@ -24,7 +24,7 @@ const PurchaseOrderInfoModal = ({ isOpen, onClose, groupedSkills, spBudget }: Pu
         const flattenedSkills = groupedSkills.flatMap(([, skills]) => skills);
 
         return flattenedSkills.map(skill => {
-            const cost = skill.baseCost || 150;
+            const cost = skill.sp_cost || 150;
             const isAffordable = runningTotal + cost <= spBudget;
             if (isAffordable) {
                 runningTotal += cost;

@@ -1,5 +1,5 @@
 import { useState, useMemo, useEffect, useRef } from 'react';
-import { BreedingPair, Skill } from '../types';
+import { BreedingPair } from '../types';
 import Modal from './common/Modal';
 import { useTranslation } from 'react-i18next';
 import { useAppContext } from '../context/AppContext';
@@ -38,8 +38,8 @@ const ProbabilityCalculatorModal = ({ isOpen, onClose, pair }: ProbabilityCalcul
     const [targetStats, setTargetStats] = useState<Record<string, number>>({ speed: 1100, stamina: 1100, power: 1100, guts: 1100, wit: 1100 });
     const [spBudget, setSpBudget] = useState(1800);
     const [trainingRank, setTrainingRank] = useState<'ss' | 'ss+'>('ss');
-    const [acquirableSkillIds, setAcquirableSkillIds] = useState(new Set<string>());
-    const [conditionalSkillIds, setConditionalSkillIds] = useState(new Set<string>());
+    const [acquirableSkillIds, setAcquirableSkillIds] = useState(new Set<number>());
+    const [conditionalSkillIds, setConditionalSkillIds] = useState(new Set<number>());
     const [targetAptitudes, setTargetAptitudes] = useState<string[]>([]);
     
     const [isSkillModalOpen, setIsSkillModalOpen] = useState(false);
@@ -69,8 +69,8 @@ const ProbabilityCalculatorModal = ({ isOpen, onClose, pair }: ProbabilityCalcul
             setResults(null);
             setError(null);
             setIsLoading(false);
-            setAcquirableSkillIds(new Set<string>());
-            setConditionalSkillIds(new Set<string>());
+            setAcquirableSkillIds(new Set<number>());
+            setConditionalSkillIds(new Set<number>());
             if (goal) {
                 setTargetAptitudes(goal.primaryPink);
             }
@@ -105,8 +105,8 @@ const ProbabilityCalculatorModal = ({ isOpen, onClose, pair }: ProbabilityCalcul
     
     const translatedAptitudeOptions = PINK_SPARK_OPTIONS.map(opt => ({ value: opt, label: t(opt, { ns: 'game' }) }));
     
-    const purchasableSkills = useMemo(() => masterSkillList.filter(s => s.type === 'normal' && !s.id.startsWith('race_') && !s.id.startsWith('scenario_') && !s.id.startsWith('aptitude_')), [masterSkillList]);
-    const conditionalSkills = useMemo(() => masterSkillList.filter(s => s.id.startsWith('race_') || s.id.startsWith('scenario_') || s.id.startsWith('aptitude_')), [masterSkillList]);
+    const purchasableSkills = useMemo(() => masterSkillList.filter(s => s.category === 'white' && s.factorType === 4), [masterSkillList]);
+    const conditionalSkills = useMemo(() => masterSkillList.filter(s => s.category === 'white' && s.factorType !== 4), [masterSkillList]);
 
     return (
         <>

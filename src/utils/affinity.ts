@@ -181,10 +181,10 @@ export function getMissingWishlistSkills(
     skillMapByName: Map<string, Skill>
 ): { missingSkills: WishlistItem[]; relevantWishlistCount: number } {
     
-    // Filter the wishlist to only include "normal" white sparks (not race factors).
+    // Filter the wishlist to only include "normal" white sparks (not race factors, etc.).
     const relevantWishlistItems = goal.wishlist.filter(item => {
         const skill = skillMapByName.get(item.name);
-        return skill && skill.type === 'normal' && !skill.id.startsWith('race_');
+        return skill && skill.category === 'white' && skill.factorType === 4;
     });
 
     const relevantWishlistCount = relevantWishlistItems.length;
@@ -211,7 +211,7 @@ export function getUnsaturatedWishlistSkills(
 ): WishlistItem[] {
     const relevantWishlistItems = goal.wishlist.filter(item => {
         const skill = skillMapByName.get(item.name);
-        return skill && skill.type === 'normal' && !skill.id.startsWith('race_');
+        return skill && skill.category === 'white' && skill.factorType === 4;
     });
 
     if (relevantWishlistItems.length === 0) {

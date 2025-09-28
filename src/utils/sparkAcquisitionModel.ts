@@ -43,8 +43,8 @@ export const calculateSparkCountDistribution = (
     spBudget: number,
     skillMapByName: Map<string, Skill>,
     inventoryMap: Map<number, Parent>,
-    acquirableSkillIds: Set<string>,
-    conditionalSkillIds: Set<string>
+    acquirableSkillIds: Set<number>,
+    conditionalSkillIds: Set<number>
 ): { freeSparksDist: Map<number, number>, purchasedSparksDist: Map<number, number> } => {
     
     const lineage: (Parent | ManualParentData | null)[] = [
@@ -78,7 +78,7 @@ export const calculateSparkCountDistribution = (
         });
         purchasableSkillPool = Array.from(lineageSkillNames)
             .map(name => skillMapByName.get(name))
-            .filter((s): s is Skill => !!s && s.type === 'normal' && !s.id.startsWith('race_') && !s.id.startsWith('scenario_') && !s.id.startsWith('aptitude_'));
+            .filter((s): s is Skill => !!s && s.category === 'white' && s.factorType === 4);
     } else {
         purchasableSkillPool = Array.from(acquirableSkillIds)
             .map(id => allSkillsFromMap.find(s => s.id === id))
@@ -87,18 +87,18 @@ export const calculateSparkCountDistribution = (
     
     const wishlistMap = new Map(goal.wishlist.map(item => [item.name, item.tier]));
     const potentialPurchases = purchasableSkillPool.map(skill => {
-        const cost = skill.baseCost || 150;
+        const cost = skill.sp_cost || 150;
         const tier = wishlistMap.get(skill.name_en) || 'Other';
         const ancestorCount = lineage.filter(member => 
-            member && member.whiteSparks.some(s => skillMapByName.get(s.name)?.groupId === skill.groupId)
+            member && member.whiteSparks.some(s => skillMapByName.get(s.name)?.id === skill.id)
         ).length;
 
+        // Simplified rarity check for base prob
         let baseProb = WHITE_SKILL_BASE_PROBABILITY.normal;
-        if (skill.rarity === 2) baseProb = WHITE_SKILL_BASE_PROBABILITY.circle;
 
         const acquireProb = Math.min(1.0, baseProb * (ANCESTOR_BONUS ** ancestorCount));
         
-        return { tier: tier as 'S' | 'A' | 'B' | 'C' | 'Other', cost, acquireProb, level: skill.rarity || 1 };
+        return { tier: tier as 'S' | 'A' | 'B' | 'C' | 'Other', cost, acquireProb, level: 1 }; // Assume level 1 for now
     });
 
     const sortedPurchases = potentialPurchases.sort((a, b) => {

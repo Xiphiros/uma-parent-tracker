@@ -9,8 +9,8 @@ interface SelectConditionalSkillsModalProps {
     isOpen: boolean;
     onClose: () => void;
     allSkills: Skill[];
-    selectedIds: Set<string>;
-    onSave: (newSelectedIds: Set<string>) => void;
+    selectedIds: Set<number>;
+    onSave: (newSelectedIds: Set<number>) => void;
 }
 
 const SelectConditionalSkillsModal = ({ isOpen, onClose, allSkills, selectedIds, onSave }: SelectConditionalSkillsModalProps) => {
@@ -25,9 +25,9 @@ const SelectConditionalSkillsModal = ({ isOpen, onClose, allSkills, selectedIds,
         if (isOpen) {
             setLocalSelectedIds(new Set(selectedIds));
         }
-    }, [isOpen]);
+    }, [isOpen, selectedIds]);
 
-    const handleToggle = (skillId: string) => {
+    const handleToggle = (skillId: number) => {
         const newSet = new Set(localSelectedIds);
         if (newSet.has(skillId)) {
             newSet.delete(skillId);
@@ -55,9 +55,9 @@ const SelectConditionalSkillsModal = ({ isOpen, onClose, allSkills, selectedIds,
 
         const grouped = filtered.reduce((acc, skill) => {
             let groupName = 'Other';
-            if (skill.id.startsWith('race_')) groupName = 'Race';
-            else if (skill.id.startsWith('scenario_')) groupName = 'Scenario';
-            else if (skill.id.startsWith('aptitude_')) groupName = 'Aptitude';
+            if (skill.factorType === 5) groupName = 'Race';
+            else if (skill.factorType === 6) groupName = 'Scenario';
+            else if ([8, 9, 10, 11].includes(skill.factorType)) groupName = 'Aptitude';
             
             if (!acc[groupName]) acc[groupName] = [];
             acc[groupName].push(skill);
