@@ -38,7 +38,7 @@ const TOP_K_SUGGESTIONS = 20;
 
 const BreedingPlannerModal = ({ isOpen, onClose }: BreedingPlannerModalProps) => {
     const { t } = useTranslation('roster');
-    const { getScoredRoster, dataDisplayLanguage, umaMapById, masterUmaList, appData, charaRelations, relationPoints, skillMapByName, getActiveProfile } = useAppContext();
+    const { getScoredRoster, dataDisplayLanguage, umaMapById, masterUmaList, appData, charaRelations, relationPoints, skillMapByName, getActiveProfile, getUmaDisplayName } = useAppContext();
     const roster = useMemo(() => getScoredRoster(), [getScoredRoster]);
     const displayNameProp = dataDisplayLanguage === 'jp' ? 'name_jp' : 'name_en';
     const inventoryMap = useMemo(() => new Map(appData.inventory.map(p => [p.id, p])), [appData.inventory]);
@@ -68,7 +68,6 @@ const BreedingPlannerModal = ({ isOpen, onClose }: BreedingPlannerModalProps) =>
     useEffect(() => { setSuggestionCheckedSkills(new Set<string>()); }, [selectedSuggestion]);
 
 
-    const getDisplayName = (umaId: string) => umaMapById.get(umaId)?.[displayNameProp] || 'Unknown';
     const getSkillDisplayName = (name_en: string) => skillMapByName.get(name_en)?.[displayNameProp] || name_en;
     
     const traineeSuggestionsForManualPair = useMemo(() => {
@@ -289,12 +288,12 @@ const BreedingPlannerModal = ({ isOpen, onClose }: BreedingPlannerModalProps) =>
 
     const renderAvatar = (umaId: string) => {
         const uma = umaMapById.get(umaId);
-        return <img src={`${import.meta.env.BASE_URL}${uma?.image}`} alt={getDisplayName(umaId)} className="breeding-planner__suggestion-avatar" />;
+        return <img src={`${import.meta.env.BASE_URL}${uma?.image}`} alt={uma ? getUmaDisplayName(uma) : ''} className="breeding-planner__suggestion-avatar" />;
     };
 
     const getSelectedItem = (item: Uma | null) => {
         if (!item) return null;
-        return { name: item[displayNameProp], image: item.image || null };
+        return { name: getUmaDisplayName(item), image: item.image || null };
     };
 
     const handleSelectSuggestion = (suggestion: Suggestion) => {
@@ -342,7 +341,7 @@ const BreedingPlannerModal = ({ isOpen, onClose }: BreedingPlannerModalProps) =>
                                                 <div className="breeding-planner__suggestion-rank">#{index + 1}</div>
                                                 <div className="breeding-planner__suggestion-pair">
                                                     {renderAvatar(s.uma.id)}
-                                                    <span className="breeding-planner__suggestion-name">{s.uma[displayNameProp]}</span>
+                                                    <span className="breeding-planner__suggestion-name">{getUmaDisplayName(s.uma)}</span>
                                                 </div>
                                                 <div className="breeding-planner__suggestion-scores">
                                                     <div className="breeding-planner__suggestion-affinity">{s.totalAffinity} {t('breedingPlanner.totalAffinity')}</div>
