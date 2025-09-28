@@ -1,23 +1,37 @@
+export interface SkillRarity {
+  rarity: 1 | 2 | 3;
+  factorId: number;
+}
+
 export interface Skill {
-  id: string;
+  id: number; // factor_group_id
+  factorId: number; // The 1-star factor ID
   name_jp: string;
   name_en: string;
-  name_en_community?: string;
-  type: 'unique' | 'normal';
-  rarity?: number;
-  groupId?: number;
-  baseCost?: number;
+  description_jp: string | null;
+  description_en: string | null;
+  category: 'blue' | 'pink' | 'unique' | 'white';
+  rarities: SkillRarity[];
   isGlobal: boolean;
+  
+  // Data for the skill this factor represents
+  activeSkillId: number | null;
+  purchasableSkillId: number | null;
+  sp_cost?: number;
+  name_jp_skill?: string;
+  name_en_skill?: string;
+  description_jp_skill?: string;
+  description_en_skill?: string;
 }
 
 export interface Uma {
-  id: string; // This will now be the Outfit ID, e.g., "100101"
-  characterId: string; // This will be the base character ID, e.g., "1001"
+  id: string; // This is the Outfit ID, e.g., "100101"
+  characterId: string; // This is the base character ID, e.g., "1001"
   name_jp: string;
   name_en: string;
-  name_en_community?: string;
   image?: string;
   isGlobal: boolean;
+  activeUniqueSkillId: number | null;
 }
 
 export interface BlueSpark {
