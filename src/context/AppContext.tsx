@@ -27,6 +27,16 @@ const affinityDataSources = {
     global: affinityGlJson as AffinityComponents,
 };
 
+// Helper to assemble display names from the refactored Uma type
+export const getUmaDisplayName = (uma: Uma, lang: DataDisplayLanguage): string => {
+    const baseName = lang === 'jp' ? uma.name_jp : uma.name_en;
+    const outfitName = lang === 'jp' ? uma.outfit_name_jp : uma.outfit_name_en;
+    if (outfitName) {
+        return `${outfitName} ${baseName}`;
+    }
+    return baseName;
+};
+
 interface AppContextType {
   loading: boolean;
   appData: AppData;
@@ -39,6 +49,8 @@ interface AppContextType {
   changeUiLanguage: (lang: 'en' | 'jp') => void;
   masterSkillList: Skill[];
   masterUmaList: Uma[];
+  masterUmaListWithDisplayName: (Uma & { displayName: string })[];
+  getUmaDisplayName: (uma: Uma) => string;
   skillMapByName: Map<string, Skill>;
   umaMapById: Map<string, Uma>;
   getActiveProfile: () => Profile | undefined;
@@ -194,6 +206,17 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
       }
       return allUmas;
   }, [activeServer]);
+
+  const getUmaDisplayNameForContext = useCallback((uma: Uma) => {
+      return getUmaDisplayName(uma, dataDisplayLanguage);
+  }, [dataDisplayLanguage]);
+
+  const masterUmaListWithDisplayName = useMemo(() => {
+      return masterUmaList.map(uma => ({
+          ...uma,
+          displayName: getUmaDisplayNameForContext(uma)
+      }));
+  }, [masterUmaList, getUmaDisplayNameForContext]);
 
   const skillMapByName = useMemo(() => new Map(masterSkillList.map(skill => [skill.name_en, skill])), [masterSkillList]);
   const umaMapById = useMemo(() => new Map(masterUmaList.map(uma => [uma.id, uma])), [masterUmaList]);
@@ -669,7 +692,7 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
 
     if (!destUmaMap.has(parent.umaId)) {
         const uma = umaMapById.get(parent.umaId);
-        const umaName = uma ? uma.name_en : parent.name;
+        const umaName = uma ? getUmaDisplayName(uma, 'en') : parent.name;
         errors.push(`Character/Outfit: ${umaName}`);
     }
 
@@ -717,7 +740,7 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
       // Validate roster
       parentsInRoster.forEach(parent => {
           const uma = umaMapById.get(parent.umaId);
-          const parentDisplayName = uma ? uma.name_en : parent.name;
+          const parentDisplayName = uma ? getUmaDisplayName(uma, 'en') : parent.name;
           if (!destUmaMap.has(parent.umaId)) {
               errors.push(t('tabs:modals.transferValidation.errorParentUma', { parentName: parentDisplayName }));
           }
@@ -874,6 +897,8 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
     changeUiLanguage,
     masterSkillList,
     masterUmaList,
+    masterUmaListWithDisplayName,
+    getUmaDisplayName: getUmaDisplayNameForContext,
     skillMapByName,
     umaMapById,
     getActiveProfile,
