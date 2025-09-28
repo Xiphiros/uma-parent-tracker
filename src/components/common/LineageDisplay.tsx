@@ -11,8 +11,7 @@ interface LineageDisplayProps {
 }
 
 const LineageDisplay = ({ label, parent, onClick, onClear }: LineageDisplayProps) => {
-    const { appData, umaMapById, dataDisplayLanguage } = useAppContext();
-    const displayNameProp = dataDisplayLanguage === 'jp' ? 'name_jp' : 'name_en';
+    const { appData, umaMapById, getUmaDisplayName } = useAppContext();
 
     const getGrandparentData = (gp: Grandparent | undefined): { name: string; image?: string | null } | null => {
         if (!gp) return null;
@@ -30,14 +29,14 @@ const LineageDisplay = ({ label, parent, onClick, onClear }: LineageDisplayProps
 
         if (umaId) {
             const uma = umaMapById.get(umaId);
-            return { name: uma?.[displayNameProp] || 'Unknown', image: uma?.image || null };
+            return { name: uma ? getUmaDisplayName(uma) : 'Unknown', image: uma?.image || null };
         }
 
         return { name: manualName || 'Unknown', image: null };
     };
     
     const parentData = parent ? {
-        name: umaMapById.get(parent.umaId)?.[displayNameProp] || parent.name,
+        name: umaMapById.get(parent.umaId) ? getUmaDisplayName(umaMapById.get(parent.umaId)!) : parent.name,
         image: umaMapById.get(parent.umaId)?.image || null
     } : null;
 
