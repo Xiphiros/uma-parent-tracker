@@ -662,14 +662,14 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
     }
     
     const uma = umaMapById.get(parent.umaId);
-    const displayName = uma ? getUmaDisplayName(uma, parent.server) : parent.name;
+    const displayName = uma ? getUmaDisplayName(uma, parent.server === 'global' ? 'en' : 'jp') : parent.name;
 
     setAppData(prevData => ({
       ...prevData,
       inventory: prevData.inventory.map(p => p.id === parent.id ? { ...p, ...parent, name: displayName, hash: newHash } : p)
     }));
   };
-
+  
   const deleteParent = (parentId: number) => {
     setAppData(prevData => {
         const newInventory = prevData.inventory.filter(p => p.id !== parentId);
