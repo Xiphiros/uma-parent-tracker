@@ -35,8 +35,8 @@ const InventoryControls = ({ filters, setFilters, sortField, setSortField, sortD
 
     const [isAdvanced, setIsAdvanced] = useState(true);
 
-    const uniqueSkills = masterSkillList.filter(s => s.type === 'unique');
-    const normalSkills = masterSkillList.filter(s => s.type !== 'unique' && s.rarity === 1);
+    const uniqueSkills = masterSkillList.filter(s => s.category === 'unique');
+    const normalSkills = masterSkillList.filter(s => s.category === 'white');
 
     // When switching to representative mode, clamp any existing star filters to the max of 3.
     useEffect(() => {

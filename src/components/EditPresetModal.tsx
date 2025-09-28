@@ -8,7 +8,7 @@ import './EditPresetModal.css';
 interface EditPresetModalProps {
     isOpen: boolean;
     onClose: () => void;
-    onSave: (id: string | null, name: string, skillIds: string[]) => void;
+    onSave: (id: string | null, name: string, skillIds: number[]) => void;
     presetToEdit: SkillPreset | null;
 }
 
@@ -17,11 +17,11 @@ const EditPresetModal = ({ isOpen, onClose, onSave, presetToEdit }: EditPresetMo
     const displayNameProp = dataDisplayLanguage === 'jp' ? 'name_jp' : 'name_en';
 
     const [name, setName] = useState('');
-    const [selectedSkillIds, setSelectedSkillIds] = useState<Set<string>>(new Set());
+    const [selectedSkillIds, setSelectedSkillIds] = useState<Set<number>>(new Set());
 
     const purchasableSkills = useMemo(() => {
         return masterSkillList
-            .filter(s => s.type === 'normal' && !s.id.startsWith('race_') && !s.id.startsWith('scenario_') && !s.id.startsWith('aptitude_'))
+            .filter(s => s.category === 'white' && s.factorType === 4)
             .map(s => ({ id: s.id, name: s[displayNameProp] }));
     }, [masterSkillList, displayNameProp]);
 
@@ -46,6 +46,14 @@ const EditPresetModal = ({ isOpen, onClose, onSave, presetToEdit }: EditPresetMo
 
     const modalTitle = presetToEdit ? `Edit Preset: ${presetToEdit.name}` : 'Create New Preset';
 
+    // Prepare props for DualListBox which expects string IDs
+    const allItemsForListBox = purchasableSkills.map(s => ({ id: s.id.toString(), name: s.name }));
+    const initialExcludedIdsForListBox = new Set(
+        purchasableSkills
+            .filter(s => !selectedSkillIds.has(s.id))
+            .map(s => s.id.toString())
+    );
+
     return (
         <Modal isOpen={isOpen} onClose={onClose} title={modalTitle} size="xl">
             <div className="edit-preset__content">
@@ -60,10 +68,12 @@ const EditPresetModal = ({ isOpen, onClose, onSave, presetToEdit }: EditPresetMo
                     />
                 </div>
                 <DualListBox
-                    allItems={purchasableSkills}
-                    initialExcludedIds={new Set(purchasableSkills.filter(s => !selectedSkillIds.has(s.id)).map(s => s.id))}
-                    onChange={(excludedIds) => {
-                        const newSelectedIds = new Set(purchasableSkills.filter(s => !excludedIds.has(s.id)).map(s => s.id));
+                    allItems={allItemsForListBox}
+                    initialExcludedIds={initialExcludedIdsForListBox}
+                    onChange={(excludedStringIds) => {
+                        const allSkillIds = new Set(purchasableSkills.map(s => s.id));
+                        const excludedNumberIds = new Set(Array.from(excludedStringIds).map(id => parseInt(id, 10)));
+                        const newSelectedIds = new Set([...allSkillIds].filter(id => !excludedNumberIds.has(id)));
                         setSelectedSkillIds(newSelectedIds);
                     }}
                 />
