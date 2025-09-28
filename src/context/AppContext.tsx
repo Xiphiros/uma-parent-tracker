@@ -27,12 +27,16 @@ const affinityDataSources = {
     global: affinityGlJson as AffinityComponents,
 };
 
-// Helper to assemble display names from the refactored Uma type
+// New helper to assemble display names from the refactored Uma type
 export const getUmaDisplayName = (uma: Uma, lang: DataDisplayLanguage): string => {
-    const baseName = lang === 'jp' ? uma.name_jp : uma.name_en;
+    const baseName = lang === 'jp' ? uma.base_name_jp : uma.base_name_en;
     const outfitName = lang === 'jp' ? uma.outfit_name_jp : uma.outfit_name_en;
-    if (outfitName) {
-        return `${outfitName} ${baseName}`;
+    
+    // Fallback for JP-only outfits when viewing in English
+    const finalOutfitName = (lang === 'en' && !outfitName) ? uma.outfit_name_jp : outfitName;
+
+    if (finalOutfitName) {
+        return `${finalOutfitName} ${baseName}`;
     }
     return baseName;
 };
@@ -608,8 +612,12 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
         throw new Error(i18n.t('modals:duplicateParentError'));
     }
 
+    const uma = umaMapById.get(parentData.umaId);
+    const displayName = uma ? getUmaDisplayName(uma, activeServer === 'global' ? 'en' : 'jp') : parentData.name;
+
     const newParent: Parent = {
       ...parentData,
+      name: displayName,
       id: Date.now(),
       gen: parentData.isBorrowed ? 0 : getNextGenNumberForCharacter(parentData.umaId),
       score: 0, // Score is always calculated on the fly
@@ -653,9 +661,12 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
         throw new Error(i18n.t('modals:duplicateParentError'));
     }
     
+    const uma = umaMapById.get(parent.umaId);
+    const displayName = uma ? getUmaDisplayName(uma, parent.server) : parent.name;
+
     setAppData(prevData => ({
       ...prevData,
-      inventory: prevData.inventory.map(p => p.id === parent.id ? { ...p, ...parent, hash: newHash } : p)
+      inventory: prevData.inventory.map(p => p.id === parent.id ? { ...p, ...parent, name: displayName, hash: newHash } : p)
     }));
   };
 
