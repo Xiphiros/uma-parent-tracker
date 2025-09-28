@@ -18,7 +18,7 @@ const GoalDefinition = () => {
     const goal = activeProfile?.goal;
 
     const uniqueSkills = useMemo(() => masterSkillList.filter(s => s.category === 'unique'), [masterSkillList]);
-    const normalSkills = useMemo(() => masterSkillList.filter(s => s.category === 'white' && s.factorType === 4), [masterSkillList]);
+    const whiteSparks = useMemo(() => masterSkillList.filter(s => s.category === 'white'), [masterSkillList]);
 
     const skillNameToGroupId = useMemo(() => {
         const map = new Map<string, number>();
@@ -34,8 +34,8 @@ const GoalDefinition = () => {
         return uniqueSkills.filter(skill => !wishlistedNames.has(skill.name_en));
     }, [goal, uniqueSkills]);
 
-    const availableNormalSkills = useMemo(() => {
-        if (!goal) return normalSkills;
+    const availableWhiteSparks = useMemo(() => {
+        if (!goal) return whiteSparks;
         
         const wishlistedGroupIds = new Set<number>();
         goal.wishlist.forEach(item => {
@@ -45,10 +45,10 @@ const GoalDefinition = () => {
             }
         });
 
-        return normalSkills.filter(skill => 
+        return whiteSparks.filter(skill => 
             !wishlistedGroupIds.has(skill.id)
         );
-    }, [goal, normalSkills, skillNameToGroupId]);
+    }, [goal, whiteSparks, skillNameToGroupId]);
 
     if (!goal) return null;
 
@@ -129,7 +129,7 @@ const GoalDefinition = () => {
                 <WishlistSection 
                     title={t('whiteWishlist')}
                     wishlist={goal.wishlist}
-                    skillList={availableNormalSkills}
+                    skillList={availableWhiteSparks}
                     onAdd={(item) => handleWishlistAdd('wishlist', item)}
                     onRemove={(name) => handleWishlistRemove('wishlist', name)}
                     onUpdate={(oldName, newItem) => handleWishlistUpdate('wishlist', oldName, newItem)}
