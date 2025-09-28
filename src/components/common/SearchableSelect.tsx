@@ -5,10 +5,7 @@ import './SearchableSelect.css';
 import { useTranslation } from 'react-i18next';
 
 interface SearchableItem {
-  name_en: string;
-  name_jp?: string;
-  type?: string;
-  [key: string]: any; // Allow other properties
+  [key: string]: any; // Allow any properties
 }
 
 interface SearchableSelectProps {
@@ -16,7 +13,7 @@ interface SearchableSelectProps {
   placeholder: string;
   onSelect: (item: SearchableItem) => void;
   value: string | null;
-  displayProp?: 'name_en' | 'name_jp';
+  displayProp?: string;
   disabled?: boolean;
 }
 
@@ -72,10 +69,10 @@ const SearchableSelect = ({ items, placeholder, onSelect, value, displayProp = '
     if (!lowerQuery) return items.slice(0, 100);
     return items.filter(
       item =>
-        item.name_en.toLowerCase().includes(lowerQuery) ||
+        (item[displayProp] && String(item[displayProp]).toLowerCase().includes(lowerQuery)) ||
         (item.name_jp && item.name_jp.toLowerCase().includes(lowerQuery))
     ).slice(0, 100);
-  }, [items, query]);
+  }, [items, query, displayProp]);
 
   const handleSelect = (item: SearchableItem) => {
     onSelect(item);
@@ -125,7 +122,7 @@ const SearchableSelect = ({ items, placeholder, onSelect, value, displayProp = '
           <ul className="searchable-select__list" ref={listRef}>
             {filteredItems.length > 0 ? (
               filteredItems.map(item => (
-                <li key={item.name_en} className="searchable-select__item" onClick={() => handleSelect(item)}>
+                <li key={item.id || item.name_en} className="searchable-select__item" onClick={() => handleSelect(item)}>
                   {item[displayProp]}
                 </li>
               ))
