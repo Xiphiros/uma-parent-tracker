@@ -40,7 +40,7 @@ const ITEMS_PER_PAGE = 12;
 
 const InventoryModal = ({ isOpen, onClose, isSelectionMode = false, onSelectParent, excludedCharacterIds = new Set() }: InventoryModalProps) => {
     const { t } = useTranslation(['roster', 'modals', 'common']);
-    const { appData, activeServer, deleteParent, addParentToProfile, removeParentFromProfile, moveParentToServer, validateParentForServer, umaMapById, dataDisplayLanguage, getActiveProfile, skillMapByName, getIndividualScore } = useAppContext();
+    const { appData, activeServer, deleteParent, addParentToProfile, removeParentFromProfile, moveParentToServer, validateParentForServer, umaMapById, getActiveProfile, skillMapByName, getIndividualScore, getUmaDisplayName } = useAppContext();
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
     const [parentToEdit, setParentToEdit] = useState<Parent | null>(null);
     const [isDeleteConfirmOpen, setDeleteConfirmOpen] = useState(false);
@@ -97,7 +97,7 @@ const InventoryModal = ({ isOpen, onClose, isSelectionMode = false, onSelectPare
 
         const filtered = scoredInventory.filter(parent => {
             const uma = umaMapById.get(parent.umaId);
-            const parentName = uma ? (dataDisplayLanguage === 'jp' ? uma.name_jp : uma.name_en) : parent.name;
+            const parentName = uma ? getUmaDisplayName(uma) : parent.name;
             
             if (filters.searchTerm && !parentName.toLowerCase().includes(filters.searchTerm.toLowerCase())) return false;
 
@@ -153,7 +153,7 @@ const InventoryModal = ({ isOpen, onClose, isSelectionMode = false, onSelectPare
 
         return { paginatedInventory, totalCount: sorted.length, totalPages };
 
-    }, [inventory, inventoryView, filters, sortField, sortDirection, umaMapById, dataDisplayLanguage, inventoryMap, activeProfile, appData.inventory, skillMapByName, getIndividualScore, currentPage]);
+    }, [inventory, inventoryView, filters, sortField, sortDirection, umaMapById, inventoryMap, activeProfile, appData.inventory, skillMapByName, getIndividualScore, currentPage, getUmaDisplayName]);
 
 
     const handleOpenAddModal = () => {
@@ -227,8 +227,7 @@ const InventoryModal = ({ isOpen, onClose, isSelectionMode = false, onSelectPare
     const getParentDisplayName = (parent: Parent | null): string => {
         if (!parent) return '';
         const uma = umaMapById.get(parent.umaId);
-        if (!uma) return parent.name;
-        return dataDisplayLanguage === 'jp' ? uma.name_jp : uma.name_en;
+        return uma ? getUmaDisplayName(uma) : parent.name;
     };
     
     const parentDisplayName = getParentDisplayName(moveConfirmState?.parent || null);
