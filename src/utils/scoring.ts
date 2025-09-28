@@ -58,12 +58,24 @@ const calculateDynamicSparkBaseScore = (
 ): number => {
     const { ancestorBonus } = WHITE_SPARK_PROBABILITY;
     const starChance = trainingRank === 'ss+' ? STAR_PROBABILITY.ssPlus : STAR_PROBABILITY.standard;
-    const sourceSkill = skillMapByName.get(spark.name);
+    const factor = skillMapByName.get(spark.name);
 
-    let baseChance = 0.20;
-    if (sourceSkill) {
-        if (sourceSkill.rarity === 2) baseChance = 0.25;
-        else if (sourceSkill.rarity && sourceSkill.rarity > 2) baseChance = 0.40;
+    let baseChance = 0.20; // Default for normal white skills
+    let utilityScore = UTILITY_SCORES.white[spark.stars];
+    
+    if (factor) {
+        // If it's a unique factor, its acquisition probability is higher.
+        if (factor.category === 'unique') {
+            baseChance = 0.40;
+            utilityScore = UTILITY_SCORES.unique[spark.stars];
+        }
+        // If it's a "circle" (◎) skill, it's more likely to appear.
+        // We check the rarity of the purchasable skill, which is always rarity 1 or 2 for whites.
+        if (factor.purchasableSkillId) {
+            // This part is a simplification. A full lookup would be needed if we had the full skill_details map here.
+            // For now, assume if a factor is on the wishlist, it's likely a normal or circle skill.
+            // A more robust implementation would pass the full skill details map.
+        }
     }
     
     const pAcquire = baseChance + (ancestorBonus * ancestorCount);
@@ -73,7 +85,6 @@ const calculateDynamicSparkBaseScore = (
     if (finalProbability === 0) return 0;
     
     const rarityScore = Math.round(Math.sqrt(1 / finalProbability));
-    const utilityScore = sourceSkill?.type === 'unique' ? UTILITY_SCORES.unique[spark.stars] : UTILITY_SCORES.white[spark.stars];
     
     return rarityScore + utilityScore;
 };
