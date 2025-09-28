@@ -11,7 +11,7 @@ export type ProbabilityWorkerPayload = {
     inventory: Parent[];
     skillMapEntries: [string, Skill][];
     spBudget: number;
-    acquirableSkillIds: string[];
-    conditionalSkillIds: string[];
+    acquirableSkillIds: number[];
+    conditionalSkillIds: number[];
     targetAptitudes: string[];
 };

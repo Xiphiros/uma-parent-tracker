@@ -150,7 +150,7 @@ function getAverageSparkScoreDistributionForPool(skillPool: Skill[], pair: Breed
         for (const stars of [1, 2, 3] as const) {
             const score = getSparkScoreContribution('white', { name: skill.name_en, stars }, goal, skillMapByName, trainingRank);
             const prob = weight * starProbs[stars];
-            mixtureDist.set(score, (mixtureDist.get(score) || 0) + prob);
+            mixtureDist.set(score, (distribution.get(score) || 0) + prob);
         }
     }
     return mixtureDist;
