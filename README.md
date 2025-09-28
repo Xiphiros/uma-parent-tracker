@@ -85,15 +85,14 @@ This project is licensed under the **GNU General Public License v3.0**. A copy o
 
 ### Data Source & Credits
 
-This tool utilizes data and assets from several incredible community projects. This tool would not be possible without their efforts.
+This tool utilizes assets from and was made possible by the foundational work of several incredible community projects:
 
-*   **Core Game Data**: The skill and character datasets are sourced from the incredible work done by **Alpha123** on the [uma-tools](https://github.com/alpha123/uma-tools) project.
 *   **Character Images**: All character images are provided by [Gametora](https://gametora.com/).
-*   **Affinity Data**: The character-to-character affinity data is provided by **Mee1080** from the [UmaiShow](https://github.com/mee1080/umaishow/) project.
+*   **Foundational Knowledge**: The initial understanding of the database structures was made possible by the pioneering work of **Alpha123** on the [uma-tools](https://github.com/alpha123/uma-tools) project and **Mee1080** on the [UmaiShow](https://github.com/mee1080/umaishow/) project.
 
 ### Special Thanks
 
-Thank you to the following people for their help with testing and feedback:
+Thank you to the following people for their help with testing, feedback, and key enabling technologies:
 
-*   *Diabellstar*
-*   *Sloovy*
+*   *Diabellstar* & *Sloovy* for their help with testing and feedback.
+*   *qwcan* for their continued maintenance of the [UmaLauncher fork](https://github.com/qwcan/UmaLauncher/tree/main), which was indispensable for understanding how database values were applied.

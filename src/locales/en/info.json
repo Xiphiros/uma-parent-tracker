@@ -4,9 +4,9 @@
   "meta": "Version {{version}} (In Development) • Created by Xiph",
   "licenseTitle": "License",
   "licenseText": "This application is licensed under the GNU General Public License v3.0 (GPLv3).",
-  "licenseMutedText": "The underlying skill, character, and game data is sourced from the 'uma-tools' project, which is distributed under the GNU General Public License v3.0.",
+  "licenseMutedText": "This is a requirement because the underlying skill, character, and game data is sourced from the 'uma-tools' project, which is also distributed under the GPLv3.",
   "creditsTitle": "Data Source & Credits",
-  "creditsText": "This tool utilizes data and assets from several incredible community projects:<ul><li class='mt-2'>Core game data is sourced from the <a href='https://github.com/alpha123/uma-tools' target='_blank' rel='noopener noreferrer'>uma-tools</a> project by Alpha123.</li><li class='mt-2'>Character images are provided by <a href='https://gametora.com/' target='_blank' rel='noopener noreferrer'>Gametora</a>.</li><li class='mt-2'>Character affinity data is provided by Mee1080 from the <a href='https://github.com/mee1080/umaishow/' target='_blank' rel='noopener noreferrer'>UmaiShow</a> project.</li></ul>This tool would not be possible without their efforts.",
+  "creditsText": "This tool utilizes assets from and was made possible by the foundational work of several incredible community projects:<ul><li class='mt-2'>Character images are provided by <a href='https://gametora.com/' target='_blank' rel='noopener noreferrer'>Gametora</a>.</li><li class='mt-2'>The foundational understanding of the database structures was made possible by the work of Alpha123 on the <a href='https://github.com/alpha123/uma-tools' target='_blank' rel='noopener noreferrer'>uma-tools</a> project and Mee1080 on the <a href='https://github.com/mee1080/umaishow/' target='_blank' rel='noopener noreferrer'>UmaiShow</a> project.</li></ul>",
   "thanksTitle": "Special Thanks",
-  "thanksText": "Thank you to <em>Diabellstar</em> and <em>Sloovy</em> for their help with testing and feedback."
+  "thanksText": "<ul><li><em>Diabellstar</em> and <em>Sloovy</em> for their help with testing and feedback.</li><li class='mt-2'><em>qwcan</em> for maintaining the <a href='https://github.com/qwcan/UmaLauncher/tree/main' target='_blank' rel='noopener noreferrer'>UmaLauncher fork</a>, which was indispensable for analyzing game data.</li></ul>"
 }

@@ -4,9 +4,9 @@
   "meta": "バージョン {{version}} (開発中) • 作成者 Xiph",
   "licenseTitle": "ライセンス",
   "licenseText": "このアプリケーションはGNU General Public License v3.0（GPLv3）の下でライセンスされています。",
-  "licenseMutedText": "基になるスキル、キャラクター、ゲームデータは「uma-tools」プロジェクトから提供されており、これはGNU General Public License v3.0の下で配布されています。",
+  "licenseMutedText": "これは、基になるスキル、キャラクター、およびゲームデータが、同じくGPLv3の下で配布されている「uma-tools」プロジェクトから供給されているため、必須の要件です。",
   "creditsTitle": "データソースとクレジット",
-  "creditsText": "このツールは、いくつかの素晴らしいコミュニティプロジェクトのデータとアセットを利用しています：<ul><li class='mt-2'>ゲームのコアデータは、Alpha123氏による<a href='https://github.com/alpha123/uma-tools' target='_blank' rel='noopener noreferrer'>uma-tools</a>プロジェクトから提供されています。</li><li class='mt-2'>キャラクター画像は<a href='https://gametora.com/' target='_blank' rel='noopener noreferrer'>Gametora</a>様から提供されています。</li><li class='mt-2'>キャラクターの相性データは、Mee1080氏による<a href='https://github.com/mee1080/umaishow/' target='_blank' rel='noopener noreferrer'>UmaiShow</a>プロジェクトから提供されています。</li></ul>これらの皆様の努力なしには、このツールは実現できませんでした。",
+  "creditsText": "このツールは、いくつか素晴らしいコミュニティプロジェクトのアセット利用や、その基礎研究によって成り立っています：<ul><li class='mt-2'>キャラクター画像は<a href='https://gametora.com/' target='_blank' rel='noopener noreferrer'>Gametora</a>様から提供されています。</li><li class='mt-2'>データベース構造の基礎的な理解は、Alpha123氏の<a href='https://github.com/alpha123/uma-tools' target='_blank' rel='noopener noreferrer'>uma-tools</a>プロジェクトと、Mee1080氏の<a href='https://github.com/mee1080/umaishow/' target='_blank' rel='noopener noreferrer'>UmaiShow</a>プロジェクトの研究によって可能になりました。</li></ul>",
   "thanksTitle": "スペシャルサンクス",
-  "thanksText": "テストとフィードバックにご協力いただいた<em>Diabellstar</em>様と<em>Sloovy</em>様に感謝いたします。"
+  "thanksText": "<ul><li>テストとフィードバックにご協力いただいた<em>Diabellstar</em>様と<em>Sloovy</em>様に感謝いたします。</li><li class='mt-2'>ゲームデータ分析に不可欠だった<a href='https://github.com/qwcan/UmaLauncher/tree/main' target='_blank' rel='noopener noreferrer'>UmaLauncherのフォーク</a>を維持してくださっている<em>qwcan</em>様に感謝いたします。</li></ul>"
 }
