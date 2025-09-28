@@ -28,8 +28,10 @@ export interface Skill {
 export interface Uma {
   id: string; // This is the Outfit ID, e.g., "100101"
   characterId: string; // This is the base character ID, e.g., "1001"
-  name_jp: string;
-  name_en: string;
+  name_jp: string; // Base character name
+  name_en: string; // Base character name
+  outfit_name_jp: string;
+  outfit_name_en: string;
   image?: string;
   isGlobal: boolean;
   activeUniqueSkillId: number | null;
