@@ -11,8 +11,7 @@ const TOP_K_SUGGESTIONS = 10;
 
 const BreedingSuggestions = () => {
     const { t } = useTranslation('roster');
-    const { masterUmaList, appData, dataDisplayLanguage, umaMapById, charaRelations, relationPoints, activeBreedingPair } = useAppContext();
-    const displayNameProp = dataDisplayLanguage === 'jp' ? 'name_jp' : 'name_en';
+    const { masterUmaList, appData, umaMapById, charaRelations, relationPoints, activeBreedingPair, getUmaDisplayName } = useAppContext();
     
     const inventoryMap = useMemo(() => new Map(appData.inventory.map(p => [p.id, p])), [appData.inventory]);
 
@@ -79,8 +78,8 @@ const BreedingSuggestions = () => {
                     suggestions.map((item, index) => (
                         <div key={item.uma.id} className="suggestions-list__item">
                             <span className="suggestions-list__rank">#{index + 1}</span>
-                            <img src={`${import.meta.env.BASE_URL}${item.uma.image}`} alt={item.uma[displayNameProp]} className="suggestions-list__image" />
-                            <span className="suggestions-list__name">{item.uma[displayNameProp]}</span>
+                            <img src={`${import.meta.env.BASE_URL}${item.uma.image}`} alt={getUmaDisplayName(item.uma)} className="suggestions-list__image" />
+                            <span className="suggestions-list__name">{getUmaDisplayName(item.uma)}</span>
                             <span className="suggestions-list__score">{item.score} {t('parentCard.pts')}</span>
                         </div>
                     ))
