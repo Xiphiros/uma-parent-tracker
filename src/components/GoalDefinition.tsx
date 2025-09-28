@@ -17,15 +17,13 @@ const GoalDefinition = () => {
     const activeProfile = getActiveProfile();
     const goal = activeProfile?.goal;
 
-    const uniqueSkills = useMemo(() => masterSkillList.filter(s => s.type === 'unique'), [masterSkillList]);
-    const normalSkills = useMemo(() => masterSkillList.filter(s => s.type !== 'unique' && s.rarity === 1), [masterSkillList]);
+    const uniqueSkills = useMemo(() => masterSkillList.filter(s => s.category === 'unique'), [masterSkillList]);
+    const normalSkills = useMemo(() => masterSkillList.filter(s => s.category === 'white' && s.factorType === 4), [masterSkillList]);
 
     const skillNameToGroupId = useMemo(() => {
-        const map = new Map<string, number | undefined>();
+        const map = new Map<string, number>();
         masterSkillList.forEach(skill => {
-            if (skill.groupId) {
-                map.set(skill.name_en, skill.groupId);
-            }
+            map.set(skill.name_en, skill.id);
         });
         return map;
     }, [masterSkillList]);
@@ -48,7 +46,7 @@ const GoalDefinition = () => {
         });
 
         return normalSkills.filter(skill => 
-            !skill.groupId || !wishlistedGroupIds.has(skill.groupId)
+            !wishlistedGroupIds.has(skill.id)
         );
     }, [goal, normalSkills, skillNameToGroupId]);
 

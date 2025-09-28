@@ -6,6 +6,7 @@ export interface SkillRarity {
 export interface Skill {
   id: number; // factor_group_id
   factorId: number; // The 1-star factor ID
+  factorType: number; // The original factor_type from the database
   name_jp: string;
   name_en: string;
   description_jp: string | null;
@@ -131,7 +132,7 @@ export interface ServerSpecificData {
 export interface SkillPreset {
   id: string;
   name: string;
-  skillIds: string[];
+  skillIds: number[];
 }
 
 export interface AppData {

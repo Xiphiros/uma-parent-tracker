@@ -75,8 +75,8 @@ interface AppContextType {
   validateProjectForServer: (profileId: number) => ValidationResult;
   executeCopyProject: (profileId: number) => void;
   executeMoveProject: (profileId: number) => void;
-  addSkillPreset: (name: string, skillIds: string[]) => void;
-  updateSkillPreset: (id: string, name: string, skillIds: string[]) => void;
+  addSkillPreset: (name: string, skillIds: number[]) => void;
+  updateSkillPreset: (id: string, name: string, skillIds: number[]) => void;
   deleteSkillPreset: (id: string) => void;
 }
 
@@ -843,15 +843,15 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
       });
   };
 
-  const addSkillPreset = (name: string, skillIds: string[]) => {
-      const newPreset: SkillPreset = { id: `p${Date.now()}`, name, skillIds: [] }; // skillIds are now numbers
+  const addSkillPreset = (name: string, skillIds: number[]) => {
+      const newPreset: SkillPreset = { id: `p${Date.now()}`, name, skillIds };
       setAppData(prev => ({ ...prev, skillPresets: [...prev.skillPresets, newPreset] }));
   };
 
-  const updateSkillPreset = (id: string, name: string, skillIds: string[]) => {
+  const updateSkillPreset = (id: string, name: string, skillIds: number[]) => {
       setAppData(prev => ({
           ...prev,
-          skillPresets: prev.skillPresets.map(p => p.id === id ? { ...p, name, skillIds: [] } : p), // skillIds are now numbers
+          skillPresets: prev.skillPresets.map(p => p.id === id ? { ...p, name, skillIds } : p),
       }));
   };
 

@@ -2,6 +2,7 @@
   {
     "id": 4,
     "factorId": 401,
+    "factorType": 1,
     "name_jp": "根性",
     "name_en": "Guts",
     "description_jp": "根性と根性上限がアップする因子です",
@@ -26,6 +27,7 @@
   {
     "id": 3,
     "factorId": 301,
+    "factorType": 1,
     "name_jp": "パワー",
     "name_en": "Power",
     "description_jp": "パワーとパワー上限がアップする因子です",
@@ -50,6 +52,7 @@
   {
     "id": 1,
     "factorId": 101,
+    "factorType": 1,
     "name_jp": "スピード",
     "name_en": "Speed",
     "description_jp": "スピードとスピード上限がアップする因子です",
@@ -74,6 +77,7 @@
   {
     "id": 2,
     "factorId": 201,
+    "factorType": 1,
     "name_jp": "スタミナ",
     "name_en": "Stamina",
     "description_jp": "スタミナとスタミナ上限がアップする因子です",
@@ -98,6 +102,7 @@
   {
     "id": 5,
     "factorId": 501,
+    "factorType": 1,
     "name_jp": "賢さ",
     "name_en": "Wit",
     "description_jp": "賢さと賢さ上限がアップする因子です",
@@ -122,6 +127,7 @@
   {
     "id": 12,
     "factorId": 1201,
+    "factorType": 2,
     "name_jp": "ダート",
     "name_en": "Dirt",
     "description_jp": "ダート適性がアップする因子です",
@@ -146,6 +152,7 @@
   {
     "id": 24,
     "factorId": 2401,
+    "factorType": 2,
     "name_jp": "追込",
     "name_en": "End Closer",
     "description_jp": "追込適性がアップする因子です",
@@ -170,6 +177,7 @@
   {
     "id": 21,
     "factorId": 2101,
+    "factorType": 2,
     "name_jp": "逃げ",
     "name_en": "Front Runner",
     "description_jp": "逃げ適性がアップする因子です",
@@ -194,6 +202,7 @@
   {
     "id": 23,
     "factorId": 2301,
+    "factorType": 2,
     "name_jp": "差し",
     "name_en": "Late Surger",
     "description_jp": "差し適性がアップする因子です",
@@ -218,6 +227,7 @@
   {
     "id": 34,
     "factorId": 3401,
+    "factorType": 2,
     "name_jp": "長距離",
     "name_en": "Long",
     "description_jp": "長距離適性がアップする因子です",
@@ -242,6 +252,7 @@
   {
     "id": 33,
     "factorId": 3301,
+    "factorType": 2,
     "name_jp": "中距離",
     "name_en": "Medium",
     "description_jp": "中距離適性がアップする因子です",
@@ -266,6 +277,7 @@
   {
     "id": 32,
     "factorId": 3201,
+    "factorType": 2,
     "name_jp": "マイル",
     "name_en": "Mile",
     "description_jp": "マイル適性がアップする因子です",
@@ -290,6 +302,7 @@
   {
     "id": 22,
     "factorId": 2201,
+    "factorType": 2,
     "name_jp": "先行",
     "name_en": "Pace Chaser",
     "description_jp": "先行適性がアップする因子です",
@@ -314,6 +327,7 @@
   {
     "id": 31,
     "factorId": 3101,
+    "factorType": 2,
     "name_jp": "短距離",
     "name_en": "Sprint",
     "description_jp": "短距離適性がアップする因子です",
@@ -338,6 +352,7 @@
   {
     "id": 11,
     "factorId": 1101,
+    "factorType": 2,
     "name_jp": "芝",
     "name_en": "Turf",
     "description_jp": "芝適性がアップする因子です",
@@ -362,6 +377,7 @@
   {
     "id": 103801,
     "factorId": 10380101,
+    "factorType": 3,
     "name_jp": "#LookatCurren",
     "name_en": "#LookatCurren",
     "description_jp": "スピード上限とパワー上限がアップし、\\n「#LookatCurren」のスキルヒントを得られる因子です",
@@ -393,6 +409,7 @@
   {
     "id": 103602,
     "factorId": 10360201,
+    "factorType": 3,
     "name_jp": "...found you.",
     "name_en": "...found you.",
     "description_jp": "スタミナ上限とパワー上限と賢さ上限がアップし、\\n「...found you.」のスキルヒントを得られる因子です",
@@ -419,6 +436,7 @@
   {
     "id": 105202,
     "factorId": 10520201,
+    "factorType": 3,
     "name_jp": "113転び114起き",
     "name_en": "113転び114起き",
     "description_jp": "パワー上限と根性上限がアップし、\\n「113転び114起き」のスキルヒントを得られる因子です",
@@ -445,6 +463,7 @@
   {
     "id": 100702,
     "factorId": 10070201,
+    "factorType": 3,
     "name_jp": "Adventure of 564",
     "name_en": "Adventure of 564",
     "description_jp": "パワー上限と賢さ上限がアップし、\\n「Adventure of 564」のスキルヒントを得られる因子です",
@@ -471,6 +490,7 @@
   {
     "id": 100701,
     "factorId": 10070101,
+    "factorType": 3,
     "name_jp": "不沈艦、抜錨ォッ！",
     "name_en": "Anchors Aweigh!",
     "description_jp": "スタミナ上限とパワー上限がアップし、\\n「不沈艦、抜錨ォッ！」のスキルヒントを得られる因子です",
@@ -502,6 +522,7 @@
   {
     "id": 102001,
     "factorId": 10200101,
+    "factorType": 3,
     "name_jp": "アングリング×スキーミング",
     "name_en": "Angling and Scheming",
     "description_jp": "スタミナ上限と賢さ上限がアップし、\\n「アングリング×スキーミング」のスキルヒントを得られる因子です",
@@ -533,6 +554,7 @@
   {
     "id": 110601,
     "factorId": 11060101,
+    "factorType": 3,
     "name_jp": "Bang☆ミラクるわせ！",
     "name_en": "Bang☆ミラクるわせ！",
     "description_jp": "スタミナ上限とパワー上限と根性上限がアップし、\\n「Bang☆ミラクるわせ！」のスキルヒントを得られる因子です",
@@ -559,6 +581,7 @@
   {
     "id": 101701,
     "factorId": 10170101,
+    "factorType": 3,
     "name_jp": "汝、皇帝の神威を見よ",
     "name_en": "Behold Thine Emperor's Divine Might",
     "description_jp": "スタミナ上限と根性上限がアップし、\\n「汝、皇帝の神威を見よ」のスキルヒントを得られる因子です",
@@ -590,6 +613,7 @@
   {
     "id": 102202,
     "factorId": 10220201,
+    "factorType": 3,
     "name_jp": "Best day ever",
     "name_en": "Best day ever",
     "description_jp": "根性上限と賢さ上限がアップし、\\n「Best day ever」のスキルヒントを得られる因子です",
@@ -616,6 +640,7 @@
   {
     "id": 110701,
     "factorId": 11070101,
+    "factorType": 3,
     "name_jp": "Billions of stars",
     "name_en": "Billions of stars",
     "description_jp": "スピード上限とパワー上限と根性上限がアップし、\\n「Billions of stars」のスキルヒントを得られる因子です",
@@ -642,6 +667,7 @@
   {
     "id": 101801,
     "factorId": 10180101,
+    "factorType": 3,
     "name_jp": "ブレイズ・オブ・プライド",
     "name_en": "Blazing Pride",
     "description_jp": "スピード上限とパワー上限がアップし、\\n「ブレイズ・オブ・プライド」のスキルヒントを得られる因子です",
@@ -673,6 +699,7 @@
   {
     "id": 103001,
     "factorId": 10300101,
+    "factorType": 3,
     "name_jp": "ブルーローズチェイサー",
     "name_en": "Blue Rose Closer",
     "description_jp": "スタミナ上限と根性上限がアップし、\\n「ブルーローズチェイサー」のスキルヒントを得られる因子です",
@@ -704,6 +731,7 @@
   {
     "id": 107802,
     "factorId": 10780201,
+    "factorType": 3,
     "name_jp": "Breezy Treat",
     "name_en": "Breezy Treat",
     "description_jp": "パワー上限と根性上限がアップし、\\n「Breezy Treat」のスキルヒントを得られる因子です",
@@ -730,6 +758,7 @@
   {
     "id": 104102,
     "factorId": 10410201,
+    "factorType": 3,
     "name_jp": "CHERRY☆スクランブル",
     "name_en": "CHERRY☆スクランブル",
     "description_jp": "スピード上限とパワー上限と賢さ上限がアップし、\\n「CHERRY☆スクランブル」のスキルヒントを得られる因子です",
@@ -756,6 +785,7 @@
   {
     "id": 108901,
     "factorId": 10890101,
+    "factorType": 3,
     "name_jp": "Celeste Oath",
     "name_en": "Celeste Oath",
     "description_jp": "スタミナ上限と根性上限と賢さ上限がアップし、\\n「Celeste Oath」のスキルヒントを得られる因子です",
@@ -782,6 +812,7 @@
   {
     "id": 100302,
     "factorId": 10030201,
+    "factorType": 3,
     "name_jp": "絶対は、ボクだ",
     "name_en": "Certain Victory",
     "description_jp": "スピード上限とスタミナ上限と根性上限がアップし、\\n「絶対は、ボクだ」のスキルヒントを得られる因子です",
@@ -813,6 +844,7 @@
   {
     "id": 113201,
     "factorId": 11320101,
+    "factorType": 3,
     "name_jp": "Circulating Love♡",
     "name_en": "Circulating Love♡",
     "description_jp": "スピード上限とスタミナ上限と根性上限がアップし、\\n「Circulating Love♡」のスキルヒントを得られる因子です",
@@ -839,6 +871,7 @@
   {
     "id": 101402,
     "factorId": 10140201,
+    "factorType": 3,
     "name_jp": "コンドル猛撃波",
     "name_en": "Condor's Fury",
     "description_jp": "スピード上限と根性上限がアップし、\\n「コンドル猛撃波」のスキルヒントを得られる因子です",
@@ -870,6 +903,7 @@
   {
     "id": 103302,
     "factorId": 10330201,
+    "factorType": 3,
     "name_jp": "Crystal Mist",
     "name_en": "Crystal Mist",
     "description_jp": "スピード上限とパワー上限がアップし、\\n「Crystal Mist」のスキルヒントを得られる因子です",
@@ -896,6 +930,7 @@
   {
     "id": 100801,
     "factorId": 10080101,
+    "factorType": 3,
     "name_jp": "カッティング×DRIVE！",
     "name_en": "Cut and Drive!",
     "description_jp": "スピード上限とパワー上限がアップし、\\n「カッティング×DRIVE！」のスキルヒントを得られる因子です",
@@ -927,6 +962,7 @@
   {
     "id": 107102,
     "factorId": 10710201,
+    "factorType": 3,
     "name_jp": "Danser le présent",
     "name_en": "Danser le présent",
     "description_jp": "スピード上限とスタミナ上限と賢さ上限がアップし、\\n「Danser le présent」のスキルヒントを得られる因子です",
@@ -953,6 +989,7 @@
   {
     "id": 104301,
     "factorId": 10430101,
+    "factorType": 3,
     "name_jp": "Ding Dong Boo",
     "name_en": "Ding Dong Boo",
     "description_jp": "スピード上限とパワー上限と根性上限がアップし、\\n「Ding Dong Boo」のスキルヒントを得られる因子です",
@@ -979,6 +1016,7 @@
   {
     "id": 102002,
     "factorId": 10200201,
+    "factorType": 3,
     "name_jp": "Do Ya Breakin!",
     "name_en": "Do Ya Breakin!",
     "description_jp": "スピード上限とパワー上限と根性上限がアップし、\\n「Do Ya Breakin!」のスキルヒントを得られる因子です",
@@ -1005,6 +1043,7 @@
   {
     "id": 103002,
     "factorId": 10300201,
+    "factorType": 3,
     "name_jp": "Drain for rose",
     "name_en": "Drain for rose",
     "description_jp": "スタミナ上限とパワー上限がアップし、\\n「Drain for rose」のスキルヒントを得られる因子です",
@@ -1031,6 +1070,7 @@
   {
     "id": 110502,
     "factorId": 11050201,
+    "factorType": 3,
     "name_jp": "Encounter with U",
     "name_en": "Encounter with U",
     "description_jp": "パワー上限と根性上限と賢さ上限がアップし、\\n「Encounter with U」のスキルヒントを得られる因子です",
@@ -1057,6 +1097,7 @@
   {
     "id": 101802,
     "factorId": 10180201,
+    "factorType": 3,
     "name_jp": "薫風、永遠なる瞬間を",
     "name_en": "Eternal Moments",
     "description_jp": "スピード上限とパワー上限と根性上限がアップし、\\n「薫風、永遠なる瞬間を」のスキルヒントを得られる因子です",
@@ -1088,6 +1129,7 @@
   {
     "id": 102201,
     "factorId": 10220101,
+    "factorType": 3,
     "name_jp": "Fairy tale",
     "name_en": "Fairy tale",
     "description_jp": "パワー上限と賢さ上限がアップし、\\n「Fairy tale」のスキルヒントを得られる因子です",
@@ -1114,6 +1156,7 @@
   {
     "id": 109401,
     "factorId": 10940101,
+    "factorType": 3,
     "name_jp": "Faith in the Feral",
     "name_en": "Faith in the Feral",
     "description_jp": "スピード上限とスタミナ上限とパワー上限がアップし、\\n「Faith in the Feral」のスキルヒントを得られる因子です",
@@ -1140,6 +1183,7 @@
   {
     "id": 102401,
     "factorId": 10240101,
+    "factorType": 3,
     "name_jp": "ひらめき☆ランディング",
     "name_en": "Flashy☆Landing",
     "description_jp": "スタミナ上限と根性上限がアップし、\\n「ひらめき☆ランディング」のスキルヒントを得られる因子です",
@@ -1171,6 +1215,7 @@
   {
     "id": 105102,
     "factorId": 10510201,
+    "factorType": 3,
     "name_jp": "Flowering Dreams",
     "name_en": "Flowering Dreams",
     "description_jp": "スピード上限と賢さ上限がアップし、\\n「Flowering Dreams」のスキルヒントを得られる因子です",
@@ -1197,6 +1242,7 @@
   {
     "id": 102402,
     "factorId": 10240201,
+    "factorType": 3,
     "name_jp": "フラワリー☆マニューバ",
     "name_en": "Flowery☆Maneuver",
     "description_jp": "スピード上限とスタミナ上限と賢さ上限がアップし、\\n「フラワリー☆マニューバ」のスキルヒントを得られる因子です",
@@ -1228,6 +1274,7 @@
   {
     "id": 104603,
     "factorId": 10460301,
+    "factorType": 3,
     "name_jp": "Forward March!",
     "name_en": "Forward March!",
     "description_jp": "スタミナ上限とパワー上限と根性上限がアップし、\\n「Forward March!」のスキルヒントを得られる因子です",
@@ -1254,6 +1301,7 @@
   {
     "id": 102601,
     "factorId": 10260101,
+    "factorType": 3,
     "name_jp": "G00 1st.F∞;",
     "name_en": "G00 1st. F∞;",
     "description_jp": "スタミナ上限とパワー上限がアップし、\\n「G00 1st.F∞;」のスキルヒントを得られる因子です",
@@ -1285,6 +1333,7 @@
   {
     "id": 104802,
     "factorId": 10480201,
+    "factorType": 3,
     "name_jp": "GALmem.ふぉーえば♪",
     "name_en": "GALmem.ふぉーえば♪",
     "description_jp": "スピード上限とスタミナ上限とパワー上限がアップし、\\n「GALmem.ふぉーえば♪」のスキルヒントを得られる因子です",
@@ -1311,6 +1360,7 @@
   {
     "id": 104002,
     "factorId": 10400201,
+    "factorType": 3,
     "name_jp": "GET DOWN",
     "name_en": "GET DOWN",
     "description_jp": "スピード上限とパワー上限と賢さ上限がアップし、\\n「GET DOWN」のスキルヒントを得られる因子です",
@@ -1337,6 +1387,7 @@
   {
     "id": 103503,
     "factorId": 10350301,
+    "factorType": 3,
     "name_jp": "GO! Full-send",
     "name_en": "GO! Full-send",
     "description_jp": "スピード上限とスタミナ上限とパワー上限がアップし、\\n「GO! Full-send」のスキルヒントを得られる因子です",
@@ -1363,6 +1414,7 @@
   {
     "id": 104101,
     "factorId": 10410101,
+    "factorType": 3,
     "name_jp": "優等生×バクシン＝大勝利ッ",
     "name_en": "Genius x Bakushin = Victory",
     "description_jp": "スピード上限と賢さ上限がアップし、\\n「優等生×バクシン＝大勝利ッ」のスキルヒントを得られる因子です",
@@ -1394,6 +1446,7 @@
   {
     "id": 106002,
     "factorId": 10600201,
+    "factorType": 3,
     "name_jp": "Go☆Go☆for it!",
     "name_en": "Go☆Go☆for it!",
     "description_jp": "スタミナ上限とパワー上限と賢さ上限がアップし、\\n「Go☆Go☆for it!」のスキルヒントを得られる因子です",
@@ -1420,6 +1473,7 @@
   {
     "id": 111001,
     "factorId": 11100101,
+    "factorType": 3,
     "name_jp": "Guiding Sea",
     "name_en": "Guiding Sea",
     "description_jp": "スピード上限とパワー上限と賢さ上限がアップし、\\n「Guiding Sea」のスキルヒントを得られる因子です",
@@ -1446,6 +1500,7 @@
   {
     "id": 103702,
     "factorId": 10370201,
+    "factorType": 3,
     "name_jp": "Guten Appetit♪",
     "name_en": "Guten Appetit♪",
     "description_jp": "スタミナ上限とパワー上限と賢さ上限がアップし、\\n「Guten Appetit♪」のスキルヒントを得られる因子です",
@@ -1472,6 +1527,7 @@
   {
     "id": 102403,
     "factorId": 10240301,
+    "factorType": 3,
     "name_jp": "HOP STEP♪LOCK ON!",
     "name_en": "HOP STEP♪LOCK ON!",
     "description_jp": "スピード上限とスタミナ上限と根性上限がアップし、「HOP STEP♪LOCK ON!」のスキルヒントを得られる因子です",
@@ -1498,6 +1554,7 @@
   {
     "id": 105002,
     "factorId": 10500201,
+    "factorType": 3,
     "name_jp": "Hephaistos",
     "name_en": "Hephaistos",
     "description_jp": "スタミナ上限と根性上限と賢さ上限がアップし、\\n「Hephaistos」のスキルヒントを得られる因子です",
@@ -1524,6 +1581,7 @@
   {
     "id": 105801,
     "factorId": 10580101,
+    "factorType": 3,
     "name_jp": "I Never Goof Up!",
     "name_en": "I Never Goof Up!",
     "description_jp": "スタミナ上限と根性上限がアップし、\\n「I Never Goof Up！」のスキルヒントを得られる因子です",
@@ -1550,6 +1608,7 @@
   {
     "id": 105601,
     "factorId": 10560101,
+    "factorType": 3,
     "name_jp": "来ます来てます来させます！",
     "name_en": "I See Victory in My Future!",
     "description_jp": "スタミナ上限とパワー上限がアップし、\\n「来ます来てます来させます！」のスキルヒントを得られる因子です",
@@ -1581,6 +1640,7 @@
   {
     "id": 102801,
     "factorId": 10280101,
+    "factorType": 3,
     "name_jp": "I'M☆FULL☆SPEED!!",
     "name_en": "I'M☆FULL☆SPEED!!",
     "description_jp": "パワー上限と根性上限がアップし、\\n「I'M☆FULL☆SPEED!!」のスキルヒントを得られる因子です",
@@ -1607,6 +1667,7 @@
   {
     "id": 107402,
     "factorId": 10740201,
+    "factorType": 3,
     "name_jp": "Illuminate you",
     "name_en": "Illuminate you",
     "description_jp": "スタミナ上限と賢さ上限がアップし、\\n「Illuminate you」のスキルヒントを得られる因子です",
@@ -1633,6 +1694,7 @@
   {
     "id": 108302,
     "factorId": 10830201,
+    "factorType": 3,
     "name_jp": "Immortal Work",
     "name_en": "Immortal Work",
     "description_jp": "スピード上限とパワー上限がアップし、\\n「Immortal Work」のスキルヒントを得られる因子です",
@@ -1659,6 +1721,7 @@
   {
     "id": 108001,
     "factorId": 10800101,
+    "factorType": 3,
     "name_jp": "Info: Acquired",
     "name_en": "Info: Acquired",
     "description_jp": "スピード上限とパワー上限と賢さ上限がアップし、\\n「Info: Acquired」のスキルヒントを得られる因子です",
@@ -1685,6 +1748,7 @@
   {
     "id": 100802,
     "factorId": 10080201,
+    "factorType": 3,
     "name_jp": "Into High Gear!",
     "name_en": "Into High Gear!",
     "description_jp": "スピード上限と根性上限がアップし、\\n「Into High Gear!」のスキルヒントを得られる因子です",
@@ -1711,6 +1775,7 @@
   {
     "id": 107702,
     "factorId": 10770201,
+    "factorType": 3,
     "name_jp": "Joy to the World",
     "name_en": "Joy to the World",
     "description_jp": "スタミナ上限とパワー上限がアップし、\\n「Joy to the World」のスキルヒントを得られる因子です",
@@ -1737,6 +1802,7 @@
   {
     "id": 101002,
     "factorId": 10100201,
+    "factorType": 3,
     "name_jp": "Joyful Voyage!",
     "name_en": "Joyful Voyage!",
     "description_jp": "パワー上限がアップし、\\n「Joyful Voyage!」のスキルヒントを得られる因子です",
@@ -1763,6 +1829,7 @@
   {
     "id": 106001,
     "factorId": 10600101,
+    "factorType": 3,
     "name_jp": "きっとその先へ…！",
     "name_en": "Just a Little Farther!",
     "description_jp": "パワー上限と賢さ上限がアップし、\\n「きっとその先へ…！」のスキルヒントを得られる因子です",
@@ -1794,6 +1861,7 @@
   {
     "id": 104001,
     "factorId": 10400101,
+    "factorType": 3,
     "name_jp": "KEEP IT REAL.",
     "name_en": "KEEP IT REAL.",
     "description_jp": "パワー上限と根性上限がアップし、\\n「KEEP IT REAL.」のスキルヒントを得られる因子です",
@@ -1820,6 +1888,7 @@
   {
     "id": 112101,
     "factorId": 11210101,
+    "factorType": 3,
     "name_jp": "Lame de vent",
     "name_en": "Lame de vent",
     "description_jp": "スピード上限とパワー上限がアップし、\\n「Lame de vent」のスキルヒントを得られる因子です",
@@ -1846,6 +1915,7 @@
   {
     "id": 101302,
     "factorId": 10130201,
+    "factorType": 3,
     "name_jp": "最強の名を懸けて",
     "name_en": "Legacy of the Strong",
     "description_jp": "スタミナ上限とパワー上限と賢さ上限がアップし、\\n「最強の名を懸けて」のスキルヒントを得られる因子です",
@@ -1877,6 +1947,7 @@
   {
     "id": 102701,
     "factorId": 10270101,
+    "factorType": 3,
     "name_jp": "レッツ・アナボリック！",
     "name_en": "Let's Pump Some Iron!",
     "description_jp": "パワー上限と賢さ上限がアップし、\\n「レッツ・アナボリック！」のスキルヒントを得られる因子です",
@@ -1908,6 +1979,7 @@
   {
     "id": 108301,
     "factorId": 10830101,
+    "factorType": 3,
     "name_jp": "Mission: Triumph",
     "name_en": "Mission: Triumph",
     "description_jp": "スタミナ上限とパワー上限がアップし、\\n「Mission: Triumph」のスキルヒントを得られる因子です",
@@ -1934,6 +2006,7 @@
   {
     "id": 105001,
     "factorId": 10500101,
+    "factorType": 3,
     "name_jp": "Nemesis",
     "name_en": "Nemesis",
     "description_jp": "スピード上限と根性上限がアップし、\\n「Nemesis」のスキルヒントを得られる因子です",
@@ -1965,6 +2038,7 @@
   {
     "id": 110001,
     "factorId": 11000101,
+    "factorType": 3,
     "name_jp": "Never Say Never",
     "name_en": "Never Say Never",
     "description_jp": "根性上限と賢さ上限がアップし、\\n「Never Say Never」のスキルヒントを得られる因子です",
@@ -1991,6 +2065,7 @@
   {
     "id": 104202,
     "factorId": 10420201,
+    "factorType": 3,
     "name_jp": "Oh!bento-magic☆",
     "name_en": "Oh!bento-magic☆",
     "description_jp": "スピード上限とパワー上限と賢さ上限がアップし、\\n「Oh!bento-magic☆」のスキルヒントを得られる因子です",
@@ -2017,6 +2092,7 @@
   {
     "id": 103802,
     "factorId": 10380201,
+    "factorType": 3,
     "name_jp": "One True Color",
     "name_en": "One True Color",
     "description_jp": "スピード上限とパワー上限と賢さ上限がアップし、\\n「One True Color」のスキルヒントを得られる因子です",
@@ -2043,6 +2119,7 @@
   {
     "id": 103501,
     "factorId": 10350101,
+    "factorType": 3,
     "name_jp": "勝利のチケットを、君にッ！",
     "name_en": "Our Ticket to Win!",
     "description_jp": "スタミナ上限とパワー上限がアップし、\\n「勝利のチケットを、君にッ！」のスキルヒントを得られる因子です",
@@ -2074,6 +2151,7 @@
   {
     "id": 105003,
     "factorId": 10500301,
+    "factorType": 3,
     "name_jp": "Overdrive Speed",
     "name_en": "Overdrive Speed",
     "description_jp": "パワー上限と賢さ上限がアップし、「Overdrive Speed」のスキルヒントを得られる因子です",
@@ -2100,6 +2178,7 @@
   {
     "id": 102302,
     "factorId": 10230201,
+    "factorType": 3,
     "name_jp": "Presents from X",
     "name_en": "Presents from X",
     "description_jp": "スタミナ上限とパワー上限と賢さ上限がアップし、\\n「Presents from X」のスキルヒントを得られる因子です",
@@ -2126,6 +2205,7 @@
   {
     "id": 106101,
     "factorId": 10610101,
+    "factorType": 3,
     "name_jp": "Pride of KING",
     "name_en": "Prideful King",
     "description_jp": "パワー上限と根性上限がアップし、\\n「Pride of KING」のスキルヒントを得られる因子です",
@@ -2157,6 +2237,7 @@
   {
     "id": 108101,
     "factorId": 10810101,
+    "factorType": 3,
     "name_jp": "Punkish Bite",
     "name_en": "Punkish Bite",
     "description_jp": "パワー上限と根性上限がアップし、\\n「Punkish Bite」のスキルヒントを得られる因子です",
@@ -2183,6 +2264,7 @@
   {
     "id": 104501,
     "factorId": 10450101,
+    "factorType": 3,
     "name_jp": "ピュリティオブハート",
     "name_en": "Pure Heart",
     "description_jp": "スタミナ上限と賢さ上限がアップし、\\n「ピュリティオブハート」のスキルヒントを得られる因子です",
@@ -2214,6 +2296,7 @@
   {
     "id": 100902,
     "factorId": 10090201,
+    "factorType": 3,
     "name_jp": "Queen's Lumination",
     "name_en": "Queen's Lumination",
     "description_jp": "スピード上限と賢さ上限がアップし、\\n「Queen's Lumination」のスキルヒントを得られる因子です",
@@ -2240,6 +2323,7 @@
   {
     "id": 109001,
     "factorId": 10900101,
+    "factorType": 3,
     "name_jp": "Queen's Rebirth",
     "name_en": "Queen's Rebirth",
     "description_jp": "パワー上限と根性上限がアップし、\\n「Queen's Rebirth」のスキルヒントを得られる因子です",
@@ -2266,6 +2350,7 @@
   {
     "id": 100502,
     "factorId": 10050201,
+    "factorType": 3,
     "name_jp": "Ravissant",
     "name_en": "Ravissant",
     "description_jp": "スピード上限とパワー上限と賢さ上限がアップし、\\n「Ravissant」のスキルヒントを得られる因子です",
@@ -2292,6 +2377,7 @@
   {
     "id": 100401,
     "factorId": 10040101,
+    "factorType": 3,
     "name_jp": "紅焔ギア/LP1211-M",
     "name_en": "Red Shift/LP1211-M",
     "description_jp": "スピード上限と賢さ上限がアップし、\\n「紅焔ギア/LP1211-M」のスキルヒントを得られる因子です",
@@ -2323,6 +2409,7 @@
   {
     "id": 100901,
     "factorId": 10090101,
+    "factorType": 3,
     "name_jp": "ブリリアント・レッドエース",
     "name_en": "Resplendent Red Ace",
     "description_jp": "スピード上限と根性上限がアップし、\\n「ブリリアント・レッドエース」のスキルヒントを得られる因子です",
@@ -2354,6 +2441,7 @@
   {
     "id": 108801,
     "factorId": 10880101,
+    "factorType": 3,
     "name_jp": "Reversal Illusion",
     "name_en": "Reversal Illusion",
     "description_jp": "パワー上限と根性上限がアップし、\\n「Reversal Illusion」のスキルヒントを得られる因子です",
@@ -2380,6 +2468,7 @@
   {
     "id": 107701,
     "factorId": 10770101,
+    "factorType": 3,
     "name_jp": "Road to Glory",
     "name_en": "Road to Glory",
     "description_jp": "スピード上限とスタミナ上限がアップし、\\n「Road to Glory」のスキルヒントを得られる因子です",
@@ -2406,6 +2495,7 @@
   {
     "id": 110702,
     "factorId": 11070201,
+    "factorType": 3,
     "name_jp": "Romantic Horizon",
     "name_en": "Romantic Horizon",
     "description_jp": "スピード上限と根性上限がアップし、\\n「Romantic Horizon」のスキルヒントを得られる因子です",
@@ -2432,6 +2522,7 @@
   {
     "id": 104601,
     "factorId": 10460101,
+    "factorType": 3,
     "name_jp": "キラキラ☆STARDOM",
     "name_en": "SPARKLY☆STARDOM",
     "description_jp": "スピード上限とパワー上限がアップし、\\n「キラキラ☆STARDOM」のスキルヒントを得られる因子です",
@@ -2463,6 +2554,7 @@
   {
     "id": 103701,
     "factorId": 10370101,
+    "factorType": 3,
     "name_jp": "Schwarzes Schwert",
     "name_en": "Schwarzes Schwert",
     "description_jp": "パワー上限と賢さ上限がアップし、\\n「Schwarzes Schwert」のスキルヒントを得られる因子です",
@@ -2489,6 +2581,7 @@
   {
     "id": 101601,
     "factorId": 10160101,
+    "factorType": 3,
     "name_jp": "Shadow Break",
     "name_en": "Shadow Break",
     "description_jp": "スピード上限とスタミナ上限がアップし、\\n「Shadow Break」のスキルヒントを得られる因子です",
@@ -2520,6 +2613,7 @@
   {
     "id": 108201,
     "factorId": 10820101,
+    "factorType": 3,
     "name_jp": "Shining Runway",
     "name_en": "Shining Runway",
     "description_jp": "スピード上限と賢さ上限がアップし、\\n「Shining Runway」のスキルヒントを得られる因子です",
@@ -2546,6 +2640,7 @@
   {
     "id": 100101,
     "factorId": 10010101,
+    "factorType": 3,
     "name_jp": "シューティングスター",
     "name_en": "Shooting Star",
     "description_jp": "スタミナ上限と賢さ上限がアップし、\\n「シューティングスター」のスキルヒントを得られる因子です",
@@ -2577,6 +2672,7 @@
   {
     "id": 101001,
     "factorId": 10100101,
+    "factorType": 3,
     "name_jp": "ヴィクトリーショット！",
     "name_en": "Shooting for Victory!",
     "description_jp": "スピード上限と賢さ上限がアップし、\\n「ヴィクトリーショット！」のスキルヒントを得られる因子です",
@@ -2608,6 +2704,7 @@
   {
     "id": 104003,
     "factorId": 10400301,
+    "factorType": 3,
     "name_jp": "Silent Sunset Gold",
     "name_en": "Silent Sunset Gold",
     "description_jp": "スタミナ上限と根性上限と賢さ上限がアップし、\\n「Silent Sunset Gold」のスキルヒントを得られる因子です",
@@ -2634,6 +2731,7 @@
   {
     "id": 108701,
     "factorId": 10870101,
+    "factorType": 3,
     "name_jp": "Silent letter",
     "name_en": "Silent letter",
     "description_jp": "スピード上限と根性上限がアップし、\\n「Silent letter」のスキルヒントを得られる因子です",
@@ -2660,6 +2758,7 @@
   {
     "id": 100301,
     "factorId": 10030101,
+    "factorType": 3,
     "name_jp": "究極テイオーステップ",
     "name_en": "Sky-High Teio Step",
     "description_jp": "スピード上限とスタミナ上限がアップし、\\n「究極テイオーステップ」のスキルヒントを得られる因子です",
@@ -2691,6 +2790,7 @@
   {
     "id": 105802,
     "factorId": 10580201,
+    "factorType": 3,
     "name_jp": "Spooky-Scary-Happy",
     "name_en": "Spooky-Scary-Happy",
     "description_jp": "パワー上限と賢さ上限がアップし、\\n「Spooky-Scary-Happy」のスキルヒントを得られる因子です",
@@ -2717,6 +2817,7 @@
   {
     "id": 105201,
     "factorId": 10520101,
+    "factorType": 3,
     "name_jp": "ワクワククライマックス",
     "name_en": "Super-Duper Climax",
     "description_jp": "パワー上限と根性上限がアップし、\\n「ワクワククライマックス」のスキルヒントを得られる因子です",
@@ -2748,6 +2849,7 @@
   {
     "id": 101102,
     "factorId": 10110201,
+    "factorType": 3,
     "name_jp": "ゲインヒール・スペリアー",
     "name_en": "Superior Heal",
     "description_jp": "スタミナ上限と賢さ上限がアップし、\\n「ゲインヒール・スペリアー」のスキルヒントを得られる因子です",
@@ -2779,6 +2881,7 @@
   {
     "id": 101301,
     "factorId": 10130101,
+    "factorType": 3,
     "name_jp": "貴顕の使命を果たすべく",
     "name_en": "The Duty of Dignity Calls",
     "description_jp": "スタミナ上限と賢さ上限がアップし、\\n「貴顕の使命を果たすべく」のスキルヒントを得られる因子です",
@@ -2810,6 +2913,7 @@
   {
     "id": 100201,
     "factorId": 10020101,
+    "factorType": 3,
     "name_jp": "先頭の景色は譲らない…！",
     "name_en": "The View from the Lead Is Mine!",
     "description_jp": "スピード上限と根性上限がアップし、\\n「先頭の景色は譲らない…！」のスキルヒントを得られる因子です",
@@ -2841,6 +2945,7 @@
   {
     "id": 101501,
     "factorId": 10150101,
+    "factorType": 3,
     "name_jp": "ヴィットーリアに捧ぐ舞踏",
     "name_en": "This Dance Is for Vittoria!",
     "description_jp": "スタミナ上限と賢さ上限がアップし、\\n「ヴィットーリアに捧ぐ舞踏」のスキルヒントを得られる因子です",
@@ -2872,6 +2977,7 @@
   {
     "id": 108902,
     "factorId": 10890201,
+    "factorType": 3,
     "name_jp": "Tidebreaker",
     "name_en": "Tidebreaker",
     "description_jp": "スタミナ上限と根性上限がアップし、\\n「Tidebreaker」のスキルヒントを得られる因子です",
@@ -2898,6 +3004,7 @@
   {
     "id": 100601,
     "factorId": 10060101,
+    "factorType": 3,
     "name_jp": "勝利の鼓動",
     "name_en": "Triumphant Pulse",
     "description_jp": "スピード上限とパワー上限がアップし、\\n「勝利の鼓動」のスキルヒントを得られる因子です",
@@ -2929,6 +3036,7 @@
   {
     "id": 103201,
     "factorId": 10320101,
+    "factorType": 3,
     "name_jp": "U=ma2",
     "name_en": "U=ma2",
     "description_jp": "スピード上限と根性上限がアップし、\\n「U=ma2」のスキルヒントを得られる因子です",
@@ -2960,6 +3068,7 @@
   {
     "id": 101401,
     "factorId": 10140101,
+    "factorType": 3,
     "name_jp": "プランチャ☆ガナドール",
     "name_en": "Victoria por plancha ☆",
     "description_jp": "スピード上限と賢さ上限がアップし、\\n「プランチャ☆ガナドール」のスキルヒントを得られる因子です",
@@ -2991,6 +3100,7 @@
   {
     "id": 100703,
     "factorId": 10070301,
+    "factorType": 3,
     "name_jp": "Vive la GOLD",
     "name_en": "Vive la GOLD",
     "description_jp": "スピード上限とスタミナ上限とパワー上限がアップし、\\n「Vive la GOLD」のスキルヒントを得られる因子です",
@@ -3017,6 +3127,7 @@
   {
     "id": 113301,
     "factorId": 11330101,
+    "factorType": 3,
     "name_jp": "Weaving History",
     "name_en": "Weaving History",
     "description_jp": "スピード上限とスタミナ上限と根性上限がアップし、\\n「Weaving History」のスキルヒントを得られる因子です",
@@ -3043,6 +3154,7 @@
   {
     "id": 101101,
     "factorId": 10110101,
+    "factorType": 3,
     "name_jp": "精神一到何事か成らざらん",
     "name_en": "Where There's a Will, There's a Way",
     "description_jp": "スピード上限とパワー上限がアップし、\\n「精神一到何事か成らざらん」のスキルヒントを得られる因子です",
@@ -3074,6 +3186,7 @@
   {
     "id": 104801,
     "factorId": 10480101,
+    "factorType": 3,
     "name_jp": "YEAH☆VIVID TIME!",
     "name_en": "YEAH☆VIVID TIME!",
     "description_jp": "スピード上限とパワー上限と根性上限がアップし、\\n「YEAH☆VIVID TIME!」のスキルヒントを得られる因子です",
@@ -3100,6 +3213,7 @@
   {
     "id": 101201,
     "factorId": 10120101,
+    "factorType": 3,
     "name_jp": "タイマン！デッドヒート！",
     "name_en": "You and Me! One-on-One!",
     "description_jp": "パワー上限と根性上限がアップし、\\n「タイマン！デッドヒート！」のスキルヒントを得られる因子です",
@@ -3131,6 +3245,7 @@
   {
     "id": 106402,
     "factorId": 10640201,
+    "factorType": 3,
     "name_jp": "jingle all the way",
     "name_en": "jingle all the way",
     "description_jp": "スピード上限とスタミナ上限がアップし、\\n「jingle all the way」のスキルヒントを得られる因子です",
@@ -3157,6 +3272,7 @@
   {
     "id": 103601,
     "factorId": 10360101,
+    "factorType": 3,
     "name_jp": "trigger:BEAT",
     "name_en": "trigger:BEAT",
     "description_jp": "賢さ上限がアップし、\\n「trigger:BEAT」のスキルヒントを得られる因子です",
@@ -3183,6 +3299,7 @@
   {
     "id": 113101,
     "factorId": 11310101,
+    "factorType": 3,
     "name_jp": "¡Qué alegría!",
     "name_en": "¡Qué alegría!",
     "description_jp": "パワー上限と根性上限がアップし、\\n「¡Qué alegría!」のスキルヒントを得られる因子です",
@@ -3209,6 +3326,7 @@
   {
     "id": 104602,
     "factorId": 10460201,
+    "factorType": 3,
     "name_jp": "α-star*",
     "name_en": "α-star*",
     "description_jp": "スピード上限と根性上限がアップし、\\n「α-star*」のスキルヒントを得られる因子です",
@@ -3235,6 +3353,7 @@
   {
     "id": 102301,
     "factorId": 10230101,
+    "factorType": 3,
     "name_jp": "∴win Q.E.D.",
     "name_en": "∴win Q.E.D.",
     "description_jp": "根性上限と賢さ上限がアップし、\\n「∴win Q.E.D.」のスキルヒントを得られる因子です",
@@ -3266,6 +3385,7 @@
   {
     "id": 104201,
     "factorId": 10420101,
+    "factorType": 3,
     "name_jp": "『I'm possible』",
     "name_en": "『I'm possible』",
     "description_jp": "スピード上限と賢さ上限がアップし、\\n「『I'm possible』」のスキルヒントを得られる因子です",
@@ -3292,6 +3412,7 @@
   {
     "id": 111901,
     "factorId": 11190101,
+    "factorType": 3,
     "name_jp": "『それでは、よき旅を』",
     "name_en": "『それでは、よき旅を』",
     "description_jp": "スタミナ上限とパワー上限と賢さ上限がアップし、\\n「『それでは、よき旅を』」のスキルヒントを得られる因子です",
@@ -3318,6 +3439,7 @@
   {
     "id": 107901,
     "factorId": 10790101,
+    "factorType": 3,
     "name_jp": "『船橋最強！』",
     "name_en": "『船橋最強！』",
     "description_jp": "スピード上限と根性上限がアップし、\\n「『船橋最強！』」のスキルヒントを得られる因子です",
@@ -3344,6 +3466,7 @@
   {
     "id": 103003,
     "factorId": 10300301,
+    "factorType": 3,
     "name_jp": "あおぞらクッキング♪",
     "name_en": "あおぞらクッキング♪",
     "description_jp": "スタミナ上限と根性上限がアップし、「あおぞらクッキング♪」のスキルヒントを得られる因子です",
@@ -3370,6 +3493,7 @@
   {
     "id": 106802,
     "factorId": 10680201,
+    "factorType": 3,
     "name_jp": "あっぱれ大盤振る舞い！",
     "name_en": "あっぱれ大盤振る舞い！",
     "description_jp": "スピード上限とパワー上限と賢さ上限がアップし、\\n「あっぱれ大盤振る舞い！」のスキルヒントを得られる因子です",
@@ -3396,6 +3520,7 @@
   {
     "id": 102702,
     "factorId": 10270201,
+    "factorType": 3,
     "name_jp": "あなたに捧げるフリーポア",
     "name_en": "あなたに捧げるフリーポア",
     "description_jp": "スピード上限とパワー上限と根性上限がアップし、\\n「あなたに捧げるフリーポア」のスキルヒントを得られる因子です",
@@ -3422,6 +3547,7 @@
   {
     "id": 104401,
     "factorId": 10440101,
+    "factorType": 3,
     "name_jp": "いただき☆ストレリチア！",
     "name_en": "いただき☆ストレリチア！",
     "description_jp": "スピード上限とパワー上限がアップし、\\n「いただき☆ストレリチア！」のスキルヒントを得られる因子です",
@@ -3448,6 +3574,7 @@
   {
     "id": 102902,
     "factorId": 10290201,
+    "factorType": 3,
     "name_jp": "いっぱいおあげんしぇ！",
     "name_en": "いっぱいおあげんしぇ！",
     "description_jp": "スピード上限とパワー上限と根性上限がアップし、\\n「いっぱいおあげんしぇ！」のスキルヒントを得られる因子です",
@@ -3474,6 +3601,7 @@
   {
     "id": 109901,
     "factorId": 10990101,
+    "factorType": 3,
     "name_jp": "かがやけ☆とまこまい",
     "name_en": "かがやけ☆とまこまい",
     "description_jp": "スピード上限とスタミナ上限と賢さ上限がアップし、\\n「かがやけ☆とまこまい」のスキルヒントを得られる因子です",
@@ -3500,6 +3628,7 @@
   {
     "id": 109302,
     "factorId": 10930201,
+    "factorType": 3,
     "name_jp": "きせき・おもい・かなで",
     "name_en": "きせき・おもい・かなで",
     "description_jp": "スピード上限とパワー上限がアップし、\\n「きせき・おもい・かなで」のスキルヒントを得られる因子です",
@@ -3526,6 +3655,7 @@
   {
     "id": 101303,
     "factorId": 10130301,
+    "factorType": 3,
     "name_jp": "きらめくは海、まばゆきは君",
     "name_en": "きらめくは海、まばゆきは君",
     "description_jp": "スピード上限とスタミナ上限と賢さ上限がアップし、\\n「きらめくは海、まばゆきは君」のスキルヒントを得られる因子です",
@@ -3552,6 +3682,7 @@
   {
     "id": 104502,
     "factorId": 10450201,
+    "factorType": 3,
     "name_jp": "ぐるぐるマミートリック♡",
     "name_en": "ぐるぐるマミートリック♡",
     "description_jp": "スピード上限とスタミナ上限と根性上限がアップし、\\n「ぐるぐるマミートリック♡」のスキルヒントを得られる因子です",
@@ -3578,6 +3709,7 @@
   {
     "id": 106202,
     "factorId": 10620201,
+    "factorType": 3,
     "name_jp": "ごろりん！？パワードライブ",
     "name_en": "ごろりん！？パワードライブ",
     "description_jp": "スピード上限とパワー上限がアップし、\\n「ごろりん！？パワードライブ」のスキルヒントを得られる因子です",
@@ -3604,6 +3736,7 @@
   {
     "id": 110902,
     "factorId": 11090201,
+    "factorType": 3,
     "name_jp": "ずっとずっと輝いて",
     "name_en": "ずっとずっと輝いて",
     "description_jp": "スピード上限とパワー上限と賢さ上限がアップし、\\n「ずっとずっと輝いて」のスキルヒントを得られる因子です",
@@ -3630,6 +3763,7 @@
   {
     "id": 105101,
     "factorId": 10510101,
+    "factorType": 3,
     "name_jp": "つぼみ、ほころぶ時",
     "name_en": "つぼみ、ほころぶ時",
     "description_jp": "スピード上限とパワー上限がアップし、\\n「つぼみ、ほころぶ時」のスキルヒントを得られる因子です",
@@ -3656,6 +3790,7 @@
   {
     "id": 105902,
     "factorId": 10590201,
+    "factorType": 3,
     "name_jp": "ときめきが呼ぶほうへ",
     "name_en": "ときめきが呼ぶほうへ",
     "description_jp": "スピード上限と賢さ上限がアップし、\\n「ときめきが呼ぶほうへ」のスキルヒントを得られる因子です",
@@ -3682,6 +3817,7 @@
   {
     "id": 104402,
     "factorId": 10440201,
+    "factorType": 3,
     "name_jp": "とっておきmaterialize",
     "name_en": "とっておきmaterialize",
     "description_jp": "スピード上限とパワー上限と根性上限がアップし、\\n「とっておきmaterialize」のスキルヒントを得られる因子です",
@@ -3708,6 +3844,7 @@
   {
     "id": 109902,
     "factorId": 10990201,
+    "factorType": 3,
     "name_jp": "とびだせ☆ポッピングシェル",
     "name_en": "とびだせ☆ポッピングシェル",
     "description_jp": "スピード上限とスタミナ上限と賢さ上限がアップし、\\n「とびだせ☆ポッピングシェル」のスキルヒントを得られる因子です",
@@ -3734,6 +3871,7 @@
   {
     "id": 106201,
     "factorId": 10620101,
+    "factorType": 3,
     "name_jp": "どんっ、パッ、むんっ",
     "name_en": "どんっ、パッ、むんっ",
     "description_jp": "スタミナ上限と賢さ上限がアップし、\\n「どんっ、パッ、むんっ」のスキルヒントを得られる因子です",
@@ -3760,6 +3898,7 @@
   {
     "id": 112401,
     "factorId": 11240101,
+    "factorType": 3,
     "name_jp": "ふくらむ夢、先駆の途",
     "name_en": "ふくらむ夢、先駆の途",
     "description_jp": "スピード上限と根性上限がアップし、\\n「ふくらむ夢、先駆の途」のスキルヒントを得られる因子です",
@@ -3786,6 +3925,7 @@
   {
     "id": 108702,
     "factorId": 10870201,
+    "factorType": 3,
     "name_jp": "ふわもこアワー",
     "name_en": "ふわもこアワー",
     "description_jp": "スピード上限とパワー上限と根性上限がアップし、\\n「ふわもこアワー」のスキルヒントを得られる因子です",
@@ -3812,6 +3952,7 @@
   {
     "id": 106401,
     "factorId": 10640101,
+    "factorType": 3,
     "name_jp": "ぶっちぎりロード",
     "name_en": "ぶっちぎりロード",
     "description_jp": "スピード上限とスタミナ上限と賢さ上限がアップし、\\n「ぶっちぎりロード」のスキルヒントを得られる因子です",
@@ -3838,6 +3979,7 @@
   {
     "id": 106003,
     "factorId": 10600301,
+    "factorType": 3,
     "name_jp": "もちっと・ハレハレ",
     "name_en": "もちっと・ハレハレ",
     "description_jp": "スピード上限とパワー上限と賢さ上限がアップし、\\n「もちっと・ハレハレ」のスキルヒントを得られる因子です",
@@ -3864,6 +4006,7 @@
   {
     "id": 102901,
     "factorId": 10290101,
+    "factorType": 3,
     "name_jp": "ゆきあかり、おいかけて",
     "name_en": "ゆきあかり、おいかけて",
     "description_jp": "スピード上限と根性上限がアップし、\\n「ゆきあかり、おいかけて」のスキルヒントを得られる因子です",
@@ -3890,6 +4033,7 @@
   {
     "id": 100102,
     "factorId": 10010201,
+    "factorType": 3,
     "name_jp": "わやかわ♪マリンダイヴ",
     "name_en": "わやかわ♪マリンダイヴ",
     "description_jp": "スタミナ上限とパワー上限と根性上限がアップし、\\n「わやかわ♪マリンダイヴ」のスキルヒントを得られる因子です",
@@ -3916,6 +4060,7 @@
   {
     "id": 106501,
     "factorId": 10650101,
+    "factorType": 3,
     "name_jp": "アゲてアゲてぷちょへんざ！",
     "name_en": "アゲてアゲてぷちょへんざ！",
     "description_jp": "スピード上限とパワー上限がアップし、\\n「アゲてアゲてぷちょへんざ！」のスキルヒントを得られる因子です",
@@ -3942,6 +4087,7 @@
   {
     "id": 110501,
     "factorId": 11050101,
+    "factorType": 3,
     "name_jp": "アド・アストラ",
     "name_en": "アド・アストラ",
     "description_jp": "賢さ上限がアップし、\\n「アド・アストラ」のスキルヒントを得られる因子です",
@@ -3968,6 +4114,7 @@
   {
     "id": 102501,
     "factorId": 10250101,
+    "factorType": 3,
     "name_jp": "アナタヲ・オイカケテ",
     "name_en": "アナタヲ・オイカケテ",
     "description_jp": "スタミナ上限がアップし、\\n「アナタヲ・オイカケテ」のスキルヒントを得られる因子です",
@@ -3994,6 +4141,7 @@
   {
     "id": 106601,
     "factorId": 10660101,
+    "factorType": 3,
     "name_jp": "エンジン全開！大噴射！",
     "name_en": "エンジン全開！大噴射！",
     "description_jp": "スピード上限がアップし、\\n 「エンジン全開！大噴射！」のスキルヒントを得られる因子です",
@@ -4020,6 +4168,7 @@
   {
     "id": 102602,
     "factorId": 10260201,
+    "factorType": 3,
     "name_jp": "オペレーション・Cacao",
     "name_en": "オペレーション・Cacao",
     "description_jp": "スピード上限とスタミナ上限とパワー上限がアップし、\\n「オペレーション・Cacao」のスキルヒントを得られる因子です",
@@ -4046,6 +4195,7 @@
   {
     "id": 100402,
     "factorId": 10040201,
+    "factorType": 3,
     "name_jp": "グッときて♪Chu",
     "name_en": "グッときて♪Chu",
     "description_jp": "スピード上限と賢さ上限がアップし、\\n「グッときて♪Chu」のスキルヒントを得られる因子です",
@@ -4072,6 +4222,7 @@
   {
     "id": 109102,
     "factorId": 10910201,
+    "factorType": 3,
     "name_jp": "ジュ・テーム☆バカンス！",
     "name_en": "ジュ・テーム☆バカンス！",
     "description_jp": "スピード上限と根性上限と賢さ上限がアップし、\\n「ジュ・テーム☆バカンス！」のスキルヒントを得られる因子です",
@@ -4098,6 +4249,7 @@
   {
     "id": 109701,
     "factorId": 10970101,
+    "factorType": 3,
     "name_jp": "スカーレットリリィの高揚",
     "name_en": "スカーレットリリィの高揚",
     "description_jp": "スタミナ上限とパワー上限と根性上限がアップし、\\n「スカーレットリリィの高揚」のスキルヒントを得られる因子です",
@@ -4124,6 +4276,7 @@
   {
     "id": 107001,
     "factorId": 10700101,
+    "factorType": 3,
     "name_jp": "セイリオス",
     "name_en": "セイリオス",
     "description_jp": "パワー上限と賢さ上限がアップし、 「セイリオス」のスキルヒントを得られる因子です",
@@ -4150,6 +4303,7 @@
   {
     "id": 103101,
     "factorId": 10310101,
+    "factorType": 3,
     "name_jp": "チャージ完了！全速前進！",
     "name_en": "チャージ完了！全速前進！",
     "description_jp": "スピード上限と根性上限がアップし、\\n「チャージ完了！全速前進！」のスキルヒントを得られる因子です",
@@ -4176,6 +4330,7 @@
   {
     "id": 103301,
     "factorId": 10330101,
+    "factorType": 3,
     "name_jp": "ディオスクロイの流星",
     "name_en": "ディオスクロイの流星",
     "description_jp": "スピード上限とパワー上限がアップし、\\n「ディオスクロイの流星」のスキルヒントを得られる因子です",
@@ -4202,6 +4357,7 @@
   {
     "id": 109101,
     "factorId": 10910101,
+    "factorType": 3,
     "name_jp": "デラックス☆ファウンテン",
     "name_en": "デラックス☆ファウンテン",
     "description_jp": "スピード上限とパワー上限と賢さ上限がアップし、\\n「デラックス☆ファウンテン」のスキルヒントを得られる因子です",
@@ -4228,6 +4384,7 @@
   {
     "id": 106502,
     "factorId": 10650201,
+    "factorType": 3,
     "name_jp": "ノッてけ、マッシュアップ！",
     "name_en": "ノッてけ、マッシュアップ！",
     "description_jp": "スピード上限とパワー上限と根性上限がアップし、\\n「ノッてけ、マッシュアップ！」のスキルヒントを得られる因子です",
@@ -4254,6 +4411,7 @@
   {
     "id": 103102,
     "factorId": 10310201,
+    "factorType": 3,
     "name_jp": "フレッシュ☆パーラー",
     "name_en": "フレッシュ☆パーラー",
     "description_jp": "スピード上限とスタミナ上限と根性上限がアップし、\\n「フレッシュ☆パーラー」のスキルヒントを得られる因子です",
@@ -4280,6 +4438,7 @@
   {
     "id": 111301,
     "factorId": 11130101,
+    "factorType": 3,
     "name_jp": "ホップステップ・ゲッチュ♡",
     "name_en": "ホップステップ・ゲッチュ♡",
     "description_jp": "スタミナ上限と根性上限と賢さ上限がアップし、\\n「ホップステップ・ゲッチュ♡」のスキルヒントを得られる因子です",
@@ -4306,6 +4465,7 @@
   {
     "id": 106703,
     "factorId": 10670301,
+    "factorType": 3,
     "name_jp": "ポンテ・デ・ディアマン",
     "name_en": "ポンテ・デ・ディアマン",
     "description_jp": "スピード上限とスタミナ上限と根性上限がアップし、\\n「ポンテ・デ・ディアマン」のスキルヒントを得られる因子です",
@@ -4332,6 +4492,7 @@
   {
     "id": 106803,
     "factorId": 10680301,
+    "factorType": 3,
     "name_jp": "ミンナノアタシへ！",
     "name_en": "ミンナノアタシへ！",
     "description_jp": "スピード上限と根性上限がアップし、「ミンナノアタシへ！」のスキルヒントを得られる因子です",
@@ -4358,6 +4519,7 @@
   {
     "id": 110201,
     "factorId": 11020101,
+    "factorType": 3,
     "name_jp": "ヴィヴァーチェ・ヴォラーレ",
     "name_en": "ヴィヴァーチェ・ヴォラーレ",
     "description_jp": "スタミナ上限とパワー上限と根性上限がアップし、\\n「ヴィヴァーチェ・ヴォラーレ」のスキルヒントを得られる因子です",
@@ -4384,6 +4546,7 @@
   {
     "id": 107101,
     "factorId": 10710101,
+    "factorType": 3,
     "name_jp": "一期の夢、刹那の飛翔",
     "name_en": "一期の夢、刹那の飛翔",
     "description_jp": "スピード上限と賢さ上限がアップし、\\n「一期の夢、刹那の飛翔」のスキルヒントを得られる因子です",
@@ -4410,6 +4573,7 @@
   {
     "id": 105501,
     "factorId": 10550101,
+    "factorType": 3,
     "name_jp": "万彩☆マーベラス★世界",
     "name_en": "万彩☆マーベラス★世界",
     "description_jp": "パワー上限と賢さ上限がアップし、\\n「万彩☆マーベラス★世界」のスキルヒントを得られる因子です",
@@ -4436,6 +4600,7 @@
   {
     "id": 109802,
     "factorId": 10980201,
+    "factorType": 3,
     "name_jp": "五獣挙りて彩光奏づ",
     "name_en": "五獣挙りて彩光奏づ",
     "description_jp": "スタミナ上限とパワー上限と根性上限がアップし、\\n「五獣挙りて彩光奏づ」のスキルヒントを得られる因子です",
@@ -4462,6 +4627,7 @@
   {
     "id": 103103,
     "factorId": 10310301,
+    "factorType": 3,
     "name_jp": "全力全開！サイクロン",
     "name_en": "全力全開！サイクロン",
     "description_jp": "スタミナ上限とパワー上限と根性上限がアップし、\\n「全力全開！サイクロン」のスキルヒントを得られる因子です",
@@ -4488,6 +4654,7 @@
   {
     "id": 107202,
     "factorId": 10720201,
+    "factorType": 3,
     "name_jp": "剛勇果断、烈火之刀",
     "name_en": "剛勇果断、烈火之刀",
     "description_jp": "スタミナ上限とパワー上限と根性上限がアップし、\\n「剛勇果断、烈火之刀」のスキルヒントを得られる因子です",
@@ -4514,6 +4681,7 @@
   {
     "id": 104901,
     "factorId": 10490101,
+    "factorType": 3,
     "name_jp": "剣ヶ峰より、狂気に嗤え",
     "name_en": "剣ヶ峰より、狂気に嗤え",
     "description_jp": "スピード上限とスタミナ上限とパワー上限がアップし、\\n「剣ヶ峰より、狂気に嗤え」のスキルヒントを得られる因子です",
@@ -4540,6 +4708,7 @@
   {
     "id": 106801,
     "factorId": 10680101,
+    "factorType": 3,
     "name_jp": "勝ち鬨ワッショイ！",
     "name_en": "勝ち鬨ワッショイ！",
     "description_jp": "スピード上限とスタミナ上限がアップし、\\n「勝ち鬨ワッショイ！」のスキルヒントを得られる因子です",
@@ -4566,6 +4735,7 @@
   {
     "id": 102303,
     "factorId": 10230301,
+    "factorType": 3,
     "name_jp": "勝利ヘ至ル累積",
     "name_en": "勝利ヘ至ル累積",
     "description_jp": "スタミナ上限とパワー上限と根性上限がアップし、「勝利ヘ至ル累積」のスキルヒントを得られる因子です",
@@ -4592,6 +4762,7 @@
   {
     "id": 105701,
     "factorId": 10570101,
+    "factorType": 3,
     "name_jp": "叙情、旅路の果てに",
     "name_en": "叙情、旅路の果てに",
     "description_jp": "スピード上限とスタミナ上限と賢さ上限がアップし、\\n「叙情、旅路の果てに」のスキルヒントを得られる因子です",
@@ -4618,6 +4789,7 @@
   {
     "id": 106902,
     "factorId": 10690201,
+    "factorType": 3,
     "name_jp": "咲け咲け！私！",
     "name_en": "咲け咲け！私！",
     "description_jp": "スピード上限とパワー上限と賢さ上限がアップし、\\n「咲け咲け！私！」のスキルヒントを得られる因子です",
@@ -4644,6 +4816,7 @@
   {
     "id": 103202,
     "factorId": 10320201,
+    "factorType": 3,
     "name_jp": "夏空ハレーション",
     "name_en": "夏空ハレーション",
     "description_jp": "スピード上限とパワー上限と賢さ上限がアップし、\\n「夏空ハレーション」のスキルヒントを得られる因子です",
@@ -4670,6 +4843,7 @@
   {
     "id": 108802,
     "factorId": 10880201,
+    "factorType": 3,
     "name_jp": "夏雷カスケード！",
     "name_en": "夏雷カスケード！",
     "description_jp": "スタミナ上限とパワー上限と根性上限がアップし、\\n「夏雷カスケード！」のスキルヒントを得られる因子です",
@@ -4696,6 +4870,7 @@
   {
     "id": 103502,
     "factorId": 10350201,
+    "factorType": 3,
     "name_jp": "夢の先へ、届け！",
     "name_en": "夢の先へ、届け！",
     "description_jp": "スピード上限とパワー上限と根性上限がアップし、\\n「夢の先へ、届け！」のスキルヒントを得られる因子です",
@@ -4722,6 +4897,7 @@
   {
     "id": 101202,
     "factorId": 10120201,
+    "factorType": 3,
     "name_jp": "大盛り！ファーストバイト！",
     "name_en": "大盛り！ファーストバイト！",
     "description_jp": "スピード上限とパワー上限と賢さ上限がアップし、\\n「大盛り！ファーストバイト！」のスキルヒントを得られる因子です",
@@ -4748,6 +4924,7 @@
   {
     "id": 105302,
     "factorId": 10530201,
+    "factorType": 3,
     "name_jp": "奥義・常夏バーニング！！",
     "name_en": "奥義・常夏バーニング！！",
     "description_jp": "スピード上限とパワー上限と根性上限がアップし、\\n「奥義・常夏バーニング！！」のスキルヒントを得られる因子です",
@@ -4774,6 +4951,7 @@
   {
     "id": 103901,
     "factorId": 10390101,
+    "factorType": 3,
     "name_jp": "姫たるもの、勝利をこの手に",
     "name_en": "姫たるもの、勝利をこの手に",
     "description_jp": "パワー上限と根性上限がアップし、\\n「姫たるもの、勝利をこの手に」のスキルヒントを得られる因子です",
@@ -4800,6 +4978,7 @@
   {
     "id": 100103,
     "factorId": 10010301,
+    "factorType": 3,
     "name_jp": "威風堂々、夢錦！",
     "name_en": "威風堂々、夢錦！",
     "description_jp": "スピード上限とスタミナ上限と賢さ上限がアップし、\\n「威風堂々、夢錦！」のスキルヒントを得られる因子です",
@@ -4826,6 +5005,7 @@
   {
     "id": 112701,
     "factorId": 11270101,
+    "factorType": 3,
     "name_jp": "対象捕捉！正義遂行！",
     "name_en": "対象捕捉！正義遂行！",
     "description_jp": "スタミナ上限と根性上限がアップし、\\n「対象捕捉！正義遂行！」のスキルヒントを得られる因子です",
@@ -4852,6 +5032,7 @@
   {
     "id": 101901,
     "factorId": 10190101,
+    "factorType": 3,
     "name_jp": "尊み☆ﾗｽﾄｽﾊﾟ—(ﾟ∀ﾟ)—ﾄ!",
     "name_en": "尊み☆ﾗｽﾄｽﾊﾟ—(ﾟ∀ﾟ)—ﾄ!",
     "description_jp": "スピード上限とスタミナ上限とパワー上限がアップし、\\n「尊み☆ﾗｽﾄｽﾊﾟ—(ﾟ∀ﾟ)—ﾄ!」のスキルヒントを得られる因子です",
@@ -4878,6 +5059,7 @@
   {
     "id": 110602,
     "factorId": 11060201,
+    "factorType": 3,
     "name_jp": "小さな奇跡、フォーユー♪",
     "name_en": "小さな奇跡、フォーユー♪",
     "description_jp": "スタミナ上限とパワー上限と根性上限がアップし、\\n「小さな奇跡、フォーユー♪」のスキルヒントを得られる因子です",
@@ -4904,6 +5086,7 @@
   {
     "id": 109301,
     "factorId": 10930101,
+    "factorType": 3,
     "name_jp": "幸せの青い光",
     "name_en": "幸せの青い光",
     "description_jp": "スピード上限と根性上限がアップし、\\n「幸せの青い光」のスキルヒントを得られる因子です",
@@ -4930,6 +5113,7 @@
   {
     "id": 105901,
     "factorId": 10590101,
+    "factorType": 3,
     "name_jp": "彼方、その先へ…",
     "name_en": "彼方、その先へ…",
     "description_jp": "スピード上限と賢さ上限がアップし、\\n「彼方、その先へ…」のスキルヒントを得られる因子です",
@@ -4956,6 +5140,7 @@
   {
     "id": 102502,
     "factorId": 10250201,
+    "factorType": 3,
     "name_jp": "心からのおもてにゃし",
     "name_en": "心からのおもてにゃし",
     "description_jp": "スタミナ上限とパワー上限がアップし、\\n「心からのおもてにゃし」のスキルヒントを得られる因子です",
@@ -4982,6 +5167,7 @@
   {
     "id": 104503,
     "factorId": 10450301,
+    "factorType": 3,
     "name_jp": "忍法・ほほえみ心結の印",
     "name_en": "忍法・ほほえみ心結の印",
     "description_jp": "スピード上限とスタミナ上限と賢さ上限がアップし、\\n「忍法・ほほえみ心結の印」のスキルヒントを得られる因子です",
@@ -5008,6 +5194,7 @@
   {
     "id": 103902,
     "factorId": 10390201,
+    "factorType": 3,
     "name_jp": "快なる剛力",
     "name_en": "快なる剛力",
     "description_jp": "スタミナ上限とパワー上限と根性上限がアップし、\\n「快なる剛力」のスキルヒントを得られる因子です",
@@ -5034,6 +5221,7 @@
   {
     "id": 103401,
     "factorId": 10340101,
+    "factorType": 3,
     "name_jp": "快走かな、快走かな！",
     "name_en": "快走かな、快走かな！",
     "description_jp": "スタミナ上限とパワー上限がアップし、\\n「快走かな、快走かな！」のスキルヒントを得られる因子です",
@@ -5060,6 +5248,7 @@
   {
     "id": 109501,
     "factorId": 10950101,
+    "factorType": 3,
     "name_jp": "念い、信ずればこそ",
     "name_en": "念い、信ずればこそ",
     "description_jp": "パワー上限と根性上限と賢さ上限がアップし、\\n「念い、信ずればこそ」のスキルヒントを得られる因子です",
@@ -5086,6 +5275,7 @@
   {
     "id": 101502,
     "factorId": 10150201,
+    "factorType": 3,
     "name_jp": "恵福バルカローレ",
     "name_en": "恵福バルカローレ",
     "description_jp": "スピード上限とスタミナ上限と賢さ上限がアップし、\\n「恵福バルカローレ」のスキルヒントを得られる因子です",
@@ -5112,6 +5302,7 @@
   {
     "id": 108601,
     "factorId": 10860101,
+    "factorType": 3,
     "name_jp": "愛と熔けよただ熔けよ",
     "name_en": "愛と熔けよただ熔けよ",
     "description_jp": "スピード上限と賢さ上限がアップし、\\n「愛と熔けよただ熔けよ」のスキルヒントを得られる因子です",
@@ -5138,6 +5329,7 @@
   {
     "id": 106901,
     "factorId": 10690101,
+    "factorType": 3,
     "name_jp": "憧れは桜を越える！",
     "name_en": "憧れは桜を越える！",
     "description_jp": "スピード上限と根性上限と賢さ上限がアップし、\\n「憧れは桜を越える！」のスキルヒントを得られる因子です",
@@ -5164,6 +5356,7 @@
   {
     "id": 111501,
     "factorId": 11150101,
+    "factorType": 3,
     "name_jp": "我が覇道、阻むものなし",
     "name_en": "我が覇道、阻むものなし",
     "description_jp": "スピード上限とスタミナ上限とパワー上限がアップし、\\n「我が覇道、阻むものなし」のスキルヒントを得られる因子です",
@@ -5190,6 +5383,7 @@
   {
     "id": 104701,
     "factorId": 10470101,
+    "factorType": 3,
     "name_jp": "掲げよ、己が魂の剣を！",
     "name_en": "掲げよ、己が魂の剣を！",
     "description_jp": "スタミナ上限と賢さ上限がアップし、\\n「掲げよ、己が魂の剣を！」のスキルヒントを得られる因子です",
@@ -5216,6 +5410,7 @@
   {
     "id": 111002,
     "factorId": 11100201,
+    "factorType": 3,
     "name_jp": "時かけるせせらぎ",
     "name_en": "時かけるせせらぎ",
     "description_jp": "パワー上限と根性上限がアップし、\\n「時かけるせせらぎ」のスキルヒントを得られる因子です",
@@ -5242,6 +5437,7 @@
   {
     "id": 106701,
     "factorId": 10670101,
+    "factorType": 3,
     "name_jp": "晦冥を照らせ永遠の耀き",
     "name_en": "晦冥を照らせ永遠の耀き",
     "description_jp": "スタミナ上限と賢さ上限がアップし、\\n「晦冥を照らせ永遠の耀き」のスキルヒントを得られる因子です",
@@ -5268,6 +5464,7 @@
   {
     "id": 110401,
     "factorId": 11040101,
+    "factorType": 3,
     "name_jp": "暁の御旗『葛城栄主』！",
     "name_en": "暁の御旗『葛城栄主』！",
     "description_jp": "スピード上限とパワー上限と根性上限がアップし、\\n「暁の御旗『葛城栄主』！」のスキルヒントを得られる因子です",
@@ -5294,6 +5491,7 @@
   {
     "id": 104702,
     "factorId": 10470201,
+    "factorType": 3,
     "name_jp": "未知との遭遇、即ち物語",
     "name_en": "未知との遭遇、即ち物語",
     "description_jp": "スピード上限とパワー上限と賢さ上限がアップし、\\n「未知との遭遇、即ち物語」のスキルヒントを得られる因子です",
@@ -5320,6 +5518,7 @@
   {
     "id": 100303,
     "factorId": 10030301,
+    "factorType": 3,
     "name_jp": "歌舞歓楽や、ああをかし",
     "name_en": "歌舞歓楽や、ああをかし",
     "description_jp": "スピード上限とスタミナ上限と賢さ上限がアップし、\\n「歌舞歓楽や、ああをかし」のスキルヒントを得られる因子です",
@@ -5346,6 +5545,7 @@
   {
     "id": 100202,
     "factorId": 10020201,
+    "factorType": 3,
     "name_jp": "水平線のその先へ",
     "name_en": "水平線のその先へ",
     "description_jp": "スピード上限とスタミナ上限がアップし、\\n「水平線のその先へ」のスキルヒントを得られる因子です",
@@ -5372,6 +5572,7 @@
   {
     "id": 110402,
     "factorId": 11040201,
+    "factorType": 3,
     "name_jp": "決意一筆",
     "name_en": "決意一筆",
     "description_jp": "スピード上限とパワー上限と根性上限がアップし、\\n「決意一筆」のスキルヒントを得られる因子です",
@@ -5398,6 +5599,7 @@
   {
     "id": 108402,
     "factorId": 10840201,
+    "factorType": 3,
     "name_jp": "深淵のテルプシコラー",
     "name_en": "深淵のテルプシコラー",
     "description_jp": "スピード上限とパワー上限と根性上限がアップし、\\n「深淵のテルプシコラー」のスキルヒントを得られる因子です",
@@ -5424,6 +5626,7 @@
   {
     "id": 101103,
     "factorId": 10110301,
+    "factorType": 3,
     "name_jp": "演舞・撫子大薙刀",
     "name_en": "演舞・撫子大薙刀",
     "description_jp": "根性上限と賢さ上限がアップし、「演舞・撫子大薙刀」のスキルヒントを得られる因子です",
@@ -5450,6 +5653,7 @@
   {
     "id": 103703,
     "factorId": 10370301,
+    "factorType": 3,
     "name_jp": "潮風のGeschenk",
     "name_en": "潮風のGeschenk",
     "description_jp": "スタミナ上限と根性上限と賢さ上限がアップし、\\n「潮風のGeschenk」のスキルヒントを得られる因子です",
@@ -5476,6 +5680,7 @@
   {
     "id": 102102,
     "factorId": 10210201,
+    "factorType": 3,
     "name_jp": "火神鳴",
     "name_en": "火神鳴",
     "description_jp": "スピード上限とスタミナ上限と根性上限がアップし、\\n「火神鳴」のスキルヒントを得られる因子です",
@@ -5502,6 +5707,7 @@
   {
     "id": 103402,
     "factorId": 10340201,
+    "factorType": 3,
     "name_jp": "灯穂",
     "name_en": "灯穂",
     "description_jp": "スピード上限とパワー上限と賢さ上限がアップし、\\n「灯穂」のスキルヒントを得られる因子です",
@@ -5528,6 +5734,7 @@
   {
     "id": 101602,
     "factorId": 10160201,
+    "factorType": 3,
     "name_jp": "灰色の臨界点",
     "name_en": "灰色の臨界点",
     "description_jp": "スピード上限とスタミナ上限と根性上限がアップし、\\n「灰色の臨界点」のスキルヒントを得られる因子です",
@@ -5554,6 +5761,7 @@
   {
     "id": 107201,
     "factorId": 10720101,
+    "factorType": 3,
     "name_jp": "烈火繚乱、無敵之舞",
     "name_en": "烈火繚乱、無敵之舞",
     "description_jp": "パワー上限と根性上限がアップし、\\n「烈火繚乱、無敵之舞」のスキルヒントを得られる因子です",
@@ -5580,6 +5788,7 @@
   {
     "id": 111601,
     "factorId": 11160101,
+    "factorType": 3,
     "name_jp": "烈華の洗礼",
     "name_en": "烈華の洗礼",
     "description_jp": "スピード上限とスタミナ上限とパワー上限がアップし、\\n「烈華の洗礼」のスキルヒントを得られる因子です",
@@ -5606,6 +5815,7 @@
   {
     "id": 112001,
     "factorId": 11200101,
+    "factorType": 3,
     "name_jp": "無二無三なる一条の路",
     "name_en": "無二無三なる一条の路",
     "description_jp": "スピード上限とパワー上限がアップし、\\n「無二無三なる一条の路」のスキルヒントを得られる因子です",
@@ -5632,6 +5842,7 @@
   {
     "id": 100501,
     "factorId": 10050101,
+    "factorType": 3,
     "name_jp": "煌星のヴォードヴィル",
     "name_en": "煌星のヴォードヴィル",
     "description_jp": "パワー上限と賢さ上限がアップし、\\n「煌星のヴォードヴィル」のスキルヒントを得られる因子です",
@@ -5658,6 +5869,7 @@
   {
     "id": 105301,
     "factorId": 10530101,
+    "factorType": 3,
     "name_jp": "熱血！！風紀アタック",
     "name_en": "熱血！！風紀アタック",
     "description_jp": "スピード上限とパワー上限と根性上限がアップし、\\n「熱血！！風紀アタック」のスキルヒントを得られる因子です",
@@ -5684,6 +5896,7 @@
   {
     "id": 107301,
     "factorId": 10730101,
+    "factorType": 3,
     "name_jp": "燃え盛るは絶対の意志",
     "name_en": "燃え盛るは絶対の意志",
     "description_jp": "パワー上限と根性上限がアップし、\\n「燃え盛るは絶対の意志」のスキルヒントを得られる因子です",
@@ -5710,6 +5923,7 @@
   {
     "id": 105702,
     "factorId": 10570201,
+    "factorType": 3,
     "name_jp": "爛然闊歩",
     "name_en": "爛然闊歩",
     "description_jp": "スピード上限とパワー上限がアップし、\\n「爛然闊歩」のスキルヒントを得られる因子です",
@@ -5736,6 +5950,7 @@
   {
     "id": 106702,
     "factorId": 10670201,
+    "factorType": 3,
     "name_jp": "玄雲散らす、黄金甲矢",
     "name_en": "玄雲散らす、黄金甲矢",
     "description_jp": "スピード上限とスタミナ上限がアップし、\\n「玄雲散らす、黄金甲矢」のスキルヒントを得られる因子です",
@@ -5762,6 +5977,7 @@
   {
     "id": 106103,
     "factorId": 10610301,
+    "factorType": 3,
     "name_jp": "理想へのwinding road",
     "name_en": "理想へのwinding road",
     "description_jp": "パワー上限と根性上限と賢さ上限がアップし、\\n「理想へのwinding road」のスキルヒントを得られる因子です",
@@ -5788,6 +6004,7 @@
   {
     "id": 109801,
     "factorId": 10980101,
+    "factorType": 3,
     "name_jp": "理運開かりて翔る",
     "name_en": "理運開かりて翔る",
     "description_jp": "パワー上限と賢さ上限がアップし、\\n「理運開かりて翔る」のスキルヒントを得られる因子です",
@@ -5814,6 +6031,7 @@
   {
     "id": 105401,
     "factorId": 10540101,
+    "factorType": 3,
     "name_jp": "疾風爆走ペガサスダッシュ！",
     "name_en": "疾風爆走ペガサスダッシュ！",
     "description_jp": "スピード上限とパワー上限と根性上限がアップし、 「疾風爆走ペガサスダッシュ！」のスキルヒントを得られる因子です",
@@ -5840,6 +6058,7 @@
   {
     "id": 102101,
     "factorId": 10210101,
+    "factorType": 3,
     "name_jp": "白い稲妻、見せたるで！",
     "name_en": "白い稲妻、見せたるで！",
     "description_jp": "スタミナ上限とパワー上限がアップし、\\n「白い稲妻、見せたるで！」のスキルヒントを得られる因子です",
@@ -5866,6 +6085,7 @@
   {
     "id": 106301,
     "factorId": 10630101,
+    "factorType": 3,
     "name_jp": "百錬成鋼",
     "name_en": "百錬成鋼",
     "description_jp": "根性上限と賢さ上限がアップし、\\n「百錬成鋼」のスキルヒントを得られる因子です",
@@ -5892,6 +6112,7 @@
   {
     "id": 109601,
     "factorId": 10960101,
+    "factorType": 3,
     "name_jp": "知宵欺敵、百戦不殆",
     "name_en": "知宵欺敵、百戦不殆",
     "description_jp": "スタミナ上限と賢さ上限がアップし、\\n「知宵欺敵、百戦不殆」のスキルヒントを得られる因子です",
@@ -5918,6 +6139,7 @@
   {
     "id": 105602,
     "factorId": 10560201,
+    "factorType": 3,
     "name_jp": "禾スナハチ登ル",
     "name_en": "禾スナハチ登ル",
     "description_jp": "スタミナ上限と根性上限と賢さ上限がアップし、\\n「禾スナハチ登ル」のスキルヒントを得られる因子です",
@@ -5944,6 +6166,7 @@
   {
     "id": 110901,
     "factorId": 11090101,
+    "factorType": 3,
     "name_jp": "繋ぐ・繋がる×夢・未来",
     "name_en": "繋ぐ・繋がる×夢・未来",
     "description_jp": "パワー上限と根性上限がアップし、\\n「繋ぐ・繋がる×夢・未来」のスキルヒントを得られる因子です",
@@ -5970,6 +6193,7 @@
   {
     "id": 110801,
     "factorId": 11080101,
+    "factorType": 3,
     "name_jp": "羅刹、赤翼にて天上へ至らん",
     "name_en": "羅刹、赤翼にて天上へ至らん",
     "description_jp": "スピード上限とパワー上限がアップし、\\n「羅刹、赤翼にて天上へ至らん」のスキルヒントを得られる因子です",
@@ -5996,6 +6220,7 @@
   {
     "id": 101702,
     "factorId": 10170201,
+    "factorType": 3,
     "name_jp": "翳り退く、さざめきの矢",
     "name_en": "翳り退く、さざめきの矢",
     "description_jp": "スピード上限とスタミナ上限と賢さ上限がアップし、\\n「翳り退く、さざめきの矢」のスキルヒントを得られる因子です",
@@ -6022,6 +6247,7 @@
   {
     "id": 100602,
     "factorId": 10060201,
+    "factorType": 3,
     "name_jp": "聖夜のミラクルラン！",
     "name_en": "聖夜のミラクルラン！",
     "description_jp": "スピード上限とスタミナ上限がアップし、\\n「聖夜のミラクルラン！」のスキルヒントを得られる因子です",
@@ -6048,6 +6274,7 @@
   {
     "id": 108501,
     "factorId": 10850101,
+    "factorType": 3,
     "name_jp": "至上であれ",
     "name_en": "至上であれ",
     "description_jp": "パワー上限と賢さ上限がアップし、\\n「至上であれ」のスキルヒントを得られる因子です",
@@ -6074,6 +6301,7 @@
   {
     "id": 107601,
     "factorId": 10760101,
+    "factorType": 3,
     "name_jp": "花開き、世界",
     "name_en": "花開き、世界",
     "description_jp": "スタミナ上限とパワー上限がアップし、\\n「花開き、世界」のスキルヒントを得られる因子です",
@@ -6100,6 +6328,7 @@
   {
     "id": 101902,
     "factorId": 10190201,
+    "factorType": 3,
     "name_jp": "萌到讓我活過來了！",
     "name_en": "萌到讓我活過來了！",
     "description_jp": "スピード上限とパワー上限と根性上限がアップし、\\n「萌到讓我活過來了！」のスキルヒントを得られる因子です",
@@ -6126,6 +6355,7 @@
   {
     "id": 108502,
     "factorId": 10850201,
+    "factorType": 3,
     "name_jp": "蒼炎",
     "name_en": "蒼炎",
     "description_jp": "スピード上限とパワー上限と賢さ上限がアップし、\\n「蒼炎」のスキルヒントを得られる因子です",
@@ -6152,6 +6382,7 @@
   {
     "id": 108602,
     "factorId": 10860201,
+    "factorType": 3,
     "name_jp": "解けぬ結い目",
     "name_en": "解けぬ結い目",
     "description_jp": "パワー上限と根性上限と賢さ上限がアップし、\\n「解けぬ結い目」のスキルヒントを得られる因子です",
@@ -6178,6 +6409,7 @@
   {
     "id": 103203,
     "factorId": 10320301,
+    "factorType": 3,
     "name_jp": "超光速微粒子の可能性",
     "name_en": "超光速微粒子の可能性",
     "description_jp": "スピード上限とパワー上限と賢さ上限がアップし、\\n「超光速微粒子の可能性」のスキルヒントを得られる因子です",
@@ -6204,6 +6436,7 @@
   {
     "id": 106102,
     "factorId": 10610201,
+    "factorType": 3,
     "name_jp": "轟！トレセン応援団！！",
     "name_en": "轟！トレセン応援団！！",
     "description_jp": "スピード上限とパワー上限と根性上限がアップし、\\n「轟！トレセン応援団！！」のスキルヒントを得られる因子です",
@@ -6230,6 +6463,7 @@
   {
     "id": 111101,
     "factorId": 11110101,
+    "factorType": 3,
     "name_jp": "辿る血脈、芽吹く未来",
     "name_en": "辿る血脈、芽吹く未来",
     "description_jp": "パワー上限と賢さ上限がアップし、\\n「辿る血脈、芽吹く未来」のスキルヒントを得られる因子です",
@@ -6256,6 +6490,7 @@
   {
     "id": 111701,
     "factorId": 11170101,
+    "factorType": 3,
     "name_jp": "鋭気のアレグロ",
     "name_en": "鋭気のアレグロ",
     "description_jp": "スピード上限とパワー上限と根性上限がアップし、\\n「鋭気のアレグロ」のスキルヒントを得られる因子です",
@@ -6282,6 +6517,7 @@
   {
     "id": 100403,
     "factorId": 10040301,
+    "factorType": 3,
     "name_jp": "霊験灼然チョベリグ神託",
     "name_en": "霊験灼然チョベリグ神託",
     "description_jp": "スピード上限とパワー上限がアップし、\\n「霊験灼然チョベリグ神託」のスキルヒントを得られる因子です",
@@ -6308,6 +6544,7 @@
   {
     "id": 108401,
     "factorId": 10840101,
+    "factorType": 3,
     "name_jp": "霹靂のアウフヘーベン",
     "name_en": "霹靂のアウフヘーベン",
     "description_jp": "パワー上限がアップし、\\n「霹靂のアウフヘーベン」のスキルヒントを得られる因子です",
@@ -6334,6 +6571,7 @@
   {
     "id": 107801,
     "factorId": 10780101,
+    "factorType": 3,
     "name_jp": "風光る",
     "name_en": "風光る",
     "description_jp": "スピード上限と根性上限と賢さ上限がアップし、\\n「風光る」のスキルヒントを得られる因子です",
@@ -6360,6 +6598,7 @@
   {
     "id": 107002,
     "factorId": 10700201,
+    "factorType": 3,
     "name_jp": "駆るは光、狩るは星々",
     "name_en": "駆るは光、狩るは星々",
     "description_jp": "パワー上限と根性上限がアップし、\\n「駆るは光、狩るは星々」のスキルヒントを得られる因子です",
@@ -6386,6 +6625,7 @@
   {
     "id": 107401,
     "factorId": 10740101,
+    "factorType": 3,
     "name_jp": "麗しき花信風",
     "name_en": "麗しき花信風",
     "description_jp": "スタミナ上限と根性上限と賢さ上限がアップし、\\n「麗しき花信風」のスキルヒントを得られる因子です",
@@ -6412,6 +6652,7 @@
   {
     "id": 20141,
     "factorId": 2014101,
+    "factorType": 4,
     "name_jp": "十万バリキ",
     "name_en": "1,500,000 CC",
     "description_jp": "「十万バリキ」のスキルヒントを得られる因子です",
@@ -6438,6 +6679,7 @@
   {
     "id": 20142,
     "factorId": 2014201,
+    "factorType": 4,
     "name_jp": "小休憩",
     "name_en": "A Small Breather",
     "description_jp": "「小休憩」のスキルヒントを得られる因子です",
@@ -6464,6 +6706,7 @@
   {
     "id": 20106,
     "factorId": 2010601,
+    "factorType": 4,
     "name_jp": "アクセラレーション",
     "name_en": "Acceleration",
     "description_jp": "「アクセラレーション」のスキルヒントを得られる因子です",
@@ -6490,6 +6733,7 @@
   {
     "id": 20148,
     "factorId": 2014801,
+    "factorType": 4,
     "name_jp": "下校の楽しみ",
     "name_en": "After-School Stroll",
     "description_jp": "「下校の楽しみ」のスキルヒントを得られる因子です",
@@ -6516,6 +6760,7 @@
   {
     "id": 10023,
     "factorId": 1002301,
+    "factorType": 5,
     "name_jp": "有馬記念",
     "name_en": "Arima Kinen",
     "description_jp": "根性がアップし、\\n「中山レース場○」のスキルヒントを得られる因子です",
@@ -6540,6 +6785,7 @@
   {
     "id": 10022,
     "factorId": 1002201,
+    "factorType": 5,
     "name_jp": "朝日杯FS",
     "name_en": "Asahi Hai F.S.",
     "description_jp": "スピードと根性がアップする因子です",
@@ -6564,6 +6810,7 @@
   {
     "id": 20048,
     "factorId": 2004801,
+    "factorType": 4,
     "name_jp": "ウマ込み冷静",
     "name_en": "Calm in a Crowd",
     "description_jp": "「ウマ込み冷静」のスキルヒントを得られる因子です",
@@ -6590,6 +6837,7 @@
   {
     "id": 10020,
     "factorId": 1002001,
+    "factorType": 5,
     "name_jp": "チャンピオンズC",
     "name_en": "Champions C.",
     "description_jp": "パワーがアップし、\\n「中京レース場○」のスキルヒントを得られる因子です",
@@ -6614,6 +6862,7 @@
   {
     "id": 20007,
     "factorId": 2000701,
+    "factorType": 4,
     "name_jp": "中京レース場○",
     "name_en": "Chukyo Racecourse ○",
     "description_jp": "「中京レース場○」のスキルヒントを得られる因子です",
@@ -6640,6 +6889,7 @@
   {
     "id": 20022,
     "factorId": 2002201,
+    "factorType": 4,
     "name_jp": "曇りの日○",
     "name_en": "Cloudy Days ○",
     "description_jp": "「曇りの日○」のスキルヒントを得られる因子です",
@@ -6666,6 +6916,7 @@
   {
     "id": 20028,
     "factorId": 2002801,
+    "factorType": 4,
     "name_jp": "対抗意識○",
     "name_en": "Competitive Spirit ○",
     "description_jp": "「対抗意識○」のスキルヒントを得られる因子です",
@@ -6692,6 +6943,7 @@
   {
     "id": 20034,
     "factorId": 2003401,
+    "factorType": 4,
     "name_jp": "コーナー加速○",
     "name_en": "Corner Acceleration ○",
     "description_jp": "「コーナー加速○」のスキルヒントを得られる因子です",
@@ -6718,6 +6970,7 @@
   {
     "id": 20033,
     "factorId": 2003301,
+    "factorType": 4,
     "name_jp": "コーナー巧者○",
     "name_en": "Corner Adept ○",
     "description_jp": "「コーナー巧者○」のスキルヒントを得られる因子です",
@@ -6744,6 +6997,7 @@
   {
     "id": 20035,
     "factorId": 2003501,
+    "factorType": 4,
     "name_jp": "コーナー回復○",
     "name_en": "Corner Recovery ○",
     "description_jp": "「コーナー回復○」のスキルヒントを得られる因子です",
@@ -6770,6 +7024,7 @@
   {
     "id": 20099,
     "factorId": 2009901,
+    "factorType": 4,
     "name_jp": "善後策",
     "name_en": "Countermeasure",
     "description_jp": "「善後策」のスキルヒントを得られる因子です",
@@ -6796,6 +7051,7 @@
   {
     "id": 20074,
     "factorId": 2007401,
+    "factorType": 4,
     "name_jp": "深呼吸",
     "name_en": "Deep Breaths",
     "description_jp": "「深呼吸」のスキルヒントを得られる因子です",
@@ -6822,6 +7078,7 @@
   {
     "id": 20137,
     "factorId": 2013701,
+    "factorType": 4,
     "name_jp": "かく乱",
     "name_en": "Disorient",
     "description_jp": "「かく乱」のスキルヒントを得られる因子です",
@@ -6848,6 +7105,7 @@
   {
     "id": 20126,
     "factorId": 2012601,
+    "factorType": 4,
     "name_jp": "危険回避",
     "name_en": "Dodging Danger",
     "description_jp": "「危険回避」のスキルヒントを得られる因子です",
@@ -6874,6 +7132,7 @@
   {
     "id": 20053,
     "factorId": 2005301,
+    "factorType": 4,
     "name_jp": "先駆け",
     "name_en": "Early Lead",
     "description_jp": "「先駆け」のスキルヒントを得られる因子です",
@@ -6900,6 +7159,7 @@
   {
     "id": 20146,
     "factorId": 2014601,
+    "factorType": 4,
     "name_jp": "追込コーナー○",
     "name_en": "End Closer Corners ○",
     "description_jp": "「追込コーナー○」のスキルヒントを得られる因子です",
@@ -6926,6 +7186,7 @@
   {
     "id": 20155,
     "factorId": 2015501,
+    "factorType": 4,
     "name_jp": "追込のコツ○",
     "name_en": "End Closer Savvy ○",
     "description_jp": "「追込のコツ○」のスキルヒントを得られる因子です",
@@ -6952,6 +7213,7 @@
   {
     "id": 20145,
     "factorId": 2014501,
+    "factorType": 4,
     "name_jp": "追込直線○",
     "name_en": "End Closer Straightaways ○",
     "description_jp": "「追込直線○」のスキルヒントを得られる因子です",
@@ -6978,6 +7240,7 @@
   {
     "id": 20076,
     "factorId": 2007601,
+    "factorType": 4,
     "name_jp": "別腹タンク",
     "name_en": "Extra Tank",
     "description_jp": "「別腹タンク」のスキルヒントを得られる因子です",
@@ -7004,6 +7267,7 @@
   {
     "id": 20019,
     "factorId": 2001901,
+    "factorType": 4,
     "name_jp": "秋ウマ娘○",
     "name_en": "Fall Runner ○",
     "description_jp": "「秋ウマ娘○」のスキルヒントを得られる因子です",
@@ -7030,6 +7294,7 @@
   {
     "id": 20054,
     "factorId": 2005401,
+    "factorType": 4,
     "name_jp": "急ぎ足",
     "name_en": "Fast-Paced",
     "description_jp": "「急ぎ足」のスキルヒントを得られる因子です",
@@ -7056,6 +7321,7 @@
   {
     "id": 10001,
     "factorId": 1000101,
+    "factorType": 5,
     "name_jp": "フェブラリーS",
     "name_en": "February S.",
     "description_jp": "パワーがアップし、\\n「冬ウマ娘○」のスキルヒントを得られる因子です",
@@ -7080,6 +7346,7 @@
   {
     "id": 20140,
     "factorId": 2014001,
+    "factorType": 4,
     "name_jp": "がんばり屋",
     "name_en": "Fighter",
     "description_jp": "「がんばり屋」のスキルヒントを得られる因子です",
@@ -7106,6 +7373,7 @@
   {
     "id": 20055,
     "factorId": 2005501,
+    "factorType": 4,
     "name_jp": "押し切り準備",
     "name_en": "Final Push",
     "description_jp": "「押し切り準備」のスキルヒントを得られる因子です",
@@ -7132,6 +7400,7 @@
   {
     "id": 20015,
     "factorId": 2001501,
+    "factorType": 4,
     "name_jp": "良バ場○",
     "name_en": "Firm Conditions ○",
     "description_jp": "「良バ場○」のスキルヒントを得られる因子です",
@@ -7158,6 +7427,7 @@
   {
     "id": 20093,
     "factorId": 2009301,
+    "factorType": 4,
     "name_jp": "追込焦り",
     "name_en": "Flustered End Closers",
     "description_jp": "「追込焦り」のスキルヒントを得られる因子です",
@@ -7184,6 +7454,7 @@
   {
     "id": 20084,
     "factorId": 2008401,
+    "factorType": 4,
     "name_jp": "逃げ焦り",
     "name_en": "Flustered Front Runners",
     "description_jp": "「逃げ焦り」のスキルヒントを得られる因子です",
@@ -7210,6 +7481,7 @@
   {
     "id": 20090,
     "factorId": 2009001,
+    "factorType": 4,
     "name_jp": "差し焦り",
     "name_en": "Flustered Late Surgers",
     "description_jp": "「差し焦り」のスキルヒントを得られる因子です",
@@ -7236,6 +7508,7 @@
   {
     "id": 20087,
     "factorId": 2008701,
+    "factorType": 4,
     "name_jp": "先行焦り",
     "name_en": "Flustered Pace Chasers",
     "description_jp": "「先行焦り」のスキルヒントを得られる因子です",
@@ -7262,6 +7535,7 @@
   {
     "id": 20043,
     "factorId": 2004301,
+    "factorType": 4,
     "name_jp": "集中力",
     "name_en": "Focus",
     "description_jp": "「集中力」のスキルヒントを得られる因子です",
@@ -7288,6 +7562,7 @@
   {
     "id": 20082,
     "factorId": 2008201,
+    "factorType": 4,
     "name_jp": "追込駆け引き",
     "name_en": "Frenzied End Closers",
     "description_jp": "「追込駆け引き」のスキルヒントを得られる因子です",
@@ -7314,6 +7589,7 @@
   {
     "id": 20079,
     "factorId": 2007901,
+    "factorType": 4,
     "name_jp": "逃げ駆け引き",
     "name_en": "Frenzied Front Runners",
     "description_jp": "「逃げ駆け引き」のスキルヒントを得られる因子です",
@@ -7340,6 +7616,7 @@
   {
     "id": 20081,
     "factorId": 2008101,
+    "factorType": 4,
     "name_jp": "差し駆け引き",
     "name_en": "Frenzied Late Surgers",
     "description_jp": "「差し駆け引き」のスキルヒントを得られる因子です",
@@ -7366,6 +7643,7 @@
   {
     "id": 20080,
     "factorId": 2008001,
+    "factorType": 4,
     "name_jp": "先行駆け引き",
     "name_en": "Frenzied Pace Chasers",
     "description_jp": "「先行駆け引き」のスキルヒントを得られる因子です",
@@ -7392,6 +7670,7 @@
   {
     "id": 20125,
     "factorId": 2012501,
+    "factorType": 4,
     "name_jp": "逃げコーナー○",
     "name_en": "Front Runner Corners ○",
     "description_jp": "「逃げコーナー○」のスキルヒントを得られる因子です",
@@ -7418,6 +7697,7 @@
   {
     "id": 20152,
     "factorId": 2015201,
+    "factorType": 4,
     "name_jp": "逃げのコツ○",
     "name_en": "Front Runner Savvy ○",
     "description_jp": "「逃げのコツ○」のスキルヒントを得られる因子です",
@@ -7444,6 +7724,7 @@
   {
     "id": 20124,
     "factorId": 2012401,
+    "factorType": 4,
     "name_jp": "逃げ直線○",
     "name_en": "Front Runner Straightaways ○",
     "description_jp": "「逃げ直線○」のスキルヒントを得られる因子です",
@@ -7470,6 +7751,7 @@
   {
     "id": 20010,
     "factorId": 2001001,
+    "factorType": 4,
     "name_jp": "福島レース場○",
     "name_en": "Fukushima Racecourse ○",
     "description_jp": "「福島レース場○」のスキルヒントを得られる因子です",
@@ -7496,6 +7778,7 @@
   {
     "id": 20067,
     "factorId": 2006701,
+    "factorType": 4,
     "name_jp": "詰め寄り",
     "name_en": "Gap Closer",
     "description_jp": "「詰め寄り」のスキルヒントを得られる因子です",
@@ -7522,6 +7805,7 @@
   {
     "id": 20050,
     "factorId": 2005001,
+    "factorType": 4,
     "name_jp": "臨機応変",
     "name_en": "Go with the Flow",
     "description_jp": "「臨機応変」のスキルヒントを得られる因子です",
@@ -7548,6 +7832,7 @@
   {
     "id": 20160,
     "factorId": 2016001,
+    "factorType": 4,
     "name_jp": "地固め",
     "name_en": "Groundwork",
     "description_jp": "「地固め」のスキルヒントを得られる因子です",
@@ -7574,6 +7859,7 @@
   {
     "id": 20009,
     "factorId": 2000901,
+    "factorType": 4,
     "name_jp": "函館レース場○",
     "name_en": "Hakodate Racecourse ○",
     "description_jp": "「函館レース場○」のスキルヒントを得られる因子です",
@@ -7600,6 +7886,7 @@
   {
     "id": 10021,
     "factorId": 1002101,
+    "factorType": 5,
     "name_jp": "阪神JF",
     "name_en": "Hanshin J.F.",
     "description_jp": "スピードとパワーがアップする因子です",
@@ -7624,6 +7911,7 @@
   {
     "id": 20005,
     "factorId": 2000501,
+    "factorType": 4,
     "name_jp": "阪神レース場○",
     "name_en": "Hanshin Racecourse ○",
     "description_jp": "「阪神レース場○」のスキルヒントを得られる因子です",
@@ -7650,6 +7938,7 @@
   {
     "id": 20112,
     "factorId": 2011201,
+    "factorType": 4,
     "name_jp": "ホークアイ",
     "name_en": "Hawkeye",
     "description_jp": "「ホークアイ」のスキルヒントを得られる因子です",
@@ -7676,6 +7965,7 @@
   {
     "id": 20094,
     "factorId": 2009401,
+    "factorType": 4,
     "name_jp": "追込ためらい",
     "name_en": "Hesitant End Closers",
     "description_jp": "「追込ためらい」のスキルヒントを得られる因子です",
@@ -7702,6 +7992,7 @@
   {
     "id": 20085,
     "factorId": 2008501,
+    "factorType": 4,
     "name_jp": "逃げためらい",
     "name_en": "Hesitant Front Runners",
     "description_jp": "「逃げためらい」のスキルヒントを得られる因子です",
@@ -7728,6 +8019,7 @@
   {
     "id": 20091,
     "factorId": 2009101,
+    "factorType": 4,
     "name_jp": "差しためらい",
     "name_en": "Hesitant Late Surgers",
     "description_jp": "「差しためらい」のスキルヒントを得られる因子です",
@@ -7754,6 +8046,7 @@
   {
     "id": 20088,
     "factorId": 2008801,
+    "factorType": 4,
     "name_jp": "先行ためらい",
     "name_en": "Hesitant Pace Chasers",
     "description_jp": "「先行ためらい」のスキルヒントを得られる因子です",
@@ -7780,6 +8073,7 @@
   {
     "id": 20158,
     "factorId": 2015801,
+    "factorType": 4,
     "name_jp": "登山家",
     "name_en": "Highlander",
     "description_jp": "「登山家」のスキルヒントを得られる因子です",
@@ -7806,6 +8100,7 @@
   {
     "id": 20051,
     "factorId": 2005101,
+    "factorType": 4,
     "name_jp": "末脚",
     "name_en": "Homestretch Haste",
     "description_jp": "「末脚」のスキルヒントを得られる因子です",
@@ -7832,6 +8127,7 @@
   {
     "id": 10024,
     "factorId": 1002401,
+    "factorType": 5,
     "name_jp": "ホープフルS",
     "name_en": "Hopeful S.",
     "description_jp": "スピードとスタミナがアップする因子です",
@@ -7856,6 +8152,7 @@
   {
     "id": 20098,
     "factorId": 2009801,
+    "factorType": 4,
     "name_jp": "大きなリード",
     "name_en": "Huge Lead",
     "description_jp": "「大きなリード」のスキルヒントを得られる因子です",
@@ -7882,6 +8179,7 @@
   {
     "id": 20135,
     "factorId": 2013501,
+    "factorType": 4,
     "name_jp": "栄養補給",
     "name_en": "Hydrate",
     "description_jp": "「栄養補給」のスキルヒントを得られる因子です",
@@ -7908,6 +8206,7 @@
   {
     "id": 20147,
     "factorId": 2014701,
+    "factorType": 4,
     "name_jp": "お見通し",
     "name_en": "I Can See Right Through You",
     "description_jp": "「お見通し」のスキルヒントを得られる因子です",
@@ -7934,6 +8233,7 @@
   {
     "id": 20025,
     "factorId": 2002501,
+    "factorType": 4,
     "name_jp": "内枠得意○",
     "name_en": "Inner Post Proficiency ○",
     "description_jp": "「内枠得意○」のスキルヒントを得られる因子です",
@@ -7960,6 +8260,7 @@
   {
     "id": 20075,
     "factorId": 2007501,
+    "factorType": 4,
     "name_jp": "内弁慶",
     "name_en": "Inside Scoop",
     "description_jp": "「内弁慶」のスキルヒントを得られる因子です",
@@ -7986,6 +8287,7 @@
   {
     "id": 20151,
     "factorId": 2015101,
+    "factorType": 4,
     "name_jp": "まなざし",
     "name_en": "Intense Gaze",
     "description_jp": "「まなざし」のスキルヒントを得られる因子です",
@@ -8012,6 +8314,7 @@
   {
     "id": 20101,
     "factorId": 2010101,
+    "factorType": 4,
     "name_jp": "後方釘付",
     "name_en": "Intimidate",
     "description_jp": "「後方釘付」のスキルヒントを得られる因子です",
@@ -8038,6 +8341,7 @@
   {
     "id": 10026,
     "factorId": 1002601,
+    "factorType": 5,
     "name_jp": "JDダービー",
     "name_en": "J.D. Derby",
     "description_jp": "パワーがアップし、\\n「大井レース場○」のスキルヒントを得られる因子です",
@@ -8062,6 +8366,7 @@
   {
     "id": 10029,
     "factorId": 1002901,
+    "factorType": 5,
     "name_jp": "JBCクラシック",
     "name_en": "JBC Classic",
     "description_jp": "スタミナと根性がアップする因子です",
@@ -8086,6 +8391,7 @@
   {
     "id": 10027,
     "factorId": 1002701,
+    "factorType": 5,
     "name_jp": "JBCLクラシック",
     "name_en": "JBC L. Classic",
     "description_jp": "スピードと根性がアップする因子です",
@@ -8110,6 +8416,7 @@
   {
     "id": 10028,
     "factorId": 1002801,
+    "factorType": 5,
     "name_jp": "JBCスプリント",
     "name_en": "JBC Sprint",
     "description_jp": "パワーと根性がアップする因子です",
@@ -8134,6 +8441,7 @@
   {
     "id": 10019,
     "factorId": 1001901,
+    "factorType": 5,
     "name_jp": "ジャパンC",
     "name_en": "Japan C.",
     "description_jp": "スタミナがアップし、\\n「東京レース場○」のスキルヒントを得られる因子です",
@@ -8158,6 +8466,7 @@
   {
     "id": 10010,
     "factorId": 1001001,
+    "factorType": 5,
     "name_jp": "日本ダービー",
     "name_en": "Japanese Derby",
     "description_jp": "根性がアップし、\\n「東京レース場○」のスキルヒントを得られる因子です",
@@ -8182,6 +8491,7 @@
   {
     "id": 10009,
     "factorId": 1000901,
+    "factorType": 5,
     "name_jp": "オークス",
     "name_en": "Japanese Oaks",
     "description_jp": "スタミナがアップし、\\n「東京レース場○」のスキルヒントを得られる因子です",
@@ -8206,6 +8516,7 @@
   {
     "id": 20119,
     "factorId": 2011901,
+    "factorType": 4,
     "name_jp": "リードキープ",
     "name_en": "Keeping the Lead",
     "description_jp": "「リードキープ」のスキルヒントを得られる因子です",
@@ -8232,6 +8543,7 @@
   {
     "id": 10015,
     "factorId": 1001501,
+    "factorType": 5,
     "name_jp": "菊花賞",
     "name_en": "Kikuka Sho",
     "description_jp": "スタミナがアップし、\\n「京都レース場○」のスキルヒントを得られる因子です",
@@ -8256,6 +8568,7 @@
   {
     "id": 20012,
     "factorId": 2001201,
+    "factorType": 4,
     "name_jp": "小倉レース場○",
     "name_en": "Kokura Racecourse ○",
     "description_jp": "「小倉レース場○」のスキルヒントを得られる因子です",
@@ -8282,6 +8595,7 @@
   {
     "id": 20006,
     "factorId": 2000601,
+    "factorType": 4,
     "name_jp": "京都レース場○",
     "name_en": "Kyoto Racecourse ○",
     "description_jp": "「京都レース場○」のスキルヒントを得られる因子です",
@@ -8308,6 +8622,7 @@
   {
     "id": 31009,
     "factorId": 3100901,
+    "factorType": 6,
     "name_jp": "L'Arcの希望",
     "name_en": "L'Arcの希望",
     "description_jp": "スピードがアップし、\\n「コーナー巧者〇」のスキルヒントを得られる因子です",
@@ -8332,6 +8647,7 @@
   {
     "id": 30006,
     "factorId": 3000601,
+    "factorType": 6,
     "name_jp": "L'Arcシナリオ",
     "name_en": "L'Arcシナリオ",
     "description_jp": "スタミナとパワーがアップする因子です",
@@ -8356,6 +8672,7 @@
   {
     "id": 31005,
     "factorId": 3100501,
+    "factorType": 6,
     "name_jp": "L'Arc・フランス語力",
     "name_en": "L'Arc・フランス語力",
     "description_jp": "賢さがアップする因子です",
@@ -8380,6 +8697,7 @@
   {
     "id": 31002,
     "factorId": 3100201,
+    "factorType": 6,
     "name_jp": "L'Arc・ロンシャン適性",
     "name_en": "L'Arc・ロンシャン適性",
     "description_jp": "スキルPtがアップする因子です",
@@ -8404,6 +8722,7 @@
   {
     "id": 31007,
     "factorId": 3100701,
+    "factorType": 6,
     "name_jp": "L'Arc・強心臓",
     "name_en": "L'Arc・強心臓",
     "description_jp": "スタミナと根性がアップする因子です",
@@ -8428,6 +8747,7 @@
   {
     "id": 31004,
     "factorId": 3100401,
+    "factorType": 6,
     "name_jp": "L'Arc・栄養管理",
     "name_en": "L'Arc・栄養管理",
     "description_jp": "スタミナがアップする因子です",
@@ -8452,6 +8772,7 @@
   {
     "id": 31001,
     "factorId": 3100101,
+    "factorType": 6,
     "name_jp": "L'Arc・海外洋芝適性",
     "name_en": "L'Arc・海外洋芝適性",
     "description_jp": "パワーがアップする因子です",
@@ -8476,6 +8797,7 @@
   {
     "id": 31006,
     "factorId": 3100601,
+    "factorType": 6,
     "name_jp": "L'Arc・海外遠征",
     "name_en": "L'Arc・海外遠征",
     "description_jp": "スピードがアップする因子です",
@@ -8500,6 +8822,7 @@
   {
     "id": 31003,
     "factorId": 3100301,
+    "factorType": 6,
     "name_jp": "L'Arc・生活リズム",
     "name_en": "L'Arc・生活リズム",
     "description_jp": "根性がアップする因子です",
@@ -8524,6 +8847,7 @@
   {
     "id": 31008,
     "factorId": 3100801,
+    "factorType": 6,
     "name_jp": "L'Arc・精神力",
     "name_en": "L'Arc・精神力",
     "description_jp": "パワーと賢さがアップする因子です",
@@ -8548,6 +8872,7 @@
   {
     "id": 20139,
     "factorId": 2013901,
+    "factorType": 4,
     "name_jp": "差しコーナー○",
     "name_en": "Late Surger Corners ○",
     "description_jp": "「差しコーナー○」のスキルヒントを得られる因子です",
@@ -8574,6 +8899,7 @@
   {
     "id": 20154,
     "factorId": 2015401,
+    "factorType": 4,
     "name_jp": "差しのコツ○",
     "name_en": "Late Surger Savvy ○",
     "description_jp": "「差しのコツ○」のスキルヒントを得られる因子です",
@@ -8600,6 +8926,7 @@
   {
     "id": 20138,
     "factorId": 2013801,
+    "factorType": 4,
     "name_jp": "差し直線○",
     "name_en": "Late Surger Straightaways ○",
     "description_jp": "「差し直線○」のスキルヒントを得られる因子です",
@@ -8626,6 +8953,7 @@
   {
     "id": 20044,
     "factorId": 2004401,
+    "factorType": 4,
     "name_jp": "隠れ蓑",
     "name_en": "Lay Low",
     "description_jp": "「隠れ蓑」のスキルヒントを得られる因子です",
@@ -8652,6 +8980,7 @@
   {
     "id": 20127,
     "factorId": 2012701,
+    "factorType": 4,
     "name_jp": "先頭プライド",
     "name_en": "Leader's Pride",
     "description_jp": "「先頭プライド」のスキルヒントを得られる因子です",
@@ -8678,6 +9007,7 @@
   {
     "id": 20002,
     "factorId": 2000201,
+    "factorType": 4,
     "name_jp": "左回り○",
     "name_en": "Left-Handed ○",
     "description_jp": "「左回り○」のスキルヒントを得られる因子です",
@@ -8704,6 +9034,7 @@
   {
     "id": 31026,
     "factorId": 3102601,
+    "factorType": 6,
     "name_jp": "Legendsシナリオ",
     "name_en": "Legendsシナリオ",
     "description_jp": "パワーと根性がアップする因子です",
@@ -8728,6 +9059,7 @@
   {
     "id": 20149,
     "factorId": 2014901,
+    "factorType": 4,
     "name_jp": "冷静",
     "name_en": "Levelheaded",
     "description_jp": "「冷静」のスキルヒントを得られる因子です",
@@ -8754,6 +9086,7 @@
   {
     "id": 20164,
     "factorId": 2016401,
+    "factorType": 4,
     "name_jp": "一匹狼",
     "name_en": "Lone Wolf",
     "description_jp": "「一匹狼」のスキルヒントを得られる因子です",
@@ -8780,6 +9113,7 @@
   {
     "id": 20118,
     "factorId": 2011801,
+    "factorType": 4,
     "name_jp": "長距離コーナー○",
     "name_en": "Long Corners ○",
     "description_jp": "「長距離コーナー○」のスキルヒントを得られる因子です",
@@ -8806,6 +9140,7 @@
   {
     "id": 20030,
     "factorId": 2003001,
+    "factorType": 4,
     "name_jp": "伏兵○",
     "name_en": "Long Shot ○",
     "description_jp": "「伏兵○」のスキルヒントを得られる因子です",
@@ -8832,6 +9167,7 @@
   {
     "id": 20117,
     "factorId": 2011701,
+    "factorType": 4,
     "name_jp": "長距離直線○",
     "name_en": "Long Straightaways ○",
     "description_jp": "「長距離直線○」のスキルヒントを得られる因子です",
@@ -8858,6 +9194,7 @@
   {
     "id": 20156,
     "factorId": 2015601,
+    "factorType": 4,
     "name_jp": "ラッキーセブン",
     "name_en": "Lucky Seven",
     "description_jp": "「ラッキーセブン」のスキルヒントを得られる因子です",
@@ -8884,6 +9221,7 @@
   {
     "id": 20063,
     "factorId": 2006301,
+    "factorType": 4,
     "name_jp": "仕掛け抜群",
     "name_en": "Masterful Gambit",
     "description_jp": "「仕掛け抜群」のスキルヒントを得られる因子です",
@@ -8910,6 +9248,7 @@
   {
     "id": 20027,
     "factorId": 2002701,
+    "factorType": 4,
     "name_jp": "おひとり様○",
     "name_en": "Maverick ○",
     "description_jp": "「おひとり様○」のスキルヒントを得られる因子です",
@@ -8936,6 +9275,7 @@
   {
     "id": 20111,
     "factorId": 2011101,
+    "factorType": 4,
     "name_jp": "中距離コーナー○",
     "name_en": "Medium Corners ○",
     "description_jp": "「中距離コーナー○」のスキルヒントを得られる因子です",
@@ -8962,6 +9302,7 @@
   {
     "id": 20110,
     "factorId": 2011001,
+    "factorType": 4,
     "name_jp": "中距離直線○",
     "name_en": "Medium Straightaways ○",
     "description_jp": "「中距離直線○」のスキルヒントを得られる因子です",
@@ -8988,6 +9329,7 @@
   {
     "id": 20100,
     "factorId": 2010001,
+    "factorType": 4,
     "name_jp": "仕掛け準備",
     "name_en": "Meticulous Measures",
     "description_jp": "「仕掛け準備」のスキルヒントを得られる因子です",
@@ -9014,6 +9356,7 @@
   {
     "id": 10018,
     "factorId": 1001801,
+    "factorType": 5,
     "name_jp": "マイルCS",
     "name_en": "Mile Ch.",
     "description_jp": "スピードがアップし、\\n「根幹距離○」のスキルヒントを得られる因子です",
@@ -9038,6 +9381,7 @@
   {
     "id": 20104,
     "factorId": 2010401,
+    "factorType": 4,
     "name_jp": "マイルコーナー○",
     "name_en": "Mile Corners ○",
     "description_jp": "「マイルコーナー○」のスキルヒントを得られる因子です",
@@ -9064,6 +9408,7 @@
   {
     "id": 20103,
     "factorId": 2010301,
+    "factorType": 4,
     "name_jp": "マイル直線○",
     "name_en": "Mile Straightaways ○",
     "description_jp": "「マイル直線○」のスキルヒントを得られる因子です",
@@ -9090,6 +9435,7 @@
   {
     "id": 20128,
     "factorId": 2012801,
+    "factorType": 4,
     "name_jp": "勢い任せ",
     "name_en": "Moxie",
     "description_jp": "「勢い任せ」のスキルヒントを得られる因子です",
@@ -9116,6 +9462,7 @@
   {
     "id": 20116,
     "factorId": 2011601,
+    "factorType": 4,
     "name_jp": "ささやき",
     "name_en": "Murmur",
     "description_jp": "「ささやき」のスキルヒントを得られる因子です",
@@ -9142,6 +9489,7 @@
   {
     "id": 10007,
     "factorId": 1000701,
+    "factorType": 5,
     "name_jp": "NHKマイルC",
     "name_en": "NHK Mile C.",
     "description_jp": "スピードとパワーがアップする因子です",
@@ -9166,6 +9514,7 @@
   {
     "id": 20004,
     "factorId": 2000401,
+    "factorType": 4,
     "name_jp": "中山レース場○",
     "name_en": "Nakayama Racecourse ○",
     "description_jp": "「中山レース場○」のスキルヒントを得られる因子です",
@@ -9192,6 +9541,7 @@
   {
     "id": 20011,
     "factorId": 2001101,
+    "factorType": 4,
     "name_jp": "新潟レース場○",
     "name_en": "Niigata Racecourse ○",
     "description_jp": "「新潟レース場○」のスキルヒントを得られる因子です",
@@ -9218,6 +9568,7 @@
   {
     "id": 20049,
     "factorId": 2004901,
+    "factorType": 4,
     "name_jp": "垂れウマ回避",
     "name_en": "Nimble Navigator",
     "description_jp": "「垂れウマ回避」のスキルヒントを得られる因子です",
@@ -9244,6 +9595,7 @@
   {
     "id": 20014,
     "factorId": 2001401,
+    "factorType": 4,
     "name_jp": "非根幹距離○",
     "name_en": "Non-Standard Distance ○",
     "description_jp": "「非根幹距離○」のスキルヒントを得られる因子です",
@@ -9270,6 +9622,7 @@
   {
     "id": 20095,
     "factorId": 2009501,
+    "factorType": 4,
     "name_jp": "大井レース場○",
     "name_en": "Oi Racecourse ○",
     "description_jp": "「大井レース場○」のスキルヒントを得られる因子です",
@@ -9296,6 +9649,7 @@
   {
     "id": 10004,
     "factorId": 1000401,
+    "factorType": 5,
     "name_jp": "桜花賞",
     "name_en": "Oka Sho",
     "description_jp": "根性がアップし、\\n「阪神レース場○」のスキルヒントを得られる因子です",
@@ -9320,6 +9674,7 @@
   {
     "id": 20109,
     "factorId": 2010901,
+    "factorType": 4,
     "name_jp": "布石",
     "name_en": "Opening Gambit",
     "description_jp": "「布石」のスキルヒントを得られる因子です",
@@ -9346,6 +9701,7 @@
   {
     "id": 10003,
     "factorId": 1000301,
+    "factorType": 5,
     "name_jp": "大阪杯",
     "name_en": "Osaka Hai",
     "description_jp": "根性がアップし、\\n「根幹距離○」のスキルヒントを得られる因子です",
@@ -9370,6 +9726,7 @@
   {
     "id": 20026,
     "factorId": 2002601,
+    "factorType": 4,
     "name_jp": "外枠得意○",
     "name_en": "Outer Post Proficiency ○",
     "description_jp": "「外枠得意○」のスキルヒントを得られる因子です",
@@ -9396,6 +9753,7 @@
   {
     "id": 20061,
     "factorId": 2006101,
+    "factorType": 4,
     "name_jp": "外差し準備",
     "name_en": "Outer Swell",
     "description_jp": "「外差し準備」のスキルヒントを得られる因子です",
@@ -9422,6 +9780,7 @@
   {
     "id": 20132,
     "factorId": 2013201,
+    "factorType": 4,
     "name_jp": "先行コーナー○",
     "name_en": "Pace Chaser Corners ○",
     "description_jp": "「先行コーナー○」のスキルヒントを得られる因子です",
@@ -9448,6 +9807,7 @@
   {
     "id": 20153,
     "factorId": 2015301,
+    "factorType": 4,
     "name_jp": "先行のコツ○",
     "name_en": "Pace Chaser Savvy ○",
     "description_jp": "「先行のコツ○」のスキルヒントを得られる因子です",
@@ -9474,6 +9834,7 @@
   {
     "id": 20131,
     "factorId": 2013101,
+    "factorType": 4,
     "name_jp": "先行直線○",
     "name_en": "Pace Chaser Straightaways ○",
     "description_jp": "「先行直線○」のスキルヒントを得られる因子です",
@@ -9500,6 +9861,7 @@
   {
     "id": 20047,
     "factorId": 2004701,
+    "factorType": 4,
     "name_jp": "ペースキープ",
     "name_en": "Pace Strategy",
     "description_jp": "「ペースキープ」のスキルヒントを得られる因子です",
@@ -9526,6 +9888,7 @@
   {
     "id": 20120,
     "factorId": 2012001,
+    "factorType": 4,
     "name_jp": "パス上手",
     "name_en": "Passing Pro",
     "description_jp": "「パス上手」のスキルヒントを得られる因子です",
@@ -9552,6 +9915,7 @@
   {
     "id": 20166,
     "factorId": 2016601,
+    "factorType": 4,
     "name_jp": "遊びはおしまいっ！",
     "name_en": "Playtime's Over!",
     "description_jp": "「遊びはおしまいっ！」のスキルヒントを得られる因子です",
@@ -9578,6 +9942,7 @@
   {
     "id": 20059,
     "factorId": 2005901,
+    "factorType": 4,
     "name_jp": "位置取り押し上げ",
     "name_en": "Position Pilfer",
     "description_jp": "「位置取り押し上げ」のスキルヒントを得られる因子です",
@@ -9604,6 +9969,7 @@
   {
     "id": 20057,
     "factorId": 2005701,
+    "factorType": 4,
     "name_jp": "好位追走",
     "name_en": "Preferred Position",
     "description_jp": "「好位追走」のスキルヒントを得られる因子です",
@@ -9630,6 +9996,7 @@
   {
     "id": 20058,
     "factorId": 2005801,
+    "factorType": 4,
     "name_jp": "抜け出し準備",
     "name_en": "Prepared to Pass",
     "description_jp": "「抜け出し準備」のスキルヒントを得られる因子です",
@@ -9656,6 +10023,7 @@
   {
     "id": 20121,
     "factorId": 2012101,
+    "factorType": 4,
     "name_jp": "追い上げ",
     "name_en": "Pressure",
     "description_jp": "「追い上げ」のスキルヒントを得られる因子です",
@@ -9682,6 +10050,7 @@
   {
     "id": 20068,
     "factorId": 2006801,
+    "factorType": 4,
     "name_jp": "積極策",
     "name_en": "Productive Plan",
     "description_jp": "「積極策」のスキルヒントを得られる因子です",
@@ -9708,6 +10077,7 @@
   {
     "id": 20045,
     "factorId": 2004501,
+    "factorType": 4,
     "name_jp": "ポジションセンス",
     "name_en": "Prudent Positioning",
     "description_jp": "「ポジションセンス」のスキルヒントを得られる因子です",
@@ -9734,6 +10104,7 @@
   {
     "id": 10017,
     "factorId": 1001701,
+    "factorType": 5,
     "name_jp": "エリザベス女王杯",
     "name_en": "Queen Elizabeth II Cup",
     "description_jp": "スタミナがアップし、\\n「非根幹距離○」のスキルヒントを得られる因子です",
@@ -9758,6 +10129,7 @@
   {
     "id": 20023,
     "factorId": 2002301,
+    "factorType": 4,
     "name_jp": "雨の日○",
     "name_en": "Rainy Days ○",
     "description_jp": "「雨の日○」のスキルヒントを得られる因子です",
@@ -9784,6 +10156,7 @@
   {
     "id": 20046,
     "factorId": 2004601,
+    "factorType": 4,
     "name_jp": "ペースアップ",
     "name_en": "Ramp Up",
     "description_jp": "「ペースアップ」のスキルヒントを得られる因子です",
@@ -9810,6 +10183,7 @@
   {
     "id": 20130,
     "factorId": 2013001,
+    "factorType": 4,
     "name_jp": "リスタート",
     "name_en": "Restart",
     "description_jp": "「リスタート」のスキルヒントを得られる因子です",
@@ -9836,6 +10210,7 @@
   {
     "id": 20001,
     "factorId": 2000101,
+    "factorType": 4,
     "name_jp": "右回り○",
     "name_en": "Right-Handed ○",
     "description_jp": "「右回り○」のスキルヒントを得られる因子です",
@@ -9862,6 +10237,7 @@
   {
     "id": 20071,
     "factorId": 2007101,
+    "factorType": 4,
     "name_jp": "前途洋々",
     "name_en": "Rosy Outlook",
     "description_jp": "「前途洋々」のスキルヒントを得られる因子です",
@@ -9888,6 +10264,7 @@
   {
     "id": 50033,
     "factorId": 5003301,
+    "factorType": 9,
     "name_jp": "S2000",
     "name_en": "S2000",
     "description_jp": "ランダムなパラメータがアップする因子です",
@@ -9912,6 +10289,7 @@
   {
     "id": 50057,
     "factorId": 5005701,
+    "factorType": 9,
     "name_jp": "SMILE",
     "name_en": "SMILE",
     "description_jp": "ランダムなパラメータがアップする因子です",
@@ -9936,6 +10314,7 @@
   {
     "id": 50032,
     "factorId": 5003201,
+    "factorType": 9,
     "name_jp": "SMS",
     "name_en": "SMS",
     "description_jp": "ランダムなパラメータがアップする因子です",
@@ -9960,6 +10339,7 @@
   {
     "id": 50031,
     "factorId": 5003101,
+    "factorType": 9,
     "name_jp": "SSS",
     "name_en": "SSS",
     "description_jp": "ランダムなパラメータがアップする因子です",
@@ -9984,6 +10364,7 @@
   {
     "id": 20008,
     "factorId": 2000801,
+    "factorType": 4,
     "name_jp": "札幌レース場○",
     "name_en": "Sapporo Racecourse ○",
     "description_jp": "「札幌レース場○」のスキルヒントを得られる因子です",
@@ -10010,6 +10391,7 @@
   {
     "id": 10005,
     "factorId": 1000501,
+    "factorType": 5,
     "name_jp": "皐月賞",
     "name_en": "Satsuki Sho",
     "description_jp": "パワーがアップし、\\n「中山レース場○」のスキルヒントを得られる因子です",
@@ -10034,6 +10416,7 @@
   {
     "id": 20129,
     "factorId": 2012901,
+    "factorType": 4,
     "name_jp": "二の矢",
     "name_en": "Second Wind",
     "description_jp": "「二の矢」のスキルヒントを得られる因子です",
@@ -10060,6 +10443,7 @@
   {
     "id": 20162,
     "factorId": 2016201,
+    "factorType": 4,
     "name_jp": "ふり絞り",
     "name_en": "Shake It Out",
     "description_jp": "「ふり絞り」のスキルヒントを得られる因子です",
@@ -10086,6 +10470,7 @@
   {
     "id": 20144,
     "factorId": 2014401,
+    "factorType": 4,
     "name_jp": "鋭い眼光",
     "name_en": "Sharp Gaze",
     "description_jp": "「鋭い眼光」のスキルヒントを得られる因子です",
@@ -10112,6 +10497,7 @@
   {
     "id": 20105,
     "factorId": 2010501,
+    "factorType": 4,
     "name_jp": "ギアシフト",
     "name_en": "Shifting Gears",
     "description_jp": "「ギアシフト」のスキルヒントを得られる因子です",
@@ -10138,6 +10524,7 @@
   {
     "id": 20133,
     "factorId": 2013301,
+    "factorType": 4,
     "name_jp": "巧みなステップ",
     "name_en": "Shrewd Step",
     "description_jp": "「巧みなステップ」のスキルヒントを得られる因子です",
@@ -10164,6 +10551,7 @@
   {
     "id": 10014,
     "factorId": 1001401,
+    "factorType": 5,
     "name_jp": "秋華賞",
     "name_en": "Shuka Sho",
     "description_jp": "賢さがアップし、\\n「京都レース場○」のスキルヒントを得られる因子です",
@@ -10188,6 +10576,7 @@
   {
     "id": 20060,
     "factorId": 2006001,
+    "factorType": 4,
     "name_jp": "差し切り体勢",
     "name_en": "Slick Surge",
     "description_jp": "「差し切り体勢」のスキルヒントを得られる因子です",
@@ -10214,6 +10603,7 @@
   {
     "id": 20165,
     "factorId": 2016501,
+    "factorType": 4,
     "name_jp": "スリップストリーム",
     "name_en": "Slipstream",
     "description_jp": "「スリップストリーム」のスキルヒントを得られる因子です",
@@ -10240,6 +10630,7 @@
   {
     "id": 20123,
     "factorId": 2012301,
+    "factorType": 4,
     "name_jp": "目くらまし",
     "name_en": "Smoke Screen",
     "description_jp": "「目くらまし」のスキルヒントを得られる因子です",
@@ -10266,6 +10657,7 @@
   {
     "id": 20024,
     "factorId": 2002401,
+    "factorType": 4,
     "name_jp": "雪の日○",
     "name_en": "Snowy Days ○",
     "description_jp": "「雪の日○」のスキルヒントを得られる因子です",
@@ -10292,6 +10684,7 @@
   {
     "id": 20114,
     "factorId": 2011401,
+    "factorType": 4,
     "name_jp": "軽やかステップ",
     "name_en": "Soft Step",
     "description_jp": "「軽やかステップ」のスキルヒントを得られる因子です",
@@ -10318,6 +10711,7 @@
   {
     "id": 20108,
     "factorId": 2010801,
+    "factorType": 4,
     "name_jp": "スピードイーター",
     "name_en": "Speed Eater",
     "description_jp": "「スピードイーター」のスキルヒントを得られる因子です",
@@ -10344,6 +10738,7 @@
   {
     "id": 20017,
     "factorId": 2001701,
+    "factorType": 4,
     "name_jp": "春ウマ娘○",
     "name_en": "Spring Runner ○",
     "description_jp": "「春ウマ娘○」のスキルヒントを得られる因子です",
@@ -10370,6 +10765,7 @@
   {
     "id": 20097,
     "factorId": 2009701,
+    "factorType": 4,
     "name_jp": "短距離コーナー○",
     "name_en": "Sprint Corners ○",
     "description_jp": "「短距離コーナー○」のスキルヒントを得られる因子です",
@@ -10396,6 +10792,7 @@
   {
     "id": 20096,
     "factorId": 2009601,
+    "factorType": 4,
     "name_jp": "短距離直線○",
     "name_en": "Sprint Straightaways ○",
     "description_jp": "「短距離直線○」のスキルヒントを得られる因子です",
@@ -10422,6 +10819,7 @@
   {
     "id": 10013,
     "factorId": 1001301,
+    "factorType": 5,
     "name_jp": "スプリンターズS",
     "name_en": "Sprinters S.",
     "description_jp": "スピードがアップし、\\n「根幹距離○」のスキルヒントを得られる因子です",
@@ -10446,6 +10844,7 @@
   {
     "id": 20065,
     "factorId": 2006501,
+    "factorType": 4,
     "name_jp": "スプリントギア",
     "name_en": "Sprinting Gear",
     "description_jp": "「スプリントギア」のスキルヒントを得られる因子です",
@@ -10472,6 +10871,7 @@
   {
     "id": 20122,
     "factorId": 2012201,
+    "factorType": 4,
     "name_jp": "スタミナイーター",
     "name_en": "Stamina Eater",
     "description_jp": "「スタミナイーター」のスキルヒントを得られる因子です",
@@ -10498,6 +10898,7 @@
   {
     "id": 20056,
     "factorId": 2005601,
+    "factorType": 4,
     "name_jp": "スタミナキープ",
     "name_en": "Stamina to Spare",
     "description_jp": "「スタミナキープ」のスキルヒントを得られる因子です",
@@ -10524,6 +10925,7 @@
   {
     "id": 20013,
     "factorId": 2001301,
+    "factorType": 4,
     "name_jp": "根幹距離○",
     "name_en": "Standard Distance ○",
     "description_jp": "「根幹距離○」のスキルヒントを得られる因子です",
@@ -10550,6 +10952,7 @@
   {
     "id": 20062,
     "factorId": 2006201,
+    "factorType": 4,
     "name_jp": "後方待機",
     "name_en": "Standing By",
     "description_jp": "「後方待機」のスキルヒントを得られる因子です",
@@ -10576,6 +10979,7 @@
   {
     "id": 20073,
     "factorId": 2007301,
+    "factorType": 4,
     "name_jp": "食い下がり",
     "name_en": "Steadfast",
     "description_jp": "「食い下がり」のスキルヒントを得られる因子です",
@@ -10602,6 +11006,7 @@
   {
     "id": 20102,
     "factorId": 2010201,
+    "factorType": 4,
     "name_jp": "抜け駆け禁止",
     "name_en": "Stop Right There!",
     "description_jp": "「抜け駆け禁止」のスキルヒントを得られる因子です",
@@ -10628,6 +11033,7 @@
   {
     "id": 20134,
     "factorId": 2013401,
+    "factorType": 4,
     "name_jp": "直滑降",
     "name_en": "Straight Descent",
     "description_jp": "「直滑降」のスキルヒントを得られる因子です",
@@ -10654,6 +11060,7 @@
   {
     "id": 20037,
     "factorId": 2003701,
+    "factorType": 4,
     "name_jp": "直線加速",
     "name_en": "Straightaway Acceleration",
     "description_jp": "「直線加速」のスキルヒントを得られる因子です",
@@ -10680,6 +11087,7 @@
   {
     "id": 20036,
     "factorId": 2003601,
+    "factorType": 4,
     "name_jp": "直線巧者",
     "name_en": "Straightaway Adept",
     "description_jp": "「直線巧者」のスキルヒントを得られる因子です",
@@ -10706,6 +11114,7 @@
   {
     "id": 20038,
     "factorId": 2003801,
+    "factorType": 4,
     "name_jp": "直線回復",
     "name_en": "Straightaway Recovery",
     "description_jp": "「直線回復」のスキルヒントを得られる因子です",
@@ -10732,6 +11141,7 @@
   {
     "id": 20064,
     "factorId": 2006401,
+    "factorType": 4,
     "name_jp": "直線一気",
     "name_en": "Straightaway Spurt",
     "description_jp": "「直線一気」のスキルヒントを得られる因子です",
@@ -10758,6 +11168,7 @@
   {
     "id": 20150,
     "factorId": 2015001,
+    "factorType": 4,
     "name_jp": "策士",
     "name_en": "Strategist",
     "description_jp": "「策士」のスキルヒントを得られる因子です",
@@ -10784,6 +11195,7 @@
   {
     "id": 20143,
     "factorId": 2014301,
+    "factorType": 4,
     "name_jp": "読解力",
     "name_en": "Studious",
     "description_jp": "「読解力」のスキルヒントを得られる因子です",
@@ -10810,6 +11222,7 @@
   {
     "id": 20092,
     "factorId": 2009201,
+    "factorType": 4,
     "name_jp": "追込けん制",
     "name_en": "Subdued End Closers",
     "description_jp": "「追込けん制」のスキルヒントを得られる因子です",
@@ -10836,6 +11249,7 @@
   {
     "id": 20083,
     "factorId": 2008301,
+    "factorType": 4,
     "name_jp": "逃げけん制",
     "name_en": "Subdued Front Runners",
     "description_jp": "「逃げけん制」のスキルヒントを得られる因子です",
@@ -10862,6 +11276,7 @@
   {
     "id": 20089,
     "factorId": 2008901,
+    "factorType": 4,
     "name_jp": "差しけん制",
     "name_en": "Subdued Late Surgers",
     "description_jp": "「差しけん制」のスキルヒントを得られる因子です",
@@ -10888,6 +11303,7 @@
   {
     "id": 20086,
     "factorId": 2008601,
+    "factorType": 4,
     "name_jp": "先行けん制",
     "name_en": "Subdued Pace Chasers",
     "description_jp": "「先行けん制」のスキルヒントを得られる因子です",
@@ -10914,6 +11330,7 @@
   {
     "id": 20018,
     "factorId": 2001801,
+    "factorType": 4,
     "name_jp": "夏ウマ娘○",
     "name_en": "Summer Runner ○",
     "description_jp": "「夏ウマ娘○」のスキルヒントを得られる因子です",
@@ -10940,6 +11357,7 @@
   {
     "id": 20021,
     "factorId": 2002101,
+    "factorType": 4,
     "name_jp": "晴れの日○",
     "name_en": "Sunny Days ○",
     "description_jp": "「晴れの日○」のスキルヒントを得られる因子です",
@@ -10966,6 +11384,7 @@
   {
     "id": 20163,
     "factorId": 2016301,
+    "factorType": 4,
     "name_jp": "シンパシー",
     "name_en": "Sympathy",
     "description_jp": "「シンパシー」のスキルヒントを得られる因子です",
@@ -10992,6 +11411,7 @@
   {
     "id": 20136,
     "factorId": 2013601,
+    "factorType": 4,
     "name_jp": "まき直し",
     "name_en": "Tactical Tweak",
     "description_jp": "「まき直し」のスキルヒントを得られる因子です",
@@ -11018,6 +11438,7 @@
   {
     "id": 20161,
     "factorId": 2016101,
+    "factorType": 4,
     "name_jp": "尻尾上がり",
     "name_en": "Tail Held High",
     "description_jp": "「尻尾上がり」のスキルヒントを得られる因子です",
@@ -11044,6 +11465,7 @@
   {
     "id": 10002,
     "factorId": 1000201,
+    "factorType": 5,
     "name_jp": "高松宮記念",
     "name_en": "Takamatsunomiya Kinen",
     "description_jp": "スピードがアップし、\\n「中京レース場○」のスキルヒントを得られる因子です",
@@ -11068,6 +11490,7 @@
   {
     "id": 10012,
     "factorId": 1001201,
+    "factorType": 5,
     "name_jp": "宝塚記念",
     "name_en": "Takarazuka Kinen",
     "description_jp": "根性がアップし、\\n「夏ウマ娘○」のスキルヒントを得られる因子です",
@@ -11092,6 +11515,7 @@
   {
     "id": 20029,
     "factorId": 2002901,
+    "factorType": 4,
     "name_jp": "徹底マーク○",
     "name_en": "Target in Sight ○",
     "description_jp": "「徹底マーク○」のスキルヒントを得られる因子です",
@@ -11118,6 +11542,7 @@
   {
     "id": 10025,
     "factorId": 1002501,
+    "factorType": 5,
     "name_jp": "帝王賞",
     "name_en": "Teio Sho",
     "description_jp": "パワーがアップし、\\n「大井レース場○」のスキルヒントを得られる因子です",
@@ -11142,6 +11567,7 @@
   {
     "id": 10016,
     "factorId": 1001601,
+    "factorType": 5,
     "name_jp": "天皇賞（秋）",
     "name_en": "Tenno Sho (Autumn)",
     "description_jp": "スピードがアップし、\\n「秋ウマ娘○」のスキルヒントを得られる因子です",
@@ -11166,6 +11592,7 @@
   {
     "id": 10006,
     "factorId": 1000601,
+    "factorType": 5,
     "name_jp": "天皇賞（春）",
     "name_en": "Tenno Sho (Spring)",
     "description_jp": "スタミナがアップし、\\n「春ウマ娘○」のスキルヒントを得られる因子です",
@@ -11190,6 +11617,7 @@
   {
     "id": 20115,
     "factorId": 2011501,
+    "factorType": 4,
     "name_jp": "束縛",
     "name_en": "Tether",
     "description_jp": "「束縛」のスキルヒントを得られる因子です",
@@ -11216,6 +11644,7 @@
   {
     "id": 20113,
     "factorId": 2011301,
+    "factorType": 4,
     "name_jp": "イナズマステップ",
     "name_en": "Thunderbolt Step",
     "description_jp": "「イナズマステップ」のスキルヒントを得られる因子です",
@@ -11242,6 +11671,7 @@
   {
     "id": 10030,
     "factorId": 1003001,
+    "factorType": 5,
     "name_jp": "東京大賞典",
     "name_en": "Tokyo Daishoten",
     "description_jp": "パワーがアップし、\\n「大井レース場○」のスキルヒントを得られる因子です",
@@ -11266,6 +11696,7 @@
   {
     "id": 20003,
     "factorId": 2000301,
+    "factorType": 4,
     "name_jp": "東京レース場○",
     "name_en": "Tokyo Racecourse ○",
     "description_jp": "「東京レース場○」のスキルヒントを得られる因子です",
@@ -11292,6 +11723,7 @@
   {
     "id": 20167,
     "factorId": 2016701,
+    "factorType": 4,
     "name_jp": "レコメンド",
     "name_en": "Top Pick",
     "description_jp": "「レコメンド」のスキルヒントを得られる因子です",
@@ -11318,6 +11750,7 @@
   {
     "id": 20077,
     "factorId": 2007701,
+    "factorType": 4,
     "name_jp": "トリック（前）",
     "name_en": "Trick (Front)",
     "description_jp": "「トリック（前）」のスキルヒントを得られる因子です",
@@ -11344,6 +11777,7 @@
   {
     "id": 20078,
     "factorId": 2007801,
+    "factorType": 4,
     "name_jp": "トリック（後）",
     "name_en": "Trick (Rear)",
     "description_jp": "「トリック（後）」のスキルヒントを得られる因子です",
@@ -11370,6 +11804,7 @@
   {
     "id": 20157,
     "factorId": 2015701,
+    "factorType": 4,
     "name_jp": "スリーセブン",
     "name_en": "Triple 7s",
     "description_jp": "「スリーセブン」のスキルヒントを得られる因子です",
@@ -11396,6 +11831,7 @@
   {
     "id": 31011,
     "factorId": 3101101,
+    "factorType": 6,
     "name_jp": "U.A.F.シナリオ・スフィア",
     "name_en": "U.A.F.シナリオ・スフィア",
     "description_jp": "スピードとスキルPtがアップする因子です。因子継承時、U.A.F.シナリオ因子が3種全て発動すると「アスリート魂」のスキルヒントを得られます",
@@ -11420,6 +11856,7 @@
   {
     "id": 31012,
     "factorId": 3101201,
+    "factorType": 6,
     "name_jp": "U.A.F.シナリオ・ファイト",
     "name_en": "U.A.F.シナリオ・ファイト",
     "description_jp": "パワーとスキルPtがアップする因子です。因子継承時、U.A.F.シナリオ因子が3種全て発動すると「アスリート魂」のスキルヒントを得られます",
@@ -11444,6 +11881,7 @@
   {
     "id": 31013,
     "factorId": 3101301,
+    "factorType": 6,
     "name_jp": "U.A.F.シナリオ・フリー",
     "name_en": "U.A.F.シナリオ・フリー",
     "description_jp": "根性とスキルPtがアップする因子です。因子継承時、U.A.F.シナリオ因子が3種全て発動すると「アスリート魂」のスキルヒントを得られます",
@@ -11468,6 +11906,7 @@
   {
     "id": 30001,
     "factorId": 3000101,
+    "factorType": 6,
     "name_jp": "URAシナリオ",
     "name_en": "URA Finale",
     "description_jp": "スピードとスタミナがアップする因子です",
@@ -11494,6 +11933,7 @@
   {
     "id": 20159,
     "factorId": 2015901,
+    "factorType": 4,
     "name_jp": "ウマ好み",
     "name_en": "Uma Stan",
     "description_jp": "「ウマ好み」のスキルヒントを得られる因子です",
@@ -11520,6 +11960,7 @@
   {
     "id": 20107,
     "factorId": 2010701,
+    "factorType": 4,
     "name_jp": "負けん気",
     "name_en": "Unyielding Spirit",
     "description_jp": "「負けん気」のスキルヒントを得られる因子です",
@@ -11546,6 +11987,7 @@
   {
     "id": 20072,
     "factorId": 2007201,
+    "factorType": 4,
     "name_jp": "テンポアップ",
     "name_en": "Up-Tempo",
     "description_jp": "「テンポアップ」のスキルヒントを得られる因子です",
@@ -11572,6 +12014,7 @@
   {
     "id": 20070,
     "factorId": 2007001,
+    "factorType": 4,
     "name_jp": "上昇気流",
     "name_en": "Updrafters",
     "description_jp": "「上昇気流」のスキルヒントを得られる因子です",
@@ -11598,6 +12041,7 @@
   {
     "id": 10008,
     "factorId": 1000801,
+    "factorType": 5,
     "name_jp": "ヴィクトリアマイル",
     "name_en": "Victoria Mile",
     "description_jp": "スピードとパワーがアップする因子です",
@@ -11622,6 +12066,7 @@
   {
     "id": 20066,
     "factorId": 2006601,
+    "factorType": 4,
     "name_jp": "様子見",
     "name_en": "Wait-and-See",
     "description_jp": "「様子見」のスキルヒントを得られる因子です",
@@ -11648,6 +12093,7 @@
   {
     "id": 20069,
     "factorId": 2006901,
+    "factorType": 4,
     "name_jp": "展開窺い",
     "name_en": "Watchful Eye",
     "description_jp": "「展開窺い」のスキルヒントを得られる因子です",
@@ -11674,6 +12120,7 @@
   {
     "id": 20016,
     "factorId": 2001601,
+    "factorType": 4,
     "name_jp": "道悪○",
     "name_en": "Wet Conditions ○",
     "description_jp": "「道悪○」のスキルヒントを得られる因子です",
@@ -11700,6 +12147,7 @@
   {
     "id": 20020,
     "factorId": 2002001,
+    "factorType": 4,
     "name_jp": "冬ウマ娘○",
     "name_en": "Winter Runner ○",
     "description_jp": "「冬ウマ娘○」のスキルヒントを得られる因子です",
@@ -11726,6 +12174,7 @@
   {
     "id": 10011,
     "factorId": 1001101,
+    "factorType": 5,
     "name_jp": "安田記念",
     "name_en": "Yasuda Kinen",
     "description_jp": "スピードがアップし、\\n「東京レース場○」のスキルヒントを得られる因子です",
@@ -11750,6 +12199,7 @@
   {
     "id": 20203,
     "factorId": 2020301,
+    "factorType": 4,
     "name_jp": "あやしげな作戦",
     "name_en": "あやしげな作戦",
     "description_jp": "「あやしげな作戦」のスキルヒントを得られる因子です",
@@ -11776,6 +12226,7 @@
   {
     "id": 20170,
     "factorId": 2017001,
+    "factorType": 4,
     "name_jp": "ありったけ",
     "name_en": "ありったけ",
     "description_jp": "「ありったけ」のスキルヒントを得られる因子です",
@@ -11802,6 +12253,7 @@
   {
     "id": 21036,
     "factorId": 2103601,
+    "factorType": 4,
     "name_jp": "あるがままに",
     "name_en": "あるがままに",
     "description_jp": "「あるがままに」のスキルヒントを得られる因子です",
@@ -11828,6 +12280,7 @@
   {
     "id": 21032,
     "factorId": 2103201,
+    "factorType": 4,
     "name_jp": "いつまでも健やかに",
     "name_en": "いつまでも健やかに",
     "description_jp": "「いつまでも健やかに」のスキルヒントを得られる因子です",
@@ -11854,6 +12307,7 @@
   {
     "id": 50036,
     "factorId": 5003601,
+    "factorType": 9,
     "name_jp": "お嬢様",
     "name_en": "お嬢様",
     "description_jp": "ランダムなパラメータがアップする因子です",
@@ -11878,6 +12332,7 @@
   {
     "id": 10032,
     "factorId": 1003201,
+    "factorType": 5,
     "name_jp": "かしわ記念",
     "name_en": "かしわ記念",
     "description_jp": "スピードがアップし、\\n「船橋レース場○」のスキルヒントを得られる因子です",
@@ -11902,6 +12357,7 @@
   {
     "id": 20242,
     "factorId": 2024201,
+    "factorType": 4,
     "name_jp": "がむしゃら",
     "name_en": "がむしゃら",
     "description_jp": "「がむしゃら」のスキルヒントを得られる因子です",
@@ -11928,6 +12384,7 @@
   {
     "id": 20285,
     "factorId": 2028501,
+    "factorType": 4,
     "name_jp": "ごぼう抜き",
     "name_en": "ごぼう抜き",
     "description_jp": "「ごぼう抜き」のスキルヒントを得られる因子です",
@@ -11954,6 +12411,7 @@
   {
     "id": 20312,
     "factorId": 2031201,
+    "factorType": 4,
     "name_jp": "さらなる高みへ",
     "name_en": "さらなる高みへ",
     "description_jp": "「さらなる高みへ」のスキルヒントを得られる因子です",
@@ -11980,6 +12438,7 @@
   {
     "id": 20253,
     "factorId": 2025301,
+    "factorType": 4,
     "name_jp": "しとやかな足取り",
     "name_en": "しとやかな足取り",
     "description_jp": "「しとやかな足取り」のスキルヒントを得られる因子です",
@@ -12006,6 +12465,7 @@
   {
     "id": 20239,
     "factorId": 2023901,
+    "factorType": 4,
     "name_jp": "しゃかりき",
     "name_en": "しゃかりき",
     "description_jp": "「しゃかりき」のスキルヒントを得られる因子です",
@@ -12032,6 +12492,7 @@
   {
     "id": 20288,
     "factorId": 2028801,
+    "factorType": 4,
     "name_jp": "たぎる血潮",
     "name_en": "たぎる血潮",
     "description_jp": "「たぎる血潮」のスキルヒントを得られる因子です",
@@ -12058,6 +12519,7 @@
   {
     "id": 20397,
     "factorId": 2039701,
+    "factorType": 4,
     "name_jp": "なりふり構わず",
     "name_en": "なりふり構わず",
     "description_jp": "「なりふり構わず」のスキルヒントを得られる因子です",
@@ -12084,6 +12546,7 @@
   {
     "id": 20275,
     "factorId": 2027501,
+    "factorType": 4,
     "name_jp": "ひたむき前進",
     "name_en": "ひたむき前進",
     "description_jp": "「ひたむき前進」のスキルヒントを得られる因子です",
@@ -12110,6 +12573,7 @@
   {
     "id": 20228,
     "factorId": 2022801,
+    "factorType": 4,
     "name_jp": "まっしぐら",
     "name_en": "まっしぐら",
     "description_jp": "「まっしぐら」のスキルヒントを得られる因子です",
@@ -12136,6 +12600,7 @@
   {
     "id": 20347,
     "factorId": 2034701,
+    "factorType": 4,
     "name_jp": "みなぎる闘志",
     "name_en": "みなぎる闘志",
     "description_jp": "「みなぎる闘志」のスキルヒントを得られる因子です",
@@ -12162,6 +12627,7 @@
   {
     "id": 20315,
     "factorId": 2031501,
+    "factorType": 4,
     "name_jp": "むきだしの情熱",
     "name_en": "むきだしの情熱",
     "description_jp": "「むきだしの情熱」のスキルヒントを得られる因子です",
@@ -12188,6 +12654,7 @@
   {
     "id": 20244,
     "factorId": 2024401,
+    "factorType": 4,
     "name_jp": "やまっけ",
     "name_en": "やまっけ",
     "description_jp": "「やまっけ」のスキルヒントを得られる因子です",
@@ -12214,6 +12681,7 @@
   {
     "id": 30002,
     "factorId": 3000201,
+    "factorType": 6,
     "name_jp": "アオハル杯シナリオ",
     "name_en": "アオハル杯シナリオ",
     "description_jp": "パワーと賢さがアップする因子です",
@@ -12238,6 +12706,7 @@
   {
     "id": 21002,
     "factorId": 2100201,
+    "factorType": 4,
     "name_jp": "アオハル点火・体",
     "name_en": "アオハル点火・体",
     "description_jp": "「アオハル点火・体」のスキルヒントを得られる因子です",
@@ -12264,6 +12733,7 @@
   {
     "id": 21022,
     "factorId": 2102201,
+    "factorType": 4,
     "name_jp": "アオハル点火・体＋",
     "name_en": "アオハル点火・体＋",
     "description_jp": "スタミナがアップし、\\n「アオハル点火・体」のスキルヒントを得られる因子です",
@@ -12288,6 +12758,7 @@
   {
     "id": 21003,
     "factorId": 2100301,
+    "factorType": 4,
     "name_jp": "アオハル点火・力",
     "name_en": "アオハル点火・力",
     "description_jp": "「アオハル点火・力」のスキルヒントを得られる因子です",
@@ -12314,6 +12785,7 @@
   {
     "id": 21023,
     "factorId": 2102301,
+    "factorType": 4,
     "name_jp": "アオハル点火・力＋",
     "name_en": "アオハル点火・力＋",
     "description_jp": "パワーがアップし、\\n「アオハル点火・力」のスキルヒントを得られる因子です",
@@ -12338,6 +12810,7 @@
   {
     "id": 21004,
     "factorId": 2100401,
+    "factorType": 4,
     "name_jp": "アオハル点火・根",
     "name_en": "アオハル点火・根",
     "description_jp": "「アオハル点火・根」のスキルヒントを得られる因子です",
@@ -12364,6 +12837,7 @@
   {
     "id": 21024,
     "factorId": 2102401,
+    "factorType": 4,
     "name_jp": "アオハル点火・根＋",
     "name_en": "アオハル点火・根＋",
     "description_jp": "根性がアップし、\\n「アオハル点火・根」のスキルヒントを得られる因子です",
@@ -12388,6 +12862,7 @@
   {
     "id": 21005,
     "factorId": 2100501,
+    "factorType": 4,
     "name_jp": "アオハル点火・賢",
     "name_en": "アオハル点火・賢",
     "description_jp": "「アオハル点火・賢」のスキルヒントを得られる因子です",
@@ -12414,6 +12889,7 @@
   {
     "id": 21025,
     "factorId": 2102501,
+    "factorType": 4,
     "name_jp": "アオハル点火・賢＋",
     "name_en": "アオハル点火・賢＋",
     "description_jp": "賢さがアップし、\\n「アオハル点火・賢」のスキルヒントを得られる因子です",
@@ -12438,6 +12914,7 @@
   {
     "id": 21001,
     "factorId": 2100101,
+    "factorType": 4,
     "name_jp": "アオハル点火・速",
     "name_en": "アオハル点火・速",
     "description_jp": "「アオハル点火・速」のスキルヒントを得られる因子です",
@@ -12464,6 +12941,7 @@
   {
     "id": 21021,
     "factorId": 2102101,
+    "factorType": 4,
     "name_jp": "アオハル点火・速＋",
     "name_en": "アオハル点火・速＋",
     "description_jp": "スピードがアップし、\\n「アオハル点火・速」のスキルヒントを得られる因子です",
@@ -12488,6 +12966,7 @@
   {
     "id": 20322,
     "factorId": 2032201,
+    "factorType": 4,
     "name_jp": "アグレッシブ",
     "name_en": "アグレッシブ",
     "description_jp": "「アグレッシブ」のスキルヒントを得られる因子です",
@@ -12514,6 +12993,7 @@
   {
     "id": 31014,
     "factorId": 3101403,
+    "factorType": 4,
     "name_jp": "アスリート魂",
     "name_en": "アスリート魂",
     "description_jp": "「アスリート魂」のスキルヒントを得られる因子です",
@@ -12530,6 +13010,7 @@
   {
     "id": 20260,
     "factorId": 2026001,
+    "factorType": 4,
     "name_jp": "イグニッション",
     "name_en": "イグニッション",
     "description_jp": "「イグニッション」のスキルヒントを得られる因子です",
@@ -12556,6 +13037,7 @@
   {
     "id": 50046,
     "factorId": 5004601,
+    "factorType": 9,
     "name_jp": "ウマ娘よ大志を抱け",
     "name_en": "ウマ娘よ大志を抱け",
     "description_jp": "ランダムなパラメータがアップする因子です",
@@ -12580,6 +13062,7 @@
   {
     "id": 40001,
     "factorId": 4000101,
+    "factorType": 7,
     "name_jp": "カーニバルボーナス",
     "name_en": "カーニバルボーナス",
     "description_jp": "「カーニバルボーナス Lv{0}」スキルを得られる因子です\\nこの因子はイベント終了時に消滅します",
@@ -12596,6 +13079,7 @@
   {
     "id": 40002,
     "factorId": 4000102,
+    "factorType": 7,
     "name_jp": "カーニバルボーナス",
     "name_en": "カーニバルボーナス",
     "description_jp": "「カーニバルボーナス Lv{0}」スキルを得られる因子です\\nこの因子はイベント終了時に消滅します",
@@ -12612,6 +13096,7 @@
   {
     "id": 40003,
     "factorId": 4000103,
+    "factorType": 7,
     "name_jp": "カーニバルボーナス",
     "name_en": "カーニバルボーナス",
     "description_jp": "「カーニバルボーナス Lv{0}」スキルを得られる因子です\\nこの因子はイベント終了時に消滅します",
@@ -12628,6 +13113,7 @@
   {
     "id": 40004,
     "factorId": 4000104,
+    "factorType": 7,
     "name_jp": "カーニバルボーナス",
     "name_en": "カーニバルボーナス",
     "description_jp": "「カーニバルボーナス Lv{0}」スキルを得られる因子です\\nこの因子はイベント終了時に消滅します",
@@ -12644,6 +13130,7 @@
   {
     "id": 40005,
     "factorId": 4000105,
+    "factorType": 7,
     "name_jp": "カーニバルボーナス",
     "name_en": "カーニバルボーナス",
     "description_jp": "「カーニバルボーナス Lv{0}」スキルを得られる因子です\\nこの因子はイベント終了時に消滅します",
@@ -12660,6 +13147,7 @@
   {
     "id": 40006,
     "factorId": 4000106,
+    "factorType": 7,
     "name_jp": "カーニバルボーナス",
     "name_en": "カーニバルボーナス",
     "description_jp": "「カーニバルボーナス Lv{0}」スキルを得られる因子です\\nこの因子はイベント終了時に消滅します",
@@ -12676,6 +13164,7 @@
   {
     "id": 40007,
     "factorId": 4000107,
+    "factorType": 7,
     "name_jp": "カーニバルボーナス",
     "name_en": "カーニバルボーナス",
     "description_jp": "「カーニバルボーナス Lv{0}」スキルを得られる因子です\\nこの因子はイベント終了時に消滅します",
@@ -12692,6 +13181,7 @@
   {
     "id": 20245,
     "factorId": 2024501,
+    "factorType": 4,
     "name_jp": "キレる脚",
     "name_en": "キレる脚",
     "description_jp": "「キレる脚」のスキルヒントを得られる因子です",
@@ -12718,6 +13208,7 @@
   {
     "id": 30003,
     "factorId": 3000301,
+    "factorType": 6,
     "name_jp": "クライマックスシナリオ",
     "name_en": "クライマックスシナリオ",
     "description_jp": "スタミナと根性がアップする因子です",
@@ -12744,6 +13235,7 @@
   {
     "id": 30005,
     "factorId": 3000501,
+    "factorType": 6,
     "name_jp": "グランドマスターズシナリオ",
     "name_en": "グランドマスターズシナリオ",
     "description_jp": "スピードとパワーがアップする因子です",
@@ -12768,6 +13260,7 @@
   {
     "id": 30004,
     "factorId": 3000401,
+    "factorType": 6,
     "name_jp": "グランドライブシナリオ",
     "name_en": "グランドライブシナリオ",
     "description_jp": "スピードと根性がアップする因子です",
@@ -12794,6 +13287,7 @@
   {
     "id": 50061,
     "factorId": 5006101,
+    "factorType": 9,
     "name_jp": "ジャックポット",
     "name_en": "ジャックポット",
     "description_jp": "ランダムなパラメータがアップする因子です",
@@ -12818,6 +13312,7 @@
   {
     "id": 50035,
     "factorId": 5003501,
+    "factorType": 9,
     "name_jp": "ジュエリー",
     "name_en": "ジュエリー",
     "description_jp": "ランダムなパラメータがアップする因子です",
@@ -12842,6 +13337,7 @@
   {
     "id": 50012,
     "factorId": 5001201,
+    "factorType": 9,
     "name_jp": "スタミナの目覚め",
     "name_en": "スタミナの目覚め",
     "description_jp": "スタミナがアップする因子です",
@@ -12866,6 +13362,7 @@
   {
     "id": 20355,
     "factorId": 2035501,
+    "factorType": 4,
     "name_jp": "ステップアップ",
     "name_en": "ステップアップ",
     "description_jp": "「ステップアップ」のスキルヒントを得られる因子です",
@@ -12892,6 +13389,7 @@
   {
     "id": 50011,
     "factorId": 5001101,
+    "factorType": 9,
     "name_jp": "スピードの目覚め",
     "name_en": "スピードの目覚め",
     "description_jp": "スピードがアップする因子です",
@@ -12916,6 +13414,7 @@
   {
     "id": 20345,
     "factorId": 2034501,
+    "factorType": 4,
     "name_jp": "ターニングポイント",
     "name_en": "ターニングポイント",
     "description_jp": "「ターニングポイント」のスキルヒントを得られる因子です",
@@ -12942,6 +13441,7 @@
   {
     "id": 50002,
     "factorId": 5000201,
+    "factorType": 10,
     "name_jp": "ダートの遺伝子",
     "name_en": "ダートの遺伝子",
     "description_jp": "ダート適性がアップする因子です",
@@ -12966,6 +13466,7 @@
   {
     "id": 20310,
     "factorId": 2031001,
+    "factorType": 4,
     "name_jp": "ダートコーナー○",
     "name_en": "ダートコーナー○",
     "description_jp": "「ダートコーナー○」のスキルヒントを得られる因子です",
@@ -12992,6 +13493,7 @@
   {
     "id": 20309,
     "factorId": 2030901,
+    "factorType": 4,
     "name_jp": "ダート直線○",
     "name_en": "ダート直線○",
     "description_jp": "「ダート直線○」のスキルヒントを得られる因子です",
@@ -13018,6 +13520,7 @@
   {
     "id": 20223,
     "factorId": 2022301,
+    "factorType": 4,
     "name_jp": "ナイター○",
     "name_en": "ナイター○",
     "description_jp": "「ナイター○」のスキルヒントを得られる因子です",
@@ -13044,6 +13547,7 @@
   {
     "id": 50038,
     "factorId": 5003801,
+    "factorType": 9,
     "name_jp": "ノーブレーキ",
     "name_en": "ノーブレーキ",
     "description_jp": "ランダムなパラメータがアップする因子です",
@@ -13068,6 +13572,7 @@
   {
     "id": 20335,
     "factorId": 2033501,
+    "factorType": 4,
     "name_jp": "ハイピッチ",
     "name_en": "ハイピッチ",
     "description_jp": "「ハイピッチ」のスキルヒントを得られる因子です",
@@ -13094,6 +13599,7 @@
   {
     "id": 20398,
     "factorId": 2039801,
+    "factorType": 4,
     "name_jp": "バイタリティ",
     "name_en": "バイタリティ",
     "description_jp": "「バイタリティ」のスキルヒントを得られる因子です",
@@ -13120,6 +13626,7 @@
   {
     "id": 20268,
     "factorId": 2026801,
+    "factorType": 4,
     "name_jp": "バイブス上昇",
     "name_en": "バイブス上昇",
     "description_jp": "「バイブス上昇」のスキルヒントを得られる因子です",
@@ -13146,6 +13653,7 @@
   {
     "id": 50059,
     "factorId": 5005901,
+    "factorType": 9,
     "name_jp": "バランス重視",
     "name_en": "バランス重視",
     "description_jp": "ランダムなパラメータがアップする因子です",
@@ -13170,6 +13678,7 @@
   {
     "id": 21030,
     "factorId": 2103001,
+    "factorType": 4,
     "name_jp": "バーニングソウル",
     "name_en": "バーニングソウル",
     "description_jp": "「バーニングソウル」のスキルヒントを得られる因子です",
@@ -13196,6 +13705,7 @@
   {
     "id": 20295,
     "factorId": 2029501,
+    "factorType": 4,
     "name_jp": "パイオニア",
     "name_en": "パイオニア",
     "description_jp": "「パイオニア」のスキルヒントを得られる因子です",
@@ -13222,6 +13732,7 @@
   {
     "id": 50013,
     "factorId": 5001301,
+    "factorType": 9,
     "name_jp": "パワーの目覚め",
     "name_en": "パワーの目覚め",
     "description_jp": "パワーがアップする因子です",
@@ -13246,6 +13757,7 @@
   {
     "id": 50027,
     "factorId": 5002701,
+    "factorType": 9,
     "name_jp": "パーフェクトクラウン",
     "name_en": "パーフェクトクラウン",
     "description_jp": "ランダムなパラメータがアップする因子です",
@@ -13270,6 +13782,7 @@
   {
     "id": 50028,
     "factorId": 5002801,
+    "factorType": 9,
     "name_jp": "パーフェクトティアラ",
     "name_en": "パーフェクトティアラ",
     "description_jp": "ランダムなパラメータがアップする因子です",
@@ -13294,6 +13807,7 @@
   {
     "id": 20389,
     "factorId": 2038901,
+    "factorType": 4,
     "name_jp": "ヒートアップ",
     "name_en": "ヒートアップ",
     "description_jp": "「ヒートアップ」のスキルヒントを得られる因子です",
@@ -13320,6 +13834,7 @@
   {
     "id": 50039,
     "factorId": 5003901,
+    "factorType": 9,
     "name_jp": "ビュービュー",
     "name_en": "ビュービュー",
     "description_jp": "ランダムなパラメータがアップする因子です",
@@ -13344,6 +13859,7 @@
   {
     "id": 50040,
     "factorId": 5004001,
+    "factorType": 9,
     "name_jp": "ピカピカ",
     "name_en": "ピカピカ",
     "description_jp": "ランダムなパラメータがアップする因子です",
@@ -13368,6 +13884,7 @@
   {
     "id": 20215,
     "factorId": 2021501,
+    "factorType": 4,
     "name_jp": "フルスロットル",
     "name_en": "フルスロットル",
     "description_jp": "「フルスロットル」のスキルヒントを得られる因子です",
@@ -13394,6 +13911,7 @@
   {
     "id": 20254,
     "factorId": 2025401,
+    "factorType": 4,
     "name_jp": "プレッシャー",
     "name_en": "プレッシャー",
     "description_jp": "「プレッシャー」のスキルヒントを得られる因子です",
@@ -13420,6 +13938,7 @@
   {
     "id": 20392,
     "factorId": 2039201,
+    "factorType": 4,
     "name_jp": "プレリュード",
     "name_en": "プレリュード",
     "description_jp": "「プレリュード」のスキルヒントを得られる因子です",
@@ -13446,6 +13965,7 @@
   {
     "id": 20207,
     "factorId": 2020701,
+    "factorType": 4,
     "name_jp": "マイペース",
     "name_en": "マイペース",
     "description_jp": "「マイペース」のスキルヒントを得られる因子です",
@@ -13472,6 +13992,7 @@
   {
     "id": 10031,
     "factorId": 1003101,
+    "factorType": 5,
     "name_jp": "マイルCS南部杯",
     "name_en": "マイルCS南部杯",
     "description_jp": "賢さがアップし、\\n「盛岡レース場○」のスキルヒントを得られる因子です",
@@ -13496,6 +14017,7 @@
   {
     "id": 50004,
     "factorId": 5000401,
+    "factorType": 8,
     "name_jp": "マイルの遺伝子",
     "name_en": "マイルの遺伝子",
     "description_jp": "マイル適性がアップする因子です",
@@ -13520,6 +14042,7 @@
   {
     "id": 31024,
     "factorId": 3102401,
+    "factorType": 6,
     "name_jp": "メカウマ娘シナリオ・GUTS",
     "name_en": "メカウマ娘シナリオ・GUTS",
     "description_jp": "根性とスキルPtがアップする因子です",
@@ -13544,6 +14067,7 @@
   {
     "id": 31023,
     "factorId": 3102301,
+    "factorType": 6,
     "name_jp": "メカウマ娘シナリオ・POW",
     "name_en": "メカウマ娘シナリオ・POW",
     "description_jp": "パワーとスキルPtがアップする因子です",
@@ -13568,6 +14092,7 @@
   {
     "id": 31021,
     "factorId": 3102101,
+    "factorType": 6,
     "name_jp": "メカウマ娘シナリオ・SPD",
     "name_en": "メカウマ娘シナリオ・SPD",
     "description_jp": "スピードとスキルPtがアップする因子です",
@@ -13592,6 +14117,7 @@
   {
     "id": 31022,
     "factorId": 3102201,
+    "factorType": 6,
     "name_jp": "メカウマ娘シナリオ・STM",
     "name_en": "メカウマ娘シナリオ・STM",
     "description_jp": "スタミナとスキルPtがアップする因子です",
@@ -13616,6 +14142,7 @@
   {
     "id": 31025,
     "factorId": 3102501,
+    "factorType": 6,
     "name_jp": "メカウマ娘シナリオ・WIT",
     "name_en": "メカウマ娘シナリオ・WIT",
     "description_jp": "賢さとスキルPtがアップする因子です",
@@ -13640,6 +14167,7 @@
   {
     "id": 50058,
     "factorId": 5005801,
+    "factorType": 9,
     "name_jp": "リフレッシュ",
     "name_en": "リフレッシュ",
     "description_jp": "ランダムなパラメータがアップする因子です",
@@ -13664,6 +14192,7 @@
   {
     "id": 21009,
     "factorId": 2100901,
+    "factorType": 4,
     "name_jp": "レースの真髄・体",
     "name_en": "レースの真髄・体",
     "description_jp": "「レースの真髄・体」のスキルヒントを得られる因子です",
@@ -13690,6 +14219,7 @@
   {
     "id": 21015,
     "factorId": 2101501,
+    "factorType": 4,
     "name_jp": "レースの真髄・体＋",
     "name_en": "レースの真髄・体＋",
     "description_jp": "スタミナがアップし、\\n「レースの真髄・体」のスキルヒントを得られる因子です",
@@ -13714,6 +14244,7 @@
   {
     "id": 21010,
     "factorId": 2101001,
+    "factorType": 4,
     "name_jp": "レースの真髄・力",
     "name_en": "レースの真髄・力",
     "description_jp": "「レースの真髄・力」のスキルヒントを得られる因子です",
@@ -13740,6 +14271,7 @@
   {
     "id": 21016,
     "factorId": 2101601,
+    "factorType": 4,
     "name_jp": "レースの真髄・力＋",
     "name_en": "レースの真髄・力＋",
     "description_jp": "パワーがアップし、\\n「レースの真髄・力」のスキルヒントを得られる因子です",
@@ -13764,6 +14296,7 @@
   {
     "id": 21013,
     "factorId": 2101301,
+    "factorType": 4,
     "name_jp": "レースの真髄・心",
     "name_en": "レースの真髄・心",
     "description_jp": "「レースの真髄・心」のスキルヒントを得られる因子です",
@@ -13790,6 +14323,7 @@
   {
     "id": 21019,
     "factorId": 2101901,
+    "factorType": 4,
     "name_jp": "レースの真髄・心＋",
     "name_en": "レースの真髄・心＋",
     "description_jp": "スキルPtがアップし、\\n「レースの真髄・心」のスキルヒントを得られる因子です",
@@ -13814,6 +14348,7 @@
   {
     "id": 21011,
     "factorId": 2101101,
+    "factorType": 4,
     "name_jp": "レースの真髄・根",
     "name_en": "レースの真髄・根",
     "description_jp": "「レースの真髄・根」のスキルヒントを得られる因子です",
@@ -13840,6 +14375,7 @@
   {
     "id": 21017,
     "factorId": 2101701,
+    "factorType": 4,
     "name_jp": "レースの真髄・根＋",
     "name_en": "レースの真髄・根＋",
     "description_jp": "根性がアップし、\\n「レースの真髄・根」のスキルヒントを得られる因子です",
@@ -13864,6 +14400,7 @@
   {
     "id": 21012,
     "factorId": 2101201,
+    "factorType": 4,
     "name_jp": "レースの真髄・賢",
     "name_en": "レースの真髄・賢",
     "description_jp": "「レースの真髄・賢」のスキルヒントを得られる因子です",
@@ -13890,6 +14427,7 @@
   {
     "id": 21018,
     "factorId": 2101801,
+    "factorType": 4,
     "name_jp": "レースの真髄・賢＋",
     "name_en": "レースの真髄・賢＋",
     "description_jp": "賢さがアップし、\\n「レースの真髄・賢」のスキルヒントを得られる因子です",
@@ -13914,6 +14452,7 @@
   {
     "id": 21008,
     "factorId": 2100801,
+    "factorType": 4,
     "name_jp": "レースの真髄・速",
     "name_en": "レースの真髄・速",
     "description_jp": "「レースの真髄・速」のスキルヒントを得られる因子です",
@@ -13940,6 +14479,7 @@
   {
     "id": 21014,
     "factorId": 2101401,
+    "factorType": 4,
     "name_jp": "レースの真髄・速＋",
     "name_en": "レースの真髄・速＋",
     "description_jp": "スピードがアップし、\\n「レースの真髄・速」のスキルヒントを得られる因子です",
@@ -13966,6 +14506,7 @@
   {
     "id": 20256,
     "factorId": 2025601,
+    "factorType": 4,
     "name_jp": "ロックオン",
     "name_en": "ロックオン",
     "description_jp": "「ロックオン」のスキルヒントを得られる因子です",
@@ -13992,6 +14533,7 @@
   {
     "id": 20273,
     "factorId": 2027301,
+    "factorType": 4,
     "name_jp": "ロンシャンレース場○",
     "name_en": "ロンシャンレース場○",
     "description_jp": "「ロンシャンレース場○」のスキルヒントを得られる因子です",
@@ -14018,6 +14560,7 @@
   {
     "id": 20208,
     "factorId": 2020801,
+    "factorType": 4,
     "name_jp": "ワンチャンス",
     "name_en": "ワンチャンス",
     "description_jp": "「ワンチャンス」のスキルヒントを得られる因子です",
@@ -14044,6 +14587,7 @@
   {
     "id": 50030,
     "factorId": 5003001,
+    "factorType": 9,
     "name_jp": "一年の計は",
     "name_en": "一年の計は",
     "description_jp": "ランダムなパラメータがアップする因子です",
@@ -14068,6 +14612,7 @@
   {
     "id": 20264,
     "factorId": 2026401,
+    "factorType": 4,
     "name_jp": "一歩から",
     "name_en": "一歩から",
     "description_jp": "「一歩から」のスキルヒントを得られる因子です",
@@ -14094,6 +14639,7 @@
   {
     "id": 20336,
     "factorId": 2033601,
+    "factorType": 4,
     "name_jp": "一歩ずつ前へ",
     "name_en": "一歩ずつ前へ",
     "description_jp": "「一歩ずつ前へ」のスキルヒントを得られる因子です",
@@ -14120,6 +14666,7 @@
   {
     "id": 20269,
     "factorId": 2026901,
+    "factorType": 4,
     "name_jp": "一番乗り",
     "name_en": "一番乗り",
     "description_jp": "「一番乗り」のスキルヒントを得られる因子です",
@@ -14146,6 +14693,7 @@
   {
     "id": 20240,
     "factorId": 2024001,
+    "factorType": 4,
     "name_jp": "一足飛び",
     "name_en": "一足飛び",
     "description_jp": "「一足飛び」のスキルヒントを得られる因子です",
@@ -14172,6 +14720,7 @@
   {
     "id": 20217,
     "factorId": 2021701,
+    "factorType": 4,
     "name_jp": "下り坂巧者",
     "name_en": "下り坂巧者",
     "description_jp": "「下り坂巧者」のスキルヒントを得られる因子です",
@@ -14198,6 +14747,7 @@
   {
     "id": 20333,
     "factorId": 2033301,
+    "factorType": 4,
     "name_jp": "下準備",
     "name_en": "下準備",
     "description_jp": "「下準備」のスキルヒントを得られる因子です",
@@ -14224,6 +14774,7 @@
   {
     "id": 20289,
     "factorId": 2028901,
+    "factorType": 4,
     "name_jp": "不動の心",
     "name_en": "不動の心",
     "description_jp": "「不動の心」のスキルヒントを得られる因子です",
@@ -14250,6 +14801,7 @@
   {
     "id": 20368,
     "factorId": 2036801,
+    "factorType": 4,
     "name_jp": "不断の鍛錬",
     "name_en": "不断の鍛錬",
     "description_jp": "「不断の鍛錬」のスキルヒントを得られる因子です",
@@ -14276,6 +14828,7 @@
   {
     "id": 20279,
     "factorId": 2027901,
+    "factorType": 4,
     "name_jp": "中盤巧者",
     "name_en": "中盤巧者",
     "description_jp": "「中盤巧者」のスキルヒントを得られる因子です",
@@ -14302,6 +14855,7 @@
   {
     "id": 50005,
     "factorId": 5000501,
+    "factorType": 8,
     "name_jp": "中距離の遺伝子",
     "name_en": "中距離の遺伝子",
     "description_jp": "中距離適性がアップする因子です",
@@ -14326,6 +14880,7 @@
   {
     "id": 50053,
     "factorId": 5005301,
+    "factorType": 9,
     "name_jp": "二刀流",
     "name_en": "二刀流",
     "description_jp": "ランダムなパラメータがアップする因子です",
@@ -14350,6 +14905,7 @@
   {
     "id": 20283,
     "factorId": 2028301,
+    "factorType": 4,
     "name_jp": "二段構え",
     "name_en": "二段構え",
     "description_jp": "「二段構え」のスキルヒントを得られる因子です",
@@ -14376,6 +14932,7 @@
   {
     "id": 20225,
     "factorId": 2022501,
+    "factorType": 4,
     "name_jp": "交流重賞○",
     "name_en": "交流重賞○",
     "description_jp": "「交流重賞○」のスキルヒントを得られる因子です",
@@ -14402,6 +14959,7 @@
   {
     "id": 50044,
     "factorId": 5004401,
+    "factorType": 9,
     "name_jp": "企画上手",
     "name_en": "企画上手",
     "description_jp": "ランダムなパラメータがアップする因子です",
@@ -14426,6 +14984,7 @@
   {
     "id": 20271,
     "factorId": 2027101,
+    "factorType": 4,
     "name_jp": "会心の一歩",
     "name_en": "会心の一歩",
     "description_jp": "「会心の一歩」のスキルヒントを得られる因子です",
@@ -14452,6 +15011,7 @@
   {
     "id": 50055,
     "factorId": 5005501,
+    "factorType": 9,
     "name_jp": "信頼の証",
     "name_en": "信頼の証",
     "description_jp": "ランダムなパラメータがアップする因子です",
@@ -14476,6 +15036,7 @@
   {
     "id": 20366,
     "factorId": 2036601,
+    "factorType": 4,
     "name_jp": "健脚",
     "name_en": "健脚",
     "description_jp": "「健脚」のスキルヒントを得られる因子です",
@@ -14502,6 +15063,7 @@
   {
     "id": 50051,
     "factorId": 5005101,
+    "factorType": 9,
     "name_jp": "健闘",
     "name_en": "健闘",
     "description_jp": "ランダムなパラメータがアップする因子です",
@@ -14526,6 +15088,7 @@
   {
     "id": 20384,
     "factorId": 2038401,
+    "factorType": 4,
     "name_jp": "優等生",
     "name_en": "優等生",
     "description_jp": "「優等生」のスキルヒントを得られる因子です",
@@ -14552,6 +15115,7 @@
   {
     "id": 50008,
     "factorId": 5000801,
+    "factorType": 11,
     "name_jp": "先行の遺伝子",
     "name_en": "先行の遺伝子",
     "description_jp": "先行適性がアップする因子です",
@@ -14576,6 +15140,7 @@
   {
     "id": 20331,
     "factorId": 2033101,
+    "factorType": 4,
     "name_jp": "光差す方へ",
     "name_en": "光差す方へ",
     "description_jp": "「光差す方へ」のスキルヒントを得られる因子です",
@@ -14602,6 +15167,7 @@
   {
     "id": 20364,
     "factorId": 2036401,
+    "factorType": 4,
     "name_jp": "光明",
     "name_en": "光明",
     "description_jp": "「光明」のスキルヒントを得られる因子です",
@@ -14628,6 +15194,7 @@
   {
     "id": 20314,
     "factorId": 2031401,
+    "factorType": 4,
     "name_jp": "克己心",
     "name_en": "克己心",
     "description_jp": "「克己心」のスキルヒントを得られる因子です",
@@ -14654,6 +15221,7 @@
   {
     "id": 50043,
     "factorId": 5004301,
+    "factorType": 9,
     "name_jp": "全天候型",
     "name_en": "全天候型",
     "description_jp": "ランダムなパラメータがアップする因子です",
@@ -14678,6 +15246,7 @@
   {
     "id": 10033,
     "factorId": 1003301,
+    "factorType": 5,
     "name_jp": "全日本ジュニア優駿",
     "name_en": "全日本ジュニア優駿",
     "description_jp": "パワーがアップし、\\n「ナイター○」のスキルヒントを得られる因子です",
@@ -14702,6 +15271,7 @@
   {
     "id": 50026,
     "factorId": 5002601,
+    "factorType": 9,
     "name_jp": "全階級制覇",
     "name_en": "全階級制覇",
     "description_jp": "ランダムなパラメータがアップする因子です",
@@ -14726,6 +15296,7 @@
   {
     "id": 20382,
     "factorId": 2038201,
+    "factorType": 4,
     "name_jp": "内なる獣",
     "name_en": "内なる獣",
     "description_jp": "「内なる獣」のスキルヒントを得られる因子です",
@@ -14752,6 +15323,7 @@
   {
     "id": 50021,
     "factorId": 5002101,
+    "factorType": 9,
     "name_jp": "冬の目覚め",
     "name_en": "冬の目覚め",
     "description_jp": "「冬ウマ娘○」のスキルヒントを得られる因子です",
@@ -14776,6 +15348,7 @@
   {
     "id": 20229,
     "factorId": 2022901,
+    "factorType": 4,
     "name_jp": "冴える思考",
     "name_en": "冴える思考",
     "description_jp": "「冴える思考」のスキルヒントを得られる因子です",
@@ -14802,6 +15375,7 @@
   {
     "id": 10035,
     "factorId": 1003501,
+    "factorType": 5,
     "name_jp": "凱旋門賞",
     "name_en": "凱旋門賞",
     "description_jp": "スタミナがアップし、\\n「ロンシャンレース場○」のスキルヒントを得られる因子です",
@@ -14826,6 +15400,7 @@
   {
     "id": 31010,
     "factorId": 3101001,
+    "factorType": 6,
     "name_jp": "凱旋門賞連覇の夢",
     "name_en": "凱旋門賞連覇の夢",
     "description_jp": "スキルPtがアップし、\\n「下り坂巧者」のスキルヒントを得られる因子です",
@@ -14850,6 +15425,7 @@
   {
     "id": 50041,
     "factorId": 5004101,
+    "factorType": 9,
     "name_jp": "出たとこ勝負",
     "name_en": "出たとこ勝負",
     "description_jp": "ランダムなパラメータがアップする因子です",
@@ -14874,6 +15450,7 @@
   {
     "id": 20291,
     "factorId": 2029101,
+    "factorType": 4,
     "name_jp": "切り崩し",
     "name_en": "切り崩し",
     "description_jp": "「切り崩し」のスキルヒントを得られる因子です",
@@ -14900,6 +15477,7 @@
   {
     "id": 20317,
     "factorId": 2031701,
+    "factorType": 4,
     "name_jp": "切り替え上手",
     "name_en": "切り替え上手",
     "description_jp": "「切り替え上手」のスキルヒントを得られる因子です",
@@ -14926,6 +15504,7 @@
   {
     "id": 20327,
     "factorId": 2032701,
+    "factorType": 4,
     "name_jp": "切り込み隊長",
     "name_en": "切り込み隊長",
     "description_jp": "「切り込み隊長」のスキルヒントを得られる因子です",
@@ -14952,6 +15531,7 @@
   {
     "id": 20337,
     "factorId": 2033701,
+    "factorType": 4,
     "name_jp": "切り返し",
     "name_en": "切り返し",
     "description_jp": "「切り返し」のスキルヒントを得られる因子です",
@@ -14978,6 +15558,7 @@
   {
     "id": 20249,
     "factorId": 2024901,
+    "factorType": 4,
     "name_jp": "切れ味",
     "name_en": "切れ味",
     "description_jp": "「切れ味」のスキルヒントを得られる因子です",
@@ -15004,6 +15585,7 @@
   {
     "id": 21020,
     "factorId": 2102001,
+    "factorType": 4,
     "name_jp": "前だけ見据えて",
     "name_en": "前だけ見据えて",
     "description_jp": "「前だけ見据えて」のスキルヒントを得られる因子です",
@@ -15028,6 +15610,7 @@
   {
     "id": 20210,
     "factorId": 2021001,
+    "factorType": 4,
     "name_jp": "前のめり",
     "name_en": "前のめり",
     "description_jp": "「前のめり」のスキルヒントを得られる因子です",
@@ -15054,6 +15637,7 @@
   {
     "id": 20168,
     "factorId": 2016801,
+    "factorType": 4,
     "name_jp": "前列狙い",
     "name_en": "前列狙い",
     "description_jp": "「前列狙い」のスキルヒントを得られる因子です",
@@ -15080,6 +15664,7 @@
   {
     "id": 20308,
     "factorId": 2030801,
+    "factorType": 4,
     "name_jp": "力の限り",
     "name_en": "力の限り",
     "description_jp": "「力の限り」のスキルヒントを得られる因子です",
@@ -15106,6 +15691,7 @@
   {
     "id": 20371,
     "factorId": 2037101,
+    "factorType": 4,
     "name_jp": "勇気の一歩",
     "name_en": "勇気の一歩",
     "description_jp": "「勇気の一歩」のスキルヒントを得られる因子です",
@@ -15132,6 +15718,7 @@
   {
     "id": 20276,
     "factorId": 2027601,
+    "factorType": 4,
     "name_jp": "勝利に向かって",
     "name_en": "勝利に向かって",
     "description_jp": "「勝利に向かって」のスキルヒントを得られる因子です",
@@ -15158,6 +15745,7 @@
   {
     "id": 50060,
     "factorId": 5006001,
+    "factorType": 9,
     "name_jp": "反骨精神",
     "name_en": "反骨精神",
     "description_jp": "ランダムなパラメータがアップする因子です",
@@ -15182,6 +15770,7 @@
   {
     "id": 50052,
     "factorId": 5005201,
+    "factorType": 9,
     "name_jp": "叩き良化型",
     "name_en": "叩き良化型",
     "description_jp": "ランダムなパラメータがアップする因子です",
@@ -15206,6 +15795,7 @@
   {
     "id": 50016,
     "factorId": 5001601,
+    "factorType": 9,
     "name_jp": "右回りの目覚め",
     "name_en": "右回りの目覚め",
     "description_jp": "「右回り○」のスキルヒントを得られる因子です",
@@ -15230,6 +15820,7 @@
   {
     "id": 20250,
     "factorId": 2025001,
+    "factorType": 4,
     "name_jp": "向こう見ず",
     "name_en": "向こう見ず",
     "description_jp": "「向こう見ず」のスキルヒントを得られる因子です",
@@ -15256,6 +15847,7 @@
   {
     "id": 20241,
     "factorId": 2024101,
+    "factorType": 4,
     "name_jp": "向上心",
     "name_en": "向上心",
     "description_jp": "「向上心」のスキルヒントを得られる因子です",
@@ -15282,6 +15874,7 @@
   {
     "id": 20274,
     "factorId": 2027401,
+    "factorType": 4,
     "name_jp": "品行方正",
     "name_en": "品行方正",
     "description_jp": "「品行方正」のスキルヒントを得られる因子です",
@@ -15308,6 +15901,7 @@
   {
     "id": 20235,
     "factorId": 2023501,
+    "factorType": 4,
     "name_jp": "土煙",
     "name_en": "土煙",
     "description_jp": "「土煙」のスキルヒントを得られる因子です",
@@ -15334,6 +15928,7 @@
   {
     "id": 20236,
     "factorId": 2023601,
+    "factorType": 4,
     "name_jp": "圧迫感",
     "name_en": "圧迫感",
     "description_jp": "「圧迫感」のスキルヒントを得られる因子です",
@@ -15360,6 +15955,7 @@
   {
     "id": 21028,
     "factorId": 2102801,
+    "factorType": 4,
     "name_jp": "地の加護",
     "name_en": "地の加護",
     "description_jp": "「地の加護」のスキルヒントを得られる因子です",
@@ -15386,6 +15982,7 @@
   {
     "id": 20341,
     "factorId": 2034101,
+    "factorType": 4,
     "name_jp": "地道に重ねて",
     "name_en": "地道に重ねて",
     "description_jp": "「地道に重ねて」のスキルヒントを得られる因子です",
@@ -15412,6 +16009,7 @@
   {
     "id": 20252,
     "factorId": 2025201,
+    "factorType": 4,
     "name_jp": "型破り",
     "name_en": "型破り",
     "description_jp": "「型破り」のスキルヒントを得られる因子です",
@@ -15438,6 +16036,7 @@
   {
     "id": 20352,
     "factorId": 2035201,
+    "factorType": 4,
     "name_jp": "垣間見た光",
     "name_en": "垣間見た光",
     "description_jp": "「垣間見た光」のスキルヒントを得られる因子です",
@@ -15464,6 +16063,7 @@
   {
     "id": 50019,
     "factorId": 5001901,
+    "factorType": 9,
     "name_jp": "夏の目覚め",
     "name_en": "夏の目覚め",
     "description_jp": "「夏ウマ娘○」のスキルヒントを得られる因子です",
@@ -15488,6 +16088,7 @@
   {
     "id": 21034,
     "factorId": 2103401,
+    "factorType": 4,
     "name_jp": "夢の再生方法",
     "name_en": "夢の再生方法",
     "description_jp": "「夢の再生方法」のスキルヒントを得られる因子です",
@@ -15514,6 +16115,7 @@
   {
     "id": 21007,
     "factorId": 2100701,
+    "factorType": 4,
     "name_jp": "夢の途中",
     "name_en": "夢の途中",
     "description_jp": "「夢の途中」のスキルヒントを得られる因子です",
@@ -15540,6 +16142,7 @@
   {
     "id": 20363,
     "factorId": 2036301,
+    "factorType": 4,
     "name_jp": "夢への挑戦",
     "name_en": "夢への挑戦",
     "description_jp": "「夢への挑戦」のスキルヒントを得られる因子です",
@@ -15566,6 +16169,7 @@
   {
     "id": 20259,
     "factorId": 2025901,
+    "factorType": 4,
     "name_jp": "大急ぎ",
     "name_en": "大急ぎ",
     "description_jp": "「大急ぎ」のスキルヒントを得られる因子です",
@@ -15592,6 +16196,7 @@
   {
     "id": 50047,
     "factorId": 5004701,
+    "factorType": 9,
     "name_jp": "大肺活量",
     "name_en": "大肺活量",
     "description_jp": "ランダムなパラメータがアップする因子です",
@@ -15616,6 +16221,7 @@
   {
     "id": 20281,
     "factorId": 2028101,
+    "factorType": 4,
     "name_jp": "大詰め",
     "name_en": "大詰め",
     "description_jp": "「大詰め」のスキルヒントを得られる因子です",
@@ -15642,6 +16248,7 @@
   {
     "id": 50037,
     "factorId": 5003701,
+    "factorType": 9,
     "name_jp": "太陽系",
     "name_en": "太陽系",
     "description_jp": "ランダムなパラメータがアップする因子です",
@@ -15666,6 +16273,7 @@
   {
     "id": 20356,
     "factorId": 2035601,
+    "factorType": 4,
     "name_jp": "奮闘",
     "name_en": "奮闘",
     "description_jp": "「奮闘」のスキルヒントを得られる因子です",
@@ -15692,6 +16300,7 @@
   {
     "id": 20379,
     "factorId": 2037901,
+    "factorType": 4,
     "name_jp": "好戦的",
     "name_en": "好戦的",
     "description_jp": "「好戦的」のスキルヒントを得られる因子です",
@@ -15718,6 +16327,7 @@
   {
     "id": 20297,
     "factorId": 2029701,
+    "factorType": 4,
     "name_jp": "好機を捉えて",
     "name_en": "好機を捉えて",
     "description_jp": "「好機を捉えて」のスキルヒントを得られる因子です",
@@ -15744,6 +16354,7 @@
   {
     "id": 20224,
     "factorId": 2022401,
+    "factorType": 4,
     "name_jp": "小回り○",
     "name_en": "小回り○",
     "description_jp": "「小回り○」のスキルヒントを得られる因子です",
@@ -15770,6 +16381,7 @@
   {
     "id": 50042,
     "factorId": 5004201,
+    "factorType": 9,
     "name_jp": "山娘",
     "name_en": "山娘",
     "description_jp": "ランダムなパラメータがアップする因子です",
@@ -15794,6 +16406,7 @@
   {
     "id": 20220,
     "factorId": 2022001,
+    "factorType": 4,
     "name_jp": "川崎レース場○",
     "name_en": "川崎レース場○",
     "description_jp": "「川崎レース場○」のスキルヒントを得られる因子です",
@@ -15820,6 +16433,7 @@
   {
     "id": 10034,
     "factorId": 1003401,
+    "factorType": 5,
     "name_jp": "川崎記念",
     "name_en": "川崎記念",
     "description_jp": "賢さがアップし、\\n「川崎レース場○」のスキルヒントを得られる因子です",
@@ -15844,6 +16458,7 @@
   {
     "id": 50017,
     "factorId": 5001701,
+    "factorType": 9,
     "name_jp": "左回りの目覚め",
     "name_en": "左回りの目覚め",
     "description_jp": "「左回り○」のスキルヒントを得られる因子です",
@@ -15868,6 +16483,7 @@
   {
     "id": 50009,
     "factorId": 5000901,
+    "factorType": 11,
     "name_jp": "差しの遺伝子",
     "name_en": "差しの遺伝子",
     "description_jp": "差し適性がアップする因子です",
@@ -15892,6 +16508,7 @@
   {
     "id": 20342,
     "factorId": 2034201,
+    "factorType": 4,
     "name_jp": "己を信じて",
     "name_en": "己を信じて",
     "description_jp": "「己を信じて」のスキルヒントを得られる因子です",
@@ -15918,6 +16535,7 @@
   {
     "id": 20280,
     "factorId": 2028001,
+    "factorType": 4,
     "name_jp": "序盤巧者",
     "name_en": "序盤巧者",
     "description_jp": "「序盤巧者」のスキルヒントを得られる因子です",
@@ -15944,6 +16562,7 @@
   {
     "id": 20373,
     "factorId": 2037301,
+    "factorType": 4,
     "name_jp": "張り切り",
     "name_en": "張り切り",
     "description_jp": "「張り切り」のスキルヒントを得られる因子です",
@@ -15970,6 +16589,7 @@
   {
     "id": 20387,
     "factorId": 2038701,
+    "factorType": 4,
     "name_jp": "弾ける足取り",
     "name_en": "弾ける足取り",
     "description_jp": "「弾ける足取り」のスキルヒントを得られる因子です",
@@ -15996,6 +16616,7 @@
   {
     "id": 20375,
     "factorId": 2037501,
+    "factorType": 4,
     "name_jp": "影を追って",
     "name_en": "影を追って",
     "description_jp": "「影を追って」のスキルヒントを得られる因子です",
@@ -16022,6 +16643,7 @@
   {
     "id": 20201,
     "factorId": 2020101,
+    "factorType": 4,
     "name_jp": "影打",
     "name_en": "影打",
     "description_jp": "「影打」のスキルヒントを得られる因子です",
@@ -16048,6 +16670,7 @@
   {
     "id": 20293,
     "factorId": 2029301,
+    "factorType": 4,
     "name_jp": "影踏み",
     "name_en": "影踏み",
     "description_jp": "「影踏み」のスキルヒントを得られる因子です",
@@ -16074,6 +16697,7 @@
   {
     "id": 20388,
     "factorId": 2038801,
+    "factorType": 4,
     "name_jp": "待ったなし",
     "name_en": "待ったなし",
     "description_jp": "「待ったなし」のスキルヒントを得られる因子です",
@@ -16100,6 +16724,7 @@
   {
     "id": 20316,
     "factorId": 2031601,
+    "factorType": 4,
     "name_jp": "後先恐れず",
     "name_en": "後先恐れず",
     "description_jp": "「後先恐れず」のスキルヒントを得られる因子です",
@@ -16126,6 +16751,7 @@
   {
     "id": 20267,
     "factorId": 2026701,
+    "factorType": 4,
     "name_jp": "心弾んで",
     "name_en": "心弾んで",
     "description_jp": "「心弾んで」のスキルヒントを得られる因子です",
@@ -16152,6 +16778,7 @@
   {
     "id": 20385,
     "factorId": 2038501,
+    "factorType": 4,
     "name_jp": "心惹かれて",
     "name_en": "心惹かれて",
     "description_jp": "「心惹かれて」のスキルヒントを得られる因子です",
@@ -16178,6 +16805,7 @@
   {
     "id": 20255,
     "factorId": 2025501,
+    "factorType": 4,
     "name_jp": "快速",
     "name_en": "快速",
     "description_jp": "「快速」のスキルヒントを得られる因子です",
@@ -16204,6 +16832,7 @@
   {
     "id": 20370,
     "factorId": 2037001,
+    "factorType": 4,
     "name_jp": "思い切り",
     "name_en": "思い切り",
     "description_jp": "「思い切り」のスキルヒントを得られる因子です",
@@ -16230,6 +16859,7 @@
   {
     "id": 20232,
     "factorId": 2023201,
+    "factorType": 4,
     "name_jp": "急浮上",
     "name_en": "急浮上",
     "description_jp": "「急浮上」のスキルヒントを得られる因子です",
@@ -16256,6 +16886,7 @@
   {
     "id": 20286,
     "factorId": 2028601,
+    "factorType": 4,
     "name_jp": "急発進",
     "name_en": "急発進",
     "description_jp": "「急発進」のスキルヒントを得られる因子です",
@@ -16282,6 +16913,7 @@
   {
     "id": 20325,
     "factorId": 2032501,
+    "factorType": 4,
     "name_jp": "急襲",
     "name_en": "急襲",
     "description_jp": "「急襲」のスキルヒントを得られる因子です",
@@ -16308,6 +16940,7 @@
   {
     "id": 20390,
     "factorId": 2039001,
+    "factorType": 4,
     "name_jp": "急降下",
     "name_en": "急降下",
     "description_jp": "「急降下」のスキルヒントを得られる因子です",
@@ -16334,6 +16967,7 @@
   {
     "id": 20212,
     "factorId": 2021201,
+    "factorType": 4,
     "name_jp": "恐れぬ心",
     "name_en": "恐れぬ心",
     "description_jp": "「恐れぬ心」のスキルヒントを得られる因子です",
@@ -16360,6 +16994,7 @@
   {
     "id": 20292,
     "factorId": 2029201,
+    "factorType": 4,
     "name_jp": "惜しみなし",
     "name_en": "惜しみなし",
     "description_jp": "「惜しみなし」のスキルヒントを得られる因子です",
@@ -16386,6 +17021,7 @@
   {
     "id": 50049,
     "factorId": 5004901,
+    "factorType": 9,
     "name_jp": "想いの継ぎ手",
     "name_en": "想いの継ぎ手",
     "description_jp": "ランダムなパラメータがアップする因子です",
@@ -16410,6 +17046,7 @@
   {
     "id": 21029,
     "factorId": 2102901,
+    "factorType": 4,
     "name_jp": "想いを背負って",
     "name_en": "想いを背負って",
     "description_jp": "「想いを背負って」のスキルヒントを得られる因子です",
@@ -16436,6 +17073,7 @@
   {
     "id": 20380,
     "factorId": 2038001,
+    "factorType": 4,
     "name_jp": "想い焦がれて",
     "name_en": "想い焦がれて",
     "description_jp": "「想い焦がれて」のスキルヒントを得られる因子です",
@@ -16462,6 +17100,7 @@
   {
     "id": 20231,
     "factorId": 2023101,
+    "factorType": 4,
     "name_jp": "意気込み十分",
     "name_en": "意気込み十分",
     "description_jp": "「意気込み十分」のスキルヒントを得られる因子です",
@@ -16488,6 +17127,7 @@
   {
     "id": 20344,
     "factorId": 2034401,
+    "factorType": 4,
     "name_jp": "憧れを越えて",
     "name_en": "憧れを越えて",
     "description_jp": "「憧れを越えて」のスキルヒントを得られる因子です",
@@ -16514,6 +17154,7 @@
   {
     "id": 20300,
     "factorId": 2030001,
+    "factorType": 4,
     "name_jp": "手練手管",
     "name_en": "手練手管",
     "description_jp": "「手練手管」のスキルヒントを得られる因子です",
@@ -16540,6 +17181,7 @@
   {
     "id": 20238,
     "factorId": 2023801,
+    "factorType": 4,
     "name_jp": "打開策",
     "name_en": "打開策",
     "description_jp": "「打開策」のスキルヒントを得られる因子です",
@@ -16566,6 +17208,7 @@
   {
     "id": 20272,
     "factorId": 2027201,
+    "factorType": 4,
     "name_jp": "折れない心",
     "name_en": "折れない心",
     "description_jp": "「折れない心」のスキルヒントを得られる因子です",
@@ -16592,6 +17235,7 @@
   {
     "id": 20219,
     "factorId": 2021901,
+    "factorType": 4,
     "name_jp": "抜かりなし",
     "name_en": "抜かりなし",
     "description_jp": "「抜かりなし」のスキルヒントを得られる因子です",
@@ -16618,6 +17262,7 @@
   {
     "id": 20346,
     "factorId": 2034601,
+    "factorType": 4,
     "name_jp": "抜きん出る一歩",
     "name_en": "抜きん出る一歩",
     "description_jp": "「抜きん出る一歩」のスキルヒントを得られる因子です",
@@ -16644,6 +17289,7 @@
   {
     "id": 20359,
     "factorId": 2035901,
+    "factorType": 4,
     "name_jp": "押し通る！",
     "name_en": "押し通る！",
     "description_jp": "「押し通る！」のスキルヒントを得られる因子です",
@@ -16670,6 +17316,7 @@
   {
     "id": 20358,
     "factorId": 2035801,
+    "factorType": 4,
     "name_jp": "捕捉",
     "name_en": "捕捉",
     "description_jp": "「捕捉」のスキルヒントを得られる因子です",
@@ -16696,6 +17343,7 @@
   {
     "id": 20270,
     "factorId": 2027001,
+    "factorType": 4,
     "name_jp": "探求心",
     "name_en": "探求心",
     "description_jp": "「探求心」のスキルヒントを得られる因子です",
@@ -16722,6 +17370,7 @@
   {
     "id": 20290,
     "factorId": 2029001,
+    "factorType": 4,
     "name_jp": "推力十分",
     "name_en": "推力十分",
     "description_jp": "「推力十分」のスキルヒントを得られる因子です",
@@ -16748,6 +17397,7 @@
   {
     "id": 20305,
     "factorId": 2030501,
+    "factorType": 4,
     "name_jp": "揺るがぬ信念",
     "name_en": "揺るがぬ信念",
     "description_jp": "「揺るがぬ信念」のスキルヒントを得られる因子です",
@@ -16774,6 +17424,7 @@
   {
     "id": 20237,
     "factorId": 2023701,
+    "factorType": 4,
     "name_jp": "攻めの姿勢",
     "name_en": "攻めの姿勢",
     "description_jp": "「攻めの姿勢」のスキルヒントを得られる因子です",
@@ -16800,6 +17451,7 @@
   {
     "id": 50029,
     "factorId": 5002901,
+    "factorType": 9,
     "name_jp": "新聞屋さん",
     "name_en": "新聞屋さん",
     "description_jp": "ランダムなパラメータがアップする因子です",
@@ -16824,6 +17476,7 @@
   {
     "id": 50025,
     "factorId": 5002501,
+    "factorType": 9,
     "name_jp": "旅人",
     "name_en": "旅人",
     "description_jp": "ランダムなパラメータがアップする因子です",
@@ -16848,6 +17501,7 @@
   {
     "id": 20202,
     "factorId": 2020201,
+    "factorType": 4,
     "name_jp": "早仕掛け",
     "name_en": "早仕掛け",
     "description_jp": "「早仕掛け」のスキルヒントを得られる因子です",
@@ -16874,6 +17528,7 @@
   {
     "id": 20226,
     "factorId": 2022601,
+    "factorType": 4,
     "name_jp": "明るい兆し",
     "name_en": "明るい兆し",
     "description_jp": "「明るい兆し」のスキルヒントを得られる因子です",
@@ -16900,6 +17555,7 @@
   {
     "id": 50034,
     "factorId": 5003401,
+    "factorType": 9,
     "name_jp": "星に願いを",
     "name_en": "星に願いを",
     "description_jp": "ランダムなパラメータがアップする因子です",
@@ -16924,6 +17580,7 @@
   {
     "id": 50018,
     "factorId": 5001801,
+    "factorType": 9,
     "name_jp": "春の目覚め",
     "name_en": "春の目覚め",
     "description_jp": "「春ウマ娘○」のスキルヒントを得られる因子です",
@@ -16948,6 +17605,7 @@
   {
     "id": 21035,
     "factorId": 2103501,
+    "factorType": 4,
     "name_jp": "時代を変える者",
     "name_en": "時代を変える者",
     "description_jp": "「時代を変える者」のスキルヒントを得られる因子です",
@@ -16974,6 +17632,7 @@
   {
     "id": 20248,
     "factorId": 2024801,
+    "factorType": 4,
     "name_jp": "本領発揮",
     "name_en": "本領発揮",
     "description_jp": "「本領発揮」のスキルヒントを得られる因子です",
@@ -17000,6 +17659,7 @@
   {
     "id": 50023,
     "factorId": 5002301,
+    "factorType": 9,
     "name_jp": "東の雄",
     "name_en": "東の雄",
     "description_jp": "ランダムなパラメータがアップする因子です",
@@ -17024,6 +17684,7 @@
   {
     "id": 50048,
     "factorId": 5004801,
+    "factorType": 9,
     "name_jp": "東奔西走",
     "name_en": "東奔西走",
     "description_jp": "ランダムなパラメータがアップする因子です",
@@ -17048,6 +17709,7 @@
   {
     "id": 50014,
     "factorId": 5001401,
+    "factorType": 9,
     "name_jp": "根性の目覚め",
     "name_en": "根性の目覚め",
     "description_jp": "根性がアップする因子です",
@@ -17072,6 +17734,7 @@
   {
     "id": 20311,
     "factorId": 2031101,
+    "factorType": 4,
     "name_jp": "正面突破",
     "name_en": "正面突破",
     "description_jp": "「正面突破」のスキルヒントを得られる因子です",
@@ -17098,6 +17761,7 @@
   {
     "id": 20350,
     "factorId": 2035001,
+    "factorType": 4,
     "name_jp": "比類なき",
     "name_en": "比類なき",
     "description_jp": "「比類なき」のスキルヒントを得られる因子です",
@@ -17124,6 +17788,7 @@
   {
     "id": 20321,
     "factorId": 2032101,
+    "factorType": 4,
     "name_jp": "気の向くままに",
     "name_en": "気の向くままに",
     "description_jp": "「気の向くままに」のスキルヒントを得られる因子です",
@@ -17150,6 +17815,7 @@
   {
     "id": 20386,
     "factorId": 2038601,
+    "factorType": 4,
     "name_jp": "気ままな足取り",
     "name_en": "気ままな足取り",
     "description_jp": "「気ままな足取り」のスキルヒントを得られる因子です",
@@ -17176,6 +17842,7 @@
   {
     "id": 20211,
     "factorId": 2021101,
+    "factorType": 4,
     "name_jp": "気合十分",
     "name_en": "気合十分",
     "description_jp": "「気合十分」のスキルヒントを得られる因子です",
@@ -17202,6 +17869,7 @@
   {
     "id": 20213,
     "factorId": 2021301,
+    "factorType": 4,
     "name_jp": "気迫を込めて",
     "name_en": "気迫を込めて",
     "description_jp": "「気迫を込めて」のスキルヒントを得られる因子です",
@@ -17228,6 +17896,7 @@
   {
     "id": 20313,
     "factorId": 2031301,
+    "factorType": 4,
     "name_jp": "決定打",
     "name_en": "決定打",
     "description_jp": "「決定打」のスキルヒントを得られる因子です",
@@ -17254,6 +17923,7 @@
   {
     "id": 20234,
     "factorId": 2023401,
+    "factorType": 4,
     "name_jp": "泥遊び○",
     "name_en": "泥遊び○",
     "description_jp": "「泥遊び○」のスキルヒントを得られる因子です",
@@ -17280,6 +17950,7 @@
   {
     "id": 20365,
     "factorId": 2036501,
+    "factorType": 4,
     "name_jp": "活路を拓く！",
     "name_en": "活路を拓く！",
     "description_jp": "「活路を拓く！」のスキルヒントを得られる因子です",
@@ -17306,6 +17977,7 @@
   {
     "id": 21027,
     "factorId": 2102701,
+    "factorType": 4,
     "name_jp": "海の加護",
     "name_en": "海の加護",
     "description_jp": "「海の加護」のスキルヒントを得られる因子です",
@@ -17332,6 +18004,7 @@
   {
     "id": 20287,
     "factorId": 2028701,
+    "factorType": 4,
     "name_jp": "渾身の足取り",
     "name_en": "渾身の足取り",
     "description_jp": "「渾身の足取り」のスキルヒントを得られる因子です",
@@ -17358,6 +18031,7 @@
   {
     "id": 20261,
     "factorId": 2026101,
+    "factorType": 4,
     "name_jp": "溢れる情熱",
     "name_en": "溢れる情熱",
     "description_jp": "「溢れる情熱」のスキルヒントを得られる因子です",
@@ -17384,6 +18058,7 @@
   {
     "id": 20296,
     "factorId": 2029601,
+    "factorType": 4,
     "name_jp": "滾る想い",
     "name_en": "滾る想い",
     "description_jp": "「滾る想い」のスキルヒントを得られる因子です",
@@ -17410,6 +18085,7 @@
   {
     "id": 20349,
     "factorId": 2034901,
+    "factorType": 4,
     "name_jp": "火花散らして",
     "name_en": "火花散らして",
     "description_jp": "「火花散らして」のスキルヒントを得られる因子です",
@@ -17436,6 +18112,7 @@
   {
     "id": 20307,
     "factorId": 2030701,
+    "factorType": 4,
     "name_jp": "無三",
     "name_en": "無三",
     "description_jp": "「無三」のスキルヒントを得られる因子です",
@@ -17462,6 +18139,7 @@
   {
     "id": 20306,
     "factorId": 2030601,
+    "factorType": 4,
     "name_jp": "無二",
     "name_en": "無二",
     "description_jp": "「無二」のスキルヒントを得られる因子です",
@@ -17488,6 +18166,7 @@
   {
     "id": 31027,
     "factorId": 3102701,
+    "factorType": 6,
     "name_jp": "無人島シナリオ",
     "name_en": "無人島シナリオ",
     "description_jp": "スタミナと賢さがアップする因子です",
@@ -17512,6 +18191,7 @@
   {
     "id": 20330,
     "factorId": 2033001,
+    "factorType": 4,
     "name_jp": "熱狂的",
     "name_en": "熱狂的",
     "description_jp": "「熱狂的」のスキルヒントを得られる因子です",
@@ -17538,6 +18218,7 @@
   {
     "id": 20277,
     "factorId": 2027701,
+    "factorType": 4,
     "name_jp": "狙いを定めて",
     "name_en": "狙いを定めて",
     "description_jp": "「狙いを定めて」のスキルヒントを得られる因子です",
@@ -17564,6 +18245,7 @@
   {
     "id": 50050,
     "factorId": 5005001,
+    "factorType": 9,
     "name_jp": "甲斐性なし",
     "name_en": "甲斐性なし",
     "description_jp": "ランダムなパラメータがアップする因子です",
@@ -17588,6 +18270,7 @@
   {
     "id": 20353,
     "factorId": 2035301,
+    "factorType": 4,
     "name_jp": "登竜門",
     "name_en": "登竜門",
     "description_jp": "「登竜門」のスキルヒントを得られる因子です",
@@ -17614,6 +18297,7 @@
   {
     "id": 20227,
     "factorId": 2022701,
+    "factorType": 4,
     "name_jp": "盛り返し",
     "name_en": "盛り返し",
     "description_jp": "「盛り返し」のスキルヒントを得られる因子です",
@@ -17640,6 +18324,7 @@
   {
     "id": 20222,
     "factorId": 2022201,
+    "factorType": 4,
     "name_jp": "盛岡レース場○",
     "name_en": "盛岡レース場○",
     "description_jp": "「盛岡レース場○」のスキルヒントを得られる因子です",
@@ -17666,6 +18351,7 @@
   {
     "id": 20320,
     "factorId": 2032001,
+    "factorType": 4,
     "name_jp": "目にも留まらず",
     "name_en": "目にも留まらず",
     "description_jp": "「目にも留まらず」のスキルヒントを得られる因子です",
@@ -17692,6 +18378,7 @@
   {
     "id": 20299,
     "factorId": 2029901,
+    "factorType": 4,
     "name_jp": "直線コース○",
     "name_en": "直線コース○",
     "description_jp": "「直線コース○」のスキルヒントを得られる因子です",
@@ -17718,6 +18405,7 @@
   {
     "id": 20190,
     "factorId": 2019001,
+    "factorType": 4,
     "name_jp": "真っ向勝負",
     "name_en": "真っ向勝負",
     "description_jp": "「真っ向勝負」のスキルヒントを得られる因子です",
@@ -17744,6 +18432,7 @@
   {
     "id": 20362,
     "factorId": 2036201,
+    "factorType": 4,
     "name_jp": "真っ直ぐな走り",
     "name_en": "真っ直ぐな走り",
     "description_jp": "「真っ直ぐな走り」のスキルヒントを得られる因子です",
@@ -17770,6 +18459,7 @@
   {
     "id": 20301,
     "factorId": 2030101,
+    "factorType": 4,
     "name_jp": "瞬発力",
     "name_en": "瞬発力",
     "description_jp": "「瞬発力」のスキルヒントを得られる因子です",
@@ -17796,6 +18486,7 @@
   {
     "id": 50003,
     "factorId": 5000301,
+    "factorType": 8,
     "name_jp": "短距離の遺伝子",
     "name_en": "短距離の遺伝子",
     "description_jp": "短距離適性がアップする因子です",
@@ -17820,6 +18511,7 @@
   {
     "id": 20200,
     "factorId": 2020001,
+    "factorType": 4,
     "name_jp": "砂塵慣れ",
     "name_en": "砂塵慣れ",
     "description_jp": "「砂塵慣れ」のスキルヒントを得られる因子です",
@@ -17846,6 +18538,7 @@
   {
     "id": 20284,
     "factorId": 2028401,
+    "factorType": 4,
     "name_jp": "砂払い",
     "name_en": "砂払い",
     "description_jp": "「砂払い」のスキルヒントを得られる因子です",
@@ -17872,6 +18565,7 @@
   {
     "id": 20230,
     "factorId": 2023001,
+    "factorType": 4,
     "name_jp": "砂浴び○",
     "name_en": "砂浴び○",
     "description_jp": "「砂浴び○」のスキルヒントを得られる因子です",
@@ -17898,6 +18592,7 @@
   {
     "id": 20360,
     "factorId": 2036001,
+    "factorType": 4,
     "name_jp": "砂蹴り",
     "name_en": "砂蹴り",
     "description_jp": "「砂蹴り」のスキルヒントを得られる因子です",
@@ -17924,6 +18619,7 @@
   {
     "id": 20339,
     "factorId": 2033901,
+    "factorType": 4,
     "name_jp": "破天荒",
     "name_en": "破天荒",
     "description_jp": "「破天荒」のスキルヒントを得られる因子です",
@@ -17950,6 +18646,7 @@
   {
     "id": 20243,
     "factorId": 2024301,
+    "factorType": 4,
     "name_jp": "確かな足取り",
     "name_en": "確かな足取り",
     "description_jp": "「確かな足取り」のスキルヒントを得られる因子です",
@@ -17976,6 +18673,7 @@
   {
     "id": 50020,
     "factorId": 5002001,
+    "factorType": 9,
     "name_jp": "秋の目覚め",
     "name_en": "秋の目覚め",
     "description_jp": "「秋ウマ娘○」のスキルヒントを得られる因子です",
@@ -18000,6 +18698,7 @@
   {
     "id": 20324,
     "factorId": 2032401,
+    "factorType": 4,
     "name_jp": "端緒",
     "name_en": "端緒",
     "description_jp": "「端緒」のスキルヒントを得られる因子です",
@@ -18026,6 +18725,7 @@
   {
     "id": 50045,
     "factorId": 5004501,
+    "factorType": 9,
     "name_jp": "策略家",
     "name_en": "策略家",
     "description_jp": "ランダムなパラメータがアップする因子です",
@@ -18050,6 +18750,7 @@
   {
     "id": 20246,
     "factorId": 2024601,
+    "factorType": 4,
     "name_jp": "粘り腰",
     "name_en": "粘り腰",
     "description_jp": "「粘り腰」のスキルヒントを得られる因子です",
@@ -18076,6 +18777,7 @@
   {
     "id": 20381,
     "factorId": 2038101,
+    "factorType": 4,
     "name_jp": "精神力",
     "name_en": "精神力",
     "description_jp": "「精神力」のスキルヒントを得られる因子です",
@@ -18102,6 +18804,7 @@
   {
     "id": 20361,
     "factorId": 2036101,
+    "factorType": 4,
     "name_jp": "精進",
     "name_en": "精進",
     "description_jp": "「精進」のスキルヒントを得られる因子です",
@@ -18128,6 +18831,7 @@
   {
     "id": 20303,
     "factorId": 2030301,
+    "factorType": 4,
     "name_jp": "素直な一歩",
     "name_en": "素直な一歩",
     "description_jp": "「素直な一歩」のスキルヒントを得られる因子です",
@@ -18154,6 +18858,7 @@
   {
     "id": 21006,
     "factorId": 2100601,
+    "factorType": 4,
     "name_jp": "綺羅星",
     "name_en": "綺羅星",
     "description_jp": "「綺羅星」のスキルヒントを得られる因子です",
@@ -18180,6 +18885,7 @@
   {
     "id": 20393,
     "factorId": 2039301,
+    "factorType": 4,
     "name_jp": "練達の一歩",
     "name_en": "練達の一歩",
     "description_jp": "「練達の一歩」のスキルヒントを得られる因子です",
@@ -18206,6 +18912,7 @@
   {
     "id": 20304,
     "factorId": 2030401,
+    "factorType": 4,
     "name_jp": "胸の高鳴り",
     "name_en": "胸の高鳴り",
     "description_jp": "「胸の高鳴り」のスキルヒントを得られる因子です",
@@ -18232,6 +18939,7 @@
   {
     "id": 20258,
     "factorId": 2025801,
+    "factorType": 4,
     "name_jp": "脇目も振らず",
     "name_en": "脇目も振らず",
     "description_jp": "「脇目も振らず」のスキルヒントを得られる因子です",
@@ -18258,6 +18966,7 @@
   {
     "id": 20377,
     "factorId": 2037701,
+    "factorType": 4,
     "name_jp": "臆せぬ心",
     "name_en": "臆せぬ心",
     "description_jp": "「臆せぬ心」のスキルヒントを得られる因子です",
@@ -18284,6 +18993,7 @@
   {
     "id": 20265,
     "factorId": 2026501,
+    "factorType": 4,
     "name_jp": "自信家",
     "name_en": "自信家",
     "description_jp": "「自信家」のスキルヒントを得られる因子です",
@@ -18310,6 +19020,7 @@
   {
     "id": 20216,
     "factorId": 2021601,
+    "factorType": 4,
     "name_jp": "自制心",
     "name_en": "自制心",
     "description_jp": "「自制心」のスキルヒントを得られる因子です",
@@ -18336,6 +19047,7 @@
   {
     "id": 50056,
     "factorId": 5005601,
+    "factorType": 9,
     "name_jp": "自由自在",
     "name_en": "自由自在",
     "description_jp": "ランダムなパラメータがアップする因子です",
@@ -18360,6 +19072,7 @@
   {
     "id": 20221,
     "factorId": 2022101,
+    "factorType": 4,
     "name_jp": "船橋レース場○",
     "name_en": "船橋レース場○",
     "description_jp": "「船橋レース場○」のスキルヒントを得られる因子です",
@@ -18386,6 +19099,7 @@
   {
     "id": 50001,
     "factorId": 5000101,
+    "factorType": 10,
     "name_jp": "芝の遺伝子",
     "name_en": "芝の遺伝子",
     "description_jp": "芝適性がアップする因子です",
@@ -18410,6 +19124,7 @@
   {
     "id": 20378,
     "factorId": 2037801,
+    "factorType": 4,
     "name_jp": "衝動",
     "name_en": "衝動",
     "description_jp": "「衝動」のスキルヒントを得られる因子です",
@@ -18436,6 +19151,7 @@
   {
     "id": 20318,
     "factorId": 2031801,
+    "factorType": 4,
     "name_jp": "裏腹なキモチ",
     "name_en": "裏腹なキモチ",
     "description_jp": "「裏腹なキモチ」のスキルヒントを得られる因子です",
@@ -18462,6 +19178,7 @@
   {
     "id": 50024,
     "factorId": 5002401,
+    "factorType": 9,
     "name_jp": "西の雄",
     "name_en": "西の雄",
     "description_jp": "ランダムなパラメータがアップする因子です",
@@ -18486,6 +19203,7 @@
   {
     "id": 20351,
     "factorId": 2035101,
+    "factorType": 4,
     "name_jp": "覇気十分",
     "name_en": "覇気十分",
     "description_jp": "「覇気十分」のスキルヒントを得られる因子です",
@@ -18512,6 +19230,7 @@
   {
     "id": 20326,
     "factorId": 2032601,
+    "factorType": 4,
     "name_jp": "覚悟を決めて",
     "name_en": "覚悟を決めて",
     "description_jp": "「覚悟を決めて」のスキルヒントを得られる因子です",
@@ -18538,6 +19257,7 @@
   {
     "id": 20391,
     "factorId": 2039101,
+    "factorType": 4,
     "name_jp": "誇りを抱いて",
     "name_en": "誇りを抱いて",
     "description_jp": "「誇りを抱いて」のスキルヒントを得られる因子です",
@@ -18564,6 +19284,7 @@
   {
     "id": 50054,
     "factorId": 5005401,
+    "factorType": 9,
     "name_jp": "諦めない心",
     "name_en": "諦めない心",
     "description_jp": "ランダムなパラメータがアップする因子です",
@@ -18588,6 +19309,7 @@
   {
     "id": 20348,
     "factorId": 2034801,
+    "factorType": 4,
     "name_jp": "譲れぬ一歩",
     "name_en": "譲れぬ一歩",
     "description_jp": "「譲れぬ一歩」のスキルヒントを得られる因子です",
@@ -18614,6 +19336,7 @@
   {
     "id": 31019,
     "factorId": 3101901,
+    "factorType": 6,
     "name_jp": "豊食祭シナリオ・いちご",
     "name_en": "豊食祭シナリオ・いちご",
     "description_jp": "賢さとスキルPtがアップする因子です。因子継承時、豊食祭シナリオ因子が3種発動すると「食の極意」のスキルヒントを得られます",
@@ -18638,6 +19361,7 @@
   {
     "id": 31017,
     "factorId": 3101701,
+    "factorType": 6,
     "name_jp": "豊食祭シナリオ・じゃがいも",
     "name_en": "豊食祭シナリオ・じゃがいも",
     "description_jp": "パワーとスキルPtがアップする因子です。因子継承時、豊食祭シナリオ因子が3種発動すると「食の極意」のスキルヒントを得られます",
@@ -18662,6 +19386,7 @@
   {
     "id": 31015,
     "factorId": 3101501,
+    "factorType": 6,
     "name_jp": "豊食祭シナリオ・にんじん",
     "name_en": "豊食祭シナリオ・にんじん",
     "description_jp": "スピードとスキルPtがアップする因子です。因子継承時、豊食祭シナリオ因子が3種発動すると「食の極意」のスキルヒントを得られます",
@@ -18686,6 +19411,7 @@
   {
     "id": 31016,
     "factorId": 3101601,
+    "factorType": 6,
     "name_jp": "豊食祭シナリオ・にんにく",
     "name_en": "豊食祭シナリオ・にんにく",
     "description_jp": "スタミナとスキルPtがアップする因子です。因子継承時、豊食祭シナリオ因子が3種発動すると「食の極意」のスキルヒントを得られます",
@@ -18710,6 +19436,7 @@
   {
     "id": 31018,
     "factorId": 3101801,
+    "factorType": 6,
     "name_jp": "豊食祭シナリオ・唐辛子",
     "name_en": "豊食祭シナリオ・唐辛子",
     "description_jp": "根性とスキルPtがアップする因子です。因子継承時、豊食祭シナリオ因子が3種発動すると「食の極意」のスキルヒントを得られます",
@@ -18734,6 +19461,7 @@
   {
     "id": 50015,
     "factorId": 5001501,
+    "factorType": 9,
     "name_jp": "賢さの目覚め",
     "name_en": "賢さの目覚め",
     "description_jp": "賢さがアップする因子です",
@@ -18758,6 +19486,7 @@
   {
     "id": 20357,
     "factorId": 2035701,
+    "factorType": 4,
     "name_jp": "足がかり",
     "name_en": "足がかり",
     "description_jp": "「足がかり」のスキルヒントを得られる因子です",
@@ -18784,6 +19513,7 @@
   {
     "id": 20354,
     "factorId": 2035401,
+    "factorType": 4,
     "name_jp": "足任せ",
     "name_en": "足任せ",
     "description_jp": "「足任せ」のスキルヒントを得られる因子です",
@@ -18810,6 +19540,7 @@
   {
     "id": 20233,
     "factorId": 2023301,
+    "factorType": 4,
     "name_jp": "踏み込み上手",
     "name_en": "踏み込み上手",
     "description_jp": "「踏み込み上手」のスキルヒントを得られる因子です",
@@ -18836,6 +19567,7 @@
   {
     "id": 20343,
     "factorId": 2034301,
+    "factorType": 4,
     "name_jp": "躍動",
     "name_en": "躍動",
     "description_jp": "「躍動」のスキルヒントを得られる因子です",
@@ -18862,6 +19594,7 @@
   {
     "id": 20204,
     "factorId": 2020401,
+    "factorType": 4,
     "name_jp": "軽い足取り",
     "name_en": "軽い足取り",
     "description_jp": "「軽い足取り」のスキルヒントを得られる因子です",
@@ -18888,6 +19621,7 @@
   {
     "id": 20266,
     "factorId": 2026601,
+    "factorType": 4,
     "name_jp": "込み上げる熱",
     "name_en": "込み上げる熱",
     "description_jp": "「込み上げる熱」のスキルヒントを得られる因子です",
@@ -18914,6 +19648,7 @@
   {
     "id": 20282,
     "factorId": 2028201,
+    "factorType": 4,
     "name_jp": "迷いなし",
     "name_en": "迷いなし",
     "description_jp": "「迷いなし」のスキルヒントを得られる因子です",
@@ -18940,6 +19675,7 @@
   {
     "id": 20340,
     "factorId": 2034001,
+    "factorType": 4,
     "name_jp": "追い風に乗って",
     "name_en": "追い風に乗って",
     "description_jp": "「追い風に乗って」のスキルヒントを得られる因子です",
@@ -18966,6 +19702,7 @@
   {
     "id": 50010,
     "factorId": 5001001,
+    "factorType": 11,
     "name_jp": "追込の遺伝子",
     "name_en": "追込の遺伝子",
     "description_jp": "追込適性がアップする因子です",
@@ -18990,6 +19727,7 @@
   {
     "id": 20376,
     "factorId": 2037601,
+    "factorType": 4,
     "name_jp": "追駆",
     "name_en": "追駆",
     "description_jp": "「追駆」のスキルヒントを得られる因子です",
@@ -19016,6 +19754,7 @@
   {
     "id": 50007,
     "factorId": 5000701,
+    "factorType": 11,
     "name_jp": "逃げの遺伝子",
     "name_en": "逃げの遺伝子",
     "description_jp": "逃げ適性がアップする因子です",
@@ -19040,6 +19779,7 @@
   {
     "id": 20338,
     "factorId": 2033801,
+    "factorType": 4,
     "name_jp": "逃げ切り体勢",
     "name_en": "逃げ切り体勢",
     "description_jp": "「逃げ切り体勢」のスキルヒントを得られる因子です",
@@ -19066,6 +19806,7 @@
   {
     "id": 20334,
     "factorId": 2033401,
+    "factorType": 4,
     "name_jp": "這い寄る足音",
     "name_en": "這い寄る足音",
     "description_jp": "「這い寄る足音」のスキルヒントを得られる因子です",
@@ -19092,6 +19833,7 @@
   {
     "id": 50022,
     "factorId": 5002201,
+    "factorType": 9,
     "name_jp": "連戦連勝",
     "name_en": "連戦連勝",
     "description_jp": "ランダムなパラメータがアップする因子です",
@@ -19116,6 +19858,7 @@
   {
     "id": 20262,
     "factorId": 2026201,
+    "factorType": 4,
     "name_jp": "進出開始",
     "name_en": "進出開始",
     "description_jp": "「進出開始」のスキルヒントを得られる因子です",
@@ -19142,6 +19885,7 @@
   {
     "id": 20323,
     "factorId": 2032301,
+    "factorType": 4,
     "name_jp": "逸る足取り",
     "name_en": "逸る足取り",
     "description_jp": "「逸る足取り」のスキルヒントを得られる因子です",
@@ -19168,6 +19912,7 @@
   {
     "id": 50006,
     "factorId": 5000601,
+    "factorType": 8,
     "name_jp": "長距離の遺伝子",
     "name_en": "長距離の遺伝子",
     "description_jp": "長距離適性がアップする因子です",
@@ -19192,6 +19937,7 @@
   {
     "id": 20374,
     "factorId": 2037401,
+    "factorType": 4,
     "name_jp": "間隙を突いて",
     "name_en": "間隙を突いて",
     "description_jp": "「間隙を突いて」のスキルヒントを得られる因子です",
@@ -19218,6 +19964,7 @@
   {
     "id": 20209,
     "factorId": 2020901,
+    "factorType": 4,
     "name_jp": "闘争心",
     "name_en": "闘争心",
     "description_jp": "「闘争心」のスキルヒントを得られる因子です",
@@ -19244,6 +19991,7 @@
   {
     "id": 21026,
     "factorId": 2102601,
+    "factorType": 4,
     "name_jp": "陽の加護",
     "name_en": "陽の加護",
     "description_jp": "「陽の加護」のスキルヒントを得られる因子です",
@@ -19270,6 +20018,7 @@
   {
     "id": 20169,
     "factorId": 2016901,
+    "factorType": 4,
     "name_jp": "静かな呼吸",
     "name_en": "静かな呼吸",
     "description_jp": "「静かな呼吸」のスキルヒントを得られる因子です",
@@ -19296,6 +20045,7 @@
   {
     "id": 20367,
     "factorId": 2036701,
+    "factorType": 4,
     "name_jp": "静かな熱",
     "name_en": "静かな熱",
     "description_jp": "「静かな熱」のスキルヒントを得られる因子です",
@@ -19322,6 +20072,7 @@
   {
     "id": 20383,
     "factorId": 2038301,
+    "factorType": 4,
     "name_jp": "頂を目指して",
     "name_en": "頂を目指して",
     "description_jp": "「頂を目指して」のスキルヒントを得られる因子です",
@@ -19348,6 +20099,7 @@
   {
     "id": 20302,
     "factorId": 2030201,
+    "factorType": 4,
     "name_jp": "風切り",
     "name_en": "風切り",
     "description_jp": "「風切り」のスキルヒントを得られる因子です",
@@ -19374,6 +20126,7 @@
   {
     "id": 20298,
     "factorId": 2029801,
+    "factorType": 4,
     "name_jp": "飛躍の予感",
     "name_en": "飛躍の予感",
     "description_jp": "「飛躍の予感」のスキルヒントを得られる因子です",
@@ -19400,6 +20153,7 @@
   {
     "id": 31020,
     "factorId": 3102003,
+    "factorType": 4,
     "name_jp": "食の極意",
     "name_en": "食の極意",
     "description_jp": "「食の極意」のスキルヒントを得られる因子です",
@@ -19416,6 +20170,7 @@
   {
     "id": 20247,
     "factorId": 2024701,
+    "factorType": 4,
     "name_jp": "食らいつき",
     "name_en": "食らいつき",
     "description_jp": "「食らいつき」のスキルヒントを得られる因子です",
@@ -19442,6 +20197,7 @@
   {
     "id": 20332,
     "factorId": 2033201,
+    "factorType": 4,
     "name_jp": "駆け降り",
     "name_en": "駆け降り",
     "description_jp": "「駆け降り」のスキルヒントを得られる因子です",
@@ -19468,6 +20224,7 @@
   {
     "id": 20294,
     "factorId": 2029401,
+    "factorType": 4,
     "name_jp": "鬼気迫って",
     "name_en": "鬼気迫って",
     "description_jp": "「鬼気迫って」のスキルヒントを得られる因子です",

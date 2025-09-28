@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from 'react';
-import { Parent, NewParentData, BlueSpark, WhiteSpark, UniqueSpark, Uma, Grandparent } from '../types';
+import { Parent, NewParentData, BlueSpark, WhiteSpark, UniqueSpark, Uma, Grandparent, Skill } from '../types';
 import { useAppContext } from '../context/AppContext';
 import Modal from './common/Modal';
 import SearchableSelect from './common/SearchableSelect';
@@ -40,9 +40,9 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
     const { getActiveProfile, masterUmaList, masterSkillList, addParent, updateParent, dataDisplayLanguage, umaMapById, skillMapByName, appData } = useAppContext();
     
     const [formData, setFormData] = useState<NewParentData>(initialState);
-    const [currentUniqueSkill, setCurrentUniqueSkill] = useState<any>(null);
+    const [currentUniqueSkill, setCurrentUniqueSkill] = useState<Skill | null>(null);
     const [currentUniqueStars, setCurrentUniqueStars] = useState<1 | 2 | 3>(3);
-    const [currentWhiteSkill, setCurrentWhiteSkill] = useState<any>(null);
+    const [currentWhiteSkill, setCurrentWhiteSkill] = useState<Skill | null>(null);
     const [currentWhiteStars, setCurrentWhiteStars] = useState<1 | 2 | 3>(3);
     const [alertMessage, setAlertMessage] = useState('');
     const [liveScore, setLiveScore] = useState(0);
@@ -52,8 +52,8 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
     const [excludedGpCharacterIds, setExcludedGpCharacterIds] = useState<Set<string>>(new Set());
 
     const displayNameProp = dataDisplayLanguage === 'jp' ? 'name_jp' : 'name_en';
-    const uniqueSkills = useMemo(() => masterSkillList.filter(s => s.type === 'unique'), [masterSkillList]);
-    const normalSkills = useMemo(() => masterSkillList.filter(s => s.type !== 'unique' && s.rarity === 1), [masterSkillList]);
+    const uniqueSkills = useMemo(() => masterSkillList.filter(s => s.category === 'unique'), [masterSkillList]);
+    const normalSkills = useMemo(() => masterSkillList.filter(s => s.category === 'white' && s.factorType === 4), [masterSkillList]);
 
     const mainParentImage = useMemo(() => {
         if (!formData.umaId) return null;
@@ -61,20 +61,14 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
         return uma?.image ? `${import.meta.env.BASE_URL}${uma.image}` : null;
     }, [formData.umaId, umaMapById]);
 
-    const skillNameToGroupId = useMemo(() => {
-        const map = new Map<string, number | undefined>();
-        masterSkillList.forEach(skill => { if (skill.groupId) map.set(skill.name_en, skill.groupId); });
-        return map;
-    }, [masterSkillList]);
-
     const availableNormalSkills = useMemo(() => {
         const addedGroupIds = new Set<number>();
         formData.whiteSparks.forEach(item => {
-            const groupId = skillNameToGroupId.get(item.name);
-            if (groupId) addedGroupIds.add(groupId);
+            const skillData = skillMapByName.get(item.name);
+            if (skillData) addedGroupIds.add(skillData.id);
         });
-        return normalSkills.filter(skill => !skill.groupId || !addedGroupIds.has(skill.groupId));
-    }, [formData.whiteSparks, normalSkills, skillNameToGroupId]);
+        return normalSkills.filter(skill => !addedGroupIds.has(skill.id));
+    }, [formData.whiteSparks, normalSkills, skillMapByName]);
 
     const isUniqueSparkSelected = formData.uniqueSparks.length > 0;
 
@@ -110,7 +104,7 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
         setFormData(prev => ({ ...prev, [sparkType]: { ...prev[sparkType], [part]: value } }));
     };
     
-    const addObtainedSpark = (sparkType: 'uniqueSparks' | 'whiteSparks', skill: any, stars: 1|2|3) => {
+    const addObtainedSpark = (sparkType: 'uniqueSparks' | 'whiteSparks', skill: Skill | null, stars: 1|2|3) => {
         if (!skill) return;
         const list = formData[sparkType] as (UniqueSpark[] | WhiteSpark[]);
         if (!list.some(s => s.name === skill.name_en)) {
@@ -315,7 +309,7 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
                                 items={uniqueSkills}
                                 placeholder={t('searchUniqueSkill')}
                                 value={currentUniqueSkill?.[displayNameProp] || null}
-                                onSelect={setCurrentUniqueSkill}
+                                onSelect={(item) => setCurrentUniqueSkill(item as Skill)}
                                 displayProp={displayNameProp}
                                 disabled={isUniqueSparkSelected}
                             />
@@ -349,7 +343,7 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
                             ))}
                         </div>
                         <div className="form__input-group">
-                            <SearchableSelect items={availableNormalSkills} placeholder={t('searchSkill')} value={currentWhiteSkill?.[displayNameProp] || null} onSelect={setCurrentWhiteSkill} displayProp={displayNameProp} />
+                            <SearchableSelect items={availableNormalSkills} placeholder={t('searchSkill')} value={currentWhiteSkill?.[displayNameProp] || null} onSelect={(item) => setCurrentWhiteSkill(item as Skill)} displayProp={displayNameProp} />
                             <select className="form__input w-24" value={currentWhiteStars} onChange={e => setCurrentWhiteStars(Number(e.target.value) as 1|2|3)}>
                                 {STAR_OPTIONS.map(s => <option key={s}>{s}</option>)}
                             </select>
