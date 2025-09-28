@@ -1,8 +1,9 @@
 import i18n from '../i18n';
-import { AppData, Folder, Parent, Profile, ServerSpecificData } from '../types';
+import { AppData, Folder, Parent, Profile, ServerSpecificData, Uma } from '../types';
 import { generateParentHash } from './hashing';
+import masterUmaListJson from '../data/uma-list.json';
 
-export const CURRENT_VERSION = 9;
+export const CURRENT_VERSION = 10;
 
 // --- Default State Creation ---
 
@@ -166,6 +167,31 @@ const migrateToV9 = (data: any): any => {
     return data;
 };
 
+const migrateToV10 = (data: any): any => {
+    const umaMapById = new Map((masterUmaListJson as Uma[]).map(uma => [uma.id, uma]));
+    
+    const getDisplayNameForMigration = (uma: Uma, lang: 'jp' | 'en'): string => {
+        const baseName = lang === 'en' ? uma.base_name_en : uma.base_name_jp;
+        const outfitName = lang === 'en' ? uma.outfit_name_en : uma.outfit_name_jp;
+        if (outfitName) {
+            return `${outfitName} ${baseName}`;
+        }
+        return baseName;
+    };
+
+    data.inventory.forEach((p: Parent) => {
+        const uma = umaMapById.get(p.umaId);
+        if (uma) {
+            // Recalculate the name based on the new logic.
+            // We assume the parent's name should reflect the language of its server.
+            const lang = p.server === 'global' ? 'en' : 'jp';
+            p.name = getDisplayNameForMigration(uma, lang);
+        }
+    });
+    data.version = 10;
+    return data;
+};
+
 const runSanityChecks = (data: any): any => {
     (Object.values(data.serverData) as ServerSpecificData[]).forEach(serverData => {
         serverData.profiles.forEach((p: Profile) => {
@@ -200,6 +226,7 @@ export const migrateData = (data: any): AppData => {
     if (migratedData.version < 7) migratedData = migrateToV7(migratedData);
     if (migratedData.version < 8) migratedData = migrateToV8(migratedData);
     if (migratedData.version < 9) migratedData = migrateToV9(migratedData);
+    if (migratedData.version < 10) migratedData = migrateToV10(migratedData);
     
     // Final check to ensure data consistency after all migrations
     migratedData = runSanityChecks(migratedData);
