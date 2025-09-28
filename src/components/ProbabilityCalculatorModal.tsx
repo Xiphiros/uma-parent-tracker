@@ -30,9 +30,8 @@ const PINK_SPARK_OPTIONS = ['Turf', 'Dirt', 'Sprint', 'Mile', 'Medium', 'Long', 
 
 const ProbabilityCalculatorModal = ({ isOpen, onClose, pair }: ProbabilityCalculatorModalProps) => {
     const { t } = useTranslation(['roster', 'common', 'game']);
-    const { getActiveProfile, appData, masterSkillList, skillMapByName, umaMapById, dataDisplayLanguage } = useAppContext();
+    const { getActiveProfile, appData, masterSkillList, skillMapByName, umaMapById, getUmaDisplayName } = useAppContext();
     const goal = getActiveProfile()?.goal;
-    const displayNameProp = dataDisplayLanguage === 'jp' ? 'name_jp' : 'name_en';
 
     const [calculationMode, setCalculationMode] = useState<'final' | 'individual'>('final');
     const [targetStats, setTargetStats] = useState<Record<string, number>>({ speed: 1100, stamina: 1100, power: 1100, guts: 1100, wit: 1100 });
@@ -77,7 +76,10 @@ const ProbabilityCalculatorModal = ({ isOpen, onClose, pair }: ProbabilityCalcul
         }
     }, [isOpen, goal]);
     
-    const getDisplayName = (umaId: string) => umaMapById.get(umaId)?.[displayNameProp] || 'Unknown';
+    const getDisplayNameFromId = (umaId: string) => {
+        const uma = umaMapById.get(umaId);
+        return uma ? getUmaDisplayName(uma) : 'Unknown';
+    };
 
     const handleCalculate = () => {
         if (!pair || !goal || !workerRef.current) return;
@@ -87,8 +89,8 @@ const ProbabilityCalculatorModal = ({ isOpen, onClose, pair }: ProbabilityCalcul
 
         const payload: ProbabilityWorkerPayload = {
             pair, 
-            p1DisplayName: getDisplayName(pair.p1.umaId),
-            p2DisplayName: getDisplayName(pair.p2.umaId),
+            p1DisplayName: getDisplayNameFromId(pair.p1.umaId),
+            p2DisplayName: getDisplayNameFromId(pair.p2.umaId),
             calculationMode,
             goal, 
             targetStats, 
