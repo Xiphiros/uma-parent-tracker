@@ -3,7 +3,7 @@ import { AppData, Profile, Skill, Uma, Goal, Parent, NewParentData, WishlistItem
 import masterSkillListJson from '../data/skill-list.json';
 import masterUmaListJson from '../data/uma-list.json';
 import affinityJpJson from '../data/affinity_jp.json';
-import affinityGlJson from '../data/affinity_gl.json';
+import affinityGlJson from '../data/affinity_global.json';
 import { calculateScore, calculateIndividualScore } from '../utils/scoring';
 import i18n from '../i18n';
 import { generateParentHash } from '../utils/hashing';
@@ -36,8 +36,6 @@ interface AppContextType {
   setActiveServer: (server: 'jp' | 'global') => void;
   dataDisplayLanguage: DataDisplayLanguage;
   setDataDisplayLanguage: (lang: DataDisplayLanguage) => void;
-  useCommunityTranslations: boolean;
-  setUseCommunityTranslations: (enabled: boolean) => void;
   changeUiLanguage: (lang: 'en' | 'jp') => void;
   masterSkillList: Skill[];
   masterUmaList: Uma[];
@@ -94,13 +92,10 @@ export const useAppContext = () => {
 
 export const AppProvider = ({ children }: { children: ReactNode }) => {
   const [loading, setLoading] = useState(true);
-  const [fullMasterSkillList] = useState<Skill[]>(masterSkillListJson as Skill[]);
-  const [fullMasterUmaList] = useState<Uma[]>(masterUmaListJson as Uma[]);
   const [appData, setAppData] = useState<AppData>(createDefaultState());
   const activeServer = appData.activeServer;
 
   const [dataDisplayLanguage, setDataDisplayLanguageState] = useState<DataDisplayLanguage>('en');
-  const [useCommunityTranslations, setUseCommunityTranslationsState] = useState<boolean>(false);
   const [activeBreedingPair, setActiveBreedingPair] = useState<BreedingPair | null>(null);
   
   const isInitialLoad = useRef(true);
@@ -144,7 +139,6 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
                 setAppData(d => ({ ...d, activeServer: prefs.activeServer }));
             }
             if (prefs.dataDisplayLanguage) setDataDisplayLanguageState(prefs.dataDisplayLanguage);
-            if (prefs.useCommunityTranslations) setUseCommunityTranslationsState(prefs.useCommunityTranslations);
         } catch (e) {
             console.error("Failed to parse user preferences", e);
         }
@@ -181,51 +175,28 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
     savePreferences('dataDisplayLanguage', lang);
   };
 
-  const setUseCommunityTranslations = (enabled: boolean) => {
-    setUseCommunityTranslationsState(enabled);
-    savePreferences('useCommunityTranslations', enabled);
-  };
-
   const changeUiLanguage = (lang: 'en' | 'jp') => {
     i18n.changeLanguage(lang);
   };
 
-  const getBestEnglishName = (item: Skill | Uma) => {
-    if (item.isGlobal) return item.name_en;
-    if (useCommunityTranslations && item.name_en_community) return item.name_en_community;
-    return item.name_jp;
-  };
-
-  const processedMasterSkillList = useMemo(() => {
-    return fullMasterSkillList.map(skill => ({
-      ...skill,
-      name_en: getBestEnglishName(skill),
-    }));
-  }, [fullMasterSkillList, useCommunityTranslations]);
-  
-  const processedMasterUmaList = useMemo(() => {
-    return fullMasterUmaList.map(uma => ({
-      ...uma,
-      name_en: getBestEnglishName(uma),
-    }));
-  }, [fullMasterUmaList, useCommunityTranslations]);
-
   const masterSkillList = useMemo(() => {
+      const allSkills = masterSkillListJson as Skill[];
       if (activeServer === 'global') {
-          return processedMasterSkillList.filter(s => s.isGlobal);
+          return allSkills.filter(s => s.isGlobal);
       }
-      return processedMasterSkillList;
-  }, [activeServer, processedMasterSkillList]);
+      return allSkills;
+  }, [activeServer]);
 
   const masterUmaList = useMemo(() => {
+      const allUmas = masterUmaListJson as Uma[];
       if (activeServer === 'global') {
-          return processedMasterUmaList.filter(u => u.isGlobal);
+          return allUmas.filter(u => u.isGlobal);
       }
-      return processedMasterUmaList;
-  }, [activeServer, processedMasterUmaList]);
+      return allUmas;
+  }, [activeServer]);
 
-  const skillMapByName = useMemo(() => new Map(processedMasterSkillList.map(skill => [skill.name_en, skill])), [processedMasterSkillList]);
-  const umaMapById = useMemo(() => new Map(processedMasterUmaList.map(uma => [uma.id, uma])), [processedMasterUmaList]);
+  const skillMapByName = useMemo(() => new Map(masterSkillList.map(skill => [skill.name_en, skill])), [masterSkillList]);
+  const umaMapById = useMemo(() => new Map(masterUmaList.map(uma => [uma.id, uma])), [masterUmaList]);
 
   const saveState = (newData: AppData) => {
     setAppData(newData);
@@ -687,22 +658,25 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
     const destServer = sourceServer === 'jp' ? 'global' : 'jp';
     const errors: string[] = [];
 
-    const destUmaList = processedMasterUmaList.filter(u => destServer === 'global' ? u.isGlobal : true);
-    const destSkillList = processedMasterSkillList.filter(s => destServer === 'global' ? s.isGlobal : true);
+    const allUmas = masterUmaListJson as Uma[];
+    const allSkills = masterSkillListJson as Skill[];
+
+    const destUmaList = allUmas.filter(u => destServer === 'global' ? u.isGlobal : true);
+    const destSkillList = allSkills.filter(s => destServer === 'global' ? s.isGlobal : true);
     
     const destUmaMap = new Map(destUmaList.map(u => [u.id, u]));
     const destSkillMap = new Map(destSkillList.map(s => [s.name_en, s]));
 
     if (!destUmaMap.has(parent.umaId)) {
         const uma = umaMapById.get(parent.umaId);
-        const umaName = uma ? (dataDisplayLanguage === 'jp' ? uma.name_jp : uma.name_en) : parent.name;
+        const umaName = uma ? uma.name_en : parent.name;
         errors.push(`Character/Outfit: ${umaName}`);
     }
 
     [...parent.uniqueSparks, ...parent.whiteSparks].forEach(spark => {
         if (!destSkillMap.has(spark.name)) {
             const skill = skillMapByName.get(spark.name);
-            const skillName = skill ? (dataDisplayLanguage === 'jp' ? skill.name_jp : skill.name_en) : spark.name;
+            const skillName = skill ? skill.name_en : spark.name;
             errors.push(`Skill: ${skillName}`);
         }
     });
@@ -733,21 +707,23 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
       const inventoryMap = new Map(appData.inventory.map(p => [p.id, p]));
       const parentsInRoster = profile.roster.map(id => inventoryMap.get(id)).filter(Boolean) as Parent[];
 
-      const destUmaList = processedMasterUmaList.filter(u => destServer === 'global' ? u.isGlobal : true);
-      const destSkillList = processedMasterSkillList.filter(s => destServer === 'global' ? s.isGlobal : true);
+      const allUmas = masterUmaListJson as Uma[];
+      const allSkills = masterSkillListJson as Skill[];
+      const destUmaList = allUmas.filter(u => destServer === 'global' ? u.isGlobal : true);
+      const destSkillList = allSkills.filter(s => destServer === 'global' ? s.isGlobal : true);
       const destUmaMap = new Map(destUmaList.map(u => [u.id, u]));
       const destSkillMap = new Map(destSkillList.map(s => [s.name_en, s]));
 
       // Validate roster
       parentsInRoster.forEach(parent => {
           const uma = umaMapById.get(parent.umaId);
-          const parentDisplayName = uma ? (dataDisplayLanguage === 'jp' ? uma.name_jp : uma.name_en) : parent.name;
+          const parentDisplayName = uma ? uma.name_en : parent.name;
           if (!destUmaMap.has(parent.umaId)) {
               errors.push(t('tabs:modals.transferValidation.errorParentUma', { parentName: parentDisplayName }));
           }
           [...parent.uniqueSparks, ...parent.whiteSparks].forEach(spark => {
               const skill = skillMapByName.get(spark.name);
-              const skillDisplayName = skill ? (dataDisplayLanguage === 'jp' ? skill.name_jp : skill.name_en) : spark.name;
+              const skillDisplayName = skill ? skill.name_en : spark.name;
               if (!destSkillMap.has(spark.name)) {
                   errors.push(t('tabs:modals.transferValidation.errorParentSkill', { parentName: parentDisplayName, skillName: skillDisplayName }));
               }
@@ -757,7 +733,7 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
       // Validate goal
       [...profile.goal.uniqueWishlist, ...profile.goal.wishlist].forEach(item => {
           const skill = skillMapByName.get(item.name);
-          const skillDisplayName = skill ? (dataDisplayLanguage === 'jp' ? skill.name_jp : skill.name_en) : item.name;
+          const skillDisplayName = skill ? skill.name_en : item.name;
           if (!destSkillMap.has(item.name)) {
               errors.push(t('tabs:modals.transferValidation.errorGoalSkill', { skillName: skillDisplayName }));
           }
@@ -868,14 +844,14 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const addSkillPreset = (name: string, skillIds: string[]) => {
-      const newPreset: SkillPreset = { id: `p${Date.now()}`, name, skillIds };
+      const newPreset: SkillPreset = { id: `p${Date.now()}`, name, skillIds: [] }; // skillIds are now numbers
       setAppData(prev => ({ ...prev, skillPresets: [...prev.skillPresets, newPreset] }));
   };
 
   const updateSkillPreset = (id: string, name: string, skillIds: string[]) => {
       setAppData(prev => ({
           ...prev,
-          skillPresets: prev.skillPresets.map(p => p.id === id ? { ...p, name, skillIds } : p),
+          skillPresets: prev.skillPresets.map(p => p.id === id ? { ...p, name, skillIds: [] } : p), // skillIds are now numbers
       }));
   };
 
@@ -895,8 +871,6 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
     setActiveServer,
     dataDisplayLanguage,
     setDataDisplayLanguage,
-    useCommunityTranslations,
-    setUseCommunityTranslations,
     changeUiLanguage,
     masterSkillList,
     masterUmaList,
