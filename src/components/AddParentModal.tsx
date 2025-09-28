@@ -37,7 +37,7 @@ type GrandparentSlot = 'grandparent1' | 'grandparent2';
 
 const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) => {
     const { t } = useTranslation(['modals', 'common', 'game', 'roster']);
-    const { getActiveProfile, masterUmaList, masterSkillList, addParent, updateParent, dataDisplayLanguage, umaMapById, skillMapByName, appData } = useAppContext();
+    const { getActiveProfile, masterUmaListWithDisplayName, masterSkillList, addParent, updateParent, dataDisplayLanguage, umaMapById, skillMapByName, appData, getUmaDisplayName } = useAppContext();
     
     const [formData, setFormData] = useState<NewParentData>(initialState);
     const [currentUniqueSkill, setCurrentUniqueSkill] = useState<Skill | null>(null);
@@ -99,7 +99,10 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
         }
     }, [formData, getActiveProfile, appData.inventory, parentToEdit, skillMapByName]);
 
-    const handleUmaSelect = (item: Uma) => setFormData(prev => ({ ...prev, name: item.name_en, umaId: item.id }));
+    const handleUmaSelect = (item: Uma) => {
+        const name = getUmaDisplayName(item);
+        setFormData(prev => ({ ...prev, name, umaId: item.id }));
+    };
     const handleSparkChange = (sparkType: 'blueSpark' | 'pinkSpark', part: 'type' | 'stars', value: string | number) => {
         setFormData(prev => ({ ...prev, [sparkType]: { ...prev[sparkType], [part]: value } }));
     };
@@ -137,13 +140,9 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
         }
     };
     
-    const getDisplayName = (idOrName: string, type: 'uma' | 'skill'): string => {
-        if (type === 'skill') {
-            const skill = skillMapByName.get(idOrName);
-            return skill ? skill[displayNameProp] : idOrName;
-        }
-        const uma = umaMapById.get(idOrName);
-        return uma?.[displayNameProp] || idOrName;
+    const getSkillDisplayName = (name_en: string): string => {
+        const skill = skillMapByName.get(name_en);
+        return skill ? skill[displayNameProp] : name_en;
     };
 
     const handleOpenGpModal = (slot: GrandparentSlot) => {
@@ -193,9 +192,13 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
         if (gp) {
             if (typeof gp === 'number') {
                 const parent = appData.inventory.find(p => p.id === gp);
-                if (parent) name = getDisplayName(parent.umaId, 'uma');
+                if (parent) {
+                    const uma = umaMapById.get(parent.umaId);
+                    if (uma) name = getUmaDisplayName(uma);
+                }
             } else if (gp.umaId) {
-                name = getDisplayName(gp.umaId, 'uma');
+                const uma = umaMapById.get(gp.umaId);
+                if (uma) name = getUmaDisplayName(uma);
             } else {
                 name = t('enterManually');
             }
@@ -237,11 +240,11 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
                         <div className="add-parent-modal__main-info">
                             <label className="form__label form__label--xs">{t('umaNameLabel')}</label>
                             <SearchableSelect 
-                                items={masterUmaList}
+                                items={masterUmaListWithDisplayName}
                                 placeholder={t('selectUmaPlaceholder')}
-                                value={formData.umaId ? umaMapById.get(formData.umaId)?.[displayNameProp] || null : null}
+                                value={formData.umaId ? getUmaDisplayName(umaMapById.get(formData.umaId)!) : null}
                                 onSelect={(item) => handleUmaSelect(item as Uma)}
-                                displayProp={displayNameProp}
+                                displayProp="displayName"
                             />
                         </div>
                     </div>
@@ -299,7 +302,7 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
                         <div className="form__obtained-sparks-container">
                             {formData.uniqueSparks.map(spark => (
                                 <div key={spark.name} className="spark-tag obtained-spark" data-spark-category="unique">
-                                    {getDisplayName(spark.name, 'skill')} {formatStars(spark.stars)}
+                                    {getSkillDisplayName(spark.name)} {formatStars(spark.stars)}
                                     <button type="button" onClick={() => removeObtainedSpark('uniqueSparks', spark.name)} className="obtained-spark__remove-btn">&times;</button>
                                 </div>
                             ))}
@@ -337,7 +340,7 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
                         <div className="form__obtained-sparks-container">
                             {formData.whiteSparks.map(spark => (
                                 <div key={spark.name} className="spark-tag obtained-spark" data-spark-category="white">
-                                    {getDisplayName(spark.name, 'skill')} {formatStars(spark.stars)}
+                                    {getSkillDisplayName(spark.name)} {formatStars(spark.stars)}
                                     <button type="button" onClick={() => removeObtainedSpark('whiteSparks', spark.name)} className="obtained-spark__remove-btn">&times;</button>
                                 </div>
                             ))}

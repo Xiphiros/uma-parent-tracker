@@ -13,15 +13,14 @@ interface SelectUmaModalProps {
 
 const SelectUmaModal = ({ isOpen, onClose, onSelect }: SelectUmaModalProps) => {
     const { t } = useTranslation('common');
-    const { masterUmaList, dataDisplayLanguage } = useAppContext();
-    const displayNameProp = dataDisplayLanguage === 'jp' ? 'name_jp' : 'name_en';
+    const { masterUmaListWithDisplayName } = useAppContext();
     const [filter, setFilter] = useState('');
 
     const filteredUmas = useMemo(() => {
-        if (!filter) return masterUmaList;
+        if (!filter) return masterUmaListWithDisplayName;
         const lowerFilter = filter.toLowerCase();
-        return masterUmaList.filter(uma => uma[displayNameProp].toLowerCase().includes(lowerFilter));
-    }, [filter, masterUmaList, displayNameProp]);
+        return masterUmaListWithDisplayName.filter(uma => uma.displayName.toLowerCase().includes(lowerFilter));
+    }, [filter, masterUmaListWithDisplayName]);
 
     const handleSelect = (uma: Uma) => {
         onSelect(uma);
@@ -42,8 +41,8 @@ const SelectUmaModal = ({ isOpen, onClose, onSelect }: SelectUmaModalProps) => {
             <div className="select-uma-modal__grid">
                 {filteredUmas.map(uma => (
                     <div key={uma.id} className="select-uma-modal__card" onClick={() => handleSelect(uma)}>
-                        <img src={`${import.meta.env.BASE_URL}${uma.image}`} alt={uma[displayNameProp]} className="select-uma-modal__image" />
-                        <span className="select-uma-modal__name">{uma[displayNameProp]}</span>
+                        <img src={`${import.meta.env.BASE_URL}${uma.image}`} alt={uma.displayName} className="select-uma-modal__image" />
+                        <span className="select-uma-modal__name">{uma.displayName}</span>
                     </div>
                 ))}
             </div>
