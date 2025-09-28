@@ -5,7 +5,7 @@
     "name_jp": "[9927 Wishes]ラヴズオンリーユー",
     "name_en": "[9927 Wishes] ラヴズオンリーユー",
     "isGlobal": false,
-    "name_en_community": "[9927 Wishes] Loves Only You",
+    "activeUniqueSkillId": 101321,
     "image": "/images/umas/113201.png"
   },
   {
@@ -14,7 +14,7 @@
     "name_jp": "[Assorted Cuteness♡]フサイチパンドラ",
     "name_en": "[Assorted Cuteness♡] フサイチパンドラ",
     "isGlobal": false,
-    "name_en_community": "[Assorted Cuteness♡] Fusaichi Pandora",
+    "activeUniqueSkillId": 101131,
     "image": "/images/umas/111301.png"
   },
   {
@@ -23,23 +23,25 @@
     "name_jp": "[Aurore☆Vacances]トーセンジョーダン",
     "name_en": "[Aurore☆Vacances] トーセンジョーダン",
     "isGlobal": false,
-    "name_en_community": "[Aurore☆Vacances] Tosen Jordan",
+    "activeUniqueSkillId": 110481,
     "image": "/images/umas/104802.png"
   },
   {
     "id": "104001",
     "characterId": "1040",
     "name_jp": "[オーセンティック/1928]ゴールドシチー",
-    "name_en": "[Authentic / 1928] Gold City",
-    "isGlobal": true,
+    "name_en": "[Authentic / 1928] ゴールドシチー",
+    "isGlobal": false,
+    "activeUniqueSkillId": 100401,
     "image": "/images/umas/104001.png"
   },
   {
     "id": "101201",
     "characterId": "1012",
     "name_jp": "[アマゾネス・ラピス]ヒシアマゾン",
-    "name_en": "[Azure Amazon] Hishi Amazon",
-    "isGlobal": true,
+    "name_en": "[Azure Amazon] ヒシアマゾン",
+    "isGlobal": false,
+    "activeUniqueSkillId": 100121,
     "image": "/images/umas/101201.png"
   },
   {
@@ -48,23 +50,25 @@
     "name_jp": "[Belphegor's Prime]エアシャカール",
     "name_en": "[Belphegor's Prime] エアシャカール",
     "isGlobal": false,
-    "name_en_community": "[Belphegor's Prime] Air Shakur",
+    "activeUniqueSkillId": 110361,
     "image": "/images/umas/103602.png"
   },
   {
     "id": "105201",
     "characterId": "1052",
     "name_jp": "[うららん一等賞♪]ハルウララ",
-    "name_en": "[Bestest Prize ♪] Haru Urara",
-    "isGlobal": true,
+    "name_en": "[Bestest Prize ♪] ハルウララ",
+    "isGlobal": false,
+    "activeUniqueSkillId": 100521,
     "image": "/images/umas/105201.png"
   },
   {
     "id": "100302",
     "characterId": "1003",
     "name_jp": "[ビヨンド・ザ・ホライズン]トウカイテイオー",
-    "name_en": "[Beyond the Horizon] Tokai Teio",
-    "isGlobal": true,
+    "name_en": "[Beyond the Horizon] トウカイテイオー",
+    "isGlobal": false,
+    "activeUniqueSkillId": 110031,
     "image": "/images/umas/100302.png"
   },
   {
@@ -73,31 +77,34 @@
     "name_jp": "[Be♪Witched]シーキングザパール",
     "name_en": "[Be♪Witched] シーキングザパール",
     "isGlobal": false,
-    "name_en_community": "[Be♪Witched] Seeking the Pearl",
+    "activeUniqueSkillId": 110421,
     "image": "/images/umas/104202.png"
   },
   {
     "id": "104101",
     "characterId": "1041",
     "name_jp": "[サクラ、すすめ！]サクラバクシンオー",
-    "name_en": "[Blossom in Learning] Sakura Bakushin O",
-    "isGlobal": true,
+    "name_en": "[Blossom in Learning] サクラバクシンオー",
+    "isGlobal": false,
+    "activeUniqueSkillId": 100411,
     "image": "/images/umas/104101.png"
   },
   {
     "id": "104003",
     "characterId": "1040",
     "name_jp": "[Boho Flare]ゴールドシチー",
-    "name_en": "[Boho Flare] Gold City",
+    "name_en": "[Boho Flare] ゴールドシチー",
     "isGlobal": false,
+    "activeUniqueSkillId": 120401,
     "image": "/images/umas/104003.png"
   },
   {
     "id": "101002",
     "characterId": "1010",
     "name_jp": "[Bubblegum☆Memories]タイキシャトル",
-    "name_en": "[Bubblegum☆Memories] Taiki Shuttle",
+    "name_en": "[Bubblegum☆Memories] タイキシャトル",
     "isGlobal": false,
+    "activeUniqueSkillId": 110101,
     "image": "/images/umas/101002.png"
   },
   {
@@ -106,16 +113,16 @@
     "name_jp": "[Butterfly Sting]ワンダーアキュート",
     "name_en": "[Butterfly Sting] ワンダーアキュート",
     "isGlobal": false,
-    "name_en_community": "[Butterfly Sting] Wonder Acute",
+    "activeUniqueSkillId": 101001,
     "image": "/images/umas/110001.png"
   },
   {
     "id": "102602",
     "characterId": "1026",
     "name_jp": "[CODE：グラサージュ]ミホノブルボン",
-    "name_en": "[CODE：グラサージュ] Mihono Bourbon",
+    "name_en": "[CODE：グラサージュ] ミホノブルボン",
     "isGlobal": false,
-    "name_en_community": "[CODE: Glaçage] Mihono Bourbon",
+    "activeUniqueSkillId": 110261,
     "image": "/images/umas/102602.png"
   },
   {
@@ -124,7 +131,7 @@
     "name_jp": "[Celestial Road]ナリタトップロード",
     "name_en": "[Celestial Road] ナリタトップロード",
     "isGlobal": false,
-    "name_en_community": "[Celestial Road] Narita Top Road",
+    "activeUniqueSkillId": 110771,
     "image": "/images/umas/107702.png"
   },
   {
@@ -133,7 +140,7 @@
     "name_jp": "[Chevalier fidèle]デュランダル",
     "name_en": "[Chevalier fidèle] デュランダル",
     "isGlobal": false,
-    "name_en_community": "[Chevalier fidèle] Durandal",
+    "activeUniqueSkillId": 101211,
     "image": "/images/umas/112101.png"
   },
   {
@@ -142,7 +149,7 @@
     "name_jp": "[Clear Bliss]ミスターシービー",
     "name_en": "[Clear Bliss] ミスターシービー",
     "isGlobal": false,
-    "name_en_community": "[Clear Bliss] Mr. C.B.",
+    "activeUniqueSkillId": 100571,
     "image": "/images/umas/105701.png"
   },
   {
@@ -151,31 +158,34 @@
     "name_jp": "[Creeping Black]マンハッタンカフェ",
     "name_en": "[Creeping Black] マンハッタンカフェ",
     "isGlobal": false,
-    "name_en_community": "[Creeping Black] Manhattan Cafe",
+    "activeUniqueSkillId": 100251,
     "image": "/images/umas/102501.png"
   },
   {
     "id": "105802",
     "characterId": "1058",
     "name_jp": "[Dot-o'-Lantern]メイショウドトウ",
-    "name_en": "[Dot-o'-Lantern] Meisho Doto",
+    "name_en": "[Dot-o'-Lantern] メイショウドトウ",
     "isGlobal": false,
+    "activeUniqueSkillId": 110581,
     "image": "/images/umas/105802.png"
   },
   {
     "id": "102701",
     "characterId": "1027",
     "name_jp": "[ストレート・ライン]メジロライアン",
-    "name_en": "[Down the Line] Mejiro Ryan",
-    "isGlobal": true,
+    "name_en": "[Down the Line] メジロライアン",
+    "isGlobal": false,
+    "activeUniqueSkillId": 100271,
     "image": "/images/umas/102701.png"
   },
   {
     "id": "103502",
     "characterId": "1035",
     "name_jp": "[Dream Deliverer]ウイニングチケット",
-    "name_en": "[Dream Deliverer] Winning Ticket",
+    "name_en": "[Dream Deliverer] ウイニングチケット",
     "isGlobal": false,
+    "activeUniqueSkillId": 110351,
     "image": "/images/umas/103502.png"
   },
   {
@@ -184,47 +194,52 @@
     "name_jp": "[Dream Successor]ラインクラフト",
     "name_en": "[Dream Successor] ラインクラフト",
     "isGlobal": false,
-    "name_en_community": "[Dream Successor] Rhein Kraft",
+    "activeUniqueSkillId": 101091,
     "image": "/images/umas/110901.png"
   },
   {
     "id": "101401",
     "characterId": "1014",
     "name_jp": "[エル☆Número 1]エルコンドルパサー",
-    "name_en": "[El☆Número 1] El Condor Pasa",
-    "isGlobal": true,
+    "name_en": "[El☆Número 1] エルコンドルパサー",
+    "isGlobal": false,
+    "activeUniqueSkillId": 100141,
     "image": "/images/umas/101401.png"
   },
   {
     "id": "101701",
     "characterId": "1017",
     "name_jp": "[ロード・オブ・エンペラー]シンボリルドルフ",
-    "name_en": "[Emperor's Path] Symboli Rudolf",
-    "isGlobal": true,
+    "name_en": "[Emperor's Path] シンボリルドルフ",
+    "isGlobal": false,
+    "activeUniqueSkillId": 100171,
     "image": "/images/umas/101701.png"
   },
   {
     "id": "101801",
     "characterId": "1018",
     "name_jp": "[エンプレスロード]エアグルーヴ",
-    "name_en": "[Empress Road] Air Groove",
-    "isGlobal": true,
+    "name_en": "[Empress Road] エアグルーヴ",
+    "isGlobal": false,
+    "activeUniqueSkillId": 100181,
     "image": "/images/umas/101801.png"
   },
   {
     "id": "101302",
     "characterId": "1013",
     "name_jp": "[エンド・オブ・スカイ]メジロマックイーン",
-    "name_en": "[End of the Skies] Mejiro McQueen",
-    "isGlobal": true,
+    "name_en": "[End of the Skies] メジロマックイーン",
+    "isGlobal": false,
+    "activeUniqueSkillId": 110131,
     "image": "/images/umas/101302.png"
   },
   {
     "id": "102303",
     "characterId": "1023",
     "name_jp": "[Engineered Victory]ビワハヤヒデ",
-    "name_en": "[Engineered Victory] Biwa Hayahide",
+    "name_en": "[Engineered Victory] ビワハヤヒデ",
     "isGlobal": false,
+    "activeUniqueSkillId": 120231,
     "image": "/images/umas/102303.png"
   },
   {
@@ -233,23 +248,25 @@
     "name_jp": "[Eternal Fairytale]ラインクラフト",
     "name_en": "[Eternal Fairytale] ラインクラフト",
     "isGlobal": false,
-    "name_en_community": "[Eternal Fairytale] Rhein Kraft",
+    "activeUniqueSkillId": 111091,
     "image": "/images/umas/110902.png"
   },
   {
     "id": "106103",
     "characterId": "1061",
     "name_jp": "[Evergreen Identity]キングヘイロー",
-    "name_en": "[Evergreen Identity] King Halo",
+    "name_en": "[Evergreen Identity] キングヘイロー",
     "isGlobal": false,
+    "activeUniqueSkillId": 120611,
     "image": "/images/umas/106103.png"
   },
   {
     "id": "103801",
     "characterId": "1038",
     "name_jp": "[フィーユ・エクレール]カレンチャン",
-    "name_en": "[Fille Éclair] Curren Chan",
-    "isGlobal": true,
+    "name_en": "[Fille Éclair] カレンチャン",
+    "isGlobal": false,
+    "activeUniqueSkillId": 100381,
     "image": "/images/umas/103801.png"
   },
   {
@@ -258,7 +275,7 @@
     "name_jp": "[Flare]アストンマーチャン",
     "name_en": "[Flare] アストンマーチャン",
     "isGlobal": false,
-    "name_en_community": "[Flare] Aston Machan",
+    "activeUniqueSkillId": 100871,
     "image": "/images/umas/108701.png"
   },
   {
@@ -267,7 +284,7 @@
     "name_jp": "[Fleur Enneigée]サクラチヨノオー",
     "name_en": "[Fleur Enneigée] サクラチヨノオー",
     "isGlobal": false,
-    "name_en_community": "[Fleur Enneigée] Sakura Chiyono O",
+    "activeUniqueSkillId": 110691,
     "image": "/images/umas/106902.png"
   },
   {
@@ -276,7 +293,7 @@
     "name_jp": "[Flowing Blue]ダイイチルビー",
     "name_en": "[Flowing Blue] ダイイチルビー",
     "isGlobal": false,
-    "name_en_community": "[Flowing Blue] Daiichi Ruby",
+    "activeUniqueSkillId": 110851,
     "image": "/images/umas/108502.png"
   },
   {
@@ -285,31 +302,34 @@
     "name_jp": "[Fluttertail Spirit]ヤマニンゼファー",
     "name_en": "[Fluttertail Spirit] ヤマニンゼファー",
     "isGlobal": false,
-    "name_en_community": "[Fluttertail Spirit] Yamanin Zephyr",
+    "activeUniqueSkillId": 100781,
     "image": "/images/umas/107801.png"
   },
   {
     "id": "100401",
     "characterId": "1004",
     "name_jp": "[フォーミュラオブルージュ]マルゼンスキー",
-    "name_en": "[Formula R] Maruzensky",
-    "isGlobal": true,
+    "name_en": "[Formula R] マルゼンスキー",
+    "isGlobal": false,
+    "activeUniqueSkillId": 100041,
     "image": "/images/umas/100401.png"
   },
   {
     "id": "105602",
     "characterId": "1056",
     "name_jp": "[吉兆・初あらし]マチカネフクキタル",
-    "name_en": "[Fortune in the Fall Air] Matikanefukukitaru",
-    "isGlobal": true,
+    "name_en": "[Fortune in the Fall Air] マチカネフクキタル",
+    "isGlobal": false,
+    "activeUniqueSkillId": 110561,
     "image": "/images/umas/105602.png"
   },
   {
     "id": "101301",
     "characterId": "1013",
     "name_jp": "[エレガンス・ライン]メジロマックイーン",
-    "name_en": "[Frontline Elegance] Mejiro McQueen",
-    "isGlobal": true,
+    "name_en": "[Frontline Elegance] メジロマックイーン",
+    "isGlobal": false,
+    "activeUniqueSkillId": 100131,
     "image": "/images/umas/101301.png"
   },
   {
@@ -318,7 +338,7 @@
     "name_jp": "[Fun☆Fun☆ぱりない]ダイタクヘリオス",
     "name_en": "[Fun☆Fun☆ぱりない] ダイタクヘリオス",
     "isGlobal": false,
-    "name_en_community": "[Fun☆Fun☆Party Night] Daitaku Helios",
+    "activeUniqueSkillId": 100651,
     "image": "/images/umas/106501.png"
   },
   {
@@ -327,7 +347,7 @@
     "name_jp": "[Future Weaver]シーザリオ",
     "name_en": "[Future Weaver] シーザリオ",
     "isGlobal": false,
-    "name_en_community": "[Future Weaver] Cesario",
+    "activeUniqueSkillId": 101101,
     "image": "/images/umas/111001.png"
   },
   {
@@ -336,7 +356,7 @@
     "name_jp": "[Féroce]シリウスシンボリ",
     "name_en": "[Féroce] シリウスシンボリ",
     "isGlobal": false,
-    "name_en_community": "[Féroce] Sirius Symboli",
+    "activeUniqueSkillId": 100701,
     "image": "/images/umas/107001.png"
   },
   {
@@ -345,15 +365,16 @@
     "name_jp": "[GLITTER!]タップダンスシチー",
     "name_en": "[GLITTER!] タップダンスシチー",
     "isGlobal": false,
-    "name_en_community": "[GLITTER!] Tap Dance City",
+    "activeUniqueSkillId": 101071,
     "image": "/images/umas/110701.png"
   },
   {
     "id": "103501",
     "characterId": "1035",
     "name_jp": "[Go To Winning!]ウイニングチケット",
-    "name_en": "[Get to Winning!] Winning Ticket",
-    "isGlobal": true,
+    "name_en": "[Get to Winning!] ウイニングチケット",
+    "isGlobal": false,
+    "activeUniqueSkillId": 100351,
     "image": "/images/umas/103501.png"
   },
   {
@@ -362,15 +383,16 @@
     "name_jp": "[Glacialis Vega]アドマイヤベガ",
     "name_en": "[Glacialis Vega] アドマイヤベガ",
     "isGlobal": false,
-    "name_en_community": "[Glacialis Vega] Admire Vega",
+    "activeUniqueSkillId": 110331,
     "image": "/images/umas/103302.png"
   },
   {
     "id": "103503",
     "characterId": "1035",
     "name_jp": "[Glorious Coat]ウイニングチケット",
-    "name_en": "[Glorious Coat] Winning Ticket",
+    "name_en": "[Glorious Coat] ウイニングチケット",
     "isGlobal": false,
+    "activeUniqueSkillId": 120351,
     "image": "/images/umas/103503.png"
   },
   {
@@ -379,7 +401,7 @@
     "name_jp": "[Grand itinéraire]シュヴァルグラン",
     "name_en": "[Grand itinéraire] シュヴァルグラン",
     "isGlobal": false,
-    "name_en_community": "[Grand itinéraire] Cheval Grand",
+    "activeUniqueSkillId": 100891,
     "image": "/images/umas/108901.png"
   },
   {
@@ -388,7 +410,7 @@
     "name_jp": "[Hello Hello Island]アイネスフウジン",
     "name_en": "[Hello Hello Island] アイネスフウジン",
     "isGlobal": false,
-    "name_en_community": "[Hello Hello Island] Ines Fujin",
+    "activeUniqueSkillId": 120311,
     "image": "/images/umas/103103.png"
   },
   {
@@ -397,31 +419,34 @@
     "name_jp": "[Heroic Author]ゼンノロブロイ",
     "name_en": "[Heroic Author] ゼンノロブロイ",
     "isGlobal": false,
-    "name_en_community": "[Heroic Author] Zenno Rob Roy",
+    "activeUniqueSkillId": 100471,
     "image": "/images/umas/104701.png"
   },
   {
     "id": "100102",
     "characterId": "1001",
     "name_jp": "[ほっぴん♪ビタミンハート]スペシャルウィーク",
-    "name_en": "[Hopp'n♪Happy Heart] Special Week",
-    "isGlobal": true,
+    "name_en": "[Hopp'n♪Happy Heart] スペシャルウィーク",
+    "isGlobal": false,
+    "activeUniqueSkillId": 110011,
     "image": "/images/umas/100102.png"
   },
   {
     "id": "100402",
     "characterId": "1004",
     "name_jp": "[ぶっとび☆さまーナイト]マルゼンスキー",
-    "name_en": "[Hot☆Summer Night] Maruzensky",
-    "isGlobal": true,
+    "name_en": "[Hot☆Summer Night] マルゼンスキー",
+    "isGlobal": false,
+    "activeUniqueSkillId": 110041,
     "image": "/images/umas/100402.png"
   },
   {
     "id": "101202",
     "characterId": "1012",
     "name_jp": "[Hungry Veil]ヒシアマゾン",
-    "name_en": "[Hungry Veil] Hishi Amazon",
+    "name_en": "[Hungry Veil] ヒシアマゾン",
     "isGlobal": false,
+    "activeUniqueSkillId": 110121,
     "image": "/images/umas/101202.png"
   },
   {
@@ -430,7 +455,7 @@
     "name_jp": "[Inherited Hope]エアメサイア",
     "name_en": "[Inherited Hope] エアメサイア",
     "isGlobal": false,
-    "name_en_community": "[Inherited Hope] Air Messiah",
+    "activeUniqueSkillId": 101111,
     "image": "/images/umas/111101.png"
   },
   {
@@ -439,15 +464,16 @@
     "name_jp": "[Inlaid Stories]ゼンノロブロイ",
     "name_en": "[Inlaid Stories] ゼンノロブロイ",
     "isGlobal": false,
-    "name_en_community": "[Inlaid Stories] Zenno Rob Roy",
+    "activeUniqueSkillId": 110471,
     "image": "/images/umas/104702.png"
   },
   {
     "id": "100201",
     "characterId": "1002",
     "name_jp": "[サイレントイノセンス]サイレンススズカ",
-    "name_en": "[Innocent Silence] Silence Suzuka",
-    "isGlobal": true,
+    "name_en": "[Innocent Silence] サイレンススズカ",
+    "isGlobal": false,
+    "activeUniqueSkillId": 100021,
     "image": "/images/umas/100201.png"
   },
   {
@@ -456,7 +482,7 @@
     "name_jp": "[Jetblack Automaton]シンボリクリスエス",
     "name_en": "[Jetblack Automaton] シンボリクリスエス",
     "isGlobal": false,
-    "name_en_community": "[Jetblack Automaton] Symboli Kris S",
+    "activeUniqueSkillId": 110831,
     "image": "/images/umas/108302.png"
   },
   {
@@ -465,39 +491,43 @@
     "name_jp": "[Joyful Jamboree!]ダイタクヘリオス",
     "name_en": "[Joyful Jamboree!] ダイタクヘリオス",
     "isGlobal": false,
-    "name_en_community": "[Joyful Jamboree!] Daitaku Helios",
+    "activeUniqueSkillId": 110651,
     "image": "/images/umas/106502.png"
   },
   {
     "id": "106101",
     "characterId": "1061",
     "name_jp": "[キング・オブ・エメラルド]キングヘイロー",
-    "name_en": "[King of Emeralds] King Halo",
-    "isGlobal": true,
+    "name_en": "[King of Emeralds] キングヘイロー",
+    "isGlobal": false,
+    "activeUniqueSkillId": 100611,
     "image": "/images/umas/106101.png"
   },
   {
     "id": "101402",
     "characterId": "1014",
     "name_jp": "[ククルカン・モンク]エルコンドルパサー",
-    "name_en": "[Kukulkan Warrior] El Condor Pasa",
-    "isGlobal": true,
+    "name_en": "[Kukulkan Warrior] エルコンドルパサー",
+    "isGlobal": false,
+    "activeUniqueSkillId": 110141,
     "image": "/images/umas/101402.png"
   },
   {
     "id": "104601",
     "characterId": "1046",
     "name_jp": "[あぶそりゅーと☆LOVE]スマートファルコン",
-    "name_en": "[LOVE☆4EVER] Smart Falcon",
-    "isGlobal": true,
+    "name_en": "[LOVE☆4EVER] スマートファルコン",
+    "isGlobal": false,
+    "activeUniqueSkillId": 100461,
     "image": "/images/umas/104601.png"
   },
   {
     "id": "100703",
     "characterId": "1007",
     "name_jp": "[La mode 564]ゴールドシップ",
-    "name_en": "[La mode 564] Gold Ship",
+    "name_en": "[La mode 564] ゴールドシップ",
     "isGlobal": false,
+    "activeUniqueSkillId": 120071,
     "image": "/images/umas/100703.png"
   },
   {
@@ -506,7 +536,7 @@
     "name_jp": "[Le beau sommet]ヴィルシーナ",
     "name_en": "[Le beau sommet] ヴィルシーナ",
     "isGlobal": false,
-    "name_en_community": "[Le beau sommet] Verxina",
+    "activeUniqueSkillId": 100901,
     "image": "/images/umas/109001.png"
   },
   {
@@ -515,7 +545,7 @@
     "name_jp": "[Like “ZEER”]ネオユニヴァース",
     "name_en": "[Like “ZEER”] ネオユニヴァース",
     "isGlobal": false,
-    "name_en_community": "[Like “ZEER”] Neo Universe",
+    "activeUniqueSkillId": 111051,
     "image": "/images/umas/110502.png"
   },
   {
@@ -524,7 +554,7 @@
     "name_jp": "[Line Breakthrough]メジロパーマー",
     "name_en": "[Line Breakthrough] メジロパーマー",
     "isGlobal": false,
-    "name_en_community": "[Line Breakthrough] Mejiro Palmer",
+    "activeUniqueSkillId": 100641,
     "image": "/images/umas/106401.png"
   },
   {
@@ -533,7 +563,7 @@
     "name_jp": "[Looking Fly!]ノースフライト",
     "name_en": "[Looking Fly!] ノースフライト",
     "isGlobal": false,
-    "name_en_community": "[Looking Fly!] North Flight",
+    "activeUniqueSkillId": 100821,
     "image": "/images/umas/108201.png"
   },
   {
@@ -542,23 +572,25 @@
     "name_jp": "[Louve stellaire]シリウスシンボリ",
     "name_en": "[Louve stellaire] シリウスシンボリ",
     "isGlobal": false,
-    "name_en_community": "[Louve stellaire] Sirius Symboli",
+    "activeUniqueSkillId": 110701,
     "image": "/images/umas/107002.png"
   },
   {
     "id": "103202",
     "characterId": "1032",
     "name_jp": "[Lunatic Lab]アグネスタキオン",
-    "name_en": "[Lunatic Lab] Agnes Tachyon",
+    "name_en": "[Lunatic Lab] アグネスタキオン",
     "isGlobal": false,
+    "activeUniqueSkillId": 110321,
     "image": "/images/umas/103202.png"
   },
   {
     "id": "102601",
     "characterId": "1026",
     "name_jp": "[MB-19890425]ミホノブルボン",
-    "name_en": "[MB-19890425] Mihono Bourbon",
-    "isGlobal": true,
+    "name_en": "[MB-19890425] ミホノブルボン",
+    "isGlobal": false,
+    "activeUniqueSkillId": 100261,
     "image": "/images/umas/102601.png"
   },
   {
@@ -567,15 +599,16 @@
     "name_jp": "[MELTY GIFT]アイネスフウジン",
     "name_en": "[MELTY GIFT] アイネスフウジン",
     "isGlobal": false,
-    "name_en_community": "[MELTY GIFT] Ines Fujin",
+    "activeUniqueSkillId": 110311,
     "image": "/images/umas/103102.png"
   },
   {
     "id": "103002",
     "characterId": "1030",
     "name_jp": "[Make up Vampire!]ライスシャワー",
-    "name_en": "[Make up Vampire!] Rice Shower",
+    "name_en": "[Make up Vampire!] ライスシャワー",
     "isGlobal": false,
+    "activeUniqueSkillId": 110301,
     "image": "/images/umas/103002.png"
   },
   {
@@ -584,31 +617,34 @@
     "name_jp": "[Mantle of Steel]イクノディクタス",
     "name_en": "[Mantle of Steel] イクノディクタス",
     "isGlobal": false,
-    "name_en_community": "[Mantle of Steel] Ikuno Dictus",
+    "activeUniqueSkillId": 100631,
     "image": "/images/umas/106301.png"
   },
   {
     "id": "101601",
     "characterId": "1016",
     "name_jp": "[Maverick]ナリタブライアン",
-    "name_en": "[Maverick] Narita Brian",
-    "isGlobal": true,
+    "name_en": "[Maverick] ナリタブライアン",
+    "isGlobal": false,
+    "activeUniqueSkillId": 100161,
     "image": "/images/umas/101601.png"
   },
   {
     "id": "103701",
     "characterId": "1037",
     "name_jp": "[Meisterschaft]エイシンフラッシュ",
-    "name_en": "[Meisterschaft] Eishin Flash",
-    "isGlobal": true,
+    "name_en": "[Meisterschaft] エイシンフラッシュ",
+    "isGlobal": false,
+    "activeUniqueSkillId": 100371,
     "image": "/images/umas/103701.png"
   },
   {
     "id": "104501",
     "characterId": "1045",
     "name_jp": "[マーマリングストリーム]スーパークリーク",
-    "name_en": "[Murmuring Stream] Super Creek",
-    "isGlobal": true,
+    "name_en": "[Murmuring Stream] スーパークリーク",
+    "isGlobal": false,
+    "activeUniqueSkillId": 100451,
     "image": "/images/umas/104501.png"
   },
   {
@@ -617,7 +653,7 @@
     "name_jp": "[Natural Brilliance]サトノダイヤモンド",
     "name_en": "[Natural Brilliance] サトノダイヤモンド",
     "isGlobal": false,
-    "name_en_community": "[Natural Brilliance] Satono Diamond",
+    "activeUniqueSkillId": 100671,
     "image": "/images/umas/106701.png"
   },
   {
@@ -626,15 +662,16 @@
     "name_jp": "[Neige Émeraude]メジロアルダン",
     "name_en": "[Neige Émeraude] メジロアルダン",
     "isGlobal": false,
-    "name_en_community": "[Neige Émeraude] Mejiro Ardan",
+    "activeUniqueSkillId": 110711,
     "image": "/images/umas/107102.png"
   },
   {
     "id": "105001",
     "characterId": "1050",
     "name_jp": "[Nevertheless]ナリタタイシン",
-    "name_en": "[Nevertheless] Narita Taishin",
-    "isGlobal": true,
+    "name_en": "[Nevertheless] ナリタタイシン",
+    "isGlobal": false,
+    "activeUniqueSkillId": 100501,
     "image": "/images/umas/105001.png"
   },
   {
@@ -643,15 +680,16 @@
     "name_jp": "[Noble Seamair]ファインモーション",
     "name_en": "[Noble Seamair] ファインモーション",
     "isGlobal": false,
-    "name_en_community": "[Noble Seamair] Fine Motion",
+    "activeUniqueSkillId": 100221,
     "image": "/images/umas/102201.png"
   },
   {
     "id": "101501",
     "characterId": "1015",
     "name_jp": "[オー・ソレ・スーオ！]テイエムオペラオー",
-    "name_en": "[O Sole Suo!] T.M. Opera O",
-    "isGlobal": true,
+    "name_en": "[O Sole Suo!] テイエムオペラオー",
+    "isGlobal": false,
+    "activeUniqueSkillId": 100151,
     "image": "/images/umas/101501.png"
   },
   {
@@ -660,7 +698,7 @@
     "name_jp": "[Onyx Soldier]シンボリクリスエス",
     "name_en": "[Onyx Soldier] シンボリクリスエス",
     "isGlobal": false,
-    "name_en_community": "[Onyx Soldier] Symboli Kris S",
+    "activeUniqueSkillId": 100831,
     "image": "/images/umas/108301.png"
   },
   {
@@ -669,31 +707,34 @@
     "name_jp": "[POPPING!]バブルガムフェロー",
     "name_en": "[POPPING!] バブルガムフェロー",
     "isGlobal": false,
-    "name_en_community": "[POPPING!] Bubble Gum Fellow",
+    "activeUniqueSkillId": 101241,
     "image": "/images/umas/112401.png"
   },
   {
     "id": "100901",
     "characterId": "1009",
     "name_jp": "[トップ・オブ・ブルー]ダイワスカーレット",
-    "name_en": "[Peak Blue] Daiwa Scarlet",
-    "isGlobal": true,
+    "name_en": "[Peak Blue] ダイワスカーレット",
+    "isGlobal": false,
+    "activeUniqueSkillId": 100091,
     "image": "/images/umas/100901.png"
   },
   {
     "id": "100301",
     "characterId": "1003",
     "name_jp": "[トップ・オブ・ジョイフル]トウカイテイオー",
-    "name_en": "[Peak Joy] Tokai Teio",
-    "isGlobal": true,
+    "name_en": "[Peak Joy] トウカイテイオー",
+    "isGlobal": false,
+    "activeUniqueSkillId": 100031,
     "image": "/images/umas/100301.png"
   },
   {
     "id": "106001",
     "characterId": "1060",
     "name_jp": "[ポインセチア・リボン]ナイスネイチャ",
-    "name_en": "[Poinsettia Ribbon] Nice Nature",
-    "isGlobal": true,
+    "name_en": "[Poinsettia Ribbon] ナイスネイチャ",
+    "isGlobal": false,
+    "activeUniqueSkillId": 100601,
     "image": "/images/umas/106001.png"
   },
   {
@@ -702,40 +743,52 @@
     "name_jp": "[Prism]ケイエスミラクル",
     "name_en": "[Prism] ケイエスミラクル",
     "isGlobal": false,
-    "name_en_community": "[Prism] K.S.Miracle",
+    "activeUniqueSkillId": 100931,
     "image": "/images/umas/109301.png"
   },
   {
     "id": "101802",
     "characterId": "1018",
     "name_jp": "[クエルクス・キウィーリス]エアグルーヴ",
-    "name_en": "[Quercus Civilis] Air Groove",
-    "isGlobal": true,
+    "name_en": "[Quercus Civilis] エアグルーヴ",
+    "isGlobal": false,
+    "activeUniqueSkillId": 110181,
     "image": "/images/umas/101802.png"
   },
   {
     "id": "100702",
     "characterId": "1007",
     "name_jp": "[RUN！乱！ランチャー！！]ゴールドシップ",
-    "name_en": "[RUN！乱！ランチャー！！] Gold Ship",
+    "name_en": "[RUN！乱！ランチャー！！] ゴールドシップ",
     "isGlobal": false,
-    "name_en_community": "[RUN! Riot! Launcher!!] Gold Ship",
+    "activeUniqueSkillId": 110071,
     "image": "/images/umas/100702.png"
   },
   {
     "id": "106002",
     "characterId": "1060",
     "name_jp": "[RUN＆WIN]ナイスネイチャ",
-    "name_en": "[RUN＆WIN] Nice Nature",
+    "name_en": "[RUN＆WIN] ナイスネイチャ",
     "isGlobal": false,
+    "activeUniqueSkillId": 110601,
     "image": "/images/umas/106002.png"
+  },
+  {
+    "id": "108101",
+    "characterId": "1081",
+    "name_jp": "[Red Devil Gear]エスポワールシチー",
+    "name_en": "[Red Devil Gear] エスポワールシチー",
+    "isGlobal": false,
+    "activeUniqueSkillId": 100811,
+    "image": "/images/umas/108101.png"
   },
   {
     "id": "100701",
     "characterId": "1007",
     "name_jp": "[レッドストライフ]ゴールドシップ",
-    "name_en": "[Red Strife] Gold Ship",
-    "isGlobal": true,
+    "name_en": "[Red Strife] ゴールドシップ",
+    "isGlobal": false,
+    "activeUniqueSkillId": 100071,
     "image": "/images/umas/100701.png"
   },
   {
@@ -744,15 +797,16 @@
     "name_jp": "[Red in Black]ドゥラメンテ",
     "name_en": "[Red in Black] ドゥラメンテ",
     "isGlobal": false,
-    "name_en_community": "[Red in Black] Duramente",
+    "activeUniqueSkillId": 101081,
     "image": "/images/umas/110801.png"
   },
   {
     "id": "102001",
     "characterId": "1020",
     "name_jp": "[あおぐもサミング]セイウンスカイ",
-    "name_en": "[Reeling in the Big One] Seiun Sky",
-    "isGlobal": true,
+    "name_en": "[Reeling in the Big One] セイウンスカイ",
+    "isGlobal": false,
+    "activeUniqueSkillId": 100201,
     "image": "/images/umas/102001.png"
   },
   {
@@ -761,24 +815,25 @@
     "name_jp": "[Regina dei fiori]ジェンティルドンナ",
     "name_en": "[Regina dei fiori] ジェンティルドンナ",
     "isGlobal": false,
-    "name_en_community": "[Regina dei fiori] Gentildonna",
+    "activeUniqueSkillId": 101161,
     "image": "/images/umas/111601.png"
   },
   {
     "id": "103703",
     "characterId": "1037",
     "name_jp": "[Reines Plätschern]エイシンフラッシュ",
-    "name_en": "[Reines Plätschern] Eishin Flash",
+    "name_en": "[Reines Plätschern] エイシンフラッシュ",
     "isGlobal": false,
-    "name_en_community": "[Pure Splashing] Eishin Flash",
+    "activeUniqueSkillId": 120371,
     "image": "/images/umas/103703.png"
   },
   {
     "id": "105601",
     "characterId": "1056",
     "name_jp": "[運気上昇☆幸福万来]マチカネフクキタル",
-    "name_en": "[Rising☆Fortune] Matikanefukukitaru",
-    "isGlobal": true,
+    "name_en": "[Rising☆Fortune] マチカネフクキタル",
+    "isGlobal": false,
+    "activeUniqueSkillId": 100561,
     "image": "/images/umas/105601.png"
   },
   {
@@ -787,23 +842,25 @@
     "name_jp": "[Rocket☆Star]シーキングザパール",
     "name_en": "[Rocket☆Star] シーキングザパール",
     "isGlobal": false,
-    "name_en_community": "[Rocket☆Star] Seeking the Pearl",
+    "activeUniqueSkillId": 100421,
     "image": "/images/umas/104201.png"
   },
   {
     "id": "103001",
     "characterId": "1030",
     "name_jp": "[ローゼスドリーム]ライスシャワー",
-    "name_en": "[Rosy Dreams] Rice Shower",
-    "isGlobal": true,
+    "name_en": "[Rosy Dreams] ライスシャワー",
+    "isGlobal": false,
+    "activeUniqueSkillId": 100301,
     "image": "/images/umas/103001.png"
   },
   {
     "id": "101102",
     "characterId": "1011",
     "name_jp": "[セイントジェード・ヒーラー]グラスワンダー",
-    "name_en": "[Saintly Jade Cleric ] Grass Wonder",
-    "isGlobal": true,
+    "name_en": "[Saintly Jade Cleric] グラスワンダー",
+    "isGlobal": false,
+    "activeUniqueSkillId": 110111,
     "image": "/images/umas/101102.png"
   },
   {
@@ -812,39 +869,43 @@
     "name_jp": "[Saisir le rêve]サクラローレル",
     "name_en": "[Saisir le rêve] サクラローレル",
     "isGlobal": false,
-    "name_en_community": "[Saisir le rêve] Sakura Laurel",
+    "activeUniqueSkillId": 100761,
     "image": "/images/umas/107601.png"
   },
   {
     "id": "102401",
     "characterId": "1024",
     "name_jp": "[すくらんぶる☆ゾーン]マヤノトップガン",
-    "name_en": "[Scramble☆Zone] Mayano Top Gun",
-    "isGlobal": true,
+    "name_en": "[Scramble☆Zone] マヤノトップガン",
+    "isGlobal": false,
+    "activeUniqueSkillId": 100241,
     "image": "/images/umas/102401.png"
   },
   {
     "id": "100501",
     "characterId": "1005",
     "name_jp": "[シューティンスタァ・ルヴュ]フジキセキ",
-    "name_en": "[Shooting Star Revue] Fuji Kiseki",
-    "isGlobal": true,
+    "name_en": "[Shooting Star Revue] フジキセキ",
+    "isGlobal": false,
+    "activeUniqueSkillId": 100051,
     "image": "/images/umas/100501.png"
   },
   {
     "id": "100101",
     "characterId": "1001",
     "name_jp": "[スペシャルドリーマー]スペシャルウィーク",
-    "name_en": "[Special Dreamer] Special Week",
-    "isGlobal": true,
+    "name_en": "[Special Dreamer] スペシャルウィーク",
+    "isGlobal": false,
+    "activeUniqueSkillId": 100011,
     "image": "/images/umas/100101.png"
   },
   {
     "id": "100601",
     "characterId": "1006",
     "name_jp": "[スターライトビート]オグリキャップ",
-    "name_en": "[Starlight Beat] Oguri Cap",
-    "isGlobal": true,
+    "name_en": "[Starlight Beat] オグリキャップ",
+    "isGlobal": false,
+    "activeUniqueSkillId": 100061,
     "image": "/images/umas/100601.png"
   },
   {
@@ -853,15 +914,16 @@
     "name_jp": "[Starry Nocturne]アドマイヤベガ",
     "name_en": "[Starry Nocturne] アドマイヤベガ",
     "isGlobal": false,
-    "name_en_community": "[Starry Nocturne] Admire Vega",
+    "activeUniqueSkillId": 100331,
     "image": "/images/umas/103301.png"
   },
   {
     "id": "101101",
     "characterId": "1011",
     "name_jp": "[岩穿つ青]グラスワンダー",
-    "name_en": "[Stone-Piercing Blue] Grass Wonder",
-    "isGlobal": true,
+    "name_en": "[Stone-Piercing Blue] グラスワンダー",
+    "isGlobal": false,
+    "activeUniqueSkillId": 100111,
     "image": "/images/umas/101101.png"
   },
   {
@@ -870,15 +932,16 @@
     "name_jp": "[Sugary Wind]ヤマニンゼファー",
     "name_en": "[Sugary Wind] ヤマニンゼファー",
     "isGlobal": false,
-    "name_en_community": "[Sugary Wind] Yamanin Zephyr",
+    "activeUniqueSkillId": 110781,
     "image": "/images/umas/107802.png"
   },
   {
     "id": "102402",
     "characterId": "1024",
     "name_jp": "[サンライト・ブーケ]マヤノトップガン",
-    "name_en": "[Sunlight Bouquet] Mayano Top Gun",
-    "isGlobal": true,
+    "name_en": "[Sunlight Bouquet] マヤノトップガン",
+    "isGlobal": false,
+    "activeUniqueSkillId": 110241,
     "image": "/images/umas/102402.png"
   },
   {
@@ -887,7 +950,7 @@
     "name_jp": "[Sweet Juneberry]ニシノフラワー",
     "name_en": "[Sweet Juneberry] ニシノフラワー",
     "isGlobal": false,
-    "name_en_community": "[Sweet Juneberry] Nishino Flower",
+    "activeUniqueSkillId": 110511,
     "image": "/images/umas/105102.png"
   },
   {
@@ -896,7 +959,7 @@
     "name_jp": "[Tap! Tap! Tap!]タップダンスシチー",
     "name_en": "[Tap! Tap! Tap!] タップダンスシチー",
     "isGlobal": false,
-    "name_en_community": "[Tap! Tap! Tap!] Tap Dance City",
+    "activeUniqueSkillId": 111071,
     "image": "/images/umas/110702.png"
   },
   {
@@ -905,7 +968,7 @@
     "name_jp": "[The Proud Road]ナリタトップロード",
     "name_en": "[The Proud Road] ナリタトップロード",
     "isGlobal": false,
-    "name_en_community": "[The Proud Road] Narita Top Road",
+    "activeUniqueSkillId": 100771,
     "image": "/images/umas/107701.png"
   },
   {
@@ -914,15 +977,16 @@
     "name_jp": "[Titania]ファインモーション",
     "name_en": "[Titania] ファインモーション",
     "isGlobal": false,
-    "name_en_community": "[Titania] Fine Motion",
+    "activeUniqueSkillId": 110221,
     "image": "/images/umas/102202.png"
   },
   {
     "id": "105801",
     "characterId": "1058",
     "name_jp": "[ブルー/レイジング]メイショウドトウ",
-    "name_en": "[Turbulent Blue] Meisho Doto",
-    "isGlobal": true,
+    "name_en": "[Turbulent Blue] メイショウドトウ",
+    "isGlobal": false,
+    "activeUniqueSkillId": 100581,
     "image": "/images/umas/105801.png"
   },
   {
@@ -931,7 +995,7 @@
     "name_jp": "[Twinbell Queen]シーザリオ",
     "name_en": "[Twinbell Queen] シーザリオ",
     "isGlobal": false,
-    "name_en_community": "[Twinbell Queen] Cesario",
+    "activeUniqueSkillId": 111101,
     "image": "/images/umas/111002.png"
   },
   {
@@ -940,7 +1004,7 @@
     "name_jp": "[Ultra☆Marine]バンブーメモリー",
     "name_en": "[Ultra☆Marine] バンブーメモリー",
     "isGlobal": false,
-    "name_en_community": "[Ultra☆Marine] Bamboo Memory",
+    "activeUniqueSkillId": 110531,
     "image": "/images/umas/105302.png"
   },
   {
@@ -949,7 +1013,7 @@
     "name_jp": "[Universe-Naut]ネオユニヴァース",
     "name_en": "[Universe-Naut] ネオユニヴァース",
     "isGlobal": false,
-    "name_en_community": "[Universe-Naut] Neo Universe",
+    "activeUniqueSkillId": 101051,
     "image": "/images/umas/110501.png"
   },
   {
@@ -958,7 +1022,7 @@
     "name_jp": "[Untouchable Eden]メジロラモーヌ",
     "name_en": "[Untouchable Eden] メジロラモーヌ",
     "isGlobal": false,
-    "name_en_community": "[Untouchable Eden] Mejiro Ramonu",
+    "activeUniqueSkillId": 110861,
     "image": "/images/umas/108602.png"
   },
   {
@@ -967,7 +1031,7 @@
     "name_jp": "[Voyage étincelant]ヴィブロス",
     "name_en": "[Voyage étincelant] ヴィブロス",
     "isGlobal": false,
-    "name_en_community": "[Voyage étincelant] Viblos",
+    "activeUniqueSkillId": 100911,
     "image": "/images/umas/109101.png"
   },
   {
@@ -976,23 +1040,25 @@
     "name_jp": "[Wicked Punk]シンコウウインディ",
     "name_en": "[Wicked Punk] シンコウウインディ",
     "isGlobal": false,
-    "name_en_community": "[Wicked Punk] Shinko Windy",
+    "activeUniqueSkillId": 100431,
     "image": "/images/umas/104301.png"
   },
   {
     "id": "101001",
     "characterId": "1010",
     "name_jp": "[ワイルド・フロンティア]タイキシャトル",
-    "name_en": "[Wild Frontier] Taiki Shuttle",
-    "isGlobal": true,
+    "name_en": "[Wild Frontier] タイキシャトル",
+    "isGlobal": false,
+    "activeUniqueSkillId": 100101,
     "image": "/images/umas/101001.png"
   },
   {
     "id": "100801",
     "characterId": "1008",
     "name_jp": "[ワイルドトップギア]ウオッカ",
-    "name_en": "[Wild Top Gear] Vodka",
-    "isGlobal": true,
+    "name_en": "[Wild Top Gear] ウオッカ",
+    "isGlobal": false,
+    "activeUniqueSkillId": 100081,
     "image": "/images/umas/100801.png"
   },
   {
@@ -1001,15 +1067,16 @@
     "name_jp": "[With a Twist]タニノギムレット",
     "name_en": "[With a Twist] タニノギムレット",
     "isGlobal": false,
-    "name_en_community": "[With a Twist] Tanino Gimlet",
+    "activeUniqueSkillId": 110841,
     "image": "/images/umas/108402.png"
   },
   {
     "id": "103003",
     "characterId": "1030",
     "name_jp": "[Yummy Dreamy Fairy]ライスシャワー",
-    "name_en": "[Yummy Dreamy Fairy] Rice Shower",
+    "name_en": "[Yummy Dreamy Fairy] ライスシャワー",
     "isGlobal": false,
+    "activeUniqueSkillId": 120301,
     "image": "/images/umas/103003.png"
   },
   {
@@ -1018,23 +1085,25 @@
     "name_jp": "[ZOKU-ZOKU GIZMO]トランセンド",
     "name_en": "[ZOKU-ZOKU GIZMO] トランセンド",
     "isGlobal": false,
-    "name_en_community": "[ZOKU-ZOKU GIZMO] Transcend",
+    "activeUniqueSkillId": 100801,
     "image": "/images/umas/108001.png"
   },
   {
     "id": "102301",
     "characterId": "1023",
     "name_jp": "[pf.Victory formula...]ビワハヤヒデ",
-    "name_en": "[pf. Winning Equation...] Biwa Hayahide",
-    "isGlobal": true,
+    "name_en": "[pf. Winning Equation...] ビワハヤヒデ",
+    "isGlobal": false,
+    "activeUniqueSkillId": 100231,
     "image": "/images/umas/102301.png"
   },
   {
     "id": "103201",
     "characterId": "1032",
     "name_jp": "[tach-nology]アグネスタキオン",
-    "name_en": "[tach-nology] Agnes Tachyon",
-    "isGlobal": true,
+    "name_en": "[tach-nology] アグネスタキオン",
+    "isGlobal": false,
+    "activeUniqueSkillId": 100321,
     "image": "/images/umas/103201.png"
   },
   {
@@ -1043,7 +1112,7 @@
     "name_jp": "[unsigned]エアシャカール",
     "name_en": "[unsigned] エアシャカール",
     "isGlobal": false,
-    "name_en_community": "[unsigned] Air Shakur",
+    "activeUniqueSkillId": 100361,
     "image": "/images/umas/103601.png"
   },
   {
@@ -1052,15 +1121,16 @@
     "name_jp": "[Éclat d'été]ヴィブロス",
     "name_en": "[Éclat d'été] ヴィブロス",
     "isGlobal": false,
-    "name_en_community": "[Éclat d'été] Viblos",
+    "activeUniqueSkillId": 110911,
     "image": "/images/umas/109102.png"
   },
   {
     "id": "103203",
     "characterId": "1032",
     "name_jp": "[Σ Experiment]アグネスタキオン",
-    "name_en": "[Σ Experiment] Agnes Tachyon",
+    "name_en": "[Σ Experiment] アグネスタキオン",
     "isGlobal": false,
+    "activeUniqueSkillId": 120321,
     "image": "/images/umas/103203.png"
   },
   {
@@ -1069,16 +1139,16 @@
     "name_jp": "[☆キラ★ドキ☆ワク∞マベ∞]マーベラスサンデー",
     "name_en": "[☆キラ★ドキ☆ワク∞マベ∞] マーベラスサンデー",
     "isGlobal": false,
-    "name_en_community": "[☆Sparkle★Thump☆Excited∞Marvelous∞] Marvelous Sunday",
+    "activeUniqueSkillId": 100551,
     "image": "/images/umas/105501.png"
   },
   {
     "id": "101303",
     "characterId": "1013",
     "name_jp": "[さざ波フェアレディ]メジロマックイーン",
-    "name_en": "[さざ波フェアレディ] Mejiro McQueen",
+    "name_en": "[さざ波フェアレディ] メジロマックイーン",
     "isGlobal": false,
-    "name_en_community": "[Rippling Fairlady] Mejiro McQueen",
+    "activeUniqueSkillId": 120131,
     "image": "/images/umas/101303.png"
   },
   {
@@ -1087,7 +1157,7 @@
     "name_jp": "[すまいる・まい・うぇい！]グランアレグリア",
     "name_en": "[すまいる・まい・うぇい！] グランアレグリア",
     "isGlobal": false,
-    "name_en_community": "[Smile My Way!] Gran Alegria",
+    "activeUniqueSkillId": 101311,
     "image": "/images/umas/113101.png"
   },
   {
@@ -1096,7 +1166,7 @@
     "name_jp": "[ぱんぱかティルトット]マチカネタンホイザ",
     "name_en": "[ぱんぱかティルトット] マチカネタンホイザ",
     "isGlobal": false,
-    "name_en_community": "[Fanfare Tilt-Trot] Matikanetannhauser",
+    "activeUniqueSkillId": 100621,
     "image": "/images/umas/106201.png"
   },
   {
@@ -1105,7 +1175,7 @@
     "name_jp": "[みらくるめーくあっぷ！]ヒシミラクル",
     "name_en": "[みらくるめーくあっぷ！] ヒシミラクル",
     "isGlobal": false,
-    "name_en_community": "[Miracle Make-Up!] Hishi Miracle",
+    "activeUniqueSkillId": 101061,
     "image": "/images/umas/110601.png"
   },
   {
@@ -1114,16 +1184,16 @@
     "name_jp": "[めんこいめんこいむつのはな]ユキノビジン",
     "name_en": "[めんこいめんこいむつのはな] ユキノビジン",
     "isGlobal": false,
-    "name_en_community": "[Cute, Cute Flower of Mutsu] Yukino Bijin",
+    "activeUniqueSkillId": 100291,
     "image": "/images/umas/102901.png"
   },
   {
     "id": "102403",
     "characterId": "1024",
     "name_jp": "[ろっきん☆MewMeow]マヤノトップガン",
-    "name_en": "[ろっきん☆MewMeow] Mayano Top Gun",
+    "name_en": "[ろっきん☆MewMeow] マヤノトップガン",
     "isGlobal": false,
-    "name_en_community": "[Rockin'☆MewMeow] Mayano Top Gun",
+    "activeUniqueSkillId": 120241,
     "image": "/images/umas/102403.png"
   },
   {
@@ -1132,7 +1202,7 @@
     "name_jp": "[オニキス・ライン]メジロラモーヌ",
     "name_en": "[オニキス・ライン] メジロラモーヌ",
     "isGlobal": false,
-    "name_en_community": "[Onyx Line] Mejiro Ramonu",
+    "activeUniqueSkillId": 100861,
     "image": "/images/umas/108601.png"
   },
   {
@@ -1141,16 +1211,16 @@
     "name_jp": "[オールタイム・フィーバー]アイネスフウジン",
     "name_en": "[オールタイム・フィーバー] アイネスフウジン",
     "isGlobal": false,
-    "name_en_community": "[All-Time Fever] Ines Fujin",
+    "activeUniqueSkillId": 100311,
     "image": "/images/umas/103101.png"
   },
   {
     "id": "100602",
     "characterId": "1006",
     "name_jp": "[キセキの白星]オグリキャップ",
-    "name_en": "[キセキの白星] Oguri Cap",
+    "name_en": "[キセキの白星] オグリキャップ",
     "isGlobal": false,
-    "name_en_community": "[Miraculous Victory] Oguri Cap",
+    "activeUniqueSkillId": 110061,
     "image": "/images/umas/100602.png"
   },
   {
@@ -1159,34 +1229,34 @@
     "name_jp": "[クリノクロア・ライン]メジロアルダン",
     "name_en": "[クリノクロア・ライン] メジロアルダン",
     "isGlobal": false,
-    "name_en_community": "[Clinochlore Line] Mejiro Ardan",
+    "activeUniqueSkillId": 100711,
     "image": "/images/umas/107101.png"
   },
   {
     "id": "103702",
     "characterId": "1037",
     "name_jp": "[コレクト・ショコラティエ]エイシンフラッシュ",
-    "name_en": "[コレクト・ショコラティエ] Eishin Flash",
+    "name_en": "[コレクト・ショコラティエ] エイシンフラッシュ",
     "isGlobal": false,
-    "name_en_community": "[Collect Chocolatier] Eishin Flash",
+    "activeUniqueSkillId": 110371,
     "image": "/images/umas/103702.png"
   },
   {
     "id": "104502",
     "characterId": "1045",
     "name_jp": "[シフォンリボンマミー]スーパークリーク",
-    "name_en": "[シフォンリボンマミー] Super Creek",
+    "name_en": "[シフォンリボンマミー] スーパークリーク",
     "isGlobal": false,
-    "name_en_community": "[Chiffon Ribbon Mummy] Super Creek",
+    "activeUniqueSkillId": 110451,
     "image": "/images/umas/104502.png"
   },
   {
     "id": "100502",
     "characterId": "1005",
     "name_jp": "[シュクセ・エトワーレ]フジキセキ",
-    "name_en": "[シュクセ・エトワーレ] Fuji Kiseki",
+    "name_en": "[シュクセ・エトワーレ] フジキセキ",
     "isGlobal": false,
-    "name_en_community": "[Succès Étoilé] Fuji Kiseki",
+    "activeUniqueSkillId": 110051,
     "image": "/images/umas/100502.png"
   },
   {
@@ -1195,7 +1265,7 @@
     "name_jp": "[シュヴァリエ・ブル]サトノダイヤモンド",
     "name_en": "[シュヴァリエ・ブル] サトノダイヤモンド",
     "isGlobal": false,
-    "name_en_community": "[Chevalier Bleu] Satono Diamond",
+    "activeUniqueSkillId": 120671,
     "image": "/images/umas/106703.png"
   },
   {
@@ -1204,16 +1274,16 @@
     "name_jp": "[スター・ライト・シップ]ホッコータルマエ",
     "name_en": "[スター・ライト・シップ] ホッコータルマエ",
     "isGlobal": false,
-    "name_en_community": "[Star Light Ship] Hokko Tarumae",
+    "activeUniqueSkillId": 100991,
     "image": "/images/umas/109901.png"
   },
   {
     "id": "102002",
     "characterId": "1020",
     "name_jp": "[ソワレ・ド・シャトン]セイウンスカイ",
-    "name_en": "[ソワレ・ド・シャトン] Seiun Sky",
+    "name_en": "[ソワレ・ド・シャトン] セイウンスカイ",
     "isGlobal": false,
-    "name_en_community": "[Soirée de Chaton] Seiun Sky",
+    "activeUniqueSkillId": 110201,
     "image": "/images/umas/102002.png"
   },
   {
@@ -1222,7 +1292,7 @@
     "name_jp": "[ツイステッド・ライン]メジロドーベル",
     "name_en": "[ツイステッド・ライン] メジロドーベル",
     "isGlobal": false,
-    "name_en_community": "[Twisted Line] Mejiro Dober",
+    "activeUniqueSkillId": 100591,
     "image": "/images/umas/105901.png"
   },
   {
@@ -1231,16 +1301,16 @@
     "name_jp": "[ティアード・ペタル]ニシノフラワー",
     "name_en": "[ティアード・ペタル] ニシノフラワー",
     "isGlobal": false,
-    "name_en_community": "[Tiered Petal] Nishino Flower",
+    "activeUniqueSkillId": 100511,
     "image": "/images/umas/105101.png"
   },
   {
     "id": "105002",
     "characterId": "1050",
     "name_jp": "[ディファレンス・エンジニア]ナリタタイシン",
-    "name_en": "[ディファレンス・エンジニア] Narita Taishin",
+    "name_en": "[ディファレンス・エンジニア] ナリタタイシン",
     "isGlobal": false,
-    "name_en_community": "[Difference Engineer] Narita Taishin",
+    "activeUniqueSkillId": 110501,
     "image": "/images/umas/105002.png"
   },
   {
@@ -1249,25 +1319,25 @@
     "name_jp": "[ドラマティック・チュチュ]ウインバリアシオン",
     "name_en": "[ドラマティック・チュチュ] ウインバリアシオン",
     "isGlobal": false,
-    "name_en_community": "[Dramatic Tutu] Win Variation",
+    "activeUniqueSkillId": 101171,
     "image": "/images/umas/111701.png"
   },
   {
     "id": "106003",
     "characterId": "1060",
     "name_jp": "[ネガイノカサネ]ナイスネイチャ",
-    "name_en": "[ネガイノカサネ] Nice Nature",
+    "name_en": "[ネガイノカサネ] ナイスネイチャ",
     "isGlobal": false,
-    "name_en_community": "[Layers of Wishes] Nice Nature",
+    "activeUniqueSkillId": 120601,
     "image": "/images/umas/106003.png"
   },
   {
     "id": "102302",
     "characterId": "1023",
     "name_jp": "[ノエルージュ・キャロル]ビワハヤヒデ",
-    "name_en": "[ノエルージュ・キャロル] Biwa Hayahide",
+    "name_en": "[ノエルージュ・キャロル] ビワハヤヒデ",
     "isGlobal": false,
-    "name_en_community": "[Noël Rouge Carol] Biwa Hayahide",
+    "activeUniqueSkillId": 110231,
     "image": "/images/umas/102302.png"
   },
   {
@@ -1276,7 +1346,7 @@
     "name_jp": "[ハッピー・リトル・ノーツ]ヒシミラクル",
     "name_en": "[ハッピー・リトル・ノーツ] ヒシミラクル",
     "isGlobal": false,
-    "name_en_community": "[Happy Little Notes] Hishi Miracle",
+    "activeUniqueSkillId": 111061,
     "image": "/images/umas/110602.png"
   },
   {
@@ -1285,7 +1355,7 @@
     "name_jp": "[バカンス・サフィール]メジロドーベル",
     "name_en": "[バカンス・サフィール] メジロドーベル",
     "isGlobal": false,
-    "name_en_community": "[Vacances Saphir] Mejiro Dober",
+    "activeUniqueSkillId": 110591,
     "image": "/images/umas/105902.png"
   },
   {
@@ -1294,7 +1364,7 @@
     "name_jp": "[パステルマリン・ロコドル]ホッコータルマエ",
     "name_en": "[パステルマリン・ロコドル] ホッコータルマエ",
     "isGlobal": false,
-    "name_en_community": "[Pastel Marine Locodol] Hokko Tarumae",
+    "activeUniqueSkillId": 110991,
     "image": "/images/umas/109902.png"
   },
   {
@@ -1303,7 +1373,7 @@
     "name_jp": "[ブリュニサージュ・ライン]メジロブライト",
     "name_en": "[ブリュニサージュ・ライン] メジロブライト",
     "isGlobal": false,
-    "name_en_community": "[Brunissage Line] Mejiro Bright",
+    "activeUniqueSkillId": 100741,
     "image": "/images/umas/107401.png"
   },
   {
@@ -1312,7 +1382,7 @@
     "name_jp": "[ブルー・タービュランス]マチカネタンホイザ",
     "name_en": "[ブルー・タービュランス] マチカネタンホイザ",
     "isGlobal": false,
-    "name_en_community": "[Blue Turbulence] Matikanetannhauser",
+    "activeUniqueSkillId": 110621,
     "image": "/images/umas/106202.png"
   },
   {
@@ -1321,7 +1391,7 @@
     "name_jp": "[プラタナス・ウィッチ]スイープトウショウ",
     "name_en": "[プラタナス・ウィッチ] スイープトウショウ",
     "isGlobal": false,
-    "name_en_community": "[Platanus Witch] Sweep Tosho",
+    "activeUniqueSkillId": 100441,
     "image": "/images/umas/104401.png"
   },
   {
@@ -1330,7 +1400,7 @@
     "name_jp": "[プリンセス・オブ・ピンク]カワカミプリンセス",
     "name_en": "[プリンセス・オブ・ピンク] カワカミプリンセス",
     "isGlobal": false,
-    "name_en_community": "[Princess of Pink] Kawakami Princess",
+    "activeUniqueSkillId": 100391,
     "image": "/images/umas/103901.png"
   },
   {
@@ -1339,7 +1409,7 @@
     "name_jp": "[ボーノ☆アラモーダ]ヒシアケボノ",
     "name_en": "[ボーノ☆アラモーダ] ヒシアケボノ",
     "isGlobal": false,
-    "name_en_community": "[Buono☆A La Moda] Hishi Akebono",
+    "activeUniqueSkillId": 100281,
     "image": "/images/umas/102801.png"
   },
   {
@@ -1348,16 +1418,16 @@
     "name_jp": "[ポップス☆ジョーカー]トーセンジョーダン",
     "name_en": "[ポップス☆ジョーカー] トーセンジョーダン",
     "isGlobal": false,
-    "name_en_community": "[Pops☆Joker] Tosen Jordan",
+    "activeUniqueSkillId": 100481,
     "image": "/images/umas/104801.png"
   },
   {
     "id": "102702",
     "characterId": "1027",
     "name_jp": "[マーガレット・ラッテ]メジロライアン",
-    "name_en": "[マーガレット・ラッテ] Mejiro Ryan",
+    "name_en": "[マーガレット・ラッテ] メジロライアン",
     "isGlobal": false,
-    "name_en_community": "[Margaret Latte] Mejiro Ryan",
+    "activeUniqueSkillId": 110271,
     "image": "/images/umas/102702.png"
   },
   {
@@ -1366,7 +1436,7 @@
     "name_jp": "[リアライズ・ルーン]スイープトウショウ",
     "name_en": "[リアライズ・ルーン] スイープトウショウ",
     "isGlobal": false,
-    "name_en_community": "[Realize Rune] Sweep Tosho",
+    "activeUniqueSkillId": 110441,
     "image": "/images/umas/104402.png"
   },
   {
@@ -1375,34 +1445,34 @@
     "name_jp": "[リトモ・デッラ・テッラ]サウンズオブアース",
     "name_en": "[リトモ・デッラ・テッラ] サウンズオブアース",
     "isGlobal": false,
-    "name_en_community": "[Ritmo della Terra] Sounds of Earth",
+    "activeUniqueSkillId": 101021,
     "image": "/images/umas/110201.png"
   },
   {
     "id": "104603",
     "characterId": "1046",
     "name_jp": "[ルミナス☆トワラー]スマートファルコン",
-    "name_en": "[ルミナス☆トワラー] Smart Falcon",
+    "name_en": "[ルミナス☆トワラー] スマートファルコン",
     "isGlobal": false,
-    "name_en_community": "[Luminous☆Twirler] Smart Falcon",
+    "activeUniqueSkillId": 120461,
     "image": "/images/umas/104603.png"
   },
   {
     "id": "104102",
     "characterId": "1041",
     "name_jp": "[レッドホット☆リーダー]サクラバクシンオー",
-    "name_en": "[レッドホット☆リーダー] Sakura Bakushin O",
+    "name_en": "[レッドホット☆リーダー] サクラバクシンオー",
     "isGlobal": false,
-    "name_en_community": "[Red-Hot☆Leader] Sakura Bakushin O",
+    "activeUniqueSkillId": 110411,
     "image": "/images/umas/104102.png"
   },
   {
     "id": "100802",
     "characterId": "1008",
     "name_jp": "[不凍のアクア・ウィタエ]ウオッカ",
-    "name_en": "[不凍のアクア・ウィタエ] Vodka",
+    "name_en": "[不凍のアクア・ウィタエ] ウオッカ",
     "isGlobal": false,
-    "name_en_community": "[Unfrozen Aqua Vitae] Vodka",
+    "activeUniqueSkillId": 110081,
     "image": "/images/umas/100802.png"
   },
   {
@@ -1411,25 +1481,25 @@
     "name_jp": "[光彩陸離☆招福衣]コパノリッキー",
     "name_en": "[光彩陸離☆招福衣] コパノリッキー",
     "isGlobal": false,
-    "name_en_community": "[Dazzling Radiance☆Luck-Inviting Garb] Copano Rickey",
+    "activeUniqueSkillId": 110981,
     "image": "/images/umas/109802.png"
   },
   {
     "id": "105202",
     "characterId": "1052",
     "name_jp": "[初うらら♪さくさくら]ハルウララ",
-    "name_en": "[初うらら♪さくさくら] Haru Urara",
+    "name_en": "[初うらら♪さくさくら] ハルウララ",
     "isGlobal": false,
-    "name_en_community": "[First Lovely♪Blooming Cherry] Haru Urara",
+    "activeUniqueSkillId": 110521,
     "image": "/images/umas/105202.png"
   },
   {
     "id": "101502",
     "characterId": "1015",
     "name_jp": "[初晴・青き絢爛]テイエムオペラオー",
-    "name_en": "[初晴・青き絢爛] T.M. Opera O",
+    "name_en": "[初晴・青き絢爛] テイエムオペラオー",
     "isGlobal": false,
-    "name_en_community": "[First Clear Sky - Blue Splendor] T.M. Opera O",
+    "activeUniqueSkillId": 110151,
     "image": "/images/umas/101502.png"
   },
   {
@@ -1438,7 +1508,7 @@
     "name_jp": "[四白流星の襲]ヤエノムテキ",
     "name_en": "[四白流星の襲] ヤエノムテキ",
     "isGlobal": false,
-    "name_en_community": "[Layered Garb of Four White Meteors] Yaeno Muteki",
+    "activeUniqueSkillId": 100721,
     "image": "/images/umas/107201.png"
   },
   {
@@ -1447,7 +1517,7 @@
     "name_jp": "[夏凪ネイビードロップ]シュヴァルグラン",
     "name_en": "[夏凪ネイビードロップ] シュヴァルグラン",
     "isGlobal": false,
-    "name_en_community": "[Summer Calm Navy Drop] Cheval Grand",
+    "activeUniqueSkillId": 110891,
     "image": "/images/umas/108902.png"
   },
   {
@@ -1456,7 +1526,7 @@
     "name_jp": "[夢ノ金原]イナリワン",
     "name_en": "[夢ノ金原] イナリワン",
     "isGlobal": false,
-    "name_en_community": "[Golden Field of Dreams] Inari One",
+    "activeUniqueSkillId": 110341,
     "image": "/images/umas/103402.png"
   },
   {
@@ -1465,7 +1535,7 @@
     "name_jp": "[夢路のよすが]ドリームジャーニー",
     "name_en": "[夢路のよすが] ドリームジャーニー",
     "isGlobal": false,
-    "name_en_community": "[Reliance on a Dream Path] Dream Journey",
+    "activeUniqueSkillId": 101191,
     "image": "/images/umas/111901.png"
   },
   {
@@ -1474,7 +1544,7 @@
     "name_jp": "[志、高し、強し！]ツルマルツヨシ",
     "name_en": "[志、高し、強し！] ツルマルツヨシ",
     "isGlobal": false,
-    "name_en_community": "[High Aspirations, Strong Will!] Tsurumaru Tsuyoshi",
+    "activeUniqueSkillId": 100731,
     "image": "/images/umas/107301.png"
   },
   {
@@ -1483,16 +1553,16 @@
     "name_jp": "[愛麗♡キョンシー]アグネスデジタル",
     "name_en": "[愛麗♡キョンシー] アグネスデジタル",
     "isGlobal": false,
-    "name_en_community": "[Lovely♡Jiangshi] Agnes Digital",
+    "activeUniqueSkillId": 110191,
     "image": "/images/umas/101902.png"
   },
   {
     "id": "104503",
     "characterId": "1045",
     "name_jp": "[慈雨華影]スーパークリーク",
-    "name_en": "[慈雨華影] Super Creek",
+    "name_en": "[慈雨華影] スーパークリーク",
     "isGlobal": false,
-    "name_en_community": "[Merciful Rain, Flowery Shadow] Super Creek",
+    "activeUniqueSkillId": 120451,
     "image": "/images/umas/104503.png"
   },
   {
@@ -1501,16 +1571,16 @@
     "name_jp": "[日下開山・花あかり]サクラチヨノオー",
     "name_en": "[日下開山・花あかり] サクラチヨノオー",
     "isGlobal": false,
-    "name_en_community": "[Unrivaled Champion - Flower Lantern] Sakura Chiyono O",
+    "activeUniqueSkillId": 100691,
     "image": "/images/umas/106901.png"
   },
   {
     "id": "100103",
     "characterId": "1001",
     "name_jp": "[日之本一の総大将]スペシャルウィーク",
-    "name_en": "[日之本一の総大将] Special Week",
+    "name_en": "[日之本一の総大将] スペシャルウィーク",
     "isGlobal": false,
-    "name_en_community": "[The Greatest General of Japan] Special Week",
+    "activeUniqueSkillId": 120011,
     "image": "/images/umas/100103.png"
   },
   {
@@ -1519,16 +1589,16 @@
     "name_jp": "[晴島花麗]サトノクラウン",
     "name_en": "[晴島花麗] サトノクラウン",
     "isGlobal": false,
-    "name_en_community": "[Clear Island's Splendid Flower] Satono Crown",
+    "activeUniqueSkillId": 110881,
     "image": "/images/umas/108802.png"
   },
   {
     "id": "103802",
     "characterId": "1038",
     "name_jp": "[朔月のマ・シェリ]カレンチャン",
-    "name_en": "[朔月のマ・シェリ] Curren Chan",
+    "name_en": "[朔月のマ・シェリ] カレンチャン",
     "isGlobal": false,
-    "name_en_community": "[New Moon's Ma Chérie] Curren Chan",
+    "activeUniqueSkillId": 110381,
     "image": "/images/umas/103802.png"
   },
   {
@@ -1537,7 +1607,7 @@
     "name_jp": "[柳緑小夜]マンハッタンカフェ",
     "name_en": "[柳緑小夜] マンハッタンカフェ",
     "isGlobal": false,
-    "name_en_community": "[Willow-Green Night] Manhattan Cafe",
+    "activeUniqueSkillId": 110251,
     "image": "/images/umas/102502.png"
   },
   {
@@ -1546,7 +1616,7 @@
     "name_jp": "[死中求活]ナカヤマフェスタ",
     "name_en": "[死中求活] ナカヤマフェスタ",
     "isGlobal": false,
-    "name_en_community": "[Seeking Life in Death's Grasp] Nakayama Festa",
+    "activeUniqueSkillId": 100491,
     "image": "/images/umas/104901.png"
   },
   {
@@ -1555,16 +1625,16 @@
     "name_jp": "[水干撫子]カワカミプリンセス",
     "name_en": "[水干撫子] カワカミプリンセス",
     "isGlobal": false,
-    "name_en_community": "[Suikan Nadeshiko] Kawakami Princess",
+    "activeUniqueSkillId": 110391,
     "image": "/images/umas/103902.png"
   },
   {
     "id": "100202",
     "characterId": "1002",
     "name_jp": "[波間のエメラルド]サイレンススズカ",
-    "name_en": "[波間のエメラルド] Silence Suzuka",
+    "name_en": "[波間のエメラルド] サイレンススズカ",
     "isGlobal": false,
-    "name_en_community": "[Emerald Between the Waves] Silence Suzuka",
+    "activeUniqueSkillId": 110021,
     "image": "/images/umas/100202.png"
   },
   {
@@ -1573,7 +1643,7 @@
     "name_jp": "[清らに星澄むスノーロリィタ]メジロブライト",
     "name_en": "[清らに星澄むスノーロリィタ] メジロブライト",
     "isGlobal": false,
-    "name_en_community": "[Purely Star-Clear Snow Lolita] Mejiro Bright",
+    "activeUniqueSkillId": 110741,
     "image": "/images/umas/107402.png"
   },
   {
@@ -1582,7 +1652,7 @@
     "name_jp": "[溶けない砂糖菓子]アストンマーチャン",
     "name_en": "[溶けない砂糖菓子] アストンマーチャン",
     "isGlobal": false,
-    "name_en_community": "[Unmelting Sugar Candy] Aston Machan",
+    "activeUniqueSkillId": 110871,
     "image": "/images/umas/108702.png"
   },
   {
@@ -1591,7 +1661,7 @@
     "name_jp": "[爆走！ターボエンジン]ツインターボ",
     "name_en": "[爆走！ターボエンジン] ツインターボ",
     "isGlobal": false,
-    "name_en_community": "[Explosive Running! Turbo Engine] Twin Turbo",
+    "activeUniqueSkillId": 100661,
     "image": "/images/umas/106601.png"
   },
   {
@@ -1600,7 +1670,7 @@
     "name_jp": "[猛ル鳴神]タマモクロス",
     "name_en": "[猛ル鳴神] タマモクロス",
     "isGlobal": false,
-    "name_en_community": "[Raging Thunder God] Tamamo Cross",
+    "activeUniqueSkillId": 110211,
     "image": "/images/umas/102102.png"
   },
   {
@@ -1609,7 +1679,7 @@
     "name_jp": "[王者の喊声]ジャングルポケット",
     "name_en": "[王者の喊声] ジャングルポケット",
     "isGlobal": false,
-    "name_en_community": "[The Champion's War Cry] Jungle Pocket",
+    "activeUniqueSkillId": 100941,
     "image": "/images/umas/109401.png"
   },
   {
@@ -1618,7 +1688,7 @@
     "name_jp": "[疾風ペガサス・零式]ビコーペガサス",
     "name_en": "[疾風ペガサス・零式] ビコーペガサス",
     "isGlobal": false,
-    "name_en_community": "[Gale Pegasus - Type Zero] Biko Pegasus",
+    "activeUniqueSkillId": 100541,
     "image": "/images/umas/105401.png"
   },
   {
@@ -1627,7 +1697,7 @@
     "name_jp": "[疾風迅雷]タマモクロス",
     "name_en": "[疾風迅雷] タマモクロス",
     "isGlobal": false,
-    "name_en_community": "[Lightning Fast] Tamamo Cross",
+    "activeUniqueSkillId": 100211,
     "image": "/images/umas/102101.png"
   },
   {
@@ -1636,25 +1706,25 @@
     "name_jp": "[登竜之頂]カツラギエース",
     "name_en": "[登竜之頂] カツラギエース",
     "isGlobal": false,
-    "name_en_community": "[Peak of the Rising Dragon] Katsuragi Ace",
+    "activeUniqueSkillId": 101041,
     "image": "/images/umas/110401.png"
   },
   {
     "id": "106102",
     "characterId": "1061",
     "name_jp": "[白く気高き激励の装]キングヘイロー",
-    "name_en": "[白く気高き激励の装] King Halo",
+    "name_en": "[白く気高き激励の装] キングヘイロー",
     "isGlobal": false,
-    "name_en_community": "[The White and Noble Garb of Encouragement] King Halo",
+    "activeUniqueSkillId": 110611,
     "image": "/images/umas/106102.png"
   },
   {
     "id": "101702",
     "characterId": "1017",
     "name_jp": "[皓月の弓取り]シンボリルドルフ",
-    "name_en": "[皓月の弓取り] Symboli Rudolf",
+    "name_en": "[皓月の弓取り] シンボリルドルフ",
     "isGlobal": false,
-    "name_en_community": "[The White Moon's Archer] Symboli Rudolf",
+    "activeUniqueSkillId": 110171,
     "image": "/images/umas/101702.png"
   },
   {
@@ -1663,7 +1733,7 @@
     "name_jp": "[真実一路]カルストンライトオ",
     "name_en": "[真実一路] カルストンライトオ",
     "isGlobal": false,
-    "name_en_community": "[The Path of Truth] Calstone Light O",
+    "activeUniqueSkillId": 101201,
     "image": "/images/umas/112001.png"
   },
   {
@@ -1672,16 +1742,16 @@
     "name_jp": "[真打・慶鶴之志]キタサンブラック",
     "name_en": "[真打・慶鶴之志] キタサンブラック",
     "isGlobal": false,
-    "name_en_community": "[Headliner - Vow of the Auspicious Crane] Kitasan Black",
+    "activeUniqueSkillId": 110681,
     "image": "/images/umas/106802.png"
   },
   {
     "id": "100403",
     "characterId": "1004",
     "name_jp": "[祝ひ寿ぐ神速天女]マルゼンスキー",
-    "name_en": "[祝ひ寿ぐ神速天女] Maruzensky",
+    "name_en": "[祝ひ寿ぐ神速天女] マルゼンスキー",
     "isGlobal": false,
-    "name_en_community": "[The God-Speed Celestial Maiden of Celebration] Maruzensky",
+    "activeUniqueSkillId": 120041,
     "image": "/images/umas/100403.png"
   },
   {
@@ -1690,16 +1760,16 @@
     "name_jp": "[秋日色アンダンテ]ケイエスミラクル",
     "name_en": "[秋日色アンダンテ] ケイエスミラクル",
     "isGlobal": false,
-    "name_en_community": "[Autumn-Colored Andante] K.S.Miracle",
+    "activeUniqueSkillId": 110931,
     "image": "/images/umas/109302.png"
   },
   {
     "id": "104002",
     "characterId": "1040",
     "name_jp": "[秋桜ダンツァトリーチェ]ゴールドシチー",
-    "name_en": "[秋桜ダンツァトリーチェ] Gold City",
+    "name_en": "[秋桜ダンツァトリーチェ] ゴールドシチー",
     "isGlobal": false,
-    "name_en_community": "[Cosmos Danzatrice] Gold City",
+    "activeUniqueSkillId": 110401,
     "image": "/images/umas/104002.png"
   },
   {
@@ -1708,8 +1778,16 @@
     "name_jp": "[稲荷所縁江戸紫]イナリワン",
     "name_en": "[稲荷所縁江戸紫] イナリワン",
     "isGlobal": false,
-    "name_en_community": "[Inari-Connected Edo Purple] Inari One",
+    "activeUniqueSkillId": 100341,
     "image": "/images/umas/103401.png"
+  },
+  {
+    "id": "109501",
+    "characterId": "1095",
+    "name_jp": "[精粋]ビリーヴ",
+    "name_en": "[精粋] ビリーヴ",
+    "isGlobal": false,
+    "activeUniqueSkillId": 100951
   },
   {
     "id": "109601",
@@ -1717,16 +1795,16 @@
     "name_jp": "[紅色塗早駆具足]ノーリーズン",
     "name_en": "[紅色塗早駆具足] ノーリーズン",
     "isGlobal": false,
-    "name_en_community": "[Crimson-Lacquered Armor of Swiftness] No Reason",
+    "activeUniqueSkillId": 100961,
     "image": "/images/umas/109601.png"
   },
   {
     "id": "100303",
     "characterId": "1003",
     "name_jp": "[紫雲の夢見取り]トウカイテイオー",
-    "name_en": "[紫雲の夢見取り] Tokai Teio",
+    "name_en": "[紫雲の夢見取り] トウカイテイオー",
     "isGlobal": false,
-    "name_en_community": "[Dream-Seer of the Purple Clouds] Tokai Teio",
+    "activeUniqueSkillId": 120031,
     "image": "/images/umas/100303.png"
   },
   {
@@ -1735,7 +1813,7 @@
     "name_jp": "[結願のしまい華]キタサンブラック",
     "name_en": "[結願のしまい華] キタサンブラック",
     "isGlobal": false,
-    "name_en_community": "[The Final Bloom of Fulfillment] Kitasan Black",
+    "activeUniqueSkillId": 120681,
     "image": "/images/umas/106803.png"
   },
   {
@@ -1744,7 +1822,7 @@
     "name_jp": "[絢爛花道歌舞く君]ミスターシービー",
     "name_en": "[絢爛花道歌舞く君] ミスターシービー",
     "isGlobal": false,
-    "name_en_community": "[You Who Performs on the Dazzling Hanamichi] Mr. C.B.",
+    "activeUniqueSkillId": 110571,
     "image": "/images/umas/105702.png"
   },
   {
@@ -1753,16 +1831,16 @@
     "name_jp": "[緋想の誓衣]スティルインラブ",
     "name_en": "[緋想の誓衣] スティルインラブ",
     "isGlobal": false,
-    "name_en_community": "[Sacred Garb of Scarlet Vows] Still in Love",
+    "activeUniqueSkillId": 100971,
     "image": "/images/umas/109701.png"
   },
   {
     "id": "100902",
     "characterId": "1009",
     "name_jp": "[緋色のニュイ・エトワレ]ダイワスカーレット",
-    "name_en": "[緋色のニュイ・エトワレ] Daiwa Scarlet",
+    "name_en": "[緋色のニュイ・エトワレ] ダイワスカーレット",
     "isGlobal": false,
-    "name_en_community": "[Crimson Nuit Étoilée] Daiwa Scarlet",
+    "activeUniqueSkillId": 110091,
     "image": "/images/umas/100902.png"
   },
   {
@@ -1771,7 +1849,7 @@
     "name_jp": "[総攬]オルフェーヴル",
     "name_en": "[総攬] オルフェーヴル",
     "isGlobal": false,
-    "name_en_community": "[General Command] Orfevre",
+    "activeUniqueSkillId": 101151,
     "image": "/images/umas/111501.png"
   },
   {
@@ -1780,7 +1858,7 @@
     "name_jp": "[義心の黒焔]フェノーメノ",
     "name_en": "[義心の黒焔] フェノーメノ",
     "isGlobal": false,
-    "name_en_community": "[Black Flame of Righteousness] Fenomeno",
+    "activeUniqueSkillId": 101271,
     "image": "/images/umas/112701.png"
   },
   {
@@ -1789,7 +1867,7 @@
     "name_jp": "[花形・弥栄之翠]サトノダイヤモンド",
     "name_en": "[花形・弥栄之翠] サトノダイヤモンド",
     "isGlobal": false,
-    "name_en_community": "[Flower Shape - Prosperity's Green] Satono Diamond",
+    "activeUniqueSkillId": 110671,
     "image": "/images/umas/106702.png"
   },
   {
@@ -1798,7 +1876,7 @@
     "name_jp": "[茶の子雪ん子]ユキノビジン",
     "name_en": "[茶の子雪ん子] ユキノビジン",
     "isGlobal": false,
-    "name_en_community": "[Easy Peasy Snow-Child] Yukino Bijin",
+    "activeUniqueSkillId": 110291,
     "image": "/images/umas/102902.png"
   },
   {
@@ -1807,16 +1885,16 @@
     "name_jp": "[華麗なる紅玉]ダイイチルビー",
     "name_en": "[華麗なる紅玉] ダイイチルビー",
     "isGlobal": false,
-    "name_en_community": "[The Splendid Ruby] Daiichi Ruby",
+    "activeUniqueSkillId": 100851,
     "image": "/images/umas/108501.png"
   },
   {
     "id": "101103",
     "characterId": "1011",
     "name_jp": "[蒼炎の誉]グラスワンダー",
-    "name_en": "[蒼炎の誉] Grass Wonder",
+    "name_en": "[蒼炎の誉] グラスワンダー",
     "isGlobal": false,
-    "name_en_community": "[Honor of the Blue Flame] Grass Wonder",
+    "activeUniqueSkillId": 120111,
     "image": "/images/umas/101103.png"
   },
   {
@@ -1825,7 +1903,7 @@
     "name_jp": "[衣錦還郷の瑞星]フリオーソ",
     "name_en": "[衣錦還郷の瑞星] フリオーソ",
     "isGlobal": false,
-    "name_en_community": "[Auspicious Star of the Triumphant Return] Furioso",
+    "activeUniqueSkillId": 100791,
     "image": "/images/umas/107901.png"
   },
   {
@@ -1834,7 +1912,7 @@
     "name_jp": "[赤心のトナカイさん]メジロパーマー",
     "name_en": "[赤心のトナカイさん] メジロパーマー",
     "isGlobal": false,
-    "name_en_community": "[Mr. Sincere Reindeer] Mejiro Palmer",
+    "activeUniqueSkillId": 110641,
     "image": "/images/umas/106402.png"
   },
   {
@@ -1843,7 +1921,7 @@
     "name_jp": "[超特急！フルカラー特殊PP]アグネスデジタル",
     "name_en": "[超特急！フルカラー特殊PP] アグネスデジタル",
     "isGlobal": false,
-    "name_en_community": "[Super Express! Full-Color Special PP] Agnes Digital",
+    "activeUniqueSkillId": 100191,
     "image": "/images/umas/101901.png"
   },
   {
@@ -1852,16 +1930,16 @@
     "name_jp": "[身に纏うケラヴノス]タニノギムレット",
     "name_en": "[身に纏うケラヴノス] タニノギムレット",
     "isGlobal": false,
-    "name_en_community": "[Clad in Keraunos] Tanino Gimlet",
+    "activeUniqueSkillId": 100841,
     "image": "/images/umas/108401.png"
   },
   {
     "id": "105003",
     "characterId": "1050",
     "name_jp": "[迷光オーヴァライド]ナリタタイシン",
-    "name_en": "[迷光オーヴァライド] Narita Taishin",
+    "name_en": "[迷光オーヴァライド] ナリタタイシン",
     "isGlobal": false,
-    "name_en_community": "[Straylight Override] Narita Taishin",
+    "activeUniqueSkillId": 120501,
     "image": "/images/umas/105003.png"
   },
   {
@@ -1870,7 +1948,7 @@
     "name_jp": "[錦上・大判御輿]キタサンブラック",
     "name_en": "[錦上・大判御輿] キタサンブラック",
     "isGlobal": false,
-    "name_en_community": "[Brocade Top - Great Palanquin] Kitasan Black",
+    "activeUniqueSkillId": 100681,
     "image": "/images/umas/106801.png"
   },
   {
@@ -1879,7 +1957,7 @@
     "name_jp": "[陰陽八卦☆開運衣]コパノリッキー",
     "name_en": "[陰陽八卦☆開運衣] コパノリッキー",
     "isGlobal": false,
-    "name_en_community": "[Yin-Yang Bagua☆Good Fortune Garb] Copano Rickey",
+    "activeUniqueSkillId": 100981,
     "image": "/images/umas/109801.png"
   },
   {
@@ -1888,7 +1966,7 @@
     "name_jp": "[陸離の編纂者]クロノジェネシス",
     "name_en": "[陸離の編纂者] クロノジェネシス",
     "isGlobal": false,
-    "name_en_community": "[Compiler of Splendor] Chrono Genesis",
+    "activeUniqueSkillId": 101331,
     "image": "/images/umas/113301.png"
   },
   {
@@ -1897,25 +1975,25 @@
     "name_jp": "[雅号・墨龍]カツラギエース",
     "name_en": "[雅号・墨龍] カツラギエース",
     "isGlobal": false,
-    "name_en_community": "[Art-Name - Ink Dragon] Katsuragi Ace",
+    "activeUniqueSkillId": 111041,
     "image": "/images/umas/110402.png"
   },
   {
     "id": "101602",
     "characterId": "1016",
     "name_jp": "[餓狼]ナリタブライアン",
-    "name_en": "[餓狼] Narita Brian",
+    "name_en": "[餓狼] ナリタブライアン",
     "isGlobal": false,
-    "name_en_community": "[Hungry Wolf] Narita Brian",
+    "activeUniqueSkillId": 110161,
     "image": "/images/umas/101602.png"
   },
   {
     "id": "104602",
     "characterId": "1046",
     "name_jp": "[黄昏トライアンフ]スマートファルコン",
-    "name_en": "[黄昏トライアンフ] Smart Falcon",
+    "name_en": "[黄昏トライアンフ] スマートファルコン",
     "isGlobal": false,
-    "name_en_community": "[Twilight Triumph] Smart Falcon",
+    "activeUniqueSkillId": 110461,
     "image": "/images/umas/104602.png"
   },
   {
@@ -1924,7 +2002,7 @@
     "name_jp": "[黒将Zen]ヤエノムテキ",
     "name_en": "[黒将Zen] ヤエノムテキ",
     "isGlobal": false,
-    "name_en_community": "[Black General Zen] Yaeno Muteki",
+    "activeUniqueSkillId": 110721,
     "image": "/images/umas/107202.png"
   },
   {
@@ -1933,7 +2011,7 @@
     "name_jp": "[黒翠千里行]サトノクラウン",
     "name_en": "[黒翠千里行] サトノクラウン",
     "isGlobal": false,
-    "name_en_community": "[Black Jade's Thousand-League Journey] Satono Crown",
+    "activeUniqueSkillId": 100881,
     "image": "/images/umas/108801.png"
   },
   {
@@ -1942,7 +2020,7 @@
     "name_jp": "[黒鉄の大志]バンブーメモリー",
     "name_en": "[黒鉄の大志] バンブーメモリー",
     "isGlobal": false,
-    "name_en_community": "[Ambition of Black Iron] Bamboo Memory",
+    "activeUniqueSkillId": 100531,
     "image": "/images/umas/105301.png"
   }
 ]
