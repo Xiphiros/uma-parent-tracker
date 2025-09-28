@@ -30,7 +30,7 @@ interface SelectGrandparentModalProps {
 
 const SelectGrandparentModal = ({ isOpen, onClose, onSave, title, grandparentToEdit, excludedCharacterIds }: SelectGrandparentModalProps) => {
     const { t } = useTranslation(['modals', 'game', 'roster', 'common']);
-    const { masterUmaList, masterSkillList, dataDisplayLanguage, umaMapById, appData, skillMapByName } = useAppContext();
+    const { masterUmaListWithDisplayName, masterSkillList, dataDisplayLanguage, umaMapById, appData, skillMapByName, getUmaDisplayName } = useAppContext();
     const displayNameProp = dataDisplayLanguage === 'jp' ? 'name_jp' : 'name_en';
 
     const [selectionType, setSelectionType] = useState<'inventory' | 'manual'>('inventory');
@@ -86,22 +86,19 @@ const SelectGrandparentModal = ({ isOpen, onClose, onSave, title, grandparentToE
         }
     }, [isOpen, grandparentToEdit, appData.inventory, masterSkillList]);
 
-    const getDisplayName = (idOrName: string, type: 'uma' | 'skill') => {
-        if (type === 'skill') return skillMapByName.get(idOrName)?.[displayNameProp] || idOrName;
-        return umaMapById.get(idOrName)?.[displayNameProp] || idOrName;
-    };
+    const getSkillDisplayName = (name_en: string) => skillMapByName.get(name_en)?.[displayNameProp] || name_en;
 
     const previewData = useMemo(() => {
         if (selectionType === 'inventory' && selectedInventoryParent) {
             const uma = umaMapById.get(selectedInventoryParent.umaId);
-            return { image: uma?.image, name: getDisplayName(selectedInventoryParent.umaId, 'uma'), type: `Gen ${selectedInventoryParent.gen}` };
+            return { image: uma?.image, name: uma ? getUmaDisplayName(uma) : selectedInventoryParent.name, type: `Gen ${selectedInventoryParent.gen}` };
         }
         if (selectionType === 'manual' && manualData.umaId) {
             const uma = umaMapById.get(manualData.umaId);
-            return { image: uma?.image, name: getDisplayName(manualData.umaId, 'uma'), type: t('enterManually') };
+            return { image: uma?.image, name: uma ? getUmaDisplayName(uma) : 'Manual Entry', type: t('enterManually') };
         }
         return null;
-    }, [selectionType, selectedInventoryParent, manualData, umaMapById, getDisplayName, t]);
+    }, [selectionType, selectedInventoryParent, manualData, umaMapById, getUmaDisplayName, t]);
 
     const handleSave = () => {
         if (selectionType === 'inventory' && selectedInventoryParent) {
@@ -169,7 +166,7 @@ const SelectGrandparentModal = ({ isOpen, onClose, onSave, title, grandparentToE
                     </button>
                 ) : (
                     <div className="gp-selector__manual-card">
-                        <SearchableSelect items={masterUmaList} placeholder={t('selectUmaPlaceholder')} value={manualData.umaId ? getDisplayName(manualData.umaId, 'uma') : null} onSelect={(item) => setManualData(p => ({...p, umaId: (item as Uma).id}))} displayProp={displayNameProp} />
+                        <SearchableSelect items={masterUmaListWithDisplayName} placeholder={t('selectUmaPlaceholder')} value={manualData.umaId && umaMapById.get(manualData.umaId) ? getUmaDisplayName(umaMapById.get(manualData.umaId)!) : null} onSelect={(item) => setManualData(p => ({...p, umaId: (item as Uma).id}))} displayProp="displayName" />
                         <div className="grid grid-cols-2 gap-2">
                             <select className="form__input" value={manualData.blueSpark.type} onChange={e => setManualData(p => ({...p, blueSpark: {...p.blueSpark, type: e.target.value as BlueSpark['type']}}))}>
                                 {BLUE_SPARK_TYPES.map(type => <option key={type} value={type}>{t(type, { ns: 'game' })}</option>)}
@@ -197,7 +194,7 @@ const SelectGrandparentModal = ({ isOpen, onClose, onSave, title, grandparentToE
                             <div className="form__obtained-sparks-container">
                                 {manualData.whiteSparks.map(spark => (
                                     <div key={spark.name} className="spark-tag obtained-spark" data-spark-category="white">
-                                        {getDisplayName(spark.name, 'skill')} {formatStars(spark.stars)}
+                                        {getSkillDisplayName(spark.name)} {formatStars(spark.stars)}
                                         <button type="button" onClick={() => removeManualSpark('whiteSparks', spark.name)} className="obtained-spark__remove-btn">&times;</button>
                                     </div>
                                 ))}
