@@ -11,19 +11,34 @@ interface SettingsModalProps {
 
 const SettingsModal = ({ isOpen, onClose }: SettingsModalProps) => {
     const { t, i18n } = useTranslation(['settings', 'common']);
-    const { exportData, importData, deleteAllData, activeServer, setActiveServer, dataDisplayLanguage, setDataDisplayLanguage, changeUiLanguage } = useAppContext();
+    const { 
+        exportData, importData, deleteAllData, activeServer, setActiveServer, 
+        dataDisplayLanguage, setDataDisplayLanguage, changeUiLanguage,
+        isImportingLegacy, legacyImportError, setLegacyImportError, importLegacyData
+    } = useAppContext();
     
     const [isImportConfirmOpen, setImportConfirmOpen] = useState(false);
     const [isDeleteConfirmOpen, setDeleteConfirmOpen] = useState(false);
     const [fileToImport, setFileToImport] = useState<File | null>(null);
     const [errorMessage, setErrorMessage] = useState('');
     const fileInputRef = useRef<HTMLInputElement>(null);
+    const legacyFileInputRef = useRef<HTMLInputElement>(null);
 
     const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
         const file = event.target.files?.[0];
         if (file) {
             setFileToImport(file);
             setImportConfirmOpen(true);
+        }
+    };
+
+    const handleLegacyFileChange = (event: ChangeEvent<HTMLInputElement>) => {
+        const file = event.target.files?.[0];
+        if (file) {
+            importLegacyData(file);
+            if (legacyFileInputRef.current) {
+                legacyFileInputRef.current.value = '';
+            }
         }
     };
 
@@ -152,6 +167,23 @@ const SettingsModal = ({ isOpen, onClose }: SettingsModalProps) => {
                                         {t('deleteAllBtn')}
                                     </button>
                                 </div>
+                                {import.meta.env.DEV && (
+                                    <div className="border-t pt-4 mt-2">
+                                        <h5 className="form__section-title mb-2 text-amber-600 dark:text-amber-500">Dev-Only Tools</h5>
+                                        <label htmlFor="legacy-import-file" className={`button button--secondary w-full justify-center ${isImportingLegacy ? 'opacity-50 cursor-not-allowed' : ''}`}>
+                                            {isImportingLegacy ? 'Processing...' : 'Import from response_data.json'}
+                                        </label>
+                                        <input
+                                            type="file"
+                                            id="legacy-import-file"
+                                            ref={legacyFileInputRef}
+                                            className="visually-hidden"
+                                            accept="application/json"
+                                            onChange={handleLegacyFileChange}
+                                            disabled={isImportingLegacy}
+                                        />
+                                    </div>
+                                )}
                             </div>
                         </div>
                     </div>
@@ -190,6 +222,17 @@ const SettingsModal = ({ isOpen, onClose }: SettingsModalProps) => {
                 <p className="dialog-modal__message">{errorMessage}</p>
                 <div className="dialog-modal__footer">
                     <button className="button button--primary" onClick={() => setErrorMessage('')}>{t('common:ok')}</button>
+                </div>
+            </Modal>
+
+            <Modal
+                isOpen={!!legacyImportError}
+                onClose={() => setLegacyImportError(null)}
+                title="Legacy Import Error"
+            >
+                <p className="dialog-modal__message">{legacyImportError}</p>
+                <div className="dialog-modal__footer">
+                    <button className="button button--primary" onClick={() => setLegacyImportError(null)}>OK</button>
                 </div>
             </Modal>
         </>
