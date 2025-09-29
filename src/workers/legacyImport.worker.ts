@@ -165,21 +165,21 @@ self.onmessage = (e: MessageEvent<LegacyImportWorkerPayload>) => {
         const factorMap = createFactorMap(skillList);
         const umaMap = new Map(umaList.map(u => [u.id, u]));
         const trainedCharacters = (legacyData?.data?.trained_chara_array || []).sort((a: any, b: any) => a.trained_chara_id - b.trained_chara_id);
-        const ownedCharasMap = new Map(trainedCharacters.map((c: any) => [c.trained_chara_id, c]));
+        const ownedCharasMap = new Map<number, any>(trainedCharacters.map((c: any) => [c.trained_chara_id, c]));
 
         const processedParents = trainedCharacters
             .map((chara: any) => processTrainedCharacter(chara, factorMap, umaMap, ownedCharasMap))
             .filter((p): p is Parent => p !== null);
 
         const oldIdToNewIdMap = new Map<number, number>();
-        processedParents.forEach((parent, i) => {
+        processedParents.forEach((parent: Parent, i: number) => {
             const oldId = parent.id;
             const newId = ID_GENERATION_BASE + i;
             oldIdToNewIdMap.set(oldId, newId);
             parent.id = newId;
         });
 
-        const finalInventory = processedParents.map(parent => {
+        const finalInventory = processedParents.map((parent: Parent) => {
             const normalized = { ...parent };
             if (typeof normalized.grandparent1 === 'number' && oldIdToNewIdMap.has(normalized.grandparent1)) {
                 normalized.grandparent1 = oldIdToNewIdMap.get(normalized.grandparent1);
