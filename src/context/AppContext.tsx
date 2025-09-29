@@ -139,6 +139,9 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     let data: AppData | null = null;
     const savedData = localStorage.getItem(DB_KEY);
+    
+    // DEBUG: Log what's in localStorage on page load
+    console.log('[DEBUG] Loading from localStorage on init:', savedData);
 
     if (savedData) {
       try {
@@ -175,6 +178,8 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
         isInitialLoad.current = false;
         return;
     }
+    // DEBUG: Log the data being saved to localStorage
+    console.log('[DEBUG] Saving to localStorage:', appData);
     localStorage.setItem(DB_KEY, JSON.stringify(appData));
   }, [appData]);
 
@@ -310,6 +315,8 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
             
             worker.onmessage = (event: MessageEvent<LegacyImportWorkerResponse>) => {
                 if (event.data.type === 'success') {
+                    // DEBUG: Log the data received from the worker
+                    console.log('[DEBUG] Data received from worker:', event.data.data);
                     setAppData(event.data.data);
                     setActiveServer(event.data.data.activeServer);
                 } else {
