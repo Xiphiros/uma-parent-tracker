@@ -141,7 +141,7 @@ const createImportFileStructure = (inventory: Parent[]): AppData => {
         id: profileId,
         name: "Imported Parents",
         goal: { primaryBlue: [], secondaryBlue: [], primaryPink: [], uniqueWishlist: [], wishlist: [] },
-        roster: inventory.filter(p => !p.isBorrowed).map(p => p.id),
+        roster: inventory.filter((p: Parent) => !p.isBorrowed).map((p: Parent) => p.id),
         isPinned: false,
     };
 
@@ -169,7 +169,7 @@ self.onmessage = (e: MessageEvent<LegacyImportWorkerPayload>) => {
 
         const processedParents = trainedCharacters
             .map((chara: any) => processTrainedCharacter(chara, factorMap, umaMap, ownedCharasMap))
-            .filter((p): p is Parent => p !== null);
+            .filter((p: Parent | null): p is Parent => p !== null);
 
         const oldIdToNewIdMap = new Map<number, number>();
         processedParents.forEach((parent: Parent, i: number) => {
