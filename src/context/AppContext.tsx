@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect, ReactNode, useRef, useMemo, useCallback } from 'react';
-import { AppData, Profile, Skill, Uma, Goal, Parent, NewParentData, WishlistItem, Folder, IconName, ServerSpecificData, ValidationResult, BreedingPair, SkillPreset, ManualParentData } from '../types';
+import { AppData, Profile, Skill, Uma, Goal, Parent, NewParentData, WishlistItem, Folder, IconName, ServerSpecificData, ValidationResult, BreedingPair, SkillPreset, ManualParentData, LegacyImportWorkerPayload, LegacyImportWorkerResponse } from '../types';
 import masterSkillListJson from '../data/skill-list.json';
 import masterUmaListJson from '../data/uma-list.json';
 import affinityJpJson from '../data/affinity_jp.json';
@@ -94,6 +94,11 @@ interface AppContextType {
   addSkillPreset: (name: string, skillIds: number[]) => void;
   updateSkillPreset: (id: string, name: string, skillIds: number[]) => void;
   deleteSkillPreset: (id: string) => void;
+  // Dev-only legacy import
+  isImportingLegacy: boolean;
+  legacyImportError: string | null;
+  setLegacyImportError: (error: string | null) => void;
+  importLegacyData: (file: File) => void;
 }
 
 const AppContext = createContext<AppContextType | null>(null);
@@ -113,6 +118,8 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
 
   const [dataDisplayLanguage, setDataDisplayLanguageState] = useState<DataDisplayLanguage>('en');
   const [activeBreedingPair, setActiveBreedingPair] = useState<BreedingPair | null>(null);
+  const [isImportingLegacy, setIsImportingLegacy] = useState(false);
+  const [legacyImportError, setLegacyImportError] = useState<string | null>(null);
   
   const isInitialLoad = useRef(true);
 
@@ -289,6 +296,53 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
       reader.onerror = (error) => reject(error);
       reader.readAsText(file);
     });
+  };
+
+  const importLegacyData = (file: File) => {
+    setIsImportingLegacy(true);
+    setLegacyImportError(null);
+
+    const reader = new FileReader();
+    reader.onload = (e) => {
+        try {
+            const legacyData = JSON.parse(e.target?.result as string);
+            const worker = new Worker(new URL('../workers/legacyImport.worker.ts', import.meta.url), { type: 'module' });
+            
+            worker.onmessage = (event: MessageEvent<LegacyImportWorkerResponse>) => {
+                if (event.data.type === 'success') {
+                    setAppData(event.data.data);
+                    setActiveServer(event.data.data.activeServer);
+                } else {
+                    setLegacyImportError(event.data.message);
+                }
+                setIsImportingLegacy(false);
+                worker.terminate();
+            };
+
+            worker.onerror = (err) => {
+                setLegacyImportError(`Worker error: ${err.message}`);
+                setIsImportingLegacy(false);
+                worker.terminate();
+            };
+
+            const payload: LegacyImportWorkerPayload = {
+                legacyData,
+                skillList: masterSkillListJson as Skill[],
+                umaList: masterUmaListJson as Uma[],
+            };
+            worker.postMessage(payload);
+
+        } catch (error) {
+            const message = error instanceof Error ? error.message : 'Failed to read or parse file.';
+            setLegacyImportError(message);
+            setIsImportingLegacy(false);
+        }
+    };
+    reader.onerror = () => {
+        setLegacyImportError('Failed to read the selected file.');
+        setIsImportingLegacy(false);
+    };
+    reader.readAsText(file);
   };
 
   const deleteAllData = () => {
@@ -949,6 +1003,10 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
     addSkillPreset,
     updateSkillPreset,
     deleteSkillPreset,
+    isImportingLegacy,
+    legacyImportError,
+    setLegacyImportError,
+    importLegacyData,
   };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
