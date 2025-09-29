@@ -136,50 +136,47 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
     return { relationPoints: points, charaRelations: relations };
   }, [activeServer]);
 
+  // Single, consolidated initialization effect
   useEffect(() => {
-    let data: AppData | null = null;
+    let data: AppData;
     const savedData = localStorage.getItem(DB_KEY);
-    
-    // DEBUG: Log what's in localStorage on page load
-    console.log('[DEBUG] Loading from localStorage on init:', savedData);
 
     if (savedData) {
       try {
-          data = migrateData(JSON.parse(savedData));
+        data = migrateData(JSON.parse(savedData));
       } catch (e) {
-          console.error("Failed to parse or migrate saved data", e);
-          data = createDefaultState();
+        console.error("Failed to parse or migrate saved data", e);
+        data = createDefaultState();
       }
-    }
-    
-    if (!data || !data.serverData.jp.profiles || data.serverData.jp.profiles.length === 0) {
+    } else {
       data = createDefaultState();
     }
-    setAppData(data);
 
     const savedPreferences = localStorage.getItem(USER_PREFERENCES_KEY);
     if (savedPreferences) {
-        try {
-            const prefs = JSON.parse(savedPreferences);
-            if (data && prefs.activeServer) {
-                setAppData(d => ({ ...d, activeServer: prefs.activeServer }));
-            }
-            if (prefs.dataDisplayLanguage) setDataDisplayLanguageState(prefs.dataDisplayLanguage);
-        } catch (e) {
-            console.error("Failed to parse user preferences", e);
+      try {
+        const prefs = JSON.parse(savedPreferences);
+        if (prefs.activeServer) {
+          data.activeServer = prefs.activeServer; // Mutate the object before setting state
         }
+        if (prefs.dataDisplayLanguage) {
+          setDataDisplayLanguageState(prefs.dataDisplayLanguage);
+        }
+      } catch (e) {
+        console.error("Failed to parse user preferences", e);
+      }
     }
-
+    
+    setAppData(data);
     setLoading(false);
   }, []);
   
+  // Effect for saving data to localStorage
   useEffect(() => {
     if (isInitialLoad.current) {
         isInitialLoad.current = false;
         return;
     }
-    // DEBUG: Log the data being saved to localStorage
-    console.log('[DEBUG] Saving to localStorage:', appData);
     localStorage.setItem(DB_KEY, JSON.stringify(appData));
   }, [appData]);
 
@@ -315,8 +312,6 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
             
             worker.onmessage = (event: MessageEvent<LegacyImportWorkerResponse>) => {
                 if (event.data.type === 'success') {
-                    // DEBUG: Log the data received from the worker
-                    console.log('[DEBUG] Data received from worker:', event.data.data);
                     setAppData(event.data.data);
                     setActiveServer(event.data.data.activeServer);
                 } else {
