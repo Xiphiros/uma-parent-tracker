@@ -172,3 +172,14 @@ export interface Filters {
     whiteSparks: WhiteSparkFilter[];
     minWhiteSparks: number;
 }
+
+// --- Worker Types ---
+export interface LegacyImportWorkerPayload {
+    legacyData: any;
+    skillList: Skill[];
+    umaList: Uma[];
+}
+
+export type LegacyImportWorkerResponse = 
+    | { type: 'success'; data: AppData }
+    | { type: 'error'; message: string };
