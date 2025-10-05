@@ -2,7 +2,95 @@
 
 This document outlines the structure of the exported JSON data for this application. As features are added, the schema may evolve. The `version` key at the root of the JSON file helps in handling data migrations.
 
-## Version 8 (Current)
+## Version 11 (Current)
+
+Version 11 represents a significant simplification of the data model by removing project-specific rosters. The "roster" for any given project is now dynamically populated by all parents in the global `inventory` that match the active server.
+
+*   The `roster: number[]` array is removed from all `Profile` objects.
+*   The migration process ensures this key is deleted from all profiles.
+*   The `version` key is set to `11`.
+
+```json
+{
+  "version": 11,
+  "activeServer": "jp",
+  "inventory": [
+    { "...": "..." }
+  ],
+  "serverData": {
+    "jp": {
+      "activeProfileId": 1725612458123,
+      "profiles": [
+        {
+          "id": 1725612458123,
+          "name": "Super Creek Project (JP)",
+          "isPinned": false,
+          "goal": {
+            "primaryBlue": ["Stamina", "Power"],
+            "secondaryBlue": ["Guts"],
+            "primaryPink": ["Mile", "Long"],
+            "uniqueWishlist": [],
+            "wishlist": []
+          }
+        }
+      ],
+      "folders": [],
+      "layout": [ 1725612458123 ]
+    },
+    "global": { "...": "..." }
+  }
+}
+```
+
+## Version 10
+
+Version 10 updates the `name` property of `Parent` objects to use a consistent format derived from the new `uma-list.json` structure, which separates base names from outfit names. This fixes inconsistencies in how names were generated and stored.
+
+*   The `name` property of each `Parent` object in the `inventory` is recalculated during migration to ensure it follows the format `[Outfit Name] Base Name` or just `Base Name` if no outfit name exists.
+*   The `version` key is set to `10`.
+
+```json
+{
+  "version": 10,
+  "activeServer": "global",
+  "inventory": [
+    {
+      "id": 1725612900123,
+      "umaId": "100401",
+      "name": "[Starting Line] Super Creek",
+      "...": "..."
+    }
+  ],
+  "serverData": { "...": "..." }
+}
+```
+
+## Version 9
+
+Version 9 adds support for **Skill Presets**, allowing users to save and load collections of white skills for use in the Probability Calculator.
+
+*   A `skillPresets: SkillPreset[]` array is added to the root of the data structure.
+*   The `version` key is set to `9`.
+
+```json
+{
+  "version": 9,
+  "activeServer": "jp",
+  "inventory": [
+    { "...": "..." }
+  ],
+  "serverData": { "...": "..." },
+  "skillPresets": [
+    {
+      "id": "p1725612458123",
+      "name": "Speed Build Basics",
+      "skillIds": [ 200152, 200052, 201112 ]
+    }
+  ]
+}
+```
+
+## Version 8
 
 Version 8 introduces a more flexible goal definition system by adding support for **Secondary Blue Sparks**. This allows for a three-tiered priority system (Primary, Secondary, Other) in the parent scoring calculation.
 
