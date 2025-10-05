@@ -4,7 +4,7 @@ import { Grandparent, ManualParentData, Parent, WhiteSpark, BlueSpark, PinkSpark
 import './ParentCard.css';
 import { useTranslation } from 'react-i18next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus, faUser, faStar, faLayerGroup, faPenToSquare, faTrashCan, faRightLeft } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faStar, faLayerGroup, faPenToSquare, faTrashCan, faRightLeft } from '@fortawesome/free-solid-svg-icons';
 import LineageTree from './common/LineageTree';
 
 interface ParentCardProps {
@@ -13,18 +13,15 @@ interface ParentCardProps {
     displayScore?: boolean;
     onEdit?: () => void;
     onDelete?: () => void;
-    onAssign?: (event: React.MouseEvent) => void;
     onMove?: () => void;
-    assignedProjects?: string[];
     isSelectionMode?: boolean;
     onSelect?: (parent: Parent) => void;
     isDisabled?: boolean;
-    isInCurrentRoster?: boolean;
 }
 
 const WISH_RANK_ORDER: { [key: string]: number } = { S: 0, A: 1, B: 2, C: 3 };
 
-const ParentCard = ({ parent, isTopParent = false, displayScore = true, onEdit, onDelete, onAssign, onMove, assignedProjects, isSelectionMode = false, onSelect, isDisabled = false, isInCurrentRoster = false }: ParentCardProps) => {
+const ParentCard = ({ parent, isTopParent = false, displayScore = true, onEdit, onDelete, onMove, isSelectionMode = false, onSelect, isDisabled = false }: ParentCardProps) => {
     const { t } = useTranslation(['roster', 'common', 'game']);
     const { getActiveProfile, dataDisplayLanguage, umaMapById, skillMapByName, appData, getIndividualScore, getUmaDisplayName } = useAppContext();
     const goal = getActiveProfile()?.goal;
@@ -171,7 +168,7 @@ const ParentCard = ({ parent, isTopParent = false, displayScore = true, onEdit, 
     );
 
     return (
-        <div className={`parent-card ${isTopParent ? 'parent-card--top-pair' : ''} ${isDisabled ? 'parent-card--disabled' : ''} ${isInCurrentRoster ? 'parent-card--in-roster' : ''}`}>
+        <div className={`parent-card ${isTopParent ? 'parent-card--top-pair' : ''} ${isDisabled ? 'parent-card--disabled' : ''}`}>
             <div className="parent-card__main-content">
                 <LineageTree parent={parent} />
                 <div className="parent-card__details">
@@ -213,17 +210,6 @@ const ParentCard = ({ parent, isTopParent = false, displayScore = true, onEdit, 
             </div>
 
             {renderSparksBody()}
-
-            {!parent.isBorrowed && onAssign && !isSelectionMode && (
-                <div className="parent-card__footer">
-                    <span className="parent-card__assigned-projects" title={assignedProjects?.join(', ')}>
-                        {assignedProjects && assignedProjects.length > 0 ? assignedProjects.join(', ') : t('inventory.unassigned')}
-                    </span>
-                    <button className="button button--secondary button--small" onClick={onAssign}>
-                        <FontAwesomeIcon icon={faPlus} />
-                    </button>
-                </div>
-            )}
         </div>
     );
 };
