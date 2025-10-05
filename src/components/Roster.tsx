@@ -9,6 +9,7 @@ import { faPlus, faFlask, faChevronLeft, faChevronRight } from '@fortawesome/fre
 import { useTranslation } from 'react-i18next';
 import BreedingPlannerModal from './BreedingPlannerModal';
 import Modal from './common/Modal';
+import './Roster.css';
 
 const ITEMS_PER_PAGE = 12;
 
