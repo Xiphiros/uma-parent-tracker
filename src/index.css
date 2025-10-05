@@ -28,6 +28,7 @@
 @import "./components/ProbabilityCalculatorModal.css";
 @import "./components/PurchaseOrderInfoModal.css";
 @import "./components/common/RangeSlider.css";
+@import "./components/Roster.css";
 @import "./components/SelectAcquirableSkillsModal.css";
 @import "./components/SelectConditionalSkillsModal.css";
 @import "./components/SelectGrandparentModal.css";
