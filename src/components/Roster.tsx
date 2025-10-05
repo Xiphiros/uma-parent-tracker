@@ -5,7 +5,7 @@ import AddParentModal from './AddParentModal';
 import { Parent } from '../types';
 import { useScrollLock } from '../hooks/useScrollLock';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus, faFlask } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faFlask, faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { useTranslation } from 'react-i18next';
 import BreedingPlannerModal from './BreedingPlannerModal';
 import Modal from './common/Modal';
@@ -47,12 +47,12 @@ const Roster = () => {
         });
     }, [scoredRoster, sortMode, getIndividualScore]);
 
-    const { paginatedRoster, totalPages } = useMemo(() => {
+    const { paginatedRoster, totalPages, totalCount } = useMemo(() => {
         const filteredRoster = showBorrowed ? sortedRoster : sortedRoster.filter(p => !p.isBorrowed);
         const totalPages = Math.ceil(filteredRoster.length / ITEMS_PER_PAGE);
         const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
         const paginatedRoster = filteredRoster.slice(startIndex, startIndex + ITEMS_PER_PAGE);
-        return { paginatedRoster, totalPages };
+        return { paginatedRoster, totalPages, totalCount: filteredRoster.length };
     }, [sortedRoster, showBorrowed, currentPage]);
 
     useEffect(() => {
@@ -131,6 +131,17 @@ const Roster = () => {
                         </button>
                     </div>
                 </div>
+                <div className="roster__controls">
+                    <label className="flex items-center gap-2 cursor-pointer">
+                        <input
+                            type="checkbox"
+                            className="form__checkbox"
+                            checked={showBorrowed}
+                            onChange={(e) => setShowBorrowed(e.target.checked)}
+                        />
+                        <span className="form__label !mb-0">{t('inventory.showBorrowed')}</span>
+                    </label>
+                </div>
                 <div id="roster-container" className="roster space-y-4 overflow-y-auto pr-2 flex-1 min-h-0" ref={rosterContainerRef}>
                     {paginatedRoster.length > 0 ? (
                         paginatedRoster.map(parent => (
@@ -143,6 +154,20 @@ const Roster = () => {
                         ))
                     ) : (
                         <p className="card__placeholder-text text-center py-8">{t('placeholderRoster')}</p>
+                    )}
+                </div>
+                <div className="roster__footer">
+                    <span className="inventory-modal__count">{t('inventory.count', { count: totalCount })}</span>
+                    {totalPages > 1 && (
+                        <div className="pagination-controls">
+                            <button className="button button--secondary button--small" onClick={() => setCurrentPage(p => p - 1)} disabled={currentPage === 1}>
+                                <FontAwesomeIcon icon={faChevronLeft} />
+                            </button>
+                            <span className="pagination-controls__text">Page {currentPage} of {totalPages}</span>
+                            <button className="button button--secondary button--small" onClick={() => setCurrentPage(p => p + 1)} disabled={currentPage === totalPages}>
+                                <FontAwesomeIcon icon={faChevronRight} />
+                            </button>
+                        </div>
                     )}
                 </div>
             </section>
