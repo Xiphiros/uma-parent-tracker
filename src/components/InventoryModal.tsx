@@ -3,12 +3,11 @@ import { Parent, ValidationResult, Filters } from '../types';
 import Modal from './common/Modal';
 import ParentCard from './ParentCard';
 import AddParentModal from './AddParentModal';
-import ContextMenu, { MenuItem } from './common/ContextMenu';
 import { useAppContext } from '../context/AppContext';
 import './InventoryModal.css';
 import { useTranslation } from 'react-i18next';
 import InventoryControls, { SortFieldType, SortDirectionType, InventoryViewType } from './common/InventoryControls';
-import { getLineageStats, LineageStats, countTotalLineageWhiteSparks } from '../utils/affinity';
+import { getLineageStats, countTotalLineageWhiteSparks } from '../utils/affinity';
 import { calculateScore } from '../utils/scoring';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
@@ -40,13 +39,12 @@ const ITEMS_PER_PAGE = 12;
 
 const InventoryModal = ({ isOpen, onClose, isSelectionMode = false, onSelectParent, excludedCharacterIds = new Set() }: InventoryModalProps) => {
     const { t } = useTranslation(['roster', 'modals', 'common']);
-    const { appData, activeServer, deleteParent, addParentToProfile, removeParentFromProfile, moveParentToServer, validateParentForServer, umaMapById, getActiveProfile, skillMapByName, getIndividualScore, getUmaDisplayName } = useAppContext();
+    const { appData, activeServer, deleteParent, moveParentToServer, validateParentForServer, umaMapById, getActiveProfile, skillMapByName, getIndividualScore, getUmaDisplayName } = useAppContext();
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
     const [parentToEdit, setParentToEdit] = useState<Parent | null>(null);
     const [isDeleteConfirmOpen, setDeleteConfirmOpen] = useState(false);
     const [parentToDelete, setParentToDelete] = useState<Parent | null>(null);
     const [moveConfirmState, setMoveConfirmState] = useState<MoveConfirmState | null>(null);
-    const [contextMenu, setContextMenu] = useState<{ isOpen: boolean; x: number; y: number; items: MenuItem[]; parent: Parent | null }>({ isOpen: false, x: 0, y: 0, items: [], parent: null });
 
     const [inventoryView, setInventoryView] = useState<InventoryViewType>('all');
     const [filters, setFilters] = useState<Filters>(initialFilters);
@@ -57,13 +55,9 @@ const InventoryModal = ({ isOpen, onClose, isSelectionMode = false, onSelectPare
     const activeProfile = getActiveProfile();
     const inventoryMap = useMemo(() => new Map(appData.inventory.map(p => [p.id, p])), [appData.inventory]);
 
-    const { inventory, profiles } = useMemo(() => {
-        const currentServerInventory = appData.inventory.filter(p => p.server === activeServer);
-        return {
-            inventory: currentServerInventory,
-            profiles: appData.serverData[activeServer].profiles,
-        };
-    }, [appData.inventory, appData.serverData, activeServer]);
+    const inventory = useMemo(() => {
+        return appData.inventory.filter(p => p.server === activeServer);
+    }, [appData.inventory, activeServer]);
 
     // Reset to page 1 whenever filters change
     useEffect(() => {
@@ -191,37 +185,6 @@ const InventoryModal = ({ isOpen, onClose, isSelectionMode = false, onSelectPare
         }
     };
 
-    const handleOpenAssignmentMenu = (e: React.MouseEvent, parent: Parent) => {
-        e.preventDefault();
-        e.stopPropagation();
-
-        const menuItems: MenuItem[] = profiles.map(profile => ({
-            label: profile.name,
-            onClick: () => {
-                if (profile.roster.includes(parent.id)) {
-                    removeParentFromProfile(parent.id, profile.id);
-                } else {
-                    addParentToProfile(parent.id, profile.id);
-                }
-            },
-            type: 'checkbox',
-            checked: profile.roster.includes(parent.id)
-        }));
-
-        setContextMenu({ isOpen: true, x: e.pageX, y: e.pageY, items: menuItems, parent });
-    };
-
-    const parentToProfileMap = useMemo(() => {
-        const map = new Map<number, string[]>();
-        profiles.forEach(profile => {
-            profile.roster.forEach(parentId => {
-                if (!map.has(parentId)) map.set(parentId, []);
-                map.get(parentId)!.push(profile.name);
-            });
-        });
-        return map;
-    }, [profiles]);
-
     const destServer = activeServer === 'jp' ? 'Global' : 'JP';
     
     const getParentDisplayName = (parent: Parent | null): string => {
@@ -231,7 +194,6 @@ const InventoryModal = ({ isOpen, onClose, isSelectionMode = false, onSelectPare
     };
     
     const parentDisplayName = getParentDisplayName(moveConfirmState?.parent || null);
-    const activeRosterIds = new Set(activeProfile?.roster || []);
     const modalTitle = isSelectionMode ? t('modals:selectGrandparentTitle') : t('inventory.title');
 
     return (
@@ -265,12 +227,9 @@ const InventoryModal = ({ isOpen, onClose, isSelectionMode = false, onSelectPare
                                             onEdit={() => handleOpenEditModal(parent)}
                                             onDelete={() => handleDeleteParent(parent)}
                                             onMove={() => handleMoveParent(parent)}
-                                            onAssign={(e) => handleOpenAssignmentMenu(e, parent)}
-                                            assignedProjects={parentToProfileMap.get(parent.id)}
                                             isSelectionMode={isSelectionMode}
                                             onSelect={onSelectParent}
                                             isDisabled={isDisabled}
-                                            isInCurrentRoster={activeRosterIds.has(parent.id)}
                                         />
                                     );
                                 })
@@ -307,13 +266,6 @@ const InventoryModal = ({ isOpen, onClose, isSelectionMode = false, onSelectPare
                 isOpen={isAddModalOpen}
                 onClose={() => setIsAddModalOpen(false)}
                 parentToEdit={parentToEdit}
-            />
-
-            <ContextMenu
-                isOpen={contextMenu.isOpen}
-                position={{ x: contextMenu.x, y: contextMenu.y }}
-                items={contextMenu.items}
-                onClose={() => setContextMenu(prev => ({ ...prev, isOpen: false }))}
             />
 
             <Modal
