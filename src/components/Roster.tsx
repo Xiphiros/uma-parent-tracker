@@ -10,6 +10,8 @@ import { useTranslation } from 'react-i18next';
 import BreedingPlannerModal from './BreedingPlannerModal';
 import Modal from './common/Modal';
 
+const ITEMS_PER_PAGE = 12;
+
 const Roster = () => {
     const { t } = useTranslation(['roster', 'common']);
     const { getActiveProfile, getScoredRoster, deleteParent, getIndividualScore } = useAppContext();
@@ -45,6 +47,20 @@ const Roster = () => {
         });
     }, [scoredRoster, sortMode, getIndividualScore]);
 
+    const { paginatedRoster, totalPages } = useMemo(() => {
+        const filteredRoster = showBorrowed ? sortedRoster : sortedRoster.filter(p => !p.isBorrowed);
+        const totalPages = Math.ceil(filteredRoster.length / ITEMS_PER_PAGE);
+        const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+        const paginatedRoster = filteredRoster.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+        return { paginatedRoster, totalPages };
+    }, [sortedRoster, showBorrowed, currentPage]);
+
+    useEffect(() => {
+        if (currentPage > totalPages && totalPages > 0) {
+            setCurrentPage(1);
+        }
+    }, [totalPages, currentPage]);
+
     useEffect(() => {
         const checkScroll = () => {
             const element = rosterContainerRef.current;
@@ -66,7 +82,7 @@ const Roster = () => {
                 resizeObserver.unobserve(element);
             }
         };
-    }, [sortedRoster]);
+    }, [paginatedRoster]);
 
 
     const handleOpenAddModal = () => {
@@ -116,8 +132,8 @@ const Roster = () => {
                     </div>
                 </div>
                 <div id="roster-container" className="roster space-y-4 overflow-y-auto pr-2 flex-1 min-h-0" ref={rosterContainerRef}>
-                    {sortedRoster.length > 0 ? (
-                        sortedRoster.map(parent => (
+                    {paginatedRoster.length > 0 ? (
+                        paginatedRoster.map(parent => (
                             <ParentCard 
                                 key={parent.id} 
                                 parent={parent} 
