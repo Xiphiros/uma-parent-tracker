@@ -1,0 +1,15 @@
+/* Roster Component Styles */
+.roster__controls {
+    padding: 0 0.5rem 1rem; /* Add some padding below the header */
+    border-bottom: 1px solid var(--color-border);
+    margin-bottom: 1rem;
+}
+
+.roster__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+    border-top: 1px solid var(--color-border);
+    padding-top: 1rem;
+}
