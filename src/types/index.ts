@@ -156,6 +156,14 @@ export interface BreedingPair {
     p2: Parent;
 }
 
+export interface LineageStats {
+    blue: Record<string, number>;
+    pink: Record<string, number>;
+    unique: Record<string, number>;
+    white: Record<string, number>;
+    whiteSkillCount: number;
+}
+
 export interface BlueSparkFilter { type: string; stars: number }
 export interface PinkSparkFilter { type: string; stars: number }
 export interface UniqueSparkFilter { name: string; stars: number }
