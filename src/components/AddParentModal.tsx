@@ -131,7 +131,7 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
             if (parentToEdit) {
                 updateParent({ ...parentToEdit, ...formData });
             } else {
-                addParent(formData, getActiveProfile()?.id);
+                addParent(formData);
             }
             onClose();
         } catch (error) {
