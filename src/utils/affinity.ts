@@ -1,4 +1,4 @@
-import { Grandparent, ManualParentData, Parent, Uma, WhiteSpark, UniqueSpark, Goal, WishlistItem, Skill } from '../types';
+import { Grandparent, ManualParentData, Parent, Uma, WhiteSpark, UniqueSpark, Goal, WishlistItem, Skill, LineageStats } from '../types';
 
 /**
  * Resolves a grandparent reference (ID or object) to a full data object.
@@ -294,15 +294,6 @@ export function countUniqueCombinedLineageWhiteSparks(
         }
     }
     return skillNames.size;
-}
-
-
-export interface LineageStats {
-    blue: Record<string, number>;
-    pink: Record<string, number>;
-    unique: Record<string, number>;
-    white: Record<string, number>;
-    whiteSkillCount: number;
 }
 
 /**
