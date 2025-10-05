@@ -24,6 +24,9 @@ const Roster = () => {
     
     const [isRosterScrollable, setIsRosterScrollable] = useState(false);
     useScrollLock(rosterContainerRef, isRosterScrollable);
+
+    const [currentPage, setCurrentPage] = useState(1);
+    const [showBorrowed, setShowBorrowed] = useState(false);
     
     const activeProfile = getActiveProfile();
     const scoredRoster = getScoredRoster();
