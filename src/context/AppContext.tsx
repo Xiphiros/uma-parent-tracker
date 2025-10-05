@@ -81,11 +81,9 @@ interface AppContextType {
   toggleFolderCollapse: (folderId: string) => void;
   updateGoal: (goal: Goal) => void;
   updateWishlistItem: (listName: 'wishlist' | 'uniqueWishlist', oldName: string, newItem: WishlistItem) => void;
-  addParent: (parentData: NewParentData, profileId?: number) => void;
+  addParent: (parentData: NewParentData) => void;
   updateParent: (parent: Parent) => void;
   deleteParent: (parentId: number) => void;
-  addParentToProfile: (parentId: number, profileId: number) => void;
-  removeParentFromProfile: (parentId: number, profileId: number) => void;
   moveParentToServer: (parentId: number) => void;
   validateParentForServer: (parentId: number) => ValidationResult;
   validateProjectForServer: (profileId: number) => ValidationResult;
@@ -251,14 +249,14 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
     const profile = getActiveProfile();
     if (!profile) return [];
     
-    return profile.roster
-      .map(parentId => inventoryMap.get(parentId))
-      .filter((p): p is Parent => !!p && p.server === activeServer)
+    // The "roster" is now the entire inventory for the active server.
+    return appData.inventory
+      .filter(p => p.server === activeServer)
       .map(p => ({
         ...p,
         score: calculateScore(p, profile.goal, appData.inventory, skillMapByName)
       }));
-  }, [appData.inventory, appData.serverData, activeServer, skillMapByName, inventoryMap]);
+  }, [appData.inventory, activeServer, getActiveProfile, skillMapByName]);
 
   const getIndividualScore = useCallback((entity: Parent | ManualParentData) => {
       const profile = getActiveProfile();
@@ -638,30 +636,7 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
     return inventoryForCharacter.length > 0 ? Math.max(...inventoryForCharacter.map(p => p.gen)) + 1 : 1;
   };
 
-  const addParentToProfile = (parentId: number, profileId: number) => {
-    updateServerData(d => ({
-      ...d,
-      profiles: d.profiles.map(p => {
-        if (p.id === profileId && !p.roster.includes(parentId)) {
-          return { ...p, roster: [...p.roster, parentId] };
-        }
-        return p;
-      })
-    }));
-  };
-
-  const removeParentFromProfile = (parentId: number, profileId: number) => {
-    updateServerData(d => ({
-      ...d,
-      profiles: d.profiles.map(p => 
-        p.id === profileId 
-        ? { ...p, roster: p.roster.filter(id => id !== parentId) } 
-        : p
-      )
-    }));
-  };
-
-  const addParent = (parentData: NewParentData, profileId?: number) => {
+  const addParent = (parentData: NewParentData) => {
     const newHash = generateParentHash(parentData);
     const isDuplicate = appData.inventory.some(p => p.hash === newHash && p.server === activeServer);
     if (isDuplicate) {
@@ -681,33 +656,10 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
       hash: newHash,
     };
 
-    setAppData(prevData => {
-      const newInventory = [...prevData.inventory, newParent];
-      
-      const activeServerData = prevData.serverData[prevData.activeServer];
-      let newProfiles = activeServerData.profiles;
-      if (profileId && !newParent.isBorrowed) {
-        newProfiles = newProfiles.map(p => {
-          if (p.id === profileId) {
-            return { ...p, roster: [...p.roster, newParent.id] };
-          }
-          return p;
-        });
-      }
-
-      return { 
-          ...prevData, 
-          inventory: newInventory, 
-          skillPresets: prevData.skillPresets || [],
-          serverData: {
-              ...prevData.serverData,
-              [prevData.activeServer]: {
-                  ...activeServerData,
-                  profiles: newProfiles
-              }
-          } 
-      };
-    });
+    setAppData(prevData => ({ 
+        ...prevData, 
+        inventory: [...prevData.inventory, newParent], 
+    }));
   };
 
   const updateParent = (parent: Parent) => {
@@ -727,17 +679,10 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
   };
   
   const deleteParent = (parentId: number) => {
-    setAppData(prevData => {
-        const newInventory = prevData.inventory.filter(p => p.id !== parentId);
-        const newServerData = { ...prevData.serverData };
-        for (const server in newServerData) {
-            newServerData[server as keyof typeof newServerData].profiles = newServerData[server as keyof typeof newServerData].profiles.map(p => ({
-                ...p,
-                roster: p.roster.filter(id => id !== parentId)
-            }));
-        }
-        return { ...prevData, inventory: newInventory, serverData: newServerData };
-    });
+    setAppData(prevData => ({
+        ...prevData,
+        inventory: prevData.inventory.filter(p => p.id !== parentId),
+    }));
   };
   
   const validateParentForServer = (parentId: number): ValidationResult => {
@@ -794,31 +739,9 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
       const profile = appData.serverData[sourceServer].profiles.find(p => p.id === profileId);
       if (!profile) return { errors: ["Project not found."] };
 
-      const inventoryMap = new Map(appData.inventory.map(p => [p.id, p]));
-      const parentsInRoster = profile.roster.map(id => inventoryMap.get(id)).filter(Boolean) as Parent[];
-
-      const allUmas = masterUmaListJson as Uma[];
       const allSkills = masterSkillListJson as Skill[];
-      const destUmaList = allUmas.filter(u => destServer === 'global' ? u.isGlobal : true);
       const destSkillList = allSkills.filter(s => destServer === 'global' ? s.isGlobal : true);
-      const destUmaMap = new Map(destUmaList.map(u => [u.id, u]));
       const destSkillMap = new Map(destSkillList.map(s => [s.name_en, s]));
-
-      // Validate roster
-      parentsInRoster.forEach(parent => {
-          const uma = umaMapById.get(parent.umaId);
-          const parentDisplayName = uma ? getUmaDisplayName(uma, 'en') : parent.name;
-          if (!destUmaMap.has(parent.umaId)) {
-              errors.push(t('tabs:modals.transferValidation.errorParentUma', { parentName: parentDisplayName }));
-          }
-          [...parent.uniqueSparks, ...parent.whiteSparks].forEach(spark => {
-              const skill = skillMapByName.get(spark.name);
-              const skillDisplayName = skill ? skill.name_en : spark.name;
-              if (!destSkillMap.has(spark.name)) {
-                  errors.push(t('tabs:modals.transferValidation.errorParentSkill', { parentName: parentDisplayName, skillName: skillDisplayName }));
-              }
-          });
-      });
 
       // Validate goal
       [...profile.goal.uniqueWishlist, ...profile.goal.wishlist].forEach(item => {
@@ -841,30 +764,11 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
           const profileToCopy = sourceData.profiles.find(p => p.id === profileId);
           if (!profileToCopy) return prev;
           
-          const parentsToCopy = profileToCopy.roster
-              .map(id => prev.inventory.find(p => p.id === id))
-              .filter((p): p is Parent => !!p);
-
-          let newInventory = [...prev.inventory];
-          const idMapping = new Map<number, number>();
-          let timestamp = Date.now();
-
-          parentsToCopy.forEach((parent, index) => {
-              const newParent = {
-                  ...JSON.parse(JSON.stringify(parent)),
-                  id: timestamp + index, // Create new unique ID
-                  server: destServer,
-              };
-              newInventory.push(newParent);
-              idMapping.set(parent.id, newParent.id);
-          });
-          
           const newProfile: Profile = {
               ...JSON.parse(JSON.stringify(profileToCopy)),
-              id: timestamp + parentsToCopy.length, // Ensure unique ID
+              id: Date.now(),
               name: `${profileToCopy.name} (Copy)`,
               isPinned: false,
-              roster: profileToCopy.roster.map(oldId => idMapping.get(oldId) || oldId), // Use new parent IDs
           };
 
           const destData = { ...prev.serverData[destServer] };
@@ -873,8 +777,6 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
           
           return {
               ...prev,
-              inventory: newInventory,
-              skillPresets: prev.skillPresets || [],
               serverData: {
                   ...prev.serverData,
                   [destServer]: destData
@@ -894,17 +796,7 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
           const profileToMove = sourceData.profiles.find(p => p.id === profileId);
           if (!profileToMove) return prev;
           
-          const parentIdsToMove = new Set(profileToMove.roster);
-
-          // 1. Update inventory
-          const newInventory = prev.inventory.map((parent): Parent => {
-              if (parentIdsToMove.has(parent.id)) {
-                  return { ...parent, server: destServer };
-              }
-              return parent;
-          });
-
-          // 2. Remove from source
+          // 1. Remove from source
           sourceData.profiles = sourceData.profiles.filter(p => p.id !== profileId);
           sourceData.layout = sourceData.layout.filter(id => id !== profileId);
           sourceData.folders = sourceData.folders.map(f => ({
@@ -916,7 +808,7 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
               sourceData.activeProfileId = sourceData.profiles[0]?.id || null;
           }
 
-          // 3. Add to destination
+          // 2. Add to destination
           destData.profiles = [...destData.profiles, { ...profileToMove, isPinned: false }];
           destData.layout = [...destData.layout, profileToMove.id];
 
@@ -926,8 +818,6 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
           
           return {
               ...prev,
-              inventory: newInventory,
-              skillPresets: prev.skillPresets || [],
               serverData: newServerData,
           };
       });
@@ -995,8 +885,6 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
     addParent,
     updateParent,
     deleteParent,
-    addParentToProfile,
-    removeParentFromProfile,
     moveParentToServer,
     validateParentForServer,
     validateProjectForServer,
