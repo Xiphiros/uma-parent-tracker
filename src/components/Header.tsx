@@ -5,8 +5,9 @@ import InfoModal from './InfoModal.tsx';
 import './Header.css';
 import DevToolsModal from './DevToolsModal.tsx';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faWrench, faSliders, faMoon, faSun, faCircleInfo } from '@fortawesome/free-solid-svg-icons';
+import { faWrench, faSliders, faMoon, faSun, faCircleInfo, faUsers } from '@fortawesome/free-solid-svg-icons';
 import { useTranslation } from 'react-i18next';
+import InventoryModal from './InventoryModal.tsx';
 
 const Header = () => {
     const { t } = useTranslation('header');
@@ -14,6 +15,7 @@ const Header = () => {
     const [isSettingsModalOpen, setSettingsModalOpen] = useState(false);
     const [isInfoModalOpen, setInfoModalOpen] = useState(false);
     const [isDevToolsModalOpen, setDevToolsModalOpen] = useState(false);
+    const [isInventoryModalOpen, setInventoryModalOpen] = useState(false);
 
     return (
         <>
@@ -29,6 +31,9 @@ const Header = () => {
                             <FontAwesomeIcon icon={faWrench} className="icon" />
                         </button>
                     )}
+                    <button id="inventory-btn" className="theme-toggle" title="Manage Inventory" onClick={() => setInventoryModalOpen(true)}>
+                        <FontAwesomeIcon icon={faUsers} className="icon" />
+                    </button>
                     <button id="settings-btn" className="theme-toggle" title={t('settings')} onClick={() => setSettingsModalOpen(true)}>
                         <FontAwesomeIcon icon={faSliders} className="icon" />
                     </button>
@@ -51,6 +56,11 @@ const Header = () => {
                     onClose={() => setDevToolsModalOpen(false)}
                 />
             )}
+
+            <InventoryModal
+                isOpen={isInventoryModalOpen}
+                onClose={() => setInventoryModalOpen(false)}
+            />
 
             <SettingsModal 
                 isOpen={isSettingsModalOpen}
