@@ -2,23 +2,25 @@ import { useMemo, useState, useRef, useEffect } from 'react';
 import { useAppContext } from '../context/AppContext';
 import ParentCard from './ParentCard';
 import AddParentModal from './AddParentModal';
-import InventoryModal from './InventoryModal';
 import { Parent } from '../types';
 import { useScrollLock } from '../hooks/useScrollLock';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUsers, faPlus, faFlask } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faFlask } from '@fortawesome/free-solid-svg-icons';
 import { useTranslation } from 'react-i18next';
 import BreedingPlannerModal from './BreedingPlannerModal';
+import Modal from './common/Modal';
 
 const Roster = () => {
     const { t } = useTranslation(['roster', 'common']);
-    const { getActiveProfile, getScoredRoster, removeParentFromProfile, getIndividualScore } = useAppContext();
+    const { getActiveProfile, getScoredRoster, deleteParent, getIndividualScore } = useAppContext();
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
-    const [isInventoryModalOpen, setIsInventoryModalOpen] = useState(false);
     const [isPlannerModalOpen, setIsPlannerModalOpen] = useState(false);
     const [parentToEdit, setParentToEdit] = useState<Parent | null>(null);
     const [sortMode, setSortMode] = useState<'final' | 'individual'>('final');
     const rosterContainerRef = useRef<HTMLDivElement>(null);
+    
+    const [isDeleteConfirmOpen, setDeleteConfirmOpen] = useState(false);
+    const [parentToDelete, setParentToDelete] = useState<Parent | null>(null);
     
     const [isRosterScrollable, setIsRosterScrollable] = useState(false);
     useScrollLock(rosterContainerRef, isRosterScrollable);
@@ -74,10 +76,17 @@ const Roster = () => {
         setIsAddModalOpen(true);
     };
 
-    const handleRemoveFromRoster = (parent: Parent) => {
-        if (activeProfile) {
-            removeParentFromProfile(parent.id, activeProfile.id);
+    const handleDeleteParent = (parent: Parent) => {
+        setParentToDelete(parent);
+        setDeleteConfirmOpen(true);
+    };
+
+    const handleConfirmDelete = () => {
+        if (parentToDelete) {
+            deleteParent(parentToDelete.id);
         }
+        setParentToDelete(null);
+        setDeleteConfirmOpen(false);
     };
     
     return (
@@ -97,10 +106,6 @@ const Roster = () => {
                             <FontAwesomeIcon icon={faFlask} className="h-5 w-5 mr-1" />
                             {t('breedingPlanner.title')}
                         </button>
-                        <button className="button button--neutral" onClick={() => setIsInventoryModalOpen(true)}>
-                            <FontAwesomeIcon icon={faUsers} className="h-5 w-5 mr-1" />
-                            {t('inventory.manageBtn')}
-                        </button>
                         <button id="add-parent-btn" className="button button--secondary" onClick={handleOpenAddModal}>
                             <FontAwesomeIcon icon={faPlus} className="h-5 w-5 mr-1" />
                             {t('addParentBtn')}
@@ -114,7 +119,7 @@ const Roster = () => {
                                 key={parent.id} 
                                 parent={parent} 
                                 onEdit={() => handleOpenEditModal(parent)}
-                                onDelete={() => handleRemoveFromRoster(parent)}
+                                onDelete={() => handleDeleteParent(parent)}
                             />
                         ))
                     ) : (
@@ -129,15 +134,24 @@ const Roster = () => {
                 parentToEdit={parentToEdit}
             />
 
-            <InventoryModal
-                isOpen={isInventoryModalOpen}
-                onClose={() => setIsInventoryModalOpen(false)}
-            />
-
             <BreedingPlannerModal
                 isOpen={isPlannerModalOpen}
                 onClose={() => setIsPlannerModalOpen(false)}
             />
+
+            <Modal
+                isOpen={isDeleteConfirmOpen}
+                onClose={() => setDeleteConfirmOpen(false)}
+                title={t('modals:deleteConfirmTitle')}
+            >
+                <p className="dialog-modal__message">
+                    {t('modals:deleteConfirmMsg', { name: parentToDelete?.name })}
+                </p>
+                <div className="dialog-modal__footer">
+                    <button className="button button--neutral" onClick={() => setDeleteConfirmOpen(false)}>{t('common:cancel')}</button>
+                    <button className="button button--danger" onClick={handleConfirmDelete}>{t('common:delete')}</button>
+                </div>
+            </Modal>
         </>
     );
 };
