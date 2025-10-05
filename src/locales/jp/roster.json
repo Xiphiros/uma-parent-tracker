@@ -51,6 +51,7 @@
       "owned": "所持",
       "borrowed": "レンタル"
     },
+    "showBorrowed": "レンタルウマ娘を表示",
     "blueSpark": "青因子",
     "pinkSpark": "赤因子",
     "uniqueSpark": "固有因子",
@@ -140,9 +141,9 @@
     "selectLineage": "血統から選択",
     "skillsSelected": "{{count}}個のスキルを選択済み",
     "purchaseOrder": {
-        "title": "想定されるスキル習得順序",
-        "tooltip": "確率モデルがスキル習得を優先する順序を表示します。",
-        "explanation": "確率モデルは欲張り法（Greedy）戦略を想定しています。SP予算が尽きるまで、以下の順序で利用可能なスキルを常に習得しようとします：<br>1. <code>ウィッシュリストのランク (S > A > B > C)</code><br>2. <code>スキルレベル (Lv. 1 > Lv. 2)</code><br>3. <code>SPコスト (低い > 高い)</code>"
+      "title": "想定されるスキル習得順序",
+      "tooltip": "確率モデルがスキル習得を優先する順序を表示します。",
+      "explanation": "確率モデルは欲張り法（Greedy）戦略を想定しています。SP予算が尽きるまで、以下の順序で利用可能なスキルを常に習得しようとします：<br>1. <code>ウィッシュリストのランク (S > A > B > C)</code><br>2. <code>スキルレベル (Lv. 1 > Lv. 2)</code><br>3. <code>SPコスト (低い > 高い)</code>"
     }
   }
 }
