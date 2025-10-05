@@ -1,4 +1,4 @@
-import React, { useMemo, memo } from 'react';
+import { useMemo, memo } from 'react';
 import { useAppContext } from '../context/AppContext';
 import { Grandparent, ManualParentData, Parent, WhiteSpark, BlueSpark, PinkSpark } from '../types';
 import './ParentCard.css';
