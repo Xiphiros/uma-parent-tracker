@@ -1,5 +1,5 @@
-import React, { useState, useMemo, useEffect } from 'react';
-import { Parent, ValidationResult, Filters } from '../types';
+import { useState, useMemo, useEffect } from 'react';
+import { Parent, ValidationResult, Filters, LineageStats } from '../types';
 import Modal from './common/Modal';
 import ParentCard from './ParentCard';
 import AddParentModal from './AddParentModal';
