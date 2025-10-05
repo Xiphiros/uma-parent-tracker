@@ -57,6 +57,7 @@
             "owned": "Owned",
             "borrowed": "Borrowed"
         },
+        "showBorrowed": "Show Borrowed Parents",
         "blueSpark": "Blue Spark",
         "pinkSpark": "Pink Spark",
         "uniqueSpark": "Unique Spark",
