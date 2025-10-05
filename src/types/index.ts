@@ -108,7 +108,6 @@ export interface Profile {
   id: number;
   name: string;
   goal: Goal;
-  roster: number[]; // Array of Parent IDs
   isPinned?: boolean;
 }
 
