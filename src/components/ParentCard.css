@@ -12,9 +12,6 @@
 .parent-card--top-pair {
     border-color: var(--color-top-pair-border);
 }
-.parent-card--in-roster {
-    border-left-color: var(--color-accent-primary);
-}
 .parent-card--disabled {
     opacity: 0.5;
     cursor: not-allowed;
@@ -165,23 +162,4 @@
 .lineage-spark__gp-icon {
     color: var(--color-text-muted);
     margin: 0 0.25rem;
-}
-
-/* New Footer for Inventory View */
-.parent-card__footer {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    gap: 0.5rem;
-    margin-top: 0.75rem;
-    padding-top: 0.75rem;
-    border-top: 1px solid var(--color-border);
-}
-.parent-card__assigned-projects {
-    flex-grow: 1;
-    font-size: 0.75rem;
-    color: var(--color-text-muted);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
