@@ -3,7 +3,7 @@ import { AppData, Folder, Parent, Profile, ServerSpecificData, Uma } from '../ty
 import { generateParentHash } from './hashing';
 import masterUmaListJson from '../data/uma-list.json';
 
-export const CURRENT_VERSION = 10;
+export const CURRENT_VERSION = 11;
 
 // --- Default State Creation ---
 
@@ -17,7 +17,6 @@ export const createNewProfile = (name: string): Profile => ({
     uniqueWishlist: [],
     wishlist: []
   },
-  roster: [],
   isPinned: false,
 });
 
@@ -52,7 +51,6 @@ const migrateToV2 = (data: any): any => {
         id: Date.now(),
         name: 'Imported Project',
         goal: data.goal || { primaryBlue: [], primaryPink: [], uniqueWishlist: [], wishlist: [] },
-        roster: [],
         isPinned: false,
     };
     return {
@@ -77,7 +75,7 @@ const migrateToV4 = (data: any): any => {
 
     const newProfiles: Profile[] = [];
     data.profiles.forEach((p: Profile & { roster?: Parent[] | number[] }) => {
-        const newProfile: Profile = { ...p, roster: [] };
+        const newProfile: any = { ...p, roster: [] };
         if (p.roster && Array.isArray(p.roster) && p.roster.length > 0) {
             if (typeof p.roster[0] === 'object' && p.roster[0] !== null) {
                 (p.roster as Parent[]).forEach(parent => {
@@ -192,13 +190,24 @@ const migrateToV10 = (data: any): any => {
     return data;
 };
 
+const migrateToV11 = (data: any): any => {
+    (Object.values(data.serverData) as ServerSpecificData[]).forEach(serverData => {
+        serverData.profiles.forEach((p: any) => {
+            if ('roster' in p) {
+                delete p.roster;
+            }
+        });
+    });
+    data.version = 11;
+    return data;
+};
+
 const runSanityChecks = (data: any): any => {
     (Object.values(data.serverData) as ServerSpecificData[]).forEach(serverData => {
         serverData.profiles.forEach((p: Profile) => {
             if (!p.goal) p.goal = { primaryBlue: [], secondaryBlue: [], primaryPink: [], uniqueWishlist: [], wishlist: [] };
             if (!p.goal.uniqueWishlist) p.goal.uniqueWishlist = [];
             if (p.isPinned === undefined) p.isPinned = false;
-            if (!p.roster) p.roster = [];
         });
         serverData.folders.forEach((f: Folder) => {
             if (f.isPinned === undefined) f.isPinned = false;
@@ -227,6 +236,7 @@ export const migrateData = (data: any): AppData => {
     if (migratedData.version < 8) migratedData = migrateToV8(migratedData);
     if (migratedData.version < 9) migratedData = migrateToV9(migratedData);
     if (migratedData.version < 10) migratedData = migrateToV10(migratedData);
+    if (migratedData.version < 11) migratedData = migrateToV11(migratedData);
     
     // Final check to ensure data consistency after all migrations
     migratedData = runSanityChecks(migratedData);
