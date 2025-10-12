@@ -939,7 +939,7 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
   }, []);
   
   const value = {
-    loading: loading || isCalculating,
+    loading,
     appData,
     relationPoints,
     charaRelations,
