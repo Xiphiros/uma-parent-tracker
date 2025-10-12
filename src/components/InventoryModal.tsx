@@ -1,5 +1,5 @@
 import { useState, useMemo, useEffect } from 'react';
-import { Parent, ValidationResult, Filters, LineageStats, SortDirectionType, SortFieldType, InventoryViewType } from '../types';
+import { Parent, ValidationResult } from '../types';
 import Modal from './common/Modal';
 import ParentCard from './ParentCard';
 import AddParentModal from './AddParentModal';
@@ -7,8 +7,6 @@ import { useAppContext } from '../context/AppContext';
 import './InventoryModal.css';
 import { useTranslation } from 'react-i18next';
 import InventoryControls from './common/InventoryControls';
-import { getLineageStats, countTotalLineageWhiteSparks } from '../utils/affinity';
-import { calculateScore } from '../utils/scoring';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
@@ -25,39 +23,23 @@ interface MoveConfirmState {
     result: ValidationResult;
 }
 
-const initialFilters: Filters = {
-    searchTerm: '',
-    searchScope: 'total',
-    blueSparks: [],
-    pinkSparks: [],
-    uniqueSparks: [],
-    whiteSparks: [],
-    minWhiteSparks: 0,
-};
-
 const ITEMS_PER_PAGE = 12;
 
 const InventoryModal = ({ isOpen, onClose, isSelectionMode = false, onSelectParent, excludedCharacterIds = new Set() }: InventoryModalProps) => {
     const { t } = useTranslation(['roster', 'modals', 'common']);
-    const { appData, activeServer, deleteParent, moveParentToServer, validateParentForServer, umaMapById, getActiveProfile, skillMapByName, getIndividualScore, getUmaDisplayName } = useAppContext();
+    const { 
+        appData, deleteParent, moveParentToServer, validateParentForServer, umaMapById, getUmaDisplayName,
+        sortedParentIds, filters, setFilters, sortField, setSortField, sortDirection, setSortDirection, inventoryView, setInventoryView
+    } = useAppContext();
+
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
     const [parentToEdit, setParentToEdit] = useState<Parent | null>(null);
     const [isDeleteConfirmOpen, setDeleteConfirmOpen] = useState(false);
     const [parentToDelete, setParentToDelete] = useState<Parent | null>(null);
     const [moveConfirmState, setMoveConfirmState] = useState<MoveConfirmState | null>(null);
-
-    const [inventoryView, setInventoryView] = useState<InventoryViewType>('all');
-    const [filters, setFilters] = useState<Filters>(initialFilters);
-    const [sortField, setSortField] = useState<SortFieldType>('score');
-    const [sortDirection, setSortDirection] = useState<SortDirectionType>('desc');
     const [currentPage, setCurrentPage] = useState(1);
-
-    const activeProfile = getActiveProfile();
+    
     const inventoryMap = useMemo(() => new Map(appData.inventory.map(p => [p.id, p])), [appData.inventory]);
-
-    const inventory = useMemo(() => {
-        return appData.inventory.filter(p => p.server === activeServer);
-    }, [appData.inventory, activeServer]);
 
     // Reset to page 1 whenever filters change
     useEffect(() => {
@@ -65,89 +47,12 @@ const InventoryModal = ({ isOpen, onClose, isSelectionMode = false, onSelectPare
     }, [filters, sortField, sortDirection, inventoryView]);
 
     const { paginatedInventory, totalCount, totalPages } = useMemo(() => {
-        
-        let viewFilteredInventory = inventory;
-        if (inventoryView === 'owned') {
-            viewFilteredInventory = inventory.filter(p => !p.isBorrowed);
-        } else if (inventoryView === 'borrowed') {
-            viewFilteredInventory = inventory.filter(p => p.isBorrowed);
-        }
-
-        const scoredInventory = activeProfile
-            ? viewFilteredInventory.map(p => ({
-                ...p,
-                score: calculateScore(p, activeProfile.goal, appData.inventory, skillMapByName),
-                individualScore: getIndividualScore(p)
-              }))
-            : viewFilteredInventory.map(p => ({ ...p, individualScore: getIndividualScore(p) }));
-
-        const lineageStatsCache = new Map<number, LineageStats>();
-        const getCachedLineageStats = (parent: Parent) => {
-            if (!lineageStatsCache.has(parent.id)) {
-                lineageStatsCache.set(parent.id, getLineageStats(parent, inventoryMap));
-            }
-            return lineageStatsCache.get(parent.id)!;
-        };
-
-        const filtered = scoredInventory.filter(parent => {
-            const uma = umaMapById.get(parent.umaId);
-            const parentName = uma ? getUmaDisplayName(uma) : parent.name;
-            
-            if (filters.searchTerm && !parentName.toLowerCase().includes(filters.searchTerm.toLowerCase())) return false;
-
-            const lineageStats = getCachedLineageStats(parent);
-            if (filters.minWhiteSparks > 0 && lineageStats.whiteSkillCount < filters.minWhiteSparks) return false;
-
-            if (filters.searchScope === 'representative') {
-                if (!filters.blueSparks.every(f => parent.blueSpark.type === f.type && parent.blueSpark.stars >= f.stars)) return false;
-                if (!filters.pinkSparks.every(f => parent.pinkSpark.type === f.type && parent.pinkSpark.stars >= f.stars)) return false;
-                if (!filters.uniqueSparks.every(f => !f.name || parent.uniqueSparks.some(s => s.name === f.name && s.stars >= f.stars))) return false;
-                if (!filters.whiteSparks.every(f => !f.name || parent.whiteSparks.some(s => s.name === f.name && s.stars >= f.stars))) return false;
-            } else {
-                if (!filters.blueSparks.every(f => (lineageStats.blue[f.type] || 0) >= f.stars)) return false;
-                if (!filters.pinkSparks.every(f => (lineageStats.pink[f.type] || 0) >= f.stars)) return false;
-                if (!filters.uniqueSparks.every(f => !f.name || (lineageStats.unique[f.name] || 0) >= f.stars)) return false;
-                if (!filters.whiteSparks.every(f => !f.name || (lineageStats.white[f.name] || 0) >= f.stars)) return false;
-            }
-            
-            return true;
-        });
-
-        const sorted = filtered.sort((a, b) => {
-            let comparison = 0;
-            switch (sortField) {
-                case 'name':
-                    comparison = a.name.localeCompare(b.name);
-                    break;
-                case 'gen':
-                    comparison = b.gen - a.gen;
-                    break;
-                case 'id':
-                    comparison = b.id - a.id;
-                    break;
-                case 'sparks': 
-                    const aSparks = countTotalLineageWhiteSparks(a, inventoryMap);
-                    const bSparks = countTotalLineageWhiteSparks(b, inventoryMap);
-                    comparison = bSparks - aSparks;
-                    break;
-                case 'individualScore':
-                    comparison = b.individualScore - a.individualScore;
-                    break;
-                case 'score':
-                default:
-                    comparison = b.score - a.score;
-                    break;
-            }
-            return sortDirection === 'desc' ? comparison : -comparison;
-        });
-
-        const totalPages = Math.ceil(sorted.length / ITEMS_PER_PAGE);
+        const parentObjects = sortedParentIds.map(id => inventoryMap.get(id)).filter((p): p is Parent => !!p);
+        const totalPages = Math.ceil(parentObjects.length / ITEMS_PER_PAGE);
         const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-        const paginatedInventory = sorted.slice(startIndex, startIndex + ITEMS_PER_PAGE);
-
-        return { paginatedInventory, totalCount: sorted.length, totalPages };
-
-    }, [inventory, inventoryView, filters, sortField, sortDirection, umaMapById, inventoryMap, activeProfile, appData.inventory, skillMapByName, getIndividualScore, currentPage, getUmaDisplayName]);
+        const paginatedInventory = parentObjects.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+        return { paginatedInventory, totalCount: parentObjects.length, totalPages };
+    }, [sortedParentIds, inventoryMap, currentPage]);
 
 
     const handleOpenAddModal = () => {
@@ -185,7 +90,7 @@ const InventoryModal = ({ isOpen, onClose, isSelectionMode = false, onSelectPare
         }
     };
 
-    const destServer = activeServer === 'jp' ? 'Global' : 'JP';
+    const destServer = appData.activeServer === 'jp' ? 'Global' : 'JP';
     
     const getParentDisplayName = (parent: Parent | null): string => {
         if (!parent) return '';
