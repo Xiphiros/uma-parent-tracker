@@ -1,12 +1,11 @@
 import { 
-    RosterWorkerPayload, Parent, Skill, Uma, Goal, SortFieldType, 
-    SortDirectionType, InventoryViewType, LineageStats, Grandparent, ManualParentData,
+    RosterWorkerPayload, Parent, Uma, Goal,
+    LineageStats, Grandparent, ManualParentData,
     WhiteSpark, UniqueSpark, BreedingPairWithStats
 } from '../types';
 
 // --- STATE ---
 let inventory: Parent[] = [];
-let skillMapByName: Map<string, Skill> = new Map();
 let umaMapById: Map<string, Uma> = new Map();
 let activeServer: 'jp' | 'global' = 'jp';
 
@@ -116,7 +115,7 @@ function calculateDynamicSparkBaseScore(spark: WhiteSpark | UniqueSpark): number
     return rarityScore + utilityScore;
 }
 
-function calculateIndividualScore(entity: Parent | ManualParentData, goal: Goal, inventoryMap: Map<number, Parent>): number {
+function calculateIndividualScore(entity: Parent | ManualParentData, goal: Goal, _inventoryMap: Map<number, Parent>): number {
     let baseTotalScore = 0;
     baseTotalScore += BASE_SCORES.blue[entity.blueSpark.stars] * getBlueMultiplier(entity.blueSpark.type, goal);
     baseTotalScore += BASE_SCORES.pink[entity.pinkSpark.stars] * getPinkMultiplier(entity.pinkSpark.type, goal);
@@ -154,7 +153,7 @@ self.onmessage = (e: MessageEvent<RosterWorkerPayload>) => {
 
     if (type === 'INIT') {
         inventory = data.inventory;
-        skillMapByName = new Map(data.skillMapEntries);
+        // skillMapByName is not used in the worker, so we don't store it.
         umaMapById = new Map(data.umaMapEntries);
         activeServer = data.activeServer;
         return;
