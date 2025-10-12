@@ -2,7 +2,7 @@ import { useMemo, useState, useRef, useEffect } from 'react';
 import { useAppContext } from '../context/AppContext';
 import ParentCard from './ParentCard';
 import AddParentModal from './AddParentModal';
-import { Parent } from '../types';
+import { Parent, SortFieldType } from '../types';
 import { useScrollLock } from '../hooks/useScrollLock';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faFlask, faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
@@ -15,11 +15,14 @@ const ITEMS_PER_PAGE = 12;
 
 const Roster = () => {
     const { t } = useTranslation(['roster', 'common']);
-    const { getActiveProfile, getScoredRoster, deleteParent, getIndividualScore } = useAppContext();
+    const { 
+        getActiveProfile, deleteParent, getIndividualScore, appData,
+        sortedParentIds, sortField, setSortField, inventoryView, setInventoryView
+    } = useAppContext();
+
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
     const [isPlannerModalOpen, setIsPlannerModalOpen] = useState(false);
     const [parentToEdit, setParentToEdit] = useState<Parent | null>(null);
-    const [sortMode, setSortMode] = useState<'final' | 'individual'>('final');
     const rosterContainerRef = useRef<HTMLDivElement>(null);
     
     const [isDeleteConfirmOpen, setDeleteConfirmOpen] = useState(false);
@@ -29,32 +32,17 @@ const Roster = () => {
     useScrollLock(rosterContainerRef, isRosterScrollable);
 
     const [currentPage, setCurrentPage] = useState(1);
-    const [showBorrowed, setShowBorrowed] = useState(false);
     
     const activeProfile = getActiveProfile();
-    const scoredRoster = getScoredRoster();
-
-    const sortedRoster = useMemo(() => {
-        const rosterWithIndividualScores = scoredRoster.map(p => ({
-            ...p,
-            individualScore: getIndividualScore(p)
-        }));
-
-        return rosterWithIndividualScores.sort((a, b) => {
-            if (sortMode === 'individual') {
-                return b.individualScore - a.individualScore;
-            }
-            return b.score - a.score; // Default to final score
-        });
-    }, [scoredRoster, sortMode, getIndividualScore]);
+    const inventoryMap = useMemo(() => new Map(appData.inventory.map(p => [p.id, p])), [appData.inventory]);
 
     const { paginatedRoster, totalPages, totalCount } = useMemo(() => {
-        const filteredRoster = showBorrowed ? sortedRoster : sortedRoster.filter(p => !p.isBorrowed);
-        const totalPages = Math.ceil(filteredRoster.length / ITEMS_PER_PAGE);
+        const parentObjects = sortedParentIds.map(id => inventoryMap.get(id)).filter((p): p is Parent => !!p);
+        const totalPages = Math.ceil(parentObjects.length / ITEMS_PER_PAGE);
         const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-        const paginatedRoster = filteredRoster.slice(startIndex, startIndex + ITEMS_PER_PAGE);
-        return { paginatedRoster, totalPages, totalCount: filteredRoster.length };
-    }, [sortedRoster, showBorrowed, currentPage]);
+        const paginatedRoster = parentObjects.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+        return { paginatedRoster, totalPages, totalCount: parentObjects.length };
+    }, [sortedParentIds, inventoryMap, currentPage]);
 
     useEffect(() => {
         if (currentPage > totalPages && totalPages > 0) {
@@ -119,8 +107,8 @@ const Roster = () => {
                     <div className="flex items-center gap-2">
                         <div className="top-pair__toggle-group">
                             <span className="top-pair__toggle-btn !cursor-default">{t('rosterSortBy')}</span>
-                            <button className={`top-pair__toggle-btn ${sortMode === 'final' ? 'top-pair__toggle-btn--active' : ''}`} onClick={() => setSortMode('final')}>{t('finalScore')}</button>
-                            <button className={`top-pair__toggle-btn ${sortMode === 'individual' ? 'top-pair__toggle-btn--active' : ''}`} onClick={() => setSortMode('individual')}>{t('individualScore')}</button>
+                            <button className={`top-pair__toggle-btn ${sortField === 'score' ? 'top-pair__toggle-btn--active' : ''}`} onClick={() => setSortField('score')}>{t('finalScore')}</button>
+                            <button className={`top-pair__toggle-btn ${sortField === 'individualScore' ? 'top-pair__toggle-btn--active' : ''}`} onClick={() => setSortField('individualScore')}>{t('individualScore')}</button>
                         </div>
                          <button className="button button--neutral" onClick={() => setIsPlannerModalOpen(true)}>
                             <FontAwesomeIcon icon={faFlask} className="h-5 w-5 mr-1" />
@@ -137,8 +125,8 @@ const Roster = () => {
                         <input
                             type="checkbox"
                             className="form__checkbox"
-                            checked={showBorrowed}
-                            onChange={(e) => setShowBorrowed(e.target.checked)}
+                            checked={inventoryView === 'borrowed'}
+                            onChange={(e) => setInventoryView(e.target.checked ? 'borrowed' : 'all')}
                         />
                         <span className="form__label !mb-0">{t('inventory.showBorrowed')}</span>
                     </label>
