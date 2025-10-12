@@ -7,10 +7,8 @@ const BASE_SCORES = {
     pink: { 1: 10, 2: 17, 3: 30 },
 };
 
-const STAR_PROBABILITY = {
-  standard: { 1: 0.50, 2: 0.45, 3: 0.05 }, // For ranks below SS+
-  ssPlus: { 1: 0.20, 2: 0.70, 3: 0.10 },   // For ranks SS+ and higher
-};
+// Use the standardized probabilities from the methodology documentation
+const STAR_PROBABILITY = { 1: 0.50, 2: 0.45, 3: 0.06 };
 
 const WHITE_SPARK_PROBABILITY = {
     ancestorBonus: 0.025,
@@ -53,33 +51,35 @@ const getWishlistMultiplier = (tier: 'S' | 'A' | 'B' | 'C' | 'OTHER'): number =>
 const calculateDynamicSparkBaseScore = (
     spark: WhiteSpark | UniqueSpark,
     ancestorCount: number,
-    skillMapByName: Map<string, Skill>,
-    trainingRank: 'ss' | 'ss+'
+    skillMapByName: Map<string, Skill>
 ): number => {
     const { ancestorBonus } = WHITE_SPARK_PROBABILITY;
-    const starChance = trainingRank === 'ss+' ? STAR_PROBABILITY.ssPlus : STAR_PROBABILITY.standard;
     const factor = skillMapByName.get(spark.name);
+
+    // If factor is not found (e.g., it's a race/scenario factor), calculate a default score.
+    if (!factor) {
+        const pAcquire = 0.20 + (ancestorBonus * ancestorCount); // Simplified base probability
+        const pStar = STAR_PROBABILITY[spark.stars];
+        const finalProbability = pAcquire * pStar;
+        if (finalProbability === 0) return 0;
+        
+        const rarityScore = Math.round(Math.sqrt(1 / finalProbability));
+        // Assume it's a generic white spark for utility.
+        const utilityScore = UTILITY_SCORES.white[spark.stars];
+        return rarityScore + utilityScore;
+    }
 
     let baseChance = 0.20; // Default for normal white skills
     let utilityScore = UTILITY_SCORES.white[spark.stars];
     
-    if (factor) {
-        // If it's a unique factor, its acquisition probability is higher.
-        if (factor.category === 'unique') {
-            baseChance = 0.40;
-            utilityScore = UTILITY_SCORES.unique[spark.stars];
-        }
-        // If it's a "circle" (◎) skill, it's more likely to appear.
-        // We check the rarity of the purchasable skill, which is always rarity 1 or 2 for whites.
-        if (factor.purchasableSkillId) {
-            // This part is a simplification. A full lookup would be needed if we had the full skill_details map here.
-            // For now, assume if a factor is on the wishlist, it's likely a normal or circle skill.
-            // A more robust implementation would pass the full skill details map.
-        }
+    // If it's a unique factor, its acquisition probability is higher.
+    if (factor.category === 'unique') {
+        baseChance = 0.40;
+        utilityScore = UTILITY_SCORES.unique[spark.stars];
     }
     
     const pAcquire = baseChance + (ancestorBonus * ancestorCount);
-    const pStar = starChance[spark.stars];
+    const pStar = STAR_PROBABILITY[spark.stars];
     const finalProbability = pAcquire * pStar;
 
     if (finalProbability === 0) return 0;
@@ -91,50 +91,6 @@ const calculateDynamicSparkBaseScore = (
 
 // -- SCORING LOGIC --
 
-interface HypotheticalParentSparks {
-    blueSpark: { type: string, stars: 1 | 2 | 3 };
-    pinkSpark: { type: string, stars: 1 | 2 | 3 };
-    whiteSparks: WhiteSpark[];
-}
-
-/**
- * Scores a hypothetical set of sparks against a goal, with a given ancestor context.
- */
-export const scoreHypotheticalParent = (
-    sparks: HypotheticalParentSparks,
-    goal: Goal,
-    ancestorWhiteSparks: WhiteSpark[],
-    skillMapByName: Map<string, Skill>,
-    trainingRank: 'ss' | 'ss+' = 'ss'
-): number => {
-    let totalScore = 0;
-
-    const blueBase = BASE_SCORES.blue[sparks.blueSpark.stars];
-    totalScore += blueBase * getBlueMultiplier(sparks.blueSpark.type, goal);
-
-    const pinkBase = BASE_SCORES.pink[sparks.pinkSpark.stars];
-    totalScore += pinkBase * getPinkMultiplier(sparks.pinkSpark.type, goal);
-    
-    const ancestorCountMap = new Map<string, number>();
-    ancestorWhiteSparks.forEach(spark => {
-        ancestorCountMap.set(spark.name, (ancestorCountMap.get(spark.name) || 0) + 1);
-    });
-
-    sparks.whiteSparks.forEach((spark: WhiteSpark) => {
-        const ancestorCount = ancestorCountMap.get(spark.name) || 0;
-        const baseScore = calculateDynamicSparkBaseScore(spark, ancestorCount, skillMapByName, trainingRank);
-        const wishlistItem = goal.wishlist.find(w => w.name === spark.name);
-        const tier = wishlistItem ? wishlistItem.tier : 'OTHER';
-        totalScore += baseScore * getWishlistMultiplier(tier);
-    });
-    
-    // --- White Spark Count Bonus (for hypothetical parents) ---
-    const whiteSparkCount = sparks.whiteSparks.length;
-    const countMultiplier = 1 + (whiteSparkCount * 0.01);
-
-    return totalScore * countMultiplier;
-};
-
 /**
  * Calculates the score for a single entity (Parent or ManualParentData).
  */
@@ -142,8 +98,7 @@ export const calculateIndividualScore = (
     entity: Parent | ManualParentData,
     goal: Goal,
     inventoryMap: Map<number, Parent>,
-    skillMapByName: Map<string, Skill>,
-    trainingRank: 'ss' | 'ss+' = 'ss'
+    skillMapByName: Map<string, Skill>
 ): number => {
     let baseTotalScore = 0;
 
@@ -170,7 +125,7 @@ export const calculateIndividualScore = (
 
         entity.whiteSparks.forEach((spark: WhiteSpark) => {
             const ancestorCount = ancestorCountMap.get(spark.name) || 0;
-            const baseScore = calculateDynamicSparkBaseScore(spark, ancestorCount, skillMapByName, trainingRank);
+            const baseScore = calculateDynamicSparkBaseScore(spark, ancestorCount, skillMapByName);
             const wishlistItem = goal.wishlist.find(w => w.name === spark.name);
             const tier = wishlistItem ? wishlistItem.tier : 'OTHER';
             baseTotalScore += baseScore * getWishlistMultiplier(tier);
@@ -181,7 +136,7 @@ export const calculateIndividualScore = (
     entity.uniqueSparks.forEach((spark: UniqueSpark) => {
         const wishlistItem = goal.uniqueWishlist.find(w => w.name === spark.name);
         const tier = wishlistItem ? wishlistItem.tier : 'OTHER';
-        const baseScore = calculateDynamicSparkBaseScore(spark, 0, skillMapByName, trainingRank);
+        const baseScore = calculateDynamicSparkBaseScore(spark, 0, skillMapByName);
         baseTotalScore += baseScore * getWishlistMultiplier(tier);
     });
 
@@ -202,18 +157,17 @@ export const calculateScore = (
     parent: Parent,
     goal: Goal,
     inventory: Parent[],
-    skillMapByName: Map<string, Skill>,
-    trainingRank: 'ss' | 'ss+' = 'ss'
+    skillMapByName: Map<string, Skill>
 ): number => {
     const inventoryMap = new Map(inventory.map(p => [p.id, p]));
 
-    const parentScore = calculateIndividualScore(parent, goal, inventoryMap, skillMapByName, trainingRank);
+    const parentScore = calculateIndividualScore(parent, goal, inventoryMap, skillMapByName);
 
     const gp1 = typeof parent.grandparent1 === 'number' ? inventoryMap.get(parent.grandparent1) : parent.grandparent1;
     const gp2 = typeof parent.grandparent2 === 'number' ? inventoryMap.get(parent.grandparent2) : parent.grandparent2;
 
-    const gp1Score = gp1 ? calculateIndividualScore(gp1, goal, inventoryMap, skillMapByName, trainingRank) : 0;
-    const gp2Score = gp2 ? calculateIndividualScore(gp2, goal, inventoryMap, skillMapByName, trainingRank) : 0;
+    const gp1Score = gp1 ? calculateIndividualScore(gp1, goal, inventoryMap, skillMapByName) : 0;
+    const gp2Score = gp2 ? calculateIndividualScore(gp2, goal, inventoryMap, skillMapByName) : 0;
 
     const finalScore = parentScore + (gp1Score * GRANDPARENT_MULTIPLIER) + (gp2Score * GRANDPARENT_MULTIPLIER);
 
