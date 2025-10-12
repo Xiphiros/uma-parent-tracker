@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect, ReactNode, useRef, useMemo, useCallback } from 'react';
-import { AppData, Profile, Skill, Uma, Goal, Parent, NewParentData, WishlistItem, Folder, IconName, ServerSpecificData, ValidationResult, BreedingPair, SkillPreset, ManualParentData, LegacyImportWorkerPayload, LegacyImportWorkerResponse, RosterWorkerData, RosterWorkerUpdatePayload, RosterWorkerResponse, SortFieldType, SortDirectionType, InventoryViewType, Filters } from '../types';
+import { AppData, Profile, Skill, Uma, Goal, Parent, NewParentData, WishlistItem, Folder, IconName, ServerSpecificData, ValidationResult, BreedingPair, SkillPreset, ManualParentData, LegacyImportWorkerPayload, LegacyImportWorkerResponse, RosterWorkerData, RosterWorkerUpdatePayload, RosterWorkerResponse, SortFieldType, SortDirectionType, InventoryViewType, Filters, BreedingPairWithStats } from '../types';
 import masterSkillListJson from '../data/skill-list.json';
 import masterUmaListJson from '../data/uma-list.json';
 import affinityJpJson from '../data/affinity_jp.json';
@@ -80,6 +80,7 @@ const useRosterWorker = (
     // Effect to send initialization data to the worker
     useEffect(() => {
         if (workerRef.current) {
+            setIsCalculating(true);
             const initData: RosterWorkerData = {
                 inventory,
                 skillMapEntries,
@@ -164,6 +165,18 @@ interface AppContextType {
   legacyImportError: string | null;
   setLegacyImportError: (error: string | null) => void;
   importLegacyData: (file: File) => void;
+  // Roster Worker state and setters
+  isCalculating: boolean;
+  sortedParentIds: number[];
+  topBreedingPairs: Record<'owned' | 'borrowed', BreedingPairWithStats[]>;
+  filters: Filters;
+  setFilters: React.Dispatch<React.SetStateAction<Filters>>;
+  sortField: SortFieldType;
+  setSortField: (value: SortFieldType) => void;
+  sortDirection: SortDirectionType;
+  setSortDirection: (value: SortDirectionType) => void;
+  inventoryView: InventoryViewType;
+  setInventoryView: (value: InventoryViewType) => void;
 }
 
 const AppContext = createContext<AppContextType | null>(null);
@@ -176,6 +189,16 @@ export const useAppContext = () => {
   return context;
 };
 
+const initialFilters: Filters = {
+    searchTerm: '',
+    searchScope: 'total',
+    blueSparks: [],
+    pinkSparks: [],
+    uniqueSparks: [],
+    whiteSparks: [],
+    minWhiteSparks: 0,
+};
+
 export const AppProvider = ({ children }: { children: ReactNode }) => {
   const [loading, setLoading] = useState(true);
   const [appData, setAppData] = useState<AppData>(createDefaultState());
@@ -185,6 +208,12 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
   const [activeBreedingPair, setActiveBreedingPair] = useState<BreedingPair | null>(null);
   const [isImportingLegacy, setIsImportingLegacy] = useState(false);
   const [legacyImportError, setLegacyImportError] = useState<string | null>(null);
+  
+  // State for roster worker controls, lifted from InventoryControls
+  const [filters, setFilters] = useState<Filters>(initialFilters);
+  const [sortField, setSortField] = useState<SortFieldType>('score');
+  const [sortDirection, setSortDirection] = useState<SortDirectionType>('desc');
+  const [inventoryView, setInventoryView] = useState<InventoryViewType>('all');
   
   const isInitialLoad = useRef(true);
 
@@ -200,6 +229,36 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
     }
     return { relationPoints: points, charaRelations: relations };
   }, [activeServer]);
+
+  const masterSkillList = useMemo(() => {
+      const allSkills = masterSkillListJson as Skill[];
+      if (activeServer === 'global') {
+          return allSkills.filter(s => s.isGlobal);
+      }
+      return allSkills;
+  }, [activeServer]);
+
+  const masterUmaList = useMemo(() => {
+      const allUmas = masterUmaListJson as Uma[];
+      if (activeServer === 'global') {
+          return allUmas.filter(u => u.isGlobal);
+      }
+      return allUmas;
+  }, [activeServer]);
+  
+  const getUmaDisplayNameForContext = useCallback((uma: Uma) => {
+      return getUmaDisplayName(uma, dataDisplayLanguage);
+  }, [dataDisplayLanguage]);
+
+  const masterUmaListWithDisplayName = useMemo(() => {
+      return masterUmaList.map(uma => ({
+          ...uma,
+          displayName: getUmaDisplayNameForContext(uma)
+      }));
+  }, [masterUmaList, getUmaDisplayNameForContext]);
+  
+  const skillMapByName = useMemo(() => new Map(masterSkillList.map(skill => [skill.name_en, skill])), [masterSkillList]);
+  const umaMapById = useMemo(() => new Map(masterUmaList.map(uma => [uma.id, uma])), [masterUmaList]);
 
   // Single, consolidated initialization effect
   useEffect(() => {
@@ -245,6 +304,24 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
     localStorage.setItem(DB_KEY, JSON.stringify(appData));
   }, [appData]);
 
+  const getActiveProfile = () => {
+    const serverData = appData.serverData[activeServer];
+    return serverData.profiles.find(p => p.id === serverData.activeProfileId);
+  };
+  
+  // Roster Worker Integration
+  const { results: workerResults, isCalculating } = useRosterWorker(
+      appData.inventory,
+      Array.from(skillMapByName.entries()),
+      Array.from(umaMapById.entries()),
+      activeServer,
+      getActiveProfile()?.goal,
+      filters,
+      sortField,
+      sortDirection,
+      inventoryView
+  );
+
   const savePreferences = (key: string, value: any) => {
     try {
         const prefs = JSON.parse(localStorage.getItem(USER_PREFERENCES_KEY) || '{}');
@@ -269,46 +346,11 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
     i18n.changeLanguage(lang);
   };
 
-  const masterSkillList = useMemo(() => {
-      const allSkills = masterSkillListJson as Skill[];
-      if (activeServer === 'global') {
-          return allSkills.filter(s => s.isGlobal);
-      }
-      return allSkills;
-  }, [activeServer]);
-
-  const masterUmaList = useMemo(() => {
-      const allUmas = masterUmaListJson as Uma[];
-      if (activeServer === 'global') {
-          return allUmas.filter(u => u.isGlobal);
-      }
-      return allUmas;
-  }, [activeServer]);
-
-  const getUmaDisplayNameForContext = useCallback((uma: Uma) => {
-      return getUmaDisplayName(uma, dataDisplayLanguage);
-  }, [dataDisplayLanguage]);
-
-  const masterUmaListWithDisplayName = useMemo(() => {
-      return masterUmaList.map(uma => ({
-          ...uma,
-          displayName: getUmaDisplayNameForContext(uma)
-      }));
-  }, [masterUmaList, getUmaDisplayNameForContext]);
-
-  const skillMapByName = useMemo(() => new Map(masterSkillList.map(skill => [skill.name_en, skill])), [masterSkillList]);
-  const umaMapById = useMemo(() => new Map(masterUmaList.map(uma => [uma.id, uma])), [masterUmaList]);
-
   const saveState = (newData: AppData) => {
     setAppData(newData);
   };
 
   const getActiveServerData = () => appData.serverData[activeServer];
-
-  const getActiveProfile = () => {
-    const serverData = getActiveServerData();
-    return serverData.profiles.find(p => p.id === serverData.activeProfileId);
-  };
 
   const inventoryMap = useMemo(() => new Map(appData.inventory.map(p => [p.id, p])), [appData.inventory]);
 
@@ -910,7 +952,7 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
   };
   
   const value = {
-    loading,
+    loading: loading || isCalculating,
     appData,
     relationPoints,
     charaRelations,
@@ -964,6 +1006,18 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
     legacyImportError,
     setLegacyImportError,
     importLegacyData,
+    // Roster Worker state and setters
+    isCalculating,
+    sortedParentIds: workerResults.sortedParentIds,
+    topBreedingPairs: workerResults.topBreedingPairs,
+    filters,
+    setFilters,
+    sortField,
+    setSortField,
+    sortDirection,
+    setSortDirection,
+    inventoryView,
+    setInventoryView,
   };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
