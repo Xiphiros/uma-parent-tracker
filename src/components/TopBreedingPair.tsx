@@ -1,6 +1,6 @@
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useAppContext } from '../context/AppContext';
-import { Parent, BreedingPair } from '../types';
+import { Parent } from '../types';
 import { useTranslation } from 'react-i18next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight, faClipboardQuestion, faCalculator } from '@fortawesome/free-solid-svg-icons';
