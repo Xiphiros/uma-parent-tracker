@@ -350,8 +350,6 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
     setAppData(newData);
   };
 
-  const getActiveServerData = () => appData.serverData[activeServer];
-
   const inventoryMap = useMemo(() => new Map(appData.inventory.map(p => [p.id, p])), [appData.inventory]);
 
   const getScoredRoster = useMemo(() => () => {
