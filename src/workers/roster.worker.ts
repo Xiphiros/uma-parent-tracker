@@ -1,11 +1,12 @@
 import { 
-    RosterWorkerPayload, Parent, Uma, Goal,
+    RosterWorkerPayload, Parent, Skill, Uma, Goal,
     LineageStats, Grandparent, ManualParentData,
     WhiteSpark, UniqueSpark, BreedingPairWithStats
 } from '../types';
 
 // --- STATE ---
 let inventory: Parent[] = [];
+let skillMapByName: Map<string, Skill> = new Map();
 let umaMapById: Map<string, Uma> = new Map();
 let activeServer: 'jp' | 'global' = 'jp';
 
@@ -105,24 +106,27 @@ function getWishlistMultiplier(tier: 'S' | 'A' | 'B' | 'C' | 'OTHER'): number {
     switch (tier) { case 'S': return 2.0; case 'A': return 1.5; case 'B': return 1.2; case 'C': return 1.0; default: return 1.0; }
 }
 
-function calculateDynamicSparkBaseScore(spark: WhiteSpark | UniqueSpark): number {
+function calculateDynamicSparkBaseScore(spark: WhiteSpark | UniqueSpark, localSkillMap: Map<string, Skill>): number {
     const pAcquire = 0.20; // Simplified base probability
     const pStar = { 1: 0.50, 2: 0.45, 3: 0.05 }[spark.stars];
     const finalProbability = pAcquire * pStar;
     if (finalProbability === 0) return 0;
+
     const rarityScore = Math.round(Math.sqrt(1 / finalProbability));
-    const utilityScore = (spark as UniqueSpark).name ? UTILITY_SCORES.unique[spark.stars] : UTILITY_SCORES.white[spark.stars];
+    const skill = localSkillMap.get(spark.name);
+    const utilityScore = (skill?.category === 'unique') ? UTILITY_SCORES.unique[spark.stars] : UTILITY_SCORES.white[spark.stars];
+    
     return rarityScore + utilityScore;
 }
 
-function calculateIndividualScore(entity: Parent | ManualParentData, goal: Goal, _inventoryMap: Map<number, Parent>): number {
+function calculateIndividualScore(entity: Parent | ManualParentData, goal: Goal, inventoryMap: Map<number, Parent>, localSkillMap: Map<string, Skill>): number {
     let baseTotalScore = 0;
     baseTotalScore += BASE_SCORES.blue[entity.blueSpark.stars] * getBlueMultiplier(entity.blueSpark.type, goal);
     baseTotalScore += BASE_SCORES.pink[entity.pinkSpark.stars] * getPinkMultiplier(entity.pinkSpark.type, goal);
 
     if ('whiteSparks' in entity) {
         entity.whiteSparks.forEach((spark: WhiteSpark) => {
-            const baseScore = calculateDynamicSparkBaseScore(spark);
+            const baseScore = calculateDynamicSparkBaseScore(spark, localSkillMap);
             const wishlistItem = goal.wishlist.find(w => w.name === spark.name);
             baseTotalScore += baseScore * getWishlistMultiplier(wishlistItem?.tier || 'OTHER');
         });
@@ -130,19 +134,19 @@ function calculateIndividualScore(entity: Parent | ManualParentData, goal: Goal,
 
     entity.uniqueSparks.forEach((spark: UniqueSpark) => {
         const wishlistItem = goal.uniqueWishlist.find(w => w.name === spark.name);
-        baseTotalScore += calculateDynamicSparkBaseScore(spark) * getWishlistMultiplier(wishlistItem?.tier || 'OTHER');
+        baseTotalScore += calculateDynamicSparkBaseScore(spark, localSkillMap) * getWishlistMultiplier(wishlistItem?.tier || 'OTHER');
     });
 
     const whiteSparkCount = 'whiteSparks' in entity ? entity.whiteSparks.length : 0;
     return baseTotalScore * (1 + (whiteSparkCount * 0.01));
 }
 
-function calculateScore(parent: Parent, goal: Goal, inventoryMap: Map<number, Parent>): number {
-    const parentScore = calculateIndividualScore(parent, goal, inventoryMap);
+function calculateScore(parent: Parent, goal: Goal, inventoryMap: Map<number, Parent>, localSkillMap: Map<string, Skill>): number {
+    const parentScore = calculateIndividualScore(parent, goal, inventoryMap, localSkillMap);
     const gp1 = resolveGrandparent(parent.grandparent1, inventoryMap);
     const gp2 = resolveGrandparent(parent.grandparent2, inventoryMap);
-    const gp1Score = gp1 ? calculateIndividualScore(gp1, goal, inventoryMap) : 0;
-    const gp2Score = gp2 ? calculateIndividualScore(gp2, goal, inventoryMap) : 0;
+    const gp1Score = gp1 ? calculateIndividualScore(gp1, goal, inventoryMap, localSkillMap) : 0;
+    const gp2Score = gp2 ? calculateIndividualScore(gp2, goal, inventoryMap, localSkillMap) : 0;
     return Math.round(parentScore + (gp1Score * 0.5) + (gp2Score * 0.5));
 }
 
@@ -153,7 +157,7 @@ self.onmessage = (e: MessageEvent<RosterWorkerPayload>) => {
 
     if (type === 'INIT') {
         inventory = data.inventory;
-        // skillMapByName is not used in the worker, so we don't store it.
+        skillMapByName = new Map(data.skillMapEntries);
         umaMapById = new Map(data.umaMapEntries);
         activeServer = data.activeServer;
         return;
@@ -193,8 +197,8 @@ self.onmessage = (e: MessageEvent<RosterWorkerPayload>) => {
         // 2. Score and Sort
         const scoredAndSorted = searchFiltered.map(p => ({
             ...p,
-            score: calculateScore(p, goal, inventoryMap),
-            individualScore: Math.round(calculateIndividualScore(p, goal, inventoryMap))
+            score: calculateScore(p, goal, inventoryMap, skillMapByName),
+            individualScore: Math.round(calculateIndividualScore(p, goal, inventoryMap, skillMapByName))
         })).sort((a, b) => {
             let comp = 0;
             switch (sortField) {
@@ -240,7 +244,7 @@ self.onmessage = (e: MessageEvent<RosterWorkerPayload>) => {
         }
         
         // Owned x Borrowed
-        const borrowedParents = inventory.filter(p => p.isBorrowed && p.server === activeServer).map(p => ({...p, score: calculateScore(p, goal, inventoryMap), individualScore: Math.round(calculateIndividualScore(p, goal, inventoryMap)) }));
+        const borrowedParents = inventory.filter(p => p.isBorrowed && p.server === activeServer).map(p => ({...p, score: calculateScore(p, goal, inventoryMap, skillMapByName), individualScore: Math.round(calculateIndividualScore(p, goal, inventoryMap, skillMapByName)) }));
         for (const p1 of rosterForPairing) {
             for (const p2 of borrowedParents) {
                 const p1CharId = umaMapById.get(p1.umaId)?.characterId;
