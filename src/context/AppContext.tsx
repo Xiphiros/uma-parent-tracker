@@ -57,10 +57,11 @@ const useRosterWorker = (
     inventoryView: InventoryViewType
 ) => {
     const workerRef = useRef<Worker | null>(null);
-    const [results, setResults] = useState<RosterWorkerResponse>({
+    const [results, setResults] = useState<Omit<RosterWorkerResponse, 'scoresById'>>({
         sortedParentIds: [],
         topBreedingPairs: { owned: [], borrowed: [] },
     });
+    const [scoresById, setScoresById] = useState<Record<number, { score: number, individualScore: number }>>({});
     const [isCalculating, setIsCalculating] = useState(true);
 
     // Effect to initialize and terminate the worker
@@ -68,7 +69,9 @@ const useRosterWorker = (
         workerRef.current = new Worker(new URL('../workers/roster.worker.ts', import.meta.url), { type: 'module' });
 
         workerRef.current.onmessage = (e: MessageEvent<RosterWorkerResponse>) => {
-            setResults(e.data);
+            const { scoresById, ...rest } = e.data;
+            setResults(rest);
+            setScoresById(scoresById);
             setIsCalculating(false);
         };
 
@@ -105,7 +108,7 @@ const useRosterWorker = (
         }
     }, [goal, filters, sortField, sortDirection, inventoryView, inventory, activeServer]);
 
-    return { results, isCalculating };
+    return { results, scoresById, isCalculating };
 };
 
 interface AppContextType {
@@ -167,6 +170,7 @@ interface AppContextType {
   isCalculating: boolean;
   sortedParentIds: number[];
   topBreedingPairs: Record<'owned' | 'borrowed', BreedingPairWithStats[]>;
+  scoresById: Record<number, { score: number, individualScore: number }>;
   filters: Filters;
   setFilters: React.Dispatch<React.SetStateAction<Filters>>;
   sortField: SortFieldType;
@@ -308,7 +312,7 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
   }, [appData, activeServer]);
   
   // Roster Worker Integration
-  const { results: workerResults, isCalculating } = useRosterWorker(
+  const { results: workerResults, scoresById, isCalculating } = useRosterWorker(
       appData.inventory,
       Array.from(skillMapByName.entries()),
       Array.from(umaMapById.entries()),
@@ -993,6 +997,7 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
     isCalculating,
     sortedParentIds: workerResults.sortedParentIds,
     topBreedingPairs: workerResults.topBreedingPairs,
+    scoresById,
     filters,
     setFilters,
     sortField,
