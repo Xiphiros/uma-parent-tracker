@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { BlueSpark, Skill, Filters } from '../../types';
+import { BlueSpark, Skill, Filters, SortDirectionType, SortFieldType, InventoryViewType } from '../../types';
 import SearchableSelect from './SearchableSelect';
 import { useAppContext } from '../../context/AppContext';
 import './InventoryControls.css';
@@ -8,12 +8,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFilter, faTimes, faArrowDownWideShort, faArrowUpShortWide, faPlus } from '@fortawesome/free-solid-svg-icons';
 import RangeSlider from './RangeSlider';
 import { useDebounce } from '../../hooks/useDebounce';
-
-export type SortFieldType = 'score' | 'individualScore' | 'name' | 'gen' | 'id' | 'sparks';
-export type SortDirectionType = 'asc' | 'desc';
-export type InventoryViewType = 'all' | 'owned' | 'borrowed';
-
-type SparkFilterType = 'blueSparks' | 'pinkSparks' | 'uniqueSparks' | 'whiteSparks';
 
 interface InventoryControlsProps {
     filters: Filters;
@@ -69,7 +63,7 @@ const InventoryControls = ({ filters, setFilters, sortField, setSortField, sortD
         setFilters(prev => ({ ...prev, [key]: value }));
     };
     
-    const handleAddSparkFilter = (type: SparkFilterType) => {
+    const handleAddSparkFilter = (type: 'blueSparks' | 'pinkSparks' | 'uniqueSparks' | 'whiteSparks') => {
         setFilters(prev => {
             const newFilters = [...prev[type]];
             let newItem;
@@ -81,7 +75,7 @@ const InventoryControls = ({ filters, setFilters, sortField, setSortField, sortD
         });
     };
     
-    const handleRemoveSparkFilter = (type: SparkFilterType, index: number) => {
+    const handleRemoveSparkFilter = (type: 'blueSparks' | 'pinkSparks' | 'uniqueSparks' | 'whiteSparks', index: number) => {
         setFilters(prev => {
             const newFilters = [...prev[type]];
             newFilters.splice(index, 1);
@@ -89,7 +83,7 @@ const InventoryControls = ({ filters, setFilters, sortField, setSortField, sortD
         });
     };
     
-    const handleUpdateSparkFilter = (type: SparkFilterType, index: number, field: 'type' | 'name' | 'stars', value: any) => {
+    const handleUpdateSparkFilter = (type: 'blueSparks' | 'pinkSparks' | 'uniqueSparks' | 'whiteSparks', index: number, field: 'type' | 'name' | 'stars', value: any) => {
          setFilters(prev => {
             const newFilters = [...prev[type]];
             const updatedItem = { ...newFilters[index], [field]: value };
