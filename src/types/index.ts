@@ -225,4 +225,5 @@ export interface BreedingPairWithStats extends BreedingPair {
 export interface RosterWorkerResponse {
     sortedParentIds: number[];
     topBreedingPairs: Record<'owned' | 'borrowed', BreedingPairWithStats[]>;
+    scoresById: Record<number, { score: number; individualScore: number }>;
 }
