@@ -2,7 +2,7 @@ import { useMemo, useState, useRef, useEffect } from 'react';
 import { useAppContext } from '../context/AppContext';
 import ParentCard from './ParentCard';
 import AddParentModal from './AddParentModal';
-import { Parent, SortFieldType } from '../types';
+import { Parent } from '../types';
 import { useScrollLock } from '../hooks/useScrollLock';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faFlask, faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
@@ -16,7 +16,7 @@ const ITEMS_PER_PAGE = 12;
 const Roster = () => {
     const { t } = useTranslation(['roster', 'common']);
     const { 
-        getActiveProfile, deleteParent, getIndividualScore, appData,
+        getActiveProfile, deleteParent, appData,
         sortedParentIds, sortField, setSortField, inventoryView, setInventoryView
     } = useAppContext();
 
