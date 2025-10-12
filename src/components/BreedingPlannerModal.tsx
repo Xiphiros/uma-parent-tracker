@@ -38,10 +38,12 @@ const TOP_K_SUGGESTIONS = 20;
 
 const BreedingPlannerModal = ({ isOpen, onClose }: BreedingPlannerModalProps) => {
     const { t } = useTranslation('roster');
-    const { getScoredRoster, dataDisplayLanguage, umaMapById, masterUmaList, appData, charaRelations, relationPoints, skillMapByName, getActiveProfile, getUmaDisplayName } = useAppContext();
-    const roster = useMemo(() => getScoredRoster(), [getScoredRoster]);
-    const displayNameProp = dataDisplayLanguage === 'jp' ? 'name_jp' : 'name_en';
+    const { sortedParentIds, dataDisplayLanguage, umaMapById, masterUmaList, appData, charaRelations, relationPoints, skillMapByName, getActiveProfile, getUmaDisplayName } = useAppContext();
+    
     const inventoryMap = useMemo(() => new Map(appData.inventory.map(p => [p.id, p])), [appData.inventory]);
+    const roster = useMemo(() => sortedParentIds.map(id => inventoryMap.get(id)).filter((p): p is Parent => !!p), [sortedParentIds, inventoryMap]);
+    
+    const displayNameProp = dataDisplayLanguage === 'jp' ? 'name_jp' : 'name_en';
     const goal = getActiveProfile()?.goal;
 
     const [activeTab, setActiveTab] = useState<PlannerTab>('manual');
