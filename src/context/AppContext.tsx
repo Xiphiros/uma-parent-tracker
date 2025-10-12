@@ -80,7 +80,6 @@ const useRosterWorker = (
     // Effect to send initialization data to the worker
     useEffect(() => {
         if (workerRef.current) {
-            setIsCalculating(true);
             const initData: RosterWorkerData = {
                 inventory,
                 skillMapEntries,
