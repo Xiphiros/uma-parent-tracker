@@ -1,4 +1,6 @@
-import { SortDirectionType, SortFieldType, InventoryViewType } from "../components/common/InventoryControls";
+export type SortFieldType = 'score' | 'individualScore' | 'name' | 'gen' | 'id' | 'sparks';
+export type SortDirectionType = 'asc' | 'desc';
+export type InventoryViewType = 'all' | 'owned' | 'borrowed';
 
 export interface SkillRarity {
   rarity: 1 | 2 | 3;
