@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect, ReactNode, useRef, useMemo, useCallback } from 'react';
-import { AppData, Profile, Skill, Uma, Goal, Parent, NewParentData, WishlistItem, Folder, IconName, ServerSpecificData, ValidationResult, BreedingPair, SkillPreset, ManualParentData, LegacyImportWorkerPayload, LegacyImportWorkerResponse } from '../types';
+import { AppData, Profile, Skill, Uma, Goal, Parent, NewParentData, WishlistItem, Folder, IconName, ServerSpecificData, ValidationResult, BreedingPair, SkillPreset, ManualParentData, LegacyImportWorkerPayload, LegacyImportWorkerResponse, RosterWorkerData, RosterWorkerUpdatePayload, RosterWorkerResponse, SortFieldType, SortDirectionType, InventoryViewType, Filters } from '../types';
 import masterSkillListJson from '../data/skill-list.json';
 import masterUmaListJson from '../data/uma-list.json';
 import affinityJpJson from '../data/affinity_jp.json';
@@ -39,6 +39,73 @@ export const getUmaDisplayName = (uma: Uma, lang: DataDisplayLanguage): string =
         return `${finalOutfitName} ${baseName}`;
     }
     return baseName;
+};
+
+/**
+ * Custom hook to manage the roster processing Web Worker.
+ * It handles the worker's lifecycle, state synchronization, and messaging.
+ */
+const useRosterWorker = (
+    inventory: Parent[],
+    skillMapEntries: [string, Skill][],
+    umaMapEntries: [string, Uma][],
+    activeServer: 'jp' | 'global',
+    goal: Goal | undefined,
+    filters: Filters,
+    sortField: SortFieldType,
+    sortDirection: SortDirectionType,
+    inventoryView: InventoryViewType
+) => {
+    const workerRef = useRef<Worker | null>(null);
+    const [results, setResults] = useState<RosterWorkerResponse>({
+        sortedParentIds: [],
+        topBreedingPairs: { owned: [], borrowed: [] },
+    });
+    const [isCalculating, setIsCalculating] = useState(true);
+
+    // Effect to initialize and terminate the worker
+    useEffect(() => {
+        workerRef.current = new Worker(new URL('../workers/roster.worker.ts', import.meta.url), { type: 'module' });
+
+        workerRef.current.onmessage = (e: MessageEvent<RosterWorkerResponse>) => {
+            setResults(e.data);
+            setIsCalculating(false);
+        };
+
+        return () => {
+            workerRef.current?.terminate();
+        };
+    }, []);
+
+    // Effect to send initialization data to the worker
+    useEffect(() => {
+        if (workerRef.current) {
+            const initData: RosterWorkerData = {
+                inventory,
+                skillMapEntries,
+                umaMapEntries,
+                activeServer,
+            };
+            workerRef.current.postMessage({ type: 'INIT', data: initData });
+        }
+    }, [inventory, skillMapEntries, umaMapEntries, activeServer]);
+
+    // Effect to send update requests to the worker when dynamic data changes
+    useEffect(() => {
+        if (workerRef.current && goal) {
+            setIsCalculating(true);
+            const updateData: RosterWorkerUpdatePayload = {
+                goal,
+                filters,
+                sortField,
+                sortDirection,
+                inventoryView,
+            };
+            workerRef.current.postMessage({ type: 'UPDATE', data: updateData });
+        }
+    }, [goal, filters, sortField, sortDirection, inventoryView, inventory, activeServer]);
+
+    return { results, isCalculating };
 };
 
 interface AppContextType {
