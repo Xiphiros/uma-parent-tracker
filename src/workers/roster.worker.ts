@@ -1,5 +1,5 @@
 import { 
-    RosterWorkerPayload, Parent, Skill, Uma, Goal, Filters, SortFieldType, 
+    RosterWorkerPayload, Parent, Skill, Uma, Goal, SortFieldType, 
     SortDirectionType, InventoryViewType, LineageStats, Grandparent, ManualParentData,
     WhiteSpark, UniqueSpark, BreedingPairWithStats
 } from '../types';
