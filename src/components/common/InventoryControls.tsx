@@ -7,6 +7,7 @@ import './InventoryControls.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFilter, faTimes, faArrowDownWideShort, faArrowUpShortWide, faPlus } from '@fortawesome/free-solid-svg-icons';
 import RangeSlider from './RangeSlider';
+import { useDebounce } from '../../hooks/useDebounce';
 
 export type SortFieldType = 'score' | 'individualScore' | 'name' | 'gen' | 'id' | 'sparks';
 export type SortDirectionType = 'asc' | 'desc';
@@ -34,6 +35,19 @@ const InventoryControls = ({ filters, setFilters, sortField, setSortField, sortD
     const displayNameProp = dataDisplayLanguage === 'jp' ? 'name_jp' : 'name_en';
 
     const [isAdvanced, setIsAdvanced] = useState(true);
+    const [liveSearchTerm, setLiveSearchTerm] = useState(filters.searchTerm);
+    const debouncedSearchTerm = useDebounce(liveSearchTerm, 300);
+
+    useEffect(() => {
+        setFilters(prev => ({ ...prev, searchTerm: debouncedSearchTerm }));
+    }, [debouncedSearchTerm, setFilters]);
+    
+    // Sync live search term if filters are cleared externally
+    useEffect(() => {
+        if (filters.searchTerm === '') {
+            setLiveSearchTerm('');
+        }
+    }, [filters.searchTerm]);
 
     const uniqueSkills = masterSkillList.filter(s => s.category === 'unique');
     const normalSkills = masterSkillList.filter(s => s.category === 'white');
@@ -89,6 +103,7 @@ const InventoryControls = ({ filters, setFilters, sortField, setSortField, sortD
     };
 
     const clearFilters = () => {
+        setLiveSearchTerm('');
         setFilters({
             searchTerm: '',
             searchScope: 'total',
@@ -123,7 +138,7 @@ const InventoryControls = ({ filters, setFilters, sortField, setSortField, sortD
                  <div className="flex gap-4">
                     <div className="inventory-controls__group flex-grow">
                         <label className="inventory-controls__label">{t('inventory.searchByName')}</label>
-                        <input type="text" className="form__input" value={filters.searchTerm} onChange={(e) => handleFilterChange('searchTerm', e.target.value)} />
+                        <input type="text" className="form__input" value={liveSearchTerm} onChange={(e) => setLiveSearchTerm(e.target.value)} />
                     </div>
                     <div className="inventory-controls__group">
                         <label className="inventory-controls__label">{t('inventory.sortBy')}</label>
