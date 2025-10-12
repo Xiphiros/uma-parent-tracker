@@ -23,13 +23,16 @@ const WISH_RANK_ORDER: { [key: string]: number } = { S: 0, A: 1, B: 2, C: 3 };
 
 const ParentCard = ({ parent, isTopParent = false, displayScore = true, onEdit, onDelete, onMove, isSelectionMode = false, onSelect, isDisabled = false }: ParentCardProps) => {
     const { t } = useTranslation(['roster', 'common', 'game']);
-    const { getActiveProfile, dataDisplayLanguage, umaMapById, skillMapByName, appData, getIndividualScore, getUmaDisplayName } = useAppContext();
+    const { getActiveProfile, dataDisplayLanguage, umaMapById, skillMapByName, appData, getUmaDisplayName, scoresById } = useAppContext();
     const goal = getActiveProfile()?.goal;
     const displayNameProp = dataDisplayLanguage === 'jp' ? 'name_jp' : 'name_en';
 
+    const liveScores = scoresById[parent.id];
+    const finalScore = liveScores?.score ?? parent.score;
+    const individualScore = liveScores?.individualScore ?? 0;
+
     const umaData = useMemo(() => umaMapById.get(parent.umaId), [umaMapById, parent.umaId]);
     const displayName = umaData ? getUmaDisplayName(umaData) : parent.name;
-    const individualScore = getIndividualScore(parent);
 
     const aggregatedSparks = useMemo(() => {
         const inventoryMap = new Map(appData.inventory.map(p => [p.id, p]));
@@ -191,7 +194,7 @@ const ParentCard = ({ parent, isTopParent = false, displayScore = true, onEdit, 
                         <div className="parent-card__score-wrapper">
                             {displayScore && (
                                 <>
-                                    <div className="parent-card__score">{parent.score} {t('parentCard.pts')}</div>
+                                    <div className="parent-card__score">{finalScore} {t('parentCard.pts')}</div>
                                     <div className="parent-card__individual-score">({individualScore} pts)</div>
                                 </>
                             )}
