@@ -1,3 +1,5 @@
+import { SortDirectionType, SortFieldType, InventoryViewType } from "../components/common/InventoryControls";
+
 export interface SkillRarity {
   rarity: 1 | 2 | 3;
   factorId: number;
@@ -190,3 +192,35 @@ export interface LegacyImportWorkerPayload {
 export type LegacyImportWorkerResponse = 
     | { type: 'success'; data: AppData }
     | { type: 'error'; message: string };
+
+// --- Roster Worker Types ---
+export interface RosterWorkerData {
+    inventory: Parent[];
+    skillMapEntries: [string, Skill][];
+    umaMapEntries: [string, Uma][];
+    activeServer: 'jp' | 'global';
+}
+
+export interface RosterWorkerUpdatePayload {
+    goal: Goal;
+    filters: Filters;
+    sortField: SortFieldType;
+    sortDirection: SortDirectionType;
+    inventoryView: InventoryViewType;
+}
+
+export type RosterWorkerPayload = 
+    | { type: 'INIT'; data: RosterWorkerData }
+    | { type: 'UPDATE'; data: RosterWorkerUpdatePayload };
+
+export interface BreedingPairWithStats extends BreedingPair {
+    avgFinalScore: number;
+    avgIndividualScore: number;
+    totalSparks: number;
+    uniqueSparks: number;
+}
+
+export interface RosterWorkerResponse {
+    sortedParentIds: number[];
+    topBreedingPairs: BreedingPairWithStats[];
+}
