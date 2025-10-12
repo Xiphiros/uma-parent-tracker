@@ -1,12 +1,12 @@
 import { useState, useMemo, useEffect } from 'react';
-import { Parent, ValidationResult, Filters, LineageStats } from '../types';
+import { Parent, ValidationResult, Filters, LineageStats, SortDirectionType, SortFieldType, InventoryViewType } from '../types';
 import Modal from './common/Modal';
 import ParentCard from './ParentCard';
 import AddParentModal from './AddParentModal';
 import { useAppContext } from '../context/AppContext';
 import './InventoryModal.css';
 import { useTranslation } from 'react-i18next';
-import InventoryControls, { SortFieldType, SortDirectionType, InventoryViewType } from './common/InventoryControls';
+import InventoryControls from './common/InventoryControls';
 import { getLineageStats, countTotalLineageWhiteSparks } from '../utils/affinity';
 import { calculateScore } from '../utils/scoring';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
