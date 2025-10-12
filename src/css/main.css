@@ -131,3 +131,10 @@ html.dark {
 ::-webkit-scrollbar-thumb:hover {
     background: var(--color-scrollbar-thumb-hover);
 }
+
+/* Loading State Utility */
+.is-loading {
+    opacity: 0.5;
+    transition: opacity 0.2s ease-in-out;
+    pointer-events: none;
+}
