@@ -5,7 +5,7 @@ import AddParentModal from './AddParentModal';
 import { Parent } from '../types';
 import { useScrollLock } from '../hooks/useScrollLock';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus, faFlask, faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faFlask, faChevronLeft, faChevronRight, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { useTranslation } from 'react-i18next';
 import BreedingPlannerModal from './BreedingPlannerModal';
 import Modal from './common/Modal';
@@ -17,7 +17,8 @@ const Roster = () => {
     const { t } = useTranslation(['roster', 'common']);
     const { 
         getActiveProfile, deleteParent, appData,
-        sortedParentIds, sortField, setSortField, inventoryView, setInventoryView
+        sortedParentIds, sortField, setSortField, inventoryView, setInventoryView,
+        isCalculating
     } = useAppContext();
 
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
@@ -103,6 +104,7 @@ const Roster = () => {
                 <div className="card__header">
                     <h2 className="card__title">
                         {t('rosterTitle', { projectName: activeProfile?.name })}
+                        {isCalculating && <FontAwesomeIcon icon={faSpinner} className="h-5 w-5 ml-2 text-stone-400 animate-spin" />}
                     </h2>
                     <div className="flex items-center gap-2">
                         <div className="top-pair__toggle-group">
@@ -131,7 +133,7 @@ const Roster = () => {
                         <span className="form__label !mb-0">{t('inventory.showBorrowed')}</span>
                     </label>
                 </div>
-                <div id="roster-container" className="roster space-y-4 overflow-y-auto pr-2 flex-1 min-h-0" ref={rosterContainerRef}>
+                <div id="roster-container" className={`roster space-y-4 overflow-y-auto pr-2 flex-1 min-h-0 ${isCalculating ? 'is-loading' : ''}`} ref={rosterContainerRef}>
                     {paginatedRoster.length > 0 ? (
                         paginatedRoster.map(parent => (
                             <ParentCard 
