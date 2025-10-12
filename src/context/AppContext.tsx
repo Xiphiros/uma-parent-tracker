@@ -4,7 +4,7 @@ import masterSkillListJson from '../data/skill-list.json';
 import masterUmaListJson from '../data/uma-list.json';
 import affinityJpJson from '../data/affinity_jp.json';
 import affinityGlJson from '../data/affinity_global.json';
-import { calculateScore, calculateIndividualScore } from '../utils/scoring';
+import { calculateIndividualScore } from '../utils/scoring';
 import i18n from '../i18n';
 import { generateParentHash } from '../utils/hashing';
 import { migrateData, createDefaultState, createNewProfile } from '../utils/migrationHandler';
@@ -126,7 +126,6 @@ interface AppContextType {
   skillMapByName: Map<string, Skill>;
   umaMapById: Map<string, Uma>;
   getActiveProfile: () => Profile | undefined;
-  getScoredRoster: () => Parent[];
   getIndividualScore: (entity: Parent | ManualParentData) => number;
   activeBreedingPair: BreedingPair | null;
   setActiveBreedingPair: (pair: BreedingPair | null) => void;
@@ -304,10 +303,10 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
     localStorage.setItem(DB_KEY, JSON.stringify(appData));
   }, [appData]);
 
-  const getActiveProfile = () => {
+  const getActiveProfile = useCallback(() => {
     const serverData = appData.serverData[activeServer];
     return serverData.profiles.find(p => p.id === serverData.activeProfileId);
-  };
+  }, [appData, activeServer]);
   
   // Roster Worker Integration
   const { results: workerResults, isCalculating } = useRosterWorker(
@@ -322,7 +321,7 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
       inventoryView
   );
 
-  const savePreferences = (key: string, value: any) => {
+  const savePreferences = useCallback((key: string, value: any) => {
     try {
         const prefs = JSON.parse(localStorage.getItem(USER_PREFERENCES_KEY) || '{}');
         prefs[key] = value;
@@ -330,40 +329,27 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
     } catch (e) {
         console.error(`Could not save preference: ${key}`, e);
     }
-  };
+  }, []);
 
-  const setActiveServer = (server: 'jp' | 'global') => {
+  const setActiveServer = useCallback((server: 'jp' | 'global') => {
       setAppData(prev => ({...prev, activeServer: server}));
       savePreferences('activeServer', server);
-  };
+  }, [savePreferences]);
 
-  const setDataDisplayLanguage = (lang: DataDisplayLanguage) => {
+  const setDataDisplayLanguage = useCallback((lang: DataDisplayLanguage) => {
     setDataDisplayLanguageState(lang);
     savePreferences('dataDisplayLanguage', lang);
-  };
+  }, [savePreferences]);
 
-  const changeUiLanguage = (lang: 'en' | 'jp') => {
+  const changeUiLanguage = useCallback((lang: 'en' | 'jp') => {
     i18n.changeLanguage(lang);
-  };
+  }, [i18n]);
 
-  const saveState = (newData: AppData) => {
+  const saveState = useCallback((newData: AppData) => {
     setAppData(newData);
-  };
+  }, []);
 
   const inventoryMap = useMemo(() => new Map(appData.inventory.map(p => [p.id, p])), [appData.inventory]);
-
-  const getScoredRoster = useMemo(() => () => {
-    const profile = getActiveProfile();
-    if (!profile) return [];
-    
-    // The "roster" is now the entire inventory for the active server.
-    return appData.inventory
-      .filter(p => p.server === activeServer)
-      .map(p => ({
-        ...p,
-        score: calculateScore(p, profile.goal, appData.inventory, skillMapByName)
-      }));
-  }, [appData.inventory, activeServer, getActiveProfile, skillMapByName]);
 
   const getIndividualScore = useCallback((entity: Parent | ManualParentData) => {
       const profile = getActiveProfile();
@@ -371,7 +357,7 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
       return Math.round(calculateIndividualScore(entity, profile.goal, inventoryMap, skillMapByName));
   }, [getActiveProfile, inventoryMap, skillMapByName]);
 
-  const exportData = () => {
+  const exportData = useCallback(() => {
     const jsonString = JSON.stringify(appData, null, 2);
     const blob = new Blob([jsonString], { type: 'application/json' });
     const url = URL.createObjectURL(blob);
@@ -383,9 +369,9 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
     a.click();
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
-  };
+  }, [appData]);
 
-  const importData = (file: File): Promise<void> => {
+  const importData = useCallback((file: File): Promise<void> => {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
       reader.onload = (e) => {
@@ -403,9 +389,9 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
       reader.onerror = (error) => reject(error);
       reader.readAsText(file);
     });
-  };
+  }, [setActiveServer]);
 
-  const importLegacyData = (file: File) => {
+  const importLegacyData = useCallback((file: File) => {
     setIsImportingLegacy(true);
     setLegacyImportError(null);
 
@@ -450,13 +436,13 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
         setIsImportingLegacy(false);
     };
     reader.readAsText(file);
-  };
+  }, [setActiveServer]);
 
-  const deleteAllData = () => {
+  const deleteAllData = useCallback(() => {
       setAppData(createDefaultState());
-  };
+  }, []);
 
-  const updateServerData = (updater: (serverData: ServerSpecificData) => ServerSpecificData) => {
+  const updateServerData = useCallback((updater: (serverData: ServerSpecificData) => ServerSpecificData) => {
     setAppData(prev => {
         const newServerSpecificData = updater(prev.serverData[prev.activeServer]);
         return {
@@ -467,7 +453,7 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
             }
         };
     });
-  };
+  }, []);
 
   const sortLayoutByPin = (layout: (string|number)[], profiles: Profile[], folders: Folder[]) => {
       const profilePinMap = new Map(profiles.map(p => [p.id, p.isPinned ?? false]));
@@ -482,7 +468,7 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
       return [...profileIds].sort((a, b) => (isPinned(b) ? 1 : 0) - (isPinned(a) ? 1 : 0));
   };
 
-  const addProfile = (name: string, folderId?: string) => {
+  const addProfile = useCallback((name: string, folderId?: string) => {
     const newProfile = createNewProfile(name);
     updateServerData(serverData => {
         const newProfiles = [...serverData.profiles, newProfile];
@@ -509,20 +495,20 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
             activeProfileId: newProfile.id,
         };
     });
-  };
+  }, [updateServerData]);
 
-  const switchProfile = (id: number) => {
+  const switchProfile = useCallback((id: number) => {
     updateServerData(d => ({ ...d, activeProfileId: id }));
-  };
+  }, [updateServerData]);
 
-  const renameProfile = (id: number, newName: string) => {
+  const renameProfile = useCallback((id: number, newName: string) => {
     updateServerData(d => ({
       ...d,
       profiles: d.profiles.map(p => p.id === id ? { ...p, name: newName } : p),
     }));
-  };
+  }, [updateServerData]);
 
-  const deleteProfile = (id: number) => {
+  const deleteProfile = useCallback((id: number) => {
     updateServerData(d => {
       const newProfiles = d.profiles.filter(p => p.id !== id);
       const newLayout = d.layout.filter(item => item !== id);
@@ -537,9 +523,9 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
       }
       return { ...d, profiles: newProfiles, layout: newLayout, folders: newFolders, activeProfileId: newActiveId };
     });
-  };
+  }, [updateServerData]);
 
-  const togglePinProfile = (id: number) => {
+  const togglePinProfile = useCallback((id: number) => {
     updateServerData(d => {
         const newProfiles = d.profiles.map(p => 
             p.id === id ? { ...p, isPinned: !p.isPinned } : p
@@ -554,9 +540,9 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
         });
         return { ...d, profiles: newProfiles, layout: newLayout, folders: newFolders };
     });
-  };
+  }, [updateServerData]);
 
-  const togglePinFolder = (id: string) => {
+  const togglePinFolder = useCallback((id: string) => {
     updateServerData(d => {
         const newFolders = d.folders.map(f =>
             f.id === id ? { ...f, isPinned: !f.isPinned } : f
@@ -564,9 +550,9 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
         const newLayout = sortLayoutByPin(d.layout, d.profiles, newFolders);
         return { ...d, folders: newFolders, layout: newLayout };
     });
-  };
+  }, [updateServerData]);
 
-  const reorderLayout = (sourceIndex: number, destinationIndex: number) => {
+  const reorderLayout = useCallback((sourceIndex: number, destinationIndex: number) => {
      updateServerData(d => {
         const layoutCopy = [...d.layout];
         const profilePinMap = new Map(d.profiles.map(p => [p.id, p.isPinned ?? false]));
@@ -584,9 +570,9 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
         layoutCopy.splice(destinationIndex, 0, removed);
         return { ...d, layout: layoutCopy };
     });
-  };
+  }, [updateServerData]);
 
-  const reorderProfileInFolder = (folderId: string, sourceIndex: number, destIndex: number) => {
+  const reorderProfileInFolder = useCallback((folderId: string, sourceIndex: number, destIndex: number) => {
     updateServerData(d => {
       const profilePinMap = new Map(d.profiles.map(p => [p.id, p.isPinned ?? false]));
       const isPinned = (id: number) => profilePinMap.get(id);
@@ -614,9 +600,9 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
 
       return { ...d, folders: foldersCopy };
     });
-  };
+  }, [updateServerData]);
 
-  const moveProfileToFolder = (profileId: number, folderId: string | null, destIndex: number = -1) => {
+  const moveProfileToFolder = useCallback((profileId: number, folderId: string | null, destIndex: number = -1) => {
       updateServerData(d => {
           let newData = { ...d };
           newData.layout = newData.layout.filter(item => item !== profileId);
@@ -651,9 +637,9 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
           }
           return newData;
       });
-  };
+  }, [updateServerData]);
 
-  const addFolder = (name: string, color: string, icon: IconName) => {
+  const addFolder = useCallback((name: string, color: string, icon: IconName) => {
       const newFolder: Folder = {
           id: `f${Date.now()}`, name, color, icon,
           isCollapsed: false, profileIds: [], isPinned: false,
@@ -663,16 +649,16 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
           folders: [...d.folders, newFolder],
           layout: [...d.layout, newFolder.id],
       }));
-  };
+  }, [updateServerData]);
 
-  const updateFolder = (folderId: string, updates: Partial<Folder>) => {
+  const updateFolder = useCallback((folderId: string, updates: Partial<Folder>) => {
       updateServerData(d => ({
           ...d,
           folders: d.folders.map(f => f.id === folderId ? { ...f, ...updates } : f)
       }));
-  };
+  }, [updateServerData]);
 
-  const deleteFolder = (folderId: string, deleteContained: boolean) => {
+  const deleteFolder = useCallback((folderId: string, deleteContained: boolean) => {
       updateServerData(d => {
           const folderToDelete = d.folders.find(f => f.id === folderId);
           if (!folderToDelete) return d;
@@ -690,25 +676,25 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
           
           return { ...d, folders: newFolders, layout: newLayout, profiles: newProfiles };
       });
-  };
+  }, [updateServerData]);
 
-  const toggleFolderCollapse = (folderId: string) => {
+  const toggleFolderCollapse = useCallback((folderId: string) => {
       updateServerData(d => ({
           ...d,
           folders: d.folders.map(f => f.id === folderId ? { ...f, isCollapsed: !f.isCollapsed } : f)
       }));
-  };
+  }, [updateServerData]);
   
-  const updateGoal = (goal: Goal) => {
+  const updateGoal = useCallback((goal: Goal) => {
     updateServerData(d => ({
       ...d,
       profiles: d.profiles.map(p => 
         p.id === d.activeProfileId ? { ...p, goal } : p
       )
     }));
-  };
+  }, [updateServerData]);
 
-  const updateWishlistItem = (listName: 'wishlist' | 'uniqueWishlist', oldName: string, newItem: WishlistItem) => {
+  const updateWishlistItem = useCallback((listName: 'wishlist' | 'uniqueWishlist', oldName: string, newItem: WishlistItem) => {
     updateServerData(d => ({
       ...d,
       profiles: d.profiles.map(p => {
@@ -723,9 +709,9 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
         return p;
       })
     }));
-  };
+  }, [updateServerData]);
 
-  const getNextGenNumberForCharacter = (umaId: string): number => {
+  const getNextGenNumberForCharacter = useCallback((umaId: string): number => {
     const targetUma = umaMapById.get(umaId);
     if (!targetUma) {
       const inventoryForUma = appData.inventory.filter(p => p.server === activeServer && p.umaId === umaId);
@@ -741,9 +727,9 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
     });
 
     return inventoryForCharacter.length > 0 ? Math.max(...inventoryForCharacter.map(p => p.gen)) + 1 : 1;
-  };
+  }, [umaMapById, appData.inventory, activeServer]);
 
-  const addParent = (parentData: NewParentData) => {
+  const addParent = useCallback((parentData: NewParentData) => {
     const newHash = generateParentHash(parentData);
     const isDuplicate = appData.inventory.some(p => p.hash === newHash && p.server === activeServer);
     if (isDuplicate) {
@@ -767,9 +753,9 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
         ...prevData, 
         inventory: [...prevData.inventory, newParent], 
     }));
-  };
+  }, [appData.inventory, activeServer, umaMapById, getNextGenNumberForCharacter, getUmaDisplayNameForContext]);
 
-  const updateParent = (parent: Parent) => {
+  const updateParent = useCallback((parent: Parent) => {
     const newHash = generateParentHash(parent);
     const isDuplicate = appData.inventory.some(p => p.id !== parent.id && p.hash === newHash && p.server === activeServer);
     if (isDuplicate) {
@@ -783,16 +769,16 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
       ...prevData,
       inventory: prevData.inventory.map(p => p.id === parent.id ? { ...p, ...parent, name: displayName, hash: newHash } : p)
     }));
-  };
+  }, [appData.inventory, activeServer, umaMapById, getUmaDisplayNameForContext]);
   
-  const deleteParent = (parentId: number) => {
+  const deleteParent = useCallback((parentId: number) => {
     setAppData(prevData => ({
         ...prevData,
         inventory: prevData.inventory.filter(p => p.id !== parentId),
     }));
-  };
+  }, []);
   
-  const validateParentForServer = (parentId: number): ValidationResult => {
+  const validateParentForServer = useCallback((parentId: number): ValidationResult => {
     const parent = appData.inventory.find(p => p.id === parentId);
     if (!parent) return { errors: ["Parent not found."] };
 
@@ -824,9 +810,9 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
     });
 
     return { errors };
-  };
+  }, [appData.inventory, umaMapById, skillMapByName, getUmaDisplayNameForContext]);
   
-  const moveParentToServer = (parentId: number) => {
+  const moveParentToServer = useCallback((parentId: number) => {
       const parent = appData.inventory.find(p => p.id === parentId);
       if (!parent) return;
       const destServer: 'jp' | 'global' = parent.server === 'jp' ? 'global' : 'jp';
@@ -835,9 +821,9 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
           ...prev,
           inventory: prev.inventory.map((p): Parent => p.id === parentId ? { ...p, server: destServer } : p)
       }));
-  };
+  }, [appData.inventory]);
   
-  const validateProjectForServer = (profileId: number): ValidationResult => {
+  const validateProjectForServer = useCallback((profileId: number): ValidationResult => {
       const sourceServer = activeServer;
       const destServer = sourceServer === 'jp' ? 'global' : 'jp';
       const errors: string[] = [];
@@ -860,9 +846,9 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
       });
 
       return { errors: [...new Set(errors)] }; // Return unique errors
-  };
+  }, [activeServer, appData.serverData, skillMapByName]);
 
-  const executeCopyProject = (profileId: number) => {
+  const executeCopyProject = useCallback((profileId: number) => {
       setAppData(prev => {
           const sourceServer = prev.activeServer;
           const destServer = sourceServer === 'jp' ? 'global' : 'jp';
@@ -890,9 +876,9 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
               }
           };
       });
-  };
+  }, []);
 
-  const executeMoveProject = (profileId: number) => {
+  const executeMoveProject = useCallback((profileId: number) => {
       setAppData(prev => {
           const sourceServer = prev.activeServer;
           const destServer: 'jp' | 'global' = sourceServer === 'jp' ? 'global' : 'jp';
@@ -928,26 +914,26 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
               serverData: newServerData,
           };
       });
-  };
+  }, []);
 
-  const addSkillPreset = (name: string, skillIds: number[]) => {
+  const addSkillPreset = useCallback((name: string, skillIds: number[]) => {
       const newPreset: SkillPreset = { id: `p${Date.now()}`, name, skillIds };
       setAppData(prev => ({ ...prev, skillPresets: [...prev.skillPresets, newPreset] }));
-  };
+  }, []);
 
-  const updateSkillPreset = (id: string, name: string, skillIds: number[]) => {
+  const updateSkillPreset = useCallback((id: string, name: string, skillIds: number[]) => {
       setAppData(prev => ({
           ...prev,
           skillPresets: prev.skillPresets.map(p => p.id === id ? { ...p, name, skillIds } : p),
       }));
-  };
+  }, []);
 
-  const deleteSkillPreset = (id: string) => {
+  const deleteSkillPreset = useCallback((id: string) => {
       setAppData(prev => ({
           ...prev,
           skillPresets: prev.skillPresets.filter(p => p.id !== id),
       }));
-  };
+  }, []);
   
   const value = {
     loading: loading || isCalculating,
@@ -966,7 +952,7 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
     skillMapByName,
     umaMapById,
     getActiveProfile,
-    getScoredRoster,
+    getScoredRoster: () => [], // This is now obsolete, return empty array.
     getIndividualScore,
     activeBreedingPair,
     setActiveBreedingPair,
