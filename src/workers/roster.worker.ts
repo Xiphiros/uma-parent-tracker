@@ -202,12 +202,17 @@ self.onmessage = (e: MessageEvent<RosterWorkerPayload>) => {
         }
 
         // 4. Post Results
+        const scoresById = Object.fromEntries(
+            scoredAndSorted.map(p => [p.id, { score: p.score, individualScore: p.individualScore }])
+        );
+
         self.postMessage({
             sortedParentIds: scoredAndSorted.map(p => p.id),
             topBreedingPairs: {
                 owned: topOwnedPairs,
                 borrowed: topBorrowedPairs,
-            }
+            },
+            scoresById,
         });
     }
 };
