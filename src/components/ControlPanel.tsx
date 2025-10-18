@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import './ControlPanel.css';
+import GoalDefinition from './GoalDefinition';
+import InventoryControls from './common/InventoryControls';
 
 type ActiveTab = 'goal' | 'filters';
 
@@ -25,9 +27,8 @@ const ControlPanel = () => {
         </button>
       </div>
       <div className="control-panel__content">
-        {/* Content will be added in the next step */}
-        {activeTab === 'goal' && <p>Goal Definition will be here.</p>}
-        {activeTab === 'filters' && <p>Filters will be here.</p>}
+        {activeTab === 'goal' && <GoalDefinition />}
+        {activeTab === 'filters' && <InventoryControls />}
       </div>
     </div>
   );
