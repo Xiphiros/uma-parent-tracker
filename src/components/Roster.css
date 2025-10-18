@@ -1,31 +1,4 @@
 /* Roster Component Styles */
-.roster__layout {
-    display: grid;
-    grid-template-columns: 1fr; /* Default to single column */
-    gap: 1.5rem;
-    flex-grow: 1; /* Allow the layout to fill the card */
-    min-height: 0; /* Flexbox overflow fix */
-}
-
-@media (min-width: 1024px) { /* lg breakpoint */
-    .roster__layout {
-        grid-template-columns: 320px 1fr;
-    }
-}
-
-.roster__sidebar {
-    /* The sidebar will contain the InventoryControls */
-    max-height: 100%;
-    overflow-y: auto;
-    padding-right: 1rem;
-}
-
-.roster__main-content {
-    display: flex;
-    flex-direction: column;
-    min-height: 0; /* Flexbox overflow fix */
-}
-
 #roster-container {
     flex-grow: 1;
 }
