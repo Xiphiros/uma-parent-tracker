@@ -198,6 +198,7 @@ const initialFilters: Filters = {
     pinkSparks: [],
     uniqueSparks: [],
     whiteSparks: [],
+    lineageSparks: [],
     minWhiteSparks: 0,
 };
 
