@@ -7,6 +7,7 @@
 @import "./components/BreedingPlannerModal.css";
 @import "./components/BreedingSuggestions.css";
 @import "./components/common/CheckableSkillItem.css";
+@import "./components/ControlPanel.css";
 @import "./components/common/DualListBox.css";
 @import "./components/EditPresetModal.css";
 @import "./components/FolderTab.css";
