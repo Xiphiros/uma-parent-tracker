@@ -1,0 +1,32 @@
+/* Control Panel Component */
+.control-panel {
+    padding: 0; /* Override default card padding */
+}
+
+.control-panel__tabs {
+    display: flex;
+    padding: 1rem 1.5rem 0;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.control-panel__tab {
+    padding: 0.5rem 1rem;
+    font-weight: 600;
+    color: var(--color-text-muted);
+    border-bottom: 3px solid transparent;
+    margin-bottom: -1px; /* Overlap the container border */
+    transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.control-panel__tab:hover {
+    color: var(--color-text-primary);
+}
+
+.control-panel__tab--active {
+    color: var(--color-accent-primary);
+    border-bottom-color: var(--color-accent-primary);
+}
+
+.control-panel__content {
+    padding: 1.5rem;
+}
