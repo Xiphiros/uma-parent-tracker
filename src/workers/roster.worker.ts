@@ -130,6 +130,27 @@ self.onmessage = (e: MessageEvent<RosterWorkerPayload>) => {
             if (!filters.uniqueSparks.every(f => !f.name || (scope === 'total' ? (lineageStats.unique[f.name] || 0) : parent.uniqueSparks.find(s => s.name === f.name)?.stars || 0) >= f.stars)) return false;
             if (!filters.whiteSparks.every(f => !f.name || (scope === 'total' ? (lineageStats.white[f.name] || 0) : parent.whiteSparks.find(s => s.name === f.name)?.stars || 0) >= f.stars)) return false;
             
+            // New Lineage-Wide Spark Filter
+            if (filters.lineageSparks.length > 0) {
+                const hasAllLineageSparks = filters.lineageSparks.every(filter => {
+                    if (!filter.name) return true; // Skip empty filters
+
+                    const checkMember = (member: Parent | ManualParentData | null): boolean => {
+                        if (!member) return true; // Undefined members pass the check
+                        if ('whiteSparks' in member) {
+                            return member.whiteSparks.some(s => s.name === filter.name);
+                        }
+                        return false;
+                    };
+
+                    const gp1 = resolveGrandparent(parent.grandparent1, inventoryMap);
+                    const gp2 = resolveGrandparent(parent.grandparent2, inventoryMap);
+
+                    return checkMember(parent) && checkMember(gp1) && checkMember(gp2);
+                });
+                if (!hasAllLineageSparks) return false;
+            }
+
             return true;
         });
 
