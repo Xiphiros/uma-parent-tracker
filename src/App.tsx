@@ -1,10 +1,10 @@
-import GoalDefinition from './components/GoalDefinition';
 import Header from './components/Header';
 import Roster from './components/Roster';
 import TopBreedingPair from './components/TopBreedingPair';
 import Tabs from './components/Tabs';
 import { useAppContext } from './context/AppContext';
 import BreedingSuggestions from './components/BreedingSuggestions';
+import ControlPanel from './components/ControlPanel';
 
 function App() {
   const { loading, getActiveProfile } = useAppContext();
@@ -38,7 +38,7 @@ function App() {
         <Tabs />
         <main className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <div className="lg-col-span-1 space-y-8">
-                <GoalDefinition />
+                <ControlPanel />
                 <TopBreedingPair />
                 <BreedingSuggestions />
             </div>
