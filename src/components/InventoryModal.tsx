@@ -6,7 +6,6 @@ import AddParentModal from './AddParentModal';
 import { useAppContext } from '../context/AppContext';
 import './InventoryModal.css';
 import { useTranslation } from 'react-i18next';
-import InventoryControls from './common/InventoryControls';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
@@ -29,7 +28,7 @@ const InventoryModal = ({ isOpen, onClose, isSelectionMode = false, onSelectPare
     const { t } = useTranslation(['roster', 'modals', 'common']);
     const { 
         appData, deleteParent, moveParentToServer, validateParentForServer, umaMapById, getUmaDisplayName,
-        sortedParentIds, filters, setFilters, sortField, setSortField, sortDirection, setSortDirection, inventoryView, setInventoryView
+        sortedParentIds, filters, sortField, sortDirection, inventoryView
     } = useAppContext();
 
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
@@ -104,44 +103,30 @@ const InventoryModal = ({ isOpen, onClose, isSelectionMode = false, onSelectPare
     return (
         <>
             <Modal isOpen={isOpen} onClose={onClose} title={modalTitle} size="2xl">
-                <div className="grid grid-cols-1 lg:grid-cols-[320px_1fr] gap-6">
-                    <div className="inventory-modal__sidebar">
-                        <InventoryControls 
-                            inventoryView={inventoryView}
-                            setInventoryView={setInventoryView}
-                            filters={filters} 
-                            setFilters={setFilters} 
-                            sortField={sortField} 
-                            setSortField={setSortField}
-                            sortDirection={sortDirection}
-                            setSortDirection={setSortDirection}
-                        />
-                    </div>
-                    <div className="inventory-modal__main-content">
-                        <div className="inventory-modal__grid">
-                            {paginatedInventory.length > 0 ? (
-                                paginatedInventory.map(parent => {
-                                    const characterId = umaMapById.get(parent.umaId)?.characterId;
-                                    const isDisabled = !!characterId && excludedCharacterIds.has(characterId);
-                                    
-                                    return (
-                                        <ParentCard 
-                                            key={parent.id} 
-                                            parent={parent} 
-                                            displayScore={true}
-                                            onEdit={() => handleOpenEditModal(parent)}
-                                            onDelete={() => handleDeleteParent(parent)}
-                                            onMove={() => handleMoveParent(parent)}
-                                            isSelectionMode={isSelectionMode}
-                                            onSelect={onSelectParent}
-                                            isDisabled={isDisabled}
-                                        />
-                                    );
-                                })
-                            ) : (
-                                <p className="card__placeholder-text text-center py-8 col-span-full">{t('inventory.placeholder')}</p>
-                            )}
-                        </div>
+                <div className="inventory-modal__main-content">
+                    <div className="inventory-modal__grid">
+                        {paginatedInventory.length > 0 ? (
+                            paginatedInventory.map(parent => {
+                                const characterId = umaMapById.get(parent.umaId)?.characterId;
+                                const isDisabled = !!characterId && excludedCharacterIds.has(characterId);
+                                
+                                return (
+                                    <ParentCard 
+                                        key={parent.id} 
+                                        parent={parent} 
+                                        displayScore={true}
+                                        onEdit={() => handleOpenEditModal(parent)}
+                                        onDelete={() => handleDeleteParent(parent)}
+                                        onMove={() => handleMoveParent(parent)}
+                                        isSelectionMode={isSelectionMode}
+                                        onSelect={onSelectParent}
+                                        isDisabled={isDisabled}
+                                    />
+                                );
+                            })
+                        ) : (
+                            <p className="card__placeholder-text text-center py-8 col-span-full">{t('inventory.placeholder')}</p>
+                        )}
                     </div>
                 </div>
                 <div className="inventory-modal__footer">
