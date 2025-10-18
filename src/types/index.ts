@@ -181,6 +181,7 @@ export interface Filters {
     pinkSparks: PinkSparkFilter[];
     uniqueSparks: UniqueSparkFilter[];
     whiteSparks: WhiteSparkFilter[];
+    lineageSparks: WhiteSparkFilter[];
     minWhiteSparks: number;
 }
 
