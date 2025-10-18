@@ -10,6 +10,7 @@ import { useTranslation } from 'react-i18next';
 import BreedingPlannerModal from './BreedingPlannerModal';
 import Modal from './common/Modal';
 import './Roster.css';
+import InventoryControls from './common/InventoryControls';
 
 const ITEMS_PER_PAGE = 12;
 
@@ -17,7 +18,7 @@ const Roster = () => {
     const { t } = useTranslation(['roster', 'common']);
     const { 
         getActiveProfile, deleteParent, appData,
-        sortedParentIds, sortField, setSortField, inventoryView, setInventoryView,
+        sortedParentIds,
         isCalculating
     } = useAppContext();
 
@@ -107,11 +108,6 @@ const Roster = () => {
                         {isCalculating && <FontAwesomeIcon icon={faSpinner} className="h-5 w-5 ml-2 text-stone-400 animate-spin" />}
                     </h2>
                     <div className="flex items-center gap-2">
-                        <div className="top-pair__toggle-group">
-                            <span className="top-pair__toggle-btn !cursor-default">{t('rosterSortBy')}</span>
-                            <button className={`top-pair__toggle-btn ${sortField === 'score' ? 'top-pair__toggle-btn--active' : ''}`} onClick={() => setSortField('score')}>{t('finalScore')}</button>
-                            <button className={`top-pair__toggle-btn ${sortField === 'individualScore' ? 'top-pair__toggle-btn--active' : ''}`} onClick={() => setSortField('individualScore')}>{t('individualScore')}</button>
-                        </div>
                          <button className="button button--neutral" onClick={() => setIsPlannerModalOpen(true)}>
                             <FontAwesomeIcon icon={faFlask} className="h-5 w-5 mr-1" />
                             {t('breedingPlanner.title')}
@@ -122,44 +118,41 @@ const Roster = () => {
                         </button>
                     </div>
                 </div>
-                <div className="roster__controls">
-                    <label className="flex items-center gap-2 cursor-pointer">
-                        <input
-                            type="checkbox"
-                            className="form__checkbox"
-                            checked={inventoryView === 'borrowed'}
-                            onChange={(e) => setInventoryView(e.target.checked ? 'borrowed' : 'all')}
-                        />
-                        <span className="form__label !mb-0">{t('inventory.showBorrowed')}</span>
-                    </label>
-                </div>
-                <div id="roster-container" className={`roster space-y-4 overflow-y-auto pr-2 flex-1 min-h-0 ${isCalculating ? 'is-loading' : ''}`} ref={rosterContainerRef}>
-                    {paginatedRoster.length > 0 ? (
-                        paginatedRoster.map(parent => (
-                            <ParentCard 
-                                key={parent.id} 
-                                parent={parent} 
-                                onEdit={() => handleOpenEditModal(parent)}
-                                onDelete={() => handleDeleteParent(parent)}
-                            />
-                        ))
-                    ) : (
-                        <p className="card__placeholder-text text-center py-8">{t('placeholderRoster')}</p>
-                    )}
-                </div>
-                <div className="roster__footer">
-                    <span className="inventory-modal__count">{t('inventory.count', { count: totalCount })}</span>
-                    {totalPages > 1 && (
-                        <div className="pagination-controls">
-                            <button className="button button--secondary button--small" onClick={() => setCurrentPage(p => p - 1)} disabled={currentPage === 1}>
-                                <FontAwesomeIcon icon={faChevronLeft} />
-                            </button>
-                            <span className="pagination-controls__text">Page {currentPage} of {totalPages}</span>
-                            <button className="button button--secondary button--small" onClick={() => setCurrentPage(p => p + 1)} disabled={currentPage === totalPages}>
-                                <FontAwesomeIcon icon={faChevronRight} />
-                            </button>
+                
+                <div className="roster__layout">
+                    <div className="roster__sidebar">
+                        <InventoryControls />
+                    </div>
+                    <div className="roster__main-content">
+                        <div id="roster-container" className={`roster space-y-4 overflow-y-auto pr-2 flex-1 min-h-0 ${isCalculating ? 'is-loading' : ''}`} ref={rosterContainerRef}>
+                            {paginatedRoster.length > 0 ? (
+                                paginatedRoster.map(parent => (
+                                    <ParentCard 
+                                        key={parent.id} 
+                                        parent={parent} 
+                                        onEdit={() => handleOpenEditModal(parent)}
+                                        onDelete={() => handleDeleteParent(parent)}
+                                    />
+                                ))
+                            ) : (
+                                <p className="card__placeholder-text text-center py-8">{t('placeholderRoster')}</p>
+                            )}
                         </div>
-                    )}
+                        <div className="roster__footer">
+                            <span className="inventory-modal__count">{t('inventory.count', { count: totalCount })}</span>
+                            {totalPages > 1 && (
+                                <div className="pagination-controls">
+                                    <button className="button button--secondary button--small" onClick={() => setCurrentPage(p => p - 1)} disabled={currentPage === 1}>
+                                        <FontAwesomeIcon icon={faChevronLeft} />
+                                    </button>
+                                    <span className="pagination-controls__text">Page {currentPage} of {totalPages}</span>
+                                    <button className="button button--secondary button--small" onClick={() => setCurrentPage(p => p + 1)} disabled={currentPage === totalPages}>
+                                        <FontAwesomeIcon icon={faChevronRight} />
+                                    </button>
+                                </div>
+                            )}
+                        </div>
+                    </div>
                 </div>
             </section>
             
