@@ -53,7 +53,7 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
 
     const displayNameProp = dataDisplayLanguage === 'jp' ? 'name_jp' : 'name_en';
     const uniqueSkills = useMemo(() => masterSkillList.filter(s => s.category === 'unique'), [masterSkillList]);
-    const normalSkills = useMemo(() => masterSkillList.filter(s => s.category === 'white' && s.factorType === 4), [masterSkillList]);
+    const whiteSkills = useMemo(() => masterSkillList.filter(s => s.category === 'white'), [masterSkillList]);
 
     const mainParentImage = useMemo(() => {
         if (!formData.umaId) return null;
@@ -61,14 +61,14 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
         return uma?.image ? `${import.meta.env.BASE_URL}${uma.image}` : null;
     }, [formData.umaId, umaMapById]);
 
-    const availableNormalSkills = useMemo(() => {
+    const availableWhiteSkills = useMemo(() => {
         const addedGroupIds = new Set<number>();
         formData.whiteSparks.forEach(item => {
             const skillData = skillMapByName.get(item.name);
             if (skillData) addedGroupIds.add(skillData.id);
         });
-        return normalSkills.filter(skill => !addedGroupIds.has(skill.id));
-    }, [formData.whiteSparks, normalSkills, skillMapByName]);
+        return whiteSkills.filter(skill => !addedGroupIds.has(skill.id));
+    }, [formData.whiteSparks, whiteSkills, skillMapByName]);
 
     const isUniqueSparkSelected = formData.uniqueSparks.length > 0;
 
@@ -346,7 +346,7 @@ const AddParentModal = ({ isOpen, onClose, parentToEdit }: AddParentModalProps) 
                             ))}
                         </div>
                         <div className="form__input-group">
-                            <SearchableSelect items={availableNormalSkills} placeholder={t('searchSkill')} value={currentWhiteSkill?.[displayNameProp] || null} onSelect={(item) => setCurrentWhiteSkill(item as Skill)} displayProp={displayNameProp} />
+                            <SearchableSelect items={availableWhiteSkills} placeholder={t('searchSkill')} value={currentWhiteSkill?.[displayNameProp] || null} onSelect={(item) => setCurrentWhiteSkill(item as Skill)} displayProp={displayNameProp} />
                             <select className="form__input w-24" value={currentWhiteStars} onChange={e => setCurrentWhiteStars(Number(e.target.value) as 1|2|3)}>
                                 {STAR_OPTIONS.map(s => <option key={s}>{s}</option>)}
                             </select>
