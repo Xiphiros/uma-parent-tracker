@@ -434,7 +434,7 @@
     "base_name_jp": "マチカネフクキタル",
     "base_name_en": "Matikanefukukitaru",
     "outfit_name_jp": "[吉兆・初あらし]",
-    "outfit_name_en": "[Fortune in the Fall Air]",
+    "outfit_name_en": "[Lucky Tidings]",
     "isGlobal": true,
     "activeUniqueSkillId": 110561,
     "image": "/images/umas/105602.png"
@@ -1793,6 +1793,17 @@
     "image": "/images/umas/106502.png"
   },
   {
+    "id": "109201",
+    "characterId": "1092",
+    "base_name_jp": "ダンツフレーム",
+    "base_name_en": "ダンツフレーム",
+    "outfit_name_jp": "[まんなか◎スポットライト]",
+    "outfit_name_en": "[まんなか◎スポットライト]",
+    "isGlobal": false,
+    "activeUniqueSkillId": 100921,
+    "image": "/images/umas/109201.png"
+  },
+  {
     "id": "106601",
     "characterId": "1066",
     "base_name_jp": "ツインターボ",
@@ -1837,6 +1848,17 @@
     "image": "/images/umas/108001.png"
   },
   {
+    "id": "108002",
+    "characterId": "1080",
+    "base_name_jp": "トランセンド",
+    "base_name_en": "トランセンド",
+    "outfit_name_jp": "[宵闇ネオカグラ]",
+    "outfit_name_en": "[宵闇ネオカグラ]",
+    "isGlobal": false,
+    "activeUniqueSkillId": 110801,
+    "image": "/images/umas/108002.png"
+  },
+  {
     "id": "104801",
     "characterId": "1048",
     "base_name_jp": "トーセンジョーダン",
@@ -1857,6 +1879,17 @@
     "isGlobal": false,
     "activeUniqueSkillId": 110481,
     "image": "/images/umas/104802.png"
+  },
+  {
+    "id": "104803",
+    "characterId": "1048",
+    "base_name_jp": "トーセンジョーダン",
+    "base_name_en": "トーセンジョーダン",
+    "outfit_name_jp": "[Highkey☆Hallowed]",
+    "outfit_name_en": "[Highkey☆Hallowed]",
+    "isGlobal": false,
+    "activeUniqueSkillId": 120481,
+    "image": "/images/umas/104803.png"
   },
   {
     "id": "110801",
@@ -2024,6 +2057,17 @@
     "image": "/images/umas/102801.png"
   },
   {
+    "id": "102802",
+    "characterId": "1028",
+    "base_name_jp": "ヒシアケボノ",
+    "base_name_en": "ヒシアケボノ",
+    "outfit_name_jp": "[マジックナイトガーランド]",
+    "outfit_name_en": "[マジックナイトガーランド]",
+    "isGlobal": false,
+    "activeUniqueSkillId": 110281,
+    "image": "/images/umas/102802.png"
+  },
+  {
     "id": "110601",
     "characterId": "1106",
     "base_name_jp": "ヒシミラクル",
@@ -2064,7 +2108,8 @@
     "outfit_name_jp": "[精粋]",
     "outfit_name_en": "[精粋]",
     "isGlobal": false,
-    "activeUniqueSkillId": 100951
+    "activeUniqueSkillId": 100951,
+    "image": "/images/umas/109501.png"
   },
   {
     "id": "102201",
@@ -2197,6 +2242,17 @@
     "isGlobal": false,
     "activeUniqueSkillId": 100551,
     "image": "/images/umas/105501.png"
+  },
+  {
+    "id": "105502",
+    "characterId": "1055",
+    "base_name_jp": "マーベラスサンデー",
+    "base_name_en": "マーベラスサンデー",
+    "outfit_name_jp": "[トリック☆リボネッタ]",
+    "outfit_name_en": "[トリック☆リボネッタ]",
+    "isGlobal": false,
+    "activeUniqueSkillId": 110551,
+    "image": "/images/umas/105502.png"
   },
   {
     "id": "105701",
