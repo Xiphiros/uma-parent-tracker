@@ -177,11 +177,11 @@ export interface WhiteSparkFilter { name: string; stars: number }
 export interface Filters {
     searchTerm: string;
     searchScope: 'representative' | 'total';
-    blueSparks: BlueSparkFilter[];
-    pinkSparks: PinkSparkFilter[];
-    uniqueSparks: UniqueSparkFilter[];
-    whiteSparks: WhiteSparkFilter[];
-    lineageSparks: WhiteSparkFilter[];
+    blueSparkGroups: BlueSparkFilter[][];
+    pinkSparkGroups: PinkSparkFilter[][];
+    uniqueSparkGroups: UniqueSparkFilter[][];
+    whiteSparkGroups: WhiteSparkFilter[][];
+    lineageSparkGroups: WhiteSparkFilter[][];
     minWhiteSparks: number;
 }
 
