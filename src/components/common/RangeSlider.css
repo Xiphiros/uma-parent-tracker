@@ -3,7 +3,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 0;
+    width: 100%;
 }
 
 .range-slider__label {
@@ -13,11 +13,33 @@
     margin-bottom: 0.25rem;
 }
 
+.range-slider__input-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.range-slider__ticks {
+    width: calc(100% - 16px); /* Subtract thumb width to align ticks */
+    margin: -2px auto 0; /* Pull up slightly and center horizontally */
+    height: 4px;
+    display: flex;
+    justify-content: space-between;
+    pointer-events: none; /* Allow clicks to pass through to the input */
+}
+
+.range-slider__tick {
+    width: 2px;
+    height: 4px;
+    background-color: var(--color-border-input);
+    border-radius: 1px;
+}
+
 .range-slider__value {
     font-size: 0.7rem;
     font-weight: 600;
     color: var(--color-text-secondary);
-    margin-top: -2px;
+    margin-top: 4px;
 }
 
 .range-slider__input {
@@ -30,6 +52,7 @@
     outline: none;
     opacity: 0.7;
     transition: opacity .2s;
+    margin: 0;
 }
 
 .range-slider__input:hover {
@@ -44,6 +67,8 @@
     background: var(--color-button-primary-bg);
     cursor: pointer;
     border-radius: 50%;
+    position: relative;
+    z-index: 1; /* Ensure thumb is rendered above the ticks */
 }
 
 .range-slider__input::-moz-range-thumb {
