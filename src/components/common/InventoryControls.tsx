@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { BlueSpark, Skill, Filters, SortDirectionType, SortFieldType, InventoryViewType, WhiteSparkFilter, BlueSparkFilter, PinkSparkFilter, UniqueSparkFilter } from '../../types';
+import { BlueSpark, Skill, Filters, SortFieldType } from '../../types';
 import SearchableSelect from './SearchableSelect';
 import { useAppContext } from '../../context/AppContext';
 import './InventoryControls.css';
@@ -87,7 +87,7 @@ const InventoryControls = ({}: InventoryControlsProps) => {
             if (type === 'blueSparkGroups') newCondition = { type: 'Speed', stars: 0 };
             else if (type === 'pinkSparkGroups') newCondition = { type: 'Mile', stars: 0 };
             else newCondition = { name: '', stars: 0 };
-            newGroups[groupIndex] = [...newGroups[groupIndex], newCondition as any];
+            newGroups[groupIndex] = [...newGroups[groupIndex], newCondition] as any;
             return { ...prev, [type]: newGroups };
         });
     };
@@ -107,11 +107,11 @@ const InventoryControls = ({}: InventoryControlsProps) => {
     };
 
     const handleUpdateCondition = (type: SparkGroupType, groupIndex: number, conditionIndex: number, field: 'type' | 'name' | 'stars', value: any) => {
-        setFilters(prev => {
+         setFilters(prev => {
             const newGroups = [...prev[type]];
             const newGroup = [...newGroups[groupIndex]];
             newGroup[conditionIndex] = { ...newGroup[conditionIndex], [field]: value };
-            newGroups[groupIndex] = newGroup;
+            newGroups[groupIndex] = newGroup as any;
             return { ...prev, [type]: newGroups };
         });
     };
