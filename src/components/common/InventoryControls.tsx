@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { BlueSpark, Skill, Filters, SortDirectionType, SortFieldType, InventoryViewType, WhiteSparkFilter } from '../../types';
+import { BlueSpark, Skill, Filters, SortDirectionType, SortFieldType, InventoryViewType, WhiteSparkFilter, BlueSparkFilter, PinkSparkFilter, UniqueSparkFilter } from '../../types';
 import SearchableSelect from './SearchableSelect';
 import { useAppContext } from '../../context/AppContext';
 import './InventoryControls.css';
@@ -8,11 +8,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFilter, faTimes, faArrowDownWideShort, faArrowUpShortWide, faPlus } from '@fortawesome/free-solid-svg-icons';
 import RangeSlider from './RangeSlider';
 import { useDebounce } from '../../hooks/useDebounce';
+import { initialFilters } from '../../context/AppContext';
 
 interface InventoryControlsProps {}
 
 const BLUE_SPARK_TYPES: BlueSpark['type'][] = ['Speed', 'Stamina', 'Power', 'Guts', 'Wit'];
 const PINK_SPARK_TYPES = ['Turf', 'Dirt', 'Sprint', 'Mile', 'Medium', 'Long', 'Front Runner', 'Pace Chaser', 'Late Surger', 'End Closer'];
+
+type SparkGroupType = 'blueSparkGroups' | 'pinkSparkGroups' | 'uniqueSparkGroups' | 'whiteSparkGroups' | 'lineageSparkGroups';
 
 const InventoryControls = ({}: InventoryControlsProps) => {
     const { t } = useTranslation(['roster', 'game', 'common']);
@@ -31,7 +34,6 @@ const InventoryControls = ({}: InventoryControlsProps) => {
         setFilters(prev => ({ ...prev, searchTerm: debouncedSearchTerm }));
     }, [debouncedSearchTerm, setFilters]);
     
-    // Sync live search term if filters are cleared externally
     useEffect(() => {
         if (filters.searchTerm === '') {
             setLiveSearchTerm('');
@@ -41,15 +43,15 @@ const InventoryControls = ({}: InventoryControlsProps) => {
     const uniqueSkills = masterSkillList.filter(s => s.category === 'unique');
     const normalSkills = masterSkillList.filter(s => s.category === 'white');
 
-    // When switching to representative mode, clamp any existing star filters to the max of 3.
     useEffect(() => {
         if (filters.searchScope === 'representative') {
+            const clampGroup = (group: any[]) => group.map(f => ({ ...f, stars: Math.min(f.stars, 3) }));
             setFilters(prev => ({
                 ...prev,
-                blueSparks: prev.blueSparks.map(f => ({ ...f, stars: Math.min(f.stars, 3) })),
-                pinkSparks: prev.pinkSparks.map(f => ({ ...f, stars: Math.min(f.stars, 3) })),
-                uniqueSparks: prev.uniqueSparks.map(f => ({ ...f, stars: Math.min(f.stars, 3) })),
-                whiteSparks: prev.whiteSparks.map(f => ({ ...f, stars: Math.min(f.stars, 3) }))
+                blueSparkGroups: prev.blueSparkGroups.map(clampGroup),
+                pinkSparkGroups: prev.pinkSparkGroups.map(clampGroup),
+                uniqueSparkGroups: prev.uniqueSparkGroups.map(clampGroup),
+                whiteSparkGroups: prev.whiteSparkGroups.map(clampGroup),
             }));
         }
     }, [filters.searchScope, setFilters]);
@@ -58,32 +60,59 @@ const InventoryControls = ({}: InventoryControlsProps) => {
         setFilters(prev => ({ ...prev, [key]: value }));
     };
     
-    const handleAddSparkFilter = (type: 'blueSparks' | 'pinkSparks' | 'uniqueSparks' | 'whiteSparks' | 'lineageSparks') => {
+    const handleAddGroup = (type: SparkGroupType) => {
         setFilters(prev => {
-            const newFilters = [...prev[type]];
-            let newItem;
-            if (type === 'blueSparks') newItem = { type: 'Speed', stars: 0 };
-            else if (type === 'pinkSparks') newItem = { type: 'Mile', stars: 0 };
-            else newItem = { name: '', stars: 0 };
-            newFilters.push(newItem as any);
-            return { ...prev, [type]: newFilters };
+            const newGroups = [...prev[type]];
+            let newCondition;
+            if (type === 'blueSparkGroups') newCondition = { type: 'Speed', stars: 0 };
+            else if (type === 'pinkSparkGroups') newCondition = { type: 'Mile', stars: 0 };
+            else newCondition = { name: '', stars: 0 };
+            newGroups.push([newCondition as any]);
+            return { ...prev, [type]: newGroups };
         });
     };
-    
-    const handleRemoveSparkFilter = (type: 'blueSparks' | 'pinkSparks' | 'uniqueSparks' | 'whiteSparks' | 'lineageSparks', index: number) => {
+
+    const handleRemoveGroup = (type: SparkGroupType, groupIndex: number) => {
         setFilters(prev => {
-            const newFilters = [...prev[type]];
-            newFilters.splice(index, 1);
-            return { ...prev, [type]: newFilters };
+            const newGroups = [...prev[type]];
+            newGroups.splice(groupIndex, 1);
+            return { ...prev, [type]: newGroups };
         });
     };
-    
-    const handleUpdateSparkFilter = (type: 'blueSparks' | 'pinkSparks' | 'uniqueSparks' | 'whiteSparks' | 'lineageSparks', index: number, field: 'type' | 'name' | 'stars', value: any) => {
-         setFilters(prev => {
-            const newFilters = [...prev[type]];
-            const updatedItem = { ...newFilters[index], [field]: value };
-            newFilters[index] = updatedItem;
-            return { ...prev, [type]: newFilters };
+
+    const handleAddCondition = (type: SparkGroupType, groupIndex: number) => {
+        setFilters(prev => {
+            const newGroups = [...prev[type]];
+            let newCondition;
+            if (type === 'blueSparkGroups') newCondition = { type: 'Speed', stars: 0 };
+            else if (type === 'pinkSparkGroups') newCondition = { type: 'Mile', stars: 0 };
+            else newCondition = { name: '', stars: 0 };
+            newGroups[groupIndex] = [...newGroups[groupIndex], newCondition as any];
+            return { ...prev, [type]: newGroups };
+        });
+    };
+
+    const handleRemoveCondition = (type: SparkGroupType, groupIndex: number, conditionIndex: number) => {
+        setFilters(prev => {
+            let newGroups = [...prev[type]];
+            if (newGroups[groupIndex].length === 1) {
+                newGroups.splice(groupIndex, 1);
+            } else {
+                const newGroup = [...newGroups[groupIndex]];
+                newGroup.splice(conditionIndex, 1);
+                newGroups[groupIndex] = newGroup;
+            }
+            return { ...prev, [type]: newGroups };
+        });
+    };
+
+    const handleUpdateCondition = (type: SparkGroupType, groupIndex: number, conditionIndex: number, field: 'type' | 'name' | 'stars', value: any) => {
+        setFilters(prev => {
+            const newGroups = [...prev[type]];
+            const newGroup = [...newGroups[groupIndex]];
+            newGroup[conditionIndex] = { ...newGroup[conditionIndex], [field]: value };
+            newGroups[groupIndex] = newGroup;
+            return { ...prev, [type]: newGroups };
         });
     };
 
@@ -93,27 +122,55 @@ const InventoryControls = ({}: InventoryControlsProps) => {
 
     const clearFilters = () => {
         setLiveSearchTerm('');
-        setFilters({
-            searchTerm: '',
-            searchScope: 'total',
-            blueSparks: [],
-            pinkSparks: [],
-            uniqueSparks: [],
-            whiteSparks: [],
-            lineageSparks: [],
-            minWhiteSparks: 0,
-        });
+        setFilters(initialFilters);
     };
 
     const renderStarFilter = (value: number, onChange: (value: number) => void, maxStars: number) => {
         const sliderMax = filters.searchScope === 'representative' ? 3 : maxStars;
-        
-        return (
-            <div className="inventory-controls__star-filter-wrapper">
-                <RangeSlider label="" min={0} max={sliderMax} value={value} onChange={onChange} />
-            </div>
-        );
+        return <RangeSlider label="" min={0} max={sliderMax} value={value} onChange={onChange} />;
     };
+
+    const renderGroupedFilters = (
+        type: SparkGroupType, 
+        label: string, 
+        options: any[] | null, 
+        displayField: 'type' | 'name', 
+        maxStars: number, 
+        maxGroups: number = Infinity
+    ) => (
+        <div className="inventory-controls__group">
+            <label className="inventory-controls__label">{label}</label>
+            <div className="flex flex-col gap-2">
+                {(filters[type] as any[][]).map((group, groupIndex) => (
+                    <div key={groupIndex} className="inventory-controls__filter-group">
+                        <div className="inventory-controls__group-header">
+                            <span className="inventory-controls__group-title">Group {groupIndex + 1} (OR)</span>
+                            <div className="inventory-controls__group-actions">
+                                <button className="button button--secondary button--small" onClick={() => handleAddCondition(type, groupIndex)}>Add OR</button>
+                                <button className="button button--danger button--small" onClick={() => handleRemoveGroup(type, groupIndex)}>Remove Group</button>
+                            </div>
+                        </div>
+                        {group.map((condition, conditionIndex) => (
+                            <div key={conditionIndex} className="inventory-controls__condition-row">
+                                {options ? (
+                                    <select className="form__input" value={condition[displayField]} onChange={(e) => handleUpdateCondition(type, groupIndex, conditionIndex, displayField, e.target.value)}>
+                                        {options.map(opt => <option key={opt} value={opt}>{t(opt, { ns: 'game' })}</option>)}
+                                    </select>
+                                ) : (
+                                    <SearchableSelect items={type === 'uniqueSparkGroups' ? uniqueSkills : normalSkills} placeholder={t('common:selectPlaceholder')} value={condition.name ? masterSkillList.find(s => s.name_en === condition.name)?.[displayNameProp] || null : null} onSelect={(item) => handleUpdateCondition(type, groupIndex, conditionIndex, 'name', (item as Skill).name_en)} />
+                                )}
+                                {renderStarFilter(condition.stars, (v) => handleUpdateCondition(type, groupIndex, conditionIndex, 'stars', v), maxStars)}
+                                <button className="inventory-controls__remove-btn" onClick={() => handleRemoveCondition(type, groupIndex, conditionIndex)}><FontAwesomeIcon icon={faTimes} /></button>
+                            </div>
+                        ))}
+                    </div>
+                ))}
+                <button className="button button--secondary button--small inventory-controls__add-group-btn" onClick={() => handleAddGroup(type)} disabled={filters[type].length >= maxGroups}>
+                    <FontAwesomeIcon icon={faPlus} className="mr-2" /> Add Group (AND)
+                </button>
+            </div>
+        </div>
+    );
 
     return (
         <div className="inventory-controls">
@@ -166,83 +223,11 @@ const InventoryControls = ({}: InventoryControlsProps) => {
                         <input type="number" className="form__input" min="0" value={filters.minWhiteSparks} onChange={e => handleFilterChange('minWhiteSparks', Math.max(0, parseInt(e.target.value, 10)) || 0)} />
                     </div>
 
-                    {/* Lineage-Wide Sparks */}
-                    <div className="inventory-controls__group">
-                        <div className="inventory-controls__filter-header">
-                            <label className="inventory-controls__label">{t('inventory.lineageSpark')}</label>
-                            <button className="inventory-controls__add-btn" onClick={() => handleAddSparkFilter('lineageSparks')}><FontAwesomeIcon icon={faPlus} /></button>
-                        </div>
-                        {filters.lineageSparks.map((filter, index) => (
-                            <div key={index} className="inventory-controls__filter-row">
-                                <SearchableSelect items={normalSkills} placeholder={t('common:selectPlaceholder')} value={filter.name ? masterSkillList.find(s => s.name_en === filter.name)?.[displayNameProp] || null : null} onSelect={(item) => handleUpdateSparkFilter('lineageSparks', index, 'name', (item as Skill).name_en)} />
-                                <button className="inventory-controls__remove-btn" onClick={() => handleRemoveSparkFilter('lineageSparks', index)}><FontAwesomeIcon icon={faTimes} /></button>
-                            </div>
-                        ))}
-                    </div>
-
-                    {/* Blue Sparks */}
-                    <div className="inventory-controls__group">
-                        <div className="inventory-controls__filter-header">
-                            <label className="inventory-controls__label">{t('inventory.blueSpark')}</label>
-                            <button className="inventory-controls__add-btn" onClick={() => handleAddSparkFilter('blueSparks')} disabled={filters.blueSparks.length >= 3}><FontAwesomeIcon icon={faPlus} /></button>
-                        </div>
-                        {filters.blueSparks.map((filter, index) => (
-                            <div key={index} className="inventory-controls__filter-row">
-                                <select className="form__input" value={filter.type} onChange={(e) => handleUpdateSparkFilter('blueSparks', index, 'type', e.target.value)}>
-                                    {BLUE_SPARK_TYPES.map(type => <option key={type} value={type}>{t(type, { ns: 'game' })}</option>)}
-                                </select>
-                                {renderStarFilter(filter.stars, (v) => handleUpdateSparkFilter('blueSparks', index, 'stars', v), 9)}
-                                <button className="inventory-controls__remove-btn" onClick={() => handleRemoveSparkFilter('blueSparks', index)}><FontAwesomeIcon icon={faTimes} /></button>
-                            </div>
-                        ))}
-                    </div>
-
-                    {/* Pink Sparks */}
-                    <div className="inventory-controls__group">
-                        <div className="inventory-controls__filter-header">
-                            <label className="inventory-controls__label">{t('inventory.pinkSpark')}</label>
-                            <button className="inventory-controls__add-btn" onClick={() => handleAddSparkFilter('pinkSparks')} disabled={filters.pinkSparks.length >= 3}><FontAwesomeIcon icon={faPlus} /></button>
-                        </div>
-                        {filters.pinkSparks.map((filter, index) => (
-                            <div key={index} className="inventory-controls__filter-row">
-                                <select className="form__input" value={filter.type} onChange={(e) => handleUpdateSparkFilter('pinkSparks', index, 'type', e.target.value)}>
-                                    {PINK_SPARK_TYPES.map(type => <option key={type} value={type}>{t(type, { ns: 'game' })}</option>)}
-                                </select>
-                                {renderStarFilter(filter.stars, (v) => handleUpdateSparkFilter('pinkSparks', index, 'stars', v), 9)}
-                                <button className="inventory-controls__remove-btn" onClick={() => handleRemoveSparkFilter('pinkSparks', index)}><FontAwesomeIcon icon={faTimes} /></button>
-                            </div>
-                        ))}
-                    </div>
-
-                    {/* Unique Sparks */}
-                    <div className="inventory-controls__group">
-                         <div className="inventory-controls__filter-header">
-                            <label className="inventory-controls__label">{t('inventory.uniqueSpark')}</label>
-                            <button className="inventory-controls__add-btn" onClick={() => handleAddSparkFilter('uniqueSparks')} disabled={filters.uniqueSparks.length >= 6}><FontAwesomeIcon icon={faPlus} /></button>
-                        </div>
-                        {filters.uniqueSparks.map((filter, index) => (
-                            <div key={index} className="inventory-controls__filter-row">
-                                <SearchableSelect items={uniqueSkills} placeholder={t('common:selectPlaceholder')} value={filter.name ? masterSkillList.find(s => s.name_en === filter.name)?.[displayNameProp] || null : null} onSelect={(item) => handleUpdateSparkFilter('uniqueSparks', index, 'name', (item as Skill).name_en)} />
-                                {renderStarFilter(filter.stars, (v) => handleUpdateSparkFilter('uniqueSparks', index, 'stars', v), 3)}
-                                <button className="inventory-controls__remove-btn" onClick={() => handleRemoveSparkFilter('uniqueSparks', index)}><FontAwesomeIcon icon={faTimes} /></button>
-                            </div>
-                        ))}
-                    </div>
-
-                    {/* White Sparks */}
-                    <div className="inventory-controls__group">
-                         <div className="inventory-controls__filter-header">
-                            <label className="inventory-controls__label">{t('inventory.whiteSpark')}</label>
-                            <button className="inventory-controls__add-btn" onClick={() => handleAddSparkFilter('whiteSparks')}><FontAwesomeIcon icon={faPlus} /></button>
-                        </div>
-                        {filters.whiteSparks.map((filter, index) => (
-                            <div key={index} className="inventory-controls__filter-row">
-                                <SearchableSelect items={normalSkills} placeholder={t('common:selectPlaceholder')} value={filter.name ? masterSkillList.find(s => s.name_en === filter.name)?.[displayNameProp] || null : null} onSelect={(item) => handleUpdateSparkFilter('whiteSparks', index, 'name', (item as Skill).name_en)} />
-                                {renderStarFilter(filter.stars, (v) => handleUpdateSparkFilter('whiteSparks', index, 'stars', v), 9)}
-                                <button className="inventory-controls__remove-btn" onClick={() => handleRemoveSparkFilter('whiteSparks', index)}><FontAwesomeIcon icon={faTimes} /></button>
-                            </div>
-                        ))}
-                    </div>
+                    {renderGroupedFilters('lineageSparkGroups', t('inventory.lineageSpark'), null, 'name', 0)}
+                    {renderGroupedFilters('blueSparkGroups', t('inventory.blueSpark'), BLUE_SPARK_TYPES, 'type', 9, 3)}
+                    {renderGroupedFilters('pinkSparkGroups', t('inventory.pinkSpark'), PINK_SPARK_TYPES, 'type', 9, 3)}
+                    {renderGroupedFilters('uniqueSparkGroups', t('inventory.uniqueSpark'), null, 'name', 3, 6)}
+                    {renderGroupedFilters('whiteSparkGroups', t('inventory.whiteSpark'), null, 'name', 9)}
                 </div>
             )}
         </div>
