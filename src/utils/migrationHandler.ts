@@ -1,9 +1,10 @@
 import i18n from '../i18n';
-import { AppData, Folder, Parent, Profile, ServerSpecificData, Uma } from '../types';
+import { AppData, Folder, Parent, Profile, ServerSpecificData, Uma, ManualParentData, Grandparent, WhiteSpark, UniqueSpark } from '../types';
 import { generateParentHash } from './hashing';
 import masterUmaListJson from '../data/uma-list.json';
+import masterSkillListJson from '../data/skill-list.json';
 
-export const CURRENT_VERSION = 11;
+export const CURRENT_VERSION = 12;
 
 // --- Default State Creation ---
 
@@ -202,6 +203,45 @@ const migrateToV11 = (data: any): any => {
     return data;
 };
 
+const migrateToV12 = (data: any): any => {
+    const skillNameMap = new Map<string, string>();
+    (masterSkillListJson as any[]).forEach(skill => {
+        if (skill.name_jp && skill.name_en) {
+            skillNameMap.set(skill.name_jp, skill.name_en);
+        }
+    });
+
+    const cleanSparks = (sparks: (WhiteSpark | UniqueSpark)[]): (WhiteSpark | UniqueSpark)[] => {
+        return sparks.map(spark => {
+            const englishName = skillNameMap.get(spark.name);
+            return englishName ? { ...spark, name: englishName } : spark;
+        });
+    };
+
+    const cleanGrandparent = (gp?: Grandparent): Grandparent | undefined => {
+        if (!gp || typeof gp === 'number') {
+            return gp;
+        }
+        const manualGp = gp as ManualParentData;
+        return {
+            ...manualGp,
+            uniqueSparks: cleanSparks(manualGp.uniqueSparks),
+            whiteSparks: cleanSparks(manualGp.whiteSparks),
+        };
+    };
+
+    data.inventory.forEach((p: Parent) => {
+        p.uniqueSparks = cleanSparks(p.uniqueSparks);
+        p.whiteSparks = cleanSparks(p.whiteSparks);
+        p.grandparent1 = cleanGrandparent(p.grandparent1);
+        p.grandparent2 = cleanGrandparent(p.grandparent2);
+        p.hash = generateParentHash(p); // Recalculate hash with cleaned names
+    });
+
+    data.version = 12;
+    return data;
+};
+
 const runSanityChecks = (data: any): any => {
     (Object.values(data.serverData) as ServerSpecificData[]).forEach(serverData => {
         serverData.profiles.forEach((p: Profile) => {
@@ -237,6 +277,7 @@ export const migrateData = (data: any): AppData => {
     if (migratedData.version < 9) migratedData = migrateToV9(migratedData);
     if (migratedData.version < 10) migratedData = migrateToV10(migratedData);
     if (migratedData.version < 11) migratedData = migrateToV11(migratedData);
+    if (migratedData.version < 12) migratedData = migrateToV12(migratedData);
     
     // Final check to ensure data consistency after all migrations
     migratedData = runSanityChecks(migratedData);
