@@ -1,3 +1,4 @@
+/* Inventory Controls Component */
 .inventory-controls {
     display: flex;
     flex-direction: column;
@@ -79,6 +80,40 @@
 .inventory-controls__add-btn:disabled {
     color: var(--color-border);
     cursor: not-allowed;
+}
+
+.inventory-controls__filter-group {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--color-border);
+    border-radius: 0.375rem;
+    background-color: var(--color-card-bg-hover);
+}
+
+.inventory-controls__group-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0.75rem;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.inventory-controls__group-title {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--color-text-muted);
+}
+
+.inventory-controls__group-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 0.75rem;
+}
+
+.inventory-controls__group-footer {
+    padding: 0.5rem;
+    border-top: 1px solid var(--color-border);
 }
 
 .inventory-controls__filter-row {
