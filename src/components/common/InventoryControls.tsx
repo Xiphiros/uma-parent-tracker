@@ -139,35 +139,55 @@ const InventoryControls = ({}: InventoryControlsProps) => {
         maxGroups: number = Infinity
     ) => (
         <div className="inventory-controls__group">
-            <label className="inventory-controls__label">{label}</label>
-            <div className="flex flex-col gap-2">
+            <div className="inventory-controls__filter-header">
+                <label className="inventory-controls__label">{label}</label>
+                <button 
+                    className="inventory-controls__add-btn" 
+                    onClick={() => handleAddGroup(type)} 
+                    disabled={filters[type].length >= maxGroups}
+                    title={t('inventory.addGroupTooltip')}
+                >
+                    <FontAwesomeIcon icon={faPlus} />
+                </button>
+            </div>
+            <div className="flex flex-col gap-3">
                 {(filters[type] as any[][]).map((group, groupIndex) => (
                     <div key={groupIndex} className="inventory-controls__filter-group">
                         <div className="inventory-controls__group-header">
-                            <span className="inventory-controls__group-title">Group {groupIndex + 1} (OR)</span>
-                            <div className="inventory-controls__group-actions">
-                                <button className="button button--secondary button--small" onClick={() => handleAddCondition(type, groupIndex)}>Add OR</button>
-                                <button className="button button--danger button--small" onClick={() => handleRemoveGroup(type, groupIndex)}>Remove Group</button>
-                            </div>
+                            <span className="inventory-controls__group-title">{t('inventory.matchAny')}</span>
+                            <button className="button button--danger button--small" onClick={() => handleRemoveGroup(type, groupIndex)}>{t('inventory.removeGroup')}</button>
                         </div>
-                        {group.map((condition, conditionIndex) => (
-                            <div key={conditionIndex} className="inventory-controls__condition-row">
-                                {options ? (
-                                    <select className="form__input" value={condition[displayField]} onChange={(e) => handleUpdateCondition(type, groupIndex, conditionIndex, displayField, e.target.value)}>
-                                        {options.map(opt => <option key={opt} value={opt}>{t(opt, { ns: 'game' })}</option>)}
-                                    </select>
-                                ) : (
-                                    <SearchableSelect items={type === 'uniqueSparkGroups' ? uniqueSkills : normalSkills} placeholder={t('common:selectPlaceholder')} value={condition.name ? masterSkillList.find(s => s.name_en === condition.name)?.[displayNameProp] || null : null} onSelect={(item) => handleUpdateCondition(type, groupIndex, conditionIndex, 'name', (item as Skill).name_en)} />
-                                )}
-                                {renderStarFilter(condition.stars, (v) => handleUpdateCondition(type, groupIndex, conditionIndex, 'stars', v), maxStars)}
-                                <button className="inventory-controls__remove-btn" onClick={() => handleRemoveCondition(type, groupIndex, conditionIndex)}><FontAwesomeIcon icon={faTimes} /></button>
-                            </div>
-                        ))}
+                        <div className="inventory-controls__group-body">
+                            {group.map((condition, conditionIndex) => (
+                                <div key={conditionIndex} className="inventory-controls__filter-row">
+                                    {options ? (
+                                        <select className="form__input" value={condition[displayField]} onChange={(e) => handleUpdateCondition(type, groupIndex, conditionIndex, displayField, e.target.value)}>
+                                            {options.map(opt => <option key={opt} value={opt}>{t(opt, { ns: 'game' })}</option>)}
+                                        </select>
+                                    ) : (
+                                        <SearchableSelect 
+                                            items={type === 'uniqueSparkGroups' ? uniqueSkills : normalSkills} 
+                                            placeholder={t('common:selectPlaceholder')} 
+                                            value={condition.name ? masterSkillList.find(s => s.name_en === condition.name)?.[displayNameProp] || null : null} 
+                                            onSelect={(item) => handleUpdateCondition(type, groupIndex, conditionIndex, 'name', (item as Skill).name_en)} 
+                                        />
+                                    )}
+                                    <div className="inventory-controls__star-filter-wrapper">
+                                        {maxStars > 0 && renderStarFilter(condition.stars, (v) => handleUpdateCondition(type, groupIndex, conditionIndex, 'stars', v), maxStars)}
+                                    </div>
+                                    <button className="inventory-controls__remove-btn" onClick={() => handleRemoveCondition(type, groupIndex, conditionIndex)} title={t('inventory.removeCondition')}>
+                                        <FontAwesomeIcon icon={faTimes} />
+                                    </button>
+                                </div>
+                            ))}
+                        </div>
+                        <div className="inventory-controls__group-footer">
+                            <button className="button button--secondary button--small w-full justify-center" onClick={() => handleAddCondition(type, groupIndex)}>
+                                <FontAwesomeIcon icon={faPlus} className="mr-1" /> {t('inventory.addOrCondition')}
+                            </button>
+                        </div>
                     </div>
                 ))}
-                <button className="button button--secondary button--small inventory-controls__add-group-btn" onClick={() => handleAddGroup(type)} disabled={filters[type].length >= maxGroups}>
-                    <FontAwesomeIcon icon={faPlus} className="mr-2" /> Add Group (AND)
-                </button>
             </div>
         </div>
     );
