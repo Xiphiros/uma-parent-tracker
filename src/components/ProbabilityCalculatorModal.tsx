@@ -212,23 +212,27 @@ const ProbabilityCalculatorModal = ({ isOpen, onClose, pair }: ProbabilityCalcul
                 )}
             </Modal>
 
-            <SelectAcquirableSkillsModal
-                isOpen={isSkillModalOpen}
-                onClose={() => setIsSkillModalOpen(false)}
-                allSkills={purchasableSkills}
-                selectedIds={acquirableSkillIds}
-                onSave={setAcquirableSkillIds}
-                pair={pair}
-                spBudget={spBudget}
-            />
+            {pair && (
+                <>
+                    <SelectAcquirableSkillsModal
+                        isOpen={isSkillModalOpen}
+                        onClose={() => setIsSkillModalOpen(false)}
+                        allSkills={purchasableSkills}
+                        selectedIds={acquirableSkillIds}
+                        onSave={setAcquirableSkillIds}
+                        pair={pair}
+                        spBudget={spBudget}
+                    />
 
-            <SelectConditionalSkillsModal
-                isOpen={isConditionalModalOpen}
-                onClose={() => setIsConditionalModalOpen(false)}
-                allSkills={conditionalSkills}
-                selectedIds={conditionalSkillIds}
-                onSave={setConditionalSkillIds}
-            />
+                    <SelectConditionalSkillsModal
+                        isOpen={isConditionalModalOpen}
+                        onClose={() => setIsConditionalModalOpen(false)}
+                        allSkills={conditionalSkills}
+                        selectedIds={conditionalSkillIds}
+                        onSave={setConditionalSkillIds}
+                    />
+                </>
+            )}
         </>
     );
 };
