@@ -7,7 +7,7 @@
     border: 1px solid var(--color-border);
     background-color: var(--color-card-bg-hover);
     transition: background-color 0.3s ease, border-color 0.3s ease;
-    border-left: 4px solid transparent; /* Space for roster indicator */
+    border-left: 4px solid transparent;
 }
 .parent-card--top-pair {
     border-color: var(--color-top-pair-border);
@@ -34,6 +34,7 @@
     flex-direction: column;
     justify-content: center;
     min-height: 64px;
+    min-width: 0; /* Fixes flexbox overflow issue with long names */
 }
 .parent-card__name {
     font-weight: 700;
@@ -42,10 +43,10 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    flex-wrap: wrap; /* Allow wrapping */
+    flex-wrap: wrap;
 }
 .parent-card__name > span:first-child {
-    word-break: break-word; /* Break long names */
+    word-break: break-word;
 }
 .parent-card__borrowed-tag {
     font-size: 0.7rem;
@@ -56,7 +57,7 @@
     color: var(--color-text-inverted);
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    flex-shrink: 0; /* Prevent the tag itself from shrinking */
+    flex-shrink: 0;
 }
 .parent-card__meta {
     display: flex;
@@ -126,9 +127,9 @@
     border-top: 1px solid var(--color-border);
     padding-top: 0.75rem;
     transition: border-color 0.3s ease;
-    max-height: 150px; /* Add this line */
-    overflow-y: auto; /* Add this line */
-    padding-right: 0.5rem; /* Add this line to prevent text from touching scrollbar */
+    max-height: 150px;
+    overflow-y: auto;
+    padding-right: 0.5rem;
 }
 .parent-card__spark-container {
     display: flex;
