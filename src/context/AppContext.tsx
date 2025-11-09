@@ -191,14 +191,14 @@ export const useAppContext = () => {
   return context;
 };
 
-const initialFilters: Filters = {
+export const initialFilters: Filters = {
     searchTerm: '',
     searchScope: 'total',
-    blueSparks: [],
-    pinkSparks: [],
-    uniqueSparks: [],
-    whiteSparks: [],
-    lineageSparks: [],
+    blueSparkGroups: [],
+    pinkSparkGroups: [],
+    uniqueSparkGroups: [],
+    whiteSparkGroups: [],
+    lineageSparkGroups: [],
     minWhiteSparks: 0,
 };
 
@@ -347,7 +347,7 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
 
   const changeUiLanguage = useCallback((lang: 'en' | 'jp') => {
     i18n.changeLanguage(lang);
-  }, [i18n]);
+  }, []);
 
   const saveState = useCallback((newData: AppData) => {
     setAppData(newData);
