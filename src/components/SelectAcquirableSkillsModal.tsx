@@ -95,7 +95,10 @@ const SelectAcquirableSkillsModal = ({ isOpen, onClose, allSkills: availableSkil
         }
     };
 
-    const getSkillDisplayName = (skill: Skill) => skill[displayNameProp] || skill.name_en || skill.name_jp || '';
+    const getSkillDisplayName = (skill: Skill) => {
+        if (!skill) return '';
+        return skill[displayNameProp] || skill.name_en || skill.name_jp || '';
+    };
 
     const groupedAndFilteredSkills = useMemo(() => {
         const wishlistMap = new Map(goal?.wishlist.map(item => [item.name, item.tier]));
