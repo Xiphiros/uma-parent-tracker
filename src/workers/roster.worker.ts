@@ -125,30 +125,32 @@ self.onmessage = (e: MessageEvent<RosterWorkerPayload>) => {
             if (filters.minWhiteSparks > 0 && lineageStats.whiteSkillCount < filters.minWhiteSparks) return false;
 
             const scope = filters.searchScope;
-            if (!filters.blueSparks.every(f => (scope === 'total' ? (lineageStats.blue[f.type] || 0) : parent.blueSpark.type === f.type ? parent.blueSpark.stars : 0) >= f.stars)) return false;
-            if (!filters.pinkSparks.every(f => (scope === 'total' ? (lineageStats.pink[f.type] || 0) : parent.pinkSpark.type === f.type ? parent.pinkSpark.stars : 0) >= f.stars)) return false;
-            if (!filters.uniqueSparks.every(f => !f.name || (scope === 'total' ? (lineageStats.unique[f.name] || 0) : parent.uniqueSparks.find(s => s.name === f.name)?.stars || 0) >= f.stars)) return false;
-            if (!filters.whiteSparks.every(f => !f.name || (scope === 'total' ? (lineageStats.white[f.name] || 0) : parent.whiteSparks.find(s => s.name === f.name)?.stars || 0) >= f.stars)) return false;
+
+            if (!filters.blueSparkGroups.every(group => group.some(f => (scope === 'total' ? (lineageStats.blue[f.type] || 0) : parent.blueSpark.type === f.type ? parent.blueSpark.stars : 0) >= f.stars))) return false;
+            if (!filters.pinkSparkGroups.every(group => group.some(f => (scope === 'total' ? (lineageStats.pink[f.type] || 0) : parent.pinkSpark.type === f.type ? parent.pinkSpark.stars : 0) >= f.stars))) return false;
+            if (!filters.uniqueSparkGroups.every(group => group.some(f => !f.name || (scope === 'total' ? (lineageStats.unique[f.name] || 0) : parent.uniqueSparks.find(s => s.name === f.name)?.stars || 0) >= f.stars))) return false;
+            if (!filters.whiteSparkGroups.every(group => group.some(f => !f.name || (scope === 'total' ? (lineageStats.white[f.name] || 0) : parent.whiteSparks.find(s => s.name === f.name)?.stars || 0) >= f.stars))) return false;
             
-            // New Lineage-Wide Spark Filter
-            if (filters.lineageSparks.length > 0) {
-                const hasAllLineageSparks = filters.lineageSparks.every(filter => {
-                    if (!filter.name) return true; // Skip empty filters
+            if (filters.lineageSparkGroups.length > 0) {
+                const passesAllGroups = filters.lineageSparkGroups.every(group => {
+                    return group.some(filter => {
+                        if (!filter.name) return true;
 
-                    const checkMember = (member: Parent | ManualParentData | null): boolean => {
-                        if (!member) return true; // Undefined members pass the check
-                        if ('whiteSparks' in member) {
-                            return member.whiteSparks.some(s => s.name === filter.name);
-                        }
-                        return false;
-                    };
+                        const checkMember = (member: Parent | ManualParentData | null): boolean => {
+                            if (!member) return true;
+                            if ('whiteSparks' in member) {
+                                return member.whiteSparks.some(s => s.name === filter.name);
+                            }
+                            return false;
+                        };
 
-                    const gp1 = resolveGrandparent(parent.grandparent1, inventoryMap);
-                    const gp2 = resolveGrandparent(parent.grandparent2, inventoryMap);
+                        const gp1 = resolveGrandparent(parent.grandparent1, inventoryMap);
+                        const gp2 = resolveGrandparent(parent.grandparent2, inventoryMap);
 
-                    return checkMember(parent) && checkMember(gp1) && checkMember(gp2);
+                        return checkMember(parent) && checkMember(gp1) && checkMember(gp2);
+                    });
                 });
-                if (!hasAllLineageSparks) return false;
+                if (!passesAllGroups) return false;
             }
 
             return true;
