@@ -66,7 +66,8 @@ const WishlistSection = ({ title, wishlist, skillList, onAdd, onRemove, onUpdate
   
   const getDisplayName = (name_en: string) => {
       const skill = skillMapByName.get(name_en);
-      return skill ? skill[displayNameProp] : name_en;
+      if (!skill) return name_en;
+      return skill[displayNameProp] || skill.name_en || skill.name_jp || name_en;
   };
 
   return (
