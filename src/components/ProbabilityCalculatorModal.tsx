@@ -113,95 +113,103 @@ const ProbabilityCalculatorModal = ({ isOpen, onClose, pair }: ProbabilityCalcul
     return (
         <>
             <Modal isOpen={isOpen} onClose={onClose} title={t('breedingPlanner.probabilityCalculator')} size="xl">
-                <div className="prob-calc__layout">
-                    <div className="prob-calc__inputs">
-                        <h4 className="prob-calc__inputs-title">{t('breedingPlanner.inputs')}</h4>
-                        <div className="prob-calc__input-group">
-                            <div>
-                                <label className="form__label">{t('breedingPlanner.targetOutcome')}</label>
-                                <div className="prob-calc__mode-toggle">
-                                    <button className={`prob-calc__mode-btn ${calculationMode === 'final' ? 'prob-calc__mode-btn--active' : ''}`} onClick={() => setCalculationMode('final')}>{t('breedingPlanner.targetFinalScore')}</button>
-                                    <button className={`prob-calc__mode-btn ${calculationMode === 'individual' ? 'prob-calc__mode-btn--active' : ''}`} onClick={() => setCalculationMode('individual')}>{t('breedingPlanner.targetIndividualScore')}</button>
+                {!pair ? (
+                    <div className="card__placeholder-text text-center py-8">
+                        {t('topPairPlaceholder')}
+                    </div>
+                ) : (
+                    <>
+                        <div className="prob-calc__layout">
+                            <div className="prob-calc__inputs">
+                                <h4 className="prob-calc__inputs-title">{t('breedingPlanner.inputs')}</h4>
+                                <div className="prob-calc__input-group">
+                                    <div>
+                                        <label className="form__label">{t('breedingPlanner.targetOutcome')}</label>
+                                        <div className="prob-calc__mode-toggle">
+                                            <button className={`prob-calc__mode-btn ${calculationMode === 'final' ? 'prob-calc__mode-btn--active' : ''}`} onClick={() => setCalculationMode('final')}>{t('breedingPlanner.targetFinalScore')}</button>
+                                            <button className={`prob-calc__mode-btn ${calculationMode === 'individual' ? 'prob-calc__mode-btn--active' : ''}`} onClick={() => setCalculationMode('individual')}>{t('breedingPlanner.targetIndividualScore')}</button>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label className="form__label">{t('breedingPlanner.targetStats')}</label>
+                                        {STAT_NAMES.map(stat => (
+                                            <div key={stat} className="prob-calc__stat-input">
+                                                <label htmlFor={`stat-${stat}`}>{t(stat.charAt(0).toUpperCase() + stat.slice(1), { ns: 'game' })}</label>
+                                                <input type="number" id={`stat-${stat}`} className="form__input" value={targetStats[stat]} onChange={e => setTargetStats(p => ({ ...p, [stat]: parseInt(e.target.value) || 0 }))} />
+                                            </div>
+                                        ))}
+                                    </div>
+                                    <div>
+                                        <label htmlFor="sp-budget" className="form__label" title={t('breedingPlanner.spBudgetTooltip')}>{t('breedingPlanner.spBudget')}</label>
+                                        <input type="number" id="sp-budget" className="form__input" value={spBudget} onChange={e => setSpBudget(parseInt(e.target.value) || 0)} />
+                                    </div>
+                                    <div>
+                                        <label className="form__label">{t('breedingPlanner.trainingRank')}</label>
+                                        <select className="form__input" value={trainingRank} onChange={e => setTrainingRank(e.target.value as 'ss' | 'ss+')}>
+                                            <option value="ss">{t('breedingPlanner.rankBelowSS')}</option>
+                                            <option value="ss+">{t('breedingPlanner.rankSSPlus')}</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label className="form__label">{t('breedingPlanner.acquirableSkills')}</label>
+                                        <button className="button button--secondary w-full justify-center" onClick={() => setIsSkillModalOpen(true)}>{t('breedingPlanner.selectAcquirableSkills')}</button>
+                                        <p className="text-xs text-stone-500 text-center mt-1">{acquirableSkillIds.size > 0 ? t('breedingPlanner.skillsSelected', { count: acquirableSkillIds.size }) : t('breedingPlanner.allSkillsConsidered')}</p>
+                                    </div>
+                                    <div>
+                                        <label className="form__label">{t('breedingPlanner.conditionalSkills')}</label>
+                                        <button className="button button--secondary w-full justify-center" onClick={() => setIsConditionalModalOpen(true)}>{t('breedingPlanner.selectConditionalSkills')}</button>
+                                        <p className="text-xs text-stone-500 text-center mt-1">{conditionalSkillIds.size > 0 ? t('breedingPlanner.skillsSelected', { count: conditionalSkillIds.size }) : t('breedingPlanner.noConditionalSkills')}</p>
+                                    </div>
+                                    <div>
+                                        <label className="form__label">{t('breedingPlanner.obtainableAptitudes')}</label>
+                                        <MultiSelect options={translatedAptitudeOptions} selectedValues={targetAptitudes} onChange={setTargetAptitudes} />
+                                    </div>
                                 </div>
                             </div>
-                            <div>
-                                <label className="form__label">{t('breedingPlanner.targetStats')}</label>
-                                {STAT_NAMES.map(stat => (
-                                    <div key={stat} className="prob-calc__stat-input">
-                                        <label htmlFor={`stat-${stat}`}>{t(stat.charAt(0).toUpperCase() + stat.slice(1), { ns: 'game' })}</label>
-                                        <input type="number" id={`stat-${stat}`} className="form__input" value={targetStats[stat]} onChange={e => setTargetStats(p => ({ ...p, [stat]: parseInt(e.target.value) || 0 }))} />
-                                    </div>
-                                ))}
-                            </div>
-                            <div>
-                                <label htmlFor="sp-budget" className="form__label" title={t('breedingPlanner.spBudgetTooltip')}>{t('breedingPlanner.spBudget')}</label>
-                                <input type="number" id="sp-budget" className="form__input" value={spBudget} onChange={e => setSpBudget(parseInt(e.target.value) || 0)} />
-                            </div>
-                            <div>
-                                <label className="form__label">{t('breedingPlanner.trainingRank')}</label>
-                                <select className="form__input" value={trainingRank} onChange={e => setTrainingRank(e.target.value as 'ss' | 'ss+')}>
-                                    <option value="ss">{t('breedingPlanner.rankBelowSS')}</option>
-                                    <option value="ss+">{t('breedingPlanner.rankSSPlus')}</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label className="form__label">{t('breedingPlanner.acquirableSkills')}</label>
-                                <button className="button button--secondary w-full justify-center" onClick={() => setIsSkillModalOpen(true)}>{t('breedingPlanner.selectAcquirableSkills')}</button>
-                                <p className="text-xs text-stone-500 text-center mt-1">{acquirableSkillIds.size > 0 ? t('breedingPlanner.skillsSelected', { count: acquirableSkillIds.size }) : t('breedingPlanner.allSkillsConsidered')}</p>
-                            </div>
-                            <div>
-                                <label className="form__label">{t('breedingPlanner.conditionalSkills')}</label>
-                                <button className="button button--secondary w-full justify-center" onClick={() => setIsConditionalModalOpen(true)}>{t('breedingPlanner.selectConditionalSkills')}</button>
-                                <p className="text-xs text-stone-500 text-center mt-1">{conditionalSkillIds.size > 0 ? t('breedingPlanner.skillsSelected', { count: conditionalSkillIds.size }) : t('breedingPlanner.noConditionalSkills')}</p>
-                            </div>
-                            <div>
-                                <label className="form__label">{t('breedingPlanner.obtainableAptitudes')}</label>
-                                <MultiSelect options={translatedAptitudeOptions} selectedValues={targetAptitudes} onChange={setTargetAptitudes} />
+                            <div className="prob-calc__results">
+                                <h4 className="prob-calc__results-title">{t('breedingPlanner.estimatedProbabilities')}</h4>
+                                <div className="prob-calc__results-grid">
+                                    {isLoading && <p className="card__placeholder-text">{t('calculating', { ns: 'common' })}...</p>}
+                                    {error && <p className="text-red-500">{error}</p>}
+                                    {results && (
+                                        <>
+                                            <div className="prob-calc__result-item">
+                                                <div className="prob-calc__result-header">
+                                                    <span className="prob-calc__result-name">
+                                                        {calculationMode === 'final'
+                                                            ? t('breedingPlanner.probToSurpassFinalLabel', { name: results.targetParentName, score: results.targetParentFinalScore })
+                                                            : t('breedingPlanner.probToSurpassIndividualLabel', { name: results.targetParentName, score: Math.round(results.targetParentIndividualScore) })
+                                                        }
+                                                    </span>
+                                                    <span className="prob-calc__result-value">{formatProbability(results.probScoreUpgrade)}</span>
+                                                </div>
+                                            </div>
+                                            <div className="prob-calc__result-item">
+                                                <div className="prob-calc__result-header">
+                                                    <span className="prob-calc__result-name">{t('breedingPlanner.probSparkCountUpgrade', { count: results.targetSparkCount })}</span>
+                                                    <span className="prob-calc__result-value">{formatProbability(results.probSparkCountUpgrade)}</span>
+                                                </div>
+                                            </div>
+                                        </>
+                                    )}
+                                </div>
+                                <div className="prob-calc__disclaimer">
+                                    <p>{t('breedingPlanner.disclaimerText')}</p>
+                                    <ul>
+                                        <li>{t('breedingPlanner.disclaimerScoreUpgrade')}</li>
+                                        <li>{t('breedingPlanner.disclaimerBlue')}</li>
+                                        <li>{t('breedingPlanner.disclaimerPinkDynamic')}</li>
+                                        <li>{t('breedingPlanner.disclaimerWhiteSP')}</li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div className="prob-calc__results">
-                        <h4 className="prob-calc__results-title">{t('breedingPlanner.estimatedProbabilities')}</h4>
-                        <div className="prob-calc__results-grid">
-                            {isLoading && <p className="card__placeholder-text">{t('calculating', { ns: 'common' })}...</p>}
-                            {error && <p className="text-red-500">{error}</p>}
-                            {results && (
-                                <>
-                                    <div className="prob-calc__result-item">
-                                        <div className="prob-calc__result-header">
-                                            <span className="prob-calc__result-name">
-                                                {calculationMode === 'final'
-                                                    ? t('breedingPlanner.probToSurpassFinalLabel', { name: results.targetParentName, score: results.targetParentFinalScore })
-                                                    : t('breedingPlanner.probToSurpassIndividualLabel', { name: results.targetParentName, score: Math.round(results.targetParentIndividualScore) })
-                                                }
-                                            </span>
-                                            <span className="prob-calc__result-value">{formatProbability(results.probScoreUpgrade)}</span>
-                                        </div>
-                                    </div>
-                                    <div className="prob-calc__result-item">
-                                        <div className="prob-calc__result-header">
-                                            <span className="prob-calc__result-name">{t('breedingPlanner.probSparkCountUpgrade', { count: results.targetSparkCount })}</span>
-                                            <span className="prob-calc__result-value">{formatProbability(results.probSparkCountUpgrade)}</span>
-                                        </div>
-                                    </div>
-                                </>
-                            )}
+                        <div className="dialog-modal__footer">
+                            <button className="button button--neutral" onClick={onClose}>{t('close', { ns: 'common' })}</button>
+                            <button className="button button--primary" onClick={handleCalculate} disabled={isLoading || !pair}>{isLoading ? t('calculating', { ns: 'common' }) + '...' : 'Calculate'}</button>
                         </div>
-                        <div className="prob-calc__disclaimer">
-                            <p>{t('breedingPlanner.disclaimerText')}</p>
-                            <ul>
-                                <li>{t('breedingPlanner.disclaimerScoreUpgrade')}</li>
-                                <li>{t('breedingPlanner.disclaimerBlue')}</li>
-                                <li>{t('breedingPlanner.disclaimerPinkDynamic')}</li>
-                                <li>{t('breedingPlanner.disclaimerWhiteSP')}</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div className="dialog-modal__footer">
-                    <button className="button button--neutral" onClick={onClose}>{t('close', { ns: 'common' })}</button>
-                    <button className="button button--primary" onClick={handleCalculate} disabled={isLoading || !pair}>{isLoading ? t('calculating', { ns: 'common' }) + '...' : 'Calculate'}</button>
-                </div>
+                    </>
+                )}
             </Modal>
 
             <SelectAcquirableSkillsModal
