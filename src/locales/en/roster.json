@@ -74,7 +74,12 @@
             "total": "Total Lineage",
             "representative": "Representative"
         },
-        "minWhiteSkills": "Min. White Skills"
+        "minWhiteSkills": "Min. White Skills",
+        "addGroupTooltip": "Add a new group of conditions (AND)",
+        "matchAny": "Match ANY of the following:",
+        "removeGroup": "Remove Group",
+        "removeCondition": "Remove this condition",
+        "addOrCondition": "Add OR Condition"
     },
     "breedingPlanner": {
         "title": "Breeding Planner",
