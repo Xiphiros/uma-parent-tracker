@@ -100,7 +100,7 @@ const InventoryControls = ({}: InventoryControlsProps) => {
             } else {
                 const newGroup = [...newGroups[groupIndex]];
                 newGroup.splice(conditionIndex, 1);
-                newGroups[groupIndex] = newGroup;
+                newGroups[groupIndex] = newGroup as any;
             }
             return { ...prev, [type]: newGroups };
         });
