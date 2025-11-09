@@ -14,24 +14,30 @@
 }
 
 .range-slider__input-wrapper {
+    position: relative;
     display: flex;
-    flex-direction: column;
+    align-items: center;
     width: 100%;
+    height: 16px; /* Height of the thumb to ensure vertical centering */
 }
 
 .range-slider__ticks {
-    width: calc(100% - 16px); /* Subtract thumb width to align ticks */
-    margin: -2px auto 0; /* Pull up slightly and center horizontally */
+    position: absolute;
+    top: 50%;
+    left: 8px; /* Half of thumb width */
+    right: 8px; /* Half of thumb width */
+    transform: translateY(-50%);
     height: 4px;
     display: flex;
     justify-content: space-between;
-    pointer-events: none; /* Allow clicks to pass through to the input */
+    pointer-events: none;
+    z-index: 2; /* Ticks must be ON TOP of the track */
 }
 
 .range-slider__tick {
     width: 2px;
     height: 4px;
-    background-color: var(--color-border-input);
+    background-color: var(--color-text-secondary); /* Use a visible, contrasting color */
     border-radius: 1px;
 }
 
@@ -47,12 +53,14 @@
     appearance: none;
     width: 100%;
     height: 6px;
-    background: var(--color-border);
+    background: var(--color-border-input);
     border-radius: 3px;
     outline: none;
     opacity: 0.7;
     transition: opacity .2s;
     margin: 0;
+    position: relative;
+    z-index: 1; /* Track is BELOW the ticks */
 }
 
 .range-slider__input:hover {
@@ -68,7 +76,7 @@
     cursor: pointer;
     border-radius: 50%;
     position: relative;
-    z-index: 1; /* Ensure thumb is rendered above the ticks */
+    z-index: 3; /* Thumb is ON TOP of everything */
 }
 
 .range-slider__input::-moz-range-thumb {
@@ -78,4 +86,6 @@
     cursor: pointer;
     border-radius: 50%;
     border: none;
+    position: relative;
+    z-index: 3;
 }
