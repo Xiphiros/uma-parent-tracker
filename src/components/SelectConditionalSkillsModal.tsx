@@ -45,7 +45,10 @@ const SelectConditionalSkillsModal = ({ isOpen, onClose, allSkills, selectedIds,
     const handleSelectAll = () => setLocalSelectedIds(new Set(allSkills.map(s => s.id)));
     const handleDeselectAll = () => setLocalSelectedIds(new Set());
     
-    const getSkillDisplayName = (skill: Skill) => skill[displayNameProp] || skill.name_en;
+    const getSkillDisplayName = (skill: Skill) => {
+        if (!skill) return '';
+        return skill[displayNameProp] || skill.name_en;
+    }
 
     const groupedAndFilteredSkills = useMemo(() => {
         const lowerQuery = searchQuery.toLowerCase();
