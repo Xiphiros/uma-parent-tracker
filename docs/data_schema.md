@@ -2,7 +2,38 @@
 
 This document outlines the structure of the exported JSON data for this application. As features are added, the schema may evolve. The `version` key at the root of the JSON file helps in handling data migrations.
 
-## Version 11 (Current)
+## Version 12 (Current)
+
+Version 12 is a data sanitization migration designed to fix an issue from older import scripts where some skill names were stored in Japanese instead of their canonical English names. This ensures data consistency and allows display language settings to function correctly.
+
+*   The migration iterates through all `uniqueSparks` and `whiteSparks` for every `Parent` in the `inventory`.
+*   It also cleans the sparks for any manually defined grandparents.
+*   Any Japanese skill names found are replaced with their corresponding English `name_en` from the master skill list.
+*   After cleaning, the `hash` for every parent in the inventory is recalculated to reflect the corrected data and prevent the creation of duplicates.
+*   The `version` key is set to `12`.
+
+```json
+{
+  "version": 12,
+  "activeServer": "global",
+  "inventory": [
+    {
+      "id": 1700000000129,
+      "name": "[Hot☆Summer Night] Maruzensky",
+      "uniqueSparks": [
+        {
+          "name": "A Kiss for Courage",
+          "stars": 1
+        }
+      ],
+      "...": "..."
+    }
+  ],
+  "serverData": { "...": "..." }
+}
+```
+
+## Version 11
 
 Version 11 represents a significant simplification of the data model by removing project-specific rosters. The "roster" for any given project is now dynamically populated by all parents in the global `inventory` that match the active server.
 
@@ -404,8 +435,7 @@ Version 2 added the `isPinned` property to `Profile` objects, allowing users to 
       "roster": []
     }
   ]
-}
-```
+}```
 
 ## Version 1
 
