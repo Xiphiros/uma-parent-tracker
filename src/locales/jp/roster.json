@@ -70,6 +70,11 @@
       "representative": "代表因子"
     },
     "minWhiteSkills": "白因子の最低数",
+    "addGroupTooltip": "新しい条件グループを追加 (AND)",
+    "matchAny": "次のいずれかに一致:",
+    "removeGroup": "グループを削除",
+    "removeCondition": "この条件を削除",
+    "addOrCondition": "OR 条件を追加",
     "sortOptions": {
       "finalScore": "最終スコア",
       "individualScore": "基礎スコア",
