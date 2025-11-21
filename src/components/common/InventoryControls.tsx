@@ -1,15 +1,15 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { BlueSpark, Skill, Filters, SortFieldType, SortDirectionType, InventoryViewType, FilterCategory, FilterCondition } from '../../types';
 import SearchableSelect from './SearchableSelect';
 import { useAppContext, initialFilters } from '../../context/AppContext';
 import './InventoryControls.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFilter, faTimes, faArrowDownWideShort, faArrowUpShortWide, faPlus, faBolt, faHeart } from '@fortawesome/free-solid-svg-icons';
+import { faFilter, faTimes, faArrowDownWideShort, faArrowUpShortWide, faPlus, faTrashCan, faChevronDown, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import RangeSlider from './RangeSlider';
 import { useDebounce } from '../../hooks/useDebounce';
 
-// Simple ID generator to replace uuid
+// Simple ID generator
 const generateId = () => Math.random().toString(36).substr(2, 9);
 
 interface InventoryControlsProps {
@@ -25,7 +25,6 @@ interface InventoryControlsProps {
 
 const BLUE_SPARK_TYPES: BlueSpark['type'][] = ['Speed', 'Stamina', 'Power', 'Guts', 'Wit'];
 const PINK_SPARK_TYPES = ['Turf', 'Dirt', 'Sprint', 'Mile', 'Medium', 'Long', 'Front Runner', 'Pace Chaser', 'Late Surger', 'End Closer'];
-const CATEGORY_OPTIONS: FilterCategory[] = ['blue', 'pink', 'unique', 'white', 'lineage'];
 
 const InventoryControls = (props: InventoryControlsProps) => {
     const { t } = useTranslation(['roster', 'game', 'common']);
@@ -52,6 +51,13 @@ const InventoryControls = (props: InventoryControlsProps) => {
     const [liveSearchTerm, setLiveSearchTerm] = useState(filters.searchTerm);
     const debouncedSearchTerm = useDebounce(liveSearchTerm, 300);
 
+    // Collapsed state for categories (default open)
+    const [collapsedCategories, setCollapsedCategories] = useState<Record<string, boolean>>({});
+
+    const toggleCategory = (cat: string) => {
+        setCollapsedCategories(prev => ({ ...prev, [cat]: !prev[cat] }));
+    };
+
     useEffect(() => {
         setFilters(prev => ({ ...prev, searchTerm: debouncedSearchTerm }));
     }, [debouncedSearchTerm, setFilters]);
@@ -60,118 +66,72 @@ const InventoryControls = (props: InventoryControlsProps) => {
         if (filters.searchTerm === '') setLiveSearchTerm('');
     }, [filters.searchTerm]);
 
-    const uniqueSkills = masterSkillList.filter(s => s.category === 'unique');
-    const normalSkills = masterSkillList.filter(s => s.category === 'white');
+    const uniqueSkills = useMemo(() => masterSkillList.filter(s => s.category === 'unique'), [masterSkillList]);
+    const normalSkills = useMemo(() => masterSkillList.filter(s => s.category === 'white'), [masterSkillList]);
 
-    // Clamp stars for representative scope
-    useEffect(() => {
-        if (filters.searchScope === 'representative') {
-            setFilters(prev => ({
-                ...prev,
-                conditionGroups: prev.conditionGroups.map(group => 
-                    group.map(c => ({ ...c, stars: Math.min(c.stars, 3) }))
-                )
-            }));
-        }
-    }, [filters.searchScope, setFilters]);
-
-    const handleFilterChange = <K extends keyof Filters>(key: K, value: Filters[K]) => {
-        setFilters(prev => ({ ...prev, [key]: value }));
-    };
-    
-    const createDefaultCondition = (category: FilterCategory = 'blue', value: string = ''): FilterCondition => {
-        let defaultValue = value;
-        if (!defaultValue) {
-            if (category === 'blue') defaultValue = 'Speed';
-            else if (category === 'pink') defaultValue = 'Mile';
-        }
+    const createDefaultCondition = (category: FilterCategory): FilterCondition => {
+        let defaultValue = '';
+        if (category === 'blue') defaultValue = 'Speed';
+        else if (category === 'pink') defaultValue = 'Mile';
         
         return {
             id: generateId(),
             category,
             value: defaultValue,
-            stars: 3 // Default to 3 stars for quick filtering
+            stars: 3
         };
     };
 
-    const handleAddGroup = (initialCondition?: FilterCondition) => {
+    // --- Logic Helpers ---
+
+    const handleAddGroup = (category: FilterCategory) => {
         setFilters(prev => ({
             ...prev,
-            conditionGroups: [...prev.conditionGroups, [initialCondition || createDefaultCondition()]]
+            conditionGroups: [...prev.conditionGroups, [createDefaultCondition(category)]]
         }));
+        // Ensure category is expanded when adding
+        setCollapsedCategories(prev => ({ ...prev, [category]: false }));
     };
 
-    const handleQuickFilter = (category: FilterCategory, value: string) => {
-        // If the first group exists, add to it (OR logic). If not, create it.
-        // Actually, "Quick Filter" implies "I want X". If I click "Speed" and "Stamina", I probably want Speed OR Stamina.
-        // So we add to the *first* group if it exists, or create one.
+    const handleRemoveGroup = (actualIndex: number) => {
         setFilters(prev => {
             const newGroups = [...prev.conditionGroups];
-            if (newGroups.length === 0) {
-                newGroups.push([createDefaultCondition(category, value)]);
-            } else {
-                // Check if it already exists to avoid duplicates
-                const exists = newGroups[0].some(c => c.category === category && c.value === value);
-                if (!exists) {
-                    newGroups[0] = [...newGroups[0], createDefaultCondition(category, value)];
-                }
-            }
+            newGroups.splice(actualIndex, 1);
             return { ...prev, conditionGroups: newGroups };
         });
     };
 
-    const handleRemoveGroup = (groupIndex: number) => {
+    const handleAddConditionToGroup = (actualIndex: number, category: FilterCategory) => {
         setFilters(prev => {
             const newGroups = [...prev.conditionGroups];
-            newGroups.splice(groupIndex, 1);
+            newGroups[actualIndex] = [...newGroups[actualIndex], createDefaultCondition(category)];
             return { ...prev, conditionGroups: newGroups };
         });
     };
 
-    const handleAddCondition = (groupIndex: number) => {
+    const handleRemoveConditionFromGroup = (actualIndex: number, conditionIndex: number) => {
         setFilters(prev => {
             const newGroups = [...prev.conditionGroups];
-            newGroups[groupIndex] = [...newGroups[groupIndex], createDefaultCondition()];
-            return { ...prev, conditionGroups: newGroups };
-        });
-    };
-
-    const handleRemoveCondition = (groupIndex: number, conditionIndex: number) => {
-        setFilters(prev => {
-            const newGroups = [...prev.conditionGroups];
-            if (newGroups[groupIndex].length === 1) {
-                newGroups.splice(groupIndex, 1);
-            } else {
-                newGroups[groupIndex] = [...newGroups[groupIndex]]; // Copy inner array
-                newGroups[groupIndex].splice(conditionIndex, 1);
-            }
-            return { ...prev, conditionGroups: newGroups };
-        });
-    };
-
-    const handleUpdateCondition = (groupIndex: number, conditionIndex: number, updates: Partial<FilterCondition>) => {
-        setFilters(prev => {
-            const newGroups = [...prev.conditionGroups];
-            const newGroup = [...newGroups[groupIndex]];
-            const currentCondition = newGroup[conditionIndex];
+            const group = [...newGroups[actualIndex]];
             
-            let updatedCondition = { ...currentCondition, ...updates };
-
-            if (updates.category && updates.category !== currentCondition.category) {
-                if (updates.category === 'blue') updatedCondition.value = 'Speed';
-                else if (updates.category === 'pink') updatedCondition.value = 'Mile';
-                else updatedCondition.value = '';
-                updatedCondition.stars = 1;
+            if (group.length === 1) {
+                newGroups.splice(actualIndex, 1); // Remove group if empty
+            } else {
+                group.splice(conditionIndex, 1);
+                newGroups[actualIndex] = group;
             }
-
-            newGroup[conditionIndex] = updatedCondition;
-            newGroups[groupIndex] = newGroup;
             return { ...prev, conditionGroups: newGroups };
         });
     };
 
-    const toggleSortDirection = () => {
-        setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc');
+    const handleUpdateCondition = (actualIndex: number, conditionIndex: number, updates: Partial<FilterCondition>) => {
+        setFilters(prev => {
+            const newGroups = [...prev.conditionGroups];
+            const group = [...newGroups[actualIndex]];
+            group[conditionIndex] = { ...group[conditionIndex], ...updates };
+            newGroups[actualIndex] = group;
+            return { ...prev, conditionGroups: newGroups };
+        });
     };
 
     const clearFilters = () => {
@@ -179,58 +139,131 @@ const InventoryControls = (props: InventoryControlsProps) => {
         setFilters(initialFilters);
     };
 
-    const renderStarFilter = (value: number, onChange: (value: number) => void) => {
-        // Slider Logic: 
-        // For representative scope (looking at one parent), max is 3.
-        // For total scope (looking at lineage), max is 9 (3 parents * 3 stars).
+    // --- Render Helpers ---
+
+    const renderConditionInput = (condition: FilterCondition, actualGroupIndex: number, conditionIndex: number) => {
+        const updateValue = (val: string) => handleUpdateCondition(actualGroupIndex, conditionIndex, { value: val });
+        
+        let inputElement;
+        if (condition.category === 'blue') {
+            inputElement = (
+                <select className="form__input inventory-controls__select" value={condition.value} onChange={(e) => updateValue(e.target.value)}>
+                    {BLUE_SPARK_TYPES.map(opt => <option key={opt} value={opt}>{t(opt, { ns: 'game' })}</option>)}
+                </select>
+            );
+        } else if (condition.category === 'pink') {
+             inputElement = (
+                <select className="form__input inventory-controls__select" value={condition.value} onChange={(e) => updateValue(e.target.value)}>
+                    {PINK_SPARK_TYPES.map(opt => <option key={opt} value={opt}>{t(opt, { ns: 'game' })}</option>)}
+                </select>
+            );
+        } else if (condition.category === 'unique') {
+            inputElement = (
+                <SearchableSelect 
+                    items={uniqueSkills} 
+                    placeholder={t('common:selectPlaceholder')} 
+                    value={condition.value ? masterSkillList.find(s => s.name_en === condition.value)?.[displayNameProp] || null : null} 
+                    onSelect={(item) => updateValue((item as Skill).name_en)} 
+                />
+            );
+        } else {
+            inputElement = (
+                <SearchableSelect 
+                    items={normalSkills} 
+                    placeholder={t('common:selectPlaceholder')} 
+                    value={condition.value ? masterSkillList.find(s => s.name_en === condition.value)?.[displayNameProp] || null : null} 
+                    onSelect={(item) => updateValue((item as Skill).name_en)} 
+                />
+            );
+        }
+
         const sliderMax = filters.searchScope === 'representative' ? 3 : 9;
-        return <RangeSlider label="" min={1} max={sliderMax} value={value} onChange={onChange} />;
+
+        return (
+            <div key={condition.id} className="inventory-controls__condition-row">
+                <div className="flex-grow min-w-0">
+                     {inputElement}
+                </div>
+                <div className="inventory-controls__slider-wrapper">
+                    <RangeSlider 
+                        label="" 
+                        min={1} 
+                        max={sliderMax} 
+                        value={condition.stars} 
+                        onChange={(v) => handleUpdateCondition(actualGroupIndex, conditionIndex, { stars: v })} 
+                    />
+                </div>
+                <button 
+                    className="inventory-controls__icon-btn text-stone-400 hover:text-red-500"
+                    onClick={() => handleRemoveConditionFromGroup(actualGroupIndex, conditionIndex)}
+                >
+                    <FontAwesomeIcon icon={faTimes} />
+                </button>
+            </div>
+        );
     };
 
-    const renderConditionValueInput = (condition: FilterCondition, groupIndex: number, conditionIndex: number) => {
-        const updateValue = (val: string) => handleUpdateCondition(groupIndex, conditionIndex, { value: val });
+    const renderCategorySection = (category: FilterCategory) => {
+        const isCollapsed = collapsedCategories[category];
+        
+        // Find groups that PRIMARILY belong to this category (based on the first condition)
+        // We map them to their original indices to handle updates correctly
+        const relevantGroups = filters.conditionGroups
+            .map((group, index) => ({ group, index }))
+            .filter(({ group }) => group.length > 0 && group[0].category === category);
 
-        switch (condition.category) {
-            case 'blue':
-                return (
-                    <select className="form__input" value={condition.value} onChange={(e) => updateValue(e.target.value)}>
-                        {BLUE_SPARK_TYPES.map(opt => <option key={opt} value={opt}>{t(opt, { ns: 'game' })}</option>)}
-                    </select>
-                );
-            case 'pink':
-                return (
-                    <select className="form__input" value={condition.value} onChange={(e) => updateValue(e.target.value)}>
-                        {PINK_SPARK_TYPES.map(opt => <option key={opt} value={opt}>{t(opt, { ns: 'game' })}</option>)}
-                    </select>
-                );
-            case 'unique':
-                return (
-                    <SearchableSelect 
-                        items={uniqueSkills} 
-                        placeholder={t('common:selectPlaceholder')} 
-                        value={condition.value ? masterSkillList.find(s => s.name_en === condition.value)?.[displayNameProp] || null : null} 
-                        onSelect={(item) => updateValue((item as Skill).name_en)} 
-                    />
-                );
-            case 'white':
-            case 'lineage':
-                return (
-                    <SearchableSelect 
-                        items={normalSkills} 
-                        placeholder={t('common:selectPlaceholder')} 
-                        value={condition.value ? masterSkillList.find(s => s.name_en === condition.value)?.[displayNameProp] || null : null} 
-                        onSelect={(item) => updateValue((item as Skill).name_en)} 
-                    />
-                );
-            default:
-                return null;
-        }
+        return (
+            <div className="inventory-controls__category-section">
+                <div className="inventory-controls__category-header" onClick={() => toggleCategory(category)}>
+                    <div className="flex items-center gap-2">
+                        <FontAwesomeIcon icon={isCollapsed ? faChevronRight : faChevronDown} className="w-3 h-3 text-stone-400" />
+                        <span className="inventory-controls__category-title">{t(`inventory.${category}Spark`)}</span>
+                        {relevantGroups.length > 0 && <span className="text-xs text-stone-500 font-normal">({relevantGroups.length})</span>}
+                    </div>
+                    <button 
+                        className="inventory-controls__icon-btn text-stone-500 hover:text-indigo-500"
+                        onClick={(e) => { e.stopPropagation(); handleAddGroup(category); }}
+                        title={t('inventory.addGroupTooltip')}
+                    >
+                        <FontAwesomeIcon icon={faPlus} />
+                    </button>
+                </div>
+                
+                {!isCollapsed && (
+                    <div className="inventory-controls__category-body">
+                        {relevantGroups.map(({ group, index: actualIndex }) => (
+                            <div key={actualIndex} className="inventory-controls__filter-card">
+                                <div className="inventory-controls__filter-list">
+                                    {group.map((condition, conditionIndex) => (
+                                        <div key={condition.id}>
+                                            {conditionIndex > 0 && <div className="inventory-controls__or-divider">{t('inventory.or')}</div>}
+                                            {renderConditionInput(condition, actualIndex, conditionIndex)}
+                                        </div>
+                                    ))}
+                                </div>
+                                <div className="inventory-controls__card-footer">
+                                    <button className="text-xs text-indigo-500 hover:underline" onClick={() => handleAddConditionToGroup(actualIndex, category)}>
+                                        + {t('inventory.addOrCondition')}
+                                    </button>
+                                    <button className="inventory-controls__icon-btn text-stone-400 hover:text-red-500" onClick={() => handleRemoveGroup(actualIndex)}>
+                                        <FontAwesomeIcon icon={faTrashCan} className="w-3 h-3" />
+                                    </button>
+                                </div>
+                            </div>
+                        ))}
+                        {relevantGroups.length === 0 && (
+                            <div className="text-xs text-stone-400 italic p-2 text-center">{t('inventory.noFiltersInCategory')}</div>
+                        )}
+                    </div>
+                )}
+            </div>
+        );
     };
 
     return (
         <div className="inventory-controls">
             <div className="inventory-controls__main">
-                {/* Top Bar: View Scope */}
+                {/* Scope Toggle */}
                 <div className="inventory-controls__scope-toggle">
                     <button className={`inventory-controls__scope-btn ${inventoryView === 'all' ? 'inventory-controls__scope-btn--active' : ''}`} onClick={() => setInventoryView('all')}>{t('inventory.view.all')}</button>
                     <button className={`inventory-controls__scope-btn ${inventoryView === 'owned' ? 'inventory-controls__scope-btn--active' : ''}`} onClick={() => setInventoryView('owned')}>{t('inventory.view.owned')}</button>
@@ -238,12 +271,10 @@ const InventoryControls = (props: InventoryControlsProps) => {
                 </div>
 
                 {/* Search & Sort */}
-                <div className="inventory-controls__top-bar">
-                    <div className="inventory-controls__search-row">
-                        <input type="text" className="form__input" placeholder={t('inventory.searchByName')} value={liveSearchTerm} onChange={(e) => setLiveSearchTerm(e.target.value)} />
-                    </div>
-                    <div className="inventory-controls__sort-row">
-                        <select className="form__input flex-grow" value={sortField} onChange={(e) => setSortField(e.target.value as SortFieldType)}>
+                <div className="space-y-2">
+                    <input type="text" className="form__input" placeholder={t('inventory.searchByName')} value={liveSearchTerm} onChange={(e) => setLiveSearchTerm(e.target.value)} />
+                    <div className="flex gap-2">
+                         <select className="form__input flex-grow" value={sortField} onChange={(e) => setSortField(e.target.value as SortFieldType)}>
                             <option value="score">{t('inventory.sortOptions.finalScore')}</option>
                             <option value="individualScore">{t('inventory.sortOptions.individualScore')}</option>
                             <option value="name">{t('inventory.sortOptions.name')}</option>
@@ -251,85 +282,33 @@ const InventoryControls = (props: InventoryControlsProps) => {
                             <option value="id">{t('inventory.sortOptions.date')}</option>
                             <option value="sparks">{t('inventory.sortOptions.sparks')}</option>
                         </select>
-                        <button className="button button--secondary" onClick={toggleSortDirection} title={sortDirection === 'desc' ? 'Descending' : 'Ascending'}>
+                         <button className="button button--secondary flex-shrink-0 px-3" onClick={() => setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc')}>
                             <FontAwesomeIcon icon={sortDirection === 'desc' ? faArrowDownWideShort : faArrowUpShortWide} />
                         </button>
                     </div>
                 </div>
 
-                {/* Quick Filters & Add Group Header */}
-                <div className="inventory-controls__filters-header">
-                    <span className="inventory-controls__section-title">{t('filtersTitle')}</span>
-                    <div className="flex gap-2">
-                        <button className="button button--neutral button--small" onClick={clearFilters} title={t('inventory.clearFilters')}>
-                            <FontAwesomeIcon icon={faTimes} />
-                        </button>
-                        <button className="button button--secondary button--small" onClick={() => handleAddGroup()} title={t('inventory.addGroupTooltip')}>
-                            <FontAwesomeIcon icon={faPlus} className="mr-1" /> {t('common:add')}
-                        </button>
-                    </div>
+                <div className="inventory-controls__divider"></div>
+                
+                <div className="flex justify-between items-center mb-2">
+                    <h4 className="text-sm font-bold text-stone-700 dark:text-stone-300">{t('filtersTitle')}</h4>
+                    <button className="text-xs text-stone-500 hover:text-stone-700 dark:hover:text-stone-300" onClick={clearFilters}>
+                        {t('inventory.clearFilters')}
+                    </button>
                 </div>
 
-                {/* Quick Filter Buttons (Shortcuts) */}
-                {filters.conditionGroups.length === 0 && (
-                    <div className="inventory-controls__quick-filters">
-                        <button className="inventory-controls__quick-btn" onClick={() => handleQuickFilter('blue', 'Speed')}><FontAwesomeIcon icon={faBolt} className="text-blue-500 mr-1"/> Speed</button>
-                        <button className="inventory-controls__quick-btn" onClick={() => handleQuickFilter('blue', 'Stamina')}><FontAwesomeIcon icon={faHeart} className="text-blue-500 mr-1"/> Stamina</button>
-                        <button className="inventory-controls__quick-btn" onClick={() => handleQuickFilter('blue', 'Power')}><FontAwesomeIcon icon={faBolt} className="text-amber-600 mr-1"/> Power</button>
-                        <button className="inventory-controls__quick-btn" onClick={() => handleQuickFilter('pink', 'Turf')}>Turf</button>
-                        <button className="inventory-controls__quick-btn" onClick={() => handleQuickFilter('pink', 'Dirt')}>Dirt</button>
-                    </div>
-                )}
-
-                {/* Filter Condition Groups (Always Visible) */}
-                <div className="inventory-controls__groups-container">
-                    {filters.conditionGroups.map((group, groupIndex) => (
-                        <div key={groupIndex} className="inventory-controls__filter-group">
-                            <div className="inventory-controls__group-header">
-                                <span className="inventory-controls__group-label">{t('inventory.matchAny')}</span>
-                                <button className="button button--danger button--small" onClick={() => handleRemoveGroup(groupIndex)}>{t('inventory.removeGroup')}</button>
-                            </div>
-                            
-                            <div className="inventory-controls__group-body">
-                                {group.map((condition, conditionIndex) => (
-                                    <div key={condition.id} className="inventory-controls__filter-row">
-                                        <select 
-                                            className="form__input" 
-                                            value={condition.category} 
-                                            onChange={(e) => handleUpdateCondition(groupIndex, conditionIndex, { category: e.target.value as FilterCategory })}
-                                        >
-                                            {CATEGORY_OPTIONS.map(cat => <option key={cat} value={cat}>{t(`inventory.${cat}Spark`)}</option>)}
-                                        </select>
-
-                                        {renderConditionValueInput(condition, groupIndex, conditionIndex)}
-
-                                        <div className="inventory-controls__star-filter-wrapper">
-                                            {renderStarFilter(condition.stars, (v) => handleUpdateCondition(groupIndex, conditionIndex, { stars: v }))}
-                                        </div>
-
-                                        <div className="inventory-controls__remove-btn" onClick={() => handleRemoveCondition(groupIndex, conditionIndex)}>
-                                            <FontAwesomeIcon icon={faTimes} />
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                            
-                            <div className="inventory-controls__group-footer">
-                                <button className="inventory-controls__add-btn" onClick={() => handleAddCondition(groupIndex)}>
-                                    <FontAwesomeIcon icon={faPlus} /> {t('inventory.addOrCondition')}
-                                </button>
-                            </div>
-                        </div>
-                    ))}
+                <div className="inventory-controls__categories">
+                    {renderCategorySection('blue')}
+                    {renderCategorySection('pink')}
+                    {renderCategorySection('unique')}
+                    {renderCategorySection('white')}
                 </div>
 
-                {/* Advanced Toggle */}
-                <button className="button button--neutral button--small w-full justify-center mt-2" onClick={() => setIsAdvanced(!isAdvanced)}>
+                <button className="button button--neutral button--small w-full justify-center mt-4" onClick={() => setIsAdvanced(!isAdvanced)}>
                     <FontAwesomeIcon icon={faFilter} className="mr-2" /> {isAdvanced ? t('inventory.hideAdvanced') : t('inventory.showAdvanced')}
                 </button>
             </div>
             
-            {/* Advanced Settings */}
             {isAdvanced && (
                 <div className="inventory-controls__advanced-panel">
                     <div>
@@ -343,6 +322,7 @@ const InventoryControls = (props: InventoryControlsProps) => {
                         <label className="inventory-controls__label">{t('inventory.minWhiteSkills')}</label>
                         <input type="number" className="form__input" min="0" value={filters.minWhiteSparks} onChange={e => handleFilterChange('minWhiteSparks', Math.max(0, parseInt(e.target.value, 10)) || 0)} />
                     </div>
+                     {renderCategorySection('lineage')}
                 </div>
             )}
         </div>
