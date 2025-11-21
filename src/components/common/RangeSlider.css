@@ -4,6 +4,7 @@
     align-items: center;
     justify-content: center;
     width: 100%;
+    min-width: 80px; /* Prevent crushing */
 }
 
 .range-slider__label {
@@ -37,7 +38,7 @@
 .range-slider__tick {
     width: 2px;
     height: 4px;
-    background-color: var(--color-text-secondary); /* Use a visible, contrasting color */
+    background-color: var(--color-text-secondary);
     border-radius: 1px;
 }
 
@@ -45,7 +46,7 @@
     font-size: 0.7rem;
     font-weight: 600;
     color: var(--color-text-secondary);
-    margin-top: 4px;
+    margin-top: 2px;
 }
 
 .range-slider__input {
@@ -56,15 +57,15 @@
     background: var(--color-border-input);
     border-radius: 3px;
     outline: none;
-    opacity: 0.7;
+    opacity: 1; /* Set to 1 for better visibility */
     transition: opacity .2s;
     margin: 0;
     position: relative;
-    z-index: 1; /* Track is BELOW the ticks */
+    z-index: 1;
 }
 
 .range-slider__input:hover {
-    opacity: 1;
+    background: var(--color-border-active); /* Highlight on hover */
 }
 
 .range-slider__input::-webkit-slider-thumb {
@@ -76,7 +77,8 @@
     cursor: pointer;
     border-radius: 50%;
     position: relative;
-    z-index: 3; /* Thumb is ON TOP of everything */
+    z-index: 3;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.2);
 }
 
 .range-slider__input::-moz-range-thumb {
@@ -88,4 +90,5 @@
     border: none;
     position: relative;
     z-index: 3;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.2);
 }
