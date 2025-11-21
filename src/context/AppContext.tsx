@@ -194,11 +194,7 @@ export const useAppContext = () => {
 export const initialFilters: Filters = {
     searchTerm: '',
     searchScope: 'total',
-    blueSparkGroups: [],
-    pinkSparkGroups: [],
-    uniqueSparkGroups: [],
-    whiteSparkGroups: [],
-    lineageSparkGroups: [],
+    conditionGroups: [],
     minWhiteSparks: 0,
 };
 
