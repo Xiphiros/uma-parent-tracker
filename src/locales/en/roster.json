@@ -75,6 +75,7 @@
             "representative": "Representative"
         },
         "minWhiteSkills": "Min. White Skills",
+        "filterGroups": "Filter Groups",
         "addGroupTooltip": "Add a new group of conditions (AND)",
         "matchAny": "Match ANY of the following:",
         "removeGroup": "Remove Group",
