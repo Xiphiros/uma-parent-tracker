@@ -1,5 +1,5 @@
 /* Roster Component Styles */
-#roster-container {
+.roster {
     flex-grow: 1;
 }
 
