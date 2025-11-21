@@ -80,7 +80,9 @@
         "matchAny": "Match ANY of the following:",
         "removeGroup": "Remove Group",
         "removeCondition": "Remove this condition",
-        "addOrCondition": "Add OR Condition"
+        "addOrCondition": "OR",
+        "noFiltersInCategory": "No filters applied",
+        "or": "OR"
     },
     "breedingPlanner": {
         "title": "Breeding Planner",
