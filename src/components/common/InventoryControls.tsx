@@ -1,39 +1,62 @@
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { BlueSpark, Skill, Filters, SortFieldType } from '../../types';
+import { BlueSpark, Skill, Filters, SortFieldType, SortDirectionType, InventoryViewType } from '../../types';
 import SearchableSelect from './SearchableSelect';
-import { useAppContext } from '../../context/AppContext';
+import { useAppContext, initialFilters } from '../../context/AppContext';
 import './InventoryControls.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFilter, faTimes, faArrowDownWideShort, faArrowUpShortWide, faPlus } from '@fortawesome/free-solid-svg-icons';
 import RangeSlider from './RangeSlider';
 import { useDebounce } from '../../hooks/useDebounce';
-import { initialFilters } from '../../context/AppContext';
 
-interface InventoryControlsProps {}
+interface InventoryControlsProps {
+    filters?: Filters;
+    setFilters?: React.Dispatch<React.SetStateAction<Filters>>;
+    sortField?: SortFieldType;
+    setSortField?: (value: SortFieldType) => void;
+    sortDirection?: SortDirectionType;
+    setSortDirection?: (value: SortDirectionType) => void;
+    inventoryView?: InventoryViewType;
+    setInventoryView?: (value: InventoryViewType) => void;
+}
 
 const BLUE_SPARK_TYPES: BlueSpark['type'][] = ['Speed', 'Stamina', 'Power', 'Guts', 'Wit'];
 const PINK_SPARK_TYPES = ['Turf', 'Dirt', 'Sprint', 'Mile', 'Medium', 'Long', 'Front Runner', 'Pace Chaser', 'Late Surger', 'End Closer'];
 
 type SparkGroupType = 'blueSparkGroups' | 'pinkSparkGroups' | 'uniqueSparkGroups' | 'whiteSparkGroups' | 'lineageSparkGroups';
 
-const InventoryControls = ({}: InventoryControlsProps) => {
+const InventoryControls = (props: InventoryControlsProps) => {
     const { t } = useTranslation(['roster', 'game', 'common']);
     const { 
         masterSkillList, dataDisplayLanguage,
-        filters, setFilters, sortField, setSortField, 
-        sortDirection, setSortDirection, inventoryView, setInventoryView
+        filters: ctxFilters, setFilters: ctxSetFilters, 
+        sortField: ctxSortField, setSortField: ctxSetSortField, 
+        sortDirection: ctxSortDirection, setSortDirection: ctxSetSortDirection, 
+        inventoryView: ctxInventoryView, setInventoryView: ctxSetInventoryView
     } = useAppContext();
+
+    // Use props if provided, otherwise fallback to context (global state)
+    const filters = props.filters ?? ctxFilters;
+    const setFilters = props.setFilters ?? ctxSetFilters;
+    const sortField = props.sortField ?? ctxSortField;
+    const setSortField = props.setSortField ?? ctxSetSortField;
+    const sortDirection = props.sortDirection ?? ctxSortDirection;
+    const setSortDirection = props.setSortDirection ?? ctxSetSortDirection;
+    const inventoryView = props.inventoryView ?? ctxInventoryView;
+    const setInventoryView = props.setInventoryView ?? ctxSetInventoryView;
+
     const displayNameProp = dataDisplayLanguage === 'jp' ? 'name_jp' : 'name_en';
 
-    const [isAdvanced, setIsAdvanced] = useState(true);
+    const [isAdvanced, setIsAdvanced] = useState(false); // Default to closed for cleaner initial UI in modal
     const [liveSearchTerm, setLiveSearchTerm] = useState(filters.searchTerm);
     const debouncedSearchTerm = useDebounce(liveSearchTerm, 300);
 
+    // Sync debounced term to actual filter state
     useEffect(() => {
         setFilters(prev => ({ ...prev, searchTerm: debouncedSearchTerm }));
     }, [debouncedSearchTerm, setFilters]);
     
+    // Sync local input state if filter state is cleared externally
     useEffect(() => {
         if (filters.searchTerm === '') {
             setLiveSearchTerm('');
@@ -43,6 +66,7 @@ const InventoryControls = ({}: InventoryControlsProps) => {
     const uniqueSkills = masterSkillList.filter(s => s.category === 'unique');
     const normalSkills = masterSkillList.filter(s => s.category === 'white');
 
+    // Clamp stars if switching to representative scope
     useEffect(() => {
         if (filters.searchScope === 'representative') {
             const clampGroup = (group: any[]) => group.map(f => ({ ...f, stars: Math.min(f.stars, 3) }));
