@@ -75,15 +75,9 @@
     "matchAny": "次のいずれかに一致:",
     "removeGroup": "グループを削除",
     "removeCondition": "この条件を削除",
-    "addOrCondition": "OR 条件を追加",
-    "sortOptions": {
-      "finalScore": "最終スコア",
-      "individualScore": "基礎スコア",
-      "name": "名前",
-      "gen": "世代",
-      "date": "追加日",
-      "sparks": "因子数"
-    }
+    "addOrCondition": "OR",
+    "noFiltersInCategory": "フィルターなし",
+    "or": "または"
   },
   "suggestions": {
     "title": "育成おすすめ",
