@@ -10,14 +10,6 @@ const hasWhiteSpark = (entity: Parent | ManualParentData | null, skillName: stri
 };
 
 /**
- * Checks if a specific unique spark exists on a parent or manual grandparent.
- */
-const hasUniqueSpark = (entity: Parent | ManualParentData | null, skillName: string): boolean => {
-    if (!entity) return false;
-    return entity.uniqueSparks.some(s => s.name === skillName);
-};
-
-/**
  * Checks if a white spark is present in the entire lineage (Parent + GP1 + GP2).
  * This corresponds to the "Lineage-Wide Spark" filter.
  */
