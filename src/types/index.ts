@@ -168,20 +168,19 @@ export interface LineageStats {
     whiteSkillCount: number;
 }
 
-export interface BlueSparkFilter { type: string; stars: number }
-export interface PinkSparkFilter { type: string; stars: number }
-export interface UniqueSparkFilter { name: string; stars: number }
-export interface WhiteSparkFilter { name: string; stars: number }
+export type FilterCategory = 'blue' | 'pink' | 'unique' | 'white' | 'lineage';
 
+export interface FilterCondition {
+    id: string;
+    category: FilterCategory;
+    value: string;
+    stars: number;
+}
 
 export interface Filters {
     searchTerm: string;
     searchScope: 'representative' | 'total';
-    blueSparkGroups: BlueSparkFilter[][];
-    pinkSparkGroups: PinkSparkFilter[][];
-    uniqueSparkGroups: UniqueSparkFilter[][];
-    whiteSparkGroups: WhiteSparkFilter[][];
-    lineageSparkGroups: WhiteSparkFilter[][];
+    conditionGroups: FilterCondition[][]; // (Group1Condition1 OR Group1Condition2) AND (Group2Condition1 OR ...)
     minWhiteSparks: number;
 }
 
