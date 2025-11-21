@@ -175,11 +175,11 @@ export interface FilterCondition {
     category: FilterCategory;
     value: string;
     stars: number;
+    scope: 'representative' | 'total';
 }
 
 export interface Filters {
     searchTerm: string;
-    searchScope: 'representative' | 'total';
     conditionGroups: FilterCondition[][]; // (Group1Condition1 OR Group1Condition2) AND (Group2Condition1 OR ...)
     minWhiteSparks: number;
 }
