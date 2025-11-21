@@ -70,6 +70,7 @@
       "representative": "代表因子"
     },
     "minWhiteSkills": "白因子の最低数",
+    "filterGroups": "フィルターグループ",
     "addGroupTooltip": "新しい条件グループを追加 (AND)",
     "matchAny": "次のいずれかに一致:",
     "removeGroup": "グループを削除",
