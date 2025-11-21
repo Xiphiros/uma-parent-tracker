@@ -2,43 +2,22 @@
 .inventory-controls {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 1rem;
     height: 100%;
 }
 
 .inventory-controls__main {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 0.75rem;
 }
 
-/* Top Bar: Search & Sort */
-.inventory-controls__top-bar {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-
-.inventory-controls__search-row {
-    display: flex;
-    gap: 0.5rem;
-}
-.inventory-controls__search-row .form__input {
-    flex-grow: 1;
-}
-
-.inventory-controls__sort-row {
-    display: flex;
-    gap: 0.5rem;
-    align-items: center;
-}
-
+/* Scope Toggle (Tabs style) */
 .inventory-controls__scope-toggle {
     display: flex;
     background-color: var(--color-card-bg-hover);
     border-radius: 0.375rem;
     padding: 0.25rem;
-    margin-bottom: 0.5rem;
 }
 
 .inventory-controls__scope-btn {
@@ -60,146 +39,127 @@
     box-shadow: var(--color-shadow);
 }
 
-/* Filter Section */
-.inventory-controls__filters-header {
+.inventory-controls__divider {
+    height: 1px;
+    background-color: var(--color-border);
+    margin: 0.5rem 0;
+}
+
+/* Categories Container */
+.inventory-controls__categories {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+/* Category Section */
+.inventory-controls__category-section {
+    display: flex;
+    flex-direction: column;
+}
+
+.inventory-controls__category-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 0.5rem;
+    padding: 0.5rem 0;
+    cursor: pointer;
+    user-select: none;
 }
-
-.inventory-controls__section-title {
-    font-size: 0.875rem;
-    font-weight: 600;
+.inventory-controls__category-header:hover .inventory-controls__category-title {
     color: var(--color-text-primary);
 }
 
-/* Quick Filters */
-.inventory-controls__quick-filters {
-    display: flex;
-    gap: 0.5rem;
-    flex-wrap: wrap;
-    margin-bottom: 0.5rem;
-}
-.inventory-controls__quick-btn {
-    font-size: 0.75rem;
-    padding: 0.25rem 0.5rem;
-    border-radius: 9999px;
-    background-color: var(--color-card-bg-hover);
+.inventory-controls__category-title {
+    font-size: 0.875rem;
+    font-weight: 600;
     color: var(--color-text-secondary);
-    border: 1px solid var(--color-border);
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-.inventory-controls__quick-btn:hover {
-    border-color: var(--color-text-link);
-    color: var(--color-text-link);
+    transition: color 0.2s;
 }
 
-/* Filter Groups & Rows */
-.inventory-controls__groups-container {
+.inventory-controls__category-body {
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
-    max-height: 50vh; /* Prevent it from growing too large in modal */
-    overflow-y: auto;
-    padding-right: 0.25rem;
+    gap: 0.5rem;
+    padding-left: 0.5rem; /* Indent content slightly */
+    padding-bottom: 0.5rem;
 }
 
-.inventory-controls__filter-group {
-    display: flex;
-    flex-direction: column;
+/* Filter Card (The Group) */
+.inventory-controls__filter-card {
+    background-color: var(--color-bg);
     border: 1px solid var(--color-border);
     border-radius: 0.375rem;
-    background-color: var(--color-bg);
+    overflow: hidden;
 }
 
-.inventory-controls__group-header {
+.inventory-controls__filter-list {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem;
+    gap: 0.5rem;
+}
+
+/* Individual Condition Row */
+.inventory-controls__condition-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.inventory-controls__select {
+    padding: 0.375rem 0.5rem;
+    font-size: 0.875rem;
+    height: 36px; /* Fixed height alignment */
+}
+
+.inventory-controls__slider-wrapper {
+    width: 80px;
+    flex-shrink: 0;
+}
+
+/* "OR" Divider */
+.inventory-controls__or-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.65rem;
+    color: var(--color-text-muted);
+    font-weight: bold;
+    margin: 0.25rem 0;
+    position: relative;
+}
+.inventory-controls__or-divider::before,
+.inventory-controls__or-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background-color: var(--color-border);
+    margin: 0 0.5rem;
+}
+
+/* Card Footer */
+.inventory-controls__card-footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.375rem 0.5rem;
+    padding: 0.25rem 0.5rem;
     background-color: var(--color-card-bg-hover);
-    border-bottom: 1px solid var(--color-border);
-    border-radius: 0.375rem 0.375rem 0 0;
+    border-top: 1px solid var(--color-border);
 }
 
-.inventory-controls__group-label {
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: var(--color-text-muted);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-}
-
-.inventory-controls__group-body {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    padding: 0.5rem;
-}
-
-.inventory-controls__filter-row {
-    display: grid;
-    /* Category | Value | Slider | Remove */
-    grid-template-columns: 90px 1fr 100px auto; 
-    gap: 0.5rem;
-    align-items: center;
-    padding: 0.25rem;
-    border-radius: 0.25rem;
-    background-color: var(--color-card-bg);
-    border: 1px solid var(--color-border-input);
-}
-
-/* On very small screens, stack the row */
-@media (max-width: 400px) {
-    .inventory-controls__filter-row {
-        grid-template-columns: 1fr auto; /* Top row: Inputs | Remove */
-        grid-template-rows: auto auto;
-    }
-    .inventory-controls__star-filter-wrapper {
-        grid-column: 1 / -1; /* Slider takes full width on second row */
-    }
-}
-
-.inventory-controls__star-filter-wrapper {
-    display: flex;
-    align-items: center;
-    padding: 0 0.25rem;
-}
-
-.inventory-controls__remove-btn {
-    color: var(--color-text-muted);
-    padding: 0.25rem;
+/* Utility Buttons */
+.inventory-controls__icon-btn {
+    width: 24px;
+    height: 24px;
     display: flex;
     align-items: center;
     justify-content: center;
-    cursor: pointer;
-    transition: color 0.2s;
-}
-.inventory-controls__remove-btn:hover {
-    color: var(--color-text-danger);
-}
-
-.inventory-controls__group-footer {
-    padding: 0.25rem 0.5rem 0.5rem;
-}
-
-.inventory-controls__add-btn {
-    font-size: 0.75rem;
-    color: var(--color-text-link);
-    cursor: pointer;
-    padding: 0.25rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.25rem;
-    width: 100%;
-    border: 1px dashed var(--color-border-active);
     border-radius: 0.25rem;
-    transition: background-color 0.2s;
+    transition: background-color 0.2s, color 0.2s;
+    cursor: pointer;
 }
-.inventory-controls__add-btn:hover {
+.inventory-controls__icon-btn:hover {
     background-color: var(--color-card-bg-hover);
 }
 
@@ -212,6 +172,7 @@
     border-top: 1px solid var(--color-border);
     margin-top: auto;
 }
+
 .inventory-controls__label {
     font-size: 0.75rem;
     font-weight: 500;
