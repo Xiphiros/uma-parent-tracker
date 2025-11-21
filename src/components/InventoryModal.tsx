@@ -1,5 +1,5 @@
 import { useState, useMemo, useEffect } from 'react';
-import { Parent, ValidationResult, Filters, SortFieldType, SortDirectionType, InventoryViewType, ManualParentData, WhiteSpark, UniqueSpark } from '../types';
+import { Parent, ValidationResult, Filters, SortFieldType, SortDirectionType, InventoryViewType } from '../types';
 import Modal from './common/Modal';
 import ParentCard from './ParentCard';
 import AddParentModal from './AddParentModal';
@@ -10,7 +10,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import InventoryControls from './common/InventoryControls';
 import { calculateIndividualScore, calculateScore } from '../utils/scoring';
-import { countTotalLineageWhiteSparks, getLineageStats, resolveGrandparent } from '../utils/affinity';
+import { countTotalLineageWhiteSparks, getLineageStats } from '../utils/affinity';
+import { checkParent } from '../utils/filterLogic';
 
 interface InventoryModalProps {
   isOpen: boolean;
@@ -31,7 +32,7 @@ const InventoryModal = ({ isOpen, onClose, isSelectionMode = false, onSelectPare
     const { t } = useTranslation(['roster', 'modals', 'common']);
     const { 
         appData, deleteParent, moveParentToServer, validateParentForServer, umaMapById, getUmaDisplayName,
-        getActiveProfile, masterSkillList, skillMapByName, activeServer
+        getActiveProfile, skillMapByName, activeServer
     } = useAppContext();
 
     // Local State for Independent Filtering
@@ -76,47 +77,11 @@ const InventoryModal = ({ isOpen, onClose, isSelectionMode = false, onSelectPare
             const uma = umaMapById.get(parent.umaId);
             const displayName = uma ? getUmaDisplayName(uma) : parent.name;
             
-            if (filters.searchTerm && !displayName.toLowerCase().includes(filters.searchTerm.toLowerCase())) return false;
-            
-            const lineageStats = getCachedLineageStats(parent);
-            if (filters.minWhiteSparks > 0 && lineageStats.whiteSkillCount < filters.minWhiteSparks) return false;
-
-            const scope = filters.searchScope;
-
-            // Blue Sparks
-            if (!filters.blueSparkGroups.every(group => group.some(f => (scope === 'total' ? (lineageStats.blue[f.type] || 0) : parent.blueSpark.type === f.type ? parent.blueSpark.stars : 0) >= f.stars))) return false;
-            // Pink Sparks
-            if (!filters.pinkSparkGroups.every(group => group.some(f => (scope === 'total' ? (lineageStats.pink[f.type] || 0) : parent.pinkSpark.type === f.type ? parent.pinkSpark.stars : 0) >= f.stars))) return false;
-            // Unique Sparks
-            if (!filters.uniqueSparkGroups.every(group => group.some(f => !f.name || (scope === 'total' ? (lineageStats.unique[f.name] || 0) : parent.uniqueSparks.find(s => s.name === f.name)?.stars || 0) >= f.stars))) return false;
-            // White Sparks
-            if (!filters.whiteSparkGroups.every(group => group.some(f => !f.name || (scope === 'total' ? (lineageStats.white[f.name] || 0) : parent.whiteSparks.find(s => s.name === f.name)?.stars || 0) >= f.stars))) return false;
-            
-            // Lineage Spark Groups
-            if (filters.lineageSparkGroups.length > 0) {
-                const passesAllGroups = filters.lineageSparkGroups.every(group => {
-                    return group.some(filter => {
-                        if (!filter.name) return true;
-                        const checkMember = (member: Parent | ManualParentData | null): boolean => {
-                            if (!member) return true;
-                            if ('whiteSparks' in member) {
-                                return member.whiteSparks.some(s => s.name === filter.name);
-                            }
-                            return false;
-                        };
-                        const gp1 = resolveGrandparent(parent.grandparent1, inventoryMap);
-                        const gp2 = resolveGrandparent(parent.grandparent2, inventoryMap);
-                        return checkMember(parent) && checkMember(gp1) && checkMember(gp2);
-                    });
-                });
-                if (!passesAllGroups) return false;
-            }
-
-            return true;
+            // Use centralized filtering logic
+            return checkParent(parent, displayName, filters, inventoryMap, getCachedLineageStats(parent));
         });
 
         // 3. Scoring & Sorting
-        // We calculate scores on the fly if a goal exists, otherwise score is 0.
         const scoredItems = searchFiltered.map(p => ({
             ...p,
             calculatedScore: goal ? calculateScore(p, goal, appData.inventory, skillMapByName) : 0,
@@ -217,10 +182,6 @@ const InventoryModal = ({ isOpen, onClose, isSelectionMode = false, onSelectPare
                                         const characterId = umaMapById.get(parent.umaId)?.characterId;
                                         const isDisabled = !!characterId && excludedCharacterIds.has(characterId);
                                         
-                                        // Use the locally calculated score if goal exists, otherwise 0 or parent.score
-                                        // Note: parent.score is usually 0 unless updated by roster worker, 
-                                        // but here we want dynamic scoring based on potentially different active profile
-                                        // or just 0 if no profile.
                                         const displayParent = {
                                             ...parent,
                                             score: parent.calculatedScore || 0
