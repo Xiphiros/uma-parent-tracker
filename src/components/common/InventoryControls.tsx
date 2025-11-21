@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { BlueSpark, Skill, Filters, SortFieldType, SortDirectionType, InventoryViewType } from '../../types';
+import { BlueSpark, Skill, Filters, SortFieldType, SortDirectionType, InventoryViewType, FilterCategory, FilterCondition } from '../../types';
 import SearchableSelect from './SearchableSelect';
 import { useAppContext, initialFilters } from '../../context/AppContext';
 import './InventoryControls.css';
@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFilter, faTimes, faArrowDownWideShort, faArrowUpShortWide, faPlus } from '@fortawesome/free-solid-svg-icons';
 import RangeSlider from './RangeSlider';
 import { useDebounce } from '../../hooks/useDebounce';
+import { v4 as uuidv4 } from 'uuid';
 
 interface InventoryControlsProps {
     filters?: Filters;
@@ -23,7 +24,7 @@ interface InventoryControlsProps {
 const BLUE_SPARK_TYPES: BlueSpark['type'][] = ['Speed', 'Stamina', 'Power', 'Guts', 'Wit'];
 const PINK_SPARK_TYPES = ['Turf', 'Dirt', 'Sprint', 'Mile', 'Medium', 'Long', 'Front Runner', 'Pace Chaser', 'Late Surger', 'End Closer'];
 
-type SparkGroupType = 'blueSparkGroups' | 'pinkSparkGroups' | 'uniqueSparkGroups' | 'whiteSparkGroups' | 'lineageSparkGroups';
+const CATEGORY_OPTIONS: FilterCategory[] = ['blue', 'pink', 'unique', 'white', 'lineage'];
 
 const InventoryControls = (props: InventoryControlsProps) => {
     const { t } = useTranslation(['roster', 'game', 'common']);
@@ -35,7 +36,7 @@ const InventoryControls = (props: InventoryControlsProps) => {
         inventoryView: ctxInventoryView, setInventoryView: ctxSetInventoryView
     } = useAppContext();
 
-    // Use props if provided, otherwise fallback to context (global state)
+    // Use props if provided, otherwise fallback to context
     const filters = props.filters ?? ctxFilters;
     const setFilters = props.setFilters ?? ctxSetFilters;
     const sortField = props.sortField ?? ctxSortField;
@@ -47,16 +48,14 @@ const InventoryControls = (props: InventoryControlsProps) => {
 
     const displayNameProp = dataDisplayLanguage === 'jp' ? 'name_jp' : 'name_en';
 
-    const [isAdvanced, setIsAdvanced] = useState(false); // Default to closed for cleaner initial UI in modal
+    const [isAdvanced, setIsAdvanced] = useState(false);
     const [liveSearchTerm, setLiveSearchTerm] = useState(filters.searchTerm);
     const debouncedSearchTerm = useDebounce(liveSearchTerm, 300);
 
-    // Sync debounced term to actual filter state
     useEffect(() => {
         setFilters(prev => ({ ...prev, searchTerm: debouncedSearchTerm }));
     }, [debouncedSearchTerm, setFilters]);
     
-    // Sync local input state if filter state is cleared externally
     useEffect(() => {
         if (filters.searchTerm === '') {
             setLiveSearchTerm('');
@@ -69,13 +68,11 @@ const InventoryControls = (props: InventoryControlsProps) => {
     // Clamp stars if switching to representative scope
     useEffect(() => {
         if (filters.searchScope === 'representative') {
-            const clampGroup = (group: any[]) => group.map(f => ({ ...f, stars: Math.min(f.stars, 3) }));
             setFilters(prev => ({
                 ...prev,
-                blueSparkGroups: prev.blueSparkGroups.map(clampGroup),
-                pinkSparkGroups: prev.pinkSparkGroups.map(clampGroup),
-                uniqueSparkGroups: prev.uniqueSparkGroups.map(clampGroup),
-                whiteSparkGroups: prev.whiteSparkGroups.map(clampGroup),
+                conditionGroups: prev.conditionGroups.map(group => 
+                    group.map(c => ({ ...c, stars: Math.min(c.stars, 3) }))
+                )
             }));
         }
     }, [filters.searchScope, setFilters]);
@@ -84,59 +81,78 @@ const InventoryControls = (props: InventoryControlsProps) => {
         setFilters(prev => ({ ...prev, [key]: value }));
     };
     
-    const handleAddGroup = (type: SparkGroupType) => {
-        setFilters(prev => {
-            const newGroups = [...prev[type]];
-            let newCondition;
-            if (type === 'blueSparkGroups') newCondition = { type: 'Speed', stars: 0 };
-            else if (type === 'pinkSparkGroups') newCondition = { type: 'Mile', stars: 0 };
-            else newCondition = { name: '', stars: 0 };
-            newGroups.push([newCondition as any]);
-            return { ...prev, [type]: newGroups };
-        });
+    // --- New Unified Logic ---
+
+    const createDefaultCondition = (category: FilterCategory = 'blue'): FilterCondition => {
+        let defaultValue = '';
+        if (category === 'blue') defaultValue = 'Speed';
+        else if (category === 'pink') defaultValue = 'Mile';
+        
+        return {
+            id: uuidv4(), // Use uuid to ensure stable keys for React
+            category,
+            value: defaultValue,
+            stars: 1
+        };
     };
 
-    const handleRemoveGroup = (type: SparkGroupType, groupIndex: number) => {
+    const handleAddGroup = () => {
+        setFilters(prev => ({
+            ...prev,
+            conditionGroups: [...prev.conditionGroups, [createDefaultCondition()]]
+        }));
+    };
+
+    const handleRemoveGroup = (groupIndex: number) => {
         setFilters(prev => {
-            const newGroups = [...prev[type]];
+            const newGroups = [...prev.conditionGroups];
             newGroups.splice(groupIndex, 1);
-            return { ...prev, [type]: newGroups };
+            return { ...prev, conditionGroups: newGroups };
         });
     };
 
-    const handleAddCondition = (type: SparkGroupType, groupIndex: number) => {
+    const handleAddCondition = (groupIndex: number) => {
         setFilters(prev => {
-            const newGroups = [...prev[type]];
-            let newCondition;
-            if (type === 'blueSparkGroups') newCondition = { type: 'Speed', stars: 0 };
-            else if (type === 'pinkSparkGroups') newCondition = { type: 'Mile', stars: 0 };
-            else newCondition = { name: '', stars: 0 };
-            newGroups[groupIndex] = [...newGroups[groupIndex], newCondition] as any;
-            return { ...prev, [type]: newGroups };
+            const newGroups = [...prev.conditionGroups];
+            newGroups[groupIndex] = [...newGroups[groupIndex], createDefaultCondition()];
+            return { ...prev, conditionGroups: newGroups };
         });
     };
 
-    const handleRemoveCondition = (type: SparkGroupType, groupIndex: number, conditionIndex: number) => {
+    const handleRemoveCondition = (groupIndex: number, conditionIndex: number) => {
         setFilters(prev => {
-            let newGroups = [...prev[type]];
+            const newGroups = [...prev.conditionGroups];
             if (newGroups[groupIndex].length === 1) {
+                // Removing last condition removes the group
                 newGroups.splice(groupIndex, 1);
             } else {
                 const newGroup = [...newGroups[groupIndex]];
                 newGroup.splice(conditionIndex, 1);
-                newGroups[groupIndex] = newGroup as any;
+                newGroups[groupIndex] = newGroup;
             }
-            return { ...prev, [type]: newGroups };
+            return { ...prev, conditionGroups: newGroups };
         });
     };
 
-    const handleUpdateCondition = (type: SparkGroupType, groupIndex: number, conditionIndex: number, field: 'type' | 'name' | 'stars', value: any) => {
-         setFilters(prev => {
-            const newGroups = [...prev[type]];
+    const handleUpdateCondition = (groupIndex: number, conditionIndex: number, updates: Partial<FilterCondition>) => {
+        setFilters(prev => {
+            const newGroups = [...prev.conditionGroups];
             const newGroup = [...newGroups[groupIndex]];
-            newGroup[conditionIndex] = { ...newGroup[conditionIndex], [field]: value };
-            newGroups[groupIndex] = newGroup as any;
-            return { ...prev, [type]: newGroups };
+            const currentCondition = newGroup[conditionIndex];
+            
+            let updatedCondition = { ...currentCondition, ...updates };
+
+            // If category changed, reset value to a sensible default
+            if (updates.category && updates.category !== currentCondition.category) {
+                if (updates.category === 'blue') updatedCondition.value = 'Speed';
+                else if (updates.category === 'pink') updatedCondition.value = 'Mile';
+                else updatedCondition.value = ''; // Reset for skills
+                updatedCondition.stars = 1; // Reset stars
+            }
+
+            newGroup[conditionIndex] = updatedCondition;
+            newGroups[groupIndex] = newGroup;
+            return { ...prev, conditionGroups: newGroups };
         });
     };
 
@@ -149,72 +165,53 @@ const InventoryControls = (props: InventoryControlsProps) => {
         setFilters(initialFilters);
     };
 
-    const renderStarFilter = (value: number, onChange: (value: number) => void, maxStars: number) => {
-        const sliderMax = filters.searchScope === 'representative' ? 3 : maxStars;
-        return <RangeSlider label="" min={0} max={sliderMax} value={value} onChange={onChange} />;
+    const renderStarFilter = (value: number, onChange: (value: number) => void) => {
+        const sliderMax = filters.searchScope === 'representative' ? 3 : 9;
+        // Adjust star max logic: For Blue/Pink in representative scope, max is 3. Total is always higher.
+        // Actually, for individual parent check (representative), max blue/pink is 3.
+        // For total lineage check, max blue/pink is 3 + 3 + 3 = 9.
+        return <RangeSlider label="" min={1} max={sliderMax} value={value} onChange={onChange} />;
     };
 
-    const renderGroupedFilters = (
-        type: SparkGroupType, 
-        label: string, 
-        options: any[] | null, 
-        displayField: 'type' | 'name', 
-        maxStars: number, 
-        maxGroups: number = Infinity
-    ) => (
-        <div className="inventory-controls__group">
-            <div className="inventory-controls__filter-header">
-                <label className="inventory-controls__label">{label}</label>
-                <button 
-                    className="inventory-controls__add-btn" 
-                    onClick={() => handleAddGroup(type)} 
-                    disabled={filters[type].length >= maxGroups}
-                    title={t('inventory.addGroupTooltip')}
-                >
-                    <FontAwesomeIcon icon={faPlus} />
-                </button>
-            </div>
-            <div className="flex flex-col gap-3">
-                {(filters[type] as any[][]).map((group, groupIndex) => (
-                    <div key={groupIndex} className="inventory-controls__filter-group">
-                        <div className="inventory-controls__group-header">
-                            <span className="inventory-controls__group-title">{t('inventory.matchAny')}</span>
-                            <button className="button button--danger button--small" onClick={() => handleRemoveGroup(type, groupIndex)}>{t('inventory.removeGroup')}</button>
-                        </div>
-                        <div className="inventory-controls__group-body">
-                            {group.map((condition, conditionIndex) => (
-                                <div key={conditionIndex} className="inventory-controls__filter-row">
-                                    {options ? (
-                                        <select className="form__input" value={condition[displayField]} onChange={(e) => handleUpdateCondition(type, groupIndex, conditionIndex, displayField, e.target.value)}>
-                                            {options.map(opt => <option key={opt} value={opt}>{t(opt, { ns: 'game' })}</option>)}
-                                        </select>
-                                    ) : (
-                                        <SearchableSelect 
-                                            items={type === 'uniqueSparkGroups' ? uniqueSkills : normalSkills} 
-                                            placeholder={t('common:selectPlaceholder')} 
-                                            value={condition.name ? masterSkillList.find(s => s.name_en === condition.name)?.[displayNameProp] || null : null} 
-                                            onSelect={(item) => handleUpdateCondition(type, groupIndex, conditionIndex, 'name', (item as Skill).name_en)} 
-                                        />
-                                    )}
-                                    <div className="inventory-controls__star-filter-wrapper">
-                                        {maxStars > 0 && renderStarFilter(condition.stars, (v) => handleUpdateCondition(type, groupIndex, conditionIndex, 'stars', v), maxStars)}
-                                    </div>
-                                    <button className="inventory-controls__remove-btn" onClick={() => handleRemoveCondition(type, groupIndex, conditionIndex)} title={t('inventory.removeCondition')}>
-                                        <FontAwesomeIcon icon={faTimes} />
-                                    </button>
-                                </div>
-                            ))}
-                        </div>
-                        <div className="inventory-controls__group-footer">
-                            <button className="button button--secondary button--small w-full justify-center" onClick={() => handleAddCondition(type, groupIndex)}>
-                                <FontAwesomeIcon icon={faPlus} className="mr-1" /> {t('inventory.addOrCondition')}
-                            </button>
-                        </div>
-                    </div>
-                ))}
-            </div>
-        </div>
-    );
+    const renderConditionValueInput = (condition: FilterCondition, groupIndex: number, conditionIndex: number) => {
+        const updateValue = (val: string) => handleUpdateCondition(groupIndex, conditionIndex, { value: val });
+
+        switch (condition.category) {
+            case 'blue':
+                return (
+                    <select className="form__input" value={condition.value} onChange={(e) => updateValue(e.target.value)}>
+                        {BLUE_SPARK_TYPES.map(opt => <option key={opt} value={opt}>{t(opt, { ns: 'game' })}</option>)}
+                    </select>
+                );
+            case 'pink':
+                return (
+                    <select className="form__input" value={condition.value} onChange={(e) => updateValue(e.target.value)}>
+                        {PINK_SPARK_TYPES.map(opt => <option key={opt} value={opt}>{t(opt, { ns: 'game' })}</option>)}
+                    </select>
+                );
+            case 'unique':
+                return (
+                    <SearchableSelect 
+                        items={uniqueSkills} 
+                        placeholder={t('common:selectPlaceholder')} 
+                        value={condition.value ? masterSkillList.find(s => s.name_en === condition.value)?.[displayNameProp] || null : null} 
+                        onSelect={(item) => updateValue((item as Skill).name_en)} 
+                    />
+                );
+            case 'white':
+            case 'lineage':
+                return (
+                    <SearchableSelect 
+                        items={normalSkills} 
+                        placeholder={t('common:selectPlaceholder')} 
+                        value={condition.value ? masterSkillList.find(s => s.name_en === condition.value)?.[displayNameProp] || null : null} 
+                        onSelect={(item) => updateValue((item as Skill).name_en)} 
+                    />
+                );
+            default:
+                return null;
+        }
+    };
 
     return (
         <div className="inventory-controls">
@@ -253,6 +250,7 @@ const InventoryControls = (props: InventoryControlsProps) => {
                     <button className="button button--secondary button--small" onClick={() => setIsAdvanced(!isAdvanced)}><FontAwesomeIcon icon={faFilter} className="mr-2" /> {isAdvanced ? t('inventory.hideAdvanced') : t('inventory.showAdvanced')}</button>
                 </div>
             </div>
+            
             {isAdvanced && (
                 <div className="inventory-controls__advanced-panel">
                     <div>
@@ -267,11 +265,65 @@ const InventoryControls = (props: InventoryControlsProps) => {
                         <input type="number" className="form__input" min="0" value={filters.minWhiteSparks} onChange={e => handleFilterChange('minWhiteSparks', Math.max(0, parseInt(e.target.value, 10)) || 0)} />
                     </div>
 
-                    {renderGroupedFilters('lineageSparkGroups', t('inventory.lineageSpark'), null, 'name', 0)}
-                    {renderGroupedFilters('blueSparkGroups', t('inventory.blueSpark'), BLUE_SPARK_TYPES, 'type', 9, 3)}
-                    {renderGroupedFilters('pinkSparkGroups', t('inventory.pinkSpark'), PINK_SPARK_TYPES, 'type', 9, 3)}
-                    {renderGroupedFilters('uniqueSparkGroups', t('inventory.uniqueSpark'), null, 'name', 3, 6)}
-                    {renderGroupedFilters('whiteSparkGroups', t('inventory.whiteSpark'), null, 'name', 9)}
+                    {/* Condition Groups */}
+                    <div className="inventory-controls__group">
+                        <div className="inventory-controls__filter-header">
+                            <label className="inventory-controls__label">{t('inventory.filterGroups')}</label>
+                            <button 
+                                className="inventory-controls__add-btn" 
+                                onClick={handleAddGroup} 
+                                title={t('inventory.addGroupTooltip')}
+                            >
+                                <FontAwesomeIcon icon={faPlus} />
+                            </button>
+                        </div>
+                        
+                        <div className="flex flex-col gap-3">
+                            {filters.conditionGroups.map((group, groupIndex) => (
+                                <div key={groupIndex} className="inventory-controls__filter-group">
+                                    <div className="inventory-controls__group-header">
+                                        <span className="inventory-controls__group-title">{t('inventory.matchAny')}</span>
+                                        <button className="button button--danger button--small" onClick={() => handleRemoveGroup(groupIndex)}>{t('inventory.removeGroup')}</button>
+                                    </div>
+                                    
+                                    <div className="inventory-controls__group-body">
+                                        {group.map((condition, conditionIndex) => (
+                                            <div key={condition.id || `${groupIndex}-${conditionIndex}`} className="inventory-controls__filter-row">
+                                                {/* Category Select */}
+                                                <select 
+                                                    className="form__input !w-24" 
+                                                    value={condition.category} 
+                                                    onChange={(e) => handleUpdateCondition(groupIndex, conditionIndex, { category: e.target.value as FilterCategory })}
+                                                >
+                                                    {CATEGORY_OPTIONS.map(cat => (
+                                                        <option key={cat} value={cat}>{t(`inventory.${cat}Spark`)}</option>
+                                                    ))}
+                                                </select>
+
+                                                {/* Value Input */}
+                                                {renderConditionValueInput(condition, groupIndex, conditionIndex)}
+
+                                                {/* Stars Slider */}
+                                                <div className="inventory-controls__star-filter-wrapper">
+                                                    {renderStarFilter(condition.stars, (v) => handleUpdateCondition(groupIndex, conditionIndex, { stars: v }))}
+                                                </div>
+
+                                                <button className="inventory-controls__remove-btn" onClick={() => handleRemoveCondition(groupIndex, conditionIndex)} title={t('inventory.removeCondition')}>
+                                                    <FontAwesomeIcon icon={faTimes} />
+                                                </button>
+                                            </div>
+                                        ))}
+                                    </div>
+                                    
+                                    <div className="inventory-controls__group-footer">
+                                        <button className="button button--secondary button--small w-full justify-center" onClick={() => handleAddCondition(groupIndex)}>
+                                            <FontAwesomeIcon icon={faPlus} className="mr-1" /> {t('inventory.addOrCondition')}
+                                        </button>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
                 </div>
             )}
         </div>
