@@ -8,7 +8,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFilter, faTimes, faArrowDownWideShort, faArrowUpShortWide, faPlus } from '@fortawesome/free-solid-svg-icons';
 import RangeSlider from './RangeSlider';
 import { useDebounce } from '../../hooks/useDebounce';
-import { v4 as uuidv4 } from 'uuid';
 
 interface InventoryControlsProps {
     filters?: Filters;
@@ -25,6 +24,8 @@ const BLUE_SPARK_TYPES: BlueSpark['type'][] = ['Speed', 'Stamina', 'Power', 'Gut
 const PINK_SPARK_TYPES = ['Turf', 'Dirt', 'Sprint', 'Mile', 'Medium', 'Long', 'Front Runner', 'Pace Chaser', 'Late Surger', 'End Closer'];
 
 const CATEGORY_OPTIONS: FilterCategory[] = ['blue', 'pink', 'unique', 'white', 'lineage'];
+
+const generateId = () => Math.random().toString(36).substr(2, 9);
 
 const InventoryControls = (props: InventoryControlsProps) => {
     const { t } = useTranslation(['roster', 'game', 'common']);
@@ -89,7 +90,7 @@ const InventoryControls = (props: InventoryControlsProps) => {
         else if (category === 'pink') defaultValue = 'Mile';
         
         return {
-            id: uuidv4(), // Use uuid to ensure stable keys for React
+            id: generateId(),
             category,
             value: defaultValue,
             stars: 1
