@@ -69,6 +69,23 @@ const InventoryControls = (props: InventoryControlsProps) => {
     const uniqueSkills = useMemo(() => masterSkillList.filter(s => s.category === 'unique'), [masterSkillList]);
     const normalSkills = useMemo(() => masterSkillList.filter(s => s.category === 'white'), [masterSkillList]);
 
+    // Define handleFilterChange here so it's accessible in the render scope
+    const handleFilterChange = <K extends keyof Filters>(key: K, value: Filters[K]) => {
+        setFilters(prev => ({ ...prev, [key]: value }));
+    };
+
+    // Clamp stars if switching to representative scope
+    useEffect(() => {
+        if (filters.searchScope === 'representative') {
+            setFilters(prev => ({
+                ...prev,
+                conditionGroups: prev.conditionGroups.map(group => 
+                    group.map(c => ({ ...c, stars: Math.min(c.stars, 3) }))
+                )
+            }));
+        }
+    }, [filters.searchScope, setFilters]);
+
     const createDefaultCondition = (category: FilterCategory): FilterCondition => {
         let defaultValue = '';
         if (category === 'blue') defaultValue = 'Speed';
@@ -207,7 +224,6 @@ const InventoryControls = (props: InventoryControlsProps) => {
         const isCollapsed = collapsedCategories[category];
         
         // Find groups that PRIMARILY belong to this category (based on the first condition)
-        // We map them to their original indices to handle updates correctly
         const relevantGroups = filters.conditionGroups
             .map((group, index) => ({ group, index }))
             .filter(({ group }) => group.length > 0 && group[0].category === category);
@@ -263,7 +279,7 @@ const InventoryControls = (props: InventoryControlsProps) => {
     return (
         <div className="inventory-controls">
             <div className="inventory-controls__main">
-                {/* Scope Toggle */}
+                {/* Top Bar: View Scope */}
                 <div className="inventory-controls__scope-toggle">
                     <button className={`inventory-controls__scope-btn ${inventoryView === 'all' ? 'inventory-controls__scope-btn--active' : ''}`} onClick={() => setInventoryView('all')}>{t('inventory.view.all')}</button>
                     <button className={`inventory-controls__scope-btn ${inventoryView === 'owned' ? 'inventory-controls__scope-btn--active' : ''}`} onClick={() => setInventoryView('owned')}>{t('inventory.view.owned')}</button>
@@ -309,6 +325,7 @@ const InventoryControls = (props: InventoryControlsProps) => {
                 </button>
             </div>
             
+            {/* Advanced Settings */}
             {isAdvanced && (
                 <div className="inventory-controls__advanced-panel">
                     <div>
