@@ -74,18 +74,6 @@ const InventoryControls = (props: InventoryControlsProps) => {
         setFilters(prev => ({ ...prev, [key]: value }));
     };
 
-    // Clamp stars if switching to representative scope
-    useEffect(() => {
-        if (filters.searchScope === 'representative') {
-            setFilters(prev => ({
-                ...prev,
-                conditionGroups: prev.conditionGroups.map(group => 
-                    group.map(c => ({ ...c, stars: Math.min(c.stars, 3) }))
-                )
-            }));
-        }
-    }, [filters.searchScope, setFilters]);
-
     const createDefaultCondition = (category: FilterCategory): FilterCondition => {
         let defaultValue = '';
         if (category === 'blue') defaultValue = 'Speed';
@@ -158,6 +146,21 @@ const InventoryControls = (props: InventoryControlsProps) => {
 
     // --- Render Helpers ---
 
+    const renderStarFilter = (value: number, onChange: (value: number) => void, category: FilterCategory) => {
+        // Slider Logic: 
+        // - If category is 'unique', max is always 3 (unique skills don't stack across lineage in the same way).
+        // - If scope is 'representative' (searching only the parent itself), max is 3.
+        // - Otherwise (Total Lineage scope for Blue/Pink/White), max is 9.
+        // - Lineage category (boolean check) technically doesn't use stars, but we default to 3 if rendered.
+        
+        let sliderMax = 9;
+        if (category === 'unique' || category === 'lineage' || filters.searchScope === 'representative') {
+            sliderMax = 3;
+        }
+
+        return <RangeSlider label="" min={1} max={sliderMax} value={value} onChange={onChange} />;
+    };
+
     const renderConditionInput = (condition: FilterCondition, actualGroupIndex: number, conditionIndex: number) => {
         const updateValue = (val: string) => handleUpdateCondition(actualGroupIndex, conditionIndex, { value: val });
         
@@ -194,22 +197,16 @@ const InventoryControls = (props: InventoryControlsProps) => {
             );
         }
 
-        const sliderMax = filters.searchScope === 'representative' ? 3 : 9;
-
         return (
             <div key={condition.id} className="inventory-controls__condition-row">
                 <div className="flex-grow min-w-0">
                      {inputElement}
                 </div>
-                <div className="inventory-controls__slider-wrapper">
-                    <RangeSlider 
-                        label="" 
-                        min={1} 
-                        max={sliderMax} 
-                        value={condition.stars} 
-                        onChange={(v) => handleUpdateCondition(actualGroupIndex, conditionIndex, { stars: v })} 
-                    />
-                </div>
+                {condition.category !== 'lineage' && (
+                    <div className="inventory-controls__slider-wrapper">
+                        {renderStarFilter(condition.stars, (v) => handleUpdateCondition(actualGroupIndex, conditionIndex, { stars: v }), condition.category)}
+                    </div>
+                )}
                 <button 
                     className="inventory-controls__icon-btn text-stone-400 hover:text-red-500"
                     onClick={() => handleRemoveConditionFromGroup(actualGroupIndex, conditionIndex)}
@@ -224,6 +221,7 @@ const InventoryControls = (props: InventoryControlsProps) => {
         const isCollapsed = collapsedCategories[category];
         
         // Find groups that PRIMARILY belong to this category (based on the first condition)
+        // We map them to their original indices to handle updates correctly
         const relevantGroups = filters.conditionGroups
             .map((group, index) => ({ group, index }))
             .filter(({ group }) => group.length > 0 && group[0].category === category);
@@ -279,7 +277,7 @@ const InventoryControls = (props: InventoryControlsProps) => {
     return (
         <div className="inventory-controls">
             <div className="inventory-controls__main">
-                {/* Top Bar: View Scope */}
+                {/* Scope Toggle */}
                 <div className="inventory-controls__scope-toggle">
                     <button className={`inventory-controls__scope-btn ${inventoryView === 'all' ? 'inventory-controls__scope-btn--active' : ''}`} onClick={() => setInventoryView('all')}>{t('inventory.view.all')}</button>
                     <button className={`inventory-controls__scope-btn ${inventoryView === 'owned' ? 'inventory-controls__scope-btn--active' : ''}`} onClick={() => setInventoryView('owned')}>{t('inventory.view.owned')}</button>
