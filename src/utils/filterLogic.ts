@@ -1,4 +1,4 @@
-import { Parent, Filters, ManualParentData, FilterCategory } from '../types';
+import { Parent, Filters, ManualParentData, FilterCategory, FilterCondition } from '../types';
 import { getLineageStats, resolveGrandparent } from './affinity';
 
 /**
@@ -26,13 +26,12 @@ const checkLineageSpark = (parent: Parent, skillName: string, inventoryMap: Map<
  * Evaluates a single filter condition against a parent.
  */
 const evaluateCondition = (
-    condition: { category: FilterCategory; value: string; stars: number },
+    condition: FilterCondition,
     parent: Parent,
     lineageStats: ReturnType<typeof getLineageStats>,
-    inventoryMap: Map<number, Parent>,
-    scope: 'total' | 'representative'
+    inventoryMap: Map<number, Parent>
 ): boolean => {
-    const isTotal = scope === 'total';
+    const isTotal = condition.scope === 'total';
 
     switch (condition.category) {
         case 'blue':
@@ -105,7 +104,7 @@ export const checkParent = (
         // Inside Group (OR logic between conditions)
         // A group passes if ANY condition inside it evaluates to true.
         const groupPasses = group.some(condition => 
-            evaluateCondition(condition, parent, lineageStats, inventoryMap, filters.searchScope)
+            evaluateCondition(condition, parent, lineageStats, inventoryMap)
         );
 
         if (!groupPasses) {
