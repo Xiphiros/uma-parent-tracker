@@ -1,4 +1,4 @@
-import { Parent, Filters, ManualParentData, FilterCategory, FilterCondition } from '../types';
+import { Parent, Filters, ManualParentData, FilterCondition } from '../types';
 import { getLineageStats, resolveGrandparent } from './affinity';
 
 /**
