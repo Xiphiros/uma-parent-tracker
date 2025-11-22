@@ -193,7 +193,6 @@ export const useAppContext = () => {
 
 export const initialFilters: Filters = {
     searchTerm: '',
-    searchScope: 'total',
     conditionGroups: [],
     minWhiteSparks: 0,
 };
