@@ -5,7 +5,7 @@ import SearchableSelect from './SearchableSelect';
 import { useAppContext, initialFilters } from '../../context/AppContext';
 import './InventoryControls.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFilter, faTimes, faArrowDownWideShort, faArrowUpShortWide, faPlus, faTrashCan, faChevronDown, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { faFilter, faTimes, faArrowDownWideShort, faArrowUpShortWide, faPlus, faTrashCan, faChevronDown, faChevronRight, faUser, faUsers } from '@fortawesome/free-solid-svg-icons';
 import RangeSlider from './RangeSlider';
 import { useDebounce } from '../../hooks/useDebounce';
 
@@ -69,11 +69,6 @@ const InventoryControls = (props: InventoryControlsProps) => {
     const uniqueSkills = useMemo(() => masterSkillList.filter(s => s.category === 'unique'), [masterSkillList]);
     const normalSkills = useMemo(() => masterSkillList.filter(s => s.category === 'white'), [masterSkillList]);
 
-    // Define handleFilterChange here so it's accessible in the render scope
-    const handleFilterChange = <K extends keyof Filters>(key: K, value: Filters[K]) => {
-        setFilters(prev => ({ ...prev, [key]: value }));
-    };
-
     const createDefaultCondition = (category: FilterCategory): FilterCondition => {
         let defaultValue = '';
         if (category === 'blue') defaultValue = 'Speed';
@@ -83,11 +78,16 @@ const InventoryControls = (props: InventoryControlsProps) => {
             id: generateId(),
             category,
             value: defaultValue,
-            stars: 3
+            stars: 3,
+            scope: 'total'
         };
     };
 
     // --- Logic Helpers ---
+
+    const handleFilterChange = <K extends keyof Filters>(key: K, value: Filters[K]) => {
+        setFilters(prev => ({ ...prev, [key]: value }));
+    };
 
     const handleAddGroup = (category: FilterCategory) => {
         setFilters(prev => ({
@@ -146,23 +146,9 @@ const InventoryControls = (props: InventoryControlsProps) => {
 
     // --- Render Helpers ---
 
-    const renderStarFilter = (value: number, onChange: (value: number) => void, category: FilterCategory) => {
-        // Slider Logic: 
-        // - If category is 'unique', max is always 3 (unique skills don't stack across lineage in the same way).
-        // - If scope is 'representative' (searching only the parent itself), max is 3.
-        // - Otherwise (Total Lineage scope for Blue/Pink/White), max is 9.
-        // - Lineage category (boolean check) technically doesn't use stars, but we default to 3 if rendered.
-        
-        let sliderMax = 9;
-        if (category === 'unique' || category === 'lineage' || filters.searchScope === 'representative') {
-            sliderMax = 3;
-        }
-
-        return <RangeSlider label="" min={1} max={sliderMax} value={value} onChange={onChange} />;
-    };
-
     const renderConditionInput = (condition: FilterCondition, actualGroupIndex: number, conditionIndex: number) => {
         const updateValue = (val: string) => handleUpdateCondition(actualGroupIndex, conditionIndex, { value: val });
+        const toggleScope = () => handleUpdateCondition(actualGroupIndex, conditionIndex, { scope: condition.scope === 'total' ? 'representative' : 'total' });
         
         let inputElement;
         if (condition.category === 'blue') {
@@ -197,16 +183,31 @@ const InventoryControls = (props: InventoryControlsProps) => {
             );
         }
 
+        const sliderMax = condition.scope === 'representative' ? 3 : 9;
+        const scopeIcon = condition.scope === 'total' ? faUsers : faUser;
+        const scopeTitle = condition.scope === 'total' ? t('inventory.scope.total') : t('inventory.scope.representative');
+
         return (
             <div key={condition.id} className="inventory-controls__condition-row">
+                <button 
+                    className={`inventory-controls__icon-btn ${condition.scope === 'representative' ? 'text-indigo-500' : 'text-stone-400'}`}
+                    onClick={toggleScope}
+                    title={scopeTitle}
+                >
+                    <FontAwesomeIcon icon={scopeIcon} />
+                </button>
                 <div className="flex-grow min-w-0">
                      {inputElement}
                 </div>
-                {condition.category !== 'lineage' && (
-                    <div className="inventory-controls__slider-wrapper">
-                        {renderStarFilter(condition.stars, (v) => handleUpdateCondition(actualGroupIndex, conditionIndex, { stars: v }), condition.category)}
-                    </div>
-                )}
+                <div className="inventory-controls__slider-wrapper">
+                    <RangeSlider 
+                        label="" 
+                        min={1} 
+                        max={sliderMax} 
+                        value={condition.stars} 
+                        onChange={(v) => handleUpdateCondition(actualGroupIndex, conditionIndex, { stars: v })} 
+                    />
+                </div>
                 <button 
                     className="inventory-controls__icon-btn text-stone-400 hover:text-red-500"
                     onClick={() => handleRemoveConditionFromGroup(actualGroupIndex, conditionIndex)}
@@ -326,13 +327,6 @@ const InventoryControls = (props: InventoryControlsProps) => {
             {/* Advanced Settings */}
             {isAdvanced && (
                 <div className="inventory-controls__advanced-panel">
-                    <div>
-                        <label className="inventory-controls__label mb-1">{t('inventory.searchScope')}</label>
-                        <div className="inventory-controls__scope-toggle">
-                            <button className={`inventory-controls__scope-btn ${filters.searchScope === 'total' ? 'inventory-controls__scope-btn--active' : ''}`} onClick={() => handleFilterChange('searchScope', 'total')}>{t('inventory.scope.total')}</button>
-                            <button className={`inventory-controls__scope-btn ${filters.searchScope === 'representative' ? 'inventory-controls__scope-btn--active' : ''}`} onClick={() => handleFilterChange('searchScope', 'representative')}>{t('inventory.scope.representative')}</button>
-                        </div>
-                    </div>
                     <div>
                         <label className="inventory-controls__label">{t('inventory.minWhiteSkills')}</label>
                         <input type="number" className="form__input" min="0" value={filters.minWhiteSparks} onChange={e => handleFilterChange('minWhiteSparks', Math.max(0, parseInt(e.target.value, 10)) || 0)} />
