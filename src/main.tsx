@@ -1,9 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App.tsx'
+import App from './App'
 import './index.css'
-import { AppProvider } from './context/AppContext.tsx'
-import './i18n.ts'; // Initialize i18next
+import { AppProvider } from './context/AppContext'
+import './i18n'; // Initialize i18next
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
